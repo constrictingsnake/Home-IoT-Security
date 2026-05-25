@@ -1,0 +1,62 @@
+Source File,Source Sheet,CVE,CVSS,CVSS Severity,CWE,CWE Name,Description
+CategoryII_NetworkGatewayDeviceTypes.xlsx,wireless router,CVE-2002-1312,5.0,MEDIUM,NVD-CWE-Other,NVD-CWE-Other,"Buffer overflow in the Web management interface in Linksys BEFW11S4 wireless access point router 2 and BEFSR11, BEFSR41, and BEFSRU31 EtherFast Cable/DSL routers with firmware before 1.43.3 with remote management enabled allows remote attackers to cause a denial of service (router crash) via a long password."
+CategoryIX_IoTDeviceTypes.xlsx,asus,CVE-2021-28190,4.9,MEDIUM,CWE-120,CWE-120,"The specific function in ASUS BMC’s firmware Web management page (Generate new certificate function) does not verify the string length entered by users, resulting in a Buffer overflow vulnerability. As obtaining the privileged permission, remote attackers use the leakage to abnormally terminate the Web service."
+CategoryIX_IoTDeviceTypes.xlsx,asus,CVE-2021-28191,4.9,MEDIUM,CWE-120,CWE-120,"The Firmware update function in ASUS BMC’s firmware Web management page does not verify the string length entered by users, resulting in a Buffer overflow vulnerability. As obtaining the privileged permission, remote attackers use the leakage to abnormally terminate the Web service."
+CategoryIX_IoTDeviceTypes.xlsx,asus,CVE-2021-28192,4.9,MEDIUM,CWE-120,CWE-120,"The specific function in ASUS BMC’s firmware Web management page (Remote video storage function) does not verify the string length entered by users, resulting in a Buffer overflow vulnerability. As obtaining the privileged permission, remote attackers use the leakage to abnormally terminate the Web service."
+CategoryIX_IoTDeviceTypes.xlsx,asus,CVE-2021-28193,4.9,MEDIUM,CWE-120,CWE-120,"The SMTP configuration function in ASUS BMC’s firmware Web management page does not verify the string length entered by users, resulting in a Buffer overflow vulnerability. As obtaining the privileged permission, remote attackers use the leakage to abnormally terminate the Web service."
+CategoryIX_IoTDeviceTypes.xlsx,asus,CVE-2021-28194,4.9,MEDIUM,CWE-120,CWE-120,"The specific function in ASUS BMC’s firmware Web management page (Remote image configuration setting) does not verify the string length entered by users, resulting in a Buffer overflow vulnerability. As obtaining the privileged permission, remote attackers use the leakage to abnormally terminate the Web service."
+CategoryIX_IoTDeviceTypes.xlsx,asus,CVE-2021-28195,4.9,MEDIUM,CWE-120,CWE-120,"The Radius configuration function in ASUS BMC’s firmware Web management page does not verify the string length entered by users, resulting in a Buffer overflow vulnerability. As obtaining the privileged permission, remote attackers use the leakage to abnormally terminate the Web service."
+CategoryIX_IoTDeviceTypes.xlsx,asus,CVE-2021-28196,4.9,MEDIUM,CWE-120,CWE-120,"The specific function in ASUS BMC’s firmware Web management page (Generate SSL certificate function) does not verify the string length entered by users, resulting in a Buffer overflow vulnerability. As obtaining the privileged permission, remote attackers use the leakage to abnormally terminate the Web service."
+CategoryIX_IoTDeviceTypes.xlsx,asus,CVE-2021-28197,4.9,MEDIUM,CWE-120,CWE-120,"The Active Directory configuration function in ASUS BMC’s firmware Web management page does not verify the string length entered by users, resulting in a Buffer overflow vulnerability. As obtaining the privileged permission, remote attackers use the leakage to abnormally terminate the Web service."
+CategoryIX_IoTDeviceTypes.xlsx,asus,CVE-2021-28198,4.9,MEDIUM,CWE-120,CWE-120,"The Firmware protocol configuration function in ASUS BMC’s firmware Web management page does not verify the string length entered by users, resulting in a Buffer overflow vulnerability. As obtaining the privileged permission, remote attackers use the leakage to abnormally terminate the Web service."
+CategoryIX_IoTDeviceTypes.xlsx,asus,CVE-2021-28199,4.9,MEDIUM,CWE-120,CWE-120,"The specific function in ASUS BMC’s firmware Web management page (Modify user’s information function) does not verify the string length entered by users, resulting in a Buffer overflow vulnerability. As obtaining the privileged permission, remote attackers use the leakage to abnormally terminate the Web service."
+CategoryIX_IoTDeviceTypes.xlsx,asus,CVE-2021-28200,4.9,MEDIUM,CWE-120,CWE-120,"The CD media configuration function in ASUS BMC’s firmware Web management page does not verify the string length entered by users, resulting in a Buffer overflow vulnerability. As obtaining the privileged permission, remote attackers use the leakage to abnormally terminate the Web service."
+CategoryIX_IoTDeviceTypes.xlsx,asus,CVE-2021-28201,4.9,MEDIUM,CWE-120,CWE-120,"The Service configuration-1 function in ASUS BMC’s firmware Web management page does not verify the string length entered by users, resulting in a Buffer overflow vulnerability. As obtaining the privileged permission, remote attackers use the leakage to abnormally terminate the Web service."
+CategoryIX_IoTDeviceTypes.xlsx,asus,CVE-2021-28202,4.9,MEDIUM,CWE-120,CWE-120,"The Service configuration-2 function in ASUS BMC’s firmware Web management page does not verify the string length entered by users, resulting in a Buffer overflow vulnerability. As obtaining the privileged permission, remote attackers use the leakage to abnormally terminate the Web service."
+CategoryIX_IoTDeviceTypes.xlsx,asus,CVE-2021-28206,4.9,MEDIUM,CWE-22,CWE-22,"The specific function in ASUS BMC’s firmware Web management page (Record video file function) does not filter the specific parameter. As obtaining the administrator permission, remote attackers can use the means of path traversal to access system files."
+CategoryIX_IoTDeviceTypes.xlsx,asus,CVE-2021-28207,4.9,MEDIUM,CWE-22,CWE-22,"The specific function in ASUS BMC’s firmware Web management page (Get Help file function) does not filter the specific parameter. As obtaining the administrator permission, remote attackers can use the means of path traversal to access system files."
+CategoryIX_IoTDeviceTypes.xlsx,asus,CVE-2021-28208,4.9,MEDIUM,CWE-22,CWE-22,"The specific function in ASUS BMC’s firmware Web management page (Get video file function) does not filter the specific parameter. As obtaining the administrator permission, remote attackers can use the means of path traversal to access system files."
+CategoryIX_IoTDeviceTypes.xlsx,asus,CVE-2021-28209,4.9,MEDIUM,CWE-22,CWE-22,"The specific function in ASUS BMC’s firmware Web management page (Delete video file function) does not filter the specific parameter. As obtaining the administrator permission, remote attackers can use the means of path traversal to access system files."
+CategoryIX_IoTDeviceTypes.xlsx,linksys,CVE-2002-0109,6.4,MEDIUM,NVD-CWE-Other,NVD-CWE-Other,"Linksys EtherFast BEFN2PS4, BEFSR41, and BEFSR81 Routers, and possibly other products, allow remote attackers to gain sensitive information and cause a denial of service via an SNMP query for the default community string ""public,"" which causes the router to change its configuration and send SNMP trap information back to the system that initiated the query."
+CategoryIX_IoTDeviceTypes.xlsx,linksys,CVE-2002-1312,5.0,MEDIUM,NVD-CWE-Other,NVD-CWE-Other,"Buffer overflow in the Web management interface in Linksys BEFW11S4 wireless access point router 2 and BEFSR11, BEFSR41, and BEFSRU31 EtherFast Cable/DSL routers with firmware before 1.43.3 with remote management enabled allows remote attackers to cause a denial of service (router crash) via a long password."
+CategoryIX_IoTDeviceTypes.xlsx,linksys,CVE-2004-0580,5.0,MEDIUM,NVD-CWE-Other,NVD-CWE-Other,"DHCP on Linksys BEFSR11, BEFSR41, BEFSR81, and BEFSRU31 Cable/DSL Routers, firmware version 1.45.7, does not properly clear previously used buffer contents in a BOOTP reply packet, which allows remote attackers to obtain sensitive information."
+CategoryIX_IoTDeviceTypes.xlsx,ring,CVE-2023-52738,5.3,MEDIUM,CWE-476,CWE-476,"In the Linux kernel, the following vulnerability has been resolved:
+
+drm/amdgpu/fence: Fix oops due to non-matching drm_sched init/fini
+
+Currently amdgpu calls drm_sched_fini() from the fence driver sw fini
+routine - such function is expected to be called only after the
+respective init function - drm_sched_init() - was executed successfully.
+
+Happens that we faced a driver probe failure in the Steam Deck
+recently, and the function drm_sched_fini() was called even without
+its counter-part had been previously called, causing the following oops:
+
+amdgpu: probe of 0000:04:00.0 failed with error -110
+BUG: kernel NULL pointer dereference, address: 0000000000000090
+PGD 0 P4D 0
+Oops: 0002 [#1] PREEMPT SMP NOPTI
+CPU: 0 PID: 609 Comm: systemd-udevd Not tainted 6.2.0-rc3-gpiccoli #338
+Hardware name: Valve Jupiter/Jupiter, BIOS F7A0113 11/04/2022
+RIP: 0010:drm_sched_fini+0x84/0xa0 [gpu_sched]
+[...]
+Call Trace:
+ <TASK>
+ amdgpu_fence_driver_sw_fini+0xc8/0xd0 [amdgpu]
+ amdgpu_device_fini_sw+0x2b/0x3b0 [amdgpu]
+ amdgpu_driver_release_kms+0x16/0x30 [amdgpu]
+ devm_drm_dev_init_release+0x49/0x70
+ [...]
+
+To prevent that, check if the drm_sched was properly initialized for a
+given ring before calling its fini counter-part.
+
+Notice ideally we'd use sched.ready for that; such field is set as the latest
+thing on drm_sched_init(). But amdgpu seems to ""override"" the meaning of such
+field - in the above oops for example, it was a GFX ring causing the crash, and
+the sched.ready field was set to true in the ring init routine, regardless of
+the state of the DRM scheduler. Hence, we ended-up using sched.ops as per
+Christian's suggestion [0], and also removed the no_scheduler check [1].
+
+[0] https://lore.kernel.org/amd-gfx/984ee981-2906-0eaf-ccec-9f80975cb136@amd.com/
+[1] https://lore.kernel.org/amd-gfx/cd0e2994-f85f-d837-609f-7056d5fb7231@amd.com/"

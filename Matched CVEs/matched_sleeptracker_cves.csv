@@ -1,0 +1,3 @@
+Source File,Source Sheet,CVE,CVSS,CVSS Severity,CWE,CWE Name,Description
+CategoryI_SmartHomeDeviceTypes.xlsx,smart speaker,CVE-2026-26478,9.8,CRITICAL,CWE-78,CWE-78,A shell command injection vulnerability in Mobvoi Tichome Mini smart speaker 012-18853 and 027-58389 allows remote attackers to send a specially crafted UDP datagram and execute arbitrary shell code as the root account.
+CategoryVI_ApplianceDeviceTypes.xlsx,smart ac,CVE-2026-26478,9.8,CRITICAL,CWE-78,CWE-78,A shell command injection vulnerability in Mobvoi Tichome Mini smart speaker 012-18853 and 027-58389 allows remote attackers to send a specially crafted UDP datagram and execute arbitrary shell code as the root account.
