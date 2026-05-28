@@ -1,0 +1,92 @@
+﻿Onboarding Information for Incoming Students
+Introduction
+
+The objective of this ongoing research project is to discover vulnerabilities affecting Internet-of-Things (IoT) devices and determine where they exist in the wild. The National Institute of Standards and Technology (NIST) manages the National Vulnerability Database (NVD) which includes information about current vulnerabilities and their known affected software versions. In this research, you will work with the NIST NVD to compile vulnerabilities primarily affecting IoT devices and determine what and how many devices are affected and where they exist. 
+Terms to Know
+* Application Programming Interface (API) – Used to send and receive requests and other data from the application for programming use. In this context you may use API keys to connect with Censys, Shodan, or the NVD.
+* Censys – Online cybersecurity platform that scans the entire public facing internet in real time to help businesses and organizations assess their attack surface and risk levels.
+* Common Platform Enumeration (CPE) – Used to catalogue and identify software, hardware, and operating systems.
+* Common Weakness Enumeration (CWE) - Describes the category of the security weakness, such as Improper Sanitization or Improper Certificate Validation.
+* Common Vulnerabilities and Exposures (CVE) - Refers to any documented vulnerability affecting software, hardware, or firmware. There currently exist over 340,000 documented CVEs in the NVD.
+   * The naming convention for a CVE includes the year the vulnerability was discovered and the ID corresponding to that vulnerability, e.g CVE-2025-6433
+* Common Vulnerability Scoring System (CVSS) – Used for evaluating the severity* of a CVE on a numeric scale from 0.0 to 10.0. A higher CVSS score indicates a higher urgency to patch a vulnerable affected device.
+   * *Severity can be determined by a number of factors, such as complexity, attack vector, or impact. 
+* Exploit Prediction Scoring System (EPSS) – Estimation of the probability on a numeric scale from 0 to 1 of how likely a vulnerable device is to be actively exploited in the wild.
+* National Vulnerability Database (NVD) – Primary database used for this research, includes all documented CVEs with corresponding CWEs and affected CPEs. 
+* National Institute of Standards and Technology (NIST) – Government agency within the United States Department of Commerce aimed at developing cybersecurity frameworks, guidelines, and conducting cybersecurity research.
+* Shodan – Online search engine platform that allows for the discovery of IoT devices 
+________________
+
+
+
+
+Progress
+Previously we have worked with Censys and Shodan to discover vulnerable devices by querying for specific CPEs and related keywords, querying by port numbers running services relevant to IoT devices, and by vendors that manufacture specific IoT devices. Censys is limited in its querying syntax, so nesting queries that are too complex may prevent devices from being returned by the search. Because of this, we experimented with using similar tools, such as Shodan 
+
+
+As we leave this research project we have compiled a list of discovered vulnerabilities and categorized them into affected device types, including but not limited to smart home devices and sensors, network gateway devices, cameras, game consoles, etc.
+
+
+We are using two methods of finding CVEs for these devices. The first method is what Jason was working on. It involves creating a list of all the manufacturers and vendors for each specific device. It is impossible to get every single one, but looking online for as many as possible and compiling them into a list is effective. For example, cameras have brands like Ring, Google Nest, or Eufy, etc. but there are still more obscure ones. Lizzie was using another method, which is searching for devices using keywords for each device. For example, just searching for “security camera” or “ip camera” or “home camera” can reveal other results. Combining these two methods is the best way to get as comprehensive a list as possible for each device type. 
+
+
+So far, we have not checked for false positives in the lists of CVEs. Jason’s lists are more likely to have false positives and need to be checked thoroughly, as just searching by brands and vendors can have overlap with other devices.
+
+
+________________
+
+
+
+
+Home IoT Security Folder
+Home folder, contains all the files and folders for the project.
+
+
+Matched CVEs Folder
+Includes files with CVEs of all matches found between keyword files and manual NVD search files.
+Meeting Minutes
+Notes taken during each weekly meeting with tasks to complete assigned to each student.
+
+
+
+
+Jason’s Files
+Results files
+These files are all in the Home IoT Security folder. They are structured by the naming convention “results_all_[device name]” such as “results_all_airconditioner”. These are the results when searching by the vendors found by Jason.
+
+
+run_all_years.sh
+Requires a download of the CVEs of every year from NIST. Can download all files from https://nvd.nist.gov/vuln/data-feeds#divJson20Feeds and use the script to search. It works very quickly compared to API. Searches through the CVEs for any that have the listed keywords, change the KEYWORDS field to run it on different keywords. Returns a csv file with vulnerability information, including CVE number, CWEs, CVSS scores, CPEs, etc.
+
+
+cve_search.py
+Searches for CVEs in one specific file. Typically runs on one year file, but has other functionalities and arguments. To search in all years, use the run_all_years.sh file, which runs this program on all the years.
+
+
+Devices List
+This document contains all the different types of devices searched by Jason. It is divided into different overall categories of devices and then further into the specific type of device. For example, Climate and Energy Control is the category and the types of devices include thermostats, air conditioners, etc. Each device has the list of vendors that Jason found in quotes with --keywords in front of them. This is because it is the format required for the script
+
+
+Lizzie’s files
+full_intersect.py
+Finds the intersection of CVEs in a given file and in all the CVEs found in the NVD keyword search files. Outputs each matched CVE into a new .xlsx file with all original column information and a new column describing the file the matched CVE was found in.
+
+
+nvd_keyword_query.py
+Takes in a name for the output file and a list of keywords. For each keyword, prints to console the number of CVEs returned by querying NVD with the keyword, then prompts to fetch the full CVE list. If selected, will create an .xlsx file with all CVEs found, and information including description, CVSS, CWE, and CWE Name. 
+Note: If the script hangs or errors out, it is likely an issue with your network connection. This script also requires an NVD API key, which you can request using your terpmail and drop into the API key variable on line 6.
+
+
+NVD Keyword Queries
+Full folder of files from querying NVD with Dr. Cukier’s list of relevant IoT device keywords on NVD.
+________________
+
+
+Contact Information
+
+
+For questions related to accessing Censys, NVD,  API keys, or the shared Google Drive please reach out to Dr. Cukier or Dr. Katerina first. If you need additional assistance then you may contact either of us.
+
+
+Elizabeth Welbeck [ewelbeck@terpmail.umd.edu]
+Jason Yih [jyih@terpmail.umd.edu]
