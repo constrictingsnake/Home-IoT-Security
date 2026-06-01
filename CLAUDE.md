@@ -118,17 +118,44 @@ A Home IoT device is an embedded computing system, typically resource-constraine
 - `Maybe` — ambiguous, needs further discussion
 
 ### Guidance for AI-assisted classification (Claude Judgment column)
-When classifying CVEs, use `Maybe` whenever there is genuine hesitance — do not force a `Yes` or `No` if the evidence is unclear. Common cases that warrant `Maybe`:
-- The device could theoretically appear in a home but is primarily a commercial/industrial product (e.g. Siemens building management systems)
-- The description mentions the device category but the CPE strings point to enterprise or non-residential hardware
-- The CVE affects a software platform or protocol layer shared between home and non-home contexts
 
-A `Maybe` is more useful to researchers than a confident wrong answer.
+#### Column schema
+Each `results_all_*.xlsx` file gets three columns added:
+
+| Column | Values | When to populate |
+|--------|--------|-----------------|
+| `Claude Judgment` | Yes / No / Maybe | Always |
+| `Claude Confidence` | High / Low | Always |
+| `Claude Judgment Reasoning` | Short explanation | Low confidence and Maybe rows only |
+
+#### Judgment values
+- `Yes` — CVE genuinely affects a home IoT device of this category
+- `No` — false positive, keyword matched but CVE is unrelated
+- `Maybe` — ambiguous, needs human review. Always paired with Low confidence.
+
+#### Confidence values
+- `High` — classification is clear from the description and/or CPE strings. Reasoning column left empty.
+- `Low` — some uncertainty exists. Reasoning column must be populated.
+
+Use `Low` confidence when:
+- The device could theoretically appear in a home but is primarily a commercial/industrial product
+- The description mentions the device category but CPE strings point to enterprise hardware
+- The CVE affects a software platform or protocol layer shared between home and non-home contexts
+- No CPE string is available on a borderline row
+
+#### Reasoning must be self-contained
+Reasoning should explain the classification based solely on the description and CPE strings. Never reference other reviewers' judgments (e.g. "Lizzie marked this Maybe") — the reasoning must stand on its own and work consistently across all files, including those with no prior human review.
+
+#### Maybe is always Low confidence
+`Maybe` means the device is genuinely ambiguous. There is no `Maybe (High)` — if you are confident something is ambiguous, it is still `Low` confidence because the classification itself is unresolved.
+
+#### A Maybe or Low confidence No is more useful than a confident wrong answer
+Reviewers only check rows with reasoning populated. A High confidence mistake will never be caught. When in doubt, use Low confidence.
 
 ### CPE absence does not automatically mean Maybe
-A missing CPE string should not downgrade a classification to `Maybe` if the description is unambiguous. CPE data on recent CVEs (especially 2024–2026) is frequently absent due to NIST data lag, not because the device is unidentifiable. If the description explicitly names a home device and describes a residential attack vector (e.g. "accessible via LAN or home router port forwarding"), treat the spirit of criterion 3 as satisfied and classify based on the content.
+A missing CPE string should not downgrade a classification to `Maybe` if the description is unambiguous. CPE data on recent CVEs (especially 2024–2026) is frequently absent due to NIST data lag. If the description explicitly names a home device and describes a residential attack vector (e.g. "accessible via LAN or home router port forwarding"), treat the spirit of criterion 3 as satisfied and classify based on the content.
 
-**Example:** CVE-2025-6260 has no CPE string but its description reads *"the embedded web server on the thermostat... allows unauthenticated attackers, either on the local area network or from the Internet via a router with port forwarding"* — this is unambiguously a home thermostat and should be classified `Yes`.
+**Example:** CVE-2025-6260 has no CPE string but its description reads *"the embedded web server on the thermostat... allows unauthenticated attackers, either on the local area network or from the Internet via a router with port forwarding"* — this is unambiguously a home thermostat and should be classified `Yes (High)`.
 
 ### Why false positives exist
 The keyword search is purely text-based, so generic brand names and terms produce noise. For example:
