@@ -97,6 +97,16 @@ Home IoT Security/
 
 ---
 
+## Definition of a Home IoT Device
+
+A Home IoT device is an embedded computing system, typically resource-constrained in aspects like processing power, memory, and storage, that has 3 key aspects:
+
+1. Designed for permanent (or semi-permanent) deployment within a private residential network **without dedicated security oversight**
+2. Communicates through one or more standard internet protocols (TCP/IP, MQTT, CoAP, Zigbee)
+3. Exposes a hardware or software attack surface identifiable by a Common Platform Enumeration (CPE) string in the NIST National Vulnerability Database. As such, its firmware or software is subject to CVE disclosure when vulnerabilities are discovered
+
+---
+
 ## Manual Review — False Positive Classification
 
 ### What the judgment columns are
@@ -106,6 +116,19 @@ Home IoT Security/
 - `Yes` — true match, CVE genuinely affects this device type
 - `No` — false positive, keyword matched but CVE is unrelated
 - `Maybe` — ambiguous, needs further discussion
+
+### Guidance for AI-assisted classification (Claude Judgment column)
+When classifying CVEs, use `Maybe` whenever there is genuine hesitance — do not force a `Yes` or `No` if the evidence is unclear. Common cases that warrant `Maybe`:
+- The device could theoretically appear in a home but is primarily a commercial/industrial product (e.g. Siemens building management systems)
+- The description mentions the device category but the CPE strings point to enterprise or non-residential hardware
+- The CVE affects a software platform or protocol layer shared between home and non-home contexts
+
+A `Maybe` is more useful to researchers than a confident wrong answer.
+
+### CPE absence does not automatically mean Maybe
+A missing CPE string should not downgrade a classification to `Maybe` if the description is unambiguous. CPE data on recent CVEs (especially 2024–2026) is frequently absent due to NIST data lag, not because the device is unidentifiable. If the description explicitly names a home device and describes a residential attack vector (e.g. "accessible via LAN or home router port forwarding"), treat the spirit of criterion 3 as satisfied and classify based on the content.
+
+**Example:** CVE-2025-6260 has no CPE string but its description reads *"the embedded web server on the thermostat... allows unauthenticated attackers, either on the local area network or from the Internet via a router with port forwarding"* — this is unambiguously a home thermostat and should be classified `Yes`.
 
 ### Why false positives exist
 The keyword search is purely text-based, so generic brand names and terms produce noise. For example:
