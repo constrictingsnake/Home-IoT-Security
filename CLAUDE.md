@@ -117,16 +117,16 @@ A Home IoT device is an embedded computing system, typically resource-constraine
 - `No` — false positive, keyword matched but CVE is unrelated
 - `Maybe` — ambiguous, needs further discussion
 
-### Guidance for AI-assisted classification (Claude Judgment column)
+### Guidance for AI-assisted classification (AI Judgment column)
 
 #### Column schema
 Each `results_all_*.xlsx` file gets three columns added:
 
 | Column | Values | When to populate |
 |--------|--------|-----------------|
-| `Claude Judgment` | Yes / No / Maybe | Always |
-| `Claude Confidence` | High / Low | Always |
-| `Claude Judgment Reasoning` | Short explanation | Low confidence and Maybe rows only |
+| `AI Judgment` | Yes / No / Maybe | Always |
+| `AI Confidence` | High / Low | Always |
+| `AI Judgment Reasoning` | Short explanation | Low confidence and Maybe rows only |
 
 #### Judgment values
 - `Yes` — CVE genuinely affects a home IoT device of this category
