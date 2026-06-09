@@ -2,11 +2,19 @@
 
 ## What This Project Is
 
-A security research pipeline that systematically maps real-world home IoT device brands to known CVEs from NIST's National Vulnerability Database (NVD), organized by device category. The goal is to build a comprehensive dataset of vulnerability exposure across 15 consumer IoT device types, with manual review to eliminate false positives.
+A security research pipeline that systematically maps real-world home IoT device brands to known CVEs from NIST's National Vulnerability Database (NVD), organized by device category. The goal is to build a comprehensive dataset of vulnerability exposure across 13 in-scope consumer IoT device types (see *Definition of a Home IoT Device* for the scoping criteria; game consoles and streaming TVs were excluded as entertainment devices), with manual review to eliminate false positives.
 
 ---
 
 ## Three-Stage Pipeline
+
+### Two search methods (researcher attribution)
+The project combines two complementary CVE-discovery methods, each owned by a different researcher:
+
+- **Vendor-based search — Jason.** Compiles a list of manufacturers/brands per device type, then searches NVD for those vendor/brand names. Produces the `results_all_*.xlsx` files (Stage 2, via `cve_search.py` / `run_all_years.sh`; the `--keywords` in `Devices List.docx` are Jason's vendor/brand strings). More prone to false positives, since brand names overlap with unrelated products.
+- **Keyword-based search — Lizzie.** Searches NVD for generic device-type keywords (e.g. "security camera", "ip camera"). Produces the `NVD Keyword Queries/*.xlsx` workbooks (Stage 1, via `nvd_keyword_query.py`). `full_intersect.py` (Stage 3) is also Lizzie's — it intersects the two methods' outputs.
+
+Combining both methods yields the most comprehensive per-device CVE list.
 
 ### Stage 1 — `nvd_keyword_query.py` (Live API queries)
 - Hits the **NVD REST API v2.0** (`services.nvd.nist.gov`)
@@ -30,6 +38,13 @@ A security research pipeline that systematically maps real-world home IoT device
 - Adds `Source File` and `Source Sheet` columns to matched rows
 - Saves output to CSV interactively
 
+**Companion script — `full_difference.py`** (the complement of `full_intersect.py`):
+- Same inputs and workbook list as `full_intersect.py`
+- Outputs the vendor CVEs that appear in **none** of the keyword workbooks (i.e. `vendor − keyword_union`) — the set difference behind `unmatched_cves.xlsx`
+- Adds `Origin File` and `Difference Type` (= `vendor_only`) columns; default output `unmatched_cves.csv`
+- Prints vendor / keyword-union / unmatched counts so the set math is visible
+- Note: like `full_intersect.py`, the workbook filenames are bare, so run it from inside `NVD Keyword Queries/` (passing the vendor file via a relative path), or with the workbooks in the cwd
+
 ---
 
 ## File Structure
@@ -38,7 +53,8 @@ A security research pipeline that systematically maps real-world home IoT device
 Home IoT Security/
 ├── cve_search.py                    # Stage 2 — offline bulk NVD searcher
 ├── nvd_keyword_query.py             # Stage 1 — live NVD API querier
-├── full_intersect.py                # Stage 3 — CVE cross-file matcher
+├── full_intersect.py                # Stage 3 — CVE cross-file matcher (intersection)
+├── full_difference.py               # Stage 3 — CVE cross-file matcher (difference / complement)
 ├── run_all_years.sh                 # Automates Stage 2 across 2002–2026
 ├── Devices List.docx                # Master keyword reference: categories, source URLs,
 │                                    # and exact --keywords strings per device type
@@ -55,11 +71,11 @@ Home IoT Security/
 │   ├── CategoryVIII_ProtocolDeviceTypes.xlsx     (zigbee, z-wave, MQTT, CoAP...)
 │   └── CategoryIX_IoTDeviceTypes.xlsx            (brand names: Ring, Arlo, Hikvision, Tuya...)
 │
-├── results_all_<device>.xlsx        # Stage 2 outputs — one per device type (15 files)
+├── results_all_<device>.xlsx        # Stage 2 outputs — 13 in-scope device types (+2 excluded)
 │   ├── results_all_cameras.xlsx          (~2,161 CVEs — largest)
 │   ├── results_all_airconditioner.xlsx   (~187 CVEs)
-│   ├── results_all_gameconsoles.xlsx     (~246 CVEs)
-│   ├── results_all_streaming_tvs.xlsx    (~232 CVEs)
+│   ├── results_all_gameconsoles.xlsx     (~246 CVEs — OUT OF SCOPE: entertainment, fails criterion 4)
+│   ├── results_all_streaming_tvs.xlsx    (~232 CVEs — OUT OF SCOPE: entertainment, fails criterion 4)
 │   ├── results_all_thermostat.xlsx       (~61 CVEs)
 │   ├── results_all_robotvacuum.xlsx      (~80 CVEs)
 │   ├── results_all_smartplugs.xlsx       (~99 CVEs)
@@ -99,11 +115,27 @@ Home IoT Security/
 
 ## Definition of a Home IoT Device
 
-A Home IoT device is an embedded computing system, typically resource-constrained in aspects like processing power, memory, and storage, that has 3 key aspects:
+**Definition.** Home IoT devices are internet-connected sensors, appliances, and embedded systems deployed within residential environments for the purpose of monitoring, automation, or control, without dedicated IT security oversight (Balta-Ozkan et al., 2013; Alrawi et al., 2019).
 
-1. Designed for permanent (or semi-permanent) deployment within a private residential network **without dedicated security oversight**
-2. Communicates through one or more standard internet protocols (TCP/IP, MQTT, CoAP, Zigbee)
-3. Exposes a hardware or software attack surface identifiable by a Common Platform Enumeration (CPE) string in the NIST National Vulnerability Database. As such, its firmware or software is subject to CVE disclosure when vulnerabilities are discovered
+The criteria below are derived directly from this definition — one per clause. A device must satisfy **all five** definitional criteria.
+
+**Definitional criteria:**
+1. **Connectivity** — communicates over a network via standard protocols (TCP/IP, MQTT, CoAP, Zigbee, BLE). *(from "internet-connected")*
+2. **Device class** — a special-purpose sensor, appliance, or embedded system; **not** general-purpose IT (PC, phone, tablet, game console). *(from "sensors, appliances, and embedded systems")*
+3. **Deployment context** — intended for a private residence, not primarily enterprise/industrial. *(from "deployed within residential environments")*
+4. **Function** — primary purpose is to **monitor, automate, or control the home environment or its systems** (climate, security, access, lighting, appliances, presence). Media/entertainment, general computing, and communication are **not** qualifying functions. *(from "for the purpose of monitoring, automation, or control")*
+5. **Security context** — owned and maintained by non-expert consumers, with no professional security administration. *(from "without dedicated IT security oversight")*
+
+**Study-inclusion criterion** (operational, *not* definitional — it scopes what can be analyzed, not what qualifies as home IoT):
+- Has a Common Platform Enumeration (CPE)-identifiable footprint in NVD and is subject to CVE disclosure.
+
+**Guiding principle — connectivity is not membership.** Being networked alongside, or interoperating with, home IoT does not make a device home IoT. Criterion 1 (connectivity) is satisfied by virtually every IT device, so it cannot be the discriminator; the device's own **function** (criterion 4) and **class** (criterion 2) are what qualify it. A game console that controls smart lights through an app is still not a home IoT device.
+
+**Out of scope (excluded by criterion 4).** Game consoles and streaming devices / smart TVs are **entertainment** devices — their primary function is media consumption, not monitoring/automation/control of the home — and are therefore excluded. (Alrawi et al. include a "media" category because they score *deployment attack surface*; this project is a *function-defined category study*, a different goal, so their scope is not inherited.) The `results_all_gameconsoles.xlsx` and `results_all_streaming_tvs.xlsx` files remain on disk but are **out of the analysis set**.
+
+**Open scoping note — sleep trackers.** This category currently mixes bedside/in-bed monitors (in scope) with wearables like Fitbit/Apple Watch/Garmin/Whoop, which fail criterion 3 (personal/mobile, not deployed within the residence). Recommended resolution: scope the category to bedside sleep monitors and treat wearables as out of scope.
+
+**Recommended additions** (already keyword-prepped in `Devices List.docx` / NVD Keyword Queries but never given a `results_all_*.xlsx`): **routers/gateways, smart hubs, smart lighting** — all pass the five criteria cleanly.
 
 ---
 
@@ -176,7 +208,8 @@ For each row, read the `description` and `cpe_strings` and ask:
 | `results_all_thermostat.xlsx` | 61 | **Complete** (14 Yes / 7 Maybe / 40 No) | 1/61 |
 | `results_all_airconditioner.xlsx` | 187 | 1/187 | 1/187 |
 | `results_all_cameras.xlsx` | 2,161 | 1/2161 | 1/2161 |
-| All other 12 `results_all_*.xlsx` | varies | No judgment columns yet | — |
+| All other 10 in-scope `results_all_*.xlsx` | varies | No judgment columns yet | — |
+| `results_all_gameconsoles.xlsx`, `results_all_streaming_tvs.xlsx` | — | **Out of scope** (entertainment) | — |
 | `unmatched_cves.xlsx` | 64,327 | ~47/64327 | 3/64327 |
 
 **Next task:** Eliminate false positives across all `results_all_*.xlsx` files by filling in the judgment columns. Files missing the columns need them added first.
