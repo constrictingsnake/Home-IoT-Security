@@ -41,7 +41,7 @@ Combining both methods yields the most comprehensive per-device CVE list.
 **Companion script — `full_difference.py`** (the complement of `full_intersect.py`):
 - Same inputs and workbook list as `full_intersect.py`
 - Outputs the vendor CVEs that appear in **none** of the keyword workbooks (i.e. `vendor − keyword_union`) — the set difference behind `unmatched_cves.xlsx`
-- Adds `Origin File` and `Difference Type` (= `vendor_only`) columns; default output `unmatched_cves.csv`
+- Adds a `Difference Type` (= `vendor_only`) column and drops reviewer judgment columns; default output `unmatched_cves.csv`
 - Prints vendor / keyword-union / unmatched counts so the set math is visible
 - Note: like `full_intersect.py`, the workbook filenames are bare, so run it from inside `NVD Keyword Queries/` (passing the vendor file via a relative path), or with the workbooks in the cwd
 

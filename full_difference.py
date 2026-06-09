@@ -110,9 +110,17 @@ def collect_workbook_cves(excel_path):
 
     return found
 
+# Columns dropped from the output (helper column + reviewer judgment columns,
+# spelled both ways across files)
+DROP_COLS = [
+    '_cve_norm',
+    'Lizzie Judgment', 'Lizzie Judgement',
+    'Cukier Judgment', 'Cukier Judgement',
+]
+
 # Compute the difference and prompt the user to save it
 # Unmatched = CVEs in the vendor file that appear in NONE of the workbooks
-def save_results(df, vendor_cves, keyword_cves, origin_file):
+def save_results(df, vendor_cves, keyword_cves):
     unmatched = vendor_cves - keyword_cves
 
     print(f"\nVendor CVEs:             {len(vendor_cves)}")
@@ -127,9 +135,8 @@ def save_results(df, vendor_cves, keyword_cves, origin_file):
         return
 
     result = df[df['_cve_norm'].isin(unmatched)].copy()
-    result = result.drop(columns=['_cve_norm'])
-    result.insert(0, "Origin File", origin_file)
-    result.insert(1, "Difference Type", "vendor_only")
+    result = result.drop(columns=DROP_COLS, errors='ignore')
+    result.insert(0, "Difference Type", "vendor_only")
 
     choice = input(
         "\nSave all unmatched rows to CSV? (y/n): "
@@ -162,7 +169,7 @@ def main():
     for excel_file in MULTI_SHEET_FILES:
         keyword_cves |= collect_workbook_cves(excel_file)
 
-    save_results(df, cves, keyword_cves, single_sheet_file)
+    save_results(df, cves, keyword_cves)
 
 
 if __name__ == "__main__":
