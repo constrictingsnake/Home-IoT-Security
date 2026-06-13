@@ -1,0 +1,58 @@
+Difference Type,cve_id,published,description,cvss_score,cvss_version,cwe_ids,cpe_strings,Gemini Judgment,Gemini Confidence,Gemini Reasoning
+vendor_only,CVE-2013-4080,2013-06-09,"The dissect_r3_upstreamcommand_queryconfig function in epan/dissectors/packet-assa_r3.c in the Assa Abloy R3 dissector in Wireshark 1.8.x before 1.8.8 does not properly handle a zero-length item, which allows remote attackers to cause a denial of service (infinite loop, and CPU and memory consumption) via a crafted packet.",5.0,2.0,CWE-119,cpe:2.3:a:wireshark:wireshark:1.8.0:*:*:*:*:*:*:*|cpe:2.3:a:wireshark:wireshark:1.8.1:*:*:*:*:*:*:*|cpe:2.3:a:wireshark:wireshark:1.8.2:*:*:*:*:*:*:*|cpe:2.3:a:wireshark:wireshark:1.8.3:*:*:*:*:*:*:*|cpe:2.3:a:wireshark:wireshark:1.8.4:*:*:*:*:*:*:*|cpe:2.3:a:wireshark:wireshark:1.8.5:*:*:*:*:*:*:*|cpe:2.3:a:wireshark:wireshark:1.8.6:*:*:*:*:*:*:*|cpe:2.3:a:wireshark:wireshark:1.8.7:*:*:*:*:*:*:*,,,
+vendor_only,CVE-2017-7278,2017-08-18,Unspecified vulnerability in ASSA ABLOY APTUS Styra Porttelefonkort 4400 before A2 has unknown impact and attack vectors.,9.8,3.0,,cpe:2.3:o:aptus:styra_porttelefonkort_4400_firmware:a1:*:*:*:*:*:*:*|cpe:2.3:h:aptus:styra_porttelefonkort_4400:-:*:*:*:*:*:*:*,,,
+vendor_only,CVE-2020-27258,2021-01-19,"In SOOIL Developments Co., Ltd Diabecare RS, AnyDana-i and AnyDana-A, an information disclosure vulnerability in the communication protocol of the insulin pump and its AnyDana-i and AnyDana-A mobile applications allows unauthenticated attackers to extract the pump’s keypad lock PIN via Bluetooth Low Energy.",6.5,3.1,CWE-522,cpe:2.3:a:sooil:anydana-a:*:*:*:*:*:*:*:*|cpe:2.3:a:sooil:anydana-i:*:*:*:*:*:*:*:*|cpe:2.3:o:sooil:dana_diabecare_rs_firmware:*:*:*:*:*:*:*:*|cpe:2.3:h:sooil:dana_diabecare_rs:-:*:*:*:*:*:*:*,,,
+vendor_only,CVE-2023-53490,2025-10-01,"In the Linux kernel, the following vulnerability has been resolved:
+
+mptcp: fix disconnect vs accept race
+
+Despite commit 0ad529d9fd2b (""mptcp: fix possible divide by zero in
+recvmsg()""), the mptcp protocol is still prone to a race between
+disconnect() (or shutdown) and accept.
+
+The root cause is that the mentioned commit checks the msk-level
+flag, but mptcp_stream_accept() does acquire the msk-level lock,
+as it can rely directly on the first subflow lock.
+
+As reported by Christoph than can lead to a race where an msk
+socket is accepted after that mptcp_subflow_queue_clean() releases
+the listener socket lock and just before it takes destructive
+actions leading to the following splat:
+
+BUG: kernel NULL pointer dereference, address: 0000000000000012
+PGD 5a4ca067 P4D 5a4ca067 PUD 37d4c067 PMD 0
+Oops: 0000 [#1] PREEMPT SMP
+CPU: 2 PID: 10955 Comm: syz-executor.5 Not tainted 6.5.0-rc1-gdc7b257ee5dd #37
+Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS 1.11.0-2.el7 04/01/2014
+RIP: 0010:mptcp_stream_accept+0x1ee/0x2f0 include/net/inet_sock.h:330
+Code: 0a 09 00 48 8b 1b 4c 39 e3 74 07 e8 bc 7c 7f fe eb a1 e8 b5 7c 7f fe 4c 8b 6c 24 08 eb 05 e8 a9 7c 7f fe 49 8b 85 d8 09 00 00 <0f> b6 40 12 88 44 24 07 0f b6 6c 24 07 bf 07 00 00 00 89 ee e8 89
+RSP: 0018:ffffc90000d07dc0 EFLAGS: 00010293
+RAX: 0000000000000000 RBX: ffff888037e8d020 RCX: ffff88803b093300
+RDX: 0000000000000000 RSI: ffffffff833822c5 RDI: ffffffff8333896a
+RBP: 0000607f82031520 R08: ffff88803b093300 R09: 0000000000000000
+R10: 0000000000000000 R11: 0000000000003e83 R12: ffff888037e8d020
+R13: ffff888037e8c680 R14: ffff888009af7900 R15: ffff888009af6880
+FS:  00007fc26d708640(0000) GS:ffff88807dd00000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 0000000000000012 CR3: 0000000066bc5001 CR4: 0000000000370ee0
+DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
+DR3: 0000000000000000 DR6: 00000000fffe0ff0 DR7: 0000000000000400
+Call Trace:
+ <TASK>
+ do_accept+0x1ae/0x260 net/socket.c:1872
+ __sys_accept4+0x9b/0x110 net/socket.c:1913
+ __do_sys_accept4 net/socket.c:1954 [inline]
+ __se_sys_accept4 net/socket.c:1951 [inline]
+ __x64_sys_accept4+0x20/0x30 net/socket.c:1951
+ do_syscall_x64 arch/x86/entry/common.c:50 [inline]
+ do_syscall_64+0x47/0xa0 arch/x86/entry/common.c:80
+ entry_SYSCALL_64_after_hwframe+0x6e/0xd8
+
+Address the issue by temporary removing the pending request socket
+from the accept queue, so that racing accept() can't touch them.
+
+After depleting the msk - the ssk still exists, as plain TCP sockets,
+re-insert them into the accept queue, so that later inet_csk_listen_stop()
+will complete the tcp socket disposal.",4.7,3.1,CWE-362,cpe:2.3:o:linux:linux_kernel:*:*:*:*:*:*:*:*|cpe:2.3:o:linux:linux_kernel:6.3:-:*:*:*:*:*:*|cpe:2.3:o:linux:linux_kernel:6.5:rc1:*:*:*:*:*:*|cpe:2.3:o:linux:linux_kernel:6.5:rc2:*:*:*:*:*:*|cpe:2.3:o:linux:linux_kernel:6.5:rc3:*:*:*:*:*:*|cpe:2.3:o:linux:linux_kernel:6.5:rc4:*:*:*:*:*:*|cpe:2.3:o:linux:linux_kernel:6.5:rc5:*:*:*:*:*:*,,,
+vendor_only,CVE-2026-3315,2026-03-10,"Incorrect Default Permissions, : Execution with Unnecessary Privileges, : Incorrect Permission Assignment for Critical Resource vulnerability in ASSA ABLOY Visionline on Windows allows Configuration/Environment Manipulation.This issue affects Visionline: from 1.0 before 1.33.",,,CWE-250|CWE-276|CWE-732,,,,
+vendor_only,CVE-2026-31824,2026-03-10,"Sylius is an Open Source eCommerce Framework on Symfony. A Time-of-Check To Time-of-Use (TOCTOU) race condition was discovered in the promotion usage limit enforcement. The same class of vulnerability affects the promotion usage limit (the global used counter on Promotion entities), coupon usage limit (the global used counter on PromotionCoupon entities), and coupon per-customer usage limit (the per-customer redemption count on PromotionCoupon entities). In all three cases, the eligibility check reads the used counter (or order count) from an in-memory Doctrine entity during validation, while the actual usage increment in OrderPromotionsUsageModifier happens later during order completion — with no database-level locking or atomic operations between the two phases. Because Doctrine flushes an absolute value (SET used = 1) rather than an atomic increment (SET used = used + 1), and because the affected entities lack optimistic locking, concurrent requests all read the same stale usage counts and pass the eligibility checks simultaneously. An attacker can exploit this by preparing multiple carts with the same limited-use promotion or coupon and firing simultaneous PATCH /api/v2/shop/orders/{token}/complete requests. All requests pass the usage limit checks and complete successfully, allowing a single-use promotion or coupon to be redeemed an arbitrary number of times. The per-customer limit can be bypassed in the same way by a single customer completing multiple orders concurrently. No authentication is required to exploit this vulnerability. This may lead to direct financial loss through unlimited redemption of limited-use promotions and discount coupons. The issue is fixed in versions: 1.9.12, 1.10.16, 1.11.17, 1.12.23, 1.13.15, 1.14.18, 2.0.16, 2.1.12, 2.2.3 and above.",5.9,3.1,CWE-362|CWE-367,cpe:2.3:a:sylius:sylius:*:*:*:*:*:*:*:*,,,

@@ -61,8 +61,8 @@ def load_cves(filepath):
         return df, cves
 
     except Exception as e:
-        print(f"File read error: {e}")
-        exit(1)
+        # Raise (instead of exit) so batch callers can skip one bad file and continue.
+        raise ValueError(f"Could not read CVEs from {filepath}: {e}")
 
 # Collects every CVE ID present in a multi-sheet workbook (across all sheets)
 def collect_workbook_cves(excel_path):
@@ -118,6 +118,16 @@ DROP_COLS = [
     'Cukier Judgment', 'Cukier Judgement',
 ]
 
+# Build the difference rows: vendor CVEs that appear in NONE of the keyword workbooks.
+# Reusable by batch callers (build_difference_sets.py) and by save_results below.
+def difference_rows(vendor_df, vendor_cves, keyword_cves):
+    unmatched = vendor_cves - keyword_cves
+    result = vendor_df[vendor_df['_cve_norm'].isin(unmatched)].copy()
+    result = result.drop(columns=DROP_COLS, errors='ignore')
+    result.insert(0, "Difference Type", "vendor_only")
+    return result
+
+
 # Compute the difference and prompt the user to save it
 # Unmatched = CVEs in the vendor file that appear in NONE of the workbooks
 def save_results(df, vendor_cves, keyword_cves):
@@ -134,9 +144,7 @@ def save_results(df, vendor_cves, keyword_cves):
         )
         return
 
-    result = df[df['_cve_norm'].isin(unmatched)].copy()
-    result = result.drop(columns=DROP_COLS, errors='ignore')
-    result.insert(0, "Difference Type", "vendor_only")
+    result = difference_rows(df, vendor_cves, keyword_cves)
 
     choice = input(
         "\nSave all unmatched rows to CSV? (y/n): "
@@ -162,7 +170,11 @@ def main():
     print("------ CVE Multi-Spreadsheet Difference ------\n")
 
     single_sheet_file = get_single_sheet_file() # prompt for user input
-    df, cves = load_cves(single_sheet_file)
+    try:
+        df, cves = load_cves(single_sheet_file)
+    except ValueError as e:
+        print(e)
+        exit(1)
 
     keyword_cves = set()
     # build the union of every CVE found across the keyword workbooks

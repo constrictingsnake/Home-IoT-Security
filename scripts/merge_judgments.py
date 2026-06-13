@@ -12,8 +12,10 @@ merge you can run any time as a "show me current status" view.
 
 Flag rule (set by the project):
     "Needs Human Review" = Yes  when
-        >= 2 of the 3 AIs are Low confidence
+        BOTH strong reviewers (Claude & Codex) are Low confidence
         OR the 3 judgments are not unanimous (confident disagreement)
+    Gemini's confidence is recorded but excluded from the flag (weaker model, skews Low);
+    Gemini's judgment still counts toward the unanimity check.
 
 Rows not yet fully reviewed (any of the 3 judgments still blank) are marked
 "Review Status = incomplete" and left unflagged (pending), so partial progress is visible
@@ -33,6 +35,12 @@ import pandas as pd
 
 REVIEWERS = ["Claude", "Codex", "Gemini"]
 JUDGMENT_FIELDS = ["Judgment", "Confidence", "Reasoning"]
+
+# Confidence from these "strong" models drives the low-confidence flag. Gemini is a weaker
+# third model whose self-reported confidence tends to skew Low, which would inflate the
+# human-review queue — so its confidence is recorded but NOT counted here. Gemini's *judgment*
+# still counts toward the unanimity check.
+STRONG_REVIEWERS = ["Claude", "Codex"]
 
 
 def review_columns(reviewer):
@@ -59,18 +67,20 @@ def load_copy(path, reviewer):
 def classify_row(row):
     """Return (status, needs_review, reason) for one merged row."""
     judgments = [str(row[f"{r} Judgment"]).strip() for r in REVIEWERS]
-    confidences = [str(row[f"{r} Confidence"]).strip().lower() for r in REVIEWERS]
 
     if any(j == "" for j in judgments):
         return "incomplete", "", ""
 
-    low_count = sum(1 for c in confidences if c == "low")
+    # Low-confidence flag uses only the strong reviewers (Gemini's confidence is excluded).
+    low_count = sum(
+        1 for r in STRONG_REVIEWERS if str(row[f"{r} Confidence"]).strip().lower() == "low"
+    )
     distinct = {j.lower() for j in judgments}
     disagree = len(distinct) > 1
 
     reasons = []
-    if low_count >= 2:
-        reasons.append(f"{low_count} of 3 low confidence")
+    if low_count >= len(STRONG_REVIEWERS):  # all strong reviewers low (i.e. Claude & Codex)
+        reasons.append("both strong reviewers low confidence")
     if disagree:
         reasons.append("judgments not unanimous")
 

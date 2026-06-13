@@ -66,7 +66,9 @@ the file it reads. All three judge by the same rubric: `data/difference/CLASSIFI
 
 **Per-category workflow** (run from the repo root; `<device>` e.g. `cameras`):
 0. (Optional, batch) `python scripts/init_categories.py categories.txt` — scaffold `data/difference/<device>/reviews/` for every category in a newline-separated list. Idempotent: existing folders are left untouched, only missing ones are created.
-1. `python scripts/full_difference.py` → save the category's difference set as `data/difference/<device>/01_raw.csv` (run from `data/keyword-search/`; see Stage 3 note).
+1. Generate the raw difference set(s) as `data/difference/<device>/01_raw.csv`:
+   - **Batch (all categories):** `python scripts/build_difference_sets.py data/device_lst.txt` — maps each list entry to `data/vendor-search/results_all_<device>.xlsx`, builds the keyword union once, and writes every category's `01_raw.csv`. Skips categories that already have one (use `--overwrite` to regenerate).
+   - **Single, interactive:** `python scripts/full_difference.py` (run from `data/keyword-search/`; see Stage 3 note), then save to the category's `01_raw.csv`.
 2. `python scripts/make_review_copies.py data/difference/<device>/01_raw.csv` → writes blind `reviews/{claude,codex,gemini}.csv`.
 3. The two **manual** reviewers each fill **only their own** copy, following the rubric:
    - Claude Code edits `reviews/claude.csv`
@@ -78,9 +80,12 @@ the file it reads. All three judge by the same rubric: `data/difference/CLASSIFI
    - Standalone `python scripts/gemini_classify.py reviews/gemini.csv --category "<keyword>"` still works if you want the Gemini pass without merging.
 5. Mine the unanimous-`Yes` rows for missing keywords → `03_keyword_additions.md`.
 
-**Human-review flag** (set in `merge_judgments.py`): `Needs Human Review = Yes` when **≥ 2 of the
-3 AIs are Low confidence OR the 3 judgments are not unanimous**. Rows where any AI hasn't reviewed
-yet are `Review Status = incomplete` (pending, unflagged). Humans only adjudicate flagged rows.
+**Human-review flag** (set in `merge_judgments.py`): `Needs Human Review = Yes` when **both strong
+reviewers (Claude & Codex) are Low confidence OR the 3 judgments are not unanimous**. Gemini is a
+weaker third model, so its self-reported confidence is **recorded but excluded** from the flag (it
+skews Low and would inflate the queue); Gemini's *judgment* still counts toward unanimity. Rows
+where any AI hasn't reviewed yet are `Review Status = incomplete` (pending, unflagged). Humans only
+adjudicate flagged rows.
 
 ---
 
@@ -89,6 +94,7 @@ yet are `Review Status = incomplete` (pending, unflagged). Humans only adjudicat
 ```
 Home IoT Security/
 ├── CLAUDE.md                        # This project guide
+├── AGENTS.md                        # Codex reviewer instructions (auto-loaded by Codex)
 ├── Devices List.docx                # Master keyword reference: categories, source URLs,
 │                                    # and exact --keywords strings per device type
 │
@@ -98,6 +104,7 @@ Home IoT Security/
 │   ├── run_all_years.sh                 # Automates Stage 2 across 2002–2026
 │   ├── full_intersect.py                # Stage 3 — CVE cross-file matcher (intersection)
 │   ├── full_difference.py               # Stage 3 — CVE cross-file matcher (difference / complement)
+│   ├── build_difference_sets.py         # Stage 4 — batch-generate 01_raw.csv for many categories at once
 │   ├── init_categories.py               # Stage 4 — scaffold per-category folders from a list (idempotent)
 │   ├── make_review_copies.py            # Stage 4 — split a raw difference set into 3 blind AI copies
 │   ├── gemini_classify.py               # Stage 4 — Gemini API reviewer (standalone, or imported by merge)
