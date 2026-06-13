@@ -12,7 +12,7 @@ A security research pipeline that systematically maps real-world home IoT device
 The project combines two complementary CVE-discovery methods, each owned by a different researcher:
 
 - **Vendor-based search — Jason.** Compiles a list of manufacturers/brands per device type, then searches NVD for those vendor/brand names. Produces the `results_all_*.xlsx` files (Stage 2, via `cve_search.py` / `run_all_years.sh`; the `--keywords` in `Devices List.docx` are Jason's vendor/brand strings). More prone to false positives, since brand names overlap with unrelated products.
-- **Keyword-based search — Lizzie.** Searches NVD for generic device-type keywords (e.g. "security camera", "ip camera"). Produces the `NVD Keyword Queries/*.xlsx` workbooks (Stage 1, via `nvd_keyword_query.py`). `full_intersect.py` (Stage 3) is also Lizzie's — it intersects the two methods' outputs.
+- **Keyword-based search — Lizzie.** Searches NVD for generic device-type keywords (e.g. "security camera", "ip camera"). Produces the `data/keyword-search/*.xlsx` workbooks (Stage 1, via `nvd_keyword_query.py`). `full_intersect.py` (Stage 3) is also Lizzie's — it intersects the two methods' outputs.
 
 Combining both methods yields the most comprehensive per-device CVE list.
 
@@ -33,7 +33,7 @@ Combining both methods yields the most comprehensive per-device CVE list.
 - `run_all_years.sh` automates Stage 2 across all years, then merges into a single CSV
 
 ### Stage 3 — `full_intersect.py` (Cross-file matching)
-- Takes a single-sheet Excel of CVE IDs (from Stage 2 output) and cross-references against all 10 NVD Keyword Query workbooks
+- Takes a single-sheet Excel of CVE IDs (from Stage 2 output) and cross-references against all 10 keyword-search workbooks (`data/keyword-search/`)
 - Finds CVEs that appear in both the device-specific result set and a generic category query
 - Adds `Source File` and `Source Sheet` columns to matched rows
 - Saves output to CSV interactively
@@ -43,7 +43,44 @@ Combining both methods yields the most comprehensive per-device CVE list.
 - Outputs the vendor CVEs that appear in **none** of the keyword workbooks (i.e. `vendor − keyword_union`) — the set difference behind `unmatched_cves.xlsx`
 - Adds a `Difference Type` (= `vendor_only`) column and drops reviewer judgment columns; default output `unmatched_cves.csv`
 - Prints vendor / keyword-union / unmatched counts so the set math is visible
-- Note: like `full_intersect.py`, the workbook filenames are bare, so run it from inside `NVD Keyword Queries/` (passing the vendor file via a relative path), or with the workbooks in the cwd
+- Note: like `full_intersect.py`, the workbook filenames are bare, so run it from inside `data/keyword-search/` (passing the vendor file via a relative path), or with the workbooks in the cwd
+
+### Stage 4 — Triple-AI review of the difference set (per device category)
+
+The difference set (a category's `vendor − keyword_union`) is the list of vendor CVEs the
+keyword search **missed**. Classifying which are true matches both (a) cleans the dataset and
+(b) surfaces keywords the keyword search is missing — mining the true-positive descriptions
+feeds new terms back into the keyword list to raise recall. To keep this trustworthy, every
+row is judged **independently by three AI reviewers**, mirroring the two-human reviewer model:
+
+| Reviewer | Columns it owns | How it runs |
+|----------|-----------------|-------------|
+| **Claude Code** | `Claude Judgment / Confidence / Reasoning` | manual (in-session) |
+| **ChatGPT Codex** | `Codex Judgment / Confidence / Reasoning` | manual (run by a person) |
+| **Gemini** | `Gemini Judgment / Confidence / Reasoning` | automated via `gemini_classify.py` |
+
+**Blind judgment is a hard rule.** No reviewer may see or be influenced by another reviewer's
+answer. This is guaranteed structurally: each reviewer works on its **own copy** that contains
+only the raw data + its own empty columns, so other AIs' judgments are physically absent from
+the file it reads. All three judge by the same rubric: `data/difference/CLASSIFICATION_PROMPT.md`.
+
+**Per-category workflow** (run from the repo root; `<device>` e.g. `cameras`):
+0. (Optional, batch) `python scripts/init_categories.py categories.txt` — scaffold `data/difference/<device>/reviews/` for every category in a newline-separated list. Idempotent: existing folders are left untouched, only missing ones are created.
+1. `python scripts/full_difference.py` → save the category's difference set as `data/difference/<device>/01_raw.csv` (run from `data/keyword-search/`; see Stage 3 note).
+2. `python scripts/make_review_copies.py data/difference/<device>/01_raw.csv` → writes blind `reviews/{claude,codex,gemini}.csv`.
+3. The two **manual** reviewers each fill **only their own** copy, following the rubric:
+   - Claude Code edits `reviews/claude.csv`
+   - Codex edits `reviews/codex.csv`
+4. Run the **Gemini reviewer + merge in one command**:
+   `GEMINI_API_KEY=… python scripts/merge_judgments.py --reviews data/difference/<device>/reviews --run-gemini --category "<keyword>"`
+   → fills `reviews/gemini.csv` (resumable; skips already-filled rows), then writes `02_merged.csv` with all 9 AI columns plus the flag.
+   - Plain `python scripts/merge_judgments.py --reviews data/difference/<device>/reviews` (no `--run-gemini`) just re-merges — a quick status view, no API/`requests` needed.
+   - Standalone `python scripts/gemini_classify.py reviews/gemini.csv --category "<keyword>"` still works if you want the Gemini pass without merging.
+5. Mine the unanimous-`Yes` rows for missing keywords → `03_keyword_additions.md`.
+
+**Human-review flag** (set in `merge_judgments.py`): `Needs Human Review = Yes` when **≥ 2 of the
+3 AIs are Low confidence OR the 3 judgments are not unanimous**. Rows where any AI hasn't reviewed
+yet are `Review Status = incomplete` (pending, unflagged). Humans only adjudicate flagged rows.
 
 ---
 
@@ -51,52 +88,78 @@ Combining both methods yields the most comprehensive per-device CVE list.
 
 ```
 Home IoT Security/
-├── cve_search.py                    # Stage 2 — offline bulk NVD searcher
-├── nvd_keyword_query.py             # Stage 1 — live NVD API querier
-├── full_intersect.py                # Stage 3 — CVE cross-file matcher (intersection)
-├── full_difference.py               # Stage 3 — CVE cross-file matcher (difference / complement)
-├── run_all_years.sh                 # Automates Stage 2 across 2002–2026
+├── CLAUDE.md                        # This project guide
 ├── Devices List.docx                # Master keyword reference: categories, source URLs,
 │                                    # and exact --keywords strings per device type
 │
-├── NVD Keyword Queries/             # Stage 1 outputs — 10 multi-sheet workbooks
-│   ├── CategoryI_SmartHomeDeviceTypes.xlsx       (smart home, smart speaker, smart TV...)
-│   ├── CategoryII_NetworkGatewayDeviceTypes.xlsx (routers, modems, NVR, mesh wifi...)
-│   ├── CategoryIII_CameraDoorbellDeviceTypes.xlsx (IP cam, baby monitor, doorbell...)
-│   ├── CategoryIV_AccessControlDeviceTypes.xlsx  (smart lock, garage door...)
-│   ├── CategoryV_SensorDeviceTypes.xlsx          (motion, CO, flood, thermostat...)
-│   ├── CategoryVI_ApplianceDeviceTypes.xlsx      (fridge, robot vacuum, smart AC...)
-│   ├── CategoryVI_SwitchDeviceTypes.xlsx         (smart plug, bulb, switch...)
-│   ├── CategoryVII_HubDeviceTypes.xlsx           (smart hub, zigbee hub, matter hub...)
-│   ├── CategoryVIII_ProtocolDeviceTypes.xlsx     (zigbee, z-wave, MQTT, CoAP...)
-│   └── CategoryIX_IoTDeviceTypes.xlsx            (brand names: Ring, Arlo, Hikvision, Tuya...)
+├── scripts/                         # All pipeline scripts live here
+│   ├── nvd_keyword_query.py             # Stage 1 — live NVD API querier
+│   ├── cve_search.py                    # Stage 2 — offline bulk NVD searcher
+│   ├── run_all_years.sh                 # Automates Stage 2 across 2002–2026
+│   ├── full_intersect.py                # Stage 3 — CVE cross-file matcher (intersection)
+│   ├── full_difference.py               # Stage 3 — CVE cross-file matcher (difference / complement)
+│   ├── init_categories.py               # Stage 4 — scaffold per-category folders from a list (idempotent)
+│   ├── make_review_copies.py            # Stage 4 — split a raw difference set into 3 blind AI copies
+│   ├── gemini_classify.py               # Stage 4 — Gemini API reviewer (standalone, or imported by merge)
+│   └── merge_judgments.py               # Stage 4 — (optionally run Gemini, then) merge the 3 AI copies + flag
 │
-├── results_all_<device>.xlsx        # Stage 2 outputs — 13 in-scope device types (+2 excluded)
-│   ├── results_all_cameras.xlsx          (~2,161 CVEs — largest)
-│   ├── results_all_airconditioner.xlsx   (~187 CVEs)
-│   ├── results_all_gameconsoles.xlsx     (~246 CVEs — OUT OF SCOPE: entertainment, fails criterion 4)
-│   ├── results_all_streaming_tvs.xlsx    (~232 CVEs — OUT OF SCOPE: entertainment, fails criterion 4)
-│   ├── results_all_thermostat.xlsx       (~61 CVEs)
-│   ├── results_all_robotvacuum.xlsx      (~80 CVEs)
-│   ├── results_all_smartplugs.xlsx       (~99 CVEs)
-│   ├── results_all_alarms.xlsx           (~117 CVEs)
-│   ├── results_all_doorbell.xlsx         (~60 CVEs)
-│   ├── results_all_babymonitor.xlsx      (~74 CVEs)
-│   ├── results_all_doorlock.xlsx         (~18 CVEs)
-│   ├── results_all_fridge.xlsx           (~3 CVEs)
-│   ├── results_all_fans.xlsx             (~1 CVE)
-│   ├── results_all_smartspeakers.xlsx    (~33 CVEs)
-│   └── results_all_sleeptracker.xlsx     (~27 CVEs)
+├── Onboarding-Docs/                 # Onboarding doc + reference papers (unchanged)
 │
-├── Matched CVEs/                    # Stage 3 outputs — intersection results per device
-│   ├── matched_camera_cves.csv           (~1,048 rows — largest)
-│   ├── matched_alarms_cves.csv           (~175 rows)
-│   ├── matched_smartplug_cves.csv        (~88 rows)
-│   └── matched_<device>_cves.csv         (10 more device types)
-│
-└── unmatched_cves.xlsx              # CVEs in Stage 2 results NOT matched in any
-                                     # category workbook (64,327 rows total)
+└── data/                            # All datasets, grouped by search method
+    │
+    ├── keyword-search/              # Stage 1 outputs (Lizzie) — 10 multi-sheet workbooks
+    │   ├── CategoryI_SmartHomeDeviceTypes.xlsx       (smart home, smart speaker, smart TV...)
+    │   ├── CategoryII_NetworkGatewayDeviceTypes.xlsx (routers, modems, NVR, mesh wifi...)
+    │   ├── CategoryIII_CameraDoorbellDeviceTypes.xlsx (IP cam, baby monitor, doorbell...)
+    │   ├── CategoryIV_AccessControlDeviceTypes.xlsx  (smart lock, garage door...)
+    │   ├── CategoryV_SensorDeviceTypes.xlsx          (motion, CO, flood, thermostat...)
+    │   ├── CategoryVI_ApplianceDeviceTypes.xlsx      (fridge, robot vacuum, smart AC...)
+    │   ├── CategoryVI_SwitchDeviceTypes.xlsx         (smart plug, bulb, switch...)
+    │   ├── CategoryVII_HubDeviceTypes.xlsx           (smart hub, zigbee hub, matter hub...)
+    │   ├── CategoryVIII_ProtocolDeviceTypes.xlsx     (zigbee, z-wave, MQTT, CoAP...)
+    │   └── CategoryIX_IoTDeviceTypes.xlsx            (brand names: Ring, Arlo, Hikvision, Tuya...)
+    │
+    ├── vendor-search/               # Stage 2 outputs (Jason) — 13 in-scope device types (+2 excluded)
+    │   ├── results_all_cameras.xlsx          (~2,161 CVEs — largest)
+    │   ├── results_all_airconditioner.xlsx   (~187 CVEs)
+    │   ├── results_all_gameconsoles.xlsx     (~246 CVEs — OUT OF SCOPE: entertainment, fails criterion 4)
+    │   ├── results_all_streaming_tvs.xlsx    (~232 CVEs — OUT OF SCOPE: entertainment, fails criterion 4)
+    │   ├── results_all_thermostat.xlsx       (~61 CVEs)
+    │   ├── results_all_robotvacuum.xlsx      (~80 CVEs)
+    │   ├── results_all_smartplugs.xlsx       (~99 CVEs)
+    │   ├── results_all_alarms.xlsx           (~117 CVEs)
+    │   ├── results_all_doorbell.xlsx         (~60 CVEs)
+    │   ├── results_all_babymonitor.xlsx      (~74 CVEs)
+    │   ├── results_all_doorlock.xlsx         (~18 CVEs)
+    │   ├── results_all_fridge.xlsx           (~3 CVEs)
+    │   ├── results_all_fans.xlsx             (~1 CVE)
+    │   ├── results_all_smartspeakers.xlsx    (~33 CVEs)
+    │   └── results_all_sleeptracker.xlsx     (~27 CVEs)
+    │
+    ├── intersection/                # Stage 3 — vendor ∩ keyword (full_intersect.py output)
+    │   ├── matched_camera_cves.csv       (~1,048 rows — largest)
+    │   ├── matched_alarms_cves.csv       (~175 rows)
+    │   ├── matched_smartplug_cves.csv    (~88 rows)
+    │   └── matched_<device>_cves.csv     (10 more device types)
+    │
+    └── difference/                  # Stage 3 + Stage 4 — vendor − keyword, plus its triple-AI review
+        ├── CLASSIFICATION_PROMPT.md     # shared rubric all 3 AI reviewers judge by (single source of truth)
+        ├── unmatched_cves.xlsx          # vendor CVEs in NO category workbook (whole-corpus difference)
+        │
+        └── <device>/                    # per-category triple-AI review (e.g. cameras/)
+            ├── 01_raw.csv                   # full_difference.py output (vendor − keyword_union)
+            ├── reviews/
+            │   ├── claude.csv               # raw + Claude columns   (Claude Code fills, manual)
+            │   ├── codex.csv                # raw + Codex columns    (Codex fills, manual)
+            │   └── gemini.csv               # raw + Gemini columns   (gemini_classify.py fills, API)
+            ├── 02_merged.csv                # merge_judgments.py → all 9 AI cols + human-review flag
+            └── 03_keyword_additions.md      # keywords mined from unanimous-Yes rows (feeds keyword search)
 ```
+
+> **Note — running the scripts.** Scripts now live in `scripts/`. `full_intersect.py` and
+> `full_difference.py` still reference the keyword workbooks by **bare filename**, so run them
+> from inside `data/keyword-search/` (e.g. `python ../../scripts/full_intersect.py`). `cve_search.py`
+> and `run_all_years.sh` operate on the cwd; run them from wherever the year-feeds / outputs live.
 
 ---
 
@@ -104,10 +167,13 @@ Home IoT Security/
 
 | File type | Columns |
 |-----------|---------|
-| `NVD Keyword Queries/*.xlsx` | CVE, CVSS, CVSS Severity, CWE, CWE Name, Description |
-| `results_all_*.xlsx` | cve_id, published, description, cvss_score, cvss_version, cwe_ids (pipe-sep), cpe_strings (pipe-sep), Lizzie Judgment/Judgement, Cukier Judgment |
-| `Matched CVEs/*.csv` | Source File, Source Sheet, CVE, CVSS, CVSS Severity, CWE, CWE Name, Description |
-| `unmatched_cves.xlsx` | Difference Type, Origin File, cve_id, published, description, cvss_score, cvss_version, cwe_ids, cpe_strings, Lizzie Judgment, Cukier Judgment, Lizzie Judgement |
+| `data/keyword-search/*.xlsx` | CVE, CVSS, CVSS Severity, CWE, CWE Name, Description |
+| `data/vendor-search/results_all_*.xlsx` | cve_id, published, description, cvss_score, cvss_version, cwe_ids (pipe-sep), cpe_strings (pipe-sep), Lizzie Judgment/Judgement, Cukier Judgment |
+| `data/intersection/*.csv` | Source File, Source Sheet, CVE, CVSS, CVSS Severity, CWE, CWE Name, Description |
+| `data/difference/<device>/01_raw.csv` | Difference Type, cve_id, published, description, cvss_score, cvss_version, cwe_ids, cpe_strings |
+| `data/difference/<device>/reviews/{ai}.csv` | …raw columns + `<AI> Judgment`, `<AI> Confidence`, `<AI> Reasoning` (one AI's triple only) |
+| `data/difference/<device>/02_merged.csv` | …raw columns + all 3 AI triples (Claude/Codex/Gemini) + `Review Status`, `Needs Human Review`, `Review Reason` |
+| `data/difference/unmatched_cves.xlsx` | Difference Type, Origin File, cve_id, published, description, cvss_score, cvss_version, cwe_ids, cpe_strings, Lizzie Judgment, Cukier Judgment, Lizzie Judgement |
 
 **Note:** There is a spelling inconsistency — some files use `Lizzie Judgment`, others use `Lizzie Judgement`. Treat them as the same column.
 
@@ -135,7 +201,7 @@ The criteria below are derived directly from this definition — one per clause.
 
 **Open scoping note — sleep trackers.** This category currently mixes bedside/in-bed monitors (in scope) with wearables like Fitbit/Apple Watch/Garmin/Whoop, which fail criterion 3 (personal/mobile, not deployed within the residence). Recommended resolution: scope the category to bedside sleep monitors and treat wearables as out of scope.
 
-**Recommended additions** (already keyword-prepped in `Devices List.docx` / NVD Keyword Queries but never given a `results_all_*.xlsx`): **routers/gateways, smart hubs, smart lighting** — all pass the five criteria cleanly.
+**Recommended additions** (already keyword-prepped in `Devices List.docx` / `data/keyword-search/` but never given a `results_all_*.xlsx`): **routers/gateways, smart hubs, smart lighting** — all pass the five criteria cleanly.
 
 ---
 

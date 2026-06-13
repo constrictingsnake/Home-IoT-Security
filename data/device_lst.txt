@@ -1,0 +1,21 @@
+# Home IoT device categories (one per line; blank lines and '#' lines are ignored).
+# Names match the vendor-search slugs: data/vendor-search/results_all_<category>.xlsx
+#
+# In-scope categories for the difference review:
+airconditioner
+alarms
+babymonitor
+cameras
+doorbell
+doorlock
+fans
+fridge
+robotvacuum
+sleeptracker
+smartplugs
+smartspeakers
+thermostat
+#
+# Out of scope — entertainment, excluded by definitional criterion 4 (not scaffolded):
+# gameconsoles
+# streaming_tvs
