@@ -2,7 +2,7 @@
 
 ## What This Project Is
 
-A security research pipeline that systematically maps real-world home IoT device brands to known CVEs from NIST's National Vulnerability Database (NVD), organized by device category. The goal is to build a comprehensive dataset of vulnerability exposure across 13 in-scope consumer IoT device types (see *Definition of a Home IoT Device* for the scoping criteria; game consoles and streaming TVs were excluded as entertainment devices), with manual review to eliminate false positives.
+A security research pipeline that systematically maps real-world home IoT device brands to known CVEs from NIST's National Vulnerability Database (NVD), organized by device category. The goal is to build a comprehensive dataset of vulnerability exposure across consumer IoT device types (see *Definition of a Home IoT Device* for the scoping criteria; game consoles and streaming TVs were excluded as entertainment devices), with manual review to eliminate false positives. The original 13 vendor categories have since been **expanded and frozen to ~22 analysis categories** — see *Finalized Category Scope*.
 
 ---
 
@@ -21,8 +21,9 @@ Combining both methods yields the most comprehensive per-device CVE list.
 - Takes comma-separated keywords interactively, shows CVE counts, fetches full detail for approved keywords
 - Enriches each CVE with: CVSS score + severity, CWE ID, description
 - Outputs a multi-sheet `.xlsx` — one tab per keyword
-- Requires an NVD API key (currently blank in the file — fill in `API_KEY`)
+- Requires an NVD API key — set `NVD_API_KEY` in the gitignored `.env` (the script reads `os.environ["NVD_API_KEY"]`; run `set -a; source .env; set +a` first)
 - Rate-limited at 0.6s between requests
+- **Comparability caveat:** this hits the *live* API and `keywordSearch` matches the **description only** (no CPE) — which makes its output not directly comparable to the offline, description+CPE vendor search. See *Methodology Notes → Vendor ↔ keyword comparability*.
 
 ### Stage 2 — `cve_search.py` (Offline bulk search)
 - Designed for local NVD JSON year-feeds (2002–2026)
@@ -57,7 +58,7 @@ row is judged **independently by three AI reviewers**, mirroring the two-human r
 |----------|-----------------|-------------|
 | **Claude Code** | `Claude Judgment / Confidence / Reasoning` | manual (in-session) |
 | **ChatGPT Codex** | `Codex Judgment / Confidence / Reasoning` | manual (run by a person) |
-| **Gemini** | `Gemini Judgment / Confidence / Reasoning` | automated via `gemini_classify.py` |
+| **Gemini** | `Gemini Judgment / Confidence / Reasoning` | automated via `gemini_classify.py` (current model `gemma-4-31b-it` — see *Gemini reviewer model & limits*) |
 
 **Blind judgment is a hard rule.** No reviewer may see or be influenced by another reviewer's
 answer. This is guaranteed structurally: each reviewer works on its **own copy** that contains
@@ -74,11 +75,15 @@ the file it reads. All three judge by the same rubric: `data/difference/CLASSIFI
    - Claude Code edits `reviews/claude.csv`
    - Codex edits `reviews/codex.csv`
 4. Run the **Gemini reviewer + merge in one command**:
-   `GEMINI_API_KEY=… python scripts/merge_judgments.py --reviews data/difference/<device>/reviews --run-gemini --category "<keyword>"`
-   → fills `reviews/gemini.csv` (resumable; skips already-filled rows), then writes `02_merged.csv` with all 9 AI columns plus the flag.
-   - Plain `python scripts/merge_judgments.py --reviews data/difference/<device>/reviews` (no `--run-gemini`) just re-merges — a quick status view, no API/`requests` needed.
-   - Standalone `python scripts/gemini_classify.py reviews/gemini.csv --category "<keyword>"` still works if you want the Gemini pass without merging.
-5. Mine the unanimous-`Yes` rows for missing keywords → `03_keyword_additions.md`.
+   `GEMINI_API_KEY=… python scripts/merge_judgments.py --reviews data/difference/<device>/reviews --run-gemini --category "<keyword>" --model gemma-4-31b-it`
+   → fills `reviews/gemini.csv` (resumable; skips already-filled rows), then writes `02_merged.csv` (all 9 AI columns + flag) **and** `02_high_confidence_audit.csv` (a seeded random sample of unanimous-high-confidence rows, so a human can spot-check the calls that otherwise never get reviewed).
+   - Plain `python scripts/merge_judgments.py --reviews …` (no `--run-gemini`) just re-merges — a quick status view, no API/`requests` needed.
+   - Standalone `python scripts/gemini_classify.py reviews/gemini.csv --category "<keyword>"` still works for the Gemini pass without merging.
+   - `bash scripts/run_gemma_column.sh` runs the Gemini pass over **all** categories at once (backs up the prior model's results, blanks the column, fills on Gemma) — see *Gemini reviewer model & limits* for the rate/quota timing.
+5. **Extract the human-review queue:** `python scripts/extract_human_review.py` → pulls every `Needs Human Review = Yes` row into `02_needs_human_review.csv` (per category) and `human_review_queue.csv` (combined), each leading with a `Verdicts` summary + reason and ending with blank `Human Verdict` / `Human Notes`.
+6. A **human adjudicates** only those flagged rows — fills `Human Verdict` (Yes/No/Maybe) in the queue sheet.
+7. **Fold verdicts back to one settled answer:** `python scripts/finalize_judgments.py` → `03_final.csv` (per category) + `final_resolved.csv`, adding `Final Judgment` / `Final Source` (`ai-consensus` for unflagged rows, `human` for adjudicated rows, `pending`/`incomplete` otherwise). Re-run as humans fill more in; never overwrites AI columns.
+8. Mine the **resolved-`Yes`** rows (AI-unanimous + human-confirmed) for missing keywords → `03_keyword_additions.md`.
 
 **Human-review flag** (set in `merge_judgments.py`): `Needs Human Review = Yes` when **both strong
 reviewers (Claude & Codex) are Low confidence OR the 3 judgments are not unanimous**. Gemini is a
@@ -107,8 +112,11 @@ Home IoT Security/
 │   ├── build_difference_sets.py         # Stage 4 — batch-generate 01_raw.csv for many categories at once
 │   ├── init_categories.py               # Stage 4 — scaffold per-category folders from a list (idempotent)
 │   ├── make_review_copies.py            # Stage 4 — split a raw difference set into 3 blind AI copies
-│   ├── gemini_classify.py               # Stage 4 — Gemini API reviewer (standalone, or imported by merge)
-│   └── merge_judgments.py               # Stage 4 — (optionally run Gemini, then) merge the 3 AI copies + flag
+│   ├── gemini_classify.py               # Stage 4 — Gemini/Gemma API reviewer (standalone, or imported by merge)
+│   ├── merge_judgments.py               # Stage 4 — (optionally run Gemini, then) merge 3 AI copies + flag + audit sample
+│   ├── extract_human_review.py          # Stage 4 — pull flagged rows into the human-review queue
+│   ├── finalize_judgments.py            # Stage 4 — fold human verdicts into one Final Judgment per CVE
+│   └── run_gemma_column.sh              # Stage 4 — run the Gemini/Gemma pass over ALL categories (backup+blank+fill)
 │
 ├── Onboarding-Docs/                 # Onboarding doc + reference papers (unchanged)
 │
@@ -152,15 +160,20 @@ Home IoT Security/
     └── difference/                  # Stage 3 + Stage 4 — vendor − keyword, plus its triple-AI review
         ├── CLASSIFICATION_PROMPT.md     # shared rubric all 3 AI reviewers judge by (single source of truth)
         ├── unmatched_cves.xlsx          # vendor CVEs in NO category workbook (whole-corpus difference)
+        ├── human_review_queue.csv       # extract_human_review.py → all flagged rows, all categories (one sheet)
+        ├── final_resolved.csv           # finalize_judgments.py → Final Judgment per CVE, all categories
         │
         └── <device>/                    # per-category triple-AI review (e.g. cameras/)
             ├── 01_raw.csv                   # full_difference.py output (vendor − keyword_union)
             ├── reviews/
             │   ├── claude.csv               # raw + Claude columns   (Claude Code fills, manual)
             │   ├── codex.csv                # raw + Codex columns    (Codex fills, manual)
-            │   └── gemini.csv               # raw + Gemini columns   (gemini_classify.py fills, API)
+            │   └── gemini.csv               # raw + Gemini columns   (gemini_classify.py / Gemma fills, API)
             ├── 02_merged.csv                # merge_judgments.py → all 9 AI cols + human-review flag
-            └── 03_keyword_additions.md      # keywords mined from unanimous-Yes rows (feeds keyword search)
+            ├── 02_high_confidence_audit.csv # seeded sample of unanimous-high-confidence rows to spot-check
+            ├── 02_needs_human_review.csv    # this category's flagged rows (Human Verdict to fill)
+            ├── 03_final.csv                 # finalize_judgments.py → Final Judgment / Final Source
+            └── 03_keyword_additions.md      # keywords mined from resolved-Yes rows (feeds keyword search)
 ```
 
 > **Note — running the scripts.** Scripts now live in `scripts/`. `full_intersect.py` and
@@ -180,6 +193,9 @@ Home IoT Security/
 | `data/difference/<device>/01_raw.csv` | Difference Type, cve_id, published, description, cvss_score, cvss_version, cwe_ids, cpe_strings |
 | `data/difference/<device>/reviews/{ai}.csv` | …raw columns + `<AI> Judgment`, `<AI> Confidence`, `<AI> Reasoning` (one AI's triple only) |
 | `data/difference/<device>/02_merged.csv` | …raw columns + all 3 AI triples (Claude/Codex/Gemini) + `Review Status`, `Needs Human Review`, `Review Reason` |
+| `…/02_high_confidence_audit.csv` | `AI Verdict (unanimous)` + raw columns + all 3 AI triples + `Human Verdict`, `Human Notes` |
+| `…/02_needs_human_review.csv`, `difference/human_review_queue.csv` | `Verdicts`, `Review Reason` + raw + all 3 AI triples + `Human Verdict`, `Human Notes` (combined file adds a leading `Category`) |
+| `…/03_final.csv`, `difference/final_resolved.csv` | …merged columns + `Final Judgment`, `Final Source` (combined file adds a leading `Category`) |
 | `data/difference/unmatched_cves.xlsx` | Difference Type, Origin File, cve_id, published, description, cvss_score, cvss_version, cwe_ids, cpe_strings, Lizzie Judgment, Cukier Judgment, Lizzie Judgement |
 
 **Note:** There is a spelling inconsistency — some files use `Lizzie Judgment`, others use `Lizzie Judgement`. Treat them as the same column.
@@ -206,9 +222,52 @@ The criteria below are derived directly from this definition — one per clause.
 
 **Out of scope (excluded by criterion 4).** Game consoles and streaming devices / smart TVs are **entertainment** devices — their primary function is media consumption, not monitoring/automation/control of the home — and are therefore excluded. (Alrawi et al. include a "media" category because they score *deployment attack surface*; this project is a *function-defined category study*, a different goal, so their scope is not inherited.) The `results_all_gameconsoles.xlsx` and `results_all_streaming_tvs.xlsx` files remain on disk but are **out of the analysis set**.
 
-**Open scoping note — sleep trackers.** This category currently mixes bedside/in-bed monitors (in scope) with wearables like Fitbit/Apple Watch/Garmin/Whoop, which fail criterion 3 (personal/mobile, not deployed within the residence). Recommended resolution: scope the category to bedside sleep monitors and treat wearables as out of scope.
+**Open scoping note — sleep trackers.** Confirmed by inspection: the current `sleeptracker` set is **~88% wearables** (Fitbit/Apple Watch/Garmin — out by criterion 3) and contains **0** actual bedside monitors. This is a near-total rebuild (bedside-only brands + new keyword sheets), and the category may not clear the NVD-footprint study-inclusion bar — so it could be dropped or folded. See *Finalized Category Scope* and *Methodology Notes → known data issues*.
 
-**Recommended additions** (already keyword-prepped in `Devices List.docx` / `data/keyword-search/` but never given a `results_all_*.xlsx`): **routers/gateways, smart hubs, smart lighting** — all pass the five criteria cleanly.
+**Recommended additions** (already keyword-prepped in `Devices List.docx` / `data/keyword-search/` but never given a `results_all_*.xlsx`): **routers/gateways, smart hubs, smart lighting** — all pass the five criteria cleanly. Now folded into the frozen scope below.
+
+---
+
+## Finalized Category Scope (frozen 2026-06)
+
+Scope is defined at **two levels**: broad **families** (for narrative / keyword organization) and the
+granular **analysis categories** that are the actual unit of search, review, and reporting.
+
+**Granularity rule:** two device types are *separate* analysis categories if a consumer would call
+them different products **and** they have a meaningfully different brand set; *merge* only when
+they're the same product with a different label. (e.g. cameras / doorbell / baby monitor stay
+separate — different brands; blinds / curtains / shutters merge into one `shades` — same product.)
+
+The frozen list is **~22 analysis categories** (entertainment dropped). Status tags vs. current
+coverage: **①** in both searches already · **②** keyword exists, needs a vendor list · **③** vendor
+exists, needs keywords · **④** needs both (new build).
+
+| Family | Analysis categories (status) |
+|--------|------------------------------|
+| Cameras & monitors | `cameras` ①, `doorbell` ①, `babymonitor` ① *(vendor list needs tightening)* |
+| Access control | `doorlock` ① *(incl. garage-door openers)* |
+| Alarms & sensors | `alarms` ①, `sensors` ② |
+| Climate & air | `thermostat` ①, `airconditioner` ①, `fans` ①, `airpurifier` ② |
+| Electrical & lighting | `smartplugs` ①, `lighting` ② *(bulbs + switches + dimmers)* |
+| Appliances | `fridge` ①, `robotvacuum` ①, `kitchen-laundry` ④ *(oven/range/cooker/microwave/dishwasher/washer/dryer)* |
+| Hubs & networking | `hub` ②, `router` ② |
+| Audio | `smartspeakers` ① *(absorbs smart displays — same brands/platform/CVEs)* |
+| Sleep | `sleeptracker` ③ *(rebuild — bedside only)* |
+| Shades | `shades` ④ *(blinds/curtains/coverings — one category)* |
+| Energy | `ev-charging` ④, `home-power` ④ *(solar + batteries + meters)* |
+| Outdoor & pet | `garden` ④ *(irrigation + mowers)*, `pet` ④ *(feeders/cameras/litter)* |
+| Entertainment | **dropped** — streaming TVs & game consoles (fail criterion 4) |
+
+Build work implied: **5 new vendor lists** (②), **1 new keyword set** (③), **4 full new builds** (④),
+plus **2 fixes** (babymonitor tighten, sleeptracker rebuild). The ① categories are ready as-is.
+
+**Open scope calls still to confirm** (all on criterion ③/④): `router`, `ev-charging`/`home-power`,
+`shades`, `garden`/`pet`, and whether `smart display` stays merged into `smartspeakers` or splits out.
+
+**Dependency rule.** Categories sit upstream of everything: lists → collection (NVD/Shodan/Censys)
+→ set-ops → review → mining. Changing one category only forces a re-run of *that* category's chain;
+the others are untouched. **Freeze scope before running collection at scale**, or you re-do the
+(expensive) AI review on categories you were going to change anyway.
 
 ---
 
@@ -289,12 +348,39 @@ For each row, read the `description` and `cpe_strings` and ask:
 
 ---
 
+## Methodology Notes & Findings (2026-06)
+
+### Vendor ↔ keyword comparability (fix before scaling)
+The two searches are **not directly comparable**, which quietly pollutes the difference sets:
+- **Different data source:** keyword = live NVD API (current); vendor = offline year-feed snapshot (can be stale) → some "gaps" are just data lag.
+- **Different match surface:** vendor matches description **+ CPE**; keyword (`keywordSearch`) matches **description only** → many "vendor-only" CVEs are just *brand-in-CPE* artifacts, and device phrases can never match a CPE.
+- **Different columns:** keyword output has **no CPE** (and the classification rubric leans on CPE).
+
+Aligning columns alone is a trap. **Fix:** run *both* term lists (brands and device-phrases) through the **same engine** (`cve_search.py`) against **one freshly-downloaded NVD snapshot**, so the only difference is the search terms. Ideal end-state: one per-category run tags each CVE with `match_method` (vendor / keyword / both) → intersection and both differences become column filters. A fixed snapshot also makes the study **reproducible / citeable** ("dataset as of <date>").
+
+### Symmetric (bidirectional) difference — planned
+Today only `vendor − keyword` is built. The reverse `keyword − vendor` (surfaces **vendor/brand gaps**) needs per-category keyword files (`keyword_<cat>.xlsx`) produced via a **keyword-sheet → device-slug bridge mapping**. Agreed layout: `data/difference/<cat>/{vendor_only,keyword_only}/`, each a full review unit. A `build_set_ops.py` would normalize both directions to the common schema so the AI-review pipeline stays direction-agnostic.
+
+### Reviewer behaviour & known data issues (from the baseline review)
+Claude & Codex are the **permanent** reviewers; Gemini is the **swappable third vote**.
+- **Systematic model biases:** Claude is the reliable anchor; **Codex over-excludes** (rejects unfamiliar security brands — e.g. Akuvox video doorbells, Qolsys/Abode/Eufy alarm hardware); **Gemini over-includes** (accepts function-overlap, e.g. IP-camera → baby monitor). The 2-of-3 + human flag catches both; Claude–Codex agree ~86%, Gemini is the outlier.
+- **babymonitor contamination:** ~95% of its difference set are **generic IP cameras** (D-Link DCS…) dragged in by an over-broad vendor list — *the fix is tightening the vendor list, not the reviewer.*
+- **sleeptracker:** ~88% wearables, 0 bedside monitors, no keyword sheet — needs a rebuild and may be dropped (see scope section).
+
+### Gemini reviewer model & limits
+The automated third reviewer evolved `gemini-2.5-flash` → `gemini-3.1-flash-lite` → **`gemma-4-31b-it`** (current; chosen for higher daily quota, supports the structured-output request with no code change). Free-tier caps: 3.1-flash-lite ≈ **500 req/day**; **Gemma 4 31B = 15 RPM / 1,500 req/day**. **Daily quota resets at midnight *Pacific*** (≈03:00 ET — confirmed via a live 429, *not* local midnight). For a clean one-pass run, straddle the reset at `--rps 0.30`. Keep **one model across the whole Gemini column** for consistency (re-run with `--redo` if switching mid-stream; `run_gemma_column.sh` backs up the prior model's results first).
+
+### Future dimension — Shodan / Censys (not yet in the pipeline)
+A second axis: NVD = *known vulnerabilities*; Shodan/Censys = *real-world deployment / exposure* (internet scanning). Join to NVD via **CPE / vendor-product**, used mainly at the **brand/category level** (which doesn't need per-CVE CPE, so it survives NVD's 2024+ CPE backlog). Uses: scope validation, brand discovery, exposure-weighting CVEs. **Caveat:** they see only internet-exposed devices (most home IoT is behind NAT) → it measures *exposure, not ownership*.
+
+---
+
 ## Environment
 
-- Python 3.14 (at `/Library/Frameworks/Python.framework/Versions/3.14/bin/python3`)
+- Python 3.14 (at `/Library/Frameworks/Python.framework/Versions/3.14/bin/python3`); invoke as `python3` (no `python` shim on PATH)
 - Dependencies installed: `pandas`, `openpyxl`, `numpy`, `requests`
 - `tqdm` optional (for progress bars in `cve_search.py`)
-- NVD API key required for `nvd_keyword_query.py` — get one at https://nvd.nist.gov/developers/request-an-api-key
+- **API keys live in a gitignored `.env`** (never hardcoded): `GEMINI_API_KEY` (Gemini/Gemma reviewer) and `NVD_API_KEY` (read from `os.environ` by `nvd_keyword_query.py`). Load with `set -a; source .env; set +a` before running. NVD key: https://nvd.nist.gov/developers/request-an-api-key · Gemini/Gemma key: https://aistudio.google.com/apikey
 
 ## Preferred file formats (for importing from Google Docs/Sheets)
 - Google Docs → `.txt` (plain text, directly readable)

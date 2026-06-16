@@ -21,8 +21,14 @@ Rows not yet fully reviewed (any of the 3 judgments still blank) are marked
 "Review Status = incomplete" and left unflagged (pending), so partial progress is visible
 without pretending the row is resolved.
 
+Alongside the merge, a small spot-check sample is written (02_high_confidence_audit.csv):
+a random N (default 10) of the "high-confidence" rows — complete, all 3 judgments unanimous,
+and both strong reviewers High. These rows are never flagged for human review, so the sample
+lets a human audit whether the AIs are confidently wrong. It carries empty Human Verdict /
+Human Notes columns to fill in, and the seed keeps the draw reproducible.
+
 Usage:
-    # pure merge (status view)
+    # pure merge (status view) + audit sample
     python merge_judgments.py --reviews path/to/reviews
     # run Gemini, then merge, in one command
     GEMINI_API_KEY=... python merge_judgments.py --reviews path/to/reviews \
@@ -89,6 +95,37 @@ def classify_row(row):
     return "complete", "No", ""
 
 
+def is_high_confidence(row):
+    """True when the row is complete, all 3 judgments agree, and both strong reviewers are
+    High confidence. These rows are never flagged for human review, so a sample of them is
+    drawn for spot-checking (catching confidently-wrong answers)."""
+    judgments = [str(row[f"{r} Judgment"]).strip() for r in REVIEWERS]
+    if any(j == "" for j in judgments):
+        return False
+    if len({j.lower() for j in judgments}) > 1:  # not unanimous
+        return False
+    return all(
+        str(row[f"{r} Confidence"]).strip().lower() == "high" for r in STRONG_REVIEWERS
+    )
+
+
+def write_audit_sample(merged, n, seed, out_path):
+    """Write a random sample of up to n high-confidence rows for human spot-checking."""
+    pool = merged[merged.apply(is_high_confidence, axis=1)].copy()
+    take = min(n, len(pool))
+    sample = pool.sample(n=take, random_state=seed) if take else pool
+    # Focus the sheet for a human: drop the flag columns (all No here), surface the agreed
+    # verdict, and add blank columns for the human's answer.
+    sample = sample.drop(
+        columns=[c for c in ("Review Status", "Needs Human Review", "Review Reason") if c in sample.columns]
+    )
+    sample.insert(0, "AI Verdict (unanimous)", sample["Claude Judgment"].values)
+    sample["Human Verdict"] = ""
+    sample["Human Notes"] = ""
+    sample.to_csv(out_path, index=False)
+    return take, len(pool)
+
+
 def resolve_paths(args):
     paths = {}
     if args.reviews:
@@ -109,6 +146,11 @@ def main():
     ap.add_argument("--codex", help="Path to the Codex copy (overrides --reviews)")
     ap.add_argument("--gemini", help="Path to the Gemini copy (overrides --reviews)")
     ap.add_argument("--out", default=None, help="Output path (default: <reviews>/../02_merged.csv)")
+    ap.add_argument("--audit-sample", type=int, default=10,
+                    help="Write a random sample of N high-confidence rows for human spot-checking (0 to disable)")
+    ap.add_argument("--audit-out", default=None,
+                    help="Audit sample path (default: <merged dir>/02_high_confidence_audit.csv)")
+    ap.add_argument("--seed", type=int, default=42, help="Random seed for the audit sample (reproducible)")
     # Run the Gemini API reviewer before merging (one command does both)
     gem = ap.add_argument_group("Gemini reviewer (use --run-gemini to enable)")
     gem.add_argument("--run-gemini", action="store_true", help="Classify the Gemini copy via the API, then merge")
@@ -181,6 +223,13 @@ def main():
     print(f"  complete:           {complete}/{n}")
     print(f"  incomplete:         {incomplete}/{n}")
     print(f"  needs human review: {flagged} (of {complete} complete)")
+
+    if args.audit_sample and args.audit_sample > 0:
+        audit_out = args.audit_out or os.path.join(
+            os.path.dirname(os.path.abspath(out)), "02_high_confidence_audit.csv"
+        )
+        take, pool = write_audit_sample(merged, args.audit_sample, args.seed, audit_out)
+        print(f"  high-conf audit:    {take} of {pool} high-confidence rows -> {audit_out}")
 
 
 if __name__ == "__main__":
