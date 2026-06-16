@@ -1,9 +1,13 @@
+import os
 import requests
 import time
 from openpyxl import Workbook
 from openpyxl.styles import Font, PatternFill, Alignment
 
-API_KEY = "" # You will need to request your own API key from NVD. 
+# Read the NVD API key from the environment (set NVD_API_KEY in the gitignored .env, then
+# `set -a; source .env; set +a` before running). Request a key at
+# https://nvd.nist.gov/developers/request-an-api-key
+API_KEY = os.environ.get("NVD_API_KEY", "")
 BASE_URL = "https://services.nvd.nist.gov/rest/json/cves/2.0"
 REQUEST_DELAY = 0.6
 
