@@ -6,9 +6,12 @@ name: Sync repo to Google Drive
 #   GDRIVE_FOLDER_ID  : the target Drive folder's ID (shared with the SA as Editor)
 
 on:
-  push:
-    branches: [main]
-  workflow_dispatch: {}      # lets you trigger it manually from the Actions tab
+  # Auto-on-push is DISABLED until auth is switched from a service account to user OAuth:
+  # service accounts have no storage quota and can't own files in a personal My Drive
+  # (Error 403 storageQuotaExceeded). Re-enable once RCLONE_CONF (a user OAuth token) is set.
+  # push:
+  #   branches: [main]
+  workflow_dispatch: {}      # manual trigger only, for now
 
 jobs:
   sync-to-drive:
