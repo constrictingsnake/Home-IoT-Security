@@ -1,0 +1,36 @@
+name: Sync repo to Google Drive
+
+# Mirrors the whole repository to a Google Drive folder on every push to main.
+# One-way (repo -> Drive). Needs two repo secrets:
+#   GDRIVE_SA_KEY     : the service-account JSON key (whole file contents)
+#   GDRIVE_FOLDER_ID  : the target Drive folder's ID (shared with the SA as Editor)
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch: {}      # lets you trigger it manually from the Actions tab
+
+jobs:
+  sync-to-drive:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repo
+        uses: actions/checkout@v4
+
+      - name: Install rclone
+        run: curl -fsSL https://rclone.org/install.sh | sudo bash
+
+      - name: Write service-account key to file
+        env:
+          SA_KEY: ${{ secrets.GDRIVE_SA_KEY }}
+        run: printf '%s' "$SA_KEY" > "$RUNNER_TEMP/sa.json"
+
+      - name: Sync whole repo -> Drive
+        env:
+          FOLDER_ID: ${{ secrets.GDRIVE_FOLDER_ID }}
+        run: |
+          rclone copy ./ ":drive:" \
+            --drive-service-account-file "$RUNNER_TEMP/sa.json" \
+            --drive-root-folder-id "$FOLDER_ID" \
+            --exclude ".git/**" \
+            --fast-list -v
