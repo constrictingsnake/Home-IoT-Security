@@ -1,0 +1,315 @@
+%==============================================================================
+% Home IoT Security — empirical study report
+% Section skeleton mirroring the transportation IoT study
+% ("On Security Vulnerabilities in Transportation IoT Devices").
+% All section bodies are intentionally left blank.
+%
+% Build:  pdflatex home_iot_security_report.tex   (run twice for refs)
+% Class:  IEEEtran (conference).
+%==============================================================================
+\documentclass[conference]{IEEEtran}
+\IEEEoverridecommandlockouts
+
+\usepackage{cite}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{multirow}
+\usepackage{xcolor}
+\usepackage{url}
+\usepackage[hidelinks]{hyperref}
+
+% Inline placeholder for values the author must supply. Renders in bold red.
+\newcommand{\stub}[1][?]{{\color{red}\textbf{[#1]}}}
+
+\begin{document}
+
+\title{On Security Vulnerabilities in Home IoT Devices}
+
+\author{
+\IEEEauthorblockN{Author Name}
+\IEEEauthorblockA{Affiliation\\ City, State\\ email}
+}
+
+\maketitle
+
+%==============================================================================
+\begin{abstract}
+
+\end{abstract}
+
+\begin{IEEEkeywords}
+
+\end{IEEEkeywords}
+
+%==============================================================================
+\section{Introduction}
+\label{sec:intro}
+
+
+%==============================================================================
+\section{Related Work}
+\label{sec:related}
+
+
+%==============================================================================
+\section{Our Methodology}
+\label{sec:method}
+
+In this section, we describe the methodology used in this paper. First, we
+identified the device types belonging to each home IoT category and collected
+the CVEs reported about them in NVD~\cite{ref-nvd}. We collected the CVEs using
+two complementary search methods --- a vendor/brand search and a device-keyword
+search --- and reconciled their results per category. Then, we extracted each
+CVE's characteristics, including the corresponding CWEs and CVSS information.
+Motivated by a previous study~\cite{ref-mcsoftware}, we grouped the individual
+CWEs into the primary clusters of the CWE-888 Software Fault Patterns
+view~\cite{ref-cwe888} in order to build a `big picture' of the security
+vulnerabilities in home IoT devices. Finally, because keyword- and brand-based
+NVD searches are text-based and therefore noisy, every candidate vulnerability
+was subjected to a structured false-positive review before analysis.
+
+The empirical work presented in this paper follows the case study (i.e.,
+observational) approach based on publicly available data in NVD that are entered
+and validated by experts and are widely used by researchers and practitioners.
+Using an experimental approach (e.g., penetration testing) or a survey (e.g.,
+collecting expert opinions) are complementary empirical approaches that are out
+of the scope of this paper.
+
+\subsection{Scope: what counts as a home IoT device}
+\label{sec:method-scope}
+
+We define a \emph{home IoT device} as an internet-connected sensor, appliance,
+or embedded system deployed within a residential environment for the purpose of
+monitoring, automation, or control, owned and maintained by non-expert consumers
+without dedicated IT security oversight. For a device type to be in scope it must
+satisfy all five definitional criteria: (1)~\emph{connectivity} --- it
+communicates over a standard network protocol (TCP/IP, MQTT, CoAP, Zigbee, BLE);
+(2)~\emph{device class} --- it is a special-purpose sensor, appliance, or
+embedded system, not general-purpose IT (PC, phone, tablet, server, game
+console); (3)~\emph{deployment context} --- it is intended for a private
+residence, not primarily for enterprise or industrial use; (4)~\emph{function}
+--- its primary purpose is to monitor, automate, or control the home environment
+or its systems (climate, security, access, lighting, appliances, presence), with
+media/entertainment, general computing, and communication explicitly excluded as
+qualifying functions; and (5)~\emph{security context} --- it is owned and
+maintained by consumers with no professional security administration. An
+operational study-inclusion criterion further requires that the device have a
+CPE-identifiable footprint in NVD and be subject to CVE disclosure. Because
+connectivity (criterion~1) is satisfied by virtually every networked product, it
+is the device's own function (criterion~4) and class (criterion~2) that
+discriminate membership; a device that merely interoperates with home IoT is not
+itself home IoT. Following criterion~4, entertainment devices such as game
+consoles and streaming/smart TVs are excluded.
+
+The study analyzes \stub[N] home IoT categories: \stub[final category list,
+e.g.\ cameras, doorbells, baby monitors, door locks, alarms, thermostats, air
+conditioners, fans, smart plugs, smart speakers, robot vacuums, refrigerators,
+\ldots]. \stub[Note any categories that were defined but dropped or folded, e.g.\
+sleep trackers (dominated by wearables) and the entertainment categories.]
+
+\subsection{CVE collection from NVD}
+\label{sec:method-collect}
+
+CVEs are publicly known security vulnerabilities reported in NVD~\cite{ref-nvd}
+and attributed to specific software applications or libraries. To maximize
+recall, we collected CVEs related to home IoT devices using two complementary
+discovery methods, each more reliable in a different respect:
+
+\paragraph{Vendor/brand search} For each category we first compiled a list of
+the manufacturers and brands that produce devices of that type, then searched NVD
+for those vendor and brand names. This search was run offline against the local
+NVD JSON year-feeds (\stub[year range, e.g.\ 2002--2026]), matching both the CVE
+\emph{description text and the CPE (Common Platform Enumeration) strings}, so that
+brand-in-CPE associations are captured. The brand lists were assembled from
+\stub[brand-list sources, e.g.\ manufacturer directories / retailer catalogues /
+targeted web searches per category]. Because brand names frequently overlap with
+unrelated products, this method has higher recall but is more prone to false
+positives.
+
+\paragraph{Device-keyword search} In parallel, we searched NVD for generic
+device-type keywords (e.g.\ ``ip camera'', ``baby monitor'', ``smart lock'') via
+the NVD REST API v2.0. Note that the API's \texttt{keywordSearch} matches the CVE
+\emph{description only} (it does not search CPE), so device-phrase keywords can
+never match a brand encoded solely in a CPE string. Each CVE returned was
+enriched with its CVSS score and severity, CWE identifier, and description.
+
+\paragraph{Reconciliation} For each category we combined the two result sets
+using set operations. The \emph{intersection} (vendor $\cap$ keyword) yields the
+CVEs found by both methods. The \emph{difference} (vendor $-$ keyword) yields the
+vendor CVEs the keyword search missed; this difference set is the primary input to
+the false-positive review described in Section~\ref{sec:method-review}, both to
+clean the dataset and to surface keywords the keyword search lacks.
+
+We collected the data from NVD from \stub[start date] until \stub[end date]. In
+total, we collected \stub[total CVEs] CVEs across the \stub[N] categories.
+\stub[Note any vendors deliberately excluded for ambiguity --- analogous to the
+transportation study's conservative exclusion of Qualcomm chips --- e.g.\ generic
+chipsets or brand names that could not be confirmed as the device in question.]
+
+\paragraph{Comparability caveat} The two searches are not perfectly comparable:
+the keyword search hits the live NVD API (current data) and matches the
+description only, whereas the vendor search runs over an offline year-feed
+snapshot and matches description plus CPE. Consequently, some apparent ``gaps''
+between the methods reflect data lag or the description-versus-CPE match surface
+rather than genuine differences in coverage. \stub[State how this was handled for
+the reported results --- e.g.\ whether both term lists were ultimately run
+through the same engine against a single fixed NVD snapshot dated \stub[date], to
+make the only difference the search terms.]
+
+\subsection{CWE and CVSS data extraction}
+\label{sec:method-extract}
+
+Each CVE is typically attributed to one or more CWEs. However, some CVEs did not
+have enough information to be associated with a CWE in NVD, or were not in NVD's
+CWE mapping; these are listed as \texttt{NVD-CWE-noinfo} and
+\texttt{NVD-CWE-Other}, respectively. Out of the total \stub[total CVEs] CVEs,
+\stub[N] were \texttt{NVD-CWE-noinfo} and \stub[N] were \texttt{NVD-CWE-Other}.
+These \stub[N] CVEs were included in our CVE-level analysis but did not contribute
+to the CWE analysis. In total, \stub[total CWEs] CWEs were associated with the
+\stub[total CVEs] CVEs; these were attributed to only \stub[unique CWEs] unique
+CWEs.
+
+For each CVE we also extracted the CVSS information. CVSS scores range from 0 to
+10 and are computed from the vulnerability's exploitability and impact
+metrics~\cite{ref-cvss}. CVSS severity is derived from the score: a score of 0
+indicates the None severity level, and the Low, Medium, High, and Critical levels
+correspond to score ranges of 0.1--3.9, 4.0--6.9, 7.0--8.9, and 9.0--10,
+respectively. \stub[If both CVSS v2 and v3.x scores are present in the dataset,
+state which version was used when both are available.] Lastly, for each CVE we
+manually extracted information about the vulnerable components from the CVEs'
+descriptions \stub[(confirm whether component extraction was performed, and how
+components were named/normalized)].
+
+\subsection{Mapping individual CWEs to the CWE-888 view}
+\label{sec:method-cwe888}
+
+CWE is a community-developed taxonomy of common weaknesses maintained by
+MITRE~\cite{ref-cwe}. Because the CWE hierarchy is large and complex, several
+views have been developed to organize it. We chose the CWE-888 Software Fault
+Patterns view~\cite{ref-cwe888} to categorize the identified CWEs for two
+reasons: (i)~it was used in~\cite{ref-mcsoftware}, which allows consistency and
+direct comparison of results, and (ii)~it is focused on fault categorization, is
+more technical, and captures a wider range of weaknesses than alternatives such
+as the CWE-699 Software Development view~\cite{ref-cwe699}. We use the most recent
+version of CWE-888 and focus only on its 23 primary clusters, which we refer to
+as primary vulnerability classes.
+
+If an identified CWE is itself part of the CWE-888 view, we mapped it directly to
+its corresponding primary class. If it is not, we examined its parent CWEs and
+mapped those to the CWE-888 view; a CWE whose parents fall under two different
+primary classes therefore counts toward both. \stub[Report the over-counting
+bookkeeping for this dataset: the number (and percentage) of CVEs whose CWE
+mapped to two parents, and the number of CVEs that listed two distinct CWEs and
+how those resolved across primary classes.] This approach builds a more complete
+picture of the types of vulnerabilities present while limiting over-counting.
+
+\subsection{False-positive classification}
+\label{sec:method-review}
+
+Because the vendor and keyword searches are purely text-based, generic brand names
+and terms produce false positives (e.g.\ a brand string that also names an
+unrelated commercial product, or marketing copy that merely mentions a device
+category). Each candidate CVE in the difference set was therefore independently
+classified as a true match for its category or a false positive.
+
+To make this trustworthy, every row was judged \emph{independently and blind} by
+\stub[five] reviewers --- two human researchers (\stub[Reviewer A] and
+\stub[Reviewer B]) and three AI reviewers (Claude Code, ChatGPT Codex, and
+Google's Gemini/Gemma). Blindness is enforced structurally: each reviewer works
+on its own copy of the data containing only the raw fields plus its own empty
+judgment columns, so no reviewer can see another's answer. All reviewers apply a
+single shared rubric, judging \emph{only} from each row's \texttt{description} and
+\texttt{cpe\_strings}.
+
+Each reviewer assigns three fields per row: a \emph{Judgment} of \texttt{Yes}
+(genuinely affects a home IoT device of this category), \texttt{No} (false
+positive), or \texttt{Maybe} (genuinely ambiguous); a \emph{Confidence} of
+\texttt{High} or \texttt{Low}; and a short, self-contained \emph{Reasoning}
+required for \texttt{Low}-confidence and \texttt{Maybe} rows. A \texttt{Maybe} is
+always paired with \texttt{Low} confidence. Low confidence is used when the device
+is plausibly residential but primarily commercial/industrial, when the description
+names the category but the CPE points at enterprise hardware, or when the CVE lies
+in a software or protocol layer shared between home and non-home contexts. A
+missing CPE string does not by itself force a \texttt{Maybe}: CPE data is
+frequently absent on recent (2024--2026) CVEs due to NVD enrichment lag, so an
+unambiguous description of a home device and a residential attack vector is
+classified on its content.
+
+The three AI reviewers' judgments are then merged. A row is flagged for human
+adjudication when \stub[the human-review condition: both strong reviewers (Claude
+and Codex) are Low confidence, or the three AI judgments are not unanimous].
+Gemini is treated as a weaker third vote: its judgment counts toward unanimity,
+but its self-reported confidence is recorded and excluded from the flag. A human
+then adjudicates only the flagged rows, and each CVE's judgments are folded into a
+single final label (\texttt{ai-consensus} for unflagged rows, \texttt{human} for
+adjudicated rows). \stub[Report the outcome of the review --- e.g.\ the
+false-positive rate per category, the number of rows flagged for human review, and
+inter-reviewer agreement.]
+
+%==============================================================================
+\section{RQ1: Analysis of Vulnerability Classes in Home IoT Devices}
+\label{sec:rq1}
+
+
+\subsection{}
+\label{sec:rq1-cat1}
+
+
+\subsection{}
+\label{sec:rq1-cat2}
+
+
+\subsection{}
+\label{sec:rq1-cat3}
+
+
+\subsection{}
+\label{sec:rq1-cat4}
+
+
+%==============================================================================
+\section{RQ2: Analysis of CVSS Scores and Severity}
+\label{sec:rq2}
+
+
+%==============================================================================
+\section{Threats to Validity}
+\label{sec:threats}
+
+
+%==============================================================================
+\section{Lessons Learned and Implications}
+\label{sec:lessons}
+
+
+%==============================================================================
+\section{Conclusions}
+\label{sec:conclusion}
+
+
+%==============================================================================
+\section*{Data Availability}
+
+
+%==============================================================================
+\begin{thebibliography}{00}
+\bibitem{ref-nvd} NIST, ``National Vulnerability Database (NVD),''
+  \url{https://nvd.nist.gov/}.
+\bibitem{ref-mcsoftware} K. Goseva-Popstojanova and J. Tyo, ``Experience report:
+  Security vulnerability profiles of mission critical software: Empirical
+  analysis of security related bug reports,'' in \emph{IEEE 28th Int. Symp. on
+  Software Reliability Engineering (ISSRE)}, 2017, pp.~152--163.
+\bibitem{ref-cwe888} Common Weakness Enumeration, ``CWE-888: Software Fault
+  Pattern (SFP) Clusters,''
+  \url{https://cwe.mitre.org/data/definitions/888.html}.
+\bibitem{ref-cwe699} Common Weakness Enumeration, ``CWE-699: Software
+  Development,'' \url{https://cwe.mitre.org/data/definitions/699.html}.
+\bibitem{ref-cwe} Common Weakness Enumeration, ``CWE,''
+  \url{https://cwe.mitre.org/data/index.html}.
+\bibitem{ref-cvss} FIRST, ``Common Vulnerability Scoring System (CVSS):
+  Specification Document,'' \url{https://www.first.org/cvss/}.
+\end{thebibliography}
+
+\end{document}

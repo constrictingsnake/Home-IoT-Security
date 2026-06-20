@@ -2,7 +2,7 @@
 
 ## What This Project Is
 
-A security research pipeline that systematically maps real-world home IoT device brands to known CVEs from NIST's National Vulnerability Database (NVD), organized by device category. The goal is to build a comprehensive dataset of vulnerability exposure across consumer IoT device types (see *Definition of a Home IoT Device* for the scoping criteria; game consoles and streaming TVs were excluded as entertainment devices), with manual review to eliminate false positives. The original 13 vendor categories have since been **expanded and frozen to ~22 analysis categories** — see *Finalized Category Scope*.
+A security research pipeline that systematically maps real-world home IoT device brands to known CVEs from NIST's National Vulnerability Database (NVD), organized by device category. The goal is to build a comprehensive dataset of vulnerability exposure across consumer IoT device types (see *Definition of a Home IoT Device* for the scoping criteria; game consoles remain excluded as entertainment, while streaming TVs/sticks were re-admitted as **home-control surfaces** — see criterion 4), with manual review to eliminate false positives. The original 13 vendor categories have since been **expanded and frozen to ~22 analysis categories** — see *Finalized Category Scope*.
 
 ---
 
@@ -137,8 +137,8 @@ Home IoT Security/
     ├── vendor-search/               # Stage 2 outputs (Jason) — 13 in-scope device types (+2 excluded)
     │   ├── results_all_cameras.xlsx          (~2,161 CVEs — largest)
     │   ├── results_all_airconditioner.xlsx   (~187 CVEs)
-    │   ├── results_all_gameconsoles.xlsx     (~246 CVEs — OUT OF SCOPE: entertainment, fails criterion 4)
-    │   ├── results_all_streaming_tvs.xlsx    (~232 CVEs — OUT OF SCOPE: entertainment, fails criterion 4)
+    │   ├── results_all_gameconsoles.xlsx     (~246 CVEs — OUT OF SCOPE: entertainment, fails criteria 2 & 4)
+    │   ├── results_all_streaming_tvs.xlsx    (~232 CVEs — IN SCOPE: `streaming` category, home-control surface — criterion 4(b))
     │   ├── results_all_thermostat.xlsx       (~61 CVEs)
     │   ├── results_all_robotvacuum.xlsx      (~80 CVEs)
     │   ├── results_all_smartplugs.xlsx       (~99 CVEs)
@@ -211,20 +211,29 @@ The criteria below are derived directly from this definition — one per clause.
 **Definitional criteria:**
 1. **Connectivity** — communicates over a network via standard protocols (TCP/IP, MQTT, CoAP, Zigbee, BLE). *(from "internet-connected")*
 2. **Device class** — a special-purpose sensor, appliance, or embedded system; **not** general-purpose IT (PC, phone, tablet, game console). *(from "sensors, appliances, and embedded systems")*
-3. **Deployment context** — intended for a private residence, not primarily enterprise/industrial. *(from "deployed within residential environments")*
-4. **Function** — primary purpose is to **monitor, automate, or control the home environment or its systems** (climate, security, access, lighting, appliances, presence). Media/entertainment, general computing, and communication are **not** qualifying functions. *(from "for the purpose of monitoring, automation, or control")*
+3. **Deployment context** — intended for a private residence (see *Definition of "home"* below), not primarily enterprise/industrial. *(from "deployed within residential environments")*
+4. **Function** — qualifies if **either** (a) its primary purpose is to **monitor, automate, or control the home environment or its systems** (climate, security, access, lighting, appliances, presence), **or** (b) it serves as a **home-control surface/hub** for *other* home IoT devices — i.e. it can discover, control, or display the state of other home IoT devices (acts as a Matter/Thread controller or border router, runs a voice assistant, or surfaces camera/sensor feeds). **General-purpose computing and pure media playback with no such control role do not qualify.** *(from "for the purpose of monitoring, automation, or control"; clause (b) generalizes the precedent that admitted smart speakers — media hardware whose qualifying function is home control)*
 5. **Security context** — owned and maintained by non-expert consumers, with no professional security administration. *(from "without dedicated IT security oversight")*
 
 **Study-inclusion criterion** (operational, *not* definitional — it scopes what can be analyzed, not what qualifies as home IoT):
 - Has a Common Platform Enumeration (CPE)-identifiable footprint in NVD and is subject to CVE disclosure.
 
-**Guiding principle — connectivity is not membership.** Being networked alongside, or interoperating with, home IoT does not make a device home IoT. Criterion 1 (connectivity) is satisfied by virtually every IT device, so it cannot be the discriminator; the device's own **function** (criterion 4) and **class** (criterion 2) are what qualify it. A game console that controls smart lights through an app is still not a home IoT device.
+**Guiding principle — connectivity is not membership.** Being networked alongside, or interoperating with, home IoT does not make a device home IoT. Criterion 1 (connectivity) is satisfied by virtually every IT device, so it cannot be the discriminator; the device's own **function** (criterion 4) and **class** (criterion 2) are what qualify it. A game console that controls smart lights through an app is still not a home IoT device — it is general-purpose compute (fails criterion 2), and an *app* is not the device acting as a control surface. (Contrast a streaming TV whose *platform* is a Matter/Thread controller — there the device itself is the home-control surface, satisfying criterion 4(b).)
 
-**Out of scope (excluded by criterion 4).** Game consoles and streaming devices / smart TVs are **entertainment** devices — their primary function is media consumption, not monitoring/automation/control of the home — and are therefore excluded. (Alrawi et al. include a "media" category because they score *deployment attack surface*; this project is a *function-defined category study*, a different goal, so their scope is not inherited.) The `results_all_gameconsoles.xlsx` and `results_all_streaming_tvs.xlsx` files remain on disk but are **out of the analysis set**.
+**Entertainment — the hybrid line (criterion 4(b)).** Entertainment hardware qualifies *only* when it doubles as a home-control surface. The discriminator is **control of other home IoT devices**, not connectivity:
+- **In scope:** streaming TVs / sticks / boxes (Google TV, Fire TV, Apple TV) — their platforms act as Matter/Thread controllers or border routers, run assistants, and surface camera/doorbell feeds. Smart speakers (already in) and smart soundbars/displays qualify the same way. These form the `streaming` category and the `smartspeakers` absorptions.
+- **Out of scope:** game consoles and VR/AR headsets are **general-purpose compute + media** with no home-control role — they fail criterion 2 (device class) *and* criterion 4. Dumb media players / assistant-less TV-companion soundbars also fail 4(b).
+
+(Alrawi et al. include a "media" category because they score *deployment attack surface*; this project stays a *function-defined category study*, so clause 4(b) admits media hardware on its **control function**, not on exposure.) `results_all_streaming_tvs.xlsx` is now **in the analysis set**; `results_all_gameconsoles.xlsx` remains on disk but **out of the analysis set**.
+
+**Networking — hub-in / router-out (criterion 4 / 4(b)).** The same control-vs-connectivity test that governs entertainment governs networking: the discriminator is **whether the device controls other home IoT devices**, not whether it carries their traffic. This is the exact line drawn by the project's anchor paper, **Alrawi et al. (2019)** — they *"consider the exploitation of a hub device (communication bridge between low-energy and IP) to be equivalent to exploiting all the connected low-energy devices"* and *"exclude direct evaluation of low-energy devices but consider their hubs for evaluation,"* while the router appears only in the threat-model boundary: *"we consider the home network to be an untrusted network and we make no assumptions about the security state of mobile applications, modems/routers, or web browsers."* The hub is a study subject; the modem/router is untrusted **context** (sitting alongside browsers and mobile apps), and their evaluation table (Table III) has a *Hub* column but **no router/modem device category**.
+- **In scope:** IoT **hubs / bridges / controllers** (SmartThings, Hubitat, Hue Bridge, Matter/Zigbee/Z-Wave controllers) — home control *is* their primary function (criterion 4(a)). Mesh/gateways that **also** act as a Matter/Thread/Zigbee controller are carved in via **criterion 4(b)**, identical to the streaming-TV logic, and are reviewed under `hub`.
+- **Out of scope (as a category):** pure **transport** gear — plain routers, cable/DSL modems, ONT, unmanaged switches — whose only function is moving packets. By the guiding principle *connectivity is not membership* this fails criterion 4. The network layer is acknowledged as **threat-model context** (the untrusted home network devices sit on, per the standard 3-layer perception/network/application IoT architecture) but is **not** an enumerated category. The generic `router` category is therefore dropped; `CategoryII_NetworkGatewayDeviceTypes.xlsx` stays on disk, but only its hub / mesh-controller terms are in the analysis set.
+- **Why not "networking as a base layer":** admitting routers as a network base layer is an *attack-surface-completeness* rationale — the same scope philosophy this project already declined for entertainment (it stays a *function-defined* study, not an attack-surface study). Including them would be internally inconsistent.
 
 **Open scoping note — sleep trackers.** Confirmed by inspection: the current `sleeptracker` set is **~88% wearables** (Fitbit/Apple Watch/Garmin — out by criterion 3) and contains **0** actual bedside monitors. This is a near-total rebuild (bedside-only brands + new keyword sheets), and the category may not clear the NVD-footprint study-inclusion bar — so it could be dropped or folded. See *Finalized Category Scope* and *Methodology Notes → known data issues*.
 
-**Recommended additions** (already keyword-prepped in `Devices List.docx` / `data/keyword-search/` but never given a `results_all_*.xlsx`): **routers/gateways, smart hubs, smart lighting** — all pass the five criteria cleanly. Now folded into the frozen scope below.
+**Recommended additions** (already keyword-prepped in `Devices List.docx` / `data/keyword-search/` but never given a `results_all_*.xlsx`): **smart hubs, smart lighting** — pass the five criteria cleanly and are folded into the frozen scope below. (Generic **routers/gateways** were keyword-prepped too but are **excluded as a category** — see *Networking — hub-in / router-out* above.)
 
 ---
 
@@ -238,7 +247,7 @@ them different products **and** they have a meaningfully different brand set; *m
 they're the same product with a different label. (e.g. cameras / doorbell / baby monitor stay
 separate — different brands; blinds / curtains / shutters merge into one `shades` — same product.)
 
-The frozen list is **~22 analysis categories** (entertainment dropped). Status tags vs. current
+The frozen list is **~22 analysis categories** (hybrid entertainment re-admitted via criterion 4(b); pure-transport networking excluded — hub-in/router-out per Alrawi 2019). Status tags vs. current
 coverage: **①** in both searches already · **②** keyword exists, needs a vendor list · **③** vendor
 exists, needs keywords · **④** needs both (new build).
 
@@ -249,20 +258,20 @@ exists, needs keywords · **④** needs both (new build).
 | Alarms & sensors | `alarms` ①, `sensors` ② |
 | Climate & air | `thermostat` ①, `airconditioner` ①, `fans` ①, `airpurifier` ② |
 | Electrical & lighting | `smartplugs` ①, `lighting` ② *(bulbs + switches + dimmers)* |
-| Appliances | `fridge` ①, `robotvacuum` ①, `kitchen-laundry` ④ *(oven/range/cooker/microwave/dishwasher/washer/dryer)* |
-| Hubs & networking | `hub` ②, `router` ② |
-| Audio | `smartspeakers` ① *(absorbs smart displays — same brands/platform/CVEs)* |
+| Appliances | `fridge` ①, `robotvacuum` ①, `appliances` ④ *(oven/range/cooker/microwave/dishwasher/washer/dryer/water heater)* |
+| Hubs & controllers | `hub` ② *(IoT hubs/bridges/controllers; absorbs mesh/gateways that **also** act as Matter/Thread/Zigbee controllers via 4(b))* — pure-transport routers/modems/ONT/switches are **out as a category** (Alrawi 2019: untrusted context, not a study subject) |
+| Audio | `smartspeakers` ① *(absorbs smart displays **and smart soundbars** — same brands/platform/CVEs)* |
 | Sleep | `sleeptracker` ③ *(rebuild — bedside only)* |
 | Shades | `shades` ④ *(blinds/curtains/coverings — one category)* |
-| Energy | `ev-charging` ④, `home-power` ④ *(solar + batteries + meters)* |
+| Energy | `ev-charging` ④ *(home EVSE/wallbox only — excludes the vehicle and public/commercial EVCS; criteria 2 & 3)*, `home-power` ④ *(solar + batteries + meters)* |
 | Outdoor & pet | `garden` ④ *(irrigation + mowers)*, `pet` ④ *(feeders/cameras/litter)* |
-| Entertainment | **dropped** — streaming TVs & game consoles (fail criterion 4) |
+| Entertainment (hybrid) | `streaming` ① *(streaming TVs + sticks/boxes — one category; qualifies via criterion 4(b) as home-control surface)* — game consoles & VR stay **dropped** (fail criteria 2 & 4) |
 
-Build work implied: **5 new vendor lists** (②), **1 new keyword set** (③), **4 full new builds** (④),
+Build work implied: **4 new vendor lists** (②), **1 new keyword set** (③), **4 full new builds** (④),
 plus **2 fixes** (babymonitor tighten, sleeptracker rebuild). The ① categories are ready as-is.
 
-**Open scope calls still to confirm** (all on criterion ③/④): `router`, `ev-charging`/`home-power`,
-`shades`, `garden`/`pet`, and whether `smart display` stays merged into `smartspeakers` or splits out.
+**Open scope calls still to confirm** (all on criterion ③/④): `ev-charging`/`home-power`,
+`shades`, `garden`/`pet`, and whether `smart display` stays merged into `smartspeakers` or splits out. (`streaming` confirmed in via criterion 4(b); networking confirmed **hub-in/router-out** per Alrawi 2019; smart soundbars confirmed merged into `smartspeakers`.)
 
 **Dependency rule.** Categories sit upstream of everything: lists → collection (NVD/Shodan/Censys)
 → set-ops → review → mining. Changing one category only forces a re-run of *that* category's chain;
@@ -341,7 +350,8 @@ For each row, read the `description` and `cpe_strings` and ask:
 | `results_all_airconditioner.xlsx` | 187 | 1/187 | 1/187 |
 | `results_all_cameras.xlsx` | 2,161 | 1/2161 | 1/2161 |
 | All other 10 in-scope `results_all_*.xlsx` | varies | No judgment columns yet | — |
-| `results_all_gameconsoles.xlsx`, `results_all_streaming_tvs.xlsx` | — | **Out of scope** (entertainment) | — |
+| `results_all_streaming_tvs.xlsx` | ~232 | In scope (`streaming`) — no judgment columns yet | — |
+| `results_all_gameconsoles.xlsx` | ~246 | **Out of scope** (entertainment, fails criteria 2 & 4) | — |
 | `unmatched_cves.xlsx` | 64,327 | ~47/64327 | 3/64327 |
 
 **Next task:** Eliminate false positives across all `results_all_*.xlsx` files by filling in the judgment columns. Files missing the columns need them added first.
