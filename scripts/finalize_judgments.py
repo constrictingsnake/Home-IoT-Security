@@ -75,7 +75,7 @@ def resolve_row(row, cat, human):
         return "", "incomplete"
     if str(row.get("Needs Human Review", "")).strip() == "Yes":
         hv = human.get((cat, str(row["cve_id"]).strip().upper()))
-        return (hv, "human") if hv else ("", "pending")
+        return (hv, "human") if hv and hv != "Maybe" else ("", "pending")
     # not flagged + complete => the three judgments are unanimous; take any (Claude)
     return str(row.get("Claude Judgment", "")).strip(), "ai-consensus"
 

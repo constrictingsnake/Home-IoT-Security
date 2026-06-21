@@ -134,11 +134,11 @@ Home IoT Security/
     │   ├── CategoryVIII_ProtocolDeviceTypes.xlsx     (zigbee, z-wave, MQTT, CoAP...)
     │   └── CategoryIX_IoTDeviceTypes.xlsx            (brand names: Ring, Arlo, Hikvision, Tuya...)
     │
-    ├── vendor-search/               # Stage 2 outputs (Jason) — 13 in-scope device types (+2 excluded)
+    ├── vendor-search/               # Stage 2 outputs (Jason) — 14 in-scope device types (+1 excluded)
     │   ├── results_all_cameras.xlsx          (~2,161 CVEs — largest)
     │   ├── results_all_airconditioner.xlsx   (~187 CVEs)
     │   ├── results_all_gameconsoles.xlsx     (~246 CVEs — OUT OF SCOPE: entertainment, fails criteria 2 & 4)
-    │   ├── results_all_streaming_tvs.xlsx    (~232 CVEs — IN SCOPE: `streaming` category, home-control surface — criterion 4(b))
+    │   ├── results_all_streaming.xlsx        (~232 CVEs — IN SCOPE: `streaming` category, home-control surface — criterion 4(b))
     │   ├── results_all_thermostat.xlsx       (~61 CVEs)
     │   ├── results_all_robotvacuum.xlsx      (~80 CVEs)
     │   ├── results_all_smartplugs.xlsx       (~99 CVEs)
@@ -224,7 +224,7 @@ The criteria below are derived directly from this definition — one per clause.
 - **In scope:** streaming TVs / sticks / boxes (Google TV, Fire TV, Apple TV) — their platforms act as Matter/Thread controllers or border routers, run assistants, and surface camera/doorbell feeds. Smart speakers (already in) and smart soundbars/displays qualify the same way. These form the `streaming` category and the `smartspeakers` absorptions.
 - **Out of scope:** game consoles and VR/AR headsets are **general-purpose compute + media** with no home-control role — they fail criterion 2 (device class) *and* criterion 4. Dumb media players / assistant-less TV-companion soundbars also fail 4(b).
 
-(Alrawi et al. include a "media" category because they score *deployment attack surface*; this project stays a *function-defined category study*, so clause 4(b) admits media hardware on its **control function**, not on exposure.) `results_all_streaming_tvs.xlsx` is now **in the analysis set**; `results_all_gameconsoles.xlsx` remains on disk but **out of the analysis set**.
+(Alrawi et al. include a "media" category because they score *deployment attack surface*; this project stays a *function-defined category study*, so clause 4(b) admits media hardware on its **control function**, not on exposure.) `results_all_streaming.xlsx` is now **in the analysis set**; `results_all_gameconsoles.xlsx` remains on disk but **out of the analysis set**.
 
 **Networking — hub-in / router-out (criterion 4 / 4(b)).** The same control-vs-connectivity test that governs entertainment governs networking: the discriminator is **whether the device controls other home IoT devices**, not whether it carries their traffic. This is the exact line drawn by the project's anchor paper, **Alrawi et al. (2019)** — they *"consider the exploitation of a hub device (communication bridge between low-energy and IP) to be equivalent to exploiting all the connected low-energy devices"* and *"exclude direct evaluation of low-energy devices but consider their hubs for evaluation,"* while the router appears only in the threat-model boundary: *"we consider the home network to be an untrusted network and we make no assumptions about the security state of mobile applications, modems/routers, or web browsers."* The hub is a study subject; the modem/router is untrusted **context** (sitting alongside browsers and mobile apps), and their evaluation table (Table III) has a *Hub* column but **no router/modem device category**.
 - **In scope:** IoT **hubs / bridges / controllers** (SmartThings, Hubitat, Hue Bridge, Matter/Zigbee/Z-Wave controllers) — home control *is* their primary function (criterion 4(a)). Mesh/gateways that **also** act as a Matter/Thread/Zigbee controller are carved in via **criterion 4(b)**, identical to the streaming-TV logic, and are reviewed under `hub`.
@@ -350,7 +350,7 @@ For each row, read the `description` and `cpe_strings` and ask:
 | `results_all_airconditioner.xlsx` | 187 | 1/187 | 1/187 |
 | `results_all_cameras.xlsx` | 2,161 | 1/2161 | 1/2161 |
 | All other 10 in-scope `results_all_*.xlsx` | varies | No judgment columns yet | — |
-| `results_all_streaming_tvs.xlsx` | ~232 | In scope (`streaming`) — no judgment columns yet | — |
+| `results_all_streaming.xlsx` | ~232 | In scope (`streaming`) — no judgment columns yet | — |
 | `results_all_gameconsoles.xlsx` | ~246 | **Out of scope** (entertainment, fails criteria 2 & 4) | — |
 | `unmatched_cves.xlsx` | 64,327 | ~47/64327 | 3/64327 |
 

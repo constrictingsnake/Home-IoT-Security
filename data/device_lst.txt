@@ -1,21 +1,67 @@
-# Home IoT device categories (one per line; blank lines and '#' lines are ignored).
-# Names match the vendor-search slugs: data/vendor-search/results_all_<category>.xlsx
+# Home IoT device categories — the FROZEN analysis scope (see CLAUDE.md → "Finalized Category Scope").
+# One slug per line. Blank lines and lines starting with '#' are ignored.
+# NOTE: inline trailing comments are NOT supported — a slug must be alone on its line.
 #
-# In-scope categories for the difference review:
-airconditioner
-alarms
-babymonitor
+# Slugs match the vendor-search files: data/vendor-search/results_all_<slug>.xlsx
+# build_difference_sets.py prints "MISSING vendor file" for slugs without one yet — expected
+# for categories still being built (status ②/③/④ below); it just skips them.
+#
+# Status vs current coverage:
+#   (1) in both searches already (ready)     (2) keyword exists, needs a vendor list
+#   (3) vendor exists, needs keywords         (4) needs both (new build)
+#
+# ── Cameras & monitors ──  cameras (1)  doorbell (1)  babymonitor (1, vendor list needs tightening)
 cameras
 doorbell
+babymonitor
+#
+# ── Access control ──  doorlock (1, incl. garage-door openers)
 doorlock
+#
+# ── Alarms & sensors ──  alarms (1)  sensors (2)
+alarms
+sensors
+#
+# ── Climate & air ──  thermostat (1)  airconditioner (1)  fans (1)  airpurifier (2)
+thermostat
+airconditioner
 fans
+airpurifier
+#
+# ── Electrical & lighting ──  smartplugs (1)  lighting (2, bulbs + switches + dimmers)
+smartplugs
+lighting
+#
+# ── Appliances ──  fridge (1)  robotvacuum (1)  appliances (4, oven/range/cooker/microwave/dishwasher/washer/dryer/water heater)
 fridge
 robotvacuum
-sleeptracker
-smartplugs
-smartspeakers
-thermostat
+appliances
 #
-# Out of scope — entertainment, excluded by definitional criterion 4 (not scaffolded):
-# gameconsoles
-# streaming_tvs
+# ── Hubs & controllers ──  hub (2, IoT hubs/bridges/controllers; absorbs Matter/Thread/Zigbee mesh-controllers via criterion 4(b))
+hub
+#
+# ── Audio ──  smartspeakers (1, absorbs smart displays + smart soundbars)
+smartspeakers
+#
+# ── Sleep ──  sleeptracker (3, rebuild — bedside only; may be dropped)
+sleeptracker
+#
+# ── Shades ──  shades (4, blinds/curtains/coverings — one category)
+shades
+#
+# ── Energy ──  ev-charging (4, home EVSE/wallbox only)  home-power (4, solar + batteries + smart meters)
+ev-charging
+home-power
+#
+# ── Outdoor & pet ──  garden (4, irrigation + robot mowers)  pet (4, feeders/cameras/litter)
+garden
+pet
+#
+# ── Entertainment (hybrid) ──  streaming (1, streaming TVs + sticks/boxes; qualifies via criterion 4(b) as a home-control surface)
+streaming
+#
+# ── OUT OF SCOPE (NOT in the analysis set) ──
+# gameconsoles  — entertainment, fails criteria 2 & 4 (vendor file kept on disk, not analyzed)
+# vr-headsets   — general-purpose compute + media, fails criteria 2 & 4
+# Pure-transport networking (plain routers / modems / ONT / unmanaged switches) is excluded
+# as a category — untrusted threat-model context, not a study subject (Alrawi et al. 2019).
