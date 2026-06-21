@@ -77,7 +77,7 @@ def call_gemini(session, api_key, model, prompt):
     )
     resp.raise_for_status()
     text = resp.json()["candidates"][0]["content"]["parts"][0]["text"]
-    obj = json.loads(text)
+    obj, _ = json.JSONDecoder().raw_decode(text.strip())
     return obj["judgment"], obj["confidence"], obj.get("reasoning", "")
 
 
