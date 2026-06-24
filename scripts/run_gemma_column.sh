@@ -18,6 +18,7 @@ set -a; source .env; set +a
 
 MODEL="gemma-4-31b-it"
 RPS="0.30"
+DIRECTION="${DIRECTION:-vendor_only}"   # which difference direction's reviews to fill
 FLAG="data/difference/.gemma_prepped"
 
 # --- one-time prep: backup 3.1 baseline + blank Gemini columns ---
@@ -25,7 +26,7 @@ if [ ! -f "$FLAG" ]; then
   echo "[$(date '+%H:%M:%S')] Prep: backing up 3.1 baseline + blanking Gemini columns ..."
   python3 - <<'PY' || exit 1
 import csv, glob, os, shutil
-for f in sorted(glob.glob("data/difference/*/reviews/gemini.csv")):
+for f in sorted(glob.glob("data/difference/*/*/reviews/gemini.csv")):
     bak = f.replace("gemini.csv", "gemini_3.1_baseline.csv")
     if not os.path.exists(bak):
         shutil.copy2(f, bak)              # preserve the 3.1 results
@@ -57,9 +58,9 @@ for pair in \
   "airconditioner:smart air conditioner" \
   "cameras:security camera" ; do
   cat="${pair%%:*}"; kw="${pair#*:}"
-  echo "=== [$(date '+%H:%M:%S')] $cat ($kw) ==="
-  python3 scripts/merge_judgments.py --reviews "data/difference/$cat/reviews" \
+  echo "=== [$(date '+%H:%M:%S')] $cat/$DIRECTION ($kw) ==="
+  python3 scripts/merge_judgments.py --reviews "data/difference/$cat/$DIRECTION/reviews" \
       --run-gemini --category "$kw" --model "$MODEL" --rps "$RPS" \
-      || echo "FAILED: $cat"
+      || echo "FAILED: $cat/$DIRECTION"
 done
 echo "=== GEMMA RUN COMPLETE [$(date '+%H:%M:%S')] ==="

@@ -21,3 +21,9 @@ Thumbs.db
 
 # Note: research data (*.xlsx, *.csv, *.docx, *.pdf) is intentionally NOT ignored —
 # it is the project's dataset and is tracked on purpose.
+
+# Exception: the raw NVD snapshot is large, reproducible bulk data (not curated
+# project output) — keep it out of git. SNAPSHOT.md (provenance) IS tracked.
+data/nvd-snapshot/*.csv
+data/nvd-snapshot/*.json
+data/nvd-snapshot/*.json.gz

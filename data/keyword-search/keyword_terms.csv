@@ -1,0 +1,90 @@
+# Keyword terms for the offline per-category keyword search (Stage 1).
+# ---------------------------------------------------------------------------
+# THIS is the file build_keyword_search.py reads. It ships EMPTY — add your own
+# terms below. Each category has a commented example line showing where to type.
+#
+# Format: one "slug,term" per line. Lines starting with '#' and blank lines are
+# ignored, so uncomment a line (remove the leading '# ') or add new ones.
+# Slugs must match data/device_lst.txt.
+#
+# Scope rule (see CLAUDE.md): add DEVICE-TYPE PHRASES ONLY — e.g. "ip camera",
+# "video doorbell". NO brands, protocols, firmware, or generic umbrella terms.
+#
+# Need a starting point? Suggested terms per category are in
+# keyword_terms.suggested.csv — copy the rows you want into this file.
+#
+# A category with no active terms is simply SKIPPED by the driver (no error).
+# ---------------------------------------------------------------------------
+slug,term
+
+# ── cameras ──
+# cameras,ip camera        <-- uncomment / replace with your own terms, one per line
+
+# ── doorbell ──
+# doorbell,video doorbell
+
+# ── babymonitor ──
+# babymonitor,baby monitor
+
+# ── doorlock ──
+# doorlock,smart lock
+
+# ── alarms ──
+# alarms,alarm system
+
+# ── sensors ──
+# sensors,motion sensor
+
+# ── thermostat ──
+# thermostat,smart thermostat
+
+# ── airconditioner ──
+# airconditioner,smart air conditioner
+
+# ── fans ──
+# fans,smart fan
+
+# ── airpurifier ──
+# airpurifier,smart air purifier
+
+# ── smartplugs ──
+# smartplugs,smart plug
+
+# ── lighting ──
+# lighting,smart bulb
+
+# ── fridge ──
+# fridge,smart refrigerator
+
+# ── robotvacuum ──
+# robotvacuum,robot vacuum
+
+# ── appliances ──
+# appliances,smart dishwasher
+
+# ── hub ──
+# hub,smart home hub
+
+# ── smartspeakers ──
+# smartspeakers,smart speaker
+
+# ── sleeptracker ──
+# sleeptracker,sleep monitor
+
+# ── shades ──
+# shades,smart blinds
+
+# ── ev-charging ──
+# ev-charging,ev charger
+
+# ── home-power ──
+# home-power,solar inverter
+
+# ── garden ──
+# garden,irrigation controller
+
+# ── pet ──
+# pet,pet feeder
+
+# ── streaming ──
+# streaming,smart tv

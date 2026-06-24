@@ -1,22 +1,17 @@
 import pandas as pd
+import glob
 import os
 
-# List of multi-sheet xlsx files to search for a match on
-# These are hardcoded for now, but can be changed later
+# Keyword search outputs to intersect against. Since the overhaul, the keyword search is
+# per-category (data/keyword-search/keyword_<cat>.csv, from build_keyword_search.py) instead
+# of the legacy grouped Category*.xlsx workbooks (now under _legacy/).
+ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+KEYWORD_DIR = os.path.join(ROOT, "data", "keyword-search")
 
-MULTI_SHEET_FILES = [
-   "CategoryIII_CameraDoorbellDeviceTypes.xlsx", 
-    "CategoryII_NetworkGatewayDeviceTypes.xlsx", 
-    "CategoryIV_AccessControlDeviceTypes.xlsx", 
-    "CategoryIX_IoTDeviceTypes.xlsx", 
-    "CategoryI_SmartHomeDeviceTypes.xlsx", 
-    "CategoryVIII_ProtocolDeviceTypes.xlsx", 
-    "CategoryVII_HubDeviceTypes.xlsx", 
-    "CategoryVI_ApplianceDeviceTypes.xlsx", 
-    "CategoryVI_SwitchDeviceTypes.xlsx", 
-    "CategoryV_SensorDeviceTypes.xlsx"
-    # Can add or remove files to check as needed
-]
+
+def keyword_files():
+    """Every per-category keyword search output (absolute paths)."""
+    return sorted(glob.glob(os.path.join(KEYWORD_DIR, "keyword_*.csv")))
 
 # Prompt for file path, assumes file is in the cwd, checks if .xlsx
 def get_single_sheet_file():
@@ -58,57 +53,41 @@ def load_cves(filepath):
         print(f"File read error: {e}")
         exit(1)
 
-# Searches file for matching CVEs
-def search_file(cves, excel_path):
-    if not os.path.isfile(excel_path):
-        print(f"Skipping missing file: {excel_path}")
+# Searches a per-category keyword file (keyword_<cat>.csv) for matching CVEs
+def search_file(cves, csv_path):
+    if not os.path.isfile(csv_path):
+        print(f"Skipping missing file: {csv_path}")
         return []
 
     try:
-        workbook = pd.ExcelFile(excel_path)
+        df = pd.read_csv(csv_path)
     except Exception as e:
-        print(f"Could not open {excel_path}: {e}")
+        print(f"Could not open {csv_path}: {e}")
+        return []
+
+    if 'cve_id' not in df.columns:
         return []
 
     matches = []
+    # category slug = keyword_<slug>.csv -> <slug>
+    slug = os.path.basename(csv_path)[len("keyword_"):-len(".csv")]
 
-    print(f"\nSearching: {excel_path}")
+    df['cve_id'] = (
+        df['cve_id']
+        .astype(str)
+        .str.strip()
+        .str.upper()
+    )
 
-    for sheet_name in workbook.sheet_names:
-        try:
-            df = pd.read_excel(excel_path, sheet_name=sheet_name)
+    matched_rows = df[df['cve_id'].isin(cves)]
 
-            if 'CVE' not in df.columns:
-                continue
+    if not matched_rows.empty:
+        print(f"\nMatches found in {os.path.basename(csv_path)} ({len(matched_rows)})")
 
-            df['CVE'] = (
-                df['CVE']
-                .astype(str)
-                .str.strip()
-                .str.upper()
-            )
-
-            matched_rows = df[df['CVE'].isin(cves)]
-
-            if not matched_rows.empty:
-                print(
-                    f"\nMatches found in "
-                    f"{excel_path} -> Sheet: {sheet_name}"
-                )
-
-                for _, row in matched_rows.iterrows():
-                    print(row.to_dict())
-
-                matched_rows = matched_rows.copy()
-                matched_rows.insert(0, "Source File", excel_path)
-                matched_rows.insert(1, "Source Sheet", sheet_name)
-                matches.append(matched_rows)
-
-        except Exception as e:
-            print(
-                f"Error processing "
-                f"{excel_path} [{sheet_name}]: {e}"
-            )
+        matched_rows = matched_rows.copy()
+        matched_rows.insert(0, "Source File", os.path.basename(csv_path))
+        matched_rows.insert(1, "Source Sheet", slug)
+        matches.append(matched_rows)
 
     return matches
 
@@ -147,10 +126,16 @@ def main():
     single_sheet_file = get_single_sheet_file() # prompt for user input
     cves = load_cves(single_sheet_file) 
 
-    all_matches = [] 
-    # compile a list of matched CVEs
-    for excel_file in MULTI_SHEET_FILES:
-        matches = search_file(cves, excel_file)
+    files = keyword_files()
+    if not files:
+        print(f"\nNo keyword files found in {os.path.relpath(KEYWORD_DIR, ROOT)} "
+              "(run build_keyword_search.py first).")
+        return
+
+    all_matches = []
+    # compile a list of matched CVEs across every per-category keyword file
+    for csv_file in files:
+        matches = search_file(cves, csv_file)
         all_matches.extend(matches)
 
     save_results(all_matches)

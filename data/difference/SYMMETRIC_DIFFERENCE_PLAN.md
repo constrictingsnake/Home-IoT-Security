@@ -1,8 +1,14 @@
 # Plan — Implement the vendor_only / keyword_only difference layout
 
-> Status: **not yet executed.** This is the agreed implementation plan for the bidirectional
-> (symmetric) difference, ready to execute. See CLAUDE.md §"Symmetric (bidirectional)
-> difference — planned".
+> Status: **EXECUTED (2026-06).** The direction-aware layout + script refactor (Part A) and the
+> bidirectional generator (Part B, via `build_difference_sets.py --direction`) are built. The
+> existing review data was migrated under `<cat>/vendor_only/` (119 git renames, 0 deletes) and
+> all 334 human verdicts were preserved (finalize parity: ai-consensus 1758 / human 328 /
+> pending 6). **Note:** Part B's original B1 *bridge mapping* is **obsolete** — the keyword
+> overhaul produces per-category `keyword_<cat>.csv` directly, so `build_difference_sets.py`
+> differences them straight against the vendor files (no tab remap). The remaining work is to
+> generate `keyword_<cat>.csv` from an NVD snapshot (Stage 1) and then run the keyword_only
+> review. See CLAUDE.md §"Symmetric (bidirectional) difference — BUILT".
 
 ## Context
 

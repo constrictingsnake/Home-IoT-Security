@@ -15,9 +15,14 @@ data/difference/human_review_queue.csv or the per-category 02_needs_human_review
 Adds `Final Judgment` / `Final Source` columns — never overwrites the AI columns. Re-run
 as humans fill more in; the `pending` count shrinks toward zero.
 
+Direction-aware: it scans both difference directions, <cat>/vendor_only/ and
+<cat>/keyword_only/. Verdicts are keyed by (category, cve_id) — vendor_only and keyword_only
+are disjoint sets, so that key stays unique across directions and existing verdicts resolve
+unchanged.
+
 Outputs:
-    per category : data/difference/<cat>/03_final.csv
-    combined     : data/difference/final_resolved.csv   (adds a Category column)
+    per cat+direction : data/difference/<cat>/<direction>/03_final.csv
+    combined          : data/difference/final_resolved.csv   (adds Category + Direction columns)
 
 Usage:
     python finalize_judgments.py
@@ -29,6 +34,13 @@ import os
 import pandas as pd
 
 VALID = {"Yes", "No", "Maybe"}
+
+
+def cat_dir_of(merged_path):
+    """(category, direction) from a .../<cat>/<direction>/02_*.csv path."""
+    direction = os.path.basename(os.path.dirname(merged_path))
+    category = os.path.basename(os.path.dirname(os.path.dirname(merged_path)))
+    return category, direction
 
 
 def load_human_verdicts(diff_dir):
@@ -63,9 +75,9 @@ def load_human_verdicts(diff_dir):
 
     # combined sheet (category from its own column)
     ingest(os.path.join(diff_dir, "human_review_queue.csv"), category=None)
-    # per-category sheets (category from the folder name)
-    for p in sorted(glob.glob(os.path.join(diff_dir, "*", "02_needs_human_review.csv"))):
-        ingest(p, category=os.path.basename(os.path.dirname(p)))
+    # per-category sheets (category from the folder name: <cat>/<direction>/02_needs...)
+    for p in sorted(glob.glob(os.path.join(diff_dir, "*", "*", "02_needs_human_review.csv"))):
+        ingest(p, category=cat_dir_of(p)[0])
     return verdicts
 
 
@@ -81,12 +93,12 @@ def resolve_row(row, cat, human):
 
 
 def finalize(merged_path, human):
-    cat = os.path.basename(os.path.dirname(merged_path))
+    cat, direction = cat_dir_of(merged_path)
     df = pd.read_csv(merged_path, dtype=str).fillna("")
     res = df.apply(lambda r: resolve_row(r, cat, human), axis=1, result_type="expand")
     df["Final Judgment"] = res[0]
     df["Final Source"] = res[1]
-    return cat, df
+    return cat, direction, df
 
 
 def main():
@@ -95,7 +107,7 @@ def main():
                     help="Directory holding <category>/02_merged.csv (default: data/difference)")
     args = ap.parse_args()
 
-    merged_files = sorted(glob.glob(os.path.join(args.diff_dir, "*", "02_merged.csv")))
+    merged_files = sorted(glob.glob(os.path.join(args.diff_dir, "*", "*", "02_merged.csv")))
     if not merged_files:
         raise SystemExit("No 02_merged.csv files found — run merge_judgments.py first.")
 
@@ -107,16 +119,17 @@ def main():
     from collections import Counter
     grand = Counter()
     for mp in merged_files:
-        cat, df = finalize(mp, human)
+        cat, direction, df = finalize(mp, human)
         out = os.path.join(os.path.dirname(mp), "03_final.csv")
         df.to_csv(out, index=False)
         c = Counter(df["Final Source"])
         grand.update(c)
         pend = c.get("pending", 0)
         flag = f"  ({pend} pending human input)" if pend else ""
-        print(f"  {cat:14} resolved={c.get('ai-consensus',0)+c.get('human',0):4} "
+        print(f"  {cat:14} {direction:12} resolved={c.get('ai-consensus',0)+c.get('human',0):4} "
               f"[ai={c.get('ai-consensus',0)}, human={c.get('human',0)}], "
               f"incomplete={c.get('incomplete',0)}{flag}")
+        df.insert(0, "Direction", direction)
         df.insert(0, "Category", cat)
         combined.append(df)
 

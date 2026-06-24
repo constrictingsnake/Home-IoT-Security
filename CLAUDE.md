@@ -12,18 +12,36 @@ A security research pipeline that systematically maps real-world home IoT device
 The project combines two complementary CVE-discovery methods, each owned by a different researcher:
 
 - **Vendor-based search — Jason.** Compiles a list of manufacturers/brands per device type, then searches NVD for those vendor/brand names. Produces the `results_all_*.xlsx` files (Stage 2, via `cve_search.py` / `run_all_years.sh`; the `--keywords` in `Devices List.docx` are Jason's vendor/brand strings). More prone to false positives, since brand names overlap with unrelated products.
-- **Keyword-based search — Lizzie.** Searches NVD for generic device-type keywords (e.g. "security camera", "ip camera"). Produces the `data/keyword-search/*.xlsx` workbooks (Stage 1, via `nvd_keyword_query.py`). `full_intersect.py` (Stage 3) is also Lizzie's — it intersects the two methods' outputs.
+- **Keyword-based search — Lizzie.** Searches NVD for generic device-type keywords (e.g. "security camera", "ip camera"). **As of the keyword overhaul (2026-06)** this runs **offline, per-category, through the same engine as the vendor search** (`cve_search.py` against one fixed NVD snapshot, matching description **+ CPE**) — see Stage 1. Produces `data/keyword-search/keyword_<category>.csv`, one file per analysis category. `full_intersect.py` (Stage 3) is also Lizzie's — it intersects the two methods' outputs. *(The legacy live-API workbooks and groupings are retired under `data/keyword-search/_legacy/`.)*
 
 Combining both methods yields the most comprehensive per-device CVE list.
 
-### Stage 1 — `nvd_keyword_query.py` (Live API queries)
-- Hits the **NVD REST API v2.0** (`services.nvd.nist.gov`)
-- Takes comma-separated keywords interactively, shows CVE counts, fetches full detail for approved keywords
-- Enriches each CVE with: CVSS score + severity, CWE ID, description
-- Outputs a multi-sheet `.xlsx` — one tab per keyword
-- Requires an NVD API key — set `NVD_API_KEY` in the gitignored `.env` (the script reads `os.environ["NVD_API_KEY"]`; run `set -a; source .env; set +a` first)
-- Rate-limited at 0.6s between requests
-- **Comparability caveat:** this hits the *live* API and `keywordSearch` matches the **description only** (no CPE) — which makes its output not directly comparable to the offline, description+CPE vendor search. See *Methodology Notes → Vendor ↔ keyword comparability*.
+### Stage 1 — `build_keyword_search.py` (Offline per-category keyword search)
+The keyword search was **overhauled (2026-06)** to fix the vendor↔keyword comparability gap: it
+now runs **offline** through the **same engine** as the vendor search (`cve_search.py`'s
+`filter_by_keywords`) against **one fixed NVD snapshot**, matching **description + CPE**, and emits
+**one file per analysis category** in the common schema.
+
+- **User-authored keywords.** Terms live in `data/keyword-search/keyword_terms.csv` (`slug,term`,
+  `#`-comment aware). This file ships **empty** — every category present but commented out, with an
+  example line showing where to add terms. **You fill in your own** device-phrase terms per category.
+  Suggested starter terms are in `data/keyword-search/keyword_terms.suggested.csv` (a copy-from menu
+  the driver **never** reads).
+- **Scope:** device-type **phrases only** (e.g. `ip camera`, `video doorbell`). No brands, protocols,
+  firmware, or umbrella terms — brand discovery is the vendor search's job.
+- **Snapshot:** build once from per-year NVD feeds — see `data/nvd-snapshot/SNAPSHOT.md` and the
+  `cve_search.py` header (STEP 1–2). The snapshot makes the dataset reproducible/citeable ("as of <date>").
+- **Run:** `python3 scripts/build_keyword_search.py` (loads the snapshot once, filters per category).
+  Categories with no terms are **skipped with a message**, not an error. Use `--categories <slug…>`
+  for a subset, `--snapshot`/`--terms` to override paths, `--overwrite` to rebuild existing outputs.
+- **Output:** `data/keyword-search/keyword_<category>.csv` with columns `cve_id, published,
+  description, cvss_score, cvss_version, cwe_ids, cpe_strings` — **identical to the vendor files and
+  to `01_raw.csv`**, now *with CPE*, so the two methods are directly comparable and the classification
+  rubric (which leans on CPE) works on keyword rows too.
+
+*(Legacy: the old live-API querier `nvd_keyword_query.py` and its grouped `Category*.xlsx` workbooks
+are retired under `data/keyword-search/_legacy/`. The script remains for reference but is no longer
+the keyword-search path.)*
 
 ### Stage 2 — `cve_search.py` (Offline bulk search)
 - Designed for local NVD JSON year-feeds (2002–2026)
@@ -34,22 +52,24 @@ Combining both methods yields the most comprehensive per-device CVE list.
 - `run_all_years.sh` automates Stage 2 across all years, then merges into a single CSV
 
 ### Stage 3 — `full_intersect.py` (Cross-file matching)
-- Takes a single-sheet Excel of CVE IDs (from Stage 2 output) and cross-references against all 10 keyword-search workbooks (`data/keyword-search/`)
-- Finds CVEs that appear in both the device-specific result set and a generic category query
-- Adds `Source File` and `Source Sheet` columns to matched rows
+- Takes a single-sheet Excel of CVE IDs (from Stage 2 output) and cross-references against all per-category keyword files (`data/keyword-search/keyword_*.csv`, globbed automatically)
+- Finds CVEs that appear in both the device-specific result set and a keyword search
+- Adds `Source File` and `Source Sheet` (= the category slug) columns to matched rows
 - Saves output to CSV interactively
 
 **Companion script — `full_difference.py`** (the complement of `full_intersect.py`):
-- Same inputs and workbook list as `full_intersect.py`
-- Outputs the vendor CVEs that appear in **none** of the keyword workbooks (i.e. `vendor − keyword_union`) — the set difference behind `unmatched_cves.xlsx`
+- Same inputs and keyword files as `full_intersect.py`
+- Outputs the vendor CVEs that appear in **none** of the keyword files (i.e. `vendor − keyword_union`, whole-corpus) — the set difference behind `unmatched_cves.xlsx`
 - Adds a `Difference Type` (= `vendor_only`) column and drops reviewer judgment columns; default output `unmatched_cves.csv`
 - Prints vendor / keyword-union / unmatched counts so the set math is visible
-- Note: like `full_intersect.py`, the workbook filenames are bare, so run it from inside `data/keyword-search/` (passing the vendor file via a relative path), or with the workbooks in the cwd
+- Note: both scripts now resolve `data/keyword-search/` **relative to the script**, so they can be run from anywhere (no more cwd/bare-filename requirement). For the **per-category** difference used by Stage 4, use `build_difference_sets.py` instead (this tool is the whole-corpus union).
 
 ### Stage 4 — Triple-AI review of the difference set (per device category)
 
-The difference set (a category's `vendor − keyword_union`) is the list of vendor CVEs the
-keyword search **missed**. Classifying which are true matches both (a) cleans the dataset and
+The difference set is built **bidirectionally** per category: `vendor_only` (`vendor_<cat> −
+keyword_<cat>`, vendor CVEs the keyword search **missed**) and `keyword_only` (`keyword_<cat> −
+vendor_<cat>`, keyword CVEs the brand/vendor list **missed** → surfaces vendor/brand-list gaps).
+The two are disjoint and reviewed independently by the same pipeline. Classifying which are true matches both (a) cleans the dataset and
 (b) surfaces keywords the keyword search is missing — mining the true-positive descriptions
 feeds new terms back into the keyword list to raise recall. To keep this trustworthy, every
 row is judged **independently by three AI reviewers**, mirroring the two-human reviewer model:
@@ -65,24 +85,27 @@ answer. This is guaranteed structurally: each reviewer works on its **own copy**
 only the raw data + its own empty columns, so other AIs' judgments are physically absent from
 the file it reads. All three judge by the same rubric: `data/difference/CLASSIFICATION_PROMPT.md`.
 
-**Per-category workflow** (run from the repo root; `<device>` e.g. `cameras`):
-0. (Optional, batch) `python scripts/init_categories.py categories.txt` — scaffold `data/difference/<device>/reviews/` for every category in a newline-separated list. Idempotent: existing folders are left untouched, only missing ones are created.
-1. Generate the raw difference set(s) as `data/difference/<device>/01_raw.csv`:
-   - **Batch (all categories):** `python scripts/build_difference_sets.py data/device_lst.txt` — maps each list entry to `data/vendor-search/results_all_<device>.xlsx`, builds the keyword union once, and writes every category's `01_raw.csv`. Skips categories that already have one (use `--overwrite` to regenerate).
-   - **Single, interactive:** `python scripts/full_difference.py` (run from `data/keyword-search/`; see Stage 3 note), then save to the category's `01_raw.csv`.
-2. `python scripts/make_review_copies.py data/difference/<device>/01_raw.csv` → writes blind `reviews/{claude,codex,gemini}.csv`.
+**Per-category workflow** (run from the repo root; `<device>` e.g. `cameras`, `<dir>` =
+`vendor_only` or `keyword_only`). The review is **bidirectional**: every category has two disjoint
+review units, `<device>/vendor_only/` and `<device>/keyword_only/`, both run through the *same*
+pipeline below (just swap `<dir>`).
+0. (Optional, batch) `python scripts/init_categories.py categories.txt` — scaffold `data/difference/<device>/<dir>/reviews/` for every category × direction (`--direction vendor_only|keyword_only|both`, default both). Idempotent: existing folders untouched.
+1. Generate the raw difference set(s) as `data/difference/<device>/<dir>/01_raw.csv`:
+   - **Batch (all categories, both directions):** `python scripts/build_difference_sets.py data/device_lst.txt` — for each category builds **both** `vendor_only` (vendor_<cat> − keyword_<cat>) and `keyword_only` (keyword_<cat> − vendor_<cat>), differencing `results_all_<device>.xlsx` against `keyword_<device>.csv`. Use `--direction` to pick one. Warns if the keyword file is missing (run `build_keyword_search.py` first); a missing *other* side is treated as empty. Skips a direction that already has `01_raw.csv` (use `--overwrite`). **Note:** regenerating existing sets invalidates in-progress review/human verdicts, so it is gated (skip-if-exists) and should only be re-run after scope freeze (verdicts are preserved by `extract_human_review.py`).
+   - **Single, interactive (whole-corpus vendor_only only):** `python scripts/full_difference.py` (runnable from anywhere), then save to the direction's `01_raw.csv`.
+2. `python scripts/make_review_copies.py data/difference/<device>/<dir>/01_raw.csv` → writes blind `reviews/{claude,codex,gemini}.csv`.
 3. The two **manual** reviewers each fill **only their own** copy, following the rubric:
    - Claude Code edits `reviews/claude.csv`
    - Codex edits `reviews/codex.csv`
 4. Run the **Gemini reviewer + merge in one command**:
-   `GEMINI_API_KEY=… python scripts/merge_judgments.py --reviews data/difference/<device>/reviews --run-gemini --category "<keyword>" --model gemma-4-31b-it`
+   `GEMINI_API_KEY=… python scripts/merge_judgments.py --reviews data/difference/<device>/<dir>/reviews --run-gemini --category "<keyword>" --model gemma-4-31b-it`
    → fills `reviews/gemini.csv` (resumable; skips already-filled rows), then writes `02_merged.csv` (all 9 AI columns + flag) **and** `02_high_confidence_audit.csv` (a seeded random sample of unanimous-high-confidence rows, so a human can spot-check the calls that otherwise never get reviewed).
    - Plain `python scripts/merge_judgments.py --reviews …` (no `--run-gemini`) just re-merges — a quick status view, no API/`requests` needed.
    - Standalone `python scripts/gemini_classify.py reviews/gemini.csv --category "<keyword>"` still works for the Gemini pass without merging.
-   - `bash scripts/run_gemma_column.sh` runs the Gemini pass over **all** categories at once (backs up the prior model's results, blanks the column, fills on Gemma) — see *Gemini reviewer model & limits* for the rate/quota timing.
-5. **Extract the human-review queue:** `python scripts/extract_human_review.py` → pulls every `Needs Human Review = Yes` row into `02_needs_human_review.csv` (per category) and `human_review_queue.csv` (combined), each leading with a `Verdicts` summary + reason and ending with blank `Human Verdict` / `Human Notes`.
+   - `bash scripts/run_gemma_column.sh` runs the Gemini pass over **all** categories at once (set `DIRECTION=vendor_only|keyword_only`; backs up the prior model's results, blanks the column, fills on Gemma) — see *Gemini reviewer model & limits* for the rate/quota timing.
+5. **Extract the human-review queue:** `python scripts/extract_human_review.py` → pulls every `Needs Human Review = Yes` row (both directions) into `<dir>/02_needs_human_review.csv` (per cat+direction) and `human_review_queue.csv` (combined, with `Category` + `Direction` columns). **Verdict-preserving:** already-filled `Human Verdict` / `Human Notes` are carried forward by `(category, cve_id)` on every re-run, so nothing hand-filled is lost.
 6. A **human adjudicates** only those flagged rows — fills `Human Verdict` (Yes/No/Maybe) in the queue sheet.
-7. **Fold verdicts back to one settled answer:** `python scripts/finalize_judgments.py` → `03_final.csv` (per category) + `final_resolved.csv`, adding `Final Judgment` / `Final Source` (`ai-consensus` for unflagged rows, `human` for adjudicated rows, `pending`/`incomplete` otherwise). Re-run as humans fill more in; never overwrites AI columns.
+7. **Fold verdicts back to one settled answer:** `python scripts/finalize_judgments.py` → `<dir>/03_final.csv` (per cat+direction) + `final_resolved.csv` (combined, with `Category` + `Direction`), adding `Final Judgment` / `Final Source` (`ai-consensus` for unflagged rows, `human` for adjudicated rows, `pending`/`incomplete` otherwise). Verdicts are keyed `(category, cve_id)` — directions are disjoint so the key stays unique. Re-run as humans fill more in; never overwrites AI columns.
 8. Mine the **resolved-`Yes`** rows (AI-unanimous + human-confirmed) for missing keywords → `03_keyword_additions.md`.
 
 **Human-review flag** (set in `merge_judgments.py`): `Needs Human Review = Yes` when **both strong
@@ -104,13 +127,14 @@ Home IoT Security/
 │                                    # and exact --keywords strings per device type
 │
 ├── scripts/                         # All pipeline scripts live here
-│   ├── nvd_keyword_query.py             # Stage 1 — live NVD API querier
-│   ├── cve_search.py                    # Stage 2 — offline bulk NVD searcher
+│   ├── build_keyword_search.py          # Stage 1 — offline per-category keyword search (uses cve_search engine)
+│   ├── nvd_keyword_query.py             # Stage 1 — LEGACY live NVD API querier (retired; kept for reference)
+│   ├── cve_search.py                    # Stage 2 — offline bulk NVD searcher (also the Stage 1 engine)
 │   ├── run_all_years.sh                 # Automates Stage 2 across 2002–2026
 │   ├── full_intersect.py                # Stage 3 — CVE cross-file matcher (intersection)
 │   ├── full_difference.py               # Stage 3 — CVE cross-file matcher (difference / complement)
-│   ├── build_difference_sets.py         # Stage 4 — batch-generate 01_raw.csv for many categories at once
-│   ├── init_categories.py               # Stage 4 — scaffold per-category folders from a list (idempotent)
+│   ├── build_difference_sets.py         # Stage 4 — batch-generate 01_raw.csv, both directions (--direction)
+│   ├── init_categories.py               # Stage 4 — scaffold per-category/direction folders from a list (idempotent)
 │   ├── make_review_copies.py            # Stage 4 — split a raw difference set into 3 blind AI copies
 │   ├── gemini_classify.py               # Stage 4 — Gemini/Gemma API reviewer (standalone, or imported by merge)
 │   ├── merge_judgments.py               # Stage 4 — (optionally run Gemini, then) merge 3 AI copies + flag + audit sample
@@ -122,17 +146,17 @@ Home IoT Security/
 │
 └── data/                            # All datasets, grouped by search method
     │
-    ├── keyword-search/              # Stage 1 outputs (Lizzie) — 10 multi-sheet workbooks
-    │   ├── CategoryI_SmartHomeDeviceTypes.xlsx       (smart home, smart speaker, smart TV...)
-    │   ├── CategoryII_NetworkGatewayDeviceTypes.xlsx (routers, modems, NVR, mesh wifi...)
-    │   ├── CategoryIII_CameraDoorbellDeviceTypes.xlsx (IP cam, baby monitor, doorbell...)
-    │   ├── CategoryIV_AccessControlDeviceTypes.xlsx  (smart lock, garage door...)
-    │   ├── CategoryV_SensorDeviceTypes.xlsx          (motion, CO, flood, thermostat...)
-    │   ├── CategoryVI_ApplianceDeviceTypes.xlsx      (fridge, robot vacuum, smart AC...)
-    │   ├── CategoryVI_SwitchDeviceTypes.xlsx         (smart plug, bulb, switch...)
-    │   ├── CategoryVII_HubDeviceTypes.xlsx           (smart hub, zigbee hub, matter hub...)
-    │   ├── CategoryVIII_ProtocolDeviceTypes.xlsx     (zigbee, z-wave, MQTT, CoAP...)
-    │   └── CategoryIX_IoTDeviceTypes.xlsx            (brand names: Ring, Arlo, Hikvision, Tuya...)
+    ├── nvd-snapshot/                # Fixed offline NVD dataset (one snapshot, reproducible/citeable)
+    │   ├── SNAPSHOT.md                  # provenance: download date, source, how to (re)build  [tracked]
+    │   └── nvd_all.csv                  # merged year-feeds searched by Stage 1/2  [gitignored — large]
+    │
+    ├── keyword-search/              # Stage 1 — per-category keyword search (offline, device-phrases only)
+    │   ├── keyword_terms.csv            # USER-AUTHORED terms (slug,term) — ships empty w/ commented examples
+    │   ├── keyword_terms.suggested.csv  # Claude's suggested terms per category (copy-from; driver never reads)
+    │   ├── keyword_<category>.csv       # build_keyword_search.py output, one per analysis category
+    │   └── _legacy/                     # retired live-API grouped workbooks + CATEGORY_GROUPING.md
+    │       ├── CategoryI_SmartHomeDeviceTypes.xlsx … CategoryIX_IoTDeviceTypes.xlsx (10 workbooks)
+    │       └── CATEGORY_GROUPING.md     # original keyword→category groupings (term source for the suggestions)
     │
     ├── vendor-search/               # Stage 2 outputs (Jason) — 14 in-scope device types (+1 excluded)
     │   ├── results_all_cameras.xlsx          (~2,161 CVEs — largest)
@@ -163,23 +187,29 @@ Home IoT Security/
         ├── human_review_queue.csv       # extract_human_review.py → all flagged rows, all categories (one sheet)
         ├── final_resolved.csv           # finalize_judgments.py → Final Judgment per CVE, all categories
         │
-        └── <device>/                    # per-category triple-AI review (e.g. cameras/)
-            ├── 01_raw.csv                   # full_difference.py output (vendor − keyword_union)
-            ├── reviews/
-            │   ├── claude.csv               # raw + Claude columns   (Claude Code fills, manual)
-            │   ├── codex.csv                # raw + Codex columns    (Codex fills, manual)
-            │   └── gemini.csv               # raw + Gemini columns   (gemini_classify.py / Gemma fills, API)
-            ├── 02_merged.csv                # merge_judgments.py → all 9 AI cols + human-review flag
-            ├── 02_high_confidence_audit.csv # seeded sample of unanimous-high-confidence rows to spot-check
-            ├── 02_needs_human_review.csv    # this category's flagged rows (Human Verdict to fill)
-            ├── 03_final.csv                 # finalize_judgments.py → Final Judgment / Final Source
-            └── 03_keyword_additions.md      # keywords mined from resolved-Yes rows (feeds keyword search)
+        └── <device>/                    # per-category review, split by difference DIRECTION
+            ├── vendor_only/                 # vendor_<cat> − keyword_<cat> (vendor CVEs keyword missed)
+            │   ├── 01_raw.csv                   # build_difference_sets.py output (Difference Type=vendor_only)
+            │   ├── reviews/
+            │   │   ├── claude.csv               # raw + Claude columns   (Claude Code fills, manual)
+            │   │   ├── codex.csv                # raw + Codex columns    (Codex fills, manual)
+            │   │   └── gemini.csv               # raw + Gemini columns   (gemini_classify.py / Gemma fills, API)
+            │   ├── 02_merged.csv                # merge_judgments.py → all 9 AI cols + human-review flag
+            │   ├── 02_high_confidence_audit.csv # seeded sample of unanimous-high-confidence rows to spot-check
+            │   ├── 02_needs_human_review.csv    # this direction's flagged rows (Human Verdict to fill)
+            │   ├── 03_final.csv                 # finalize_judgments.py → Final Judgment / Final Source
+            │   └── 03_keyword_additions.md      # keywords mined from resolved-Yes rows (feeds keyword search)
+            └── keyword_only/                # keyword_<cat> − vendor_<cat> (keyword CVEs the brand list missed)
+                └── …                            # same file set as vendor_only/ (disjoint review unit)
 ```
+> Both directions are **disjoint** (a CVE can't be in both) and run through the *same*
+> direction-agnostic Stage-4 pipeline. `keyword_only` surfaces **vendor/brand-list gaps**.
 
-> **Note — running the scripts.** Scripts now live in `scripts/`. `full_intersect.py` and
-> `full_difference.py` still reference the keyword workbooks by **bare filename**, so run them
-> from inside `data/keyword-search/` (e.g. `python ../../scripts/full_intersect.py`). `cve_search.py`
-> and `run_all_years.sh` operate on the cwd; run them from wherever the year-feeds / outputs live.
+> **Note — running the scripts.** Scripts live in `scripts/`. `full_intersect.py`,
+> `full_difference.py`, `build_keyword_search.py`, and `build_difference_sets.py` resolve their
+> data dirs **relative to the script**, so they can be run from the repo root (or anywhere).
+> `cve_search.py` and `run_all_years.sh` operate on the cwd; run them from wherever the
+> year-feeds / outputs live.
 
 ---
 
@@ -187,15 +217,17 @@ Home IoT Security/
 
 | File type | Columns |
 |-----------|---------|
-| `data/keyword-search/*.xlsx` | CVE, CVSS, CVSS Severity, CWE, CWE Name, Description |
+| `data/keyword-search/keyword_terms.csv`, `keyword_terms.suggested.csv` | `slug, term` (`#`-comment + blank-line aware) |
+| `data/keyword-search/keyword_<category>.csv` (Stage 1 output) | cve_id, published, description, cvss_score, cvss_version, cwe_ids (pipe-sep), cpe_strings (pipe-sep) — same schema as vendor files / `01_raw.csv` |
+| `data/keyword-search/_legacy/*.xlsx` (retired) | CVE, CVSS, CVSS Severity, CWE, CWE Name, Description |
 | `data/vendor-search/results_all_*.xlsx` | cve_id, published, description, cvss_score, cvss_version, cwe_ids (pipe-sep), cpe_strings (pipe-sep), Lizzie Judgment/Judgement, Cukier Judgment |
 | `data/intersection/*.csv` | Source File, Source Sheet, CVE, CVSS, CVSS Severity, CWE, CWE Name, Description |
-| `data/difference/<device>/01_raw.csv` | Difference Type, cve_id, published, description, cvss_score, cvss_version, cwe_ids, cpe_strings |
-| `data/difference/<device>/reviews/{ai}.csv` | …raw columns + `<AI> Judgment`, `<AI> Confidence`, `<AI> Reasoning` (one AI's triple only) |
-| `data/difference/<device>/02_merged.csv` | …raw columns + all 3 AI triples (Claude/Codex/Gemini) + `Review Status`, `Needs Human Review`, `Review Reason` |
-| `…/02_high_confidence_audit.csv` | `AI Verdict (unanimous)` + raw columns + all 3 AI triples + `Human Verdict`, `Human Notes` |
-| `…/02_needs_human_review.csv`, `difference/human_review_queue.csv` | `Verdicts`, `Review Reason` + raw + all 3 AI triples + `Human Verdict`, `Human Notes` (combined file adds a leading `Category`) |
-| `…/03_final.csv`, `difference/final_resolved.csv` | …merged columns + `Final Judgment`, `Final Source` (combined file adds a leading `Category`) |
+| `data/difference/<device>/<dir>/01_raw.csv` (`<dir>` = `vendor_only` \| `keyword_only`) | Difference Type, cve_id, published, description, cvss_score, cvss_version, cwe_ids, cpe_strings |
+| `data/difference/<device>/<dir>/reviews/{ai}.csv` | …raw columns + `<AI> Judgment`, `<AI> Confidence`, `<AI> Reasoning` (one AI's triple only) |
+| `data/difference/<device>/<dir>/02_merged.csv` | …raw columns + all 3 AI triples (Claude/Codex/Gemini) + `Review Status`, `Needs Human Review`, `Review Reason` |
+| `…/<dir>/02_high_confidence_audit.csv` | `AI Verdict (unanimous)` + raw columns + all 3 AI triples + `Human Verdict`, `Human Notes` |
+| `…/<dir>/02_needs_human_review.csv`, `difference/human_review_queue.csv` | `Verdicts`, `Review Reason` + raw + all 3 AI triples + `Human Verdict`, `Human Notes` (combined file adds leading `Category`, `Direction`) |
+| `…/<dir>/03_final.csv`, `difference/final_resolved.csv` | …merged columns + `Final Judgment`, `Final Source` (combined file adds leading `Category`, `Direction`) |
 | `data/difference/unmatched_cves.xlsx` | Difference Type, Origin File, cve_id, published, description, cvss_score, cvss_version, cwe_ids, cpe_strings, Lizzie Judgment, Cukier Judgment, Lizzie Judgement |
 
 **Note:** There is a spelling inconsistency — some files use `Lizzie Judgment`, others use `Lizzie Judgement`. Treat them as the same column.
@@ -360,16 +392,29 @@ For each row, read the `description` and `cpe_strings` and ask:
 
 ## Methodology Notes & Findings (2026-06)
 
-### Vendor ↔ keyword comparability (fix before scaling)
-The two searches are **not directly comparable**, which quietly pollutes the difference sets:
+### Vendor ↔ keyword comparability — **keyword side FIXED (2026-06 overhaul)**
+Historically the two searches were **not directly comparable**, which quietly polluted the difference sets:
 - **Different data source:** keyword = live NVD API (current); vendor = offline year-feed snapshot (can be stale) → some "gaps" are just data lag.
-- **Different match surface:** vendor matches description **+ CPE**; keyword (`keywordSearch`) matches **description only** → many "vendor-only" CVEs are just *brand-in-CPE* artifacts, and device phrases can never match a CPE.
-- **Different columns:** keyword output has **no CPE** (and the classification rubric leans on CPE).
+- **Different match surface:** vendor matches description **+ CPE**; keyword (`keywordSearch`) matched **description only** → many "vendor-only" CVEs were just *brand-in-CPE* artifacts.
+- **Different columns:** keyword output had **no CPE** (and the classification rubric leans on CPE).
 
-Aligning columns alone is a trap. **Fix:** run *both* term lists (brands and device-phrases) through the **same engine** (`cve_search.py`) against **one freshly-downloaded NVD snapshot**, so the only difference is the search terms. Ideal end-state: one per-category run tags each CVE with `match_method` (vendor / keyword / both) → intersection and both differences become column filters. A fixed snapshot also makes the study **reproducible / citeable** ("dataset as of <date>").
+**Fix (done for the keyword side):** the keyword search now runs through the **same engine** (`cve_search.py`'s `filter_by_keywords`, description **+ CPE**) against **one fixed NVD snapshot** (`data/nvd-snapshot/nvd_all.csv`) — see Stage 1 / `build_keyword_search.py`. So the only difference vs. the vendor search is now the search *terms* (device-phrases vs brands), and keyword output carries CPE in the common schema.
 
-### Symmetric (bidirectional) difference — planned
-Today only `vendor − keyword` is built. The reverse `keyword − vendor` (surfaces **vendor/brand gaps**) needs per-category keyword files (`keyword_<cat>.xlsx`) produced via a **keyword-sheet → device-slug bridge mapping**. Agreed layout: `data/difference/<cat>/{vendor_only,keyword_only}/`, each a full review unit. A `build_set_ops.py` would normalize both directions to the common schema so the AI-review pipeline stays direction-agnostic.
+**Remaining step for full comparability:** re-run the **vendor brand lists** on the *same* snapshot (today the vendor `results_all_*.xlsx` are from an older offline run). **Ideal end-state:** one per-category run over the shared snapshot tags each CVE with `match_method` (vendor / keyword / both) → intersection and both differences become column filters. The fixed snapshot already makes the study **reproducible / citeable** ("dataset as of <date>", recorded in `SNAPSHOT.md`).
+
+### Symmetric (bidirectional) difference — BUILT (2026-06)
+Both directions now exist per category: `vendor_only` (`vendor_<cat> − keyword_<cat>`) and
+`keyword_only` (`keyword_<cat> − vendor_<cat>`, surfaces **vendor/brand-list gaps**), under
+`data/difference/<cat>/{vendor_only,keyword_only}/`. The keyword overhaul made this direct — the
+per-category `keyword_<cat>.csv` files are differenced straight against the vendor files, so the
+old plan's **keyword-sheet → device-slug bridge mapping** is **obsolete** (not needed).
+`build_difference_sets.py --direction {vendor_only,keyword_only,both}` generates both; the entire
+Stage-4 pipeline (`init_categories` → `make_review_copies` → `merge_judgments` →
+`extract_human_review` → `finalize_judgments`) is **direction-agnostic** (globs `*/*/`), and
+`extract_human_review.py` is **verdict-preserving** so the migration kept all 334 human verdicts
+(finalize parity: ai-consensus 1758 / human 328 / pending 6). The existing review data was
+migrated under `vendor_only/`. *(`keyword_only` review work itself begins once `keyword_<cat>.csv`
+files are generated from a snapshot — see Stage 1.)* See `data/difference/SYMMETRIC_DIFFERENCE_PLAN.md`.
 
 ### Reviewer behaviour & known data issues (from the baseline review)
 Claude & Codex are the **permanent** reviewers; Gemini is the **swappable third vote**.
