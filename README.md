@@ -40,18 +40,55 @@ The set difference (CVEs found by one method but not the other) is then reviewed
 - `tqdm` optional — adds progress bars to `cve_search.py` (`pip install tqdm`)
 - **API keys** in a gitignored `.env` file (never hardcode):
   - `GEMINI_API_KEY` — for the Gemini/Gemma reviewer
-  - `NVD_API_KEY` — for the legacy live-API querier (not needed for the offline pipeline)
+  - `NVD_API_KEY` — for downloading the NVD snapshot (`download_nvd.py`). Get one free at <https://nvd.nist.gov/developers/request-an-api-key>; it raises the API rate limit dramatically and is strongly recommended.
   - Load with: `set -a; source .env; set +a`
 
 ---
 
 ## One-Time Setup: Build the NVD Snapshot
 
-The entire pipeline runs against a single fixed offline snapshot (`data/nvd-snapshot/nvd_all.csv`). This file is gitignored because it is large, but it is fully reproducible.
+The entire pipeline runs against a single fixed offline snapshot (`data/nvd-snapshot/nvd_all.csv`) — pinning one download is what makes the keyword and vendor searches comparable and the study reproducible/citeable ("dataset as of `<date>`"). The file is gitignored because it is large (~290 MB / ~360k CVEs), but it is fully reproducible.
+
+There are two ways to build it. The **API downloader is the recommended path** — one command pulls the entire database. The per-year-feed route is kept below as a manual fallback.
+
+### Recommended — download the whole database via the NVD API
+
+**Script:** `scripts/download_nvd.py`
+
+This pulls every CVE from the NVD 2.0 REST API and writes them directly to `data/nvd-snapshot/nvd_all.csv` in the project's exact schema (`cve_id, published, description, cvss_score, cvss_version, cwe_ids, cpe_strings`).
+
+```bash
+cd "/Users/aarav/Projects/Home IoT Security"
+set -a && source .env && set +a       # loads $NVD_API_KEY
+python3 scripts/download_nvd.py        # → data/nvd-snapshot/nvd_all.csv
+```
+
+That's the whole thing. The script reads the API key from `$NVD_API_KEY`, defaults its output to the snapshot path, and prints progress per page.
+
+**It is resumable.** The corpus is fetched in pages of 2000 CVEs across a few threads. After every completed page, the set of finished pages is saved to `data/nvd-snapshot/nvd_all.csv.progress.json` and rows are appended immediately, so:
+
+- **To pause** — `Ctrl-C`, or `pkill -f download_nvd.py`.
+- **To resume** — run the exact same command again. It reads the progress file and the existing CSV, skips finished pages, and de-duplicates by CVE ID — so you never lose more than the single page in flight (~2000 CVEs), and a resume can't create duplicates.
+
+A full run from scratch is ~360k CVEs / ~181 pages and takes **~2–3 hours** (the NVD API is flaky; retries with exponential backoff are normal and expected). Re-running later only fetches pages NVD has added since.
+
+**Options:**
+
+| Flag | Description |
+|------|-------------|
+| `--api-key KEY` | NVD API key (default: `$NVD_API_KEY`). Strongly recommended — anonymous requests are heavily rate-limited. |
+| `--out FILE` | Output CSV (default: `data/nvd-snapshot/nvd_all.csv`). |
+| `--threads N` | Concurrent download threads (default: `3`). |
+
+When it finishes it prints **"All pages complete."** Then update the provenance fields in `data/nvd-snapshot/SNAPSHOT.md` (snapshot date + total CVE count — read the count from the progress file's `written` value, which is the true CVE count; note that `wc -l nvd_all.csv` over-counts because CVE descriptions contain embedded newlines).
+
+### Fallback — build from per-year NVD 1.1 feeds
+
+If you prefer the static year-feeds (or the API is down), build the snapshot manually:
 
 **Step 1 — Download the per-year NVD 1.1 feeds (2002–2026)**
 
-From <https://nvd.nist.gov/feeds/json/cve/1.1/>, download `nvdcve-1.1-<year>.json.gz` for each year you want, then gunzip them:
+From <https://nvd.nist.gov/feeds/json/cve/1.1/>, download `nvdcve-1.1-<year>.json.gz` for each year, then gunzip them:
 
 ```bash
 gunzip nvdcve-1.1-2024.json.gz
@@ -73,7 +110,7 @@ python3 scripts/cve_search.py --merge nvd_2002.csv nvd_2003.csv ... nvd_2026.csv
     --merged-out data/nvd-snapshot/nvd_all.csv
 ```
 
-After this, fill in the provenance fields in `data/nvd-snapshot/SNAPSHOT.md` (date, total CVE count from `wc -l data/nvd-snapshot/nvd_all.csv`).
+Then fill in the provenance fields in `data/nvd-snapshot/SNAPSHOT.md` as above.
 
 ---
 
@@ -334,6 +371,17 @@ The frozen analysis scope has ~22 categories defined in `data/device_lst.txt`. V
 ---
 
 ## Scripts
+
+### `download_nvd.py` — Setup
+Downloads the entire NVD database from the NVD 2.0 REST API into the snapshot CSV. Resumable (saves per-page progress to `<out>.progress.json`, de-dupes by CVE ID), multi-threaded, reads the API key from `$NVD_API_KEY`. See [One-Time Setup](#one-time-setup-build-the-nvd-snapshot).
+
+| Flag | Description |
+|------|-------------|
+| `--api-key KEY` | NVD API key (default: `$NVD_API_KEY`). Strongly recommended. |
+| `--out FILE` | Output CSV (default: `data/nvd-snapshot/nvd_all.csv`). |
+| `--threads N` | Concurrent download threads (default: `3`). |
+
+---
 
 ### `cve_search.py` — Stage 1 & 2
 Core NVD search engine and the shared filter used by `build_keyword_search.py`. Operates in one of three mutually exclusive modes.

@@ -29,10 +29,10 @@ Then run the keyword search:
 python3 scripts/build_keyword_search.py
 ```
 
-## Provenance (fill in when you build/refresh the snapshot)
+## Provenance
 
-- **Snapshot date:** <YYYY-MM-DD — the day you downloaded the feeds>
-- **Source:** NVD JSON 1.1 per-year feeds, https://nvd.nist.gov/feeds/json/cve/1.1/
-- **Years included:** 2002–2026
-- **Total CVEs (rows in nvd_all.csv):** <fill in: `wc -l nvd_all.csv` minus 1>
-- **Notes:** <e.g. any years skipped, format quirks>
+- **Snapshot date:** 2026-06-25
+- **Source:** NVD 2.0 API (`https://services.nvd.nist.gov/rest/json/cves/2.0`), downloaded via `scripts/download_nvd.py` with NVD API key (2000 CVEs/page, 3 threads)
+- **Years included:** all CVEs in NVD as of download date (2000–2026)
+- **Total CVEs:** 360,981
+- **Notes:** Count is the number of unique CVE records (the `written` value in `nvd_all.csv.progress.json`), **not** `wc -l nvd_all.csv` — the latter over-counts (~748k) because CVE descriptions contain embedded newlines, so one CVE can span several physical lines.
