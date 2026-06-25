@@ -1,0 +1,74 @@
+NVD DOWNLOAD — HOW TO RUN / PAUSE / RESUME
+==========================================
+
+SCRIPT
+  /private/tmp/claude-501/-Users-aarav-Projects-Home-IoT-Security/fee3dd45-ef7c-4364-b735-734f5c24d90d/scratchpad/download_nvd_resumable.py
+
+OUTPUT FILES (in same scratchpad folder)
+  nvd_all.csv              — the dataset (appended to on each resume)
+  nvd_all.csv.progress.json — tracks which pages are done (auto-saved after each page)
+
+DESTINATION (when complete)
+  /Users/aarav/Projects/Home IoT Security/data/nvd-snapshot/nvd_all.csv
+
+
+HOW TO RESUME
+-------------
+1. Load your API key:
+     cd "/Users/aarav/Projects/Home IoT Security"
+     set -a && source .env && set +a
+
+2. Run the script (same command every time — it auto-detects the progress file):
+     python3 -u "/private/tmp/claude-501/-Users-aarav-Projects-Home-IoT-Security/fee3dd45-ef7c-4364-b735-734f5c24d90d/scratchpad/download_nvd_resumable.py" \
+       --api-key "$NVD_API_KEY" \
+       --threads 3 \
+       --out "/private/tmp/claude-501/-Users-aarav-Projects-Home-IoT-Security/fee3dd45-ef7c-4364-b735-734f5c24d90d/scratchpad/nvd_all.csv"
+
+   On startup it prints:
+     - How many CVE IDs are already in nvd_all.csv
+     - How many pages are already done (from progress.json)
+     - How many pages remain
+
+HOW TO PAUSE
+------------
+Just kill the process: Ctrl-C in the terminal, or:
+     pkill -f download_nvd_resumable.py
+
+Progress is saved to nvd_all.csv.progress.json after EVERY completed page,
+so you won't lose more than one page (~2000 CVEs) worth of work.
+
+
+CURRENT STATE (as of last pause)
+---------------------------------
+  CVEs downloaded so far: ~117,963
+  Pages with saved progress: 0  ← progress.json didn't exist yet when paused
+  NOTE: Because there's no progress.json yet, the next run will re-attempt
+        all 181 pages — but it deduplicates by CVE ID, so it will only WRITE
+        new CVEs not already in nvd_all.csv. No data is lost or duplicated.
+        Progress will be saved properly from this next run onward.
+
+
+WHEN IT FINISHES
+----------------
+The script prints "All pages complete. Safe to use nvd_all.csv."
+
+Then copy the file into the project:
+     cp "/private/tmp/claude-501/-Users-aarav-Projects-Home-IoT-Security/fee3dd45-ef7c-4364-b735-734f5c24d90d/scratchpad/nvd_all.csv" \
+        "/Users/aarav/Projects/Home IoT Security/data/nvd-snapshot/nvd_all.csv"
+
+Then update the provenance file:
+     nano "/Users/aarav/Projects/Home IoT Security/data/nvd-snapshot/SNAPSHOT.md"
+     Fill in: snapshot date (today), total CVE count (wc -l nvd_all.csv minus 1)
+
+Then run the keyword search:
+     cd "/Users/aarav/Projects/Home IoT Security"
+     python3 scripts/build_keyword_search.py
+
+
+STATS
+-----
+  Total CVEs in NVD: ~360,661
+  Pages: 181 (2000 CVEs/page)
+  Threads: 3
+  Typical time per page: 40-150s (NVD API is flaky, retries are normal)
+  Estimated total time from scratch: 2-3 hours
