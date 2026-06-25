@@ -29,7 +29,7 @@ You never lose more than the one page in flight (~2000 CVEs).
 USAGE
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
   # API key is read from $NVD_API_KEY (load it from the gitignored .env first):
-  cd "/Users/aarav/Projects/Home IoT Security"
+  cd /path/to/Home-IoT-Security             # the repo root
   set -a && source .env && set +a
   python3 scripts/download_nvd.py            # → data/nvd-snapshot/nvd_all.csv
 

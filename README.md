@@ -58,7 +58,7 @@ There are two ways to build it. The **API downloader is the recommended path** â
 This pulls every CVE from the NVD 2.0 REST API and writes them directly to `data/nvd-snapshot/nvd_all.csv` in the project's exact schema (`cve_id, published, description, cvss_score, cvss_version, cwe_ids, cpe_strings`).
 
 ```bash
-cd "/Users/aarav/Projects/Home IoT Security"
+cd /path/to/Home-IoT-Security         # the repo root
 set -a && source .env && set +a       # loads $NVD_API_KEY
 python3 scripts/download_nvd.py        # â†’ data/nvd-snapshot/nvd_all.csv
 ```
