@@ -39,6 +39,7 @@ import argparse
 import csv
 import json
 import os
+import re
 import sys
 import textwrap
 from typing import Optional
@@ -269,12 +270,46 @@ def filter_by_keywords(
     cves: list[dict],
     keywords: list[str],
     case_sensitive: bool = False,
+    whole_word: bool = False,
 ) -> tuple[list[dict], dict[str, int]]:
-    search_keywords = keywords if case_sensitive else [kw.lower() for kw in keywords]
+    """Match `keywords` against each CVE's description + CPE strings.
+
+    Two matching modes:
+      - substring (default): `kw in haystack`. Fast, but a short token can match
+        INSIDE an unrelated word (e.g. "nvr" → "nvram", "trv" → "iccattrval",
+        "landroid" → "...bailandroid"), inflating a category with junk.
+      - whole_word=True: the token must start on an alphanumeric boundary and end on
+        one too, except a trailing plural suffix ("s"/"es") is allowed. So "nvr"
+        matches "nvr"/"nvrs" but NOT "nvram"; "ip camera" matches "ip camera" and the
+        plural "ip cameras" but not "...equipcamerax". Blocks the substring bombs
+        ("nvr"→"nvram", "trv"→"iccattrval", "evse"→"prevsell", "landroid"→"bailandroid")
+        while preserving plurals. This is what the per-category keyword/vendor builders
+        use, since both rely on short device/brand tokens. Non-alphanumeric chars
+        (":" "_" "-" in CPE) act as boundaries, so CPE matching is unaffected.
+    """
     matches: list[dict] = []
     seen: set[str] = set()
     counts: dict[str, int] = {kw: 0 for kw in keywords}
 
+    if whole_word:
+        flags = 0 if case_sensitive else re.IGNORECASE
+        # Precompile once; \b is unreliable next to ":" "_" so use explicit
+        # alphanumeric-boundary look-arounds (with IGNORECASE the class covers A-Z).
+        matchers = [
+            (kw, re.compile(r"(?<![a-z0-9])" + re.escape(kw) + r"(?:es|s)?(?![a-z0-9])", flags))
+            for kw in keywords
+        ]
+        for cve in cves:
+            haystack = cve["description"] + " " + " ".join(cve["cpe_strings"])
+            for orig_kw, pat in matchers:
+                if pat.search(haystack):
+                    counts[orig_kw] += 1
+                    if cve["cve_id"] not in seen:
+                        matches.append(cve)
+                        seen.add(cve["cve_id"])
+        return matches, counts
+
+    search_keywords = keywords if case_sensitive else [kw.lower() for kw in keywords]
     for cve in cves:
         haystack = cve["description"] + " " + " ".join(cve["cpe_strings"])
         if not case_sensitive:

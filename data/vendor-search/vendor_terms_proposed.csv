@@ -1,0 +1,511 @@
+# Proposed vendor/brand terms for the 10 categories lacking a vendor list (Stage 2).
+# ---------------------------------------------------------------------------
+# Claude-drafted PROPOSAL — awaiting human (Jason) review. Dated 2026-06-28.
+# Authored against the frozen scope + 5 definitional criteria in CLAUDE.md.
+# Companion human-review doc: data/vendor-search/PROPOSED_brand_lists.md
+#
+# Format: one "slug,term" per line (same as keyword_terms.csv). Terms are RAW
+# brand strings, NOT quoted. '#'-comment and blank lines are ignored.
+# Scope: BRANDS/manufacturers (qualified to suppress false positives), not
+# generic device phrases (those live in keyword_terms.csv).
+# ---------------------------------------------------------------------------
+slug,term
+
+# ── airpurifier ──
+airpurifier,levoit
+airpurifier,levoit core
+airpurifier,levoit vital
+airpurifier,coway airmega
+airpurifier,coway
+airpurifier,winix
+airpurifier,blueair
+airpurifier,molekule
+airpurifier,dyson purifier
+airpurifier,dyson humidify
+airpurifier,xiaomi air purifier
+airpurifier,mi air purifier
+airpurifier,smartmi
+airpurifier,dreo purifier
+airpurifier,shark air purifier
+airpurifier,honeywell air purifier
+airpurifier,germguardian
+airpurifier,guardian technologies
+airpurifier,medify air
+airpurifier,okaysou
+airpurifier,airdog
+airpurifier,vornado purifier
+airpurifier,trusens
+airpurifier,rabbit air
+airpurifier,alen breathesmart
+airpurifier,ikea starkvind
+airpurifier,philips air purifier
+airpurifier,sharp plasmacluster
+airpurifier,panasonic air purifier
+airpurifier,afloia
+airpurifier,afloia humidifier
+airpurifier,govee humidifier
+airpurifier,levoit humidifier
+airpurifier,raydrop
+airpurifier,tt sunrise
+airpurifier,dreo humidifier
+airpurifier,midea dehumidifier
+airpurifier,frigidaire dehumidifier
+airpurifier,hisense dehumidifier
+airpurifier,tosot dehumidifier
+airpurifier,shinco dehumidifier
+airpurifier,vellgoo
+airpurifier,switchbot humidifier
+airpurifier,tuya air purifier
+airpurifier,smartlife purifier
+
+# ── appliances ──
+appliances,samsung smartthings appliance
+appliances,samsung bespoke
+appliances,lg thinq
+appliances,lg thinq washer
+appliances,lg thinq oven
+appliances,lg thinq dishwasher
+appliances,ge profile appliance
+appliances,ge appliances
+appliances,ge smarthq
+appliances,smarthq
+appliances,whirlpool smart
+appliances,whirlpool 6th sense
+appliances,maytag smart
+appliances,kitchenaid smart
+appliances,bosch home connect
+appliances,home connect
+appliances,siemens home connect
+appliances,miele app
+appliances,miele@home
+appliances,miele washing machine
+appliances,electrolux appliance
+appliances,aeg appliance
+appliances,frigidaire smart
+appliances,haier appliance
+appliances,candy simply-fi
+appliances,hoover wizard
+appliances,beko appliance
+appliances,hisense connectlife
+appliances,connectlife
+appliances,panasonic appliance
+appliances,june oven
+appliances,tovala
+appliances,anova precision oven
+appliances,brava oven
+appliances,breville joule oven
+appliances,thermomix
+appliances,cosori air fryer
+appliances,instant brands
+appliances,instant pot
+appliances,ninja foodi smart
+appliances,smarter coffee
+appliances,smarter kettle
+appliances,rheem econet water heater
+appliances,ao smith water heater
+appliances,aquanta water heater
+appliances,ecosmart water heater
+appliances,rinnai control-r
+appliances,navien water heater
+
+# ── ev-charging ──
+ev-charging,chargepoint home
+ev-charging,chargepoint home flex
+ev-charging,juicebox
+ev-charging,enel x juicebox
+ev-charging,wallbox pulsar
+ev-charging,wallbox copper
+ev-charging,wallbox quasar
+ev-charging,grizzl-e
+ev-charging,united chargers
+ev-charging,emporia ev charger
+ev-charging,emporia charger
+ev-charging,tesla wall connector
+ev-charging,tesla mobile connector
+ev-charging,autel maxicharger home
+ev-charging,autel home
+ev-charging,flo home
+ev-charging,flo x5
+ev-charging,leviton ev charger
+ev-charging,siemens versicharge
+ev-charging,versicharge
+ev-charging,blink home charger
+ev-charging,evbox elvi
+ev-charging,evbox livo
+ev-charging,easee home
+ev-charging,easee charger
+ev-charging,zappi
+ev-charging,myenergi zappi
+ev-charging,ohme home
+ev-charging,ohme charger
+ev-charging,shell recharge home
+ev-charging,pod point solo
+ev-charging,hypervolt home
+ev-charging,ev charger wallbox
+ev-charging,home ev charger
+ev-charging,wallbox evse
+
+# ── garden ──
+garden,rachio sprinkler
+garden,rachio controller
+garden,orbit b-hyve
+garden,b-hyve
+garden,rain bird controller
+garden,rainbird esp-me
+garden,hunter hydrawise
+garden,hydrawise
+garden,netro sprinkler
+garden,rainmachine
+garden,skydrop sprinkler
+garden,gardena smart
+garden,gardena sileno
+garden,gardena water control
+garden,blossom sprinkler
+garden,spruce irrigation
+garden,moen smart water
+garden,flo by moen
+garden,phyn
+garden,diig irrigation
+garden,worx landroid
+garden,husqvarna automower
+garden,automower
+garden,robomow
+garden,segway navimow
+garden,navimow
+garden,mammotion luba
+garden,ecoflow blade
+garden,sunseeker mower
+garden,yarbo
+garden,stihl imow
+garden,ambrogio robot
+garden,ryobi robot mower
+garden,ecovacs goat
+garden,netatmo weather
+garden,netatmo station
+garden,ambient weather
+garden,ambient weather ws
+garden,ecowitt
+garden,tempest weatherflow
+garden,weatherflow
+garden,davis vantage
+garden,acurite access
+garden,pentair intellicenter
+garden,pentair screenlogic
+garden,hayward omnilogic
+garden,jandy iaqualink
+garden,iaqualink
+garden,balboa spa
+garden,bwa spa
+
+# ── home-power ──
+home-power,enphase iq
+home-power,enphase envoy
+home-power,enphase microinverter
+home-power,solaredge inverter
+home-power,solaredge monitoring
+home-power,tesla powerwall
+home-power,powerwall
+home-power,tesla solar inverter
+home-power,lg chem resu
+home-power,lg energy resu
+home-power,sonnen battery
+home-power,sonnenbatterie
+home-power,generac pwrcell
+home-power,generac pwrview
+home-power,fronius solar
+home-power,fronius symo
+home-power,fronius gen24
+home-power,sma sunny boy
+home-power,sunny boy
+home-power,sma sunny home manager
+home-power,goodwe inverter
+home-power,growatt inverter
+home-power,growatt shine
+home-power,huawei fusionsolar
+home-power,fusionsolar
+home-power,solax inverter
+home-power,solax power
+home-power,deye inverter
+home-power,victron energy
+home-power,victron venus
+home-power,ecoflow powerocean
+home-power,anker solix
+home-power,bluetti home
+home-power,franklinwh
+home-power,span panel
+home-power,span smart panel
+home-power,lumin smart panel
+home-power,leviton load center
+home-power,schneider wiser energy
+home-power,schneider square d energy
+home-power,square d energy center
+home-power,sense energy monitor
+home-power,emporia vue
+home-power,emporia energy
+home-power,shelly em
+home-power,iotawatt
+home-power,eyedro
+home-power,ted energy
+
+# ── hub ──
+hub,samsung smartthings hub
+hub,smartthings hub
+hub,smartthings station
+hub,aeotec smart home hub
+hub,aeotec hub
+hub,hubitat
+hub,hubitat elevation
+hub,philips hue bridge
+hub,hue bridge
+hub,aqara hub
+hub,aqara gateway
+hub,aqara m2
+hub,aqara m3
+hub,homey
+hub,homey pro
+hub,athom homey
+hub,vera controller
+hub,vera plus
+hub,ezlo
+hub,wink hub
+hub,fibaro home center
+hub,fibaro hub
+hub,homeseer
+hub,home assistant yellow
+hub,home assistant green
+hub,homey bridge
+hub,conbee
+hub,deconz
+hub,phoscon
+hub,sonoff zbbridge
+hub,sonoff ihost
+hub,sonoff zigbee bridge
+hub,tuya zigbee gateway
+hub,tuya gateway
+hub,zemismart hub
+hub,smartlife gateway
+hub,ikea dirigera
+hub,dirigera
+hub,ikea tradfri gateway
+hub,tradfri gateway
+hub,amazon echo hub
+hub,google nest hub
+hub,apple homepod hub
+hub,matter controller hub
+hub,thread border router
+hub,zigbee coordinator
+hub,zwave controller
+hub,nabu casa
+hub,vera edge
+hub,ezlo plus
+hub,schlage bridge
+hub,wyze hub
+hub,abode gateway
+
+# ── lighting ──
+lighting,philips hue
+lighting,hue bulb
+lighting,hue white
+lighting,hue go
+lighting,signify hue
+lighting,lifx
+lighting,lifx bulb
+lighting,nanoleaf
+lighting,nanoleaf shapes
+lighting,nanoleaf essentials
+lighting,wiz connected
+lighting,wiz bulb
+lighting,govee bulb
+lighting,govee light
+lighting,govee glide
+lighting,govee strip
+lighting,sengled
+lighting,sengled bulb
+lighting,yeelight
+lighting,lutron caseta
+lighting,caseta
+lighting,lutron aurora
+lighting,leviton decora smart
+lighting,decora smart
+lighting,ge cync
+lighting,cync
+lighting,c by ge
+lighting,feit electric smart
+lighting,feit smart
+lighting,cree connected
+lighting,tp-link kasa bulb
+lighting,kasa light
+lighting,tapo bulb
+lighting,tapo light
+lighting,meross bulb
+lighting,meross light
+lighting,wyze bulb
+lighting,wemo dimmer
+lighting,wemo light switch
+lighting,treatlife switch
+lighting,treatlife dimmer
+lighting,kasa switch
+lighting,lutron diva smart
+lighting,inovelli
+lighting,zooz switch
+lighting,ge enbrighten
+lighting,enbrighten
+lighting,third reality light
+lighting,aqara light
+lighting,aqara t1 bulb
+lighting,shelly bulb
+lighting,shelly dimmer
+lighting,ikea tradfri bulb
+lighting,tradfri
+lighting,linkind
+lighting,tessan smart
+lighting,mr beams
+
+# ── pet ──
+pet,petcube
+pet,petcube bites
+pet,petcube play
+pet,furbo
+pet,furbo dog camera
+pet,petlibro
+pet,petlibro feeder
+pet,petkit
+pet,petkit feeder
+pet,petkit pura
+pet,litter-robot
+pet,whisker litter-robot
+pet,whisker feeder-robot
+pet,litter robot
+pet,pura litter box
+pet,casa leo loo
+pet,petsafe
+pet,petsafe smart feed
+pet,petsafe scoopfree
+pet,sureflap
+pet,surepet
+pet,surefeed
+pet,sure petcare
+pet,wopet
+pet,wopet feeder
+pet,pawbo
+pet,skymee
+pet,dogness
+pet,feeder-robot
+pet,catit pixi
+pet,catlink
+pet,honeyguaridan
+pet,iseebiz feeder
+pet,papifeed
+pet,pettec
+pet,tractive gps
+pet,tractive tracker
+pet,fi smart collar
+pet,fi collar
+pet,whistle gps
+pet,whistle tracker
+pet,jiobit
+pet,halo collar
+pet,pawfit
+pet,wagz
+pet,link akc
+pet,petnet
+pet,petnet smartfeeder
+pet,wickedbone
+pet,pix smart fountain
+pet,petlibro fountain
+
+# ── sensors ──
+sensors,aqara motion sensor
+sensors,aqara door sensor
+sensors,aqara contact sensor
+sensors,aqara leak sensor
+sensors,aqara fp2
+sensors,aqara presence sensor
+sensors,samsung smartthings sensor
+sensors,smartthings multipurpose
+sensors,smartthings motion
+sensors,philips hue motion
+sensors,hue motion sensor
+sensors,ecobee smartsensor
+sensors,third reality sensor
+sensors,sonoff sensor
+sensors,sonoff snzb
+sensors,tuya sensor
+sensors,smartlife sensor
+sensors,fibaro motion
+sensors,fibaro door sensor
+sensors,fibaro flood sensor
+sensors,zooz sensor
+sensors,reolink sensor
+sensors,shelly sensor
+sensors,shelly h&t
+sensors,shelly flood
+sensors,govee sensor
+sensors,govee water sensor
+sensors,govee thermometer
+sensors,sensorpush
+sensors,moen flo sensor
+sensors,flume water sensor
+sensors,phyn sensor
+sensors,honeywell lyric leak
+sensors,resideo leak
+sensors,first alert sensor
+sensors,kidde smoke sensor
+sensors,x-sense sensor
+sensors,x-sense detector
+sensors,ring alarm sensor
+sensors,ring contact sensor
+sensors,eufy sensor
+sensors,wyze sense
+sensors,wyze sensor
+sensors,abode sensor
+sensors,minut sensor
+sensors,notion sensor
+sensors,yolink sensor
+sensors,leaksmart
+sensors,dome sensor
+sensors,ecolink sensor
+sensors,ge enbrighten sensor
+sensors,monoprice sensor
+
+# ── shades ──
+shades,lutron serena
+shades,serena shades
+shades,lutron sivoia
+shades,somfy
+shades,somfy tahoma
+shades,somfy glydea
+shades,somfy sonesse
+shades,ikea fyrtur
+shades,fyrtur
+shades,ikea kadrilj
+shades,ikea praktlysing
+shades,switchbot curtain
+shades,switchbot blind tilt
+shades,graber virtual cord
+shades,graber motorized
+shades,hunter douglas powerview
+shades,powerview
+shades,bali motorized
+shades,levolor motorized
+shades,mecho shade
+shades,qmotion
+shades,rollease acmeda
+shades,acmeda automate
+shades,automate shades
+shades,coulisse motion
+shades,smartwings
+shades,yoolax
+shades,soma smart shades
+shades,soma tilt
+shades,aqara curtain
+shades,aqara roller shade
+shades,zemismart curtain
+shades,zemismart blind
+shades,tuya curtain
+shades,smartlife curtain
+shades,smarthome blinds
+shades,redi shade motorized
+shades,eve motionblinds
+shades,motionblinds
+shades,screeninnovations
