@@ -1,90 +1,268 @@
 # Keyword terms for the offline per-category keyword search (Stage 1).
 # ---------------------------------------------------------------------------
-# THIS is the file build_keyword_search.py reads. It ships EMPTY — add your own
-# terms below. Each category has a commented example line showing where to type.
+# THIS is the file build_keyword_search.py reads. Populated from
+# keyword_terms.suggested.csv, plus the high-yield terms mined from the
+# difference-set review (Keyword Yields + Per-category Trends analysis).
 #
 # Format: one "slug,term" per line. Lines starting with '#' and blank lines are
-# ignored, so uncomment a line (remove the leading '# ') or add new ones.
-# Slugs must match data/device_lst.txt.
+# ignored. Slugs must match data/device_lst.txt.
 #
-# Scope rule (see CLAUDE.md): add DEVICE-TYPE PHRASES ONLY — e.g. "ip camera",
-# "video doorbell". NO brands, protocols, firmware, or generic umbrella terms.
-#
-# Need a starting point? Suggested terms per category are in
-# keyword_terms.suggested.csv — copy the rows you want into this file.
+# Scope rule (see CLAUDE.md): DEVICE-TYPE PHRASES ONLY — e.g. "ip camera",
+# "video doorbell". NO brands/firmware. EXCEPTION: a few proven camera
+# protocol terms (onvif, rtsp) are included below because the yield analysis
+# showed they recover real device CVEs; they are marked inline.
 #
 # A category with no active terms is simply SKIPPED by the driver (no error).
 # ---------------------------------------------------------------------------
 slug,term
 
 # ── cameras ──
-# cameras,ip camera        <-- uncomment / replace with your own terms, one per line
+cameras,ip camera
+cameras,network camera
+cameras,security camera
+cameras,surveillance camera
+cameras,cctv camera
+cameras,wifi camera
+cameras,wireless camera
+cameras,outdoor camera
+cameras,indoor camera
+cameras,ptz camera
+cameras,pan-tilt camera
+cameras,dome camera
+cameras,bullet camera
+cameras,webcam
+cameras,nvr
+cameras,network video recorder
+cameras,dvr
+# high-yield protocol terms (mined from review — recover real camera CVEs)
+cameras,onvif
+cameras,rtsp
 
 # ── doorbell ──
-# doorbell,video doorbell
+doorbell,video doorbell
+doorbell,smart doorbell
+doorbell,doorbell camera
+# high-yield terms (keyword search was missing real doorbell CVEs — 83% true-match)
+doorbell,intercom
+doorbell,video intercom
+doorbell,door station
+doorbell,entrance panel
+doorbell,wallpad
 
 # ── babymonitor ──
-# babymonitor,baby monitor
+babymonitor,baby monitor
+babymonitor,nanny cam
 
 # ── doorlock ──
-# doorlock,smart lock
+doorlock,smart lock
+doorlock,door lock
+doorlock,smart deadbolt
+doorlock,electronic lock
+doorlock,keyless lock
+doorlock,fingerprint lock
+doorlock,biometric lock
+doorlock,wifi lock
+doorlock,bluetooth lock
+doorlock,smart latch
+doorlock,smart padlock
+doorlock,garage door opener
+doorlock,smart garage door
 
 # ── alarms ──
-# alarms,alarm system
+alarms,smart alarm
+alarms,home alarm
+alarms,alarm system
+alarms,security system
+alarms,siren
+alarms,panic button
+# high-yield terms (mined from review)
+alarms,wireless alarm system
+alarms,security panel
 
 # ── sensors ──
-# sensors,motion sensor
+sensors,motion sensor
+sensors,pir sensor
+sensors,door sensor
+sensors,window sensor
+sensors,contact sensor
+sensors,occupancy sensor
+sensors,presence sensor
+sensors,vibration sensor
+sensors,glass break sensor
+sensors,tilt sensor
+sensors,temperature sensor
+sensors,humidity sensor
+sensors,air quality sensor
+sensors,smoke detector
+sensors,heat detector
+sensors,co detector
+sensors,co2 detector
+sensors,carbon monoxide detector
+sensors,gas detector
+sensors,water leak sensor
+sensors,leak detector
+sensors,flood sensor
 
 # ── thermostat ──
-# thermostat,smart thermostat
+thermostat,thermostat
+thermostat,smart thermostat
+thermostat,hvac controller
+thermostat,smart radiator valve
+thermostat,thermostatic valve
+thermostat,trv
 
 # ── airconditioner ──
-# airconditioner,smart air conditioner
+airconditioner,smart air conditioner
+airconditioner,smart ac
+airconditioner,mini split
+# AMBIGUOUS: "heat pump" overlaps thermostat/climate — assign to one category only.
+airconditioner,heat pump
 
 # ── fans ──
-# fans,smart fan
+fans,smart fan
+fans,ceiling fan
+fans,tower fan
 
 # ── airpurifier ──
-# airpurifier,smart air purifier
+airpurifier,smart air purifier
+airpurifier,smart humidifier
+airpurifier,smart dehumidifier
 
 # ── smartplugs ──
-# smartplugs,smart plug
+smartplugs,smart plug
+smartplugs,smart outlet
+smartplugs,smart socket
+smartplugs,power plug
+smartplugs,smart power strip
+smartplugs,smart relay
 
 # ── lighting ──
-# lighting,smart bulb
+lighting,smart switch
+lighting,light switch
+lighting,dimmer switch
+lighting,smart dimmer
+lighting,scene switch
+lighting,smart light
+lighting,smart bulb
+lighting,smart lamp
+lighting,led bulb
+lighting,wifi bulb
+lighting,rgb bulb
+lighting,smart lighting
+lighting,led strip
+lighting,light strip
 
 # ── fridge ──
-# fridge,smart refrigerator
+fridge,smart fridge
+fridge,smart refrigerator
+fridge,smart freezer
+fridge,wine cooler
 
 # ── robotvacuum ──
-# robotvacuum,robot vacuum
+robotvacuum,robot vacuum
+robotvacuum,robotic vacuum
+robotvacuum,robot cleaner
+robotvacuum,robot mop
+robotvacuum,vacuum cleaner
 
 # ── appliances ──
-# appliances,smart dishwasher
+appliances,smart oven
+appliances,smart range
+appliances,smart cooker
+appliances,smart microwave
+appliances,smart dishwasher
+appliances,smart washer
+appliances,smart washing machine
+appliances,smart dryer
+appliances,air fryer
+appliances,smart kettle
+appliances,smart coffee maker
+appliances,smart water heater
 
 # ── hub ──
-# hub,smart home hub
+hub,smart hub
+hub,home hub
+hub,home automation hub
+hub,smart home hub
+hub,iot hub
+hub,iot gateway
+hub,zigbee hub
+hub,zigbee gateway
+hub,zigbee coordinator
+hub,zwave hub
+hub,z-wave controller
+hub,matter hub
+hub,matter controller
+hub,thread border router
+hub,smart bridge
+hub,home controller
 
 # ── smartspeakers ──
-# smartspeakers,smart speaker
+smartspeakers,smart speaker
+smartspeakers,voice assistant
+smartspeakers,smart display
+smartspeakers,smart screen
+smartspeakers,smart soundbar
+smartspeakers,smart clock
 
-# ── sleeptracker ──
-# sleeptracker,sleep monitor
+# ── sleeptracker (bedside-only — wearables stay OUT) ──
+sleeptracker,sleep tracker
+sleeptracker,sleep monitor
+sleeptracker,bedside monitor
+sleeptracker,under-mattress sensor
+sleeptracker,sleep sensor
+sleeptracker,contactless sleep monitor
+sleeptracker,smart bed
+sleeptracker,smart mattress
 
 # ── shades ──
-# shades,smart blinds
+shades,smart blinds
+shades,smart shades
+shades,motorized blinds
+shades,motorized shades
+shades,roller shade
+shades,smart curtain
+shades,curtain motor
+shades,smart shutter
+shades,window covering
 
-# ── ev-charging ──
-# ev-charging,ev charger
+# ── ev-charging (home EVSE/wallbox only) ──
+ev-charging,ev charger
+ev-charging,evse
 
-# ── home-power ──
-# home-power,solar inverter
+# ── home-power (solar + batteries + meters) ──
+home-power,home battery
+home-power,solar inverter
+home-power,smart meter
+home-power,smart panel
+home-power,smart breaker
+# AMBIGUOUS: "energy monitor" overlaps smartplugs — assign to one category only.
+# home-power,energy monitor
 
 # ── garden ──
-# garden,irrigation controller
+garden,smart sprinkler
+garden,irrigation controller
+garden,smart irrigation
+garden,robot lawn mower
+garden,robot mower
+garden,weather station
+garden,pool controller
 
 # ── pet ──
-# pet,pet feeder
+pet,pet feeder
+pet,smart feeder
+pet,smart litter box
+pet,pet tracker
+# AMBIGUOUS: "pet camera" overlaps cameras — assign to one category only.
+pet,pet camera
 
 # ── streaming ──
-# streaming,smart tv
+streaming,smart tv
+streaming,set-top box
+streaming,streaming box
+streaming,streaming stick
+streaming,media player
+streaming,media streamer
+streaming,tv box
+streaming,android tv
+streaming,google tv
