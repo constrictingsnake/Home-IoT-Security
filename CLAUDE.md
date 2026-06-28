@@ -11,7 +11,7 @@ A security research pipeline that systematically maps real-world home IoT device
 ### Two search methods (researcher attribution)
 The project combines two complementary CVE-discovery methods, each owned by a different researcher:
 
-- **Vendor-based search — Jason.** Compiles a list of manufacturers/brands per device type, then searches NVD for those vendor/brand names. Produces the `results_all_*.xlsx` files (Stage 2, via `cve_search.py` / `run_all_years.sh`; the `--keywords` in `Devices List.docx` are Jason's vendor/brand strings). More prone to false positives, since brand names overlap with unrelated products.
+- **Vendor-based search — Jason.** Compiles a list of manufacturers/brands per device type, then searches NVD for those vendor/brand names. Produces the `results_all_*.xlsx` files. **As of the vendor overhaul (2026-06)** this runs the same way as the keyword search — **offline, per-category, through the same engine** (`build_vendor_search.py` → `cve_search.py`'s `filter_by_keywords` against the one fixed NVD snapshot, matching description **+ CPE**) — see Stage 2. Brand terms live in `data/vendor-search/vendor_terms.csv` (`slug,term`). More prone to false positives, since brand names overlap with unrelated products. *(Legacy path: the old `cve_search.py --input` / `run_all_years.sh` per-year run; the prior `results_all_*.xlsx` are backed up under `data/vendor-search/_backup_pre_rebuild_2026-06-28/`, and the `--keywords` strings in `Devices List.docx` are Jason's original vendor/brand strings.)*
 - **Keyword-based search — Lizzie.** Searches NVD for generic device-type keywords (e.g. "security camera", "ip camera"). **As of the keyword overhaul (2026-06)** this runs **offline, per-category, through the same engine as the vendor search** (`cve_search.py` against one fixed NVD snapshot, matching description **+ CPE**) — see Stage 1. Produces `data/keyword-search/keyword_<category>.csv`, one file per analysis category. `full_intersect.py` (Stage 3) is also Lizzie's — it intersects the two methods' outputs. *(The legacy live-API workbooks and groupings are retired under `data/keyword-search/_legacy/`.)*
 
 Combining both methods yields the most comprehensive per-device CVE list.
@@ -29,6 +29,11 @@ now runs **offline** through the **same engine** as the vendor search (`cve_sear
   the driver **never** reads).
 - **Scope:** device-type **phrases only** (e.g. `ip camera`, `video doorbell`). No brands, protocols,
   firmware, or umbrella terms — brand discovery is the vendor search's job.
+- **Whole-word matching.** Both builders pass `whole_word=True` to `filter_by_keywords`, so a short
+  token must sit on alphanumeric boundaries (a trailing plural `s`/`es` is allowed). This blocks the
+  substring bombs that inflated categories (`nvr`→`nvram`, `trv`→`iccattrval`, `evse`→`prevsell`,
+  `landroid`→`bailandroid`) while still matching plurals; non-alphanumerics (`:` `_` `-` in CPE) act
+  as boundaries, so CPE matching is unaffected.
 - **Snapshot:** build once from per-year NVD feeds — see `data/nvd-snapshot/SNAPSHOT.md` and the
   `cve_search.py` header (STEP 1–2). The snapshot makes the dataset reproducible/citeable ("as of <date>").
 - **Run:** `python3 scripts/build_keyword_search.py` (loads the snapshot once, filters per category).
@@ -43,13 +48,33 @@ now runs **offline** through the **same engine** as the vendor search (`cve_sear
 are retired under `data/keyword-search/_legacy/`. The script remains for reference but is no longer
 the keyword-search path.)*
 
-### Stage 2 — `cve_search.py` (Offline bulk search)
-- Designed for local NVD JSON year-feeds (2002–2026)
-- Three modes: `--convert` (JSON→CSV), `--merge` (deduplicate multiple CSVs), `--input` (keyword search)
-- Searches both description text and CPE strings
-- Supports NVD 1.1 and NVD 2.0 JSON formats
-- Output columns: `cve_id, published, description, cvss_score, cvss_version, cwe_ids, cpe_strings`
-- `run_all_years.sh` automates Stage 2 across all years, then merges into a single CSV
+### Stage 2 — `build_vendor_search.py` (Offline per-category vendor/brand search)
+The vendor search was **overhauled (2026-06)** to match the keyword side: it now runs **offline**
+through the **same engine** as the keyword search (`cve_search.py`'s `filter_by_keywords`,
+description **+ CPE**, `whole_word=True`) against the **same fixed NVD snapshot**, and emits one
+`results_all_<category>.xlsx` per analysis category in the common schema. This is the change that
+**closes the vendor↔keyword comparability gap** — the only remaining difference between the two
+methods is now the search *terms* (brands vs. device-phrases).
+
+- **Brand terms.** Authored in `data/vendor-search/vendor_terms.csv` (`slug,term`, same format and
+  parser as `keyword_terms.csv` — `#`-comment / blank-line aware). Brands are **qualified** with a
+  product word where the bare name overlaps unrelated products (e.g. `carrier infinity`, not
+  `carrier`) to suppress false positives. A category with no active terms is skipped with a message.
+  `vendor_terms_proposed.csv` + `PROPOSED_brand_lists.md` hold the Claude-drafted brand lists for the
+  10 newly-added categories, pending human (Jason) review.
+- **Run:** `python3 scripts/build_vendor_search.py` (loads the snapshot once, filters per category).
+  Same flags as the keyword builder: `--categories <slug…>`, `--snapshot`/`--terms`, `--overwrite`,
+  `--outdir`.
+- **Output:** `data/vendor-search/results_all_<category>.xlsx`, columns `cve_id, published,
+  description, cvss_score, cvss_version, cwe_ids, cpe_strings` — **identical to the keyword files and
+  to `01_raw.csv`**.
+
+**Engine — `cve_search.py`** (the shared offline searcher behind Stage 1 and Stage 2):
+- Designed for local NVD JSON year-feeds (2002–2026); builds the snapshot both builders read.
+- Three modes: `--convert` (JSON→CSV), `--merge` (deduplicate multiple CSVs), `--input` (keyword search).
+- `filter_by_keywords` searches description **+ CPE**; `whole_word=True` enables boundary-aware matching (see Stage 1).
+- Supports NVD 1.1 and NVD 2.0 JSON formats; output columns as above.
+- `run_all_years.sh` automates the per-year run across 2002–2026, then merges into a single CSV (used to build the snapshot; the legacy direct vendor-search path).
 
 ### Stage 3 — `full_intersect.py` (Cross-file matching)
 - Takes a single-sheet Excel of CVE IDs (from Stage 2 output) and cross-references against all per-category keyword files (`data/keyword-search/keyword_*.csv`, globbed automatically)
@@ -128,9 +153,10 @@ Home IoT Security/
 │
 ├── scripts/                         # All pipeline scripts live here
 │   ├── build_keyword_search.py          # Stage 1 — offline per-category keyword search (uses cve_search engine)
+│   ├── build_vendor_search.py           # Stage 2 — offline per-category vendor/brand search (same engine)
 │   ├── nvd_keyword_query.py             # Stage 1 — LEGACY live NVD API querier (retired; kept for reference)
-│   ├── cve_search.py                    # Stage 2 — offline bulk NVD searcher (also the Stage 1 engine)
-│   ├── run_all_years.sh                 # Automates Stage 2 across 2002–2026
+│   ├── cve_search.py                    # Shared engine — offline bulk NVD searcher (Stage 1 & 2)
+│   ├── run_all_years.sh                 # Builds the snapshot / legacy per-year vendor run across 2002–2026
 │   ├── full_intersect.py                # Stage 3 — CVE cross-file matcher (intersection)
 │   ├── full_difference.py               # Stage 3 — CVE cross-file matcher (difference / complement)
 │   ├── build_difference_sets.py         # Stage 4 — batch-generate 01_raw.csv, both directions (--direction)
@@ -151,14 +177,18 @@ Home IoT Security/
     │   └── nvd_all.csv                  # merged year-feeds searched by Stage 1/2  [gitignored — large]
     │
     ├── keyword-search/              # Stage 1 — per-category keyword search (offline, device-phrases only)
-    │   ├── keyword_terms.csv            # USER-AUTHORED terms (slug,term) — ships empty w/ commented examples
+    │   ├── keyword_terms.csv            # USER-AUTHORED terms (slug,term) — now populated for all ~24 categories
     │   ├── keyword_terms.suggested.csv  # Claude's suggested terms per category (copy-from; driver never reads)
-    │   ├── keyword_<category>.csv       # build_keyword_search.py output, one per analysis category
+    │   ├── keyword_<category>.csv       # build_keyword_search.py output, one per analysis category (all built)
     │   └── _legacy/                     # retired live-API grouped workbooks + CATEGORY_GROUPING.md
     │       ├── CategoryI_SmartHomeDeviceTypes.xlsx … CategoryIX_IoTDeviceTypes.xlsx (10 workbooks)
     │       └── CATEGORY_GROUPING.md     # original keyword→category groupings (term source for the suggestions)
     │
-    ├── vendor-search/               # Stage 2 outputs (Jason) — 14 in-scope device types (+1 excluded)
+    ├── vendor-search/               # Stage 2 — build_vendor_search.py outputs (Jason), rebuilt on the snapshot
+    │   ├── vendor_terms.csv                  # USER-AUTHORED brand terms (slug,term) — driver input
+    │   ├── vendor_terms_proposed.csv         # Claude-drafted brand lists for the 10 new categories (pending review)
+    │   ├── PROPOSED_brand_lists.md           # human-review doc behind vendor_terms_proposed.csv
+    │   ├── _backup_pre_rebuild_2026-06-28/   # the pre-overhaul results_all_*.xlsx (legacy per-year run)
     │   ├── results_all_cameras.xlsx          (~2,161 CVEs — largest)
     │   ├── results_all_airconditioner.xlsx   (~187 CVEs)
     │   ├── results_all_gameconsoles.xlsx     (~246 CVEs — OUT OF SCOPE: entertainment, fails criteria 2 & 4)
@@ -173,7 +203,10 @@ Home IoT Security/
     │   ├── results_all_fridge.xlsx           (~3 CVEs)
     │   ├── results_all_fans.xlsx             (~1 CVE)
     │   ├── results_all_smartspeakers.xlsx    (~33 CVEs)
-    │   └── results_all_sleeptracker.xlsx     (~27 CVEs)
+    │   ├── results_all_sleeptracker.xlsx     (~27 CVEs)
+    │   └── results_all_<10 new cats>.xlsx    # airpurifier, appliances, ev-charging, garden, home-power,
+    │                                         #   hub, lighting, pet, sensors, shades (built from vendor_terms.csv)
+    │   # (CVE counts above are pre-rebuild approximations; all 14 originals were re-run on the snapshot)
     │
     ├── intersection/                # Stage 3 — vendor ∩ keyword (full_intersect.py output)
     │   ├── matched_camera_cves.csv       (~1,048 rows — largest)
@@ -206,10 +239,10 @@ Home IoT Security/
 > direction-agnostic Stage-4 pipeline. `keyword_only` surfaces **vendor/brand-list gaps**.
 
 > **Note — running the scripts.** Scripts live in `scripts/`. `full_intersect.py`,
-> `full_difference.py`, `build_keyword_search.py`, and `build_difference_sets.py` resolve their
-> data dirs **relative to the script**, so they can be run from the repo root (or anywhere).
-> `cve_search.py` and `run_all_years.sh` operate on the cwd; run them from wherever the
-> year-feeds / outputs live.
+> `full_difference.py`, `build_keyword_search.py`, `build_vendor_search.py`, and
+> `build_difference_sets.py` resolve their data dirs **relative to the script**, so they can be run
+> from the repo root (or anywhere). `cve_search.py` and `run_all_years.sh` operate on the cwd; run
+> them from wherever the year-feeds / outputs live.
 
 ---
 
@@ -218,6 +251,8 @@ Home IoT Security/
 | File type | Columns |
 |-----------|---------|
 | `data/keyword-search/keyword_terms.csv`, `keyword_terms.suggested.csv` | `slug, term` (`#`-comment + blank-line aware) |
+| `data/vendor-search/vendor_terms.csv`, `vendor_terms_proposed.csv` | `slug, term` (brand strings; same parser as keyword_terms.csv) |
+| `data/vendor-search/results_all_<category>.xlsx` (Stage 2 output) | cve_id, published, description, cvss_score, cvss_version, cwe_ids (pipe-sep), cpe_strings (pipe-sep) — same schema as keyword files / `01_raw.csv` (rebuilt files; legacy reviewed files also carry Lizzie/Cukier columns) |
 | `data/keyword-search/keyword_<category>.csv` (Stage 1 output) | cve_id, published, description, cvss_score, cvss_version, cwe_ids (pipe-sep), cpe_strings (pipe-sep) — same schema as vendor files / `01_raw.csv` |
 | `data/keyword-search/_legacy/*.xlsx` (retired) | CVE, CVSS, CVSS Severity, CWE, CWE Name, Description |
 | `data/vendor-search/results_all_*.xlsx` | cve_id, published, description, cvss_score, cvss_version, cwe_ids (pipe-sep), cpe_strings (pipe-sep), Lizzie Judgment/Judgement, Cukier Judgment |
@@ -283,6 +318,12 @@ The frozen list is **~22 analysis categories** (hybrid entertainment re-admitted
 coverage: **①** in both searches already · **②** keyword exists, needs a vendor list · **③** vendor
 exists, needs keywords · **④** needs both (new build).
 
+> **Status update (2026-06-28):** the build work below is now **provisionally complete** — every
+> category has both a keyword set (`keyword_<cat>.csv`) and a vendor build
+> (`results_all_<cat>.xlsx`). The 10 newly-added vendor lists were built from Claude-drafted brand
+> terms (`vendor_terms_proposed.csv` / `PROPOSED_brand_lists.md`) and are **pending Jason's review**,
+> so the **②/③/④** tags below reflect the *original* gap, not the current on-disk state.
+
 | Family | Analysis categories (status) |
 |--------|------------------------------|
 | Cameras & monitors | `cameras` ①, `doorbell` ①, `babymonitor` ① *(vendor list needs tightening)* |
@@ -301,6 +342,9 @@ exists, needs keywords · **④** needs both (new build).
 
 Build work implied: **4 new vendor lists** (②), **1 new keyword set** (③), **4 full new builds** (④),
 plus **2 fixes** (babymonitor tighten, sleeptracker rebuild). The ① categories are ready as-is.
+**Done provisionally (2026-06-28):** all keyword sets and all 10 missing vendor lists are built (the
+vendor lists from Claude-drafted brand terms, pending Jason's review); babymonitor tighten and
+sleeptracker rebuild remain.
 
 **Open scope calls still to confirm** (all on criterion ③/④): `ev-charging`/`home-power`,
 `shades`, `garden`/`pet`, and whether `smart display` stays merged into `smartspeakers` or splits out. (`streaming` confirmed in via criterion 4(b); networking confirmed **hub-in/router-out** per Alrawi 2019; smart soundbars confirmed merged into `smartspeakers`.)
@@ -392,15 +436,17 @@ For each row, read the `description` and `cpe_strings` and ask:
 
 ## Methodology Notes & Findings (2026-06)
 
-### Vendor ↔ keyword comparability — **keyword side FIXED (2026-06 overhaul)**
+### Vendor ↔ keyword comparability — **BOTH sides FIXED (2026-06 overhaul)**
 Historically the two searches were **not directly comparable**, which quietly polluted the difference sets:
 - **Different data source:** keyword = live NVD API (current); vendor = offline year-feed snapshot (can be stale) → some "gaps" are just data lag.
 - **Different match surface:** vendor matches description **+ CPE**; keyword (`keywordSearch`) matched **description only** → many "vendor-only" CVEs were just *brand-in-CPE* artifacts.
 - **Different columns:** keyword output had **no CPE** (and the classification rubric leans on CPE).
 
-**Fix (done for the keyword side):** the keyword search now runs through the **same engine** (`cve_search.py`'s `filter_by_keywords`, description **+ CPE**) against **one fixed NVD snapshot** (`data/nvd-snapshot/nvd_all.csv`) — see Stage 1 / `build_keyword_search.py`. So the only difference vs. the vendor search is now the search *terms* (device-phrases vs brands), and keyword output carries CPE in the common schema.
+**Fix (keyword side):** the keyword search now runs through the **same engine** (`cve_search.py`'s `filter_by_keywords`, description **+ CPE**) against **one fixed NVD snapshot** (`data/nvd-snapshot/nvd_all.csv`) — see Stage 1 / `build_keyword_search.py`.
 
-**Remaining step for full comparability:** re-run the **vendor brand lists** on the *same* snapshot (today the vendor `results_all_*.xlsx` are from an older offline run). **Ideal end-state:** one per-category run over the shared snapshot tags each CVE with `match_method` (vendor / keyword / both) → intersection and both differences become column filters. The fixed snapshot already makes the study **reproducible / citeable** ("dataset as of <date>", recorded in `SNAPSHOT.md`).
+**Fix (vendor side) — DONE:** the vendor brand lists were **re-run on the *same* snapshot through the same engine** via `build_vendor_search.py` (description **+ CPE**, `whole_word=True`) — see Stage 2. The pre-overhaul `results_all_*.xlsx` are preserved under `data/vendor-search/_backup_pre_rebuild_2026-06-28/`. So **both** methods now read one snapshot through one engine, and the only difference between them is the search *terms* (brands vs device-phrases); both carry CPE in the common schema. Both builders use `whole_word=True` to stop short brand/device tokens matching inside unrelated words.
+
+**Ideal end-state (remaining):** one per-category run over the shared snapshot tags each CVE with `match_method` (vendor / keyword / both) → intersection and both differences become column filters. The fixed snapshot already makes the study **reproducible / citeable** ("dataset as of <date>", recorded in `SNAPSHOT.md`).
 
 ### Symmetric (bidirectional) difference — BUILT (2026-06)
 Both directions now exist per category: `vendor_only` (`vendor_<cat> − keyword_<cat>`) and
