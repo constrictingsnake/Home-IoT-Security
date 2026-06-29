@@ -1,23 +1,21 @@
 import pandas as pd
+import glob
 import os
 
-# List of multi-sheet xlsx files to check against
-# These are hardcoded for now, but can be changed later
-# (kept identical to full_intersect.py so both scripts cover the same workbooks)
+# Keyword search outputs to difference against. Since the overhaul, the keyword search
+# is per-category (data/keyword-search/keyword_<cat>.csv, from build_keyword_search.py)
+# instead of the legacy grouped Category*.xlsx workbooks (now under _legacy/).
+#
+# This interactive tool builds the WHOLE-CORPUS union of every per-category keyword file
+# (e.g. for unmatched_cves.xlsx). For the per-category difference used by the Stage-4
+# pipeline (vendor_<cat> − keyword_<cat>), use build_difference_sets.py instead.
+ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+KEYWORD_DIR = os.path.join(ROOT, "data", "keyword-search")
 
-MULTI_SHEET_FILES = [
-    "CategoryIII_CameraDoorbellDeviceTypes.xlsx",
-    "CategoryII_NetworkGatewayDeviceTypes.xlsx",
-    "CategoryIV_AccessControlDeviceTypes.xlsx",
-    "CategoryIX_IoTDeviceTypes.xlsx",
-    "CategoryI_SmartHomeDeviceTypes.xlsx",
-    "CategoryVIII_ProtocolDeviceTypes.xlsx",
-    "CategoryVII_HubDeviceTypes.xlsx",
-    "CategoryVI_ApplianceDeviceTypes.xlsx",
-    "CategoryVI_SwitchDeviceTypes.xlsx",
-    "CategoryV_SensorDeviceTypes.xlsx"
-    # Can add or remove files to check as needed
-]
+
+def keyword_files():
+    """Every per-category keyword search output (absolute paths)."""
+    return sorted(glob.glob(os.path.join(KEYWORD_DIR, "keyword_*.csv")))
 
 # Prompt for file path, assumes file is in the cwd, checks if .xlsx
 def get_single_sheet_file():
@@ -36,12 +34,15 @@ def get_single_sheet_file():
 
         return filepath
 
-# Loading the CVEs from a single sheet file
-# Returns the dataframe (so unmatched rows can be written out) and the
-# set of normalized CVE IDs used for comparison
+# Loading the CVEs from a single-sheet file (.xlsx vendor file OR .csv keyword file).
+# Returns the dataframe (so the difference rows can be written out) and the
+# set of normalized CVE IDs used for comparison.
 def load_cves(filepath):
     try:
-        df = pd.read_excel(filepath)
+        if filepath.lower().endswith(".csv"):
+            df = pd.read_csv(filepath)
+        else:
+            df = pd.read_excel(filepath)
 
         if 'cve_id' not in df.columns:
             raise ValueError("Column 'cve_id' not found.")
@@ -64,50 +65,30 @@ def load_cves(filepath):
         # Raise (instead of exit) so batch callers can skip one bad file and continue.
         raise ValueError(f"Could not read CVEs from {filepath}: {e}")
 
-# Collects every CVE ID present in a multi-sheet workbook (across all sheets)
-def collect_workbook_cves(excel_path):
-    if not os.path.isfile(excel_path):
-        print(f"Skipping missing file: {excel_path}")
+# Collects every CVE ID present in a per-category keyword file (keyword_<cat>.csv).
+def collect_keyword_cves(csv_path):
+    if not os.path.isfile(csv_path):
+        print(f"Skipping missing file: {csv_path}")
         return set()
 
     try:
-        workbook = pd.ExcelFile(excel_path)
+        df = pd.read_csv(csv_path)
     except Exception as e:
-        print(f"Could not open {excel_path}: {e}")
+        print(f"Could not open {csv_path}: {e}")
         return set()
 
-    found = set()
+    if 'cve_id' not in df.columns:
+        print(f"  {os.path.basename(csv_path)}: no 'cve_id' column — skipped")
+        return set()
 
-    print(f"\nSearching: {excel_path}")
-
-    for sheet_name in workbook.sheet_names:
-        try:
-            df = pd.read_excel(excel_path, sheet_name=sheet_name)
-
-            if 'CVE' not in df.columns:
-                continue
-
-            sheet_cves = set(
-                df['CVE']
-                .dropna()
-                .astype(str)
-                .str.strip()
-                .str.upper()
-            )
-
-            if sheet_cves:
-                print(
-                    f"  {sheet_name}: {len(sheet_cves)} CVEs"
-                )
-
-            found |= sheet_cves
-
-        except Exception as e:
-            print(
-                f"Error processing "
-                f"{excel_path} [{sheet_name}]: {e}"
-            )
-
+    found = set(
+        df['cve_id']
+        .dropna()
+        .astype(str)
+        .str.strip()
+        .str.upper()
+    )
+    print(f"  {os.path.basename(csv_path)}: {len(found)} CVEs")
     return found
 
 # Columns dropped from the output (helper column + reviewer judgment columns,
@@ -118,13 +99,16 @@ DROP_COLS = [
     'Cukier Judgment', 'Cukier Judgement',
 ]
 
-# Build the difference rows: vendor CVEs that appear in NONE of the keyword workbooks.
+# Build the difference rows: the CVEs in source_cves that appear in NONE of other_cves,
+# pulled from source_df and tagged with `label` (the Difference Type). Direction-agnostic:
+#   vendor_only  = difference_rows(vendor_df, vendor_cves, keyword_cves, "vendor_only")
+#   keyword_only = difference_rows(keyword_df, keyword_cves, vendor_cves, "keyword_only")
 # Reusable by batch callers (build_difference_sets.py) and by save_results below.
-def difference_rows(vendor_df, vendor_cves, keyword_cves):
-    unmatched = vendor_cves - keyword_cves
-    result = vendor_df[vendor_df['_cve_norm'].isin(unmatched)].copy()
+def difference_rows(source_df, source_cves, other_cves, label="vendor_only"):
+    only = source_cves - other_cves
+    result = source_df[source_df['_cve_norm'].isin(only)].copy()
     result = result.drop(columns=DROP_COLS, errors='ignore')
-    result.insert(0, "Difference Type", "vendor_only")
+    result.insert(0, "Difference Type", label)
     return result
 
 
@@ -176,10 +160,17 @@ def main():
         print(e)
         exit(1)
 
+    files = keyword_files()
+    if not files:
+        print(f"\nNo keyword files found in {os.path.relpath(KEYWORD_DIR, ROOT)} "
+              "(run build_keyword_search.py first).")
+        exit(1)
+
     keyword_cves = set()
-    # build the union of every CVE found across the keyword workbooks
-    for excel_file in MULTI_SHEET_FILES:
-        keyword_cves |= collect_workbook_cves(excel_file)
+    # build the whole-corpus union of every CVE across the per-category keyword files
+    print(f"\nBuilding keyword union from {len(files)} keyword file(s):")
+    for csv_file in files:
+        keyword_cves |= collect_keyword_cves(csv_file)
 
     save_results(df, cves, keyword_cves)
 

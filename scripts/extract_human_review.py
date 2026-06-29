@@ -1,20 +1,25 @@
 #!/usr/bin/env python3
 """Extract the rows that need human adjudication from the merged triple-AI files.
 
-Reads each category's 02_merged.csv and pulls out the rows flagged
-`Needs Human Review = Yes` (set by merge_judgments.py: the two strong reviewers both
-Low, or the three judgments not unanimous). Writes a focused, ready-to-adjudicate sheet:
+Reads each category's 02_merged.csv (at data/difference/<cat>/02_merged.csv) and pulls
+out the rows flagged `Needs Human Review = Yes`. The Difference Type column on each row
+(vendor_only / keyword_only) tells you which direction the CVE came from.
+
+Writes a focused, ready-to-adjudicate sheet:
 
   - per category : data/difference/<cat>/02_needs_human_review.csv
-  - combined     : data/difference/human_review_queue.csv   (adds a Category column)
+  - combined     : data/difference/human_review_queue.csv  (adds Category + Direction columns)
 
-The sheet leads with a compact `Verdicts` summary and the `Review Reason`, keeps the full
-evidence (description, CPE) and all three reviewers' reasoning, and adds blank
-`Human Verdict` / `Human Notes` columns to fill in. Rows still `incomplete` (an AI hasn't
-reviewed yet) are reported but NOT included — they're pending, not contested.
+**Verdict-preserving:** before overwriting, reads any Human Verdict / Human Notes already
+filled in (from the existing combined queue or per-category sheets) and carries them forward,
+keyed by (category, cve_id). This makes re-running safe — earlier hand-filled verdicts are
+never lost.
+
+Rows still `incomplete` (an AI hasn't reviewed yet) are reported but NOT included — they're
+pending, not contested.
 
 Usage:
-    python extract_human_review.py                      # all categories under data/difference
+    python extract_human_review.py                      # all categories
     python extract_human_review.py --diff-dir data/difference
     python extract_human_review.py --merged data/difference/alarms/02_merged.csv
 """
@@ -25,17 +30,46 @@ import pandas as pd
 
 REVIEWERS = ["Claude", "Codex", "Gemini"]
 
-# Columns the human sheet leads with / ends with; the rest (raw + AI triples) sit in between.
 LEAD = ["Verdicts", "Review Reason", "cve_id", "description", "cpe_strings"]
 AI_COLS = [f"{r} {f}" for r in REVIEWERS for f in ("Judgment", "Confidence", "Reasoning")]
 TAIL = ["Human Verdict", "Human Notes"]
-# Stray generic-AI columns left over from the pre-rename schema — drop them from the sheet.
 DROP = {"AI Judgment", "AI Judgment Reasoning", "AI Confidence",
         "Needs Human Review", "Review Status", "Verdicts"}
 
 
+def cat_of(path):
+    return os.path.basename(os.path.dirname(path))
+
+
+def norm(cve):
+    return str(cve).strip().upper()
+
+
+def load_existing_verdicts(diff_dir):
+    """{(category, CVE-ID): (Human Verdict, Human Notes)} from any already-filled sheets."""
+    out = {}
+
+    def ingest(path, category):
+        if not os.path.isfile(path):
+            return
+        df = pd.read_csv(path, dtype=str).fillna("")
+        if "Human Verdict" not in df.columns or "cve_id" not in df.columns:
+            return
+        for _, r in df.iterrows():
+            hv = str(r.get("Human Verdict", "")).strip()
+            hn = str(r.get("Human Notes", "")).strip()
+            if not hv and not hn:
+                continue
+            cat = category if category is not None else str(r.get("Category", "")).strip()
+            out.setdefault((cat, norm(r["cve_id"])), (hv, hn))
+
+    ingest(os.path.join(diff_dir, "human_review_queue.csv"), category=None)
+    for p in sorted(glob.glob(os.path.join(diff_dir, "*", "02_needs_human_review.csv"))):
+        ingest(p, category=cat_of(p))
+    return out
+
+
 def verdicts_summary(row):
-    """Compact one-glance summary, e.g. 'C:No/High  X:No/High  G:Yes/High'."""
     parts = []
     for r, tag in zip(REVIEWERS, ("C", "X", "G")):
         j = str(row.get(f"{r} Judgment", "")).strip() or "?"
@@ -44,17 +78,17 @@ def verdicts_summary(row):
     return "  ".join(parts)
 
 
-def build_queue(merged_path):
-    """Return (queue_df, n_flagged, n_incomplete) for one merged file."""
+def build_queue(merged_path, existing):
+    cat = cat_of(merged_path)
     df = pd.read_csv(merged_path, dtype=str).fillna("")
     incomplete = int((df.get("Review Status", "") == "incomplete").sum())
     flagged = df[df.get("Needs Human Review", "") == "Yes"].copy()
     if flagged.empty:
         return flagged, 0, incomplete
     flagged["Verdicts"] = flagged.apply(verdicts_summary, axis=1)
-    flagged["Human Verdict"] = ""
-    flagged["Human Notes"] = ""
-    # order: lead summary cols, then any remaining raw cols, then AI triples, then human cols
+    carried = flagged["cve_id"].map(lambda c: existing.get((cat, norm(c)), ("", "")))
+    flagged["Human Verdict"] = [v for v, _ in carried]
+    flagged["Human Notes"] = [n for _, n in carried]
     middle = [c for c in flagged.columns
               if c not in LEAD + AI_COLS + TAIL and c not in DROP]
     cols = LEAD + middle + AI_COLS + TAIL
@@ -76,26 +110,36 @@ def main():
     if not merged_files:
         raise SystemExit("No 02_merged.csv files found — run merge_judgments.py first.")
 
+    existing = load_existing_verdicts(args.diff_dir)
+    if existing:
+        print(f"Carrying forward {len(existing)} existing human verdict(s).\n")
+
     combined = []
     total_flagged = total_incomplete = 0
     for mp in merged_files:
-        cat = os.path.basename(os.path.dirname(mp))
-        q, n, inc = build_queue(mp)
+        cat = cat_of(mp)
+        q, n, inc = build_queue(mp, existing)
         out = os.path.join(os.path.dirname(mp), "02_needs_human_review.csv")
         q.to_csv(out, index=False)
         note = f" ({inc} still incomplete — queue partial)" if inc else ""
-        print(f"  {cat:14} {n:4} flagged -> {out}{note}")
+        print(f"  {cat:16} {n:4} flagged -> {out}{note}")
         if n:
-            q.insert(0, "Category", cat)
-            combined.append(q)
+            q_out = q.copy()
+            # Add Direction alias from Difference Type for combined queue backward compat
+            if "Difference Type" in q_out.columns:
+                q_out.insert(0, "Direction", q_out["Difference Type"])
+            q_out.insert(0, "Category", cat)
+            combined.append(q_out)
         total_flagged += n
         total_incomplete += inc
 
     if not args.merged:
         combined_path = os.path.join(args.diff_dir, "human_review_queue.csv")
         if combined:
-            pd.concat(combined, ignore_index=True).to_csv(combined_path, index=False)
-            print(f"\nCombined: {total_flagged} rows -> {combined_path}")
+            out_df = pd.concat(combined, ignore_index=True)
+            carried = int((out_df["Human Verdict"].str.strip() != "").sum())
+            out_df.to_csv(combined_path, index=False)
+            print(f"\nCombined: {total_flagged} rows ({carried} with a human verdict) -> {combined_path}")
         else:
             print("\nNo flagged rows in any category.")
     if total_incomplete:
