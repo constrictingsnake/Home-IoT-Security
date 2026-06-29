@@ -1,16 +1,1043 @@
-# Proposed vendor/brand terms for the 10 categories lacking a vendor list (Stage 2).
+# Vendor/brand search terms (Stage 2 — build_vendor_search.py).
 # ---------------------------------------------------------------------------
-# Claude-drafted PROPOSAL — awaiting human (Jason) review. Dated 2026-06-28.
-# Authored against the frozen scope + 5 definitional criteria in CLAUDE.md.
-# Companion human-review doc: data/vendor-search/PROPOSED_brand_lists.md
-#
-# Format: one "slug,term" per line (same as keyword_terms.csv). Terms are RAW
-# brand strings, NOT quoted. '#'-comment and blank lines are ignored.
+# Format: one "slug,term" per line (same parser as keyword_terms.csv). Terms are
+# RAW brand strings, NOT quoted. '#'-comment and blank lines are ignored.
 # Scope: BRANDS/manufacturers (qualified to suppress false positives), not
 # generic device phrases (those live in keyword_terms.csv).
+#
+# PROVENANCE / REPRODUCIBILITY:
+#   * The 15 ORIGINAL categories below were recovered from the exact --keywords
+#     strings in "Devices List.docx" (Jason's brand strings; "Omitted:" terms
+#     excluded). Verified 2026-06-28: rebuilding each through build_vendor_search.py
+#     (whole_word=True) against data/nvd-snapshot/nvd_all.csv reproduces the
+#     committed results_all_<cat>.xlsx CVE sets EXACTLY for all 14 in-scope
+#     categories. (gameconsoles is out of scope — its xlsx was regenerated here
+#     so it, too, derives reproducibly from these terms.)
+#   * The 10 NEW categories (airpurifier … shades) are Claude-drafted brand lists
+#     (companion doc: PROPOSED_brand_lists.md).
 # ---------------------------------------------------------------------------
 slug,term
 
+# ===== ORIGINAL 15 categories (recovered from Devices List.docx) =====
+
+# ── thermostat ──
+thermostat,smart thermostat
+thermostat,thermostat
+thermostat,ecobee
+thermostat,nest thermostat
+thermostat,honeywell home
+thermostat,honeywell T6
+thermostat,honeywell T9
+thermostat,resideo
+thermostat,emerson sensi
+thermostat,sensi thermostat
+thermostat,lux thermostat
+thermostat,mysa thermostat
+thermostat,radio thermostat
+thermostat,CT50
+thermostat,CT80
+thermostat,2gig thermostat
+thermostat,vine thermostat
+thermostat,proliphix
+thermostat,venstar
+thermostat,totalconnect comfort
+thermostat,bryant evolution
+thermostat,carrier infinity
+thermostat,trane comfortlink
+thermostat,lennox icomfort
+thermostat,johnson controls thermostats
+thermostat,siemens thermostat
+thermostat,cerberus
+thermostat,schneider wiser
+thermostat,delta controls thermostat
+thermostat,Sensi
+thermostat,Smart thermostat
+thermostat,Google nest
+thermostat,Alarm.com
+thermostat,Bosch thermostat
+thermostat,Braeburn thermostat
+thermostat,Ion thermostat
+thermostat,Verdant thermostat
+thermostat,Megalight
+thermostat,Sigler
+thermostat,Verdant
+thermostat,GE thermostat
+thermostat,Aprilaire
+thermostat,American Standard
+thermostat,BlueLink
+thermostat,Mysa
+thermostat,PRO1
+thermostat,Vive
+thermostat,Vivint
+thermostat,Zen thermostat
+thermostat,Tekmar
+thermostat,Trane
+
+# ── airconditioner ──
+airconditioner,midea
+airconditioner,sensibo
+airconditioner,tado
+airconditioner,cielo breez
+airconditioner,ambi climate
+airconditioner,haier air
+airconditioner,daikin
+airconditioner,mitsubishi electric msz
+airconditioner,lg thinq
+airconditioner,samsung wind
+airconditioner,carrier cor
+airconditioner,carrier infinity
+airconditioner,trane comfortlink
+airconditioner,lennox icomfort
+airconditioner,bryant evolution
+airconditioner,rheem econet
+airconditioner,york affinity
+airconditioner,intesis
+airconditioner,broadlink
+airconditioner,smartlife
+airconditioner,tuya
+airconditioner,MSmartHome
+airconditioner,Pioneer minisplit
+airconditioner,klimaire
+airconditioner,chigo
+airconditioner,aux air
+airconditioner,tcl air
+airconditioner,hisense air
+airconditioner,sharp air
+airconditioner,panasonic air
+airconditioner,toshiba air
+airconditioner,hitachi air
+airconditioner,electrolux air
+airconditioner,whirlpool air
+airconditioner,bosch climate
+airconditioner,vaillant
+airconditioner,daikin wifi
+airconditioner,mitsubishi kumo
+airconditioner,fujitsu airstage
+airconditioner,totalconnect
+airconditioner,friedrich
+airconditioner,rovsun
+airconditioner,dreo
+airconditioner,danby
+airconditioner,edendirect
+airconditioner,air conditioner
+airconditioner,fujitsu
+
+# ── fans ──
+fans,smart fan
+fans,wac lighting
+fans,minka aire
+fans,casa vieja
+fans,haiku fan
+fans,hunter fan
+fans,fanimation
+fans,westinghouse fan
+fans,emerson fan
+fans,hampton bay fan
+fans,craftmade fan
+fans,kichler fan
+fans,monte carlo fan
+fans,progress lighting fan
+fans,savoy house fan
+fans,prominence home
+fans,pepeo fan
+fans,dreo fan
+fans,pelonis fan
+fans,honeywell fan
+fans,vornado
+fans,lasko fan
+fans,dyson fan
+fans,dyson pure
+fans,dyson hot
+fans,dyson cool
+fans,smartmi fan
+fans,xiaomi fan
+fans,mi smart fan
+fans,levoit fan
+fans,govee fan
+fans,breezer tower
+fans,connect:air
+fans,airmate fan
+fans,boneco fan
+fans,stadler form
+fans,rowenta fan
+fans,dimplex fan
+fans,woozoo fan
+fans,iris fan
+fans,keystone fan
+fans,arctic air
+fans,evapolar
+fans,torras fan
+fans,dreo pilot
+fans,tuya fan
+fans,smartlife fan
+fans,broadlink fan
+fans,matter fan
+fans,homekit fan
+fans,google home fan
+
+# ── smartplugs ──
+smartplugs,tp-link kasa
+smartplugs,tp-link tapo
+smartplugs,kasa smart
+smartplugs,wemo
+smartplugs,belkin wemo
+smartplugs,wyze plug
+smartplugs,amazon smart plug
+smartplugs,amazon basics plug
+smartplugs,gosund
+smartplugs,treatlife
+smartplugs,meross
+smartplugs,sonoff
+smartplugs,itead
+smartplugs,teckin
+smartplugs,avatar controls
+smartplugs,etekcity
+smartplugs,oittm
+smartplugs,refoss
+smartplugs,mysa plug
+smartplugs,leviton decora
+smartplugs,leviton smart
+smartplugs,lutron caseta
+smartplugs,lutron plug
+smartplugs,ge cync
+smartplugs,honeywell plug
+smartplugs,eufy smart plug
+smartplugs,anker eufy
+smartplugs,tplink
+smartplugs,koogeek
+smartplugs,elgato eve energy
+smartplugs,eve energy
+smartplugs,aqara plug
+smartplugs,zemismart
+smartplugs,aubess
+smartplugs,loratap
+smartplugs,neo coolcam
+smartplugs,fibaro wall plug
+smartplugs,shelly plug
+smartplugs,shelly1
+smartplugs,athom plug
+smartplugs,nous smart
+smartplugs,blitzwolf
+smartplugs,bseed
+smartplugs,milfra
+smartplugs,orvibo
+smartplugs,smartthings plug
+smartplugs,wink plug
+smartplugs,insteon plug
+smartplugs,zwave plug
+smartplugs,zigbee plug
+smartplugs,tuya plug
+smartplugs,smartlife plug
+smartplugs,homekit plug
+smartplugs,matter plug
+smartplugs,energy monitoring plug
+smartplugs,smart outlet
+smartplugs,smart socket
+smartplugs,wifi plug
+smartplugs,wifi socket
+smartplugs,connected plug
+
+# ── doorlock ──
+doorlock,august lock
+doorlock,august smart lock
+doorlock,august home
+doorlock,schlage encode
+doorlock,schlage connect
+doorlock,yale assure
+doorlock,yale nextouch
+doorlock,yale lock
+doorlock,kwikset halo
+doorlock,kwikset kevo
+doorlock,kwikset smartcode
+doorlock,ultraloq
+doorlock,eufy lock
+doorlock,eufy smartlock
+doorlock,lockly
+doorlock,igloohome
+doorlock,igloo lock
+doorlock,nuki lock
+doorlock,nuki smart
+doorlock,welock
+doorlock,turbolock
+doorlock,wyze lock
+doorlock,level lock
+doorlock,sesame lock
+doorlock,candy house
+doorlock,danalock
+doorlock,poly control
+doorlock,masterlock
+doorlock,master lock bluetooth
+doorlock,salto ks
+doorlock,assa abloy
+doorlock,allegion
+doorlock,brinks smart lock
+doorlock,defiant smart lock
+doorlock,hampton smart lock
+doorlock,teeho lock
+doorlock,veise lock
+doorlock,tacklife lock
+doorlock,hornbill lock
+doorlock,tyale lock
+doorlock,adel lock
+doorlock,kaadas
+doorlock,zwave lock
+doorlock,zigbee lock
+doorlock,tuya lock
+doorlock,smartlife lock
+doorlock,homekit lock
+doorlock,matter lock
+doorlock,bluetooth lock
+doorlock,wifi deadbolt
+doorlock,smart deadbolt
+doorlock,smart door lock
+doorlock,keypad lock
+
+# ── doorbell ──
+doorbell,ring doorbell
+doorbell,ring video doorbell
+doorbell,nest doorbell
+doorbell,nest hello
+doorbell,arlo doorbell
+doorbell,eufy doorbell
+doorbell,eufy video doorbell
+doorbell,wyze doorbell
+doorbell,blink doorbell
+doorbell,lorex doorbell
+doorbell,amcrest doorbell
+doorbell,reolink doorbell
+doorbell,laview doorbell
+doorbell,toucan doorbell
+doorbell,skybell
+doorbell,skybell hd
+doorbell,doorbird
+doorbell,doorbird d2
+doorbell,aiphone
+doorbell,comelit
+doorbell,2n doorbell
+doorbell,2n ip verso
+doorbell,2n helios
+doorbell,hikvision doorbell
+doorbell,dahua doorbell
+doorbell,ezviz doorbell
+doorbell,vtech doorbell
+doorbell,nightowl doorbell
+doorbell,swann doorbell
+doorbell,unifi doorbell
+doorbell,ubiquiti doorbell
+doorbell,google doorbell
+doorbell,amazon doorbell
+doorbell,simplisafe doorbell
+doorbell,abode doorbell
+doorbell,vivint doorbell
+doorbell,adt doorbell
+doorbell,canary doorbell
+doorbell,zmodo doorbell
+doorbell,zosi doorbell
+doorbell,ctronics doorbell
+doorbell,bosch doorbell
+doorbell,axis doorbell
+doorbell,hanwha doorbell
+doorbell,panasonic doorbell
+doorbell,legrand doorbell
+doorbell,dnake doorbell
+doorbell,akuvox
+doorbell,commax
+doorbell,fermax
+doorbell,urmet
+doorbell,siedle
+doorbell,mobotix doorbell
+doorbell,tuya doorbell
+doorbell,smartlife doorbell
+doorbell,homekit doorbell
+doorbell,matter doorbell
+doorbell,wifi doorbell
+doorbell,ip doorbell
+doorbell,video doorbell
+doorbell,smart doorbell
+doorbell,video intercom
+doorbell,door intercom
+
+# ── cameras ──
+cameras,hikvision
+cameras,dahua
+cameras,reolink
+cameras,amcrest
+cameras,wyze
+cameras,arlo
+cameras,ring camera
+cameras,nest cam
+cameras,blink camera
+cameras,eufy
+cameras,annke
+cameras,swann
+cameras,lorex
+cameras,foscam
+cameras,vivotek
+cameras,axis camera
+cameras,hanwha
+cameras,bosch camera
+cameras,pelco
+cameras,flir home
+cameras,zmodo
+cameras,zosi
+cameras,night owl
+cameras,defender camera
+cameras,uniview
+cameras,tiandy
+cameras,TVT camera
+cameras,provision-isr
+cameras,digital watchdog
+cameras,geovision
+cameras,mobotix
+cameras,arecont
+cameras,avigilon
+cameras,wisenet
+cameras,samsung camera
+cameras,tp-link camera
+cameras,tapo
+cameras,imou
+cameras,ezviz
+cameras,360 camera
+cameras,xiaomi camera
+cameras,yi camera
+cameras,imilab
+cameras,zxteco
+cameras,toucan camera
+cameras,canary camera
+cameras,simplicam
+cameras,abode camera
+cameras,vivint camera
+cameras,ADT camera
+cameras,netgear arlo
+cameras,logitech circle
+cameras,netatmo camera
+cameras,somfy camera
+cameras,doorbird
+cameras,skybell
+cameras,august doorbell
+cameras,ring doorbell
+cameras,nest doorbell
+cameras,arlo doorbell
+cameras,eufy doorbell
+cameras,laview
+cameras,montavue
+cameras,alibi
+cameras,ipc camera
+cameras,nvr camera
+cameras,dvr camera
+cameras,onvif
+cameras,rtsp camera
+cameras,ip camera
+cameras,cctv
+cameras,360 vision
+cameras,appro international
+cameras,axcess
+cameras,av costar
+cameras,airlive
+cameras,anviz
+cameras,bqt solutions
+cameras,brickcom
+cameras,compro ip
+cameras,climax technology
+cameras,cloudvue
+cameras,dedicated micros
+cameras,dallmeier
+cameras,d-link
+cameras,ernitec
+cameras,eneo
+cameras,eagle eye networks
+cameras,flir systems
+cameras,fujifilm camera
+cameras,ganz
+cameras,geutebruck
+cameras,genie cctv
+cameras,genetec
+cameras,honeywell security
+cameras,indigovision
+cameras,ioimage
+cameras,iqeye
+cameras,idis
+cameras,illustra
+cameras,immervision
+cameras,i-pro
+cameras,infinova
+cameras,lilin
+cameras,linudix
+cameras,march networks
+cameras,messoa
+cameras,moxa
+cameras,mobileview
+cameras,milesight
+cameras,optex
+cameras,oncam
+cameras,panasonic camera
+cameras,paxton access
+cameras,pyronix
+cameras,parabit
+cameras,sony camera
+cameras,siqura
+cameras,surveon
+cameras,speco
+cameras,tdsi
+cameras,truvision
+cameras,vicon
+cameras,visonic
+cameras,videotec
+cameras,verint
+cameras,visionhitech
+cameras,videosphere
+cameras,verkada
+cameras,webgate
+cameras,remo+
+cameras,samsung techwin
+
+# ── alarms ──
+alarms,ring alarm
+alarms,nest secure
+alarms,nest protect
+alarms,adt pulse
+alarms,adt command
+alarms,simplisafe
+alarms,abode security
+alarms,abode iota
+alarms,vivint smart home
+alarms,vivint panel
+alarms,frontpoint
+alarms,link interactive
+alarms,cove security
+alarms,scout alarm
+alarms,kangaroo security
+alarms,wyze sense
+alarms,wyze alarm
+alarms,eufy alarm
+alarms,eufy homebase
+alarms,arlo security
+alarms,arlo base station
+alarms,samsung smartthings hub
+alarms,smartthings sensor
+alarms,wink hub
+alarms,hubitat
+alarms,homey alarm
+alarms,vera alarm
+alarms,fibaro alarm
+alarms,fibaro home center
+alarms,qolsys
+alarms,qolsys iq panel
+alarms,dsc powerseries
+alarms,dsc neo
+alarms,dsc alarm
+alarms,paradox alarm
+alarms,paradox mg5050
+alarms,texecom alarm
+alarms,honeywell vista
+alarms,honeywell lyric
+alarms,honeywell proseries
+alarms,resideo alarm
+alarms,bosch solution
+alarms,bosch alarm
+alarms,napco alarm
+alarms,elk products
+alarms,elk m1
+alarms,2gig alarm
+alarms,2gig go
+alarms,interlogix alarm
+alarms,ge security alarm
+alarms,pyronix alarm
+alarms,risco alarm
+alarms,ajax systems
+alarms,ajax hub
+alarms,crow alarm
+alarms,visonic powermaster
+alarms,visonic alarm
+alarms,guardall
+alarms,optex alarm
+alarms,takex alarm
+alarms,crow runner
+alarms,volvo alarm
+alarms,iconnect alarm
+alarms,alula alarm
+alarms,telguard
+alarms,uplink alarm
+alarms,alarm.com
+alarms,alarmnet
+alarms,iotega
+alarms,climax alarm
+alarms,tunstall alarm
+alarms,carelink alarm
+alarms,roost alarm
+alarms,kidde alarm
+alarms,first alert alarm
+alarms,nexx
+alarms,agshome
+alarms,x-sense alarm
+alarms,google nest protect
+alarms,leeo alarm
+alarms,halo smart alarm
+alarms,security alarm
+alarms,onelink alarm
+alarms,nest smoke
+alarms,smoke detector wifi
+alarms,co detector wifi
+alarms,connected smoke
+alarms,connected alarm
+alarms,wireless alarm system
+alarms,alarm panel
+alarms,security panel
+alarms,alarm hub
+alarms,home alarm
+alarms,motion sensor wifi
+alarms,door sensor wifi
+alarms,window sensor wifi
+alarms,glass break sensor
+alarms,pir sensor wifi
+alarms,zigbee sensor
+alarms,zwave sensor
+alarms,433mhz alarm
+alarms,gsm alarm
+alarms,cellular alarm
+alarms,alarm communicator
+alarms,alarm receiver
+alarms,central station
+alarms,monitoring station
+alarms,alarm protocol
+alarms,smart alarm
+
+# ── babymonitor ──
+babymonitor,infant optics
+babymonitor,infant optics dxr
+babymonitor,vtech baby monitor
+babymonitor,vtech dm
+babymonitor,vtech safe
+babymonitor,motorola baby monitor
+babymonitor,motorola mbp
+babymonitor,motorola vm
+babymonitor,summer lookout
+babymonitor,angelcare monitor
+babymonitor,angelcare ac
+babymonitor,levana baby monitor
+babymonitor,hello baby monitor
+babymonitor,hellobaby
+babymonitor,babysense monitor
+babymonitor,babysense hd
+babymonitor,lollipop baby monitor
+babymonitor,lollipop cam
+babymonitor,nanit baby monitor
+babymonitor,nanit pro
+babymonitor,owlet baby monitor
+babymonitor,owlet cam
+babymonitor,owlet smart sock
+babymonitor,miku baby monitor
+babymonitor,miku pro
+babymonitor,cubo ai
+babymonitor,cubo baby monitor
+babymonitor,wyze baby monitor
+babymonitor,arlo baby
+babymonitor,arlo baby monitor
+babymonitor,nest baby monitor
+babymonitor,eufy baby monitor
+babymonitor,eufy spaceview
+babymonitor,philips avent monitor
+babymonitor,philips avent dect
+babymonitor,philips scd
+babymonitor,safety 1st baby monitor
+babymonitor,safety first monitor
+babymonitor,graco baby monitor
+babymonitor,graco vm
+babymonitor,nuk baby monitor
+babymonitor,chicco baby monitor
+babymonitor,beaba baby monitor
+babymonitor,stork baby monitor
+babymonitor,kodak baby monitor
+babymonitor,kodak cherish
+babymonitor,4moms
+babymonitor,project nursery
+babymonitor,hubble baby monitor
+babymonitor,hubble connected
+babymonitor,snuza monitor
+babymonitor,withings
+babymonitor,mobi baby monitor
+babymonitor,foscam baby monitor
+babymonitor,vstarcam baby monitor
+babymonitor,nooie
+babymonitor,catit
+babymonitor,anker baby monitor
+babymonitor,blink baby monitor
+babymonitor,logitech circle baby
+babymonitor,d-link dcs
+babymonitor,samsung baby monitor
+babymonitor,samsung snh
+babymonitor,amcrest baby monitor
+babymonitor,reolink baby monitor
+babymonitor,zowie baby monitor
+babymonitor,tuya baby monitor
+babymonitor,smartlife baby monitor
+babymonitor,wifi baby monitor
+babymonitor,ip baby monitor
+babymonitor,baby camera wifi
+babymonitor,smart baby monitor
+babymonitor,video baby monitor
+babymonitor,audio baby monitor
+babymonitor,dect baby monitor
+babymonitor,fhss baby monitor
+babymonitor,baby monitor
+babymonitor,baby monitor vulnerability
+babymonitor,infant monitor
+babymonitor,nursery camera
+babymonitor,nursery monitor
+babymonitor,sleep monitor baby
+babymonitor,baby monitor app
+
+# ── smartspeakers ──
+smartspeakers,amazon echo
+smartspeakers,amazon alexa
+smartspeakers,alexa voice
+smartspeakers,echo dot
+smartspeakers,echo show
+smartspeakers,echo studio
+smartspeakers,echo flex
+smartspeakers,echo auto
+smartspeakers,google home
+smartspeakers,google nest mini
+smartspeakers,google nest audio
+smartspeakers,google nest hub
+smartspeakers,google home mini
+smartspeakers,google home max
+smartspeakers,apple homepod
+smartspeakers,homepod mini
+smartspeakers,apple siri speaker
+smartspeakers,sonos one
+smartspeakers,sonos move
+smartspeakers,sonos roam
+smartspeakers,sonos era
+smartspeakers,sonos beam
+smartspeakers,sonos arc
+smartspeakers,sonos playbar
+smartspeakers,bose home speaker
+smartspeakers,bose soundtouch
+smartspeakers,bose portable home
+smartspeakers,jbl link
+smartspeakers,jbl link portable
+smartspeakers,harman kardon invoke
+smartspeakers,harman kardon allure
+smartspeakers,lenovo smart display
+smartspeakers,lenovo smart clock
+smartspeakers,facebook portal
+smartspeakers,meta portal
+smartspeakers,amazon halo
+smartspeakers,amazon tap
+smartspeakers,amazon look
+smartspeakers,xbox cortana
+smartspeakers,microsoft invoke
+smartspeakers,cortana speaker
+smartspeakers,lg thinq speaker
+smartspeakers,lg wk
+smartspeakers,samsung galaxy home
+smartspeakers,samsung bixby speaker
+smartspeakers,anker eufy genie
+smartspeakers,eufy genie
+smartspeakers,triby speaker
+smartspeakers,onkyo smart speaker
+smartspeakers,pioneer smart speaker
+smartspeakers,denon home
+smartspeakers,denon heos
+smartspeakers,yamaha musiccast
+smartspeakers,yamaha yas
+smartspeakers,klipsch smart
+smartspeakers,polk audio command
+smartspeakers,ultimate ears hyperboom
+smartspeakers,ultimate ears blast
+smartspeakers,ue wonderboom
+smartspeakers,ikea symfonisk
+smartspeakers,ikea tradfri speaker
+smartspeakers,sonos ikea
+smartspeakers,libratone zipp
+smartspeakers,libratone loop
+smartspeakers,bluesound pulse
+smartspeakers,bluesound node
+smartspeakers,naim mu-so
+smartspeakers,bang olufsen beosound
+smartspeakers,beoplay
+smartspeakers,marshall stanmore wifi
+smartspeakers,marshall acton wifi
+smartspeakers,marshall uxbridge
+smartspeakers,vizio smartcast
+smartspeakers,vizio crave
+smartspeakers,roku smart speaker
+smartspeakers,echo spatial perception
+smartspeakers,wake word
+smartspeakers,voice assistant speaker
+smartspeakers,smart display
+smartspeakers,smart screen speaker
+smartspeakers,wifi speaker
+smartspeakers,multiroom audio
+smartspeakers,voice controlled speaker
+smartspeakers,assistant speaker
+smartspeakers,alexa compatible
+smartspeakers,google assistant speaker
+smartspeakers,airplay speaker
+smartspeakers,chromecast audio
+smartspeakers,spotify connect speaker
+smartspeakers,voice command device
+smartspeakers,smart home hub speaker
+
+# ── streaming ──
+streaming,amazon fire tv
+streaming,firestick
+streaming,fire tv cube
+streaming,google chromecast
+streaming,google tv
+streaming,nvidia shield
+streaming,apple tv
+streaming,roku
+streaming,android tv
+streaming,android tv box
+streaming,xiaomi mi box
+streaming,xiaomi mi stick
+streaming,onn streaming
+streaming,philips android tv
+streaming,hisense android tv
+streaming,tcl tv
+streaming,vizio smartcast
+streaming,lg webos
+streaming,samsung tizen
+streaming,samsung smart tv
+streaming,panasonic my home screen
+streaming,sony bravia
+streaming,sharp aquos
+streaming,toshiba fire tv
+streaming,insignia fire tv
+streaming,element android tv
+streaming,westinghouse smart tv
+streaming,mecool
+streaming,beelink
+streaming,ugoos
+streaming,zidoo
+streaming,dune hd
+streaming,kodi
+streaming,openelec
+streaming,libreelec
+streaming,coreelec
+streaming,dish hopper
+streaming,directv genie
+streaming,xfinity flex
+streaming,cox contour
+streaming,sky glass
+streaming,sky stream
+streaming,now tv
+streaming,fetch tv
+streaming,foxtel
+streaming,telstra tv
+streaming,virgin media
+streaming,bt tv
+streaming,chromecast protocol
+streaming,miracast
+streaming,dlna
+streaming,upnp streaming
+streaming,iptv box
+streaming,set-top box
+streaming,amlogic
+streaming,allwinner
+streaming,realtek tv
+streaming,haier tv
+streaming,hisense tv
+streaming,skyworth tv
+streaming,changhong tv
+streaming,konka tv
+streaming,coocaa tv
+streaming,tpv technology
+streaming,funai tv
+streaming,philips tv
+streaming,loewe tv
+streaming,grundig tv
+streaming,vestel tv
+streaming,arcelik tv
+streaming,beko tv
+streaming,metz tv
+streaming,medion tv
+streaming,telefunken tv
+streaming,sceptre tv
+streaming,polaroid tv
+streaming,sanyo tv
+streaming,rca smart tv
+streaming,jvc smart tv
+streaming,magnavox smart tv
+streaming,vizio tv
+streaming,insignia tv
+streaming,element tv
+streaming,onn tv
+streaming,seiki tv
+streaming,proscan tv
+streaming,hitachi smart tv
+streaming,mitsubishi smart tv
+streaming,nec smart tv
+streaming,sharp tv
+streaming,toshiba tv
+streaming,pioneer smart tv
+streaming,harman tv
+streaming,thomson tv
+streaming,strong tv
+streaming,kogan tv
+streaming,soniq tv
+streaming,vu tv
+streaming,micromax tv
+streaming,onida tv
+streaming,thomson smart tv
+streaming,xiaomi tv
+streaming,realme tv
+streaming,oneplus tv
+streaming,oppo tv
+streaming,vivo tv
+
+# ── gameconsoles ──
+gameconsoles,playstation
+gameconsoles,ps3
+gameconsoles,ps5
+gameconsoles,ps4
+gameconsoles,xbox
+gameconsoles,kinect vulnerability
+gameconsoles,nintendo switch
+gameconsoles,nintendo
+gameconsoles,steam
+gameconsoles,valve
+gameconsoles,nvidia shield gaming
+gameconsoles,ouya console
+gameconsoles,logitech g cloud
+gameconsoles,logitech gaming
+gameconsoles,razer edge
+gameconsoles,razer gaming
+gameconsoles,alienware console
+gameconsoles,android gaming console
+gameconsoles,retroid pocket
+gameconsoles,gpd win
+gameconsoles,asus rog ally
+gameconsoles,lenovo legion go
+gameconsoles,playdate handheld
+gameconsoles,polymega
+gameconsoles,oculus quest
+gameconsoles,meta quest
+gameconsoles,meta quest firmware
+gameconsoles,quest link
+gameconsoles,luna cloud gaming
+gameconsoles,amazon luna
+gameconsoles,google stadia
+gameconsoles,game console network
+gameconsoles,console online service
+gameconsoles,console update
+gameconsoles,console firmware
+
+# ── fridge ──
+fridge,samsung family hub
+fridge,samsung rf
+fridge,samsung bespoke
+fridge,lg smart refrigerator
+fridge,lg thinq fridge
+fridge,lg instaview
+fridge,ge cafe refrigerator
+fridge,ge connected refrigerator
+fridge,whirlpool smart refrigerator
+fridge,whirlpool connected fridge
+fridge,maytag
+fridge,kitchenaid
+fridge,frigidaire
+fridge,electrolux refrigerator
+fridge,bosch 800
+fridge,bosch refrigerator
+fridge,miele refrigerator wifi
+fridge,fisher paykel
+fridge,panasonic refrigerator
+fridge,vestel refrigerator
+fridge,sub-zero
+fridge,fridge
+fridge,smart fridge
+fridge,refrigerator
+fridge,smart refrigerator
+fridge,thermador
+
+# ── robotvacuum ──
+robotvacuum,roomba
+robotvacuum,irobot
+robotvacuum,ecovacs
+robotvacuum,neato
+robotvacuum,roborock
+robotvacuum,xiaomi robot vacuum
+robotvacuum,eufy
+robotvacuum,yeedi vacuum
+robotvacuum,yeedi mop
+robotvacuum,ilife robot vacuum
+robotvacuum,ilife firmware
+robotvacuum,proscenic
+robotvacuum,cecotec
+robotvacuum,rowenta
+robotvacuum,vorwerk
+robotvacuum,miele
+robotvacuum,lg cordzero robot
+robotvacuum,lg thinq robot
+robotvacuum,samsung jetbot
+robotvacuum,dyson 360
+robotvacuum,dyson robot vacuum
+robotvacuum,bosch indego robot
+robotvacuum,bosch robot vacuum
+robotvacuum,electrolux purei9
+robotvacuum,electrolux robot
+robotvacuum,philips smartpro
+robotvacuum,philips robot vacuum
+robotvacuum,medion
+robotvacuum,tesvor robot
+robotvacuum,amarey robot
+robotvacuum,lefant robot
+robotvacuum,laresar robot
+robotvacuum,airrobo robot
+robotvacuum,ultenic robot
+robotvacuum,lubluelu robot
+robotvacuum,narwal robot
+robotvacuum,narwal freo
+robotvacuum,trouver
+robotvacuum,coredy
+robotvacuum,imou
+robotvacuum,switchbot
+robotvacuum,mqtt vacuum
+robotvacuum,tuya vacuum
+robotvacuum,smartlife vacuum
+robotvacuum,smart vacuum
+robotvacuum,robot vacuum
+
+# ── sleeptracker ──
+sleeptracker,fitbit
+sleeptracker,garmin
+sleeptracker,apple watch
+sleeptracker,samsung galaxy watch
+sleeptracker,withings
+sleeptracker,whoop strap
+sleeptracker,whoop firmware
+sleeptracker,whoop app
+sleeptracker,polar sleep
+sleeptracker,suunto
+sleeptracker,amazfit
+sleeptracker,mobvoi
+sleeptracker,beddit
+sleeptracker,emfit
+sleeptracker,resmed
+sleeptracker,philips respironics
+sleeptracker,philips dreamstation
+sleeptracker,somnox
+sleeptracker,dreem
+sleeptracker,kokoon
+sleeptracker,sleep number
+sleeptracker,tempur-pedic
+sleeptracker,beautyrest
+sleeptracker,dodow sleep
+sleeptracker,sleepon
+sleeptracker,sleeptracker monitor
+sleeptracker,loona sleep
+sleeptracker,lumie connected
+sleeptracker,biostrap
+sleeptracker,wearable sleep tracker
+sleeptracker,smart mattress
+sleeptracker,sleep monitor
+sleeptracker,breathing rate monitor
+
+
+# ===== NEW 10 categories (Claude-drafted, see PROPOSED_brand_lists.md) =====
 # ── airpurifier ──
 airpurifier,levoit
 airpurifier,levoit core

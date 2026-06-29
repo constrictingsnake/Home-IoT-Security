@@ -11,7 +11,7 @@ A security research pipeline that systematically maps real-world home IoT device
 ### Two search methods (researcher attribution)
 The project combines two complementary CVE-discovery methods, each owned by a different researcher:
 
-- **Vendor-based search — Jason.** Compiles a list of manufacturers/brands per device type, then searches NVD for those vendor/brand names. Produces the `results_all_*.xlsx` files. **As of the vendor overhaul (2026-06)** this runs the same way as the keyword search — **offline, per-category, through the same engine** (`build_vendor_search.py` → `cve_search.py`'s `filter_by_keywords` against the one fixed NVD snapshot, matching description **+ CPE**) — see Stage 2. Brand terms live in `data/vendor-search/vendor_terms.csv` (`slug,term`). More prone to false positives, since brand names overlap with unrelated products. *(Legacy path: the old `cve_search.py --input` / `run_all_years.sh` per-year run; the prior `results_all_*.xlsx` are backed up under `data/vendor-search/_backup_pre_rebuild_2026-06-28/`, and the `--keywords` strings in `Devices List.docx` are Jason's original vendor/brand strings.)*
+- **Vendor-based search — Jason.** Compiles a list of manufacturers/brands per device type, then searches NVD for those vendor/brand names. Produces the `results_all_*.xlsx` files. **As of the vendor overhaul (2026-06)** this runs the same way as the keyword search — **offline, per-category, through the same engine** (`build_vendor_search.py` → `cve_search.py`'s `filter_by_keywords` against the one fixed NVD snapshot, matching description **+ CPE**) — see Stage 2. Brand terms live in `data/vendor-search/vendor_terms.csv` (`slug,term`). More prone to false positives, since brand names overlap with unrelated products. *(Legacy path: the old `cve_search.py --input` / `run_all_years.sh` per-year run; the prior `results_all_*.xlsx` are backed up under `data/vendor-search/_backup_pre_rebuild_2026-06-28/`, and the `--keywords` strings in `Devices List.docx` are Jason's original vendor/brand strings — now recovered into `vendor_terms.csv` and verified to reproduce the committed results, see Stage 2.)*
 - **Keyword-based search — Lizzie.** Searches NVD for generic device-type keywords (e.g. "security camera", "ip camera"). **As of the keyword overhaul (2026-06)** this runs **offline, per-category, through the same engine as the vendor search** (`cve_search.py` against one fixed NVD snapshot, matching description **+ CPE**) — see Stage 1. Produces `data/keyword-search/keyword_<category>.csv`, one file per analysis category. `full_intersect.py` (Stage 3) is also Lizzie's — it intersects the two methods' outputs. *(The legacy live-API workbooks and groupings are retired under `data/keyword-search/_legacy/`.)*
 
 Combining both methods yields the most comprehensive per-device CVE list.
@@ -60,8 +60,14 @@ methods is now the search *terms* (brands vs. device-phrases).
   parser as `keyword_terms.csv` — `#`-comment / blank-line aware). Brands are **qualified** with a
   product word where the bare name overlaps unrelated products (e.g. `carrier infinity`, not
   `carrier`) to suppress false positives. A category with no active terms is skipped with a message.
-  `vendor_terms_proposed.csv` + `PROPOSED_brand_lists.md` hold the Claude-drafted brand lists for the
-  10 newly-added categories, pending human (Jason) review.
+  **This file is now the complete, reproducible source for *all* 25 categories.** The **15 original**
+  categories' terms were recovered from the exact `--keywords` strings in `Devices List.docx`
+  (Jason's brand strings; `Omitted:` terms excluded) and **verified (2026-06-28)**: rebuilding each
+  through `build_vendor_search.py` reproduces the committed `results_all_<cat>.xlsx` CVE sets
+  **exactly** for all 14 in-scope categories (gameconsoles is out of scope; its xlsx was regenerated
+  on the snapshot so it too derives reproducibly from these terms — its old file was a stale
+  pre-`whole_word` build). The **10 new** categories' terms are Claude-drafted
+  (`vendor_terms_proposed.csv` + `PROPOSED_brand_lists.md` are the original draft + companion doc).
 - **Run:** `python3 scripts/build_vendor_search.py` (loads the snapshot once, filters per category).
   Same flags as the keyword builder: `--categories <slug…>`, `--snapshot`/`--terms`, `--overwrite`,
   `--outdir`.
@@ -185,8 +191,8 @@ Home IoT Security/
     │       └── CATEGORY_GROUPING.md     # original keyword→category groupings (term source for the suggestions)
     │
     ├── vendor-search/               # Stage 2 — build_vendor_search.py outputs (Jason), rebuilt on the snapshot
-    │   ├── vendor_terms.csv                  # USER-AUTHORED brand terms (slug,term) — driver input
-    │   ├── vendor_terms_proposed.csv         # Claude-drafted brand lists for the 10 new categories (pending review)
+    │   ├── vendor_terms.csv                  # brand terms (slug,term) — driver input; ALL 25 cats (15 originals recovered from Devices List.docx + verified reproducible, 10 new Claude-drafted)
+    │   ├── vendor_terms_proposed.csv         # original Claude draft of the 10 new categories' lists (now also folded into vendor_terms.csv)
     │   ├── PROPOSED_brand_lists.md           # human-review doc behind vendor_terms_proposed.csv
     │   ├── _backup_pre_rebuild_2026-06-28/   # the pre-overhaul results_all_*.xlsx (legacy per-year run)
     │   ├── results_all_cameras.xlsx          (~2,161 CVEs — largest)
