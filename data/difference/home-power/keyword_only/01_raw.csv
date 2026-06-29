@@ -1,0 +1,8 @@
+Difference Type,cve_id,published,description,cvss_score,cvss_version,cwe_ids,cpe_strings
+keyword_only,CVE-2018-12735,2018-06-25,SAJ Solar Inverter allows remote attackers to obtain potentially sensitive information via a direct request for the inverter_info.htm or english_main.htm URI.,7.5,3.0,CWE-200,cpe:2.3:a:saj-electric:saj_solar_inverter:-:*:*:*:*:*:*:*
+keyword_only,CVE-2025-30257,2025-04-15,Unauthenticated attackers can retrieve serial number of smart meters associated to a specific user account.,5.3,3.1,CWE-639,cpe:2.3:a:growatt:cloud_portal:*:*:*:*:*:*:*:*
+keyword_only,CVE-2025-30254,2025-04-15,An unauthenticated attacker can obtain a serial number of a smart meter(s) using its owner's username.,5.3,3.1,CWE-639,cpe:2.3:a:growatt:cloud_portal:*:*:*:*:*:*:*:*
+keyword_only,CVE-2026-25872,2026-02-10,"JUNG Smart Panel KNX firmware version L1.12.22 and prior contain an unauthenticated path traversal vulnerability in the embedded web interface. The application fails to properly validate file path input, allowing remote, unauthenticated attackers to access arbitrary files on the underlying filesystem within the context of the web server. This may result in disclosure of system configuration files and other sensitive information.",5.3,3.1,CWE-22,
+keyword_only,CVE-2025-14014,2026-02-12,"Unrestricted Upload of File with Dangerous Type vulnerability in NTN Information Processing Services Computer Software Hardware Industry and Trade Ltd. Co. Smart Panel allows Accessing Functionality Not Properly Constrained by ACLs.
+
+This issue affects Smart Panel: before 20251215.",9.8,3.1,CWE-434,

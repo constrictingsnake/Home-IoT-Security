@@ -1,0 +1,8 @@
+Difference Type,cve_id,published,description,cvss_score,cvss_version,cwe_ids,cpe_strings
+keyword_only,CVE-2026-25599,2026-06-01,"Missing authentication and clear‑text transmission of data from the heat pumps to the control server, combined with the absence of input validation on aggregated data, can lead to stored XSS that enables theft of cookies from the pump’s web control interface. Older Orca heat pump devices communicating with the Orca server over an 
+unencrypted and unauthenticated HTTP connection on a non-secure port specifically enable an
+ attacker to impersonate a legitimate device and inject malicious 
+payloads. This enables the insertion of harmful code directly
+ into the Orca user portal, potentially compromising user accounts, 
+exposing sensitive information, and allowing further unauthorized 
+actions within the portal.",6.3,3.1,CWE-79|CWE-306|CWE-319,

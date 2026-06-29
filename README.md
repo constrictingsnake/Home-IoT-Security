@@ -13,6 +13,7 @@ A research pipeline that systematically maps real-world home IoT device brands t
 - [Stage 2 — Vendor Search](#stage-2--vendor-search)
 - [Stage 3 — Intersection and Difference](#stage-3--intersection-and-difference)
 - [Stage 4 — Triple-AI Review](#stage-4--triple-ai-review)
+- [Refreshing Difference Sets Without Losing Review Work](#refreshing-difference-sets-without-losing-review-work)
 - [Device Categories](#device-categories)
 - [Scripts](#scripts)
 - [Data Schemas](#data-schemas)
@@ -164,30 +165,49 @@ Categories with no active terms are **skipped with a message** — not an error.
 
 ## Stage 2 — Vendor Search
 
-**Script:** `scripts/cve_search.py` + `scripts/run_all_years.sh`
-**Output:** CSV (e.g. `results_all.csv`)
+**Script:** `scripts/build_vendor_search.py`
+**Output:** `data/vendor-search/results_all_<category>.xlsx` (one per category)
 
-This stage searches NVD for manufacturer and brand names. It is owned by Jason. The vendor/brand keyword strings per device type are in `Devices List.docx`.
+This stage searches the NVD snapshot for manufacturer/brand names (e.g. "Nest", "Ring", "Ecobee"). It is owned by Jason. As of the 2026-06 overhaul it runs **offline, per-category, through the same engine as the keyword search** (`cve_search.filter_by_keywords`, matching description **+ CPE** with whole-word boundaries) against the same fixed snapshot — so the only difference between the two methods is now the search *terms* (brands vs. device-phrases), making the results directly comparable.
 
-Both scripts output **CSV only** — `cve_search.py` has no Excel output mode, and `run_all_years.sh` merges its per-year outputs into a single `results_all.csv`. The `results_all_<category>.xlsx` files currently in `data/vendor-search/` are **externally produced** (manually saved as Excel by Jason outside the pipeline) and serve as pre-existing inputs to Stages 3 and 4.
+**Step 1 — Author your brand terms**
 
-Note: `run_all_years.sh` is currently hardcoded to a specific keyword set (sleeptracker). To run a different category, edit the `KEYWORDS` variable at the top of the script.
+Brand terms live in `data/vendor-search/vendor_terms.csv`, same `slug,term` format and parser as `keyword_terms.csv` (`#`-comment / blank-line aware). Qualify a brand with a product word wherever the bare name overlaps unrelated products — e.g. `carrier infinity`, not `carrier` — to suppress false positives.
 
-**Run a single vendor search**
-
-```bash
-python3 scripts/cve_search.py --input data/nvd-snapshot/nvd_all.csv \
-    --keywords "ring" "nest" "arlo" "wyze" "blink"
+```
+slug,term
+thermostat,ecobee
+thermostat,nest thermostat
+cameras,hikvision
+doorbell,ring video doorbell
 ```
 
-**Run across all years for one category (automated)**
+This file is the **complete, reproducible source for all 25 categories**:
+
+- The **15 original** categories' terms were recovered from the exact `--keywords` strings in `Devices List.docx` (Jason's brand strings). Verified: rebuilding through `build_vendor_search.py` reproduces the committed `results_all_<cat>.xlsx` CVE sets **exactly** for all 14 in-scope categories.
+- The **10 new** categories' terms are Claude-drafted (companion doc: `data/vendor-search/PROPOSED_brand_lists.md`).
+
+**Step 2 — Run the vendor search**
 
 ```bash
-bash scripts/run_all_years.sh
-# Edit KEYWORDS at the top of the script before running
+# All categories that have active terms
+python3 scripts/build_vendor_search.py
+
+# Specific categories only
+python3 scripts/build_vendor_search.py --categories cameras thermostat doorbell
+
+# Custom snapshot or terms file
+python3 scripts/build_vendor_search.py --snapshot path/to/nvd_all.csv --terms path/to/terms.csv
+
+# Rebuild existing output files
+python3 scripts/build_vendor_search.py --overwrite
 ```
 
-Run from the directory where your year-feed CSVs live. Output lands in `Results/` and is merged into `results_all.csv`.
+Categories with no active terms are **skipped with a message** — not an error.
+
+**Output columns:** `cve_id, published, description, cvss_score, cvss_version, cwe_ids, cpe_strings` — identical to the keyword files and `01_raw.csv`.
+
+> **Legacy path:** before the overhaul the vendor search was a per-year run via `cve_search.py --input` / `run_all_years.sh`, with results manually saved to Excel. That path still works (see [`cve_search.py`](#cve_searchpy--stage-1--2) / [`run_all_years.sh`](#run_all_yearssh--snapshot--legacy)) and is what builds the snapshot, but it is no longer the vendor-search route. The pre-overhaul workbooks are archived under `data/vendor-search/_backup_pre_rebuild_2026-06-28/`.
 
 ---
 
@@ -260,16 +280,20 @@ python3 scripts/build_difference_sets.py data/device_lst.txt
 **Step 2 — Create blind review copies**
 
 ```bash
-python3 scripts/make_review_copies.py data/difference/<device>/<dir>/01_raw.csv
-# Output: data/difference/<device>/<dir>/reviews/{claude,codex,gemini}.csv
+# One category
+python3 scripts/make_review_copies.py <device>
+# All categories at once
+python3 scripts/make_review_copies.py --all
 ```
 
-Each file has the raw columns plus three empty judgment columns for that reviewer only.
+Output: `data/difference/<device>/reviews/{claude,codex,gemini}.csv` — each containing the combined rows from both `vendor_only` and `keyword_only` (the `Difference Type` column sorts them back). Prior AI judgments are **automatically restored from `judgment_store.csv`** by `(category, cve_id)` — no `--preserve` flag needed. Only CVEs new to the current `01_raw.csv` are left blank.
+
+To blank-rebuild and ignore the store: add `--overwrite`. See [Refreshing difference sets without losing review work](#refreshing-difference-sets-without-losing-review-work).
 
 **Step 3 — Manual AI reviews (Claude and Codex)**
 
-- Claude Code opens and fills `reviews/claude.csv` — columns: `Claude Judgment`, `Claude Confidence`, `Claude Reasoning`
-- Codex opens and fills `reviews/codex.csv` — columns: `Codex Judgment`, `Codex Confidence`, `Codex Reasoning`
+- Claude Code opens and fills `data/difference/<device>/reviews/claude.csv` — columns: `Claude Judgment`, `Claude Confidence`, `Claude Reasoning`
+- Codex opens and fills `data/difference/<device>/reviews/codex.csv` — columns: `Codex Judgment`, `Codex Confidence`, `Codex Reasoning`
 
 Judgment values: `Yes` / `No` / `Maybe`. Confidence: `High` / `Low`. See the rubric in `data/difference/CLASSIFICATION_PROMPT.md`.
 
@@ -281,42 +305,42 @@ set -a; source .env; set +a
 
 # Run Gemini and merge in one command
 python3 scripts/merge_judgments.py \
-    --reviews data/difference/<device>/<dir>/reviews \
+    --reviews data/difference/<device>/reviews \
     --run-gemini \
     --category "<device type phrase>" \
     --model gemma-4-31b-it
 
 # Pure merge only (no Gemini API call) — useful as a status check
-python3 scripts/merge_judgments.py --reviews data/difference/<device>/<dir>/reviews
+python3 scripts/merge_judgments.py --reviews data/difference/<device>/reviews
 ```
 
 Gemini is resumable — rows already filled are skipped. The merge writes:
 
-- `02_merged.csv` — all 9 AI columns plus `Needs Human Review` flag and `Review Status`
-- `02_high_confidence_audit.csv` — a random sample of unanimous high-confidence rows for spot-checking
+- `data/difference/<device>/02_merged.csv` — all 9 AI columns plus `Needs Human Review` flag and `Review Status`
+- `data/difference/<device>/02_high_confidence_audit.csv` — a random sample of unanimous high-confidence rows for spot-checking
 
 **Flag rule:** `Needs Human Review = Yes` when both Claude and Codex are Low confidence, or the three judgments are not unanimous. Gemini's confidence is excluded from the flag (it skews Low) but its judgment counts toward unanimity.
 
 **Run Gemini over all categories at once**
 
 ```bash
-DIRECTION=vendor_only bash scripts/run_gemma_column.sh
-# Backs up the prior model's results, blanks the Gemini column, then fills it
+bash scripts/run_gemma_column.sh
+# Backs up the prior model's results (per-category), blanks the Gemini column, then fills it
 ```
 
-Rate limits for `gemma-4-31b-it`: 15 RPM / 1,500 req/day. Quota resets at midnight Pacific (~03:00 ET).
+Each category gets its own flag file (`.gemma_prepped`) so the run is resumable. Rate limits for `gemma-4-31b-it`: 15 RPM / 1,500 req/day. Quota resets at midnight Pacific (~03:00 ET).
 
 **Step 5 — Extract the human-review queue**
 
 ```bash
 python3 scripts/extract_human_review.py
 # Or for a specific file:
-python3 scripts/extract_human_review.py --merged data/difference/<device>/<dir>/02_merged.csv
+python3 scripts/extract_human_review.py --merged data/difference/<device>/02_merged.csv
 ```
 
 Writes:
 
-- `data/difference/<device>/<dir>/02_needs_human_review.csv` — flagged rows for this category/direction
+- `data/difference/<device>/02_needs_human_review.csv` — flagged rows for this category (both directions)
 - `data/difference/human_review_queue.csv` — all flagged rows across all categories (one combined sheet)
 
 Re-running is safe — any `Human Verdict` / `Human Notes` already filled in are carried forward automatically.
@@ -333,8 +357,9 @@ python3 scripts/finalize_judgments.py
 
 Writes:
 
-- `data/difference/<device>/<dir>/03_final.csv` — per category/direction with `Final Judgment` + `Final Source`
-- `data/difference/final_resolved.csv` — all categories combined
+- `data/difference/<device>/03_final.csv` — per category with `Final Judgment` + `Final Source`
+- `data/difference/final_resolved.csv` — all categories combined (derived; rebuilt each run)
+- `data/difference/judgment_store.csv` — **upserted** (never rebuilt from scratch); the persistent backing store that survives any `01_raw.csv` regeneration
 
 `Final Source` is `ai-consensus` for unflagged rows, `human` for adjudicated rows, `pending` for rows still awaiting a human verdict.
 
@@ -343,6 +368,19 @@ Re-run as humans fill more rows in — it never overwrites AI columns.
 **Step 8 — Mine resolved-Yes rows for missing keywords**
 
 Inspect the resolved-Yes rows in `03_final.csv` for keyword phrases not yet in `keyword_terms.csv`. Add them to close the recall gap, then re-run `build_keyword_search.py`. Document the additions in `03_keyword_additions.md`.
+
+---
+
+## Refreshing difference sets without losing review work
+
+When the vendor or keyword terms change (e.g. a snapshot rebuild or scope freeze), the `01_raw` difference sets must be regenerated — which desyncs the review artifacts built on top of them. Prior work is **not lost** if you refresh in this order: both human verdicts and AI judgments are preserved by `(category, cve_id)`, so only *genuinely new* rows need review.
+
+1. **Regenerate the raw sets** — `build_difference_sets.py --direction both --overwrite`.
+2. **Rebuild review copies** — `make_review_copies.py --all`. Prior AI judgments are **automatically restored from `judgment_store.csv`** by `(category, cve_id)` — no `--preserve` flag needed. Only CVEs new to the regenerated `01_raw.csv` are left blank.
+3. **Re-judge only the new (blank) rows** — Claude/Codex manually; Gemini via `merge_judgments.py --run-gemini` (resumable — it skips filled rows, so it only spends quota on the blanks).
+4. **Re-merge and re-settle** — `merge_judgments.py` (re-flag) → `extract_human_review.py` (re-applies existing `Human Verdict`s by key) → `finalize_judgments.py` (re-finalizes and upserts the store).
+
+> Worked example (2026-06-28 refresh after the vendor reproducibility fix + keyword overhaul): regenerating the `vendor_only` sets preserved **1,175** Claude/Codex judgments per reviewer and left **2,178** new rows (mostly cameras, whose set grew 1,709 → 2,798) for fresh review. All **334** human verdicts were retained — **268** still map to current rows; the **66** orphans (CVEs the keyword search now also matches) drop out harmlessly.
 
 ---
 
@@ -418,8 +456,21 @@ Runs device-phrase keywords from `keyword_terms.csv` through the `cve_search` en
 
 ---
 
-### `run_all_years.sh` — Stage 2
-Shell wrapper that runs `cve_search.py` over all NVD year feeds (2002–2026) and merges the per-year outputs into a single `results_all.csv`. Outputs CSV only — no Excel. Currently hardcoded to a specific keyword set (sleeptracker); edit the `KEYWORDS` variable at the top of the script before running a different category. No CLI flags.
+### `build_vendor_search.py` — Stage 2
+Runs brand terms from `vendor_terms.csv` through the `cve_search` engine against the fixed NVD snapshot. Writes one `results_all_<slug>.xlsx` per category, in the same schema as the keyword files. Same flags and behaviour as `build_keyword_search.py`.
+
+| Flag | Description |
+|------|-------------|
+| `--categories SLUG [SLUG …]` | Only build these slugs (default: every slug with active terms) |
+| `--snapshot FILE` | NVD snapshot CSV to search (default: `data/nvd-snapshot/nvd_all.csv`) |
+| `--terms FILE` | Brand terms CSV to read (default: `data/vendor-search/vendor_terms.csv`) |
+| `--outdir DIR` | Where to write `results_all_<slug>.xlsx` files (default: `data/vendor-search/`) |
+| `--overwrite` | Rebuild even if `results_all_<slug>.xlsx` already exists (default: skip) |
+
+---
+
+### `run_all_years.sh` — Snapshot / Legacy
+Shell wrapper that runs `cve_search.py` over all NVD year feeds (2002–2026) and merges the per-year outputs into a single CSV. Used to **build the snapshot**, and is the legacy per-year vendor-search path (superseded by `build_vendor_search.py`). Outputs CSV only — no Excel. Currently hardcoded to a specific keyword set (sleeptracker); edit the `KEYWORDS` variable at the top of the script before running a different category. No CLI flags.
 
 ---
 
@@ -446,7 +497,7 @@ Batch-generates `01_raw.csv` for every category, in both directions (`vendor_onl
 ---
 
 ### `init_categories.py` — Stage 4
-Scaffolds `data/difference/<cat>/<dir>/reviews/` folders from a category list. Idempotent — existing folders are untouched.
+Scaffolds `data/difference/<cat>/vendor_only/` and `data/difference/<cat>/keyword_only/` direction subfolders from a category list. Idempotent — existing folders are untouched. (The `reviews/` folder at the category level is created by `make_review_copies.py` when needed.)
 
 | Flag | Description |
 |------|-------------|
@@ -456,14 +507,26 @@ Scaffolds `data/difference/<cat>/<dir>/reviews/` folders from a category list. I
 
 ---
 
-### `make_review_copies.py` — Stage 4
-Splits a `01_raw.csv` into three blind per-AI copies (`claude.csv`, `codex.csv`, `gemini.csv`), each containing only the raw columns and that reviewer's empty judgment columns.
+### `seed_judgment_store.py` — Stage 4 (one-time migration)
+Bootstraps `data/difference/judgment_store.csv` from the existing `final_resolved.csv`. Run once when migrating to the current pipeline structure. After that, `finalize_judgments.py` keeps the store up to date automatically.
 
 | Flag | Description |
 |------|-------------|
-| `raw_csv` | (positional) Path to the raw difference CSV (e.g. `01_raw.csv`) |
-| `--outdir DIR` | Where to write the review copies (default: `<raw_dir>/reviews/`) |
-| `--overwrite` | Overwrite existing review copies instead of skipping them |
+| `--diff-dir DIR` | Difference directory (default: `data/difference`) |
+| `--overwrite` | Overwrite if `judgment_store.csv` already exists |
+
+---
+
+### `make_review_copies.py` — Stage 4
+Builds combined blind review copies for a category, concatenating both `vendor_only` and `keyword_only` `01_raw.csv` files. Pre-fills known AI judgments from `judgment_store.csv` automatically — no `--preserve` flag needed. Writes to `data/difference/<category>/reviews/{claude,codex,gemini}.csv`. Existing copies are skipped by default.
+
+| Flag | Description |
+|------|-------------|
+| `category` | (positional) Category slug (e.g. `cameras`) |
+| `--all` | Process every category listed in `device_lst.txt` |
+| `--diff-dir DIR` | Difference directory root (default: `data/difference`) |
+| `--store FILE` | Path to `judgment_store.csv` (default: `<diff-dir>/judgment_store.csv`) |
+| `--overwrite` | Blank-rebuild existing copies (ignore judgment store) |
 
 ---
 
@@ -507,34 +570,28 @@ Splits a `01_raw.csv` into three blind per-AI copies (`claude.csv`, `codex.csv`,
 ---
 
 ### `run_gemma_column.sh` — Stage 4 (top level)
-**All-categories batch runner.** Loops over every category and calls `merge_judgments.py --run-gemini` for each. Does one-time prep (backs up the prior model's results as `gemini_3.1_baseline.csv`, blanks the Gemini columns) guarded by a flag file so the run is fully resumable. Tuned to straddle the daily API quota reset at 0.30 RPS.
+**All-categories batch runner.** Loops over every category and calls `merge_judgments.py --run-gemini` for each. Reviews are now combined per category (`data/difference/<cat>/reviews/`) so both directions are filled in one pass. Does one-time prep per category (backs up the prior model's results as `gemini_3.1_baseline.csv`, blanks the Gemini columns) guarded by a per-category flag file (`.gemma_prepped`) so the run is fully resumable. Tuned to straddle the daily API quota reset at 0.30 RPS.
 
-Configured via environment variables at the top of the script rather than CLI flags:
-
-| Variable | Description |
-|----------|-------------|
-| `DIRECTION` | Which difference direction to fill: `vendor_only` or `keyword_only` (default: `vendor_only`) |
-| `MODEL` | Gemini/Gemma model ID (hardcoded to `gemma-4-31b-it` — edit the script to change) |
-| `RPS` | Requests per second (hardcoded to `0.30` — edit to change) |
+No CLI flags — edit `MODEL` and `RPS` at the top of the script if needed.
 
 ---
 
 ### `extract_human_review.py` — Stage 4
-Pulls all `Needs Human Review = Yes` rows from every `02_merged.csv` into per-category `02_needs_human_review.csv` files and a combined `human_review_queue.csv`. Verdict-preserving — re-runs carry forward any `Human Verdict` / `Human Notes` already filled in, keyed by `(category, cve_id)`.
+Pulls all `Needs Human Review = Yes` rows from every `<cat>/02_merged.csv` into per-category `02_needs_human_review.csv` files and a combined `human_review_queue.csv`. Verdict-preserving — re-runs carry forward any `Human Verdict` / `Human Notes` already filled in, keyed by `(category, cve_id)`. The `Direction` column in the combined queue is derived from the `Difference Type` column on each row.
 
 | Flag | Description |
 |------|-------------|
-| `--diff-dir DIR` | Directory holding `<cat>/<dir>/02_merged.csv` files (default: `data/difference`) |
+| `--diff-dir DIR` | Directory holding `<cat>/02_merged.csv` files (default: `data/difference`) |
 | `--merged FILE` | Run on a single `02_merged.csv` instead of scanning the whole directory |
 
 ---
 
 ### `finalize_judgments.py` — Stage 4
-Folds human verdicts back into one settled judgment per CVE. Writes `03_final.csv` per category and a combined `final_resolved.csv`. Never overwrites AI columns — safe to re-run as humans fill more rows in.
+Folds human verdicts back into one settled judgment per CVE. Writes `03_final.csv` per category, a combined `final_resolved.csv` (rebuilt each run), and **upserts `judgment_store.csv`** (append-only — never rebuilt from scratch, survives any `01_raw` regeneration). Never overwrites AI columns — safe to re-run as humans fill more rows in.
 
 | Flag | Description |
 |------|-------------|
-| `--diff-dir DIR` | Directory holding `<cat>/<dir>/02_merged.csv` files (default: `data/difference`) |
+| `--diff-dir DIR` | Directory holding `<cat>/02_merged.csv` files (default: `data/difference`) |
 
 ---
 
@@ -550,13 +607,14 @@ Old live-NVD-API querier. Retired and no longer part of the pipeline. Kept on di
 | `keyword_terms.csv` | `slug, term` |
 | `keyword_<cat>.csv` | `cve_id, published, description, cvss_score, cvss_version, cwe_ids, cpe_strings` |
 | `results_all_*.xlsx` | `cve_id, published, description, cvss_score, cvss_version, cwe_ids, cpe_strings` |
-| `01_raw.csv` | `Difference Type, cve_id, published, description, cvss_score, cvss_version, cwe_ids, cpe_strings` |
-| `reviews/{ai}.csv` | raw columns + `<AI> Judgment, <AI> Confidence, <AI> Reasoning` |
-| `02_merged.csv` | raw columns + all 9 AI columns + `Review Status, Needs Human Review, Review Reason` |
-| `02_needs_human_review.csv` | `Verdicts, Review Reason` + raw + AI reasoning + `Human Verdict, Human Notes` |
-| `03_final.csv` | merged columns + `Final Judgment, Final Source` |
+| `<cat>/<dir>/01_raw.csv` | `Difference Type, cve_id, published, description, cvss_score, cvss_version, cwe_ids, cpe_strings` |
+| `<cat>/reviews/{ai}.csv` | raw columns (both directions combined) + `<AI> Judgment, <AI> Confidence, <AI> Reasoning` |
+| `<cat>/02_merged.csv` | raw columns + all 9 AI columns + `Review Status, Needs Human Review, Review Reason` |
+| `<cat>/02_needs_human_review.csv` | `Verdicts, Review Reason` + raw + AI reasoning + `Human Verdict, Human Notes` |
+| `<cat>/03_final.csv` | merged columns + `Final Judgment, Final Source` |
 | `human_review_queue.csv` | same as `02_needs_human_review.csv` + leading `Category, Direction` |
-| `final_resolved.csv` | same as `03_final.csv` + leading `Category, Direction` |
+| `final_resolved.csv` | same as `03_final.csv` + leading `Category, Direction` (derived; rebuilt each run) |
+| `judgment_store.csv` | `category, cve_id, Difference Type` + all 9 AI columns + `Final Judgment, Final Source` (persistent; upserted by `finalize_judgments.py`) |
 
 ---
 

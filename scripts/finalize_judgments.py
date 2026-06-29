@@ -3,26 +3,25 @@
 
 Collapses each category's merged triple-AI file into a single `Final Judgment` using:
 
-    not flagged (AIs agree, confident)      -> the AI consensus      (Final Source = ai-consensus)
-    flagged + human filled Human Verdict     -> the human's verdict    (Final Source = human)
-    flagged + Human Verdict still blank       -> pending                (Final Source = pending)
-    a reviewer hasn't judged yet (incomplete) -> blank                  (Final Source = incomplete)
+    not flagged (AIs agree, confident)       -> the AI consensus     (Final Source = ai-consensus)
+    flagged + human filled Human Verdict      -> the human's verdict   (Final Source = human)
+    flagged + Human Verdict still blank        -> pending               (Final Source = pending)
+    a reviewer hasn't judged yet (incomplete)  -> blank                 (Final Source = incomplete)
 
-Human verdicts are read from the Human Verdict column of either the combined
-data/difference/human_review_queue.csv or the per-category 02_needs_human_review.csv
-(whichever you filled in), keyed by (category, cve_id).
+Human verdicts are read from data/difference/human_review_queue.csv or per-category
+02_needs_human_review.csv (whichever was filled in), keyed by (category, cve_id).
 
-Adds `Final Judgment` / `Final Source` columns — never overwrites the AI columns. Re-run
-as humans fill more in; the `pending` count shrinks toward zero.
+Direction is encoded per-row in the Difference Type column (vendor_only / keyword_only).
+Adds `Final Judgment` / `Final Source` columns — never overwrites the AI columns.
+Re-run as humans fill more in; the `pending` count shrinks toward zero.
 
-Direction-aware: it scans both difference directions, <cat>/vendor_only/ and
-<cat>/keyword_only/. Verdicts are keyed by (category, cve_id) — vendor_only and keyword_only
-are disjoint sets, so that key stays unique across directions and existing verdicts resolve
-unchanged.
+After each run, upserts settled AI judgments + Final Judgment into judgment_store.csv
+(keyed by (category, cve_id)) so they survive 01_raw.csv regenerations.
 
 Outputs:
-    per cat+direction : data/difference/<cat>/<direction>/03_final.csv
-    combined          : data/difference/final_resolved.csv   (adds Category + Direction columns)
+    per category  : data/difference/<cat>/03_final.csv
+    combined      : data/difference/final_resolved.csv  (adds Category + Direction columns)
+    persistent    : data/difference/judgment_store.csv  (upserted, never rebuilt from scratch)
 
 Usage:
     python finalize_judgments.py
@@ -32,25 +31,29 @@ import argparse
 import glob
 import os
 import pandas as pd
+from collections import Counter
 
 VALID = {"Yes", "No", "Maybe"}
 
+STORE_COLS = [
+    "category", "cve_id", "Difference Type",
+    "Claude Judgment", "Claude Confidence", "Claude Reasoning",
+    "Codex Judgment", "Codex Confidence", "Codex Reasoning",
+    "Gemini Judgment", "Gemini Confidence", "Gemini Reasoning",
+    "Final Judgment", "Final Source",
+]
 
-def cat_dir_of(merged_path):
-    """(category, direction) from a .../<cat>/<direction>/02_*.csv path."""
-    direction = os.path.basename(os.path.dirname(merged_path))
-    category = os.path.basename(os.path.dirname(os.path.dirname(merged_path)))
-    return category, direction
+
+def cat_of(merged_path):
+    return os.path.basename(os.path.dirname(merged_path))
 
 
 def load_human_verdicts(diff_dir):
-    """Return {(category, CVE-ID): verdict} from filled Human Verdict cells, warning on
-    invalid values or conflicts between the combined and per-category sheets."""
+    """Return {(category, CVE-ID): verdict} from filled Human Verdict cells."""
     verdicts = {}
-    sources = {}  # (cat, cve) -> file it came from, for conflict messages
+    sources = {}
 
     def ingest(path, category):
-        """category=None -> read it from the file's Category column (combined sheet)."""
         if not os.path.isfile(path):
             return
         df = pd.read_csv(path, dtype=str).fillna("")
@@ -73,11 +76,10 @@ def load_human_verdicts(diff_dir):
             verdicts.setdefault(key, hv)
             sources.setdefault(key, os.path.basename(path))
 
-    # combined sheet (category from its own column)
     ingest(os.path.join(diff_dir, "human_review_queue.csv"), category=None)
-    # per-category sheets (category from the folder name: <cat>/<direction>/02_needs...)
-    for p in sorted(glob.glob(os.path.join(diff_dir, "*", "*", "02_needs_human_review.csv"))):
-        ingest(p, category=cat_dir_of(p)[0])
+    for p in sorted(glob.glob(os.path.join(diff_dir, "*", "02_needs_human_review.csv"))):
+        cat = os.path.basename(os.path.dirname(p))
+        ingest(p, category=cat)
     return verdicts
 
 
@@ -88,17 +90,39 @@ def resolve_row(row, cat, human):
     if str(row.get("Needs Human Review", "")).strip() == "Yes":
         hv = human.get((cat, str(row["cve_id"]).strip().upper()))
         return (hv, "human") if hv and hv != "Maybe" else ("", "pending")
-    # not flagged + complete => the three judgments are unanimous; take any (Claude)
     return str(row.get("Claude Judgment", "")).strip(), "ai-consensus"
 
 
 def finalize(merged_path, human):
-    cat, direction = cat_dir_of(merged_path)
+    cat = cat_of(merged_path)
     df = pd.read_csv(merged_path, dtype=str).fillna("")
     res = df.apply(lambda r: resolve_row(r, cat, human), axis=1, result_type="expand")
     df["Final Judgment"] = res[0]
     df["Final Source"] = res[1]
-    return cat, direction, df
+    return cat, df
+
+
+def upsert_store(df, cat, store_path):
+    """Replace all rows for this category in judgment_store.csv (upsert semantics)."""
+    if os.path.isfile(store_path):
+        store = pd.read_csv(store_path, dtype=str).fillna("")
+    else:
+        store = pd.DataFrame(columns=STORE_COLS)
+
+    new_df = df.copy()
+    new_df["category"] = cat
+    keep = ["category", "cve_id"] + [c for c in STORE_COLS[2:] if c in new_df.columns]
+    new_rows = new_df[keep]
+
+    store = store[store["category"] != cat]
+    store = pd.concat([store, new_rows], ignore_index=True)
+
+    # Ensure all store columns exist (fill any absent ones with "")
+    for col in STORE_COLS:
+        if col not in store.columns:
+            store[col] = ""
+    store = store[STORE_COLS]
+    store.to_csv(store_path, index=False)
 
 
 def main():
@@ -107,7 +131,7 @@ def main():
                     help="Directory holding <category>/02_merged.csv (default: data/difference)")
     args = ap.parse_args()
 
-    merged_files = sorted(glob.glob(os.path.join(args.diff_dir, "*", "*", "02_merged.csv")))
+    merged_files = sorted(glob.glob(os.path.join(args.diff_dir, "*", "02_merged.csv")))
     if not merged_files:
         raise SystemExit("No 02_merged.csv files found — run merge_judgments.py first.")
 
@@ -115,28 +139,34 @@ def main():
     human = load_human_verdicts(args.diff_dir)
     print(f"  {len(human)} human verdict(s) found\n")
 
+    store_path = os.path.join(args.diff_dir, "judgment_store.csv")
     combined = []
-    from collections import Counter
     grand = Counter()
+
     for mp in merged_files:
-        cat, direction, df = finalize(mp, human)
+        cat, df = finalize(mp, human)
         out = os.path.join(os.path.dirname(mp), "03_final.csv")
         df.to_csv(out, index=False)
         c = Counter(df["Final Source"])
         grand.update(c)
         pend = c.get("pending", 0)
         flag = f"  ({pend} pending human input)" if pend else ""
-        print(f"  {cat:14} {direction:12} resolved={c.get('ai-consensus',0)+c.get('human',0):4} "
+        print(f"  {cat:16} resolved={c.get('ai-consensus',0)+c.get('human',0):4} "
               f"[ai={c.get('ai-consensus',0)}, human={c.get('human',0)}], "
               f"incomplete={c.get('incomplete',0)}{flag}")
-        df.insert(0, "Direction", direction)
-        df.insert(0, "Category", cat)
-        combined.append(df)
+        upsert_store(df, cat, store_path)
+        df_out = df.copy()
+        # Direction is already encoded in Difference Type; add an alias column for compat
+        if "Difference Type" in df_out.columns:
+            df_out.insert(0, "Direction", df_out["Difference Type"])
+        df_out.insert(0, "Category", cat)
+        combined.append(df_out)
 
     pd.concat(combined, ignore_index=True).to_csv(
         os.path.join(args.diff_dir, "final_resolved.csv"), index=False)
     print(f"\nTotals: {dict(grand)}")
     print(f"-> per-category 03_final.csv + {os.path.join(args.diff_dir, 'final_resolved.csv')}")
+    print(f"-> judgment store upserted: {store_path}")
     if grand.get("pending"):
         print(f"\n{grand['pending']} rows still need a Human Verdict "
               f"(fill them in the review sheet and re-run).")
