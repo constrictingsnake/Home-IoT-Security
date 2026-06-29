@@ -88,5 +88,5 @@ Contact Information
 For questions related to accessing Censys, NVD,  API keys, or the shared Google Drive please reach out to Dr. Cukier or Dr. Katerina first. If you need additional assistance then you may contact either of us.
 
 
-Elizabeth Welbeck [ewelbeck@terpmail.umd.edu]
-Jason Yih [jyih@terpmail.umd.edu]
+Elizabeth Welbeck
+Jason Yih
