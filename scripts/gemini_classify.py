@@ -87,7 +87,11 @@ def call_with_retry(session, api_key, model, prompt, max_retries=5):
             return call_gemini(session, api_key, model, prompt)
         except requests.HTTPError as e:
             code = e.response.status_code if e.response is not None else None
-            if code in (429, 500, 502, 503, 504) and attempt < max_retries - 1:
+            if code == 429:
+                # Don't retry 429s — each retry burns daily quota. Skip this row; a later
+                # run will retry it once quota resets.
+                raise
+            if code in (500, 502, 503, 504) and attempt < max_retries - 1:
                 wait = 2.0 ** attempt
                 print(f"    HTTP {code} — retrying in {wait:.0f}s")
                 time.sleep(wait)
@@ -151,6 +155,8 @@ def classify_file(
             judgment, confidence, reasoning = call_with_retry(session, api_key, model, prompt)
         except Exception as e:  # leave blank; a later run will retry this row
             print(f"    row {idx} ({df.at[idx, 'cve_id']}): error {e} — left blank for retry")
+            if delay:
+                time.sleep(delay)
             continue
 
         # Convention (matches the rubric): keep reasoning only for Low confidence or Maybe.
