@@ -319,6 +319,17 @@ Gemini is resumable — rows already filled are skipped. The merge writes:
 - `data/difference/<device>/02_merged.csv` — all 9 AI columns plus `Needs Human Review` flag and `Review Status`
 - `data/difference/<device>/02_high_confidence_audit.csv` — a random sample of unanimous high-confidence rows for spot-checking
 
+**Speeding up the Gemini pass — `--batch-size`.** By default each row is one API call. Pass `--batch-size N` (e.g. `20`) to pack N CVEs into a single prompt; the model returns a JSON array and results are mapped back by `cve_id`, cutting round-trips ~Nx and easing the daily-quota load. Rows the model omits or returns with an unrecognized `cve_id` are left blank and retried on the next run, so batching stays safe and resumable.
+
+```bash
+python3 scripts/merge_judgments.py \
+    --reviews data/difference/<device>/reviews \
+    --run-gemini --category "<device type phrase>" \
+    --model gemma-4-31b-it --batch-size 20
+```
+
+> **Note:** very large batches risk truncating the model's JSON output on long-description categories (the whole chunk is then dropped and retried). Start at `--batch-size 10` for verbose categories (cameras, hub) and go up to `20` for short-description ones. `--batch-size 1` is the default and reproduces the exact prior one-row-at-a-time behavior.
+
 **Flag rule:** `Needs Human Review = Yes` when both Claude and Codex are Low confidence, or the three judgments are not unanimous. Gemini's confidence is excluded from the flag (it skews Low) but its judgment counts toward unanimity.
 
 **Run Gemini over all categories at once**
@@ -543,6 +554,7 @@ Builds combined blind review copies for a category, concatenating both `vendor_o
 | `--save-every N` | Flush progress to disk every N rows (default: `25`) |
 | `--limit N` | Classify only the first N pending rows — useful for testing (default: `0` = all) |
 | `--redo` | Re-classify rows that already have a Gemini judgment |
+| `--batch-size N` | Rows per API call (default: `1` = one row at a time). Values >1 pack N CVEs into a single prompt and map results back by `cve_id`, cutting round-trips ~Nx. See the batching note below. |
 
 ---
 
@@ -566,6 +578,7 @@ Builds combined blind review copies for a category, concatenating both `vendor_o
 | `--save-every N` | Gemini: flush progress every N rows (default: `25`) |
 | `--limit N` | Gemini: classify only the first N pending rows (default: `0` = all) |
 | `--redo` | Gemini: re-classify rows that already have a judgment |
+| `--batch-size N` | Gemini: rows per API call (default: `1`). Try `20` to cut round-trips ~20x. See the batching note below. |
 
 ---
 

@@ -160,6 +160,8 @@ def main():
     gem.add_argument("--save-every", type=int, default=25, help="Gemini: flush progress every N rows")
     gem.add_argument("--limit", type=int, default=0, help="Gemini: classify only the first N pending rows")
     gem.add_argument("--redo", action="store_true", help="Gemini: re-classify rows that already have a judgment")
+    gem.add_argument("--batch-size", type=int, default=1,
+                     help="Gemini: rows per API call (try 20 to cut round-trips ~20x)")
     args = ap.parse_args()
 
     paths = resolve_paths(args)
@@ -185,6 +187,7 @@ def main():
                 save_every=args.save_every,
                 limit=args.limit,
                 redo=args.redo,
+                batch_size=args.batch_size,
             )
         except (RuntimeError, FileNotFoundError, ValueError) as e:
             ap.error(str(e))

@@ -13,6 +13,9 @@ env/
 .env
 *.key
 
+# Transient Gemma reviewer run logs — local stdout captures, regenerable
+gemma_*.log
+
 # macOS / Windows / editor junk
 .DS_Store
 Thumbs.db
@@ -27,3 +30,8 @@ Thumbs.db
 data/nvd-snapshot/*.csv
 data/nvd-snapshot/*.json
 data/nvd-snapshot/*.json.gz
+
+# Per-category prep marker touched by run_gemma_column.sh — local, per-machine
+# bookkeeping only. Must NOT be tracked: if checked out elsewhere it would make
+# the script skip the one-time backup/blank of the Gemini column.
+data/difference/*/.gemma_prepped

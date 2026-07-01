@@ -51,6 +51,20 @@ RESPONSE_SCHEMA = {
     "required": ["judgment", "confidence", "reasoning"],
 }
 
+BATCH_RESPONSE_SCHEMA = {
+    "type": "array",
+    "items": {
+        "type": "object",
+        "properties": {
+            "cve_id": {"type": "string"},
+            "judgment": {"type": "string", "enum": ["Yes", "No", "Maybe"]},
+            "confidence": {"type": "string", "enum": ["High", "Low"]},
+            "reasoning": {"type": "string"},
+        },
+        "required": ["cve_id", "judgment", "confidence", "reasoning"],
+    },
+}
+
 
 def build_prompt(rubric, category, description, cpe):
     return (
@@ -60,6 +74,26 @@ def build_prompt(rubric, category, description, cpe):
         f"=== CPE STRINGS ===\n{cpe or '(none)'}\n\n"
         "Classify this CVE for the device category above. Judge ONLY from the description "
         "and CPE strings. Respond with the required JSON object."
+    )
+
+
+def build_batch_prompt(rubric, category, rows):
+    """rows: list of (cve_id, description, cpe) tuples."""
+    entries = []
+    for cve_id, description, cpe in rows:
+        entries.append(
+            f"--- CVE: {cve_id} ---\n"
+            f"Description: {description or '(none)'}\n"
+            f"CPE Strings: {cpe or '(none)'}"
+        )
+    block = "\n\n".join(entries)
+    return (
+        f"{rubric}\n\n"
+        f"=== DEVICE CATEGORY UNDER REVIEW ===\n{category}\n\n"
+        f"=== CVEs TO CLASSIFY ===\n{block}\n\n"
+        "Classify EACH CVE above for the device category. Judge ONLY from each CVE's "
+        "description and CPE strings. Return a JSON array with one object per CVE, each "
+        "containing cve_id, judgment, confidence, and reasoning."
     )
 
 
@@ -81,10 +115,33 @@ def call_gemini(session, api_key, model, prompt):
     return obj["judgment"], obj["confidence"], obj.get("reasoning", "")
 
 
-def call_with_retry(session, api_key, model, prompt, max_retries=5):
+def call_gemini_batch(session, api_key, model, prompt):
+    """Returns a dict of {cve_id: (judgment, confidence, reasoning)}."""
+    payload = {
+        "contents": [{"parts": [{"text": prompt}]}],
+        "generationConfig": {
+            "responseMimeType": "application/json",
+            "responseSchema": BATCH_RESPONSE_SCHEMA,
+            "temperature": 0,
+        },
+    }
+    resp = session.post(
+        API_URL.format(model=model), params={"key": api_key}, json=payload, timeout=120
+    )
+    resp.raise_for_status()
+    text = resp.json()["candidates"][0]["content"]["parts"][0]["text"]
+    items, _ = json.JSONDecoder().raw_decode(text.strip())
+    return {
+        item["cve_id"]: (item["judgment"], item["confidence"], item.get("reasoning", ""))
+        for item in items
+    }
+
+
+def call_with_retry(session, api_key, model, prompt, max_retries=5, batch=False):
+    fn = call_gemini_batch if batch else call_gemini
     for attempt in range(max_retries):
         try:
-            return call_gemini(session, api_key, model, prompt)
+            return fn(session, api_key, model, prompt)
         except requests.HTTPError as e:
             code = e.response.status_code if e.response is not None else None
             if code == 429:
@@ -111,11 +168,16 @@ def classify_file(
     limit=0,
     redo=False,
     api_key=None,
+    batch_size=1,
 ):
     """Fill the Gemini columns of one review copy in place. Returns rows classified.
 
     Importable so merge_judgments.py can run the Gemini pass before merging. Resumable:
     only blank rows are classified unless redo=True, and progress is flushed to disk.
+
+    batch_size > 1 sends multiple rows per API call, amortizing rubric overhead and
+    dramatically reducing round-trips. Results are mapped back by cve_id. Rows not
+    returned by the model are left blank for retry.
     """
     api_key = api_key or os.environ.get("GEMINI_API_KEY")
     if not api_key:
@@ -143,35 +205,78 @@ def classify_file(
         print("  Gemini: nothing to do — all rows already classified.")
         return 0
 
-    print(f"  Gemini: classifying {len(pending)} rows with {model} ...")
+    use_batch = batch_size > 1
+    n_calls = -(-len(pending) // batch_size) if use_batch else len(pending)
+    print(
+        f"  Gemini: classifying {len(pending)} rows with {model} "
+        f"({'batch_size=' + str(batch_size) + ', ' if use_batch else ''}{n_calls} API calls) ..."
+    )
     session = requests.Session()
     delay = 1.0 / rps if rps > 0 else 0.0
     done = 0
-    for idx in pending:
-        prompt = build_prompt(
-            rubric, category, df.at[idx, "description"], df.at[idx, cpe_col] if cpe_col else ""
-        )
-        try:
-            judgment, confidence, reasoning = call_with_retry(session, api_key, model, prompt)
-        except Exception as e:  # leave blank; a later run will retry this row
-            print(f"    row {idx} ({df.at[idx, 'cve_id']}): error {e} — left blank for retry")
-            if delay:
-                time.sleep(delay)
-            continue
 
-        # Convention (matches the rubric): keep reasoning only for Low confidence or Maybe.
+    def _write_row(idx, judgment, confidence, reasoning):
         if confidence == "High" and judgment != "Maybe":
             reasoning = ""
         df.at[idx, JUDGMENT_COL] = judgment
         df.at[idx, CONF_COL] = confidence
         df.at[idx, REASON_COL] = reasoning
 
-        done += 1
-        if done % save_every == 0:
-            df.to_csv(csv_path, index=False)
-            print(f"    ...{done}/{len(pending)} saved")
-        if delay:
-            time.sleep(delay)
+    if use_batch:
+        chunks = [pending[i : i + batch_size] for i in range(0, len(pending), batch_size)]
+        for chunk in chunks:
+            rows = [
+                (df.at[idx, "cve_id"], df.at[idx, "description"], df.at[idx, cpe_col] if cpe_col else "")
+                for idx in chunk
+            ]
+            prompt = build_batch_prompt(rubric, category, rows)
+            try:
+                results = call_with_retry(session, api_key, model, prompt, batch=True)
+            except Exception as e:
+                cve_ids = [r[0] for r in rows]
+                print(f"    batch {cve_ids}: error {e} — left blank for retry")
+                if delay:
+                    time.sleep(delay)
+                continue
+
+            # Map results back by cve_id; rows missing from the response stay blank.
+            idx_by_cve = {df.at[idx, "cve_id"]: idx for idx in chunk}
+            for cve_id, (judgment, confidence, reasoning) in results.items():
+                if cve_id not in idx_by_cve:
+                    print(f"    warning: model returned unknown cve_id {cve_id!r} — ignored")
+                    continue
+                _write_row(idx_by_cve[cve_id], judgment, confidence, reasoning)
+                done += 1
+
+            missing = [df.at[idx, "cve_id"] for idx in chunk if df.at[idx, JUDGMENT_COL].strip() == ""]
+            if missing:
+                print(f"    warning: model omitted {missing} — left blank for retry")
+
+            if done % save_every < batch_size:
+                df.to_csv(csv_path, index=False)
+                print(f"    ...{done}/{len(pending)} saved")
+            if delay:
+                time.sleep(delay)
+    else:
+        for idx in pending:
+            prompt = build_prompt(
+                rubric, category, df.at[idx, "description"], df.at[idx, cpe_col] if cpe_col else ""
+            )
+            try:
+                judgment, confidence, reasoning = call_with_retry(session, api_key, model, prompt)
+            except Exception as e:
+                print(f"    row {idx} ({df.at[idx, 'cve_id']}): error {e} — left blank for retry")
+                if delay:
+                    time.sleep(delay)
+                continue
+
+            _write_row(idx, judgment, confidence, reasoning)
+            done += 1
+            if done % save_every == 0:
+                df.to_csv(csv_path, index=False)
+                print(f"    ...{done}/{len(pending)} saved")
+            if delay:
+                time.sleep(delay)
 
     df.to_csv(csv_path, index=False)
     print(f"  Gemini: classified {done} rows; saved to {csv_path}")
@@ -188,6 +293,8 @@ def main():
     ap.add_argument("--save-every", type=int, default=25, help="Write progress to disk every N rows")
     ap.add_argument("--limit", type=int, default=0, help="Classify only the first N pending rows (0 = all)")
     ap.add_argument("--redo", action="store_true", help="Re-classify rows that already have a Gemini judgment")
+    ap.add_argument("--batch-size", type=int, default=1,
+                    help="Rows per API call (default 1 = one row at a time; try 20 to cut round-trips ~20x)")
     args = ap.parse_args()
 
     try:
@@ -200,6 +307,7 @@ def main():
             save_every=args.save_every,
             limit=args.limit,
             redo=args.redo,
+            batch_size=args.batch_size,
         )
     except (RuntimeError, FileNotFoundError, ValueError) as e:
         sys.exit(str(e))
