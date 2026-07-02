@@ -1,0 +1,11 @@
+method,category,term,n_judged,n_yes,n_no,precision,prune_candidate
+vendor,alarms,eufy homebase,13,0,13,0.0,Yes
+vendor,alarms,central station,8,0,8,0.0,Yes
+vendor,alarms,monitoring station,4,0,4,0.0,Yes
+vendor,alarms,fibaro home center,4,0,4,0.0,Yes
+vendor,alarms,alarm.com,2,0,2,0.0,
+vendor,alarms,simplisafe,7,7,0,1.0,
+vendor,alarms,qolsys,3,3,0,1.0,
+vendor,alarms,qolsys iq panel,2,2,0,1.0,
+vendor,alarms,alarm panel,1,1,0,1.0,
+vendor,alarms,abode iota,1,1,0,1.0,

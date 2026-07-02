@@ -64,6 +64,13 @@ CSV_COLS = [
     "cpe_strings", # pipe-separated
 ]
 
+# The fixed NVD snapshot uses CSV_COLS exactly (no term attribution — it's the raw
+# corpus). The per-category SEARCH outputs (keyword_<cat>.csv, results_all_<cat>.xlsx)
+# add one more column recording WHICH search term(s) pulled each row in, so per-term
+# precision can be computed later. Pipe-separated, like cwe_ids/cpe_strings.
+MATCHED_TERMS_COL = "matched_terms"
+OUTPUT_COLS = CSV_COLS + [MATCHED_TERMS_COL]
+
 
 # ──────────────────────────────────────────────────────────
 # NVD JSON parsing
@@ -200,8 +207,8 @@ def _row_to_cve(row: dict) -> dict:
     }
 
 
-def _cve_to_row(cve: dict) -> dict:
-    return {
+def _cve_to_row(cve: dict, matched_terms: Optional[list] = None) -> dict:
+    row = {
         "cve_id":       cve["cve_id"],
         "published":    cve["published"],
         "description":  cve["description"],
@@ -210,6 +217,11 @@ def _cve_to_row(cve: dict) -> dict:
         "cwe_ids":      "|".join(cve["cwe_ids"]),
         "cpe_strings":  "|".join(cve["cpe_strings"]),
     }
+    # Only search outputs carry term attribution; the snapshot writer passes nothing
+    # and stays on the base CSV_COLS schema.
+    if matched_terms is not None:
+        row[MATCHED_TERMS_COL] = "|".join(matched_terms)
+    return row
 
 
 def load_csv(path: str) -> list[dict]:
@@ -271,8 +283,15 @@ def filter_by_keywords(
     keywords: list[str],
     case_sensitive: bool = False,
     whole_word: bool = False,
-) -> tuple[list[dict], dict[str, int]]:
+) -> tuple[list[dict], dict[str, int], dict[str, list[str]]]:
     """Match `keywords` against each CVE's description + CPE strings.
+
+    Returns `(matches, counts, matched_terms)` where `matched_terms` maps each matched
+    `cve_id` -> the list of terms that pulled it in (input order, deduped). A CVE hit by
+    two terms appears under both — that is what lets per-term precision be computed later
+    (a term "owns" every row it matched). The map is built fresh per call and never
+    written onto the shared CVE dicts, so filtering many categories against one loaded
+    snapshot does not leak attribution across categories.
 
     Two matching modes:
       - substring (default): `kw in haystack`. Fast, but a short token can match
@@ -290,6 +309,17 @@ def filter_by_keywords(
     matches: list[dict] = []
     seen: set[str] = set()
     counts: dict[str, int] = {kw: 0 for kw in keywords}
+    matched_terms: dict[str, list[str]] = {}  # cve_id -> terms that hit it (input order)
+
+    def record(cve: dict, kw: str) -> None:
+        counts[kw] += 1
+        cid = cve["cve_id"]
+        terms = matched_terms.setdefault(cid, [])
+        if kw not in terms:
+            terms.append(kw)
+        if cid not in seen:
+            matches.append(cve)
+            seen.add(cid)
 
     if whole_word:
         flags = 0 if case_sensitive else re.IGNORECASE
@@ -303,11 +333,8 @@ def filter_by_keywords(
             haystack = cve["description"] + " " + " ".join(cve["cpe_strings"])
             for orig_kw, pat in matchers:
                 if pat.search(haystack):
-                    counts[orig_kw] += 1
-                    if cve["cve_id"] not in seen:
-                        matches.append(cve)
-                        seen.add(cve["cve_id"])
-        return matches, counts
+                    record(cve, orig_kw)
+        return matches, counts, matched_terms
 
     search_keywords = keywords if case_sensitive else [kw.lower() for kw in keywords]
     for cve in cves:
@@ -316,12 +343,9 @@ def filter_by_keywords(
             haystack = haystack.lower()
         for orig_kw, search_kw in zip(keywords, search_keywords):
             if search_kw in haystack:
-                counts[orig_kw] += 1
-                if cve["cve_id"] not in seen:
-                    matches.append(cve)
-                    seen.add(cve["cve_id"])
+                record(cve, orig_kw)
 
-    return matches, counts
+    return matches, counts, matched_terms
 
 
 # ──────────────────────────────────────────────────────────
@@ -374,12 +398,19 @@ def print_cve_list(cves: list[dict], max_display: int = 50) -> None:
         print(f"  ... and {len(cves) - max_display:,} more — see output files for full list.\n")
 
 
-def save_results_csv(cves: list[dict], path: str) -> None:
+def save_results_csv(cves: list[dict], path: str,
+                     matched_terms: Optional[dict] = None) -> None:
+    """Write matched CVEs. When `matched_terms` (cve_id -> [terms]) is supplied the
+    output carries the extra `matched_terms` column (OUTPUT_COLS); otherwise it stays
+    on the base CSV_COLS schema."""
+    include_terms = matched_terms is not None
+    cols = OUTPUT_COLS if include_terms else CSV_COLS
     with open(path, "w", newline="", encoding="utf-8") as f:
-        writer = csv.DictWriter(f, fieldnames=CSV_COLS)
+        writer = csv.DictWriter(f, fieldnames=cols)
         writer.writeheader()
         for cve in cves:
-            writer.writerow(_cve_to_row(cve))
+            terms = matched_terms.get(cve["cve_id"], []) if include_terms else None
+            writer.writerow(_cve_to_row(cve, terms))
     print(f"  💾  CSV  → {path}")
 
 
@@ -492,7 +523,7 @@ def main() -> None:
 
     # 2. Filter by keywords
     print(f"\n🔍  Searching for: {args.keywords} ...")
-    matched, kw_counts = filter_by_keywords(all_cves, args.keywords, args.case_sensitive)
+    matched, kw_counts, _ = filter_by_keywords(all_cves, args.keywords, args.case_sensitive)
     print_keyword_breakdown(kw_counts, len(matched))
 
     if not matched:

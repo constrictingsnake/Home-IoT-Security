@@ -92,9 +92,13 @@ def collect_keyword_cves(csv_path):
     return found
 
 # Columns dropped from the output (helper column + reviewer judgment columns,
-# spelled both ways across files)
+# spelled both ways across files). `matched_terms` is dropped too: it is search-term
+# attribution that must NOT reach the blind reviewers (it would anchor their judgment).
+# Attribution stays on the builder outputs (keyword_<cat>.csv / results_all_<cat>.xlsx),
+# where term_precision.py re-reads it and joins to the settled judgments by cve_id.
 DROP_COLS = [
     '_cve_norm',
+    'matched_terms',
     'Lizzie Judgment', 'Lizzie Judgement',
     'Cukier Judgment', 'Cukier Judgement',
 ]

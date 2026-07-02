@@ -30,7 +30,7 @@ import os
 import pandas as pd
 
 from cve_search import (
-    CSV_COLS,
+    OUTPUT_COLS,
     load_dataset,
     filter_by_keywords,
     print_keyword_breakdown,
@@ -98,14 +98,17 @@ def main():
             continue
 
         print(f"\n🔍  {slug}: {len(kws)} brand term(s)")
-        matched, counts = filter_by_keywords(all_cves, kws, whole_word=True)
+        matched, counts, terms = filter_by_keywords(all_cves, kws, whole_word=True)
         print_keyword_breakdown(counts, len(matched))
 
-        # Flatten via the engine's row builder so list fields (cwe_ids, cpe_strings)
-        # are pipe-joined and None→"" — IDENTICAL to the keyword CSVs and the old
-        # vendor files. (A bare DataFrame(matched) would write Python list reprs and
-        # break comparability with the keyword side.)
-        df = pd.DataFrame([_cve_to_row(c) for c in matched], columns=CSV_COLS)
+        # Flatten via the engine's row builder so list fields (cwe_ids, cpe_strings,
+        # matched_terms) are pipe-joined and None→"" — IDENTICAL to the keyword CSVs.
+        # (A bare DataFrame(matched) would write Python list reprs and break
+        # comparability with the keyword side.)
+        df = pd.DataFrame(
+            [_cve_to_row(c, terms.get(c["cve_id"], [])) for c in matched],
+            columns=OUTPUT_COLS,
+        )
         df.to_excel(out, index=False)
         print(f"  💾  XLSX → {out}")
         built += 1

@@ -128,9 +128,9 @@ def main():
             continue
 
         print(f"\n🔍  {slug}: {len(kws)} term(s)")
-        matched, counts = filter_by_keywords(all_cves, kws, whole_word=True)
+        matched, counts, terms = filter_by_keywords(all_cves, kws, whole_word=True)
         print_keyword_breakdown(counts, len(matched))
-        save_results_csv(matched, out)
+        save_results_csv(matched, out, matched_terms=terms)
         built += 1
 
     print(f"\n✨  Done. {built} built, {skipped} skipped (exist), {empty} empty "

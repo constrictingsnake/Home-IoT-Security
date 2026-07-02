@@ -31,6 +31,11 @@ import pandas as pd
 REVIEWERS = ["Claude", "Codex", "Gemini"]
 JUDGMENT_FIELDS = ["Judgment", "Confidence", "Reasoning"]
 
+# Review directions concatenated into each category's combined copy. All are disjoint,
+# so the Difference Type column on every row sorts back to its direction. cpe_expansion
+# (Stage 9) is the third: CVEs in neither text method's output, seeded from confirmed Yes.
+DIRECTIONS = ("vendor_only", "keyword_only", "cpe_expansion")
+
 
 def review_columns(reviewer):
     return [f"{reviewer} {field}" for field in JUDGMENT_FIELDS]
@@ -43,14 +48,12 @@ def load_store(store_path):
 
 
 def build_combined(cat_dir):
-    """Concatenate vendor_only + keyword_only 01_raw.csv for a category."""
+    """Concatenate every direction's 01_raw.csv (see DIRECTIONS) for a category."""
     frames = []
-    for direction in ("vendor_only", "keyword_only"):
+    for direction in DIRECTIONS:
         raw = os.path.join(cat_dir, direction, "01_raw.csv")
         if os.path.isfile(raw):
             frames.append(pd.read_csv(raw, dtype=str).fillna(""))
-        else:
-            print(f"  (no {direction}/01_raw.csv — skipping that direction)")
     if not frames:
         return None
     return pd.concat(frames, ignore_index=True)
@@ -104,8 +107,8 @@ def process_category(cat, diff_dir, store_df, overwrite):
         else:
             print(f"  wrote {len(copy)} rows -> {out_path}")
 
-    print(f"  {cat}: {len(combined)} total rows "
-          f"({sum(1 for _ in [os.path.join(cat_dir, d, '01_raw.csv') for d in ('vendor_only','keyword_only') if os.path.isfile(os.path.join(cat_dir, d, '01_raw.csv'))])} directions)")
+    n_dirs = sum(1 for d in DIRECTIONS if os.path.isfile(os.path.join(cat_dir, d, "01_raw.csv")))
+    print(f"  {cat}: {len(combined)} total rows ({n_dirs} directions)")
 
 
 def read_device_list(diff_dir):

@@ -13,6 +13,8 @@ A research pipeline that systematically maps real-world home IoT device brands t
 - [Stage 2 — Vendor Search](#stage-2--vendor-search)
 - [Stage 3 — Intersection and Difference](#stage-3--intersection-and-difference)
 - [Stage 4 — Triple-AI Review](#stage-4--triple-ai-review)
+- [Stage 9 — CPE Expansion](#stage-9--cpe-expansion)
+- [Stage 10 — Recall Estimation (Capture–Recapture)](#stage-10--recall-estimation-capturerecapture)
 - [Refreshing Difference Sets Without Losing Review Work](#refreshing-difference-sets-without-losing-review-work)
 - [Device Categories](#device-categories)
 - [Scripts](#scripts)
@@ -23,14 +25,18 @@ A research pipeline that systematically maps real-world home IoT device brands t
 
 ## What This Project Does
 
-The pipeline has two CVE discovery methods that are cross-referenced against each other:
+The pipeline has two text-based CVE discovery methods that are cross-referenced against each other:
 
 - **Vendor search (Jason):** searches NVD for manufacturer/brand names (e.g. "Nest", "Ring", "Ecobee") → produces `data/vendor-search/results_all_<category>.xlsx`
 - **Keyword search (Lizzie):** searches NVD for generic device-type phrases (e.g. "video doorbell", "ip camera") → produces `data/keyword-search/keyword_<category>.csv`
 
 Both methods run against the same fixed offline NVD snapshot to ensure the results are directly comparable and the study is reproducible.
 
-The set difference (CVEs found by one method but not the other) is then reviewed by three independent AI reviewers (Claude Code, Codex, and Gemini) to classify each CVE as a true match or false positive.
+A third, structural method — **CPE expansion (Stage 9)** — runs *after* review: once a device's `vendor:product` CPE has been confirmed a true match, it pulls in every other CVE that NVD itself attributes to that same CPE, catching terse entries whose text neither search could match.
+
+The set difference (CVEs found by one method but not the other) is reviewed by three independent AI reviewers (Claude Code, Codex, and Gemini) to classify each CVE as a true match or false positive.
+
+Because the two searches are near-independent capture lists of the same underlying CVE population, **Stage 10 (recall estimation)** turns their overlap into a capture–recapture estimate of *how many in-scope CVEs exist per category and what fraction the pipeline found* — the recall counterpart to the precision that review measures.
 
 ---
 
@@ -159,7 +165,9 @@ python3 scripts/build_keyword_search.py --overwrite
 
 Categories with no active terms are **skipped with a message** — not an error.
 
-**Output columns:** `cve_id, published, description, cvss_score, cvss_version, cwe_ids, cpe_strings`
+**Output columns:** `cve_id, published, description, cvss_score, cvss_version, cwe_ids, cpe_strings, matched_terms`
+
+The trailing **`matched_terms`** column (pipe-separated, like `cwe_ids`) records which of the category's terms pulled each row in — a CVE hit by two terms lists both. It is what lets `term_precision.py` (Step 8) score every term's false-positive rate from the settled judgments. The fixed NVD snapshot itself does **not** carry this column — it is added only on the search outputs.
 
 ---
 
@@ -205,7 +213,7 @@ python3 scripts/build_vendor_search.py --overwrite
 
 Categories with no active terms are **skipped with a message** — not an error.
 
-**Output columns:** `cve_id, published, description, cvss_score, cvss_version, cwe_ids, cpe_strings` — identical to the keyword files and `01_raw.csv`.
+**Output columns:** `cve_id, published, description, cvss_score, cvss_version, cwe_ids, cpe_strings, matched_terms` — identical to the keyword files. The trailing `matched_terms` column records which brand term(s) matched each row (pipe-separated), feeding `term_precision.py` (Step 8).
 
 > **Legacy path:** before the overhaul the vendor search was a per-year run via `cve_search.py --input` / `run_all_years.sh`, with results manually saved to Excel. That path still works (see [`cve_search.py`](#cve_searchpy--stage-1--2) / [`run_all_years.sh`](#run_all_yearssh--snapshot--legacy)) and is what builds the snapshot, but it is no longer the vendor-search route. The pre-overhaul workbooks are archived under `data/vendor-search/_backup_pre_rebuild_2026-06-28/`.
 
@@ -376,9 +384,120 @@ Writes:
 
 Re-run as humans fill more rows in — it never overwrites AI columns.
 
-**Step 8 — Mine resolved-Yes rows for missing keywords**
+**Step 8 — Mine resolved-Yes rows and score term precision**
 
-Inspect the resolved-Yes rows in `03_final.csv` for keyword phrases not yet in `keyword_terms.csv`. Add them to close the recall gap, then re-run `build_keyword_search.py`. Document the additions in `03_keyword_additions.md`.
+Two complementary loops close the quality gap in opposite directions:
+
+- **Recall (mining).** Inspect the resolved-Yes rows in `03_final.csv` for keyword phrases not yet in `keyword_terms.csv`. Add them, re-run `build_keyword_search.py`, and document the additions in `03_keyword_additions.md`.
+- **Precision (pruning).** Run the term-precision report to find terms that drag in mostly false positives:
+
+  ```bash
+  python3 scripts/term_precision.py
+  # Tune the prune threshold:
+  python3 scripts/term_precision.py --min-n 3 --threshold 0.15
+  ```
+
+  It joins the settled `Final Judgment`s in `final_resolved.csv` back to the `matched_terms` attribution written by the builders, and writes `data/difference/term_precision.csv` — one row per `(method, category, term)` with `n_judged`, `n_yes`, `precision`, and a `prune_candidate` flag (default: ≥5 judged rows at ≤10% precision). A noisy term (e.g. a brand that collides with unrelated software, or an over-broad vendor entry pulling in generic hardware) shows up as a line item to prune from `keyword_terms.csv` / `vendor_terms.csv` instead of requiring a manual disagreement autopsy.
+
+  > **Scope caveat:** `final_resolved.csv` only contains the **difference set** (CVEs unique to one method). The intersection (matched by both) is never reviewed, so this is per-term precision *on the difference set*, not on all of a term's matches — read it as a prioritized prune list, not a global precision. A term must have been re-attributed by a builder rebuilt with the `matched_terms` column, and the Stage-4 pipeline re-run, before it can be scored.
+
+---
+
+## Stage 9 — CPE Expansion
+
+Both text methods key off *language* — brand strings and device phrases matched against a CVE's description and CPE text. Terse entries evade them: *"An OS command injection vulnerability exists in the XCMD setAlexa functionality of Abode Systems, Inc. iota…"* names the device only in passing, and `abode` is too collision-prone to keyword on. But NVD's structured **CPE** attributes that CVE cleanly to `goabode:iota_all-in-one_security_kit`. CPE expansion mines that structured signal.
+
+**How it works.** For each category, seed from the rows already settled `Final Judgment = Yes`, take the `vendor:product` CPEs on those confirmed rows, and scan the snapshot for *every* CVE NVD attributes to the same `vendor:product` — then subtract everything the two text methods already found. What remains is new.
+
+It is a **densification** method, not a discovery method: it can only find more CVEs for products already confirmed, never a new brand. Recall is bounded to "everything NVD attributed to devices we already caught."
+
+```bash
+python3 scripts/cpe_expansion.py alarms        # one category
+python3 scripts/cpe_expansion.py --all         # every seeded category + summary CSV
+python3 scripts/cpe_expansion.py cameras --no-part-filter   # A/B the leak guardrail
+```
+
+Per-category output → `data/difference/<cat>/09_cpe_expansion_candidates.csv` (tagged `Discovery Method = cpe_expansion`, with the `seed_cpe` that pulled each row in). The `--all` run also writes `data/difference/cpe_expansion_summary.csv`.
+
+**Routing into Stage 4.** By default the script *also* writes `data/difference/<cat>/cpe_expansion/01_raw.csv` — a third review **direction** alongside `vendor_only` / `keyword_only`, in the exact Stage-4 raw schema. It is disjoint from both by construction (these CVEs are, by definition, in neither text method's output), so the `(category, cve_id)` key stays unique and `finalize_judgments.py` / `extract_human_review.py` — which read `Difference Type` per row — need no changes. `make_review_copies.py` concatenates all three directions automatically. So the candidates flow through the *same* review loop as everything else:
+
+```bash
+python3 scripts/cpe_expansion.py --all           # writes candidates + cpe_expansion/01_raw.csv
+python3 scripts/make_review_copies.py alarms     # pulls all 3 directions into blind copies
+# Claude/Codex fill reviews/*.csv; then:
+python3 scripts/merge_judgments.py --reviews data/difference/alarms/reviews --run-gemini --category alarm
+python3 scripts/extract_human_review.py          # flagged rows -> human queue
+python3 scripts/finalize_judgments.py            # settle + upsert judgment_store.csv
+```
+
+Pass `--no-stage4` to `cpe_expansion.py` for a report-only run that writes no `01_raw.csv`. The `09_*_candidates.csv` file is retained separately as the `seed_cpe` attribution source (the CPE-expansion analogue of the builders' `matched_terms`).
+
+**Three guardrails** keep it honest:
+
+1. **Seed only from confirmed `Yes`** rows (`judgment_store.csv`) — never an unreviewed CVE.
+2. **Device-CPE granularity.** (a) `vendor:product` only, never vendor-only — `tp-link:tapo_p100`, not all of `tp-link` (which would drag in every Archer router). (b) `part ∈ {o, h}` only — firmware/hardware. A co-listed `part=a` application/library CPE riding on a device's Yes row (e.g. `openweave:openweave-core`, Nest's protocol library, sitting on a camera CVE) is dropped, so expansion stays pinned to the physical device, not its dependencies.
+3. **Candidates are never auto-included.** They leave as an unreviewed set that still goes through Stage 4 (or an audit sample). High CPE precision ≠ zero false positives — see the smartplugs miss below.
+
+**First-run results (2026-07-02, 8 seeded categories).** 52 new candidate CVEs the two text methods never found:
+
+| Category | Confirmed-Yes seeds | New candidates | Note |
+|----------|--------------------:|---------------:|------|
+| **alarms** | 12 | **38** | Abode iota security kit — a 2022 researcher CVE dump, brand buried in terse text |
+| cameras | 255 | 11 | Momentum Axel, TP-Link NC-series, Owlet Cam |
+| babymonitor | 8 | 2 | D-Link EyeOn baby cameras |
+| smartplugs | 7 | 1 | seed-inheritance miss (see below) |
+| doorbell / robotvacuum / smartspeakers / thermostat | — | 0 | text search already had complete coverage of their confirmed products |
+| **Total** | | **52** | |
+
+- **Yield is spiky and is *not* predicted by a category's false-positive rate.** robotvacuum (a deliberate cameras-FP-rate match) returned **0** — its confirmed products' CVEs all name the brand in text, so the vendor search already had them. alarms returned 38 because one prolific product (Abode iota) had a wall of tersely-described CVEs. The predictor is "confirmed products with prolific, terse CVE families," not difference-set noise.
+- **Precision (Claude single-review spot-check, `cpe_expansion_precision_spotcheck.csv`): 51/52 = 98% category-correct.** The one miss — `CVE-2024-10523`, the TP-Link Tapo **H100** — is a genuine home IoT device but a *hub*, not a plug; it traces to a mis-confirmed seed (`tp-link:tapo_h100` wrongly settled `Yes` under `smartplugs`). The method faithfully propagated a *seed* error, not a method fault — and Stage-4 review of the candidate would catch it.
+- **The part filter earns its place.** It drops 70 app/lib seed CPEs and prevents 4 library-leak candidates (openweave ×2 in cameras, a Tapo app CPE ×2 in smartplugs). Run `--no-part-filter` to see the 56-candidate unfiltered set for comparison.
+
+> **Open item for review:** the 52 candidates are still unreviewed by the full triple-AI + human pipeline. The 98% is a Claude-only first pass. The routing is now wired (each category's candidates sit in a `cpe_expansion/01_raw.csv` ready for `make_review_copies.py`) — running the triple-AI + human loop over them (starting with the 38 alarms rows) is the next step to get a defensible precision number and fold the true matches into the dataset.
+
+---
+
+## Stage 10 — Recall Estimation (Capture–Recapture)
+
+Review measures **precision** (how many matched CVEs are real). It says nothing about **recall** — *what fraction of the real in-scope CVEs did the pipeline find?* Stage 10 answers that without any new labelling, by treating the vendor and keyword searches as two independent **capture occasions** of the same underlying CVE population (Lincoln–Petersen mark-recapture). If the two methods overlap a lot relative to their sizes, they have jointly covered most of the population; if they barely overlap, a large unseen remainder is implied.
+
+```bash
+python3 scripts/recall_estimate.py                       # two-source, all categories, raw population
+python3 scripts/recall_estimate.py --three               # + three-source log-linear where a CPE set exists
+python3 scripts/recall_estimate.py --population yes       # true-positive population (needs review labels)
+python3 scripts/recall_estimate.py --population yes --isect-precision 0.9   # sensitivity on the unreviewed V∩K cell
+```
+
+Output → printed table + `data/difference/recall_estimate.csv`.
+
+**Two-source (Chapman).** For each category with sizes `V`, `K` and overlap `m = |V∩K|`, the population is estimated by the Chapman estimator (the bias-corrected Lincoln–Petersen, stable at small overlap), `N̂ = (V+1)(K+1)/(m+1) − 1`, with a **log-normal 95% CI (Chao)** that never falls below the observed count. Combined recall = `|V∪K| / N̂`.
+
+**Three-source (`--three`).** Adds `C` = every CVE NVD attributes to a confirmed-Yes device CPE — the **full** Stage-9 capture set, reconstructed here from the snapshot *with its overlaps against V and K intact*. (The stored `09_*_candidates.csv` keeps only `C∖(V∪K)`, which discards exactly the overlap cells this needs.) A hierarchical Poisson **log-linear model** is fit over the 7 observable inclusion cells, selected by AIC, and the unobserved "missed by all three" cell is extrapolated. Three sources let the data *estimate* pairwise dependence instead of assuming it away — the main weakness of naive two-source LP, since V and K share an engine, snapshot, and text fields and are positively correlated. CIs come from an **800-replicate nonparametric bootstrap** that re-selects the model each replicate (so the interval absorbs model-selection uncertainty, not just sampling).
+
+**First-run results (2026-07-02, raw candidate population).**
+
+| Category | V | K | ∩ | Observed | N̂ (2-src) | 95% CI | Recall | 3-src N̂ |
+|----------|--:|--:|--:|---------:|----------:|--------|-------:|--------:|
+| cameras | 3153 | 715 | 355 | 3513 | **6342** | 5936–6817 | **0.55** | 6325 |
+| streaming | 199 | 277 | 17 | 459 | 3088 | 2086–4708 | 0.15 | — |
+| hub | 92 | 43 | 5 | 130 | 681 | 380–1345 | 0.19 | — |
+| thermostat | 71 | 15 | 11 | 75 | 95 | 82–135 | 0.79 | 93 |
+| alarms | 103 | 69 | 11 | 161 | 606 | 400–987 | 0.27 | 574 |
+| doorbell | 58 | 47 | 21 | 84 | 128 | 106–170 | 0.66 | 110 |
+| **POOLED** | | | | **4967** | **12141** | 10801–13789 | **0.41** | — |
+
+- **The estimator validates itself where data is rich.** On `cameras` the independent two-source (6342) and three-source (6325) estimates land **0.3 % apart** — a convergence worth citing.
+- **Low-recall categories are exactly the known-thin brand lists** (`streaming` 0.15, `hub` 0.19, `lighting`/`ev-charging` ~0.28). The estimator independently rediscovers where the vendor lists need work, and gives a prioritized recall-improvement queue.
+- **`recall = 1.0` rows are flagged `degenerate`, not real** (babymonitor, pet, fans, sensors). There one list is a strict subset of the other (`m = min(V,K)`), so recapture carries no information and `N̂` collapses to the larger list. These are **excluded from the POOLED total.**
+
+**Estimands (`--population`).** `raw` (default) estimates the population of *candidate* CVEs the searches could match (true + false positives) — recall of the **search stage**, available now for every category. `yes` estimates the population of *true* in-scope CVEs by scaling each cell by its review Yes-rate — the scientifically interesting number, but it needs labels. Only `alarms` is currently labelled (and only its `vendor_only` direction), so `yes` proxies the unlabelled side and marks the row `assumed-rate`; the `V∩K` cell is **never reviewed** by the pipeline, so its precision is a supplied assumption (`--isect-precision`, default 1.0) with a printed sensitivity band.
+
+**Honest caveats (printed with every run):**
+
+1. **Two-source N̂ is biased *down* by V–K positive dependence** → its recall is an **upper bound**. Prefer the three-source figure where present; it is the one built to handle the dependence.
+2. **`C` is not a clean third capture.** It is seeded from already-confirmed products, so it cannot reach a true CVE whose product never appeared in V/K. Read its `N̂` as "population reachable through confirmed products," and the three-source estimate as relaxing the V–K independence assumption, not as a fully independent third list.
+3. **The `yes` population is not yet paper-grade** — it needs a labelled `keyword_only` direction and a small labelled `V∩K` sample for 2–3 rich categories (cameras, doorbell, thermostat) before it yields a defensible true-positive recall. The `raw` (search-stage) recall is defensible today.
+4. **Pooled CI** sums per-category Chapman variances (categories are disjoint CVE populations, so their estimates are treated as independent) and inverts a log-normal band on the pooled unseen count.
 
 ---
 
@@ -550,6 +669,8 @@ Builds combined blind review copies for a category, concatenating both `vendor_o
 | `--category TEXT` | Device category label sent to the model, e.g. `"security camera"` **(required)** |
 | `--model MODEL_ID` | Gemini/Gemma model to use (default: `gemini-2.5-flash`; can also set via `GEMINI_MODEL` env var) |
 | `--rubric FILE` | Path to the shared rubric markdown (default: `data/difference/CLASSIFICATION_PROMPT.md`) |
+| `--scope FILE` | Path to `category_scope.csv`, the per-category in/out scope notes injected into the prompt (default: `data/difference/category_scope.csv`) |
+| `--slug SLUG` | Category slug used to look up the scope note (default: derived from the `csv` path, i.e. the `<slug>` in `…/<slug>/reviews/gemini.csv`). A missing note is non-fatal — the pass runs without it |
 | `--rps FLOAT` | Max requests per second (default: `1.0`) |
 | `--save-every N` | Flush progress to disk every N rows (default: `25`) |
 | `--limit N` | Classify only the first N pending rows — useful for testing (default: `0` = all) |
@@ -608,6 +729,41 @@ Folds human verdicts back into one settled judgment per CVE. Writes `03_final.cs
 
 ---
 
+### `term_precision.py` — Stage 8 (reverse: pruning)
+Scores every search term's precision from the settled judgments. Reads `final_resolved.csv`, and for each judged `Yes`/`No` row looks up which term(s) matched that CVE — from the builder output chosen by direction (`vendor_only` → `results_all_<cat>.xlsx`, `keyword_only` → `keyword_<cat>.csv`, both via the `matched_terms` column). Writes `data/difference/term_precision.csv` (one row per `method, category, term` with `n_judged, n_yes, n_no, precision, prune_candidate`) and prints the prune candidates. Handles builder outputs that predate the `matched_terms` column gracefully (warns and counts them unattributed).
+
+| Flag | Description |
+|------|-------------|
+| `--diff-dir DIR` | Directory holding `final_resolved.csv` (default: `data/difference`) |
+| `--out FILE` | Output CSV (default: `<diff-dir>/term_precision.csv`) |
+| `--min-n N` | Min judged rows before a term can be a prune candidate (default: `5`) |
+| `--threshold FLOAT` | Precision at or below this flags a prune candidate (default: `0.10`) |
+
+---
+
+### `cpe_expansion.py` — Stage 9
+The third discovery method. Seeds from the confirmed-`Yes` rows in `judgment_store.csv`, extracts their device `vendor:product` CPEs, and scans the snapshot for every other CVE NVD attributes to the same CPE — minus everything the two text methods already found. Writes `data/difference/<cat>/09_cpe_expansion_candidates.csv` per category and (with `--all`) `data/difference/cpe_expansion_summary.csv`. Candidates are unreviewed and feed Stage 4, never the dataset directly.
+
+| Flag | Description |
+|------|-------------|
+| `<category>` | Run one category (omit when using `--all`) |
+| `--all` | Run every category with a confirmed-Yes seed, and write the summary CSV |
+| `--no-part-filter` | Disable the `part ∈ {o, h}` guardrail — for A/B'ing how many app/library CPEs it filters out |
+
+---
+
+### `recall_estimate.py` — Stage 10
+Capture–recapture recall estimation. Treats the vendor and keyword searches as two capture occasions and computes, per category, the Chapman population estimate `N̂` with a log-normal 95% CI and the implied combined recall. With `--three` it reconstructs the full Stage-9 CPE capture set from the snapshot (reusing `cpe_expansion.py`'s scan) and fits an AIC-selected Poisson log-linear model with a bootstrap CI. Writes `data/difference/recall_estimate.csv` and prints a table with a `POOLED` cross-category total. Read-only over the pipeline outputs — computes nothing that changes the dataset.
+
+| Flag | Description |
+|------|-------------|
+| `--three` | Add the three-source log-linear estimate for categories with a confirmed-Yes CPE seed (needs the snapshot) |
+| `--population {raw,yes}` | `raw` (default) = candidate-CVE population (search-stage recall); `yes` = true-positive population, scaling each cell by its review Yes-rate |
+| `--isect-precision P` | Assumed Yes-rate of the unreviewed `V∩K` cell under `--population yes` (default 1.0); re-run to test sensitivity |
+| `--categories …` | Restrict to a subset of category slugs |
+
+---
+
 ### `nvd_keyword_query.py` — Legacy
 Old live-NVD-API querier. Retired and no longer part of the pipeline. Kept on disk for reference only. Use `build_keyword_search.py` instead.
 
@@ -618,8 +774,12 @@ Old live-NVD-API querier. Retired and no longer part of the pipeline. Kept on di
 | File | Key columns |
 |------|-------------|
 | `keyword_terms.csv` | `slug, term` |
-| `keyword_<cat>.csv` | `cve_id, published, description, cvss_score, cvss_version, cwe_ids, cpe_strings` |
-| `results_all_*.xlsx` | `cve_id, published, description, cvss_score, cvss_version, cwe_ids, cpe_strings` |
+| `keyword_<cat>.csv` | `cve_id, published, description, cvss_score, cvss_version, cwe_ids, cpe_strings, matched_terms` |
+| `results_all_*.xlsx` | `cve_id, published, description, cvss_score, cvss_version, cwe_ids, cpe_strings, matched_terms` |
+| `term_precision.csv` | `method, category, term, n_judged, n_yes, n_no, precision, prune_candidate` |
+| `<cat>/09_cpe_expansion_candidates.csv` | `cve_id, published, description, cvss_score, cvss_version, cwe_ids, cpe_strings, seed_cpe, Discovery Method` |
+| `cpe_expansion_summary.csv` | `category, yes_seeds, device_seeds, app_cpe_dropped, matched, already_known, new_candidates` |
+| `recall_estimate.csv` | `category, method, n_vendor, n_keyword, n_both, n_observed, N_hat, N_lo, N_hi, recall, recall_lo, recall_hi, confidence` (`POOLED` row = cross-category total; `confidence` ∈ ok/low/degenerate/assumed-rate/pooled) |
 | `<cat>/<dir>/01_raw.csv` | `Difference Type, cve_id, published, description, cvss_score, cvss_version, cwe_ids, cpe_strings` |
 | `<cat>/reviews/{ai}.csv` | raw columns (both directions combined) + `<AI> Judgment, <AI> Confidence, <AI> Reasoning` |
 | `<cat>/02_merged.csv` | raw columns + all 9 AI columns + `Review Status, Needs Human Review, Review Reason` |
@@ -638,5 +798,7 @@ Old live-NVD-API querier. Retired and no longer part of the pipeline. Kept on di
 **Why three AI reviewers?** It mirrors the two-human reviewer model. Claude and Codex are the permanent reviewers; Gemini is the swappable third vote. Known biases: Codex over-excludes unfamiliar security brands; Gemini over-includes on function-overlap. Claude is the reliable anchor. The 2-of-3 unanimity check plus human flagging catches both biases.
 
 **Why bidirectional difference?** `vendor_only` cleans false negatives in the keyword search. `keyword_only` surfaces gaps in the vendor brand list. Together they close both sides of the recall gap.
+
+**Why does CPE expansion run *after* review, not as a third search up front?** It trades breadth for precision. Seeding only from confirmed-`Yes` CPEs means it can never invent a new brand — but every CVE it returns is already attributed by NVD to a device a human/consensus signed off on, so it is far higher-precision than a third text search would be. It is the natural completion of the two-method design: vendor terms find brands, keyword terms find device language, CPE expansion finds everything NVD itself already attributed to a confirmed device. Because it depends on settled judgments, it slots in at Stage 9, after the review loop, and feeds its output back through that same loop.
 
 **What counts as a home IoT device?** A device must be internet-connected, be a special-purpose sensor/appliance/embedded system (not general-purpose IT), be intended for a private residence, have a monitoring/automation/control function (or serve as a home-control hub for other IoT devices), and be maintained by a non-expert consumer. Game consoles fail on device class and function. Streaming TVs qualify because their platforms act as Matter/Thread controllers. Plain routers are excluded — they are threat-model context, not study subjects.

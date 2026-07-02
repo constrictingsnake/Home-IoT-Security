@@ -1,0 +1,9 @@
+category,yes_seeds,device_seeds,app_cpe_dropped,matched,already_known,new_candidates
+alarms,12,12,2,48,10,38
+babymonitor,8,3,0,7,5,2
+cameras,255,157,40,269,258,11
+doorbell,20,7,1,16,16,0
+robotvacuum,14,41,2,17,17,0
+smartplugs,7,3,1,4,3,1
+smartspeakers,17,4,24,17,17,0
+thermostat,2,1,0,2,2,0

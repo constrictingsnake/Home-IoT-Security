@@ -40,6 +40,9 @@ API_URL = "https://generativelanguage.googleapis.com/v1beta/models/{model}:gener
 RUBRIC_DEFAULT = os.path.join(
     os.path.dirname(__file__), "..", "data", "difference", "CLASSIFICATION_PROMPT.md"
 )
+SCOPE_DEFAULT = os.path.join(
+    os.path.dirname(__file__), "..", "data", "difference", "category_scope.csv"
+)
 
 RESPONSE_SCHEMA = {
     "type": "object",
@@ -66,10 +69,52 @@ BATCH_RESPONSE_SCHEMA = {
 }
 
 
-def build_prompt(rubric, category, description, cpe):
+def slug_from_path(csv_path):
+    """Recover the category slug from a review-copy path.
+
+    The gemini copy always lives at data/difference/<slug>/reviews/gemini.csv, so the
+    slug is the grandparent directory name. Returns "" if the layout doesn't match.
+    """
+    parents = os.path.abspath(csv_path).split(os.sep)
+    # .../<slug>/reviews/gemini.csv  → parents[-3] is <slug>
+    if len(parents) >= 3 and parents[-2] == "reviews":
+        return parents[-3]
+    return ""
+
+
+def load_scope_note(scope_path, slug):
+    """Return the 2–3 line in/out scope note for a slug from category_scope.csv.
+
+    Missing file or missing slug is non-fatal: warn and return "" so Gemini still runs
+    (a new category without a scope row must not break the pass). Keyed by slug because
+    the free-text --category label is not reversibly mappable to a slug.
+    """
+    if not slug:
+        print("    warning: could not derive category slug from path — no scope note injected")
+        return ""
+    if not scope_path or not os.path.isfile(scope_path):
+        print(f"    warning: scope file not found ({scope_path}) — no scope note injected")
+        return ""
+    df = pd.read_csv(scope_path, dtype=str).fillna("")
+    match = df[df["slug"].str.strip() == slug]
+    if match.empty:
+        print(f"    warning: no scope row for slug {slug!r} in {scope_path} — no scope note injected")
+        return ""
+    return match.iloc[0]["scope_note"].strip()
+
+
+def _scope_block(scope_note):
+    """Render the scope note as a prompt section, or empty string if there is none."""
+    if not scope_note:
+        return ""
+    return f"=== CATEGORY SCOPE (authoritative in/out for THIS category) ===\n{scope_note}\n\n"
+
+
+def build_prompt(rubric, category, description, cpe, scope_note=""):
     return (
         f"{rubric}\n\n"
         f"=== DEVICE CATEGORY UNDER REVIEW ===\n{category}\n\n"
+        f"{_scope_block(scope_note)}"
         f"=== CVE DESCRIPTION ===\n{description or '(none)'}\n\n"
         f"=== CPE STRINGS ===\n{cpe or '(none)'}\n\n"
         "Classify this CVE for the device category above. Judge ONLY from the description "
@@ -77,7 +122,7 @@ def build_prompt(rubric, category, description, cpe):
     )
 
 
-def build_batch_prompt(rubric, category, rows):
+def build_batch_prompt(rubric, category, rows, scope_note=""):
     """rows: list of (cve_id, description, cpe) tuples."""
     entries = []
     for cve_id, description, cpe in rows:
@@ -90,6 +135,7 @@ def build_batch_prompt(rubric, category, rows):
     return (
         f"{rubric}\n\n"
         f"=== DEVICE CATEGORY UNDER REVIEW ===\n{category}\n\n"
+        f"{_scope_block(scope_note)}"
         f"=== CVEs TO CLASSIFY ===\n{block}\n\n"
         "Classify EACH CVE above for the device category. Judge ONLY from each CVE's "
         "description and CPE strings. Return a JSON array with one object per CVE, each "
@@ -131,8 +177,10 @@ def call_gemini_batch(session, api_key, model, prompt):
     resp.raise_for_status()
     text = resp.json()["candidates"][0]["content"]["parts"][0]["text"]
     items, _ = json.JSONDecoder().raw_decode(text.strip())
+    # Strip the returned cve_id: weaker models (e.g. gemma) sometimes echo it with
+    # surrounding whitespace, which would fail the exact-match map-back in classify_file.
     return {
-        item["cve_id"]: (item["judgment"], item["confidence"], item.get("reasoning", ""))
+        item["cve_id"].strip(): (item["judgment"], item["confidence"], item.get("reasoning", ""))
         for item in items
     }
 
@@ -163,6 +211,9 @@ def classify_file(
     *,
     model=DEFAULT_MODEL,
     rubric_path=RUBRIC_DEFAULT,
+    scope_path=SCOPE_DEFAULT,
+    scope_note=None,
+    slug=None,
     rps=1.0,
     save_every=25,
     limit=0,
@@ -189,6 +240,15 @@ def classify_file(
 
     with open(rubric_path, encoding="utf-8") as fh:
         rubric = fh.read()
+
+    # Per-category scope note: gives Gemini the same in/out boundary Claude/Codex read
+    # from category_scope.csv, keyed by the slug recovered from the review-copy path
+    # (unless an explicit note/slug override is passed). Missing note is non-fatal.
+    if scope_note is None:
+        resolved_slug = slug if slug is not None else slug_from_path(csv_path)
+        scope_note = load_scope_note(scope_path, resolved_slug)
+        if scope_note:
+            print(f"  Gemini: injecting scope note for {resolved_slug!r}")
 
     df = pd.read_csv(csv_path, dtype=str).fillna("")
     if "description" not in df.columns:
@@ -229,7 +289,7 @@ def classify_file(
                 (df.at[idx, "cve_id"], df.at[idx, "description"], df.at[idx, cpe_col] if cpe_col else "")
                 for idx in chunk
             ]
-            prompt = build_batch_prompt(rubric, category, rows)
+            prompt = build_batch_prompt(rubric, category, rows, scope_note)
             try:
                 results = call_with_retry(session, api_key, model, prompt, batch=True)
             except Exception as e:
@@ -260,7 +320,8 @@ def classify_file(
     else:
         for idx in pending:
             prompt = build_prompt(
-                rubric, category, df.at[idx, "description"], df.at[idx, cpe_col] if cpe_col else ""
+                rubric, category, df.at[idx, "description"],
+                df.at[idx, cpe_col] if cpe_col else "", scope_note,
             )
             try:
                 judgment, confidence, reasoning = call_with_retry(session, api_key, model, prompt)
@@ -289,6 +350,9 @@ def main():
     ap.add_argument("--category", required=True, help="Device category, e.g. 'security camera'")
     ap.add_argument("--model", default=os.environ.get("GEMINI_MODEL", DEFAULT_MODEL))
     ap.add_argument("--rubric", default=RUBRIC_DEFAULT, help="Path to the shared rubric markdown")
+    ap.add_argument("--scope", default=SCOPE_DEFAULT, help="Path to category_scope.csv (per-category in/out notes)")
+    ap.add_argument("--slug", default=None,
+                    help="Category slug for the scope lookup (default: derived from the csv path)")
     ap.add_argument("--rps", type=float, default=1.0, help="Max requests per second")
     ap.add_argument("--save-every", type=int, default=25, help="Write progress to disk every N rows")
     ap.add_argument("--limit", type=int, default=0, help="Classify only the first N pending rows (0 = all)")
@@ -303,6 +367,8 @@ def main():
             args.category,
             model=args.model,
             rubric_path=args.rubric,
+            scope_path=args.scope,
+            slug=args.slug,
             rps=args.rps,
             save_every=args.save_every,
             limit=args.limit,

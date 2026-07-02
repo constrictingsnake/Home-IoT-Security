@@ -24,11 +24,24 @@ consumers. A row qualifies only if it plausibly satisfies all of:
 3. **Deployment** — meant for a private home, not primarily enterprise/industrial.
 4. **Function** — primary purpose is to monitor/automate/control the home (climate,
    security, access, lighting, appliances, presence). Media/entertainment, general
-   computing, and communication are **not** qualifying functions.
+   computing, and communication are **not** qualifying functions on their own — such a
+   device qualifies only when it **also** acts as a home-control surface/hub for other home
+   IoT devices (criterion 4(b): a Matter/Thread controller, voice assistant, or camera/
+   sensor-feed surface — e.g. a streaming TV or smart speaker).
 5. **Security context** — owned/maintained by consumers, no professional IT security.
 
 Connectivity alone is not membership: a device that merely talks to home IoT (or runs an
 app that controls it) is not itself home IoT. Function (4) and class (2) are the discriminators.
+
+## Per-category scope (read this before judging)
+The five criteria above are general. Each category also has an **authoritative in/out note**
+in [`category_scope.csv`](category_scope.csv), keyed by the category slug — it spells out the
+specific boundary for *this* category (e.g. `ev-charging` = home wallbox only, **not** commercial/
+fleet chargers; `cameras` = consumer cameras, **not** enterprise NVR/VMS/SAN; `hub` = controllers,
+**not** plain routers/switches). **All three reviewers use the same note** so that unanimity means
+agreement under one shared scope. Gemini receives this note automatically (injected by
+`gemini_classify.py`); Claude and Codex must read the row for their category before judging. When
+the note conflicts with a first impression, the note wins.
 
 ## Output — three fields
 - **Judgment**: `Yes` / `No` / `Maybe`
