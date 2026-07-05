@@ -65,3 +65,13 @@ the note conflicts with a first impression, the note wins.
   (often `Yes (High)`).
 - A `Maybe` or a Low-confidence `No` is more useful than a confident wrong answer — only
   rows with reasoning get human attention, so when genuinely unsure, use Low.
+- **The device's own companion app/cloud API is part of the device.** A vulnerability in the
+  vendor's mobile app or backend API that compromises a specific home IoT product (e.g. exposes
+  its credentials, or the app is the way the device is provisioned/controlled) is **in scope**
+  for that device's category, even if the fix lands in app code rather than firmware — the
+  app-device link is a defining trait of an IoT product, not a reason to exclude it. This is
+  distinct from the "connectivity alone is not membership" rule above, which is about an
+  *unrelated* device (e.g. a game console) that happens to run an app controlling home IoT —
+  that other device still fails criterion 2/4. When category fit is otherwise ambiguous (the
+  bug affects several product lines, e.g. bulbs + a plug + a camera under one app), lean `Yes`
+  for every named product line rather than `No`.

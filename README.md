@@ -403,7 +403,7 @@ Two complementary loops close the quality gap in opposite directions:
 
 ---
 
-## Stage 9 — CPE Expansion
+## Stage 5 — CPE Expansion
 
 Both text methods key off *language* — brand strings and device phrases matched against a CVE's description and CPE text. Terse entries evade them: *"An OS command injection vulnerability exists in the XCMD setAlexa functionality of Abode Systems, Inc. iota…"* names the device only in passing, and `abode` is too collision-prone to keyword on. But NVD's structured **CPE** attributes that CVE cleanly to `goabode:iota_all-in-one_security_kit`. CPE expansion mines that structured signal.
 

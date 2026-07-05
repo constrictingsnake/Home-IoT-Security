@@ -1,1 +1,2 @@
 AI Verdict (unanimous),Difference Type,cve_id,published,description,cvss_score,cvss_version,cwe_ids,cpe_strings,Claude Judgment,Claude Confidence,Claude Reasoning,Codex Judgment,Codex Confidence,Codex Reasoning,Gemini Judgment,Gemini Confidence,Gemini Reasoning,Human Verdict,Human Notes
+No,keyword_only,CVE-2023-25478,2023-07-10,Cross-Site Request Forgery (CSRF) vulnerability in Jason Rouet Weather Station plugin <= 3.8.12 versions.,8.8,3.1,CWE-352,cpe:2.3:a:weather_station_project:weather_station:*:*:*:*:*:wordpress:*:*,No,High,,No,High,,No,High,,,

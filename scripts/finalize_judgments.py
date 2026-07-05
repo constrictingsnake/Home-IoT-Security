@@ -3,13 +3,19 @@
 
 Collapses each category's merged triple-AI file into a single `Final Judgment` using:
 
-    not flagged (AIs agree, confident)       -> the AI consensus     (Final Source = ai-consensus)
-    flagged + human filled Human Verdict      -> the human's verdict   (Final Source = human)
-    flagged + Human Verdict still blank        -> pending               (Final Source = pending)
-    a reviewer hasn't judged yet (incomplete)  -> blank                 (Final Source = incomplete)
+    not flagged (AIs agree, confident)         -> the AI consensus       (Final Source = ai-consensus)
+    flagged + both humans agree (not Maybe)     -> the agreed verdict     (Final Source = human)
+    flagged + humans disagree, or either blank  -> pending                (Final Source = pending)
+    a reviewer hasn't judged yet (incomplete)   -> blank                  (Final Source = incomplete)
+
+There are TWO independent human reviewer slots per row (Human Verdict 1/2, mirroring the
+AI triple-review model with two humans). A row only settles once both reviewers agree —
+same rule as the AI unanimity check. Disagreement leaves it `pending` for reconciliation
+rather than picking a side.
 
 Human verdicts are read from data/difference/human_review_queue.csv or per-category
-02_needs_human_review.csv (whichever was filled in), keyed by (category, cve_id).
+02_needs_human_review.csv (whichever was filled in), keyed by (category, cve_id). Sheets
+still on the old single-reviewer schema (Human Verdict) are read as Reviewer 1's answer.
 
 Direction is encoded per-row in the Difference Type column (vendor_only / keyword_only).
 Adds `Final Judgment` / `Final Source` columns — never overwrites the AI columns.
@@ -49,32 +55,49 @@ def cat_of(merged_path):
 
 
 def load_human_verdicts(diff_dir):
-    """Return {(category, CVE-ID): verdict} from filled Human Verdict cells."""
+    """Return {(category, CVE-ID): (verdict1, verdict2)} from filled Human Verdict cells.
+
+    Sheets on the old single-reviewer schema (Human Verdict) are read as Reviewer 1's
+    answer; Reviewer 2 comes back blank for those rows.
+    """
     verdicts = {}
-    sources = {}
+    origin = {}  # key -> path last written from, for conflict messages
+
+    def read_cell(r, col, cat, cve, path):
+        hv = str(r.get(col, "")).strip()
+        if hv and hv not in VALID:
+            print(f"  ! {cat}/{cve}: invalid {col} '{hv}' (want Yes/No/Maybe) — skipped")
+            return ""
+        return hv
 
     def ingest(path, category):
         if not os.path.isfile(path):
             return
         df = pd.read_csv(path, dtype=str).fillna("")
-        if "Human Verdict" not in df.columns or "cve_id" not in df.columns:
+        if "cve_id" not in df.columns:
+            return
+        has_v2 = "Human Verdict 1" in df.columns
+        has_legacy = "Human Verdict" in df.columns
+        if not has_v2 and not has_legacy:
             return
         for _, r in df.iterrows():
-            hv = str(r["Human Verdict"]).strip()
-            if not hv:
-                continue
             cat = category if category is not None else str(r.get("Category", "")).strip()
             cve = str(r["cve_id"]).strip().upper()
             key = (cat, cve)
-            if hv not in VALID:
-                print(f"  ! {cat}/{cve}: invalid Human Verdict '{hv}' (want Yes/No/Maybe) — skipped")
+            if has_v2:
+                hv1 = read_cell(r, "Human Verdict 1", cat, cve, path)
+                hv2 = read_cell(r, "Human Verdict 2", cat, cve, path)
+            else:
+                hv1 = read_cell(r, "Human Verdict", cat, cve, path)
+                hv2 = ""
+            if not hv1 and not hv2:
                 continue
-            if key in verdicts and verdicts[key] != hv:
-                print(f"  ! conflict for {cat}/{cve}: '{verdicts[key]}' ({sources[key]}) "
-                      f"vs '{hv}' ({os.path.basename(path)}) — keeping first")
+            if key in verdicts and verdicts[key] != (hv1, hv2):
+                print(f"  ! conflict for {cat}/{cve}: {verdicts[key]} ({origin[key]}) "
+                      f"vs {(hv1, hv2)} ({os.path.basename(path)}) — keeping first")
                 continue
-            verdicts.setdefault(key, hv)
-            sources.setdefault(key, os.path.basename(path))
+            verdicts.setdefault(key, (hv1, hv2))
+            origin.setdefault(key, os.path.basename(path))
 
     ingest(os.path.join(diff_dir, "human_review_queue.csv"), category=None)
     for p in sorted(glob.glob(os.path.join(diff_dir, "*", "02_needs_human_review.csv"))):
@@ -88,8 +111,13 @@ def resolve_row(row, cat, human):
     if status == "incomplete":
         return "", "incomplete"
     if str(row.get("Needs Human Review", "")).strip() == "Yes":
-        hv = human.get((cat, str(row["cve_id"]).strip().upper()))
-        return (hv, "human") if hv and hv != "Maybe" else ("", "pending")
+        hv1, hv2 = human.get((cat, str(row["cve_id"]).strip().upper()), ("", ""))
+        # Settles only when both reviewers have weighed in, agree, and it isn't "Maybe" —
+        # same unanimity bar as the AI triple review. Disagreement or a still-blank slot
+        # both fall through to pending rather than picking a side.
+        if hv1 and hv2 and hv1 == hv2 and hv1 != "Maybe":
+            return hv1, "human"
+        return "", "pending"
     return str(row.get("Claude Judgment", "")).strip(), "ai-consensus"
 
 

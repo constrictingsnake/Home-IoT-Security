@@ -1,3 +1,53 @@
 AI Verdict (unanimous),Difference Type,cve_id,published,description,cvss_score,cvss_version,cwe_ids,cpe_strings,Claude Judgment,Claude Confidence,Claude Reasoning,Codex Judgment,Codex Confidence,Codex Reasoning,Gemini Judgment,Gemini Confidence,Gemini Reasoning,Human Verdict,Human Notes
-No,vendor_only,CVE-2021-47743,2025-12-31,COMMAX Biometric Access Control System 1.0.0 contains an unauthenticated reflected cross-site scripting vulnerability in cookie parameters 'CMX_ADMIN_NM' and 'CMX_COMPLEX_NM'. Attackers can inject malicious HTML and JavaScript code into these cookie values to execute arbitrary scripts in a victim's browser session.,6.1,3.1,CWE-79,,No,High,,No,High,,No,High,,,
-No,vendor_only,CVE-2021-47705,2025-12-09,COMMAX UMS Client ActiveX Control 1.7.0.2 contains a heap-based buffer overflow vulnerability that allows attackers to execute arbitrary code by providing excessively long string arrays through multiple functions. Attackers can exploit improper boundary validation in CNC_Ctrl.dll to cause heap corruption and potentially gain system-level access.,,,CWE-787,,No,High,,No,High,,No,Low,"The vulnerability is in an ActiveX control (UMS Client), which is a software component typically installed on a Windows PC to manage or view feeds from a device, rather than being a vulnerability in the firmware of the video doorbell itself.",,
+Yes,vendor_only,CVE-2023-0350,2023-03-13,Akuvox E11 does not ensure that a file extension is associated with the file provided. This could allow an attacker to upload a file to the device by changing the extension of a malicious file to an accepted file type.,6.5,3.1,CWE-345,cpe:2.3:o:akuvox:e11_firmware:-:*:*:*:*:*:*:*|cpe:2.3:h:akuvox:e11:-:*:*:*:*:*:*:*,Yes,High,Akuvox E11 is a residential video door phone; missing file-extension validation enabling malicious upload is in scope.,Yes,High,,Yes,High,,,
+No,keyword_only,CVE-2024-29206,2024-05-07,"An Improper Access Control could allow a malicious actor authenticated in the API to enable Android Debug Bridge (ADB) and make unsupported changes to the system.
+
+ 
+
+Affected Products:
+
+UniFi Connect EV Station (Version 1.1.18 and earlier) 
+
+UniFi Connect EV Station Pro (Version 1.1.18 and earlier)
+
+UniFi Access G2 Reader Pro (Version 1.2.172 and earlier)
+
+UniFi Access Reader Pro (Version 2.7.238 and earlier)
+
+UniFi Access Intercom (Version 1.0.66 and earlier)
+
+UniFi Access Intercom Viewer (Version 1.0.5 and earlier)
+
+UniFi Connect Display (Version 1.9.324 and earlier)
+
+UniFi Connect Display Cast (Version 1.6.225 and earlier)
+
+ 
+
+Mitigation:
+
+Update UniFi Connect Application to Version 3.10.7 or later.
+
+Update UniFi Connect EV Station to Version 1.2.15 or later.   
+
+Update UniFi Connect EV Station Pro to Version 1.2.15 or later.
+
+Update UniFi Access G2 Reader Pro Version 1.3.37 or later.
+
+Update UniFi Access Reader Pro Version 2.8.19 or later.
+
+Update UniFi Access Intercom Version 1.1.32 or later.
+
+Update UniFi Access Intercom Viewer Version 1.1.6 or later.
+
+Update UniFi Connect Display to Version 1.11.348 or later. 
+
+Update UniFi Connect Display Cast to Version 1.8.255 or later.",2.2,3.0,CWE-284,,No,High,,No,High,,No,High,,,
+Yes,vendor_only,CVE-2023-0349,2023-03-13,The Akuvox E11 libvoice library provides unauthenticated access to the camera capture for image and video. This could allow an attacker to view and record image and video from the camera.,9.1,3.1,,cpe:2.3:o:akuvox:e11_firmware:-:*:*:*:*:*:*:*|cpe:2.3:h:akuvox:e11:-:*:*:*:*:*:*:*,Yes,High,Akuvox E11 is a residential video door phone; unauthenticated access to its camera capture is in scope.,Yes,High,,Yes,High,,,
+No,keyword_only,CVE-2017-10817,2017-08-04,MaLion for Windows and Mac 5.0.0 to 5.2.1 allows remote attackers to bypass authentication to alter settings in Relay Service Server.,9.8,3.1,CWE-287,cpe:2.3:a:intercom:malion:*:*:*:*:*:macos:*:*|cpe:2.3:a:intercom:malion:*:*:*:*:*:windows:*:*,No,High,,No,High,,No,High,,,
+Yes,vendor_only,CVE-2019-9483,2019-03-01,"Amazon Ring Doorbell before 3.4.7 mishandles encryption, which allows attackers to obtain audio and video data, or insert spoofed video that does not correspond to the actual person at the door.",9.1,3.0,CWE-327,cpe:2.3:o:amazon:ring_video_doorbell_firmware:*:*:*:*:*:*:*:*|cpe:2.3:h:amazon:ring_video_doorbell:-:*:*:*:*:*:*:*,Yes,High,,Yes,High,,Yes,High,,,
+Yes,vendor_only,CVE-2023-0353,2023-03-13,Akuvox E11 uses a weak encryption algorithm for stored passwords and uses a hard-coded password for decryption which could allow the encrypted passwords to be decrypted from the configuration file.,9.8,3.1,,cpe:2.3:o:akuvox:e11_firmware:-:*:*:*:*:*:*:*|cpe:2.3:h:akuvox:e11:-:*:*:*:*:*:*:*,Yes,High,Akuvox E11 is a residential video door phone; weak password encryption with a hard-coded decryption password is in scope.,Yes,High,,Yes,High,,,
+No,keyword_only,CVE-2014-2006,2014-06-28,Cross-site scripting (XSS) vulnerability in Intercom Web Kyukincho 3.x before 3.0.030 allows remote attackers to inject arbitrary web script or HTML via unspecified vectors.,4.3,2.0,CWE-79,cpe:2.3:a:intercom:web_kyukincho:3.0:*:*:*:*:*:*:*,No,High,,No,High,,No,High,,,
+No,keyword_only,CVE-2017-10818,2017-08-04,MaLion for Windows and Mac versions 3.2.1 to 5.2.1 uses a hardcoded cryptographic key which may allow an attacker to alter the connection settings of Terminal Agent and spoof the Relay Service.,9.8,3.1,CWE-798,cpe:2.3:a:intercom:malion:*:*:*:*:*:macos:*:*|cpe:2.3:a:intercom:malion:*:*:*:*:*:windows:*:*,No,High,,No,High,,No,High,,,
+Yes,vendor_only,CVE-2023-0352,2023-03-13,"The Akuvox E11 password recovery webpage can be accessed without authentication, and an attacker could download the device key file. An attacker could then use this page to reset the password back to the default.",9.1,3.1,,cpe:2.3:o:akuvox:e11_firmware:-:*:*:*:*:*:*:*|cpe:2.3:h:akuvox:e11:-:*:*:*:*:*:*:*,Yes,High,Akuvox E11 is a residential video door phone; an unauthenticated password-recovery page allowing key download and reset is in scope.,Yes,High,,Yes,High,,,
+Yes,vendor_only,CVE-2023-0354,2023-03-13,"The Akuvox E11 web server can be accessed without any user authentication, and this could allow an attacker to access sensitive information, as well as create and download packet captures with known default URLs.",9.1,3.1,,cpe:2.3:o:akuvox:e11_firmware:-:*:*:*:*:*:*:*|cpe:2.3:h:akuvox:e11:-:*:*:*:*:*:*:*,Yes,High,Akuvox E11 is a residential video door phone; unauthenticated web-server access exposing sensitive data/packet captures is in scope.,Yes,High,,Yes,High,,,
