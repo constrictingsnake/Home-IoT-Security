@@ -13,8 +13,8 @@ A research pipeline that systematically maps real-world home IoT device brands t
 - [Stage 2 — Vendor Search](#stage-2--vendor-search)
 - [Stage 3 — Intersection and Difference](#stage-3--intersection-and-difference)
 - [Stage 4 — Triple-AI Review](#stage-4--triple-ai-review)
-- [Stage 9 — CPE Expansion](#stage-9--cpe-expansion)
-- [Stage 10 — Recall Estimation (Capture–Recapture)](#stage-10--recall-estimation-capturerecapture)
+- [Stage 5 — CPE Expansion](#stage-5--cpe-expansion)
+- [Stage 6 — Recall Estimation (Capture–Recapture)](#stage-6--recall-estimation-capturerecapture)
 - [Refreshing Difference Sets Without Losing Review Work](#refreshing-difference-sets-without-losing-review-work)
 - [Device Categories](#device-categories)
 - [Scripts](#scripts)
@@ -32,11 +32,11 @@ The pipeline has two text-based CVE discovery methods that are cross-referenced 
 
 Both methods run against the same fixed offline NVD snapshot to ensure the results are directly comparable and the study is reproducible.
 
-A third, structural method — **CPE expansion (Stage 9)** — runs *after* review: once a device's `vendor:product` CPE has been confirmed a true match, it pulls in every other CVE that NVD itself attributes to that same CPE, catching terse entries whose text neither search could match.
+A third, structural method — **CPE expansion (Stage 5)** — runs *after* review: once a device's `vendor:product` CPE has been confirmed a true match, it pulls in every other CVE that NVD itself attributes to that same CPE, catching terse entries whose text neither search could match.
 
 The set difference (CVEs found by one method but not the other) is reviewed by three independent AI reviewers (Claude Code, Codex, and Gemini) to classify each CVE as a true match or false positive.
 
-Because the two searches are near-independent capture lists of the same underlying CVE population, **Stage 10 (recall estimation)** turns their overlap into a capture–recapture estimate of *how many in-scope CVEs exist per category and what fraction the pipeline found* — the recall counterpart to the precision that review measures.
+Because the two searches are near-independent capture lists of the same underlying CVE population, **Stage 6 (recall estimation)** turns their overlap into a capture–recapture estimate of *how many in-scope CVEs exist per category and what fraction the pipeline found* — the recall counterpart to the precision that review measures.
 
 ---
 
@@ -419,23 +419,39 @@ python3 scripts/cpe_expansion.py cameras --no-part-filter   # A/B the leak guard
 
 Per-category output → `data/difference/<cat>/09_cpe_expansion_candidates.csv` (tagged `Discovery Method = cpe_expansion`, with the `seed_cpe` that pulled each row in). The `--all` run also writes `data/difference/cpe_expansion_summary.csv`.
 
-**Routing into Stage 4.** By default the script *also* writes `data/difference/<cat>/cpe_expansion/01_raw.csv` — a third review **direction** alongside `vendor_only` / `keyword_only`, in the exact Stage-4 raw schema. It is disjoint from both by construction (these CVEs are, by definition, in neither text method's output), so the `(category, cve_id)` key stays unique and `finalize_judgments.py` / `extract_human_review.py` — which read `Difference Type` per row — need no changes. `make_review_copies.py` concatenates all three directions automatically. So the candidates flow through the *same* review loop as everything else:
+**Routing into Stage 4.** By default the script *also* writes `data/difference/<cat>/cpe_expansion/01_raw.csv` — a third review **direction** alongside `vendor_only` / `keyword_only`, in the exact Stage-4 raw schema. It is disjoint from both by construction (these CVEs are, by definition, in neither text method's output), so the `(category, cve_id)` key stays unique and `finalize_judgments.py` / `extract_human_review.py` — which read `Difference Type` per row — need no changes. `make_review_copies.py` concatenates all three directions automatically. So the candidates flow through the *same* review loop as everything else.
+
+**How to run `make_review_copies.py` here — use `--refresh`.** The `vendor_only` / `keyword_only` copies were **already built and reviewed**, so each category already has a `reviews/{claude,codex,gemini}.csv`. Pick the mode by what those existing copies should do:
+
+| Command | Existing copies | Prior judgments | Use when |
+|---------|-----------------|-----------------|----------|
+| `make_review_copies.py <cat>` | **skipped** (new rows never added) | — | first build of a brand-new category |
+| `make_review_copies.py <cat> --refresh` | **rebuilt**, new rows folded in | **kept** — only new rows blank | **routing CPE-expansion candidates (this step)** |
+| `make_review_copies.py <cat> --overwrite` | rebuilt | **wiped** — re-reviews everything | deliberate full reset only |
+
+`--refresh` rebuilds each `reviews/*.csv`, restores every prior judgment from `judgment_store.csv` by `(category, cve_id)`, and leaves **only the genuinely new `cpe_expansion` rows blank** — so no settled row is re-reviewed. Each file prints e.g. `wrote 2379 rows … (restored 442 from store, 1937 blank/new)`; the `blank/new` count is the review load that category just gained. Run it for every category at once, or name a single slug to route just one:
 
 ```bash
-python3 scripts/cpe_expansion.py --all           # writes candidates + cpe_expansion/01_raw.csv
-python3 scripts/make_review_copies.py alarms     # pulls all 3 directions into blind copies
-# Claude/Codex fill reviews/*.csv; then:
-python3 scripts/merge_judgments.py --reviews data/difference/alarms/reviews --run-gemini --category alarm
-python3 scripts/extract_human_review.py          # flagged rows -> human queue
-python3 scripts/finalize_judgments.py            # settle + upsert judgment_store.csv
+python3 scripts/cpe_expansion.py --all                    # 1. writes candidates + cpe_expansion/01_raw.csv
+python3 scripts/make_review_copies.py --all --refresh      # 2. fold new rows into ALL categories' copies
+#   or one category:  python3 scripts/make_review_copies.py streaming --refresh
+
+# 3. Claude/Codex fill ONLY the new blank rows in reviews/{claude,codex}.csv, then run Gemini + merge:
+python3 scripts/merge_judgments.py --reviews data/difference/<cat>/reviews --run-gemini --category "<keyword>"
+#   (resumable — Gemini only classifies the blank rows, never the restored ones)
+
+python3 scripts/extract_human_review.py                    # 4. flagged rows -> human queue
+python3 scripts/finalize_judgments.py                      # 5. settle + upsert judgment_store.csv
 ```
+
+To confirm the routing carried everything forward, the restored counts should sum to the already-settled total and the blanks to the new-candidate total (per `cpe_expansion_summary.csv`).
 
 Pass `--no-stage4` to `cpe_expansion.py` for a report-only run that writes no `01_raw.csv`. The `09_*_candidates.csv` file is retained separately as the `seed_cpe` attribution source (the CPE-expansion analogue of the builders' `matched_terms`).
 
 **Three guardrails** keep it honest:
 
 1. **Seed only from confirmed `Yes`** rows (`judgment_store.csv`) — never an unreviewed CVE.
-2. **Device-CPE granularity.** (a) `vendor:product` only, never vendor-only — `tp-link:tapo_p100`, not all of `tp-link` (which would drag in every Archer router). (b) `part ∈ {o, h}` only — firmware/hardware. A co-listed `part=a` application/library CPE riding on a device's Yes row (e.g. `openweave:openweave-core`, Nest's protocol library, sitting on a camera CVE) is dropped, so expansion stays pinned to the physical device, not its dependencies.
+2. **Device-CPE granularity.** (a) `vendor:product` only, never vendor-only — `tp-link:tapo_p100`, not all of `tp-link` (which would drag in every Archer router). (b) `part ∈ {o, h}` only — firmware/hardware. A co-listed `part=a` application/library CPE riding on a device's Yes row (e.g. `openweave:openweave-core`, Nest's protocol library, sitting on a camera CVE) is dropped, so expansion stays pinned to the physical device, not its dependencies. (c) **general-purpose computing platforms are denied** (`GENERIC_PLATFORM_CPES`) even though they are `part=o`. Apple/Google attribute one CVE across every OS at once, so a streaming Apple-TV Yes row co-lists `apple:tvos` **with** `apple:mac_os_x` / `apple:iphone_os` / `apple:watchos` — seeding those pulls the whole desktop/mobile corpus (17k+ candidates for `streaming` alone before the filter). Only shared platforms (macOS, iOS, Android, Windows, Linux kernel, NVIDIA Jetson dev boards) are denied; device-specific OS/firmware CPEs are kept. `apple:tvos` is **deliberately kept** — it is the Apple-TV OS and its CVEs are in-scope via criterion 4(b) — so `streaming` still yields ~1.9k mostly-shared-WebKit candidates for review.
 3. **Candidates are never auto-included.** They leave as an unreviewed set that still goes through Stage 4 (or an audit sample). High CPE precision ≠ zero false positives — see the smartplugs miss below.
 
 **First-run results (2026-07-02, 8 seeded categories).** 52 new candidate CVEs the two text methods never found:
@@ -457,9 +473,9 @@ Pass `--no-stage4` to `cpe_expansion.py` for a report-only run that writes no `0
 
 ---
 
-## Stage 10 — Recall Estimation (Capture–Recapture)
+## Stage 6 — Recall Estimation (Capture–Recapture)
 
-Review measures **precision** (how many matched CVEs are real). It says nothing about **recall** — *what fraction of the real in-scope CVEs did the pipeline find?* Stage 10 answers that without any new labelling, by treating the vendor and keyword searches as two independent **capture occasions** of the same underlying CVE population (Lincoln–Petersen mark-recapture). If the two methods overlap a lot relative to their sizes, they have jointly covered most of the population; if they barely overlap, a large unseen remainder is implied.
+Review measures **precision** (how many matched CVEs are real). It says nothing about **recall** — *what fraction of the real in-scope CVEs did the pipeline find?* Stage 6 answers that without any new labelling, by treating the vendor and keyword searches as two independent **capture occasions** of the same underlying CVE population (Lincoln–Petersen mark-recapture). If the two methods overlap a lot relative to their sizes, they have jointly covered most of the population; if they barely overlap, a large unseen remainder is implied.
 
 ```bash
 python3 scripts/recall_estimate.py                       # two-source, all categories, raw population
@@ -472,7 +488,7 @@ Output → printed table + `data/difference/recall_estimate.csv`.
 
 **Two-source (Chapman).** For each category with sizes `V`, `K` and overlap `m = |V∩K|`, the population is estimated by the Chapman estimator (the bias-corrected Lincoln–Petersen, stable at small overlap), `N̂ = (V+1)(K+1)/(m+1) − 1`, with a **log-normal 95% CI (Chao)** that never falls below the observed count. Combined recall = `|V∪K| / N̂`.
 
-**Three-source (`--three`).** Adds `C` = every CVE NVD attributes to a confirmed-Yes device CPE — the **full** Stage-9 capture set, reconstructed here from the snapshot *with its overlaps against V and K intact*. (The stored `09_*_candidates.csv` keeps only `C∖(V∪K)`, which discards exactly the overlap cells this needs.) A hierarchical Poisson **log-linear model** is fit over the 7 observable inclusion cells, selected by AIC, and the unobserved "missed by all three" cell is extrapolated. Three sources let the data *estimate* pairwise dependence instead of assuming it away — the main weakness of naive two-source LP, since V and K share an engine, snapshot, and text fields and are positively correlated. CIs come from an **800-replicate nonparametric bootstrap** that re-selects the model each replicate (so the interval absorbs model-selection uncertainty, not just sampling).
+**Three-source (`--three`).** Adds `C` = every CVE NVD attributes to a confirmed-Yes device CPE — the **full** Stage-5 capture set, reconstructed here from the snapshot *with its overlaps against V and K intact*. (The stored `09_*_candidates.csv` keeps only `C∖(V∪K)`, which discards exactly the overlap cells this needs.) A hierarchical Poisson **log-linear model** is fit over the 7 observable inclusion cells, selected by AIC, and the unobserved "missed by all three" cell is extrapolated. Three sources let the data *estimate* pairwise dependence instead of assuming it away — the main weakness of naive two-source LP, since V and K share an engine, snapshot, and text fields and are positively correlated. CIs come from an **800-replicate nonparametric bootstrap** that re-selects the model each replicate (so the interval absorbs model-selection uncertainty, not just sampling).
 
 **First-run results (2026-07-02, raw candidate population).**
 
@@ -506,7 +522,7 @@ Output → printed table + `data/difference/recall_estimate.csv`.
 When the vendor or keyword terms change (e.g. a snapshot rebuild or scope freeze), the `01_raw` difference sets must be regenerated — which desyncs the review artifacts built on top of them. Prior work is **not lost** if you refresh in this order: both human verdicts and AI judgments are preserved by `(category, cve_id)`, so only *genuinely new* rows need review.
 
 1. **Regenerate the raw sets** — `build_difference_sets.py --direction both --overwrite`.
-2. **Rebuild review copies** — `make_review_copies.py --all`. Prior AI judgments are **automatically restored from `judgment_store.csv`** by `(category, cve_id)` — no `--preserve` flag needed. Only CVEs new to the regenerated `01_raw.csv` are left blank.
+2. **Rebuild review copies** — `make_review_copies.py --all --refresh`. `--refresh` rebuilds the *existing* copies (a plain re-run would skip them) while **restoring prior AI judgments from `judgment_store.csv`** by `(category, cve_id)` — no `--preserve` flag needed. Only CVEs new to the regenerated `01_raw.csv` are left blank. (`--overwrite`, by contrast, blank-rebuilds and re-reviews everything.)
 3. **Re-judge only the new (blank) rows** — Claude/Codex manually; Gemini via `merge_judgments.py --run-gemini` (resumable — it skips filled rows, so it only spends quota on the blanks).
 4. **Re-merge and re-settle** — `merge_judgments.py` (re-flag) → `extract_human_review.py` (re-applies existing `Human Verdict`s by key) → `finalize_judgments.py` (re-finalizes and upserts the store).
 
@@ -648,15 +664,16 @@ Bootstraps `data/difference/judgment_store.csv` from the existing `final_resolve
 ---
 
 ### `make_review_copies.py` — Stage 4
-Builds combined blind review copies for a category, concatenating both `vendor_only` and `keyword_only` `01_raw.csv` files. Pre-fills known AI judgments from `judgment_store.csv` automatically — no `--preserve` flag needed. Writes to `data/difference/<category>/reviews/{claude,codex,gemini}.csv`. Existing copies are skipped by default.
+Builds combined blind review copies for a category, concatenating every direction's `01_raw.csv` (`vendor_only`, `keyword_only`, and `cpe_expansion` if present). Pre-fills known AI judgments from `judgment_store.csv` automatically — no `--preserve` flag needed. Writes to `data/difference/<category>/reviews/{claude,codex,gemini}.csv`. Existing copies are skipped by default; use `--refresh` to fold in new rows without losing judgments, or `--overwrite` to blank-rebuild.
 
 | Flag | Description |
 |------|-------------|
 | `category` | (positional) Category slug (e.g. `cameras`) |
 | `--all` | Process every category listed in `device_lst.txt` |
+| `--refresh` | Rebuild existing copies to fold in **new** rows (e.g. after CPE expansion adds a `cpe_expansion/01_raw.csv`), carrying prior judgments forward from the store — only genuinely new CVEs are left blank, so no settled row is re-reviewed. The flag to use when routing Stage-5 candidates in. Ignored where `--overwrite` is set. |
 | `--diff-dir DIR` | Difference directory root (default: `data/difference`) |
 | `--store FILE` | Path to `judgment_store.csv` (default: `<diff-dir>/judgment_store.csv`) |
-| `--overwrite` | Blank-rebuild existing copies (ignore judgment store) |
+| `--overwrite` | Blank-rebuild existing copies (ignore judgment store; re-reviews everything) |
 
 ---
 
@@ -741,7 +758,7 @@ Scores every search term's precision from the settled judgments. Reads `final_re
 
 ---
 
-### `cpe_expansion.py` — Stage 9
+### `cpe_expansion.py` — Stage 5
 The third discovery method. Seeds from the confirmed-`Yes` rows in `judgment_store.csv`, extracts their device `vendor:product` CPEs, and scans the snapshot for every other CVE NVD attributes to the same CPE — minus everything the two text methods already found. Writes `data/difference/<cat>/09_cpe_expansion_candidates.csv` per category and (with `--all`) `data/difference/cpe_expansion_summary.csv`. Candidates are unreviewed and feed Stage 4, never the dataset directly.
 
 | Flag | Description |
@@ -752,8 +769,8 @@ The third discovery method. Seeds from the confirmed-`Yes` rows in `judgment_sto
 
 ---
 
-### `recall_estimate.py` — Stage 10
-Capture–recapture recall estimation. Treats the vendor and keyword searches as two capture occasions and computes, per category, the Chapman population estimate `N̂` with a log-normal 95% CI and the implied combined recall. With `--three` it reconstructs the full Stage-9 CPE capture set from the snapshot (reusing `cpe_expansion.py`'s scan) and fits an AIC-selected Poisson log-linear model with a bootstrap CI. Writes `data/difference/recall_estimate.csv` and prints a table with a `POOLED` cross-category total. Read-only over the pipeline outputs — computes nothing that changes the dataset.
+### `recall_estimate.py` — Stage 6
+Capture–recapture recall estimation. Treats the vendor and keyword searches as two capture occasions and computes, per category, the Chapman population estimate `N̂` with a log-normal 95% CI and the implied combined recall. With `--three` it reconstructs the full Stage-5 CPE capture set from the snapshot (reusing `cpe_expansion.py`'s scan) and fits an AIC-selected Poisson log-linear model with a bootstrap CI. Writes `data/difference/recall_estimate.csv` and prints a table with a `POOLED` cross-category total. Read-only over the pipeline outputs — computes nothing that changes the dataset.
 
 | Flag | Description |
 |------|-------------|
@@ -799,6 +816,6 @@ Old live-NVD-API querier. Retired and no longer part of the pipeline. Kept on di
 
 **Why bidirectional difference?** `vendor_only` cleans false negatives in the keyword search. `keyword_only` surfaces gaps in the vendor brand list. Together they close both sides of the recall gap.
 
-**Why does CPE expansion run *after* review, not as a third search up front?** It trades breadth for precision. Seeding only from confirmed-`Yes` CPEs means it can never invent a new brand — but every CVE it returns is already attributed by NVD to a device a human/consensus signed off on, so it is far higher-precision than a third text search would be. It is the natural completion of the two-method design: vendor terms find brands, keyword terms find device language, CPE expansion finds everything NVD itself already attributed to a confirmed device. Because it depends on settled judgments, it slots in at Stage 9, after the review loop, and feeds its output back through that same loop.
+**Why does CPE expansion run *after* review, not as a third search up front?** It trades breadth for precision. Seeding only from confirmed-`Yes` CPEs means it can never invent a new brand — but every CVE it returns is already attributed by NVD to a device a human/consensus signed off on, so it is far higher-precision than a third text search would be. It is the natural completion of the two-method design: vendor terms find brands, keyword terms find device language, CPE expansion finds everything NVD itself already attributed to a confirmed device. Because it depends on settled judgments, it slots in at Stage 5, after the review loop, and feeds its output back through that same loop.
 
 **What counts as a home IoT device?** A device must be internet-connected, be a special-purpose sensor/appliance/embedded system (not general-purpose IT), be intended for a private residence, have a monitoring/automation/control function (or serve as a home-control hub for other IoT devices), and be maintained by a non-expert consumer. Game consoles fail on device class and function. Streaming TVs qualify because their platforms act as Matter/Thread controllers. Plain routers are excluded — they are threat-model context, not study subjects.

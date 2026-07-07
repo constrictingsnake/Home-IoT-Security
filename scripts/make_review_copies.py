@@ -15,13 +15,18 @@ are simply not included — the store retains them but they don't end up in the 
 
 Modes:
   (default)    skip reviewer copies that already exist
-  --overwrite  blank-rebuild (ignores judgment store)
+  --refresh    rebuild existing copies to fold in NEW rows (e.g. after CPE expansion adds
+               a cpe_expansion/01_raw.csv), carrying prior judgments forward from the
+               store — only genuinely new CVEs are left blank, so no settled row is
+               re-reviewed. This is the flag to use when routing Stage-5 candidates in.
+  --overwrite  blank-rebuild (ignores judgment store; re-reviews everything)
   --all        process every category listed in device_lst.txt
 
 Usage:
     python scripts/make_review_copies.py cameras
+    python scripts/make_review_copies.py cameras --refresh    # fold in new rows, keep judgments
     python scripts/make_review_copies.py cameras --overwrite
-    python scripts/make_review_copies.py --all
+    python scripts/make_review_copies.py --all --refresh
     python scripts/make_review_copies.py cameras --diff-dir data/difference
 """
 import argparse
@@ -33,7 +38,7 @@ JUDGMENT_FIELDS = ["Judgment", "Confidence", "Reasoning"]
 
 # Review directions concatenated into each category's combined copy. All are disjoint,
 # so the Difference Type column on every row sorts back to its direction. cpe_expansion
-# (Stage 9) is the third: CVEs in neither text method's output, seeded from confirmed Yes.
+# (Stage 5) is the third: CVEs in neither text method's output, seeded from confirmed Yes.
 DIRECTIONS = ("vendor_only", "keyword_only", "cpe_expansion")
 
 
@@ -59,7 +64,7 @@ def build_combined(cat_dir):
     return pd.concat(frames, ignore_index=True)
 
 
-def process_category(cat, diff_dir, store_df, overwrite):
+def process_category(cat, diff_dir, store_df, overwrite, refresh=False):
     cat_dir = os.path.join(diff_dir, cat)
     combined = build_combined(cat_dir)
     if combined is None:
@@ -82,8 +87,9 @@ def process_category(cat, diff_dir, store_df, overwrite):
 
     for reviewer in REVIEWERS:
         out_path = os.path.join(outdir, f"{reviewer.lower()}.csv")
-        if os.path.isfile(out_path) and not overwrite:
-            print(f"  skip (exists): {out_path}  — use --overwrite to rebuild")
+        if os.path.isfile(out_path) and not overwrite and not refresh:
+            print(f"  skip (exists): {out_path}  — use --refresh to fold in new rows "
+                  f"(keeps prior judgments) or --overwrite to blank-rebuild")
             continue
 
         cols = review_columns(reviewer)
@@ -137,6 +143,10 @@ def main():
                     help="Path to judgment_store.csv (default: <diff-dir>/judgment_store.csv)")
     ap.add_argument("--overwrite", action="store_true",
                     help="Blank-rebuild existing review copies (ignore judgment store)")
+    ap.add_argument("--refresh", action="store_true",
+                    help="Rebuild existing copies to fold in new rows (e.g. after CPE "
+                         "expansion), carrying prior judgments forward from the store — only "
+                         "genuinely new CVEs are left blank. Ignored where --overwrite is set.")
     args = ap.parse_args()
 
     if not args.category and not args.all:
@@ -153,9 +163,9 @@ def main():
         categories = read_device_list(args.diff_dir)
         for cat in categories:
             print(f"\n=== {cat} ===")
-            process_category(cat, args.diff_dir, store_df, args.overwrite)
+            process_category(cat, args.diff_dir, store_df, args.overwrite, args.refresh)
     else:
-        process_category(args.category, args.diff_dir, store_df, args.overwrite)
+        process_category(args.category, args.diff_dir, store_df, args.overwrite, args.refresh)
 
     print("\nDone.")
 

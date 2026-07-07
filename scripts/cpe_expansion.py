@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Stage 9 — CPE expansion: the third discovery method.
+"""Stage 5 — CPE expansion: the third discovery method.
 
 Once a vendor:product CPE has been confirmed `Yes` (final judgment), scan the NVD
 snapshot for *every* CVE that NVD itself attributes to that same vendor:product —
@@ -11,7 +11,7 @@ It is a *densification* method, not a discovery method: it can only find more CV
 products already confirmed, never a new brand. Its recall is bounded to "everything NVD
 attributed to devices we already caught."
 
-Guardrails (see CLAUDE.md Stage 9):
+Guardrails (see CLAUDE.md Stage 5):
   1. Seed ONLY from Final Judgment == Yes rows (judgment_store.csv).
   2. Device-CPE granularity, two filters:
        (a) vendor:product only — never vendor-only. A CPE whose product field is
@@ -20,6 +20,14 @@ Guardrails (see CLAUDE.md Stage 9):
            protocol library / SoC / app riding on a device's Yes row, e.g.
            openweave:openweave-core on a Nest camera CVE) is dropped. This is what
            keeps expansion pinned to the physical device, not its dependencies.
+       (c) general-purpose computing platforms (GENERIC_PLATFORM_CPES) are dropped even
+           though they are part=o. Apple/Google attribute one CVE across every OS at once,
+           so a streaming Apple-TV Yes row co-lists apple:tvos WITH apple:mac_os_x /
+           apple:iphone_os / apple:watchos; seeding those pulls the entire desktop/mobile
+           corpus (~17k for `streaming` alone). Only shared platforms are denied — the
+           device-specific OS/firmware CPEs (apple:tvos, amazon:fire_os, per-model TVs) are
+           kept. NOTE: apple:tvos is deliberately KEPT (it is the Apple-TV OS and those CVEs
+           are in-scope via criterion 4(b)); it yields ~1.9k mostly-shared-WebKit candidates.
   3. New candidates leave the pipeline as an UNREVIEWED candidate set — this script
      never auto-includes them. It tags Discovery Method = cpe_expansion and records
      the seed CPE that pulled each row in (attribution, like matched_terms), so
@@ -48,6 +56,26 @@ SNAPSHOT = os.path.join(DATA, "nvd-snapshot", "nvd_all.csv")
 csv.field_size_limit(1 << 24)
 
 DEVICE_PARTS = {"o", "h"}  # firmware / hardware — guardrail 2(b)
+
+# Guardrail 2(c): general-purpose computing platforms are never a home-IoT *device* seed,
+# even though they are part=o. They leak in because vendors (esp. Apple/Google) attribute a
+# single CVE across every OS at once — a streaming Apple-TV CVE co-lists apple:tvos WITH
+# apple:mac_os_x / apple:iphone_os / apple:watchos, and seeding those pulls the entire
+# desktop/mobile CVE corpus (17k+ for `streaming` alone). The device-specific OS/firmware CPEs
+# (apple:tvos, amazon:fire_os, per-model sony:kd-* TVs) are NOT denied — only shared
+# general-purpose platforms. nvidia:jetson_* are embedded dev/robotics boards (fail criteria
+# 2 & 3), not home devices, so they are denied too.
+GENERIC_PLATFORM_CPES = {
+    "apple:mac_os_x", "apple:mac_os_x_server",
+    "apple:iphone_os", "apple:ipados", "apple:ipad_os", "apple:watchos",
+    "google:android", "google:android_things",
+    "microsoft:windows", "microsoft:windows_10", "microsoft:windows_11",
+    "linux:linux_kernel", "canonical:ubuntu_linux", "debian:debian_linux",
+    "redhat:enterprise_linux", "fedoraproject:fedora", "opensuse:leap",
+    "nvidia:jetson_tx1", "nvidia:jetson_tx2", "nvidia:jetson_nano",
+    "nvidia:jetson_nano_2gb", "nvidia:jetson_xavier_nx", "nvidia:jetson_agx_xavier",
+    "nvidia:linux_for_tegra",
+}
 
 
 def parse_cpe(cpe: str):
@@ -131,6 +159,7 @@ def build_seeds(category: str, part_filter: bool):
     yes_with_cpe = 0
     dropped_vendor_only = 0
     dropped_app = 0
+    dropped_platform = 0
     for cid in yes_ids:
         row = raw.get(cid)
         if not row:
@@ -147,10 +176,14 @@ def build_seeds(category: str, part_filter: bool):
             if part_filter and part not in DEVICE_PARTS:
                 dropped_app += 1
                 continue
+            if vp in GENERIC_PLATFORM_CPES:  # guardrail 2(c)
+                dropped_platform += 1
+                continue
             seeds.add(vp)
             seed_source[vp].add(cid)
     stats = dict(yes=len(yes_ids), yes_with_cpe=yes_with_cpe,
                  dropped_vendor_only=dropped_vendor_only, dropped_app=dropped_app,
+                 dropped_platform=dropped_platform,
                  devices=len({device_str(vp) for vp in seeds}))
     return seeds, seed_source, stats
 
@@ -278,7 +311,8 @@ def run(categories, part_filter, to_stage4=True):
         print(f"\n=== CPE expansion — {cat} ===")
         print(f"confirmed-Yes seeds:            {st['yes']} ({st['yes_with_cpe']} carry a CPE)")
         print(f"distinct device seeds:          {st['devices']}  "
-              f"(dropped {st['dropped_app']} app/lib CPE, {st['dropped_vendor_only']} vendor-only)")
+              f"(dropped {st['dropped_app']} app/lib CPE, {st['dropped_vendor_only']} vendor-only, "
+              f"{st['dropped_platform']} general-purpose platform)")
         print(f"snapshot CVEs matching a seed:  {len(matched)}")
         print(f"  already known (either method): {len(matched) - len(new_rows)}")
         print(f"  NEW candidates:                {len(new_rows)}")
@@ -292,7 +326,8 @@ def run(categories, part_filter, to_stage4=True):
 
         summary.append(dict(
             category=cat, yes_seeds=st["yes"], device_seeds=st["devices"],
-            app_cpe_dropped=st["dropped_app"], matched=len(matched),
+            app_cpe_dropped=st["dropped_app"], platform_cpe_dropped=st["dropped_platform"],
+            matched=len(matched),
             already_known=len(matched) - len(new_rows), new_candidates=len(new_rows),
         ))
     return summary
@@ -335,8 +370,10 @@ def main():
             w.writerows(summary)
         tot_new = sum(s["new_candidates"] for s in summary)
         tot_drop = sum(s["app_cpe_dropped"] for s in summary)
+        tot_plat = sum(s["platform_cpe_dropped"] for s in summary)
         print(f"\n=== TOTAL: {tot_new} new candidate CVEs across {len(summary)} categories "
-              f"({tot_drop} app/lib CPEs dropped by the part filter) ===")
+              f"({tot_drop} app/lib CPEs dropped by the part filter, "
+              f"{tot_plat} general-purpose platform CPEs dropped) ===")
         print(f"summary -> {os.path.relpath(sp, ROOT)}")
 
 

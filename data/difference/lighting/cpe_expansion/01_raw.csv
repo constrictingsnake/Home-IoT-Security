@@ -1,0 +1,2 @@
+Difference Type,cve_id,published,description,cvss_score,cvss_version,cwe_ids,cpe_strings
+cpe_expansion,CVE-2018-15477,2018-08-30,myStrom WiFi Switch V1 devices before 2.66 did not sanitize a parameter received from the cloud that was used in an OS command. Malicious servers were able to run operating system commands on the device.,9.8,3.0,CWE-78,cpe:2.3:o:mystrom:wifi_switch_firmware:*:*:*:*:*:*:*:*|cpe:2.3:h:mystrom:wifi_switch:v1:*:*:*:*:*:*:*
