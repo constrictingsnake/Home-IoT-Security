@@ -116,6 +116,21 @@ def difference_rows(source_df, source_cves, other_cves, label="vendor_only"):
     return result
 
 
+# Build the intersection rows: the CVEs present in BOTH source_cves and other_cves,
+# pulled from source_df and tagged with `label` (the Difference Type = "intersection").
+# The intersection (V ∩ K) is disjoint from vendor_only (V − K) and keyword_only (K − V);
+# together the three partition V ∪ K exactly, so a CVE never lands in two directions.
+# Rows are pulled from source_df (pass the vendor df — its schema matches the keyword df).
+# Used by build_intersection_sets.py to route the intersection through the same Stage-4
+# review as the difference set (it is NOT assumed clean — see CLAUDE.md Stage 3/4).
+def intersection_rows(source_df, source_cves, other_cves, label="intersection"):
+    both = source_cves & other_cves
+    result = source_df[source_df['_cve_norm'].isin(both)].copy()
+    result = result.drop(columns=DROP_COLS, errors='ignore')
+    result.insert(0, "Difference Type", label)
+    return result
+
+
 # Compute the difference and prompt the user to save it
 # Unmatched = CVEs in the vendor file that appear in NONE of the workbooks
 def save_results(df, vendor_cves, keyword_cves):

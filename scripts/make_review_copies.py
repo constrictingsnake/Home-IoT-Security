@@ -38,8 +38,11 @@ JUDGMENT_FIELDS = ["Judgment", "Confidence", "Reasoning"]
 
 # Review directions concatenated into each category's combined copy. All are disjoint,
 # so the Difference Type column on every row sorts back to its direction. cpe_expansion
-# (Stage 5) is the third: CVEs in neither text method's output, seeded from confirmed Yes.
-DIRECTIONS = ("vendor_only", "keyword_only", "cpe_expansion")
+# (Stage 5) is a discovery direction: CVEs in neither text method's output, seeded from
+# confirmed Yes. intersection (V ∩ K) is the audit direction: CVEs both methods agree on,
+# formerly assumed clean and skipped — now reviewed (see CLAUDE.md Stage 3/4). vendor_only,
+# keyword_only, and intersection together partition V ∪ K; cpe_expansion is outside it.
+DIRECTIONS = ("vendor_only", "keyword_only", "cpe_expansion", "intersection")
 
 
 def review_columns(reviewer):

@@ -232,6 +232,24 @@ Takes a vendor search Excel file and cross-references it against all keyword CSV
 python3 scripts/full_intersect.py
 ```
 
+**The intersection is reviewed, not assumed clean.** "Both methods agree" is a strong precision
+signal but not a guarantee. An audit of the full intersection (470 CVEs) found it ~96% true for
+non-camera categories but materially contaminated for `cameras`, where generic device-phrase
+keywords collide with pro/enterprise surveillance brands. So the intersection is built as a
+per-category **review direction** and routed through Stage 4 alongside the difference set:
+
+**Script:** `scripts/build_intersection_sets.py`
+**Output:** `data/difference/<category>/intersection/01_raw.csv` (`Difference Type = intersection`)
+
+```bash
+python3 scripts/build_intersection_sets.py data/device_lst.txt
+# then fold the new rows into the blind copies (keeps all prior judgments):
+python3 scripts/make_review_copies.py --all --refresh
+```
+
+`intersection` (V∩K) is disjoint from `vendor_only` (V−K) and `keyword_only` (K−V) — the three
+partition V∪K — and from `cpe_expansion`. Existing `01_raw.csv` files are skipped unless `--overwrite`.
+
 ### Difference — CVEs found by only one method
 
 **Script:** `scripts/full_difference.py` (whole-corpus) or `scripts/build_difference_sets.py` (per-category batch)
@@ -638,6 +656,17 @@ Batch-generates `01_raw.csv` for every category, in both directions (`vendor_onl
 | `categories_file` | (positional) Text file with one category slug per line (e.g. `data/device_lst.txt`) |
 | `--categories SLUG [SLUG …]` | Category slugs directly, instead of a file |
 | `--direction vendor_only\|keyword_only\|both` | Which direction(s) to build (default: `both`) |
+| `--overwrite` | Regenerate even if `01_raw.csv` already exists |
+
+---
+
+### `build_intersection_sets.py` — Stage 4
+Batch-generates the intersection review set `data/difference/<cat>/intersection/01_raw.csv` (`vendor_<cat> ∩ keyword_<cat>`, tagged `Difference Type = intersection`) for every category. This is the **audit direction** — CVEs both search methods agree on, formerly assumed clean and skipped, now routed through the same Stage-4 review. Disjoint from the other three directions. Skips existing files by default. After running, do `make_review_copies.py --all --refresh` to fold the new rows into the blind copies (prior judgments preserved).
+
+| Flag | Description |
+|------|-------------|
+| `categories_file` | (positional) Text file with one category slug per line (e.g. `data/device_lst.txt`) |
+| `--categories SLUG [SLUG …]` | Category slugs directly, instead of a file |
 | `--overwrite` | Regenerate even if `01_raw.csv` already exists |
 
 ---

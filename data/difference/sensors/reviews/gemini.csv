@@ -117,3 +117,4 @@ manual fan control.
 
 Confirm that the reported overflow in FIELD_PREP is fixed by declaring
 macsmc_hwmon_write_f32() as __always_inline for a compile test.",7.8,3.1,CWE-787,cpe:2.3:o:linux:linux_kernel:*:*:*:*:*:*:*:*|cpe:2.3:o:linux:linux_kernel:6.19:-:*:*:*:*:*:*|cpe:2.3:o:linux:linux_kernel:7.0:rc1:*:*:*:*:*:*|cpe:2.3:o:linux:linux_kernel:7.0:rc2:*:*:*:*:*:*|cpe:2.3:o:linux:linux_kernel:7.0:rc3:*:*:*:*:*:*|cpe:2.3:o:linux:linux_kernel:7.0:rc4:*:*:*:*:*:*|cpe:2.3:o:linux:linux_kernel:7.0:rc5:*:*:*:*:*:*|cpe:2.3:o:linux:linux_kernel:7.0:rc6:*:*:*:*:*:*|cpe:2.3:o:linux:linux_kernel:7.0:rc7:*:*:*:*:*:*,No,High,
+intersection,CVE-2023-34597,2023-06-20,A vulnerability in Fibaro Motion Sensor firmware v3.4 allows attackers to cause a Denial of Service (DoS) via a crafted Z-Wave message.,6.5,3.1,,cpe:2.3:o:fibaro:fgms-001_firmware:3.4:*:*:*:*:*:*:*|cpe:2.3:h:fibaro:fgms-001:-:*:*:*:*:*:*:*,Yes,High,

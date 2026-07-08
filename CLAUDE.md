@@ -75,6 +75,19 @@ The only difference between the two methods is the search *terms* (brands vs. de
 - Adds `Source File` and `Source Sheet` (= the category slug) columns to matched rows
 - Saves output to CSV interactively
 
+**Stage 3 — intersection audit (V∩K is *not* assumed clean).** The intersection was historically
+treated as high-precision ("both methods agree") and skipped in review. An audit of the whole
+intersection (470 CVEs) showed that assumption holds for most categories (non-camera intersection
+≈ 96% true) but **fails for `cameras`**: generic device-phrase keywords (`ip camera`, `security
+camera`, `network camera`) collide with pro/enterprise surveillance brands, so a large minority of
+the camera intersection is out of scope (Axis/Hikvision/Milesight/Geovision etc., judged per the
+same nuanced convention as the difference set — Dahua/Axis often Yes, pure-VMS/analytics No). To
+close this gap the intersection is now a **fourth review direction** (`intersection`), built by
+`build_intersection_sets.py` per category (`vendor_<cat> ∩ keyword_<cat>` → `<cat>/intersection/
+01_raw.csv`, `Difference Type = intersection`) and routed through the **same Stage-4 triple-AI +
+human chain** as the difference set. It is disjoint from `vendor_only`/`keyword_only` (the three
+partition V∪K) and from `cpe_expansion`.
+
 **Companion script — `full_difference.py`** (complement of `full_intersect.py`): outputs vendor CVEs in **none** of the keyword files (`vendor − keyword_union`, whole-corpus) → `unmatched_cves.csv`; adds `Difference Type = vendor_only`. Both scripts resolve `data/keyword-search/` relative to the script, so they run from anywhere. For the **per-category** difference used by Stage 4, use `build_difference_sets.py` instead.
 
 ### Stage 4 — Triple-AI review of the difference set (per device category)
@@ -112,9 +125,9 @@ the sort-back key when you need to separate them.
 1. Generate the raw difference set(s) as `data/difference/<device>/<dir>/01_raw.csv`:
    - **Batch (all categories, both directions):** `python scripts/build_difference_sets.py data/device_lst.txt` — for each category builds **both** `vendor_only` (vendor_<cat> − keyword_<cat>) and `keyword_only` (keyword_<cat> − vendor_<cat>), differencing `results_all_<device>.xlsx` against `keyword_<device>.csv`. Use `--direction` to pick one. Warns if the keyword file is missing (run `build_keyword_search.py` first); a missing *other* side is treated as empty. Skips a direction that already has `01_raw.csv` (use `--overwrite`). **Note:** regenerating existing sets is gated (skip-if-exists) and should only be re-run after scope freeze. Prior work is **not lost on a deliberate `--overwrite` refresh** — see *Refreshing difference sets without losing review work*.
    - **Single, interactive (whole-corpus vendor_only only):** `python scripts/full_difference.py` (runnable from anywhere), then save to the direction's `01_raw.csv`.
-2. `python scripts/make_review_copies.py <device>` → concatenates all directions' `01_raw.csv` (`vendor_only`, `keyword_only`, and `cpe_expansion` if present), pre-fills known AI judgments from `judgment_store.csv` (keyed by `(category, cve_id)`), and writes blind `<device>/reviews/{claude,codex,gemini}.csv`. **Carry-forward is automatic** — no `--preserve` flag needed; the store restores prior judgments for any CVE still in the current raw set. Only genuinely new CVEs are left blank.
+2. `python scripts/make_review_copies.py <device>` → concatenates all directions' `01_raw.csv` (`vendor_only`, `keyword_only`, `cpe_expansion`, and `intersection` if present), pre-fills known AI judgments from `judgment_store.csv` (keyed by `(category, cve_id)`), and writes blind `<device>/reviews/{claude,codex,gemini}.csv`. **Carry-forward is automatic** — no `--preserve` flag needed; the store restores prior judgments for any CVE still in the current raw set. Only genuinely new CVEs are left blank.
    - For all categories at once: `python scripts/make_review_copies.py --all`
-   - **A first build skips a category whose `reviews/*.csv` already exist.** To fold *new* rows into existing copies — e.g. after Stage 5 CPE expansion adds a `cpe_expansion/01_raw.csv` — add **`--refresh`**: it rebuilds the copies, restores every prior judgment from the store, and leaves **only the new rows blank**, so no settled row is re-reviewed. (Gemini/Claude/Codex then touch only the blanks.)
+   - **A first build skips a category whose `reviews/*.csv` already exist.** To fold *new* rows into existing copies — e.g. after Stage 5 CPE expansion adds a `cpe_expansion/01_raw.csv`, or after `build_intersection_sets.py` adds an `intersection/01_raw.csv` — add **`--refresh`**: it rebuilds the copies, restores every prior judgment from the store, and leaves **only the new rows blank**, so no settled row is re-reviewed. (Gemini/Claude/Codex then touch only the blanks.)
    - To blank-rebuild and re-review everything (ignore the store): add `--overwrite`
 3. The two **manual** reviewers each fill **only their own** copy, following the rubric:
    - Claude Code edits `data/difference/<device>/reviews/claude.csv`
@@ -162,6 +175,7 @@ Home IoT Security/
 │   ├── full_intersect.py                # Stage 3 — CVE cross-file matcher (intersection)
 │   ├── full_difference.py               # Stage 3 — CVE cross-file matcher (difference / complement)
 │   ├── build_difference_sets.py         # Stage 4 — batch-generate 01_raw.csv, both directions (--direction)
+│   ├── build_intersection_sets.py       # Stage 4 — batch-generate intersection/01_raw.csv (V∩K audit direction)
 │   ├── init_categories.py               # Stage 4 — scaffold per-category direction subfolders from a list (idempotent)
 │   ├── seed_judgment_store.py           # Stage 4 — one-time bootstrap: seed judgment_store.csv from final_resolved.csv
 │   ├── make_review_copies.py            # Stage 4 — build combined blind review copies for a category (auto-fills from judgment store)
@@ -217,9 +231,11 @@ Home IoT Security/
             │   └── 01_raw.csv               # build_difference_sets.py output (Difference Type=vendor_only)
             ├── keyword_only/
             │   └── 01_raw.csv               # build_difference_sets.py output (Difference Type=keyword_only)
-            ├── cpe_expansion/               # Stage 5 — third direction (Difference Type=cpe_expansion)
-            │   └── 01_raw.csv               # cpe_expansion.py output; disjoint from the two above
-            ├── reviews/                     # combined blind copies (all 3 directions; Difference Type sorts back)
+            ├── cpe_expansion/               # Stage 5 — discovery direction (Difference Type=cpe_expansion)
+            │   └── 01_raw.csv               # cpe_expansion.py output; disjoint from the others
+            ├── intersection/                # Stage 3/4 — audit direction (Difference Type=intersection)
+            │   └── 01_raw.csv               # build_intersection_sets.py output (V∩K); disjoint from the others
+            ├── reviews/                     # combined blind copies (all 4 directions; Difference Type sorts back)
             │   ├── claude.csv               # raw + Claude columns   (Claude Code fills, manual)
             │   ├── codex.csv                # raw + Codex columns    (Codex fills, manual)
             │   └── gemini.csv               # raw + Gemini columns   (gemini_classify.py / Gemma fills, API)
@@ -229,10 +245,13 @@ Home IoT Security/
             ├── 03_final.csv                 # finalize_judgments.py → Final Judgment / Final Source
             └── 03_keyword_additions.md      # keywords mined from resolved-Yes rows (feeds keyword search)
 ```
-> All three directions are **disjoint** (a CVE can't be in two). `keyword_only` surfaces
-> **vendor/brand-list gaps**; `cpe_expansion` (Stage 5) surfaces CVEs neither text method matched.
-> The `Difference Type` column (`vendor_only` / `keyword_only` / `cpe_expansion`) sorts every row
-> back to its direction within the combined files.
+> All four directions are **disjoint** (a CVE can't be in two). `vendor_only`, `keyword_only`, and
+> `intersection` together **partition** V∪K; `cpe_expansion` (Stage 5) sits outside it. `keyword_only`
+> surfaces **vendor/brand-list gaps**; `cpe_expansion` surfaces CVEs neither text method matched;
+> `intersection` (V∩K) is the **audit direction** — CVEs both methods agree on, once assumed clean and
+> skipped, now reviewed (see *Stage 3 — intersection audit*). The `Difference Type` column
+> (`vendor_only` / `keyword_only` / `cpe_expansion` / `intersection`) sorts every row back to its
+> direction within the combined files.
 
 > **Note — running the scripts.** Scripts live in `scripts/`. `full_intersect.py`,
 > `full_difference.py`, `build_keyword_search.py`, `build_vendor_search.py`, and

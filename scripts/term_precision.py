@@ -9,9 +9,11 @@ of requiring a manual disagreement autopsy.
 How it works (Option B — attribution stays at the builder, join at report time):
   1. Read final_resolved.csv (settled Yes/No per CVE, with Category + Difference Type).
   2. For each judged row, look up which term(s) pulled that CVE in — from the matching
-     builder output chosen by direction:
-        vendor_only  -> results_all_<cat>.xlsx   (vendor-term precision)
-        keyword_only -> keyword_<cat>.csv        (keyword-term precision)
+     builder output(s) chosen by direction:
+        vendor_only  -> results_all_<cat>.xlsx               (vendor-term precision)
+        keyword_only -> keyword_<cat>.csv                    (keyword-term precision)
+        intersection -> BOTH of the above (matched by both methods, so it attributes to
+                        its vendor term(s) AND its keyword term(s))
   3. Tally, per (method, category, term): how many judged CVEs it matched and how many
      were confirmed Yes. A CVE hit by two terms counts toward both (each term "owns" it).
 
@@ -19,12 +21,10 @@ precision = n_yes / n_judged. A term is flagged a *prune candidate* when it has 
 judged on enough rows (--min-n, default 5) and its precision is at or below --threshold
 (default 0.10) — i.e. it drags in mostly false positives.
 
-IMPORTANT — what this measures. final_resolved.csv only contains the DIFFERENCE set (CVEs
-unique to one search method); the intersection (matched by BOTH methods) is never reviewed
-and so is absent here. This is therefore per-term precision *on the difference set*, not on
-all of a term's matches. It still catches the cases that motivated it (the smart-switch
-collision, the babymonitor/D-Link contamination — all in the difference set), but a term
-whose matches are mostly in the intersection gets a small denominator. Read it as a
+Scope note. final_resolved.csv covers the difference set (vendor_only/keyword_only) plus
+the intersection audit direction — cpe_expansion rows are excluded here since a CPE-expansion
+candidate isn't attributable to a search term. So this is per-term precision on a term's
+difference-set + intersection matches, not literally every CVE it ever matched — still a
 prioritized prune list, not a global precision.
 
 Usage:
@@ -43,10 +43,12 @@ DEFAULT_DIFF_DIR = os.path.join(ROOT, "data", "difference")
 
 MATCHED_TERMS_COL = "matched_terms"
 
-# direction -> (method label, builder-output loader)
+# direction -> method(s) whose builder output(s) attribute its matched_terms.
+# intersection rows were matched by BOTH methods, so they attribute to both.
 DIRECTIONS = {
-    "vendor_only": "vendor",
-    "keyword_only": "keyword",
+    "vendor_only": ("vendor",),
+    "keyword_only": ("keyword",),
+    "intersection": ("vendor", "keyword"),
 }
 
 
@@ -118,21 +120,25 @@ def main():
         if verdict not in ("Yes", "No"):      # skip Maybe / pending / incomplete / blank
             continue
         direction = str(row["Difference Type"]).strip()
-        method = DIRECTIONS.get(direction)
-        if method is None:
+        methods = DIRECTIONS.get(direction)
+        if methods is None:
             continue
         category = str(row["Category"]).strip()
         cid = _norm(row["cve_id"])
-        terms = load_term_map(method, category, cache).get(cid)
-        if not terms:
+        row_attributed = False
+        for method in methods:
+            terms = load_term_map(method, category, cache).get(cid)
+            if not terms:
+                continue
+            row_attributed = True
+            for term in terms:
+                key = (method, category, term)
+                slot = tally.setdefault(key, [0, 0])
+                slot[1] += 1                     # n_judged
+                if verdict == "Yes":
+                    slot[0] += 1                 # n_yes
+        if not row_attributed:
             unattributed += 1
-            continue
-        for term in terms:
-            key = (method, category, term)
-            slot = tally.setdefault(key, [0, 0])
-            slot[1] += 1                        # n_judged
-            if verdict == "Yes":
-                slot[0] += 1                    # n_yes
 
     if not tally:
         print("\nNo attributable judged rows found. Rebuild the builder outputs with the "

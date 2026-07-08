@@ -1,0 +1,27 @@
+Difference Type,cve_id,published,description,cvss_score,cvss_version,cwe_ids,cpe_strings
+intersection,CVE-2023-29114,2024-11-05,"System logs could be accessed through web management application due to a lack of access control.
+
+
+An attacker can obtain the following sensitive information:
+
+•     Wi-Fi access point credentials to which the EV charger can connect.
+
+•     APN web address and credentials.
+
+•     IPSEC credentials.
+
+•     Web interface access credentials for user and admin accounts.
+
+•     JuiceBox system components (software installed, model, firmware version, etc.).
+
+•     C2G configuration details.
+
+•     Internal IP addresses.
+
+•     OTA firmware update configurations (DNS servers).
+
+All the credentials are stored in logs in an unencrypted plaintext format.",5.7,3.1,CWE-200,
+intersection,CVE-2025-31930,2025-05-13,"A vulnerability has been identified in IEC 1Ph 7.4kW Child socket (8EM1310-2EH04-0GA0) (All versions < V2.135), IEC 1Ph 7.4kW Child socket/ shutter (8EM1310-2EN04-0GA0) (All versions < V2.135), IEC 1Ph 7.4kW Parent cable 7m (8EM1310-2EJ04-3GA1) (All versions < V2.135), IEC 1Ph 7.4kW Parent cable 7m incl. SIM (8EM1310-2EJ04-3GA2) (All versions < V2.135), IEC 1Ph 7.4kW Parent socket (8EM1310-2EH04-3GA1) (All versions < V2.135), IEC 1Ph 7.4kW Parent socket incl. SIM (8EM1310-2EH04-3GA2) (All versions < V2.135), IEC 1Ph 7.4kW Parent socket/ shutter (8EM1310-2EN04-3GA1) (All versions < V2.135), IEC 1Ph 7.4kW Parent socket/ shutter SIM (8EM1310-2EN04-3GA2) (All versions < V2.135), IEC 3Ph 22kW Child cable 7m (8EM1310-3EJ04-0GA0) (All versions < V2.135), IEC 3Ph 22kW Child socket (8EM1310-3EH04-0GA0) (All versions < V2.135), IEC 3Ph 22kW Child socket/ shutter (8EM1310-3EN04-0GA0) (All versions < V2.135), IEC 3Ph 22kW Parent cable 7m (8EM1310-3EJ04-3GA1) (All versions < V2.135), IEC 3Ph 22kW Parent cable 7m incl. SIM (8EM1310-3EJ04-3GA2) (All versions < V2.135), IEC 3Ph 22kW Parent socket (8EM1310-3EH04-3GA1) (All versions < V2.135), IEC 3Ph 22kW Parent socket incl. SIM (8EM1310-3EH04-3GA2) (All versions < V2.135), IEC 3Ph 22kW Parent socket/ shutter (8EM1310-3EN04-3GA1) (All versions < V2.135), IEC 3Ph 22kW Parent socket/ shutter SIM (8EM1310-3EN04-3GA2) (All versions < V2.135), IEC ERK 3Ph 22 kW Child cable 7m (8EM1310-3FJ04-0GA0) (All versions < V2.135), IEC ERK 3Ph 22 kW Child cable 7m (8EM1310-3FJ04-0GA1) (All versions < V2.135), IEC ERK 3Ph 22 kW Child cable 7m (8EM1310-3FJ04-0GA2) (All versions < V2.135), IEC ERK 3Ph 22 kW Child socket (8EM1310-3FH04-0GA0) (All versions < V2.135), IEC ERK 3Ph 22 kW Parent socket (8EM1310-3FH04-3GA1) (All versions < V2.135), IEC ERK 3Ph 22 kW Parent socket incl. SI (8EM1310-3FH04-3GA2) (All versions < V2.135), UL Commercial Cellular 48A NTEP (8EM1310-5HF14-1GA2) (All versions < V2.135), UL Commercial Child 40A w/ 15118 HW (8EM1310-4CF14-0GA0) (All versions < V2.135), UL Commercial Child 48A BA Compliant (8EM1315-5CG14-0GA0) (All versions < V2.135), UL Commercial Child 48A w/ 15118 HW (8EM1310-5CF14-0GA0) (All versions < V2.135), UL Commercial Parent 40A with Simcard (8EM1310-4CF14-1GA2) (All versions < V2.135), UL Commercial Parent 48A (USPS) (8EM1317-5CG14-1GA2) (All versions < V2.135), UL Commercial Parent 48A BA Compliant (8EM1315-5CG14-1GA2) (All versions < V2.135), UL Commercial Parent 48A with Simcard BA (8EM1310-5CF14-1GA2) (All versions < V2.135), UL Commercial Parent 48A, 15118, 25ft (8EM1310-5CG14-1GA1) (All versions < V2.135), UL Commercial Parent 48A, 15118, 25ft (8EM1314-5CG14-2FA2) (All versions < V2.135), UL Commercial Parent 48A, 15118, 25ft (8EM1315-5HG14-1GA2) (All versions < V2.135), UL Commercial Parent 48A,15118 25ft Sim (8EM1310-5CG14-1GA2) (All versions < V2.135), VersiCharge Blue™ 80A AC Cellular (8EM1315-7BG16-1FH2) (All versions < V2.135). Affected devices contain Modbus service enabled by default. This could allow an attacker connected to the same network to remotely control the EV charger.",8.8,3.1,CWE-1188,
+intersection,CVE-2026-4156,2026-04-11,"ChargePoint Home Flex OCPP getpreq Stack-based Buffer Overflow Remote Code Execution Vulnerability. This vulnerability allows network-adjacent attackers to execute arbitrary code on affected installations of ChargePoint Home Flex EV chargers. Authentication is not required to exploit this vulnerability.
+
+The specific flaw exists within the handling of OCPP messages. The issue results from the lack of proper validation of the length of user-supplied data prior to copying it to a fixed-length stack-based buffer. An attacker can leverage this vulnerability to execute code in the context of root. Was ZDI-CAN-26339.",7.5,3.0,CWE-121,cpe:2.3:o:chargepoint:home_flex_cph50_firmware:*:*:*:*:*:*:*:*|cpe:2.3:h:chargepoint:home_flex_cph50:-:*:*:*:*:*:*:*

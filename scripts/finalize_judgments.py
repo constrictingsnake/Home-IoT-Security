@@ -124,6 +124,10 @@ def resolve_row(row, cat, human):
 def finalize(merged_path, human):
     cat = cat_of(merged_path)
     df = pd.read_csv(merged_path, dtype=str).fillna("")
+    if df.empty:
+        df["Final Judgment"] = []
+        df["Final Source"] = []
+        return cat, df
     res = df.apply(lambda r: resolve_row(r, cat, human), axis=1, result_type="expand")
     df["Final Judgment"] = res[0]
     df["Final Source"] = res[1]
