@@ -49,7 +49,7 @@ For every `data/difference/<cat>/`, move contents down one level into `vendor_on
 `01_raw.csv`, `02_*.csv`, `03_*.csv`, `03_keyword_additions.md`, `reviews/` →
 `<cat>/vendor_only/`. Applies to all 13 scaffolded categories (10 reviewed + airconditioner
 /fans/fridge which have only `01_raw.csv`). Combined files (`human_review_queue.csv`,
-`final_resolved.csv`, `CLASSIFICATION_PROMPT.md`, `unmatched_cves.xlsx`) stay at the
+`final_resolved.csv`, `CLASSIFICATION_PROMPT.md`, `unmatched_cves.xlsx` — since deleted) stay at the
 `data/difference/` root.
 
 ### A2. Make the cross-category glob scripts direction-aware

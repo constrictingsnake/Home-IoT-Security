@@ -83,7 +83,6 @@ Home IoT Security/
     ├── nvd-snapshot/                 # Fixed offline NVD dataset (one snapshot, reproducible/citeable)
     ├── keyword-search/               # Stage 1 output + user-authored keyword_terms.csv
     ├── vendor-search/                # Stage 2 output + user-authored vendor_terms.csv
-    ├── intersection/                 # STALE — superseded by the `intersection` review direction
     └── difference/                  # Stage 3+4 — vendor/keyword difference + its triple-AI review
         ├── CLASSIFICATION_PROMPT.md     # shared rubric all 3 AI reviewers judge by
         ├── judgment_store.csv           # persistent AI judgment store — keyed (category, cve_id)

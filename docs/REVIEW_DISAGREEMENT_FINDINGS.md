@@ -1,7 +1,8 @@
 # Claude vs. Codex Disagreement Analysis — Findings & Handling Plan
 
 **Date captured:** 2026-07-01
-**Basis:** current `data/intersection/matched_*_cves.csv` + current `data/difference/<cat>/reviews/{claude,codex}.csv`
+**Basis:** `data/intersection/matched_*_cves.csv` as of the capture date (directory since deleted —
+recover via git history) + current `data/difference/<cat>/reviews/{claude,codex}.csv`
 **Status:** PRELIMINARY — no Gemini vote and no human adjudication folded in yet. These are the
 Claude/Codex-only patterns. Save this for the adjudication / keyword-refresh pass; nothing here has
 been acted on.
@@ -223,7 +224,8 @@ trust a lone Codex dissent.
 
 ## How to reproduce the numbers in this file
 All figures come from reading, per category:
-- `data/intersection/matched_<cat>_cves.csv` (row count = intersection size)
+- `data/intersection/matched_<cat>_cves.csv` (row count = intersection size; directory since
+  deleted — check out the tree at this file's capture date from git history)
 - `data/difference/<cat>/reviews/claude.csv` and `.../codex.csv`, joining on `cve_id` and comparing
   the `Claude Judgment` / `Codex Judgment` columns (normalized to first letter Y/N/M).
 Both-Yes = rows where both said Yes; contested = rows where they differ. No new data was written.
