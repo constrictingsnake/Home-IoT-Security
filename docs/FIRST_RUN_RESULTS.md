@@ -20,10 +20,14 @@ these methods.
 | **Total** | | **52** | |
 
 - **Yield is spiky and is *not* predicted by a category's false-positive rate.** robotvacuum (a deliberate cameras-FP-rate match) returned **0** — its confirmed products' CVEs all name the brand in text, so the vendor search already had them. alarms returned 38 because one prolific product (Abode iota) had a wall of tersely-described CVEs. The predictor is "confirmed products with prolific, terse CVE families," not difference-set noise.
-- **Precision (Claude single-review spot-check, `cpe_expansion_precision_spotcheck.csv`): 51/52 = 98% category-correct.** The one miss — `CVE-2024-10523`, the TP-Link Tapo **H100** — is a genuine home IoT device but a *hub*, not a plug; it traces to a mis-confirmed seed (`tp-link:tapo_h100` wrongly settled `Yes` under `smartplugs`). The method faithfully propagated a *seed* error, not a method fault — and Stage-4 review of the candidate would catch it.
+- **Precision (Claude single-review spot-check, `cpe_expansion_precision_spotcheck.csv` — since
+  deleted, superseded by the full Stage-4 review; recover via git history): 51/52 = 98% category-correct.** The one miss — `CVE-2024-10523`, the TP-Link Tapo **H100** — is a genuine home IoT device but a *hub*, not a plug; it traces to a mis-confirmed seed (`tp-link:tapo_h100` wrongly settled `Yes` under `smartplugs`). The method faithfully propagated a *seed* error, not a method fault — and Stage-4 review of the candidate would catch it.
 - **The part filter earns its place.** It drops 70 app/lib seed CPEs and prevents 4 library-leak candidates (openweave ×2 in cameras, a Tapo app CPE ×2 in smartplugs). Run `--no-part-filter` to see the 56-candidate unfiltered set for comparison.
 
 > **Open item for review (as of 2026-07-02):** the 52 candidates were still unreviewed by the full triple-AI + human pipeline. The 98% is a Claude-only first pass.
+> **Closed (2026-07-09):** the `cpe_expansion` direction has since gone through the full triple-AI
+> review (judgments in `judgment_store.csv`, resolved rows in `final_resolved.csv`), which
+> supersedes the spot-check; the spot-check CSV was deleted.
 
 ---
 
