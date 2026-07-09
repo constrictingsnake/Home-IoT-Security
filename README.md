@@ -25,6 +25,7 @@ examples, see `docs/FIRST_RUN_RESULTS.md`. For the full per-script flag referenc
 
 - **Python 3.14** at `/Library/Frameworks/Python.framework/Versions/3.14/bin/python3` — invoke as `python3`
 - Dependencies: `pandas`, `openpyxl`, `numpy`, `requests`, `scipy` (install with `pip install pandas openpyxl numpy requests scipy`)
+- `matplotlib`, `squarify` — only for `generate_cwe888_treemaps.py` (`pip install matplotlib squarify`)
 - `tqdm` optional — adds progress bars to `cve_search.py` (`pip install tqdm`)
 - **API keys** in a gitignored `.env` file (never hardcode):
   - `GEMINI_API_KEY` — for the Gemini/Gemma reviewer
@@ -189,6 +190,18 @@ https://cwe.mitre.org/data/xml/cwec_v4.12.xml.zip` (v4.12 = the CWE-888 version 
 Output → printed summary + `data/difference/cwe888_distribution.csv`,
 `cwe888_cve_map.csv` (per-CWE audit trail), `cwe888_matrix.md` (Table-III-style matrix).
 
+```bash
+python3 scripts/generate_cwe888_table.py       # data/difference/cwe888_table.tex (Table III equivalent)
+python3 scripts/generate_cwe888_treemaps.py    # docs/figures/cwe888_treemap_*.pdf (Figs. 2-4 equivalent)
+```
+
+Both read `cwe888_distribution.csv`, so they always agree with each other and with
+`cwe888_matrix.md`. The table script needs its output pasted manually into
+`docs/home_iot_security_report.tex` (see the comment above the inlined table — Overleaf
+can't resolve a path outside its project root); the treemap script writes straight into
+`docs/figures/`, which the report already `\includegraphics`-references, so no copy step
+is needed there. Requires `matplotlib` and `squarify` (see Prerequisites).
+
 ### Stage 8 — CVSS Score Analysis
 
 ```bash
@@ -268,6 +281,8 @@ One line per script — full flag tables in `docs/SCRIPTS_REFERENCE.md`.
 | `cpe_expansion.py` | 5 | Third discovery method: CPE-based densification of confirmed products |
 | `recall_estimate.py` | 6 | Capture–recapture recall estimate (Chapman + 3-source log-linear) |
 | `cwe888_analysis.py` | 7 (analysis) | CWE-888 primary-class distribution over confirmed-Yes CVEs |
+| `generate_cwe888_table.py` | 7 (report) | LaTeX Table III equivalent, shaded top-6 classes per category |
+| `generate_cwe888_treemaps.py` | 7 (report) | LaTeX Figs. 2-4 equivalent — area-proportional CWE-888 treemaps |
 | `cvss_analysis.py` | 8 (analysis) | CVSS score distribution + Kruskal-Wallis/Dunn's test over confirmed-Yes CVEs |
 
 Retired scripts live in `scripts/_legacy/` (superseded-by table in `docs/SCRIPTS_REFERENCE.md`).

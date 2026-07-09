@@ -16,7 +16,7 @@
 \usepackage{booktabs}
 \usepackage{array}
 \usepackage{multirow}
-\usepackage{xcolor}
+\usepackage[table]{xcolor}
 \usepackage{url}
 \usepackage[hidelinks]{hyperref}
 
@@ -347,6 +347,112 @@ and changes nothing in the dataset.
 \section{RQ1: Analysis of Vulnerability Classes in Home IoT Devices}
 \label{sec:rq1}
 
+To answer RQ1, we refer to Table~\ref{tab:cwe888-matrix}, which maps every
+CWE attributed to a confirmed home IoT device CVE onto the 22 non-empty
+CWE-888 primary vulnerability classes (Section~\ref{sec:method-cwe888}),
+broken down by category. Figures~\ref{fig:cwe888-treemap-all}--\ref{fig:cwe888-treemap-alarms}
+show the same distribution as area-proportional treemaps — one overall and
+one each for the four categories with the most confirmed CVEs (\texttt{streaming},
+\texttt{cameras}, \texttt{hub}, \texttt{alarms}) — mirroring Figs.~2--4 of the
+transportation IoT study. Unlike Table~III of the transportation IoT study,
+which lists 23 classes as rows against 4 device categories as columns, this
+study's 20 categories with confirmed data are shown as rows against the
+CWE-888 classes as columns, so that each category's own dominant classes read
+across a single line; the shaded cells in each row
+(\colorbox{yellow}{\phantom{0}}) mark that category's 6 most common classes,
+the same highlighting convention the transportation study uses to identify
+its dominant classes per column. \stub[Discuss the dominant classes per
+category and overall, mirroring Section IV of the transportation study:
+which classes recur across most categories (\texttt{Authentication},
+\texttt{Information Leak}, \texttt{Memory Access}, and \texttt{Tainted Input}
+are common in the \texttt{All} row here), which are category-specific, and
+how the top-6 share compares category to category.]
+
+% BEGIN GENERATED FIGURES — from scripts/generate_cwe888_treemaps.py, output
+% docs/figures/cwe888_treemap_*.pdf. One treemap for the overall ("ALL") CWE-888
+% class distribution plus the four categories with N > 75 (streaming, cameras,
+% hub, alarms), mirroring Figs. 2-4 of the transportation IoT study. Box area is
+% each class's share of that category's confirmed CWE attributions; the same
+% class keeps the same color across every figure. Re-run the script after the
+% underlying data changes — output paths are already relative to docs/, so no
+% manual copy step is needed (unlike the table below).
+\begin{figure}[t]
+\centering
+\includegraphics[width=\columnwidth]{figures/cwe888_treemap_all.pdf}
+\caption{Distribution of confirmed home IoT CVEs' CWE-888 primary classes, overall.}
+\label{fig:cwe888-treemap-all}
+\end{figure}
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\columnwidth]{figures/cwe888_treemap_streaming.pdf}
+\caption{Distribution of \texttt{streaming} category CVEs' CWE-888 primary classes.}
+\label{fig:cwe888-treemap-streaming}
+\end{figure}
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\columnwidth]{figures/cwe888_treemap_cameras.pdf}
+\caption{Distribution of \texttt{cameras} category CVEs' CWE-888 primary classes.}
+\label{fig:cwe888-treemap-cameras}
+\end{figure}
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\columnwidth]{figures/cwe888_treemap_hub.pdf}
+\caption{Distribution of \texttt{hub} category CVEs' CWE-888 primary classes.}
+\label{fig:cwe888-treemap-hub}
+\end{figure}
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\columnwidth]{figures/cwe888_treemap_alarms.pdf}
+\caption{Distribution of \texttt{alarms} category CVEs' CWE-888 primary classes.}
+\label{fig:cwe888-treemap-alarms}
+\end{figure}
+% END GENERATED FIGURES
+
+% BEGIN GENERATED TABLE — from scripts/generate_cwe888_table.py, output
+% data/difference/cwe888_table.tex. Inlined here (rather than \input) because
+% Overleaf projects are sandboxed to their own root and cannot resolve a
+% "../" path outside it. To refresh after the underlying data changes:
+% re-run the script locally and paste the new file contents in between
+% these markers.
+\begin{table*}[t]
+\centering
+\caption{Distribution of confirmed home IoT CVE CWE attributions across CWE-888 primary classes, by category. Each cell is the row's percentage of its category's total CWE attributions ($N$); shaded cells (\colorbox{yellow}{\phantom{0}}) mark that row's 6 most common classes, mirroring Table~III of the transportation IoT study. Exact counts are in \texttt{data/difference/cwe888\_matrix.md}.}
+\label{tab:cwe888-matrix}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{lrrrrrrrrrrrrrrrrrrrrrrrr}
+\toprule
+Category & \rotatebox{90}{API} & \rotatebox{90}{AccCtrl} & \rotatebox{90}{Auth} & \rotatebox{90}{Channel} & \rotatebox{90}{Crypto} & \rotatebox{90}{EntryPt} & \rotatebox{90}{ExcMgmt} & \rotatebox{90}{FailRelMem} & \rotatebox{90}{FaultResRel} & \rotatebox{90}{InfoLeak} & \rotatebox{90}{Malware} & \rotatebox{90}{MemAccess} & \rotatebox{90}{MemMgmt} & \rotatebox{90}{Other} & \rotatebox{90}{PathRes} & \rotatebox{90}{Predict} & \rotatebox{90}{Privilege} & \rotatebox{90}{ResMgmt} & \rotatebox{90}{RiskyVal} & \rotatebox{90}{Sync} & \rotatebox{90}{TaintIn} & \rotatebox{90}{UI} & \rotatebox{90}{$N$} & \rotatebox{90}{Top-6\%} \\
+\midrule
+doorlock &  & \cellcolor{yellow}33 & \cellcolor{yellow}11 & \cellcolor{yellow}11 & 6 &  &  &  &  & \cellcolor{yellow}11 &  & \cellcolor{yellow}11 &  &  &  &  &  & \cellcolor{yellow}11 &  &  & 6 &  & 18 & 89 \\
+smartspeakers &  & \cellcolor{yellow}7 & \cellcolor{yellow}11 &  &  &  &  &  &  & 4 &  & \cellcolor{yellow}41 &  &  & 4 &  & 4 & \cellcolor{yellow}7 & \cellcolor{yellow}7 &  & \cellcolor{yellow}15 &  & 27 & 89 \\
+doorbell &  & \cellcolor{yellow}8 & \cellcolor{yellow}31 &  & \cellcolor{yellow}8 &  &  &  &  & \cellcolor{yellow}8 &  &  &  &  &  & \cellcolor{yellow}8 & 8 &  &  & 8 & \cellcolor{yellow}23 &  & 13 & 85 \\
+thermostat &  &  &  &  & \cellcolor{yellow}10 &  &  &  &  & \cellcolor{yellow}10 &  & \cellcolor{yellow}30 &  & \cellcolor{yellow}20 &  & \cellcolor{yellow}20 &  &  &  &  & \cellcolor{yellow}10 &  & 10 & 100 \\
+babymonitor &  &  & \cellcolor{yellow}10 &  & \cellcolor{yellow}10 &  &  &  &  & \cellcolor{yellow}10 &  &  &  &  & \cellcolor{yellow}10 &  & \cellcolor{yellow}20 &  &  &  & \cellcolor{yellow}40 &  & 10 & 100 \\
+smartplugs &  & \cellcolor{yellow}8 & \cellcolor{yellow}20 & 4 &  &  &  &  &  & \cellcolor{yellow}20 &  & \cellcolor{yellow}8 &  & \cellcolor{yellow}12 &  & \cellcolor{yellow}12 & 4 & 4 &  &  & 8 &  & 25 & 80 \\
+alarms &  & \cellcolor{yellow}5 & \cellcolor{yellow}10 & \cellcolor{yellow}13 &  & 3 &  &  & 1 & \cellcolor{yellow}13 &  & 1 & 1 & \cellcolor{yellow}4 &  & 4 &  &  & 1 &  & \cellcolor{yellow}43 &  & 77 & 88 \\
+robotvacuum &  & \cellcolor{yellow}8 & \cellcolor{yellow}19 & 4 & \cellcolor{yellow}12 &  &  &  &  & 8 &  & 4 &  & \cellcolor{yellow}12 &  & \cellcolor{yellow}12 &  &  &  &  & \cellcolor{yellow}23 &  & 26 & 85 \\
+fridge &  &  &  &  &  &  &  &  &  & \cellcolor{yellow}25 &  &  &  & \cellcolor{yellow}25 &  & \cellcolor{yellow}25 &  &  &  &  & \cellcolor{yellow}25 &  & 4 & 100 \\
+sensors &  &  &  & \cellcolor{yellow}100 &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  & 2 & 100 \\
+lighting &  &  & \cellcolor{yellow}24 &  & \cellcolor{yellow}12 &  &  &  &  & \cellcolor{yellow}8 &  & \cellcolor{yellow}32 &  &  &  &  &  & \cellcolor{yellow}12 &  &  & \cellcolor{yellow}12 &  & 25 & 100 \\
+appliances & \cellcolor{yellow}33 &  &  &  &  &  &  &  &  &  &  & \cellcolor{yellow}67 &  &  &  &  &  &  &  &  &  &  & 3 & 100 \\
+hub &  & \cellcolor{yellow}6 & \cellcolor{yellow}11 & 2 & \cellcolor{yellow}6 &  & 1 &  &  & \cellcolor{yellow}10 &  & \cellcolor{yellow}41 &  &  & 1 &  & 6 &  & 2 &  & \cellcolor{yellow}15 &  & 102 & 88 \\
+ev-charging &  & \cellcolor{yellow}23 & \cellcolor{yellow}8 &  &  &  &  &  &  & \cellcolor{yellow}8 &  & \cellcolor{yellow}12 &  & \cellcolor{yellow}19 &  & 4 &  &  & 4 &  & \cellcolor{yellow}23 &  & 26 & 92 \\
+home-power &  & \cellcolor{yellow}9 & \cellcolor{yellow}15 &  & 6 &  &  &  &  & \cellcolor{yellow}12 &  &  &  & 6 & \cellcolor{yellow}12 & \cellcolor{yellow}9 &  &  &  &  & \cellcolor{yellow}30 &  & 33 & 88 \\
+garden & \cellcolor{yellow}5 & \cellcolor{yellow}9 & \cellcolor{yellow}32 & 5 & 5 &  &  &  &  & 5 &  &  &  & \cellcolor{yellow}9 &  & \cellcolor{yellow}9 &  &  &  &  & \cellcolor{yellow}18 & 5 & 22 & 82 \\
+pet &  & \cellcolor{yellow}9 & \cellcolor{yellow}12 & 5 & \cellcolor{yellow}7 &  &  &  &  & \cellcolor{yellow}16 &  & 7 &  & 5 &  & 5 & 5 & \cellcolor{yellow}16 &  & 2 & \cellcolor{yellow}12 &  & 43 & 72 \\
+streaming & 0 & \cellcolor{yellow}3 & 2 & 0 & 0 &  & 1 & 0 & 0 & \cellcolor{yellow}6 & 0 & \cellcolor{yellow}58 & 0 & 1 & 2 & 0 & 1 & \cellcolor{yellow}9 & \cellcolor{yellow}3 & 3 & \cellcolor{yellow}10 & 0 & 1785 & 89 \\
+airconditioner &  &  & \cellcolor{yellow}33 &  &  &  &  &  &  & \cellcolor{yellow}33 &  &  &  &  &  &  &  &  &  &  & \cellcolor{yellow}33 &  & 3 & 100 \\
+cameras & 0 & 5 & \cellcolor{yellow}13 & 1 & 1 & 0 & 1 &  &  & \cellcolor{yellow}9 &  & \cellcolor{yellow}16 &  & \cellcolor{yellow}6 & 3 & \cellcolor{yellow}7 & 1 & 2 & 1 &  & \cellcolor{yellow}33 &  & 625 & 85 \\
+\midrule
+\textbf{All} & 0 & \cellcolor{yellow}4 & \cellcolor{yellow}6 & 1 & 1 & 0 & 1 & 0 & 0 & \cellcolor{yellow}8 & 0 & \cellcolor{yellow}42 & 0 & 3 & 2 & 2 & 1 & \cellcolor{yellow}6 & 2 & 2 & \cellcolor{yellow}17 & 0 & 2879 & 83 \\
+\bottomrule
+\end{tabular}}
+\end{table*}
+% END GENERATED TABLE
 
 \subsection{}
 \label{sec:rq1-cat1}
