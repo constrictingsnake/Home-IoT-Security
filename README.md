@@ -174,6 +174,21 @@ python3 scripts/recall_estimate.py --population yes --isect-precision 0.9
 Output → printed table + `data/difference/recall_estimate.csv`. See `CLAUDE.md` for the method and
 `docs/FIRST_RUN_RESULTS.md` for first-run numbers.
 
+### Stage 7 — CWE-888 Vulnerability-Class Analysis
+
+```bash
+python3 scripts/cwe888_analysis.py                        # all confirmed-Yes rows in the judgment store
+python3 scripts/cwe888_analysis.py --category cameras     # restrict to one category (repeatable)
+```
+
+Groups every CWE on a confirmed-Yes CVE into the 23 primary clusters of the CWE-888
+Software Fault Patterns view, per category — the same analysis as Table III of the
+transportation IoT device study (`Onboarding-Docs/transportation_device_study.pdf`).
+Requires the pinned CWE catalog: `curl -L -o data/cwe/cwec_v4.12.xml.zip
+https://cwe.mitre.org/data/xml/cwec_v4.12.xml.zip` (v4.12 = the CWE-888 version the paper used).
+Output → printed summary + `data/difference/cwe888_distribution.csv`,
+`cwe888_cve_map.csv` (per-CWE audit trail), `cwe888_matrix.md` (Table-III-style matrix).
+
 ### Refreshing difference sets without losing review work
 
 When vendor/keyword terms change, use the [Quick Start](#quick-start-orchestrator) orchestrator, or by hand:
@@ -235,6 +250,7 @@ One line per script — full flag tables in `docs/SCRIPTS_REFERENCE.md`.
 | `term_precision.py` | 8 (pruning) | Per-term precision from settled judgments |
 | `cpe_expansion.py` | 5 | Third discovery method: CPE-based densification of confirmed products |
 | `recall_estimate.py` | 6 | Capture–recapture recall estimate (Chapman + 3-source log-linear) |
+| `cwe888_analysis.py` | 7 (analysis) | CWE-888 primary-class distribution over confirmed-Yes CVEs |
 
 Retired scripts live in `scripts/_legacy/` (superseded-by table in `docs/SCRIPTS_REFERENCE.md`).
 
@@ -251,6 +267,8 @@ Retired scripts live in `scripts/_legacy/` (superseded-by table in `docs/SCRIPTS
 | `<cat>/09_cpe_expansion_candidates.csv` | `cve_id, published, description, cvss_score, cvss_version, cwe_ids, cpe_strings, seed_cpe, Discovery Method` |
 | `cpe_expansion_summary.csv` | `category, yes_seeds, device_seeds, app_cpe_dropped, matched, already_known, new_candidates` |
 | `recall_estimate.csv` | `category, method, n_vendor, n_keyword, n_both, n_observed, N_hat, N_lo, N_hi, recall, recall_lo, recall_hi, confidence` |
+| `cwe888_distribution.csv` | `category, cwe888_class, n_cwes, pct` (plus an `ALL` pseudo-category) |
+| `cwe888_cve_map.csv` | `category, cve_id, cwe_id, cwe888_classes, map_depth` (classes pipe-separated; depth 0 = in the 888 view, ≥1 = via parents, −1 = unmappable) |
 | `<cat>/<dir>/01_raw.csv` | `Difference Type, cve_id, published, description, cvss_score, cvss_version, cwe_ids, cpe_strings` |
 | `<cat>/reviews/{ai}.csv` | raw columns + `<AI> Judgment, <AI> Confidence, <AI> Reasoning` |
 | `<cat>/02_merged.csv` | raw columns + all 9 AI columns + `Review Status, Needs Human Review, Review Reason` |

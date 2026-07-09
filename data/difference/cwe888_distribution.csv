@@ -1,0 +1,193 @@
+category,cwe888_class,n_cwes,pct
+doorlock,Access Control,6,33.3
+doorlock,Authentication,2,11.1
+doorlock,Channel,2,11.1
+doorlock,Cryptography,1,5.6
+doorlock,Information Leak,2,11.1
+doorlock,Memory Access,2,11.1
+doorlock,Resource Management,2,11.1
+doorlock,Tainted Input,1,5.6
+smartspeakers,Access Control,2,7.4
+smartspeakers,Authentication,3,11.1
+smartspeakers,Information Leak,1,3.7
+smartspeakers,Memory Access,11,40.7
+smartspeakers,Path Resolution,1,3.7
+smartspeakers,Privilege,1,3.7
+smartspeakers,Resource Management,2,7.4
+smartspeakers,Risky Values,2,7.4
+smartspeakers,Tainted Input,4,14.8
+doorbell,Access Control,1,7.7
+doorbell,Authentication,4,30.8
+doorbell,Cryptography,1,7.7
+doorbell,Information Leak,1,7.7
+doorbell,Predictability,1,7.7
+doorbell,Privilege,1,7.7
+doorbell,Synchronization,1,7.7
+doorbell,Tainted Input,3,23.1
+thermostat,Cryptography,1,10.0
+thermostat,Information Leak,1,10.0
+thermostat,Memory Access,3,30.0
+thermostat,Other,2,20.0
+thermostat,Predictability,2,20.0
+thermostat,Tainted Input,1,10.0
+babymonitor,Authentication,1,10.0
+babymonitor,Cryptography,1,10.0
+babymonitor,Information Leak,1,10.0
+babymonitor,Path Resolution,1,10.0
+babymonitor,Privilege,2,20.0
+babymonitor,Tainted Input,4,40.0
+smartplugs,Access Control,2,8.0
+smartplugs,Authentication,5,20.0
+smartplugs,Channel,1,4.0
+smartplugs,Information Leak,5,20.0
+smartplugs,Memory Access,2,8.0
+smartplugs,Other,3,12.0
+smartplugs,Predictability,3,12.0
+smartplugs,Privilege,1,4.0
+smartplugs,Resource Management,1,4.0
+smartplugs,Tainted Input,2,8.0
+alarms,Access Control,4,5.2
+alarms,Authentication,8,10.4
+alarms,Channel,10,13.0
+alarms,Entry Points,2,2.6
+alarms,Faulty Resource Release,1,1.3
+alarms,Information Leak,10,13.0
+alarms,Memory Access,1,1.3
+alarms,Memory Management,1,1.3
+alarms,Other,3,3.9
+alarms,Predictability,3,3.9
+alarms,Risky Values,1,1.3
+alarms,Tainted Input,33,42.9
+robotvacuum,Access Control,2,7.7
+robotvacuum,Authentication,5,19.2
+robotvacuum,Channel,1,3.8
+robotvacuum,Cryptography,3,11.5
+robotvacuum,Information Leak,2,7.7
+robotvacuum,Memory Access,1,3.8
+robotvacuum,Other,3,11.5
+robotvacuum,Predictability,3,11.5
+robotvacuum,Tainted Input,6,23.1
+fridge,Information Leak,1,25.0
+fridge,Other,1,25.0
+fridge,Predictability,1,25.0
+fridge,Tainted Input,1,25.0
+sensors,Channel,2,100.0
+lighting,Authentication,6,24.0
+lighting,Cryptography,3,12.0
+lighting,Information Leak,2,8.0
+lighting,Memory Access,8,32.0
+lighting,Resource Management,3,12.0
+lighting,Tainted Input,3,12.0
+appliances,API,1,33.3
+appliances,Memory Access,2,66.7
+hub,Access Control,6,5.9
+hub,Authentication,11,10.8
+hub,Channel,2,2.0
+hub,Cryptography,6,5.9
+hub,Exception Management,1,1.0
+hub,Information Leak,10,9.8
+hub,Memory Access,42,41.2
+hub,Path Resolution,1,1.0
+hub,Privilege,6,5.9
+hub,Risky Values,2,2.0
+hub,Tainted Input,15,14.7
+ev-charging,Access Control,6,23.1
+ev-charging,Authentication,2,7.7
+ev-charging,Information Leak,2,7.7
+ev-charging,Memory Access,3,11.5
+ev-charging,Other,5,19.2
+ev-charging,Predictability,1,3.8
+ev-charging,Risky Values,1,3.8
+ev-charging,Tainted Input,6,23.1
+home-power,Access Control,3,9.1
+home-power,Authentication,5,15.2
+home-power,Cryptography,2,6.1
+home-power,Information Leak,4,12.1
+home-power,Other,2,6.1
+home-power,Path Resolution,4,12.1
+home-power,Predictability,3,9.1
+home-power,Tainted Input,10,30.3
+garden,API,1,4.5
+garden,Access Control,2,9.1
+garden,Authentication,7,31.8
+garden,Channel,1,4.5
+garden,Cryptography,1,4.5
+garden,Information Leak,1,4.5
+garden,Other,2,9.1
+garden,Predictability,2,9.1
+garden,Tainted Input,4,18.2
+garden,UI,1,4.5
+pet,Access Control,4,9.3
+pet,Authentication,5,11.6
+pet,Channel,2,4.7
+pet,Cryptography,3,7.0
+pet,Information Leak,7,16.3
+pet,Memory Access,3,7.0
+pet,Other,2,4.7
+pet,Predictability,2,4.7
+pet,Privilege,2,4.7
+pet,Resource Management,7,16.3
+pet,Synchronization,1,2.3
+pet,Tainted Input,5,11.6
+streaming,API,1,0.1
+streaming,Access Control,51,2.9
+streaming,Authentication,35,2.0
+streaming,Channel,5,0.3
+streaming,Cryptography,3,0.2
+streaming,Exception Management,19,1.1
+streaming,Failure to Release Memory,2,0.1
+streaming,Faulty Resource Release,7,0.4
+streaming,Information Leak,108,6.1
+streaming,Malware,1,0.1
+streaming,Memory Access,1032,57.8
+streaming,Memory Management,7,0.4
+streaming,Other,17,1.0
+streaming,Path Resolution,28,1.6
+streaming,Predictability,1,0.1
+streaming,Privilege,19,1.1
+streaming,Resource Management,161,9.0
+streaming,Risky Values,58,3.2
+streaming,Synchronization,49,2.7
+streaming,Tainted Input,177,9.9
+streaming,UI,4,0.2
+airconditioner,Authentication,1,33.3
+airconditioner,Information Leak,1,33.3
+airconditioner,Tainted Input,1,33.3
+cameras,API,3,0.5
+cameras,Access Control,33,5.3
+cameras,Authentication,83,13.3
+cameras,Channel,4,0.6
+cameras,Cryptography,5,0.8
+cameras,Entry Points,2,0.3
+cameras,Exception Management,5,0.8
+cameras,Information Leak,57,9.1
+cameras,Memory Access,102,16.3
+cameras,Other,38,6.1
+cameras,Path Resolution,19,3.0
+cameras,Predictability,45,7.2
+cameras,Privilege,6,1.0
+cameras,Resource Management,11,1.8
+cameras,Risky Values,5,0.8
+cameras,Tainted Input,207,33.1
+ALL,API,6,0.2
+ALL,Access Control,122,4.2
+ALL,Authentication,183,6.4
+ALL,Channel,30,1.0
+ALL,Cryptography,30,1.0
+ALL,Entry Points,4,0.1
+ALL,Exception Management,25,0.9
+ALL,Failure to Release Memory,2,0.1
+ALL,Faulty Resource Release,8,0.3
+ALL,Information Leak,216,7.5
+ALL,Malware,1,0.0
+ALL,Memory Access,1212,42.1
+ALL,Memory Management,8,0.3
+ALL,Other,78,2.7
+ALL,Path Resolution,54,1.9
+ALL,Predictability,67,2.3
+ALL,Privilege,38,1.3
+ALL,Resource Management,187,6.5
+ALL,Risky Values,69,2.4
+ALL,Synchronization,51,1.8
+ALL,Tainted Input,483,16.8
+ALL,UI,5,0.2

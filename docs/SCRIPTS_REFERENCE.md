@@ -190,6 +190,20 @@ Capture–recapture recall estimation over the vendor/keyword searches (+ option
 
 ---
 
+### `cwe888_analysis.py` — Stage 7 (analysis)
+Groups the CWEs of every confirmed-Yes CVE in the judgment store into the 23 primary clusters of the CWE-888 Software Fault Patterns view (method of the transportation IoT device study, Table III). CWEs not in the view are mapped via their view-1000 `ChildOf` parents, level by level, stopping at the first level with an 888 member — a CWE whose parents land in two clusters counts in both (e.g. CWE-798 → Predictability + Other). Legacy NVD category CWEs (CWE-399, CWE-264, …) have no ancestry into the view and are reported as unmapped. Needs `data/cwe/cwec_v4.12.xml[.zip]` (pinned to the paper's CWE-888 version). Writes `data/difference/cwe888_distribution.csv`, `cwe888_cve_map.csv`, `cwe888_matrix.md`.
+
+| Flag | Description |
+|------|-------------|
+| `--store FILE` | Judgment store CSV (default: `data/difference/judgment_store.csv`) |
+| `--snapshot FILE` | NVD snapshot with `cwe_ids` (default: `data/nvd-snapshot/nvd_all.csv`) |
+| `--cwe-xml FILE` | CWE catalog XML, or `.zip` alongside (default: `data/cwe/cwec_v4.12.xml`) |
+| `--categories FILE` | `categories.csv` for column ordering (default: `data/categories.csv`) |
+| `--category SLUG` | Restrict to one category slug (repeatable; default: all) |
+| `--out-dir DIR` | Output directory (default: `data/difference`) |
+
+---
+
 ### Retired scripts — `scripts/_legacy/`
 Superseded by the current pipeline; kept on disk for reference only, not part of any live workflow.
 
