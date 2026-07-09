@@ -1,0 +1,52 @@
+cve_id,published,description,cvss_score,cvss_version,cwe_ids,cpe_strings,matched_terms
+CVE-2006-2196,2006-06-26,Unspecified vulnerability in pinball 0.3.1 allows local users to gain privileges via unknown attack vectors that cause pinball to load plugins from an attacker-controlled directory while operating at raised privileges.,4.6,2.0,,cpe:2.3:a:jochen_friedrich:pinball:0.3.1:*:*:*:*:*:*:*,friedrich
+CVE-2015-2867,2017-01-06,A design flaw in the Trane ComfortLink II SCC firmware version 2.0.2 service allows remote attackers to take complete control of the system.,9.8,3.0,CWE-798,cpe:2.3:o:trane:comfortlink_ii_firmware:2.0.2:*:*:*:*:*:*:*,trane comfortlink
+CVE-2015-2868,2017-01-06,"An exploitable remote code execution vulnerability exists in the Trane ComfortLink II firmware version 2.0.2 in DSS service. An attacker who can connect to the DSS service on the Trane ComfortLink II device can send an overly long REG request that can overflow a fixed size stack buffer, resulting in arbitrary code execution.",9.8,3.0,CWE-119,cpe:2.3:o:trane:comfortlink_ii_firmware:2.0.2:*:*:*:*:*:*:*,trane comfortlink
+CVE-2022-38355,2022-12-13,"Daikin SVMPC1 version 2.1.22 and prior and SVMPC2 version 1.2.3 and prior are vulnerable to 
+
+attackers with access to the local area network (LAN) to disclose sensitive information stored by the affected product without requiring authentication.
+
+",5.5,3.1,CWE-284,cpe:2.3:a:daikinlatam:svmpc1:*:*:*:*:*:*:*:*|cpe:2.3:a:daikinlatam:svmpc2:*:*:*:*:*:*:*:*,daikin
+CVE-2022-41653,2022-12-13,Daikin SVMPC1 version 2.1.22 and prior and SVMPC2 version 1.2.3 and prior are vulnerable to an attacker obtaining user login credentials and control the system.,9.8,3.1,CWE-259|CWE-798,cpe:2.3:a:daikinlatam:svmpc1:*:*:*:*:*:*:*:*|cpe:2.3:a:daikinlatam:svmpc2:*:*:*:*:*:*:*:*,daikin
+CVE-2023-44121,2023-09-27,"The vulnerability is an intent redirection in LG ThinQ Service (""com.lge.lms2"") in the ""com/lge/lms/things/ui/notification/NotificationManager.java"" file. This vulnerability could be exploited by a third-party app installed on an LG device by sending a broadcast with the action ""com.lge.lms.things.notification.ACTION"". Additionally, this vulnerability is very dangerous because LG ThinQ Service is a system app (having android:sharedUserId=""android.uid.system"" setting). Intent redirection in this app leads to accessing arbitrary not exported activities of absolutely all apps.",6.3,3.1,CWE-926,cpe:2.3:o:google:android:*:*:*:*:*:*:*:*|cpe:2.3:h:lg:v60_thin_q_5g:-:*:*:*:*:*:*:*,lg thinq
+CVE-2024-40925,2024-07-12,"In the Linux kernel, the following vulnerability has been resolved:
+
+block: fix request.queuelist usage in flush
+
+Friedrich Weber reported a kernel crash problem and bisected to commit
+81ada09cc25e (""blk-flush: reuse rq queuelist in flush state machine"").
+
+The root cause is that we use ""list_move_tail(&rq->queuelist, pending)""
+in the PREFLUSH/POSTFLUSH sequences. But rq->queuelist.next == xxx since
+it's popped out from plug->cached_rq in __blk_mq_alloc_requests_batch().
+We don't initialize its queuelist just for this first request, although
+the queuelist of all later popped requests will be initialized.
+
+Fix it by changing to use ""list_add_tail(&rq->queuelist, pending)"" so
+rq->queuelist doesn't need to be initialized. It should be ok since rq
+can't be on any list when PREFLUSH or POSTFLUSH, has no move actually.
+
+Please note the commit 81ada09cc25e (""blk-flush: reuse rq queuelist in
+flush state machine"") also has another requirement that no drivers would
+touch rq->queuelist after blk_mq_end_request() since we will reuse it to
+add rq to the post-flush pending list in POSTFLUSH. If this is not true,
+we will have to revert that commit IMHO.
+
+This updated version adds ""list_del_init(&rq->queuelist)"" in flush rq
+callback since the dm layer may submit request of a weird invalid format
+(REQ_FSEQ_PREFLUSH | REQ_FSEQ_POSTFLUSH), which causes double list_add
+if without this ""list_del_init(&rq->queuelist)"". The weird invalid format
+problem should be fixed in dm layer.",5.5,3.1,,cpe:2.3:o:linux:linux_kernel:*:*:*:*:*:*:*:*|cpe:2.3:o:linux:linux_kernel:6.10:rc1:*:*:*:*:*:*|cpe:2.3:o:linux:linux_kernel:6.10:rc2:*:*:*:*:*:*|cpe:2.3:o:linux:linux_kernel:6.10:rc3:*:*:*:*:*:*,friedrich
+CVE-2019-19643,2020-08-14,ise smart connect KNX Vaillant 1.2.839 contain a Denial of Service.,7.5,3.1,CWE-835,cpe:2.3:a:ise:smart_connect_knx_vaillant:1.2.839:*:*:*:*:*:*:*,vaillant
+CVE-2024-56972,2025-01-27,"An issue in Midea Group Co., Ltd Midea Home iOS 9.3.12 allows attackers to access sensitive user information via supplying a crafted link.",6.5,3.1,CWE-601|CWE-922,,midea
+CVE-2024-34896,2025-02-03,"An issue in Nedis SmartLife Video Doorbell (WIFICDP10GY), Nedis SmartLife IOS v1.4.0 causes users who are disconnected from a previous peer-to-peer connection with the device to still have access to live video feed.",7.5,3.1,,,smartlife
+CVE-2024-34897,2025-02-03,Nedis SmartLife android app v1.4.0 was discovered to contain an API key disclosure vulnerability.,7.5,3.1,CWE-200,,smartlife
+CVE-2025-5022,2025-07-10,"Weak Password Requirements vulnerability in Mitsubishi Electric Corporation photovoltaic system monitor “EcoGuideTAB” PV-DR004J all versions and PV-DR004JA all versions allows an attacker within the Wi-Fi communication range between the units of the product (measurement unit and display unit) to derive the password from the SSID. In addition, if the product is configured to enable the individual air conditioner control function, an attacker who has access to the Wi-Fi communication between the units by exploiting this vulnerability may be able to execute ECHONET Lite commands to perform operations such as turning the air conditioner on or off and changing the set temperature. The individual air conditioner control function is available only in display unit version 02.00.01 or later and measurement unit version 02.03.01 or later. The affected products discontinued in 2015, support ended in 2020.",6.5,3.1,CWE-521,,air conditioner
+CVE-2025-10127,2025-09-11,"Daikin Europe N.V
+
+Security Gateway is vulnerable to an authorization bypass through
+ a user-controlled key vulnerability that could allow an attacker to 
+bypass authentication. An unauthorized attacker could access the system 
+without prior credentials.",9.8,3.1,CWE-640,,daikin
+CVE-2025-56400,2025-11-24,"Cross-Site Request Forgery (CSRF) vulnerability in the OAuth implementation of the Tuya SDK 6.5.0 for Android and iOS, affects the Tuya Smart and Smartlife mobile applications, as well as other third-party applications that integrate the SDK, allows an attacker to link their own Amazon Alexa account to a victim's Tuya account. The applications fail to validate the OAuth state parameter during the account linking flow, enabling a cross-site request forgery (CSRF)-like attack. By tricking the victim into clicking a crafted authorization link, an attacker can complete the OAuth flow on the victim's behalf, resulting in unauthorized Alexa access to the victim's Tuya-connected devices. This affects users regardless of prior Alexa linkage and does not require the Tuya application to be active at the time. Successful exploitation may allow remote control of devices such as cameras, doorbells, door locks, or alarms.",8.8,3.1,CWE-352|CWE-384,cpe:2.3:a:tuya:smartlife:6.3.1:*:*:*:*:iphone_os:*:*|cpe:2.3:a:tuya:smartlife:6.3.4:*:*:*:*:android:*:*|cpe:2.3:a:tuya:tuya:*:*:*:*:*:android:*:*|cpe:2.3:a:tuya:tuya:*:*:*:*:*:iphone_os:*:*|cpe:2.3:a:tuya:tuya_smart:6.3.1:*:*:*:*:android:*:*|cpe:2.3:a:tuya:tuya_smart:6.3.1:*:*:*:*:iphone_os:*:*,smartlife
+CVE-2026-5667,2026-06-17,"Use of Hard-coded Credentials vulnerability in Mitsubishi Electric Room Air Conditioners (for Japan and outside Japan); Wireless LAN Adapters for Room Air Conditioners (for Japan and outside Japan); Wireless LAN Adapters for Packaged Air Conditioners (for Japan and outside Japan); Refrigerators (for Japan); Heat Pump Water Heaters / HEMS-Compatible Adapters / Wireless LAN Adapters (for Japan); Bathroom Dryer / Heater / Ventilation Systems (for Japan); Adapters for Airflow Ventilation Systems, Heat Pump Chilled / Hot Water Systems, and Ventilation / Air-Conditioning System Air Resorts (for Japan); Lossnay Central Ventilation Systems (for Japan); Smart Switches for Ventilation Fans and Lossnay (for Japan); IH Cooking Heaters (for Japan); and Rice Cookers (for Japan) allows an attacker within Wi-Fi radio range of an affected product to access the affected product using a hard-coded SSID and password, thereby obtaining device data such as operation status, room set temperature, and room temperature; changing the air-conditioner or Wi-Fi settings; or causing Wi-Fi communication to enter a denial-of-service (DoS) condition.",,,CWE-798,,air conditioner

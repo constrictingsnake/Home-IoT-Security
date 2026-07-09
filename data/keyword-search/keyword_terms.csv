@@ -30,7 +30,6 @@ cameras,ptz camera
 cameras,pan-tilt camera
 cameras,dome camera
 cameras,bullet camera
-cameras,webcam
 cameras,nvr
 cameras,network video recorder
 cameras,dvr
@@ -43,7 +42,6 @@ doorbell,video doorbell
 doorbell,smart doorbell
 doorbell,doorbell camera
 # high-yield terms (keyword search was missing real doorbell CVEs — 83% true-match)
-doorbell,intercom
 doorbell,video intercom
 doorbell,door station
 doorbell,entrance panel
@@ -73,7 +71,6 @@ alarms,smart alarm
 alarms,home alarm
 alarms,alarm system
 alarms,security system
-alarms,siren
 alarms,panic button
 # high-yield terms (mined from review)
 alarms,wireless alarm system
@@ -93,6 +90,7 @@ sensors,tilt sensor
 sensors,temperature sensor
 sensors,humidity sensor
 sensors,air quality sensor
+sensors,air quality monitor
 sensors,smoke detector
 sensors,heat detector
 sensors,co detector
@@ -125,6 +123,7 @@ fans,tower fan
 
 # ── airpurifier ──
 airpurifier,smart air purifier
+airpurifier,air purifier
 airpurifier,smart humidifier
 airpurifier,smart dehumidifier
 
@@ -137,7 +136,6 @@ smartplugs,smart power strip
 smartplugs,smart relay
 
 # ── lighting ──
-lighting,smart switch
 lighting,light switch
 lighting,dimmer switch
 lighting,smart dimmer
@@ -155,6 +153,7 @@ lighting,light strip
 # ── fridge ──
 fridge,smart fridge
 fridge,smart refrigerator
+fridge,refrigerator
 fridge,smart freezer
 fridge,wine cooler
 
@@ -185,7 +184,6 @@ hub,home hub
 hub,home automation hub
 hub,smart home hub
 hub,iot hub
-hub,iot gateway
 hub,zigbee hub
 hub,zigbee gateway
 hub,zigbee coordinator
@@ -208,6 +206,7 @@ smartspeakers,smart clock
 # ── sleeptracker (bedside-only — wearables stay OUT) ──
 sleeptracker,sleep tracker
 sleeptracker,sleep monitor
+sleeptracker,cpap
 sleeptracker,bedside monitor
 sleeptracker,under-mattress sensor
 sleeptracker,sleep sensor
@@ -228,7 +227,6 @@ shades,window covering
 
 # ── ev-charging (home EVSE/wallbox only) ──
 ev-charging,ev charger
-ev-charging,evse
 
 # ── home-power (solar + batteries + meters) ──
 home-power,home battery
@@ -261,7 +259,6 @@ streaming,smart tv
 streaming,set-top box
 streaming,streaming box
 streaming,streaming stick
-streaming,media player
 streaming,media streamer
 streaming,tv box
 streaming,android tv
