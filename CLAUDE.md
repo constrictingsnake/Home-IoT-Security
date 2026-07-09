@@ -152,43 +152,14 @@ the others are untouched. **Freeze scope before running collection at scale**, o
 
 ## Manual Review — False Positive Classification
 
-### What the judgment columns are
-`Lizzie Judgment` and `Cukier Judgment` are independent manual review columns where two researchers determine whether each CVE is a true match for the device category or a false positive from the keyword search.
-
-**Values:**
-- `Yes` — true match, CVE genuinely affects this device type
-- `No` — false positive, keyword matched but CVE is unrelated
-- `Maybe` — ambiguous, needs further discussion
-
-### Guidance for AI-assisted classification (AI Judgment column)
-
-| Column | Values | When to populate |
-|--------|--------|-----------------|
-| `AI Judgment` | Yes / No / Maybe | Always |
-| `AI Confidence` | High / Low | Always |
-| `AI Judgment Reasoning` | Short explanation | Low confidence and Maybe rows only |
-
-- `Yes` — CVE genuinely affects a home IoT device of this category
-- `No` — false positive, keyword matched but CVE is unrelated
-- `Maybe` — ambiguous, needs human review. **Always paired with Low confidence** — there is no `Maybe (High)`; being confident something is ambiguous still means the classification itself is unresolved.
-- `High` confidence — classification is clear from the description and/or CPE strings. Reasoning left empty.
-- `Low` confidence — some uncertainty exists (device could be commercial/industrial; CPE points to enterprise hardware; description mentions a shared software layer; no CPE on a borderline row). Reasoning column must be populated.
-
-**Reasoning must be self-contained.** Explain the classification from the description and CPE strings alone. Never reference other reviewers' judgments (e.g. "Lizzie marked this Maybe") — it must stand on its own and work consistently across files with no prior human review.
-
-**A Maybe or Low-confidence No is more useful than a confident wrong answer.** Reviewers only check rows with reasoning populated. A High-confidence mistake will never be caught. When in doubt, use Low confidence.
-
-### CPE absence does not automatically mean Maybe
-A missing CPE string should not downgrade a classification to `Maybe` if the description is unambiguous. CPE data on recent CVEs (especially 2024–2026) is frequently absent due to NIST data lag. If the description explicitly names a home device and describes a residential attack vector (e.g. "accessible via LAN or home router port forwarding"), treat the spirit of criterion 3 as satisfied and classify based on the content.
-
-**Example:** CVE-2025-6260 has no CPE string but its description reads *"the embedded web server on the thermostat... allows unauthenticated attackers, either on the local area network or from the Internet via a router with port forwarding"* — this is unambiguously a home thermostat and should be classified `Yes (High)`.
+The classification rubric (what "home IoT device" means, the Yes/No/Maybe + High/Low
+values, blind-judgment rule, CPE-absence handling, companion-app scope, per-category
+`scope_note` lookup) lives in **one place**: `data/difference/CLASSIFICATION_PROMPT.md`.
+All three reviewers (Claude, Codex, Gemini) follow it exactly — do not duplicate or
+re-derive the rule set here; edit the rubric there and every reviewer picks it up.
 
 ### Why false positives exist
 The keyword search is text-based, so generic brand names produce noise (e.g. `"cerberus"` matches Cerberus FTP Server CVEs; `"honeywell"` matches industrial controls). The thermostat file showed a ~65% false positive rate (14 Yes / 7 Maybe / 40 No out of 61 rows) before the current term set.
-
-### Review decision rule
-For each row, read the `description` and `cpe_strings` and ask:
-> "Does this CVE describe a vulnerability in a device that a typical home user would have in their home for this category?"
 
 ---
 
