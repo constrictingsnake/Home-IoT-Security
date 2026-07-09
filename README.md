@@ -24,7 +24,7 @@ examples, see `docs/FIRST_RUN_RESULTS.md`. For the full per-script flag referenc
 ## Prerequisites
 
 - **Python 3.14** at `/Library/Frameworks/Python.framework/Versions/3.14/bin/python3` — invoke as `python3`
-- Dependencies: `pandas`, `openpyxl`, `numpy`, `requests` (install with `pip install pandas openpyxl numpy requests`)
+- Dependencies: `pandas`, `openpyxl`, `numpy`, `requests`, `scipy` (install with `pip install pandas openpyxl numpy requests scipy`)
 - `tqdm` optional — adds progress bars to `cve_search.py` (`pip install tqdm`)
 - **API keys** in a gitignored `.env` file (never hardcode):
   - `GEMINI_API_KEY` — for the Gemini/Gemma reviewer
@@ -189,6 +189,23 @@ https://cwe.mitre.org/data/xml/cwec_v4.12.xml.zip` (v4.12 = the CWE-888 version 
 Output → printed summary + `data/difference/cwe888_distribution.csv`,
 `cwe888_cve_map.csv` (per-CWE audit trail), `cwe888_matrix.md` (Table-III-style matrix).
 
+### Stage 8 — CVSS Score Analysis
+
+```bash
+python3 scripts/cvss_analysis.py                          # all confirmed-Yes rows in the judgment store
+python3 scripts/cvss_analysis.py --category cameras       # restrict to one category (repeatable)
+python3 scripts/cvss_analysis.py --min-n 10                # raise the group-size floor for the stats test
+```
+
+Per-category CVSS score distribution and severity buckets (None/Low/Medium/High/Critical),
+plus a Kruskal-Wallis omnibus test with Dunn's post-hoc pairwise comparisons
+(Bonferroni-adjusted) — the same analysis as RQ2 of the transportation IoT device study
+(`Onboarding-Docs/transportation_device_study.pdf`, Section V). Requires `scipy`
+(`pip install scipy`). Categories with fewer than `--min-n` scored CVEs (default 5) are
+excluded from the statistical test but still reported descriptively.
+Output → printed summary + `data/difference/cvss_distribution.csv`, `cvss_severity.csv`,
+`cvss_dunn_pairwise.csv` (only if the omnibus test is significant), `cvss_matrix.md`.
+
 ### Refreshing difference sets without losing review work
 
 When vendor/keyword terms change, use the [Quick Start](#quick-start-orchestrator) orchestrator, or by hand:
@@ -251,6 +268,7 @@ One line per script — full flag tables in `docs/SCRIPTS_REFERENCE.md`.
 | `cpe_expansion.py` | 5 | Third discovery method: CPE-based densification of confirmed products |
 | `recall_estimate.py` | 6 | Capture–recapture recall estimate (Chapman + 3-source log-linear) |
 | `cwe888_analysis.py` | 7 (analysis) | CWE-888 primary-class distribution over confirmed-Yes CVEs |
+| `cvss_analysis.py` | 8 (analysis) | CVSS score distribution + Kruskal-Wallis/Dunn's test over confirmed-Yes CVEs |
 
 Retired scripts live in `scripts/_legacy/` (superseded-by table in `docs/SCRIPTS_REFERENCE.md`).
 
