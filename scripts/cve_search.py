@@ -65,7 +65,7 @@ CSV_COLS = [
 ]
 
 # The fixed NVD snapshot uses CSV_COLS exactly (no term attribution — it's the raw
-# corpus). The per-category SEARCH outputs (keyword_<cat>.csv, results_all_<cat>.xlsx)
+# corpus). The per-category SEARCH outputs (keyword_<cat>.csv, results_all_<cat>.csv)
 # add one more column recording WHICH search term(s) pulled each row in, so per-term
 # precision can be computed later. Pipe-separated, like cwe_ids/cpe_strings.
 MATCHED_TERMS_COL = "matched_terms"

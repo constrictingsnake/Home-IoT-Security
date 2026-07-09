@@ -36,8 +36,13 @@ Usage:
     python merge_judgments.py --claude a.csv --codex b.csv --gemini c.csv --out merged.csv
 """
 import argparse
+import csv
 import os
 import pandas as pd
+
+ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+DIFF_DIR = os.path.join(ROOT, "data", "difference")
+CATEGORIES = os.path.join(ROOT, "data", "categories.csv")
 
 REVIEWERS = ["Claude", "Codex", "Gemini"]
 JUDGMENT_FIELDS = ["Judgment", "Confidence", "Reasoning"]
@@ -137,10 +142,97 @@ def resolve_paths(args):
     return paths
 
 
+def load_env(root=ROOT):
+    """Populate os.environ from a .env file (KEY=VALUE lines) without overwriting existing
+    vars — lets --run-gemini pick up GEMINI_API_KEY like the retired shell wrapper did."""
+    path = os.path.join(root, ".env")
+    if not os.path.isfile(path):
+        return
+    with open(path, encoding="utf-8") as fh:
+        for line in fh:
+            line = line.strip()
+            if not line or line.startswith("#") or "=" not in line:
+                continue
+            key, _, val = line.partition("=")
+            os.environ.setdefault(key.strip(), val.strip().strip('"').strip("'"))
+
+
+def read_gemini_categories(path=CATEGORIES):
+    """Parse categories.csv -> [(slug, label)], preserving file order (deliberately
+    smalls-first / cameras-last so a full pass straddles the daily Gemini quota reset)."""
+    if not os.path.isfile(path):
+        raise SystemExit(f"Categories file not found: {path}")
+    out = []
+    with open(path, newline="", encoding="utf-8") as fh:
+        for row in csv.DictReader(fh):
+            slug = (row.get("slug") or "").strip()
+            label = (row.get("label") or "").strip()
+            if slug:
+                out.append((slug, label or slug))
+    return out
+
+
+def run_gemini_pass(gemini_path, category, args):
+    """Fill gemini.csv in place via the API reviewer (resumable; skips already-judged rows)."""
+    try:
+        # lazy: the Gemini reviewer (and its 'requests' dependency) is only needed here
+        from gemini_classify import classify_file, DEFAULT_MODEL
+    except ImportError as e:
+        raise SystemExit(
+            f"--run-gemini needs the Gemini reviewer's dependencies ({e}). Try: pip install requests"
+        )
+    classify_file(
+        gemini_path, category,
+        model=args.model or DEFAULT_MODEL,
+        rps=args.rps, save_every=args.save_every,
+        limit=args.limit, redo=args.redo, batch_size=args.batch_size,
+    )
+
+
+def merge_reviews(paths, out, args):
+    """Merge the 3 review copies at `paths` into `out`, print the summary, write the audit sample."""
+    # The raw columns are identical across copies; take them from the Claude copy.
+    base = load_copy(paths["Claude"], "Claude")
+    raw_cols = [c for c in base.columns if c not in review_columns("Claude") and c != "_key"]
+    merged = base[["_key"] + raw_cols].copy()
+
+    for r in REVIEWERS:
+        df = load_copy(paths[r], r)
+        merged = merged.merge(df[["_key"] + review_columns(r)], on="_key", how="left")
+
+    merged = merged.fillna("")
+    results = merged.apply(classify_row, axis=1, result_type="expand")
+    merged["Review Status"] = results[0]
+    merged["Needs Human Review"] = results[1]
+    merged["Review Reason"] = results[2]
+    merged = merged.drop(columns=["_key"])
+    merged.to_csv(out, index=False)
+
+    n = len(merged)
+    complete = int((merged["Review Status"] == "complete").sum())
+    incomplete = n - complete
+    flagged = int((merged["Needs Human Review"] == "Yes").sum())
+    print(f"Merged {n} rows -> {out}")
+    print(f"  complete:           {complete}/{n}")
+    print(f"  incomplete:         {incomplete}/{n}")
+    print(f"  needs human review: {flagged} (of {complete} complete)")
+
+    if args.audit_sample and args.audit_sample > 0:
+        audit_out = args.audit_out or os.path.join(
+            os.path.dirname(os.path.abspath(out)), "02_high_confidence_audit.csv"
+        )
+        take, pool = write_audit_sample(merged, args.audit_sample, args.seed, audit_out)
+        print(f"  high-conf audit:    {take} of {pool} high-confidence rows -> {audit_out}")
+
+
 def main():
     ap = argparse.ArgumentParser(
         description="Merge per-AI review copies into a triple-checked file."
     )
+    ap.add_argument("--all", action="store_true",
+                    help="Iterate every category in data/categories.csv (folds in the old "
+                         "run_gemma_column.sh loop). With --run-gemini the per-category label from "
+                         "that file is used, so --category is not needed.")
     ap.add_argument("--reviews", help="Directory holding claude.csv / codex.csv / gemini.csv")
     ap.add_argument("--claude", help="Path to the Claude copy (overrides --reviews)")
     ap.add_argument("--codex", help="Path to the Codex copy (overrides --reviews)")
@@ -164,6 +256,38 @@ def main():
                      help="Gemini: rows per API call (try 20 to cut round-trips ~20x)")
     args = ap.parse_args()
 
+    if args.all:
+        # --all iterates the category map itself, so per-target overrides make no sense.
+        for bad, name in ((args.reviews, "--reviews"), (args.claude, "--claude"),
+                          (args.codex, "--codex"), (args.gemini, "--gemini"),
+                          (args.out, "--out"), (args.audit_out, "--audit-out"),
+                          (args.category, "--category")):
+            if bad:
+                ap.error(f"{name} cannot be combined with --all")
+        if args.run_gemini:
+            load_env()
+        cats = read_gemini_categories()
+        done = skipped = 0
+        for slug, label in cats:
+            reviews_dir = os.path.join(DIFF_DIR, slug, "reviews")
+            paths = {r: os.path.join(reviews_dir, f"{r.lower()}.csv") for r in REVIEWERS}
+            if not os.path.isdir(reviews_dir) or any(not os.path.isfile(p) for p in paths.values()):
+                print(f"=== {slug} — SKIP (no review copies; run make_review_copies.py first)")
+                skipped += 1
+                continue
+            print(f"\n=== {slug} ({label}) ===")
+            if args.run_gemini:
+                print("==> Gemini review")
+                try:
+                    run_gemini_pass(paths["Gemini"], label, args)
+                except (RuntimeError, FileNotFoundError, ValueError, SystemExit) as e:
+                    print(f"  Gemini FAILED for {slug}: {e} — merging what exists")
+                print("==> Merge")
+            merge_reviews(paths, os.path.join(DIFF_DIR, slug, "02_merged.csv"), args)
+            done += 1
+        print(f"\nDone. {done} merged, {skipped} skipped ({len(cats)} categories).")
+        return
+
     paths = resolve_paths(args)
     for r in REVIEWERS:
         if not paths.get(r) or not os.path.isfile(paths[r]):
@@ -172,42 +296,13 @@ def main():
     if args.run_gemini:
         if not args.category:
             ap.error("--category is required with --run-gemini")
-        try:
-            # lazy: the Gemini reviewer (and its 'requests' dependency) is only needed here
-            from gemini_classify import classify_file, DEFAULT_MODEL
-        except ImportError as e:
-            ap.error(f"--run-gemini needs the Gemini reviewer's dependencies ({e}). Try: pip install requests")
+        load_env()
         print("==> Gemini review")
         try:
-            classify_file(
-                paths["Gemini"],
-                args.category,
-                model=args.model or DEFAULT_MODEL,
-                rps=args.rps,
-                save_every=args.save_every,
-                limit=args.limit,
-                redo=args.redo,
-                batch_size=args.batch_size,
-            )
+            run_gemini_pass(paths["Gemini"], args.category, args)
         except (RuntimeError, FileNotFoundError, ValueError) as e:
             ap.error(str(e))
         print("==> Merge")
-
-    # The raw columns are identical across copies; take them from the Claude copy.
-    base = load_copy(paths["Claude"], "Claude")
-    raw_cols = [c for c in base.columns if c not in review_columns("Claude") and c != "_key"]
-    merged = base[["_key"] + raw_cols].copy()
-
-    for r in REVIEWERS:
-        df = load_copy(paths[r], r)
-        merged = merged.merge(df[["_key"] + review_columns(r)], on="_key", how="left")
-
-    merged = merged.fillna("")
-    results = merged.apply(classify_row, axis=1, result_type="expand")
-    merged["Review Status"] = results[0]
-    merged["Needs Human Review"] = results[1]
-    merged["Review Reason"] = results[2]
-    merged = merged.drop(columns=["_key"])
 
     out = args.out
     if not out:
@@ -216,23 +311,7 @@ def main():
             out = os.path.join(parent, "02_merged.csv")
         else:
             out = "02_merged.csv"
-    merged.to_csv(out, index=False)
-
-    n = len(merged)
-    complete = int((merged["Review Status"] == "complete").sum())
-    incomplete = n - complete
-    flagged = int((merged["Needs Human Review"] == "Yes").sum())
-    print(f"Merged {n} rows -> {out}")
-    print(f"  complete:           {complete}/{n}")
-    print(f"  incomplete:         {incomplete}/{n}")
-    print(f"  needs human review: {flagged} (of {complete} complete)")
-
-    if args.audit_sample and args.audit_sample > 0:
-        audit_out = args.audit_out or os.path.join(
-            os.path.dirname(os.path.abspath(out)), "02_high_confidence_audit.csv"
-        )
-        take, pool = write_audit_sample(merged, args.audit_sample, args.seed, audit_out)
-        print(f"  high-conf audit:    {take} of {pool} high-confidence rows -> {audit_out}")
+    merge_reviews(paths, out, args)
 
 
 if __name__ == "__main__":

@@ -2,7 +2,7 @@
 """Stage 8 (reverse) — per-term precision from settled judgments.
 
 Turns the term attribution written by the two builders (the `matched_terms` column in
-keyword_<cat>.csv / results_all_<cat>.xlsx) into a precision score for every search term,
+keyword_<cat>.csv / results_all_<cat>.csv) into a precision score for every search term,
 so a noisy term shows up as a line item ("term with a 90%+ false-positive rate") instead
 of requiring a manual disagreement autopsy.
 
@@ -10,7 +10,7 @@ How it works (Option B — attribution stays at the builder, join at report time
   1. Read final_resolved.csv (settled Yes/No per CVE, with Category + Difference Type).
   2. For each judged row, look up which term(s) pulled that CVE in — from the matching
      builder output(s) chosen by direction:
-        vendor_only  -> results_all_<cat>.xlsx               (vendor-term precision)
+        vendor_only  -> results_all_<cat>.csv                (vendor-term precision)
         keyword_only -> keyword_<cat>.csv                    (keyword-term precision)
         intersection -> BOTH of the above (matched by both methods, so it attributes to
                         its vendor term(s) AND its keyword term(s))
@@ -58,7 +58,7 @@ def _norm(cve):
 
 def _builder_path(method, category):
     if method == "vendor":
-        return os.path.join(VENDOR_DIR, f"results_all_{category}.xlsx")
+        return os.path.join(VENDOR_DIR, f"results_all_{category}.csv")
     return os.path.join(KEYWORD_DIR, f"keyword_{category}.csv")
 
 
@@ -141,9 +141,9 @@ def main():
             unattributed += 1
 
     if not tally:
-        print("\nNo attributable judged rows found. Rebuild the builder outputs with the "
-              "updated build_keyword_search.py / build_vendor_search.py (so keyword_<cat>.csv "
-              "and results_all_<cat>.xlsx carry the matched_terms column), then re-run the "
+        print("\nNo attributable judged rows found. Rebuild the builder outputs with "
+              "build_search.py (so keyword_<cat>.csv "
+              "and results_all_<cat>.csv carry the matched_terms column), then re-run the "
               "Stage-4 pipeline and this report.")
         return
 

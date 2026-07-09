@@ -6,7 +6,7 @@ Pulls every CVE from the **NVD 2.0 REST API** and writes them to
 `data/nvd-snapshot/nvd_all.csv` in the project's common schema
 (`cve_id, published, description, cvss_score, cvss_version, cwe_ids,
 cpe_strings`) — the *exact* columns Stage 1/2 (`cve_search.py`,
-`build_keyword_search.py`) search against. Pinning one downloaded snapshot
+`build_search.py`) search against. Pinning one downloaded snapshot
 is what makes the keyword and vendor searches comparable and the study
 reproducible / citeable ("dataset as of <date>"). See `data/nvd-snapshot/SNAPSHOT.md`.
 
@@ -41,14 +41,15 @@ An NVD API key (https://nvd.nist.gov/developers/request-an-api-key) raises the
 rate limit and is strongly recommended; a full run is ~360k CVEs / ~181 pages
 and takes ~2–3 h (the API is flaky — retries with backoff are normal).
 
-When it finishes it prints "All pages complete." — then update the CVE count /
-date in `data/nvd-snapshot/SNAPSHOT.md` and run `build_keyword_search.py`.
+When it finishes cleanly (no failed pages) it prints "All pages complete." and writes
+`data/nvd-snapshot/SNAPSHOT.md` itself (date + CVE count) — then run `build_search.py`.
 
 Requirements: requests (already installed).
 """
 
 import argparse
 import csv
+import datetime
 import json
 import os
 import queue
@@ -213,6 +214,58 @@ def worker(thread_id, work_queue, fail_counts, api_key, writer,
             work_queue.task_done()
 
 
+SNAPSHOT_MD_TEMPLATE = """# NVD Snapshot
+
+This directory holds the **fixed, offline NVD dataset** that Stage 1 (keyword search) and
+Stage 2 (vendor/brand search) — both `scripts/build_search.py` — run against. Pinning one
+snapshot is what makes the two search methods **comparable** (same data, same engine) and the
+study **reproducible / citeable** ("dataset as of <date>").
+
+The dataset file itself (`nvd_all.csv`) is **gitignored** (large, reproducible bulk data).
+Only this provenance file is tracked.
+
+## How to build the snapshot
+
+Either the API route (this file's generator) or the per-year-feed route — see the header of
+`scripts/cve_search.py` (STEP 1-2) for the latter's full detail.
+
+```
+set -a && source .env && set +a
+python3 scripts/download_nvd.py            # -> data/nvd-snapshot/nvd_all.csv (+ this file)
+```
+
+Then run the searches:
+```
+python3 scripts/build_search.py
+```
+
+## Provenance
+
+- **Snapshot date:** {date}
+- **Source:** NVD 2.0 API (`https://services.nvd.nist.gov/rest/json/cves/2.0`), downloaded via `scripts/download_nvd.py` with NVD API key ({results_per_page} CVEs/page, {threads} threads)
+- **Years included:** all CVEs in NVD as of download date
+- **Total CVEs:** {total:,}
+- **Notes:** Count is the number of unique CVE records (the `written` value in `nvd_all.csv.progress.json`), **not** `wc -l nvd_all.csv` — the latter over-counts because CVE descriptions contain embedded newlines, so one CVE can span several physical lines.
+
+_This file is written automatically by `scripts/download_nvd.py` on a clean (no-failed-pages) run — do not hand-edit the Provenance section, it will be overwritten on the next run._
+"""
+
+
+def write_snapshot_md(out_path, total_written, threads):
+    """Auto-write data/nvd-snapshot/SNAPSHOT.md (date + CVE count) after a clean run,
+    replacing the old manual copy-paste reminder."""
+    md_path = os.path.join(os.path.dirname(out_path), "SNAPSHOT.md")
+    content = SNAPSHOT_MD_TEMPLATE.format(
+        date=datetime.date.today().isoformat(),
+        results_per_page=RESULTS_PER_PAGE,
+        threads=threads,
+        total=total_written,
+    )
+    with open(md_path, "w", encoding="utf-8") as f:
+        f.write(content)
+    return md_path
+
+
 def fetch_total(session):
     """Get NVD's current totalResults (with retries — the count call is flaky too)."""
     for attempt in range(10):
@@ -321,11 +374,13 @@ def main():
           f"({elapsed / 60:.1f} min this session).", flush=True)
     if stats["failed_pages"]:
         print(f"WARNING: permanently failed pages: {sorted(stats['failed_pages'])}\n"
-              f"  Re-run the same command to retry just those pages.", flush=True)
+              f"  Re-run the same command to retry just those pages "
+              f"(SNAPSHOT.md not written until a clean run).", flush=True)
     else:
+        md_path = write_snapshot_md(out, stats["written"], args.threads)
         print(f"All pages complete. Safe to use {out}\n"
-              f"  Next: update data/nvd-snapshot/SNAPSHOT.md (date + CVE count), "
-              f"then run scripts/build_keyword_search.py", flush=True)
+              f"  Wrote {md_path} (date + CVE count)\n"
+              f"  Next: run scripts/build_search.py", flush=True)
 
 
 if __name__ == "__main__":

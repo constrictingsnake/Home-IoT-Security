@@ -48,6 +48,8 @@ import os
 import sys
 from collections import Counter, defaultdict
 
+from review_lib import write_raw  # shared Stage-4 01_raw.csv writer (canonical RAW_COLS)
+
 HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.dirname(HERE)
 DATA = os.path.join(ROOT, "data")
@@ -131,22 +133,11 @@ def load_known_cve_ids(category: str):
         with open(kp, newline="") as f:
             for r in csv.DictReader(f):
                 known.add(r["cve_id"])
-    vp = os.path.join(DATA, "vendor-search", f"results_all_{category}.xlsx")
+    vp = os.path.join(DATA, "vendor-search", f"results_all_{category}.csv")
     if os.path.exists(vp):
-        try:
-            import openpyxl
-            wb = openpyxl.load_workbook(vp, read_only=True)
-            for ws in wb.worksheets:
-                it = ws.iter_rows(values_only=True)
-                header = next(it, None)
-                if not header:
-                    continue
-                idx = list(header).index("cve_id") if "cve_id" in header else 0
-                for row in it:
-                    if row and row[idx]:
-                        known.add(str(row[idx]))
-        except ImportError:
-            print("  (openpyxl missing — vendor xlsx excluded from known set)", file=sys.stderr)
+        with open(vp, newline="") as f:
+            for r in csv.DictReader(f):
+                known.add(r["cve_id"])
     return known
 
 
@@ -213,11 +204,6 @@ def scan_snapshot(all_seeds):
     return hits
 
 
-# Stage-4 01_raw.csv schema (identical to build_difference_sets.py output).
-STAGE4_RAW_COLS = ["Difference Type", "cve_id", "published", "description",
-                   "cvss_score", "cvss_version", "cwe_ids", "cpe_strings"]
-
-
 def write_candidates(category, new_rows):
     """Attribution file — carries seed_cpe (the CPE-expansion analogue of matched_terms)."""
     out = os.path.join(DATA, "difference", category, "09_cpe_expansion_candidates.csv")
@@ -250,18 +236,17 @@ def write_stage4_raw(category, new_rows):
     if not new_rows:
         return None
     out = os.path.join(DATA, "difference", category, "cpe_expansion", "01_raw.csv")
-    os.makedirs(os.path.dirname(out), exist_ok=True)
-    with open(out, "w", newline="") as f:
-        w = csv.DictWriter(f, fieldnames=STAGE4_RAW_COLS)
-        w.writeheader()
-        for r, _hit_seeds in sorted(new_rows, key=lambda x: x[0]["cve_id"]):
-            w.writerow({
-                "Difference Type": "cpe_expansion",
-                "cve_id": r["cve_id"], "published": r.get("published", ""),
-                "description": r.get("description", ""), "cvss_score": r.get("cvss_score", ""),
-                "cvss_version": r.get("cvss_version", ""), "cwe_ids": r.get("cwe_ids", ""),
-                "cpe_strings": r.get("cpe_strings", ""),
-            })
+    records = [
+        {
+            "Difference Type": "cpe_expansion",
+            "cve_id": r["cve_id"], "published": r.get("published", ""),
+            "description": r.get("description", ""), "cvss_score": r.get("cvss_score", ""),
+            "cvss_version": r.get("cvss_version", ""), "cwe_ids": r.get("cwe_ids", ""),
+            "cpe_strings": r.get("cpe_strings", ""),
+        }
+        for r, _hit_seeds in sorted(new_rows, key=lambda x: x[0]["cve_id"])
+    ]
+    write_raw(records, out)
     return out
 
 

@@ -26,7 +26,7 @@ category's files. Keep the existing columns and row order; just fill your three 
 2. **Follow the shared rubric exactly:** [`data/difference/CLASSIFICATION_PROMPT.md`](data/difference/CLASSIFICATION_PROMPT.md).
    It is the single source of truth for what qualifies as a home IoT device and how to assign
    Judgment / Confidence / Reasoning. Do not invent your own criteria.
-   - **Read your category's row in [`data/difference/category_scope.csv`](data/difference/category_scope.csv)**
+   - **Read your category's `scope_note` in [`data/categories.csv`](data/categories.csv)**
      (keyed by slug) before judging — it is the authoritative in/out boundary for this category
      (e.g. home wallbox vs. commercial charger; consumer camera vs. enterprise NVR). All three
      reviewers use the same note; Gemini gets it injected automatically, you read it here.

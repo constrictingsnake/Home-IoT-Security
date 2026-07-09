@@ -12,7 +12,7 @@ Works on any file in the project's common CVE schema:
     cpe_strings [, matched_terms]
 
 That covers the fixed NVD snapshot (`data/nvd-snapshot/nvd_all.csv`, 7 cols) and
-every per-category search output (`keyword_<cat>.csv` / `results_all_<cat>.xlsx`,
+every per-category search output (`keyword_<cat>.csv` / `results_all_<cat>.csv`,
 8 cols with the trailing `matched_terms` attribution column).
 
 Usage
@@ -22,7 +22,7 @@ Usage
 
     # Any other query output (CSV or XLSX)
     python3 scripts/nvd_stats.py data/keyword-search/keyword_cameras.csv
-    python3 scripts/nvd_stats.py data/vendor-search/results_all_cameras.xlsx
+    python3 scripts/nvd_stats.py data/vendor-search/results_all_cameras.csv
 
     # Override where the report/tables land, and how many top items to list
     python3 scripts/nvd_stats.py --out-dir /tmp/report --top 30
