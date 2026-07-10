@@ -47,6 +47,56 @@ It trades breadth for precision. Seeding only from confirmed-`Yes` CPEs means it
 
 See `docs/FIRST_RUN_RESULTS.md` for measured yield/precision.
 
+### Automated vendor discovery — CPE brand mining (feeds back into Stage 2)
+`cpe_brand_mining.py` is `cpe_expansion.py`'s mirror image: where Stage 5 **densifies** a
+confirmed *product* (never a new brand), this **discovers new brands** for Stage 2's
+hand-compiled `vendor_terms.csv` — attacking low-recall categories (`streaming`, `hub`,
+`alarms`, `ev-charging`, `lighting` — see `recall_estimate.csv`) where recall is low mainly
+because the vendor list is missing brands NVD already knows about. Evidence is two-tier: Tier
+A = vendors on confirmed-`Yes` CVEs (strong), Tier B = vendors on keyword-matched CVEs not yet
+judged `No` (weak, circumstantial — the CVE matched a device phrase for this category). Both
+tiers reuse Stage 5's device-CPE-granularity guardrails (`vendor:product` only, `part ∈ {o,
+h}`, `GENERIC_PLATFORM_CPES` denied) so a candidate is held to the identical bar.
+
+A vendor already covered by an existing `vendor_terms.csv` term for that slug is dropped (cross-
+slug coverage — the same vendor already added under a *different* category — is reported, not
+dropped, since it's a useful signal but not disqualifying). Every surviving candidate is scored
+in one snapshot pass for `new_yield` (CVEs neither text method already found) and
+`snapshot_total` (the vendor's whole CPE footprint, in scope or not — the gap between the two
+is what flags a diversified mega-vendor like Cisco or Red Hat that must not be added bare).
+Risk flags (`mega-vendor`, `known-fp-bomb` — sourced dynamically from `term_precision.csv`
+`prune_candidate=Yes` rows, `dictionary-word`) triage the list but never filter it — like Stage
+5's guardrail 3, **candidates are never auto-included**: this script only writes
+`data/vendor-search/vendor_candidates.csv` and never touches `vendor_terms.csv` itself. A human
+reviews the list, hand-adds accepted terms (qualifying with a product word per the existing
+vendor-term convention when `mega-vendor`/`dictionary-word` is flagged), and reruns the pipeline
+— which is why it isn't chained into `pipeline.py refresh`/`settle`: accepting a vendor is a
+judgment call, not an idempotent step. See `docs/plans/PLAN_cpe_brand_mining.md` for the full
+algorithm.
+
+### Automated keyword discovery — keyword mining (feeds back into Stage 1)
+`keyword_mining.py` is `cpe_brand_mining.py`'s counterpart for the *other* hand-compiled term
+file: it mines confirmed-Yes CVE **descriptions** (not CPEs) for device-type n-grams (1-3 words)
+that `keyword_terms.csv` is missing, systematizing what `03_keyword_additions.md` does
+anecdotally per category. It scores candidates two ways — a discriminativeness score
+(`n_yes * log((n_yes+0.5)/(n_no+0.5))`) against the labelled Yes/No corpus in
+`final_resolved.csv`, then a real `new_yield` via `cve_search.filter_by_keywords` (the exact
+matcher the real pipeline uses) in one combined snapshot pass across every surviving candidate.
+
+Three filters keep it to device-type phrases, per the `keyword_terms.csv` scope rule (phrases
+only, no brands/protocols/firmware/umbrella terms): CVE-boilerplate / generic-English-vocabulary
+n-grams are dropped (a phrase survives only if at least one of its tokens is *not* generic — so
+`security kit` survives on `security` while bare `buffer`, `attacker can`, or `vulnerability
+exists` don't); n-grams already covered by an existing term for that slug are dropped; and
+n-grams containing a token that is itself a CPE vendor (≥3 CVEs in the snapshot) are brand-like
+and routed to `keyword_candidates_brands.csv` instead, for the vendor-mining side to pick up.
+
+Like Stage 2's discovery script, **candidates are never auto-included** — this script only
+writes `data/keyword-search/keyword_candidates.csv` (+ the brands side file) and never touches
+`keyword_terms.csv` itself. A human vets the list, hand-adds accepted phrases, and reruns the
+pipeline — not chained into `pipeline.py refresh`/`settle` for the same reason as
+`discover-vendors`. See `docs/plans/PLAN_keyword_mining.md` for the full algorithm.
+
 ### Stage 6 — Capture–recapture recall estimation
 Review measures **precision**; it says nothing about **recall**. Stage 6 treats the vendor and keyword searches as two independent capture occasions of the same CVE population (Lincoln–Petersen/Chapman), estimating `N̂` and combined recall `|V∪K|/N̂` without any new labelling. `--three` adds a third capture set `C` (every CVE NVD attributes to a confirmed-Yes device CPE) via an AIC-selected Poisson log-linear model, letting the data estimate V–K dependence instead of assuming it away.
 
@@ -82,7 +132,7 @@ Home IoT Security/
     ├── categories.csv                # THE 24 frozen analysis categories: slug, label, scope_note
     ├── nvd-snapshot/                 # Fixed offline NVD dataset (one snapshot, reproducible/citeable)
     ├── keyword-search/               # Stage 1 output + user-authored keyword_terms.csv
-    ├── vendor-search/                # Stage 2 output + user-authored vendor_terms.csv
+    ├── vendor-search/                # Stage 2 output + user-authored vendor_terms.csv + vendor_candidates.csv (automated discovery, unreviewed)
     └── difference/                  # Stage 3+4 — vendor/keyword difference + its triple-AI review
         ├── CLASSIFICATION_PROMPT.md     # shared rubric all 3 AI reviewers judge by
         ├── judgment_store.csv           # persistent AI judgment store — keyed (category, cve_id)

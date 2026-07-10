@@ -1,5 +1,14 @@
 # Plan — CPE-Dictionary Brand Mining (automated vendor discovery)
 
+*Status: **Implemented 2026-07-09** — `scripts/cpe_brand_mining.py`, wired into
+`scripts/pipeline.py` as `discover-vendors` (not chained into `refresh`/`settle` — accepting a
+candidate is a human decision). Rationale in `CLAUDE.md` § Automated vendor discovery, commands
+in `README.md`, flag table in `docs/SCRIPTS_REFERENCE.md`. This doc remains the algorithm
+reference. Acceptance checks verified against the live snapshot: already-covered vendors
+(growatt/aqara/shelly/fibaro) correctly excluded, `moxa`/cameras surfaces zero evidence,
+mega-vendors (cisco/google/tp-link/qualcomm/redhat) correctly flagged rather than silently
+included, no `GENERIC_PLATFORM_CPES` entry seeds a candidate.*
+
 **Goal:** surface CPE vendors that make devices in our 24 categories but are missing from
 `data/vendor-search/vendor_terms.csv`, ranked by how many *new* CVEs adding them would pull.
 This attacks the low-recall categories (`streaming` 0.15, `hub` 0.19, `alarms` 0.27,

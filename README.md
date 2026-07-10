@@ -86,6 +86,11 @@ python3 scripts/pipeline.py settle --model gemma-4-31b-it --rps 0.30
 
 # Check term coverage / status at any time:
 python3 scripts/pipeline.py status
+
+# Optional, manual, run any time: mine CPE vendors missing from vendor_terms.csv.
+# Writes a candidate list only (never edits vendor_terms.csv) — not chained into
+# refresh/settle since accepting a candidate is a human decision.
+python3 scripts/pipeline.py discover-vendors --all
 ```
 
 Every step is judgment-preserving (see `CLAUDE.md` § Methodology Notes for the invariant), so
@@ -163,6 +168,48 @@ python3 scripts/finalize_judgments.py
 Output: `data/difference/<cat>/09_cpe_expansion_candidates.csv`, `cpe_expansion/01_raw.csv`,
 `data/difference/cpe_expansion_summary.csv`. See `CLAUDE.md` for the three guardrails and
 `docs/FIRST_RUN_RESULTS.md` for first-run yield/precision numbers.
+
+### Vendor Discovery — CPE Brand Mining (feeds back into Stage 2)
+
+Automated counterpart to Stage 2's hand-compiled vendor list: mines `cpe_strings` on
+confirmed-Yes and keyword-matched CVEs for vendors NVD already knows about that
+`vendor_terms.csv` is missing, ranked by how many new CVEs adding them would pull.
+
+```bash
+python3 scripts/cpe_brand_mining.py --all                 # every category
+python3 scripts/cpe_brand_mining.py hub streaming alarms  # subset
+python3 scripts/cpe_brand_mining.py --all --min-evidence 2   # require >=2 evidence CVEs (default 1)
+# or via the orchestrator:
+python3 scripts/pipeline.py discover-vendors --all
+```
+
+Output: `data/vendor-search/vendor_candidates.csv` — a candidate list only, sorted by
+`new_yield` desc within category. **It never edits `vendor_terms.csv`.** Review it, hand-add
+accepted vendors to `vendor_terms.csv` (qualify with a product word if flagged
+`mega-vendor`/`dictionary-word`, per the existing vendor-term convention), then re-run
+`python3 scripts/pipeline.py refresh` to pull their CVEs into review. See `CLAUDE.md` and
+`docs/plans/PLAN_cpe_brand_mining.md` for the algorithm and guardrails.
+
+### Keyword Discovery — Keyword Mining (feeds back into Stage 1)
+
+Automated counterpart to Stage 1's hand-compiled keyword list: mines confirmed-Yes CVE
+descriptions for device-type n-grams that `keyword_terms.csv` is missing, ranked by how many
+new CVEs adding them would pull.
+
+```bash
+python3 scripts/keyword_mining.py --all                   # every category
+python3 scripts/keyword_mining.py hub streaming alarms    # subset
+python3 scripts/keyword_mining.py --all --top 50 --min-yes 3   # plan defaults
+# or via the orchestrator:
+python3 scripts/pipeline.py mine-keywords --all
+```
+
+Output: `data/keyword-search/keyword_candidates.csv` — a candidate list only, sorted by
+`new_yield` desc within category — plus `keyword_candidates_brands.csv` (brand-like n-grams
+routed to the vendor-mining side instead). **It never edits `keyword_terms.csv`.** Review it,
+hand-add accepted phrases to `keyword_terms.csv`, then re-run `python3 scripts/pipeline.py
+refresh` to pull their CVEs into review. See `CLAUDE.md` and
+`docs/plans/PLAN_keyword_mining.md` for the algorithm and guardrails.
 
 ### Stage 6 — Recall Estimation (Capture–Recapture)
 
@@ -274,11 +321,13 @@ One line per script — full flag tables in `docs/SCRIPTS_REFERENCE.md`.
 | `make_review_copies.py` | 4 | Builds blind `reviews/{claude,codex,gemini}.csv`, pre-filled from the judgment store |
 | `gemini_classify.py` | 4 (lowest level) | Core Gemini API caller; fills `gemini.csv` |
 | `merge_judgments.py` | 4 (mid level) | Runs Gemini (optional) + merges all 3 copies into `02_merged.csv` |
-| `pipeline.py` | orchestrator | `refresh` / `settle` / `status` — chains the idempotent steps |
+| `pipeline.py` | orchestrator | `refresh` / `settle` / `status` / `discover-vendors` / `mine-keywords` — chains the idempotent steps |
 | `extract_human_review.py` | 4 | Pulls flagged rows into the human-review queue |
 | `finalize_judgments.py` | 4 | Folds human verdicts into `Final Judgment`; upserts `judgment_store.csv` |
 | `term_precision.py` | 8 (pruning) | Per-term precision from settled judgments |
 | `cpe_expansion.py` | 5 | Third discovery method: CPE-based densification of confirmed products |
+| `cpe_brand_mining.py` | 2 (discovery) | Mines CPE vendors missing from `vendor_terms.csv`; writes a candidate list, never auto-adds |
+| `keyword_mining.py` | 1 (discovery) | Mines device-type n-grams missing from `keyword_terms.csv`; writes a candidate list, never auto-adds |
 | `recall_estimate.py` | 6 | Capture–recapture recall estimate (Chapman + 3-source log-linear) |
 | `cwe888_analysis.py` | 7 (analysis) | CWE-888 primary-class distribution over confirmed-Yes CVEs |
 | `generate_cwe888_table.py` | 7 (report) | LaTeX Table III equivalent, shaded top-6 classes per category |
@@ -299,6 +348,7 @@ Retired scripts live in `scripts/_legacy/` (superseded-by table in `docs/SCRIPTS
 | `term_precision.csv` | `method, category, term, n_judged, n_yes, n_no, precision, prune_candidate` |
 | `<cat>/09_cpe_expansion_candidates.csv` | `cve_id, published, description, cvss_score, cvss_version, cwe_ids, cpe_strings, seed_cpe, Discovery Method` |
 | `cpe_expansion_summary.csv` | `category, yes_seeds, device_seeds, app_cpe_dropped, matched, already_known, new_candidates` |
+| `vendor_candidates.csv` | `category, vendor, n_yes_evidence, n_keyword_evidence, covered_elsewhere_slug, snapshot_total, new_yield, risk_flags, sample_cves, sample_descriptions` |
 | `recall_estimate.csv` | `category, method, n_vendor, n_keyword, n_both, n_observed, N_hat, N_lo, N_hi, recall, recall_lo, recall_hi, confidence` |
 | `cwe888_distribution.csv` | `category, cwe888_class, n_cwes, pct` (plus an `ALL` pseudo-category) |
 | `cwe888_cve_map.csv` | `category, cve_id, cwe_id, cwe888_classes, map_depth` (classes pipe-separated; depth 0 = in the 888 view, ≥1 = via parents, −1 = unmappable) |

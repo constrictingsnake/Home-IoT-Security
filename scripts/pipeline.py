@@ -5,6 +5,8 @@
                                           #   blind copies, then STOP for manual Claude/Codex review
     python3 scripts/pipeline.py settle    # Gemini + merge -> extract human queue -> finalize
     python3 scripts/pipeline.py status    # per-category term coverage (computed, not stored)
+    python3 scripts/pipeline.py discover-vendors --all   # mine CPE vendors missing from
+                                          #   vendor_terms.csv (candidate list only, manual, optional)
 
 Every underlying step is idempotent and judgment-preserving (settled judgments are restored
 from judgment_store.csv / carried human verdicts), so re-running is safe. The only points a
@@ -19,6 +21,11 @@ finalize_judgments.py.
 `status` computes each category's term coverage (keyword_terms.csv / vendor_terms.csv) live —
 replaces the old hand-maintained ①②③④ tags in CLAUDE.md's category table, which could drift
 out of sync with the actual term files.
+`discover-vendors` runs cpe_brand_mining.py — NOT chained into refresh/settle, since accepting
+a candidate vendor is a human decision (it writes vendor_candidates.csv only, never edits
+vendor_terms.csv). Run it whenever, then hand-add accepted terms and re-run `refresh`.
+`mine-keywords` runs keyword_mining.py — same story, mirrored for Stage 1: it writes
+keyword_candidates.csv (+ keyword_candidates_brands.csv) only, never edits keyword_terms.csv.
 """
 import argparse
 import glob
@@ -117,6 +124,30 @@ def cmd_status(args):
         print(f"  {slug:<16}{STATUS_LABELS[(has_kw, has_vn)]}")
 
 
+def cmd_discover_vendors(args):
+    cmd = [script("cpe_brand_mining.py")]
+    cmd += ["--all"] if args.all else args.categories
+    if args.min_evidence != 1:
+        cmd += ["--min-evidence", str(args.min_evidence)]
+    run(cmd)
+    print("\n✓ candidates written to data/vendor-search/vendor_candidates.csv — review, hand-add "
+          "accepted vendors to data/vendor-search/vendor_terms.csv, then run: "
+          "python3 scripts/pipeline.py refresh")
+
+
+def cmd_mine_keywords(args):
+    cmd = [script("keyword_mining.py")]
+    cmd += ["--all"] if args.all else args.categories
+    if args.top != 50:
+        cmd += ["--top", str(args.top)]
+    if args.min_yes != 3:
+        cmd += ["--min-yes", str(args.min_yes)]
+    run(cmd)
+    print("\n✓ candidates written to data/keyword-search/keyword_candidates.csv — review, hand-add "
+          "accepted phrases to data/keyword-search/keyword_terms.csv, then run: "
+          "python3 scripts/pipeline.py refresh")
+
+
 def main():
     ap = argparse.ArgumentParser(description=__doc__,
                                  formatter_class=argparse.RawDescriptionHelpFormatter)
@@ -136,6 +167,24 @@ def main():
 
     st = sub.add_parser("status", help="Per-category term coverage, computed live.")
     st.set_defaults(func=cmd_status)
+
+    dv = sub.add_parser("discover-vendors",
+                        help="Mine CPE vendors missing from vendor_terms.csv (candidate list only).")
+    dv.add_argument("categories", nargs="*", help="category slug(s); omit when using --all")
+    dv.add_argument("--all", action="store_true", help="every category in categories.csv")
+    dv.add_argument("--min-evidence", type=int, default=1,
+                    help="min distinct evidence CVEs required (default: 1)")
+    dv.set_defaults(func=cmd_discover_vendors)
+
+    mk = sub.add_parser("mine-keywords",
+                        help="Mine device-type phrases missing from keyword_terms.csv (candidate list only).")
+    mk.add_argument("categories", nargs="*", help="category slug(s); omit when using --all")
+    mk.add_argument("--all", action="store_true", help="every category in categories.csv")
+    mk.add_argument("--top", type=int, default=50,
+                    help="max candidates kept per category before yield scoring (default: 50)")
+    mk.add_argument("--min-yes", type=int, default=3,
+                    help="min Yes-doc frequency required for a candidate (default: 3)")
+    mk.set_defaults(func=cmd_mine_keywords)
 
     args = ap.parse_args()
     args.func(args)

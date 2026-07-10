@@ -178,6 +178,29 @@ Seeds from confirmed-`Yes` rows, extracts device `vendor:product` CPEs, and scan
 
 ---
 
+### `cpe_brand_mining.py` — Stage 2 (automated vendor discovery)
+Mines CPE vendors on confirmed-Yes and keyword-matched CVEs that `vendor_terms.csv` is missing, ranked by `new_yield` (CVEs neither text method already found). Read-only outside its one output file: `data/vendor-search/vendor_candidates.csv`. Never edits `vendor_terms.csv` — candidates are for a human to vet.
+
+| Flag | Description |
+|------|-------------|
+| `<category> [<category> ...]` | One or more category slugs (omit when using `--all`) |
+| `--all` | Every category in `categories.csv` |
+| `--min-evidence N` | Min distinct evidence CVEs (Tier A confirmed-Yes + Tier B keyword-matched, deduped) required before a vendor becomes a candidate (default: `1`) |
+
+---
+
+### `keyword_mining.py` — Stage 1 (automated keyword discovery)
+Mines device-type n-grams (1-3 words) from confirmed-Yes CVE descriptions that `keyword_terms.csv` is missing, ranked by `new_yield` (CVEs neither text method already found). Read-only outside its two output files: `data/keyword-search/keyword_candidates.csv` and `keyword_candidates_brands.csv` (brand-like candidates routed to the vendor-mining side). Never edits `keyword_terms.csv` — candidates are for a human to vet.
+
+| Flag | Description |
+|------|-------------|
+| `<category> [<category> ...]` | One or more category slugs (omit when using `--all`) |
+| `--all` | Every category in `categories.csv` |
+| `--top N` | Max candidates kept per category before yield scoring (default: `50`) |
+| `--min-yes N` | Min Yes-doc frequency required for a candidate (default: `3`) |
+
+---
+
 ### `recall_estimate.py` — Stage 6
 Capture–recapture recall estimation over the vendor/keyword searches (+ optional CPE capture set).
 

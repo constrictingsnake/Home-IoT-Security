@@ -1,0 +1,621 @@
+category,phrase,reason_vendor_token
+doorlock,tinxy,tinxy
+doorlock,tinxy wifi,tinxy
+smartspeakers,bose,bose
+smartspeakers,bose soundtouch,bose
+smartspeakers,amazon,amazon
+smartspeakers,amazon echo,amazon
+smartspeakers,google,google
+smartspeakers,sonos one,sonos
+smartspeakers,sonos,sonos
+smartspeakers,installations of sonos,sonos
+smartspeakers,sonos era,sonos
+smartspeakers,on affected sonos,sonos
+smartspeakers,affected sonos era,sonos
+smartspeakers,affected sonos,sonos
+smartspeakers,bose soundtouch devices,bose
+smartspeakers,sonos one speaker,sonos
+smartspeakers,ssh,ssh
+doorbell,akuvox e11,akuvox
+doorbell,akuvox,akuvox
+doorbell,can be accessed,be
+doorbell,be accessed,be
+babymonitor,d-link dcs-825l,d-link
+babymonitor,d-link,d-link
+smartplugs,meross,meross
+smartplugs,belkin,belkin
+smartplugs,belkin wemo,belkin
+smartplugs,tp-link tapo,tp-link
+smartplugs,tp-link,tp-link
+smartplugs,belkin wemo home,belkin
+alarms,simplisafe original,simplisafe
+alarms,simplisafe,simplisafe
+alarms,channel in simplisafe,simplisafe
+alarms,simplisafe ss3 firmware,simplisafe
+alarms,simplisafe ss3,simplisafe
+alarms,using an alternate,an
+alarms,make an authenticated,an
+alarms,hex,hex
+alarms,ssid hex,hex
+alarms,hex http,hex
+alarms,construct an os,an
+alarms,hex http parameter,hex
+alarms,execute an xcmd,an
+alarms,hozard,hozard
+alarms,hozard alarm,hozard
+robotvacuum,cloud,cloud
+robotvacuum,ecovacs,ecovacs
+robotvacuum,ecovacs robot lawnmowers,ecovacs
+robotvacuum,ecovacs robot,ecovacs
+lighting,philips hue bridge,philips
+lighting,philips hue,philips
+lighting,philips,philips
+lighting,cloud,cloud
+lighting,mystrom,mystrom
+lighting,mystrom wifi,mystrom
+lighting,mystrom wifi switch,mystrom
+lighting,tcp,tcp
+lighting,installations of philips,philips
+lighting,listens on tcp,tcp
+lighting,on tcp port,tcp
+lighting,on tcp,tcp
+lighting,tcp port,tcp
+lighting,protocol,protocol
+lighting,discovered in mystrom,mystrom
+hub,homeseer,homeseer
+hub,philips hue bridge,philips
+hub,philips hue,philips
+hub,philips,philips
+hub,server of samsung,samsung
+hub,samsung smartthings hub,samsung
+hub,samsung smartthings,samsung
+hub,samsung,samsung
+hub,stack an attacker,an
+hub,callback,callback
+hub,sqlite database,sqlite
+hub,sqlite database leading,sqlite
+hub,its sqlite database,sqlite
+hub,sqlite,sqlite
+hub,its sqlite,sqlite
+hub,interface in homeseer,homeseer
+hub,homeseer hs2,homeseer
+hub,on samsung smartthings,samsung
+hub,on samsung,samsung
+hub,fibaro home center,fibaro
+hub,fibaro,fibaro
+hub,fibaro home,fibaro
+hub,protocol,protocol
+hub,aqara,aqara
+hub,aqara hub,aqara
+hub,aqara hub devices,aqara
+hub,vulnerabilities in aqara,aqara
+hub,installations of philips,philips
+hub,listens on tcp,tcp
+hub,on tcp port,tcp
+hub,on tcp,tcp
+hub,tcp,tcp
+hub,tcp port,tcp
+hub,tp-link,tp-link
+hub,bosch,bosch
+hub,bosch smart home,bosch
+hub,bosch smart,bosch
+hub,paired an app,an
+hub,zipato zipabox,zipato
+hub,zipato zipabox smart,zipato
+hub,zipato,zipato
+ev-charging,chargepoint,chargepoint
+ev-charging,chargepoint home flex,chargepoint
+ev-charging,chargepoint home,chargepoint
+ev-charging,installations of chargepoint,chargepoint
+ev-charging,wolfbox level,wolfbox
+ev-charging,wolfbox,wolfbox
+ev-charging,installations of wolfbox,wolfbox
+home-power,enphase envoy,enphase
+home-power,enphase envoy r3,enphase
+home-power,tcp,tcp
+home-power,enphase,enphase
+home-power,tcp port,tcp
+home-power,discovered in sma,sma
+home-power,sma,sma
+home-power,sma solar,sma
+home-power,sma solar technology,sma
+home-power,passwords can be,be
+home-power,protocol,protocol
+home-power,on enphase,enphase
+home-power,x devices,x
+home-power,r3 x,x
+home-power,d4 x,x
+home-power,be retrieved by,be
+home-power,envoy r3 x,x
+home-power,x,x
+home-power,number can be,be
+home-power,by an unauthenticated,an
+home-power,can be retrieved,be
+home-power,on enphase envoy,enphase
+home-power,x and d4,x
+home-power,discovered on enphase,enphase
+home-power,d4 x devices,x
+home-power,be retrieved,be
+home-power,gateway,gateway
+home-power,iq gateway,gateway
+home-power,gateway formerly known,gateway
+home-power,gateway formerly,gateway
+home-power,enphase iq gateway,enphase
+home-power,iq gateway formerly,gateway
+home-power,enphase iq,enphase
+garden,rainmachine mini-8,rainmachine
+garden,rainmachine mini-8 2nd,rainmachine
+garden,rainmachine,rainmachine
+garden,green electronics rainmachine,rainmachine
+garden,electronics rainmachine,rainmachine
+garden,electronics rainmachine mini-8,rainmachine
+garden,yarbo firmware,yarbo
+garden,yarbo,yarbo
+garden,ecovacs robot,ecovacs
+garden,ecovacs,ecovacs
+garden,ecovacs robot lawnmowers,ecovacs
+pet,petwant pf-103,petwant
+pet,so in petwant,petwant
+pet,petwant,petwant
+pet,petwant pf-103 firmware,petwant
+pet,furbo,furbo
+pet,bluetooth,bluetooth
+pet,are furbo,furbo
+pet,be initiated,be
+pet,affected are furbo,furbo
+pet,furbo mini,furbo
+pet,furbo mini up,furbo
+pet,be difficult,be
+pet,determined to be,be
+pet,tomofun furbo,furbo
+pet,furbo mini affected,furbo
+pet,furbo mini this,furbo
+pet,affects an unknown,an
+pet,element,element
+streaming,sony,sony
+streaming,sony bravia,sony
+streaming,tcp,tcp
+streaming,sony bravia tv,sony
+streaming,apple ios,apple
+streaming,apple tv before,apple
+streaming,used in apple,apple
+streaming,webkit as,webkit
+streaming,apple tv,apple
+streaming,webkit as used,webkit
+streaming,apple ios before,apple
+streaming,webkit,webkit
+streaming,apple,apple
+streaming,dyld in apple,apple
+streaming,kernel in apple,kernel
+streaming,kernel,kernel
+streaming,on sony bravia,sony
+streaming,on sony,sony
+streaming,component on sony,sony
+streaming,nvidia tegra,nvidia
+streaming,nvidia,nvidia
+streaming,nvidia shield tv,nvidia
+streaming,nvidia shield,nvidia
+streaming,implementation in apple,apple
+streaming,x,x
+streaming,component in apple,apple
+streaming,apple os,apple
+streaming,x before,x
+streaming,apple os x,apple
+streaming,os x,x
+streaming,imageio in apple,apple
+streaming,video file,file
+streaming,crafted video file,file
+streaming,x through,x
+streaming,transport in apple,apple
+streaming,os x through,x
+streaming,iokit in apple,apple
+streaming,apple safari,apple
+streaming,webkit cves,webkit
+streaming,other webkit,webkit
+streaming,other webkit cves,webkit
+streaming,apple safari before,apple
+streaming,than other webkit,webkit
+streaming,webkit cves listed,webkit
+streaming,os x before,x
+streaming,launchd in apple,apple
+streaming,subsystem in apple,apple
+streaming,double free,free
+streaming,free,free
+streaming,coregraphics in apple,apple
+streaming,iohidfamily in apple,apple
+streaming,kernel memory,kernel
+streaming,crafted font file,file
+streaming,font file,file
+streaming,fontparser in apple,apple
+streaming,dfont file,file
+streaming,crafted dfont file,file
+streaming,ioacceleratorfamily in apple,apple
+streaming,about kernel memory,kernel
+streaming,about kernel,kernel
+streaming,information about kernel,kernel
+streaming,determine,determine
+streaming,amazon,amazon
+streaming,issue affects amazon,amazon
+streaming,affects amazon,amazon
+streaming,affects amazon fire,amazon
+streaming,amazon fire tv,amazon
+streaming,amazon fire,amazon
+streaming,vizio,vizio
+streaming,vizio p65-f1,vizio
+streaming,freetype before,freetype
+streaming,c in freetype,freetype
+streaming,freetype,freetype
+streaming,google chrome,google
+streaming,webkit in apple,webkit
+streaming,libxml2 in apple,apple
+streaming,libc in apple,apple
+streaming,zlib,zlib
+streaming,decoder in apple,apple
+streaming,opengl in apple,apple
+streaming,media file,file
+streaming,api in apple,apple
+streaming,amazon fire os,amazon
+streaming,crafted xml file,file
+streaming,xml file,file
+streaming,broadcom,broadcom
+streaming,sensitive kernel,kernel
+streaming,from kernel memory,kernel
+streaming,from kernel,kernel
+streaming,webkit page,webkit
+streaming,webkit page loading,webkit
+streaming,libxslt in apple,apple
+streaming,certain apple,apple
+streaming,certain apple products,apple
+streaming,involves the webkit,webkit
+streaming,webkit component it,webkit
+streaming,apple products,apple
+streaming,webkit component,webkit
+streaming,tiff file,file
+streaming,crafted tiff file,file
+streaming,x el capitan,x
+streaming,x el,x
+streaming,os x el,x
+streaming,apple products ios,apple
+streaming,kernel component it,kernel
+streaming,kernel component,kernel
+streaming,involves the kernel,kernel
+streaming,libarchive,libarchive
+streaming,libarchive component,libarchive
+streaming,c in zlib,zlib
+streaming,on broadcom,broadcom
+streaming,on broadcom bcm4355c0,broadcom
+streaming,broadcom bcm4355c0,broadcom
+streaming,broadcom bcm4355c0 wi-fi,broadcom
+streaming,text file,file
+streaming,crafted text file,file
+streaming,high sierra,sierra
+streaming,macos high sierra,sierra
+streaming,sierra and security,sierra
+streaming,be able,be
+streaming,may be able,be
+streaming,sierra,sierra
+streaming,crafted audio file,file
+streaming,audio file,file
+streaming,sqlite component,sqlite
+streaming,involves the sqlite,sqlite
+streaming,sqlite,sqlite
+streaming,sqlite component it,sqlite
+streaming,third-party sqlite product,sqlite
+streaming,third-party sqlite,sqlite
+streaming,sqlite product,sqlite
+streaming,sqlite product versions,sqlite
+streaming,sqlite before,sqlite
+streaming,bluetooth,bluetooth
+streaming,high sierra before,sierra
+streaming,sierra before,sierra
+streaming,after free,free
+streaming,free issue,free
+streaming,after free issue,free
+streaming,use after free,free
+streaming,free issue was,free
+streaming,causes an assert,an
+streaming,kernel memory this,kernel
+streaming,disclosure of kernel,kernel
+streaming,sierra security update,sierra
+streaming,high sierra security,sierra
+streaming,sierra security,sierra
+streaming,update 2019-002 sierra,sierra
+streaming,2019-002 sierra,sierra
+streaming,2019-002 high sierra,sierra
+streaming,sierra ios,sierra
+streaming,read kernel memory,kernel
+streaming,read kernel,kernel
+streaming,sierra tvos,sierra
+streaming,position may be,be
+streaming,able to determine,determine
+streaming,kernel memory layout,kernel
+streaming,determine kernel,determine
+streaming,determine kernel memory,determine
+streaming,kernel privileges,kernel
+streaming,code with kernel,kernel
+streaming,website may be,be
+streaming,corrupt kernel memory,kernel
+streaming,corrupt kernel,kernel
+streaming,or corrupt kernel,kernel
+streaming,or read kernel,kernel
+streaming,2019-003 high sierra,sierra
+streaming,update 2019-003 sierra,sierra
+streaming,2019-003 sierra,sierra
+streaming,2019-003 sierra ios,sierra
+streaming,write kernel,kernel
+streaming,write kernel memory,kernel
+streaming,or write kernel,kernel
+streaming,malicious audio file,file
+streaming,audio file may,file
+streaming,be passively,be
+streaming,may be passively,be
+streaming,be passively tracked,be
+streaming,text file may,file
+streaming,app may be,be
+streaming,high sierra tvos,sierra
+streaming,2019-007 high sierra,sierra
+streaming,high sierra ios,sierra
+streaming,maliciously crafted file,file
+streaming,usd file,file
+streaming,2020-005 high sierra,sierra
+streaming,usd file may,file
+streaming,crafted usd file,file
+streaming,discovered in openexr,openexr
+streaming,openexr,openexr
+streaming,openexr before,openexr
+streaming,google chrome prior,google
+streaming,webrtc in google,google
+streaming,font file may,file
+streaming,high sierra processing,sierra
+streaming,2020-004 high sierra,sierra
+streaming,sierra processing,sierra
+streaming,tiff file may,file
+streaming,pdf file may,file
+streaming,crafted pdf file,file
+streaming,pdf file,file
+streaming,capability may be,be
+streaming,achieved kernel code,kernel
+streaming,already achieved kernel,kernel
+streaming,achieved kernel,kernel
+streaming,bypass kernel,kernel
+streaming,kernel code,kernel
+streaming,bypass kernel memory,kernel
+streaming,kernel memory mitigations,kernel
+streaming,kernel code execution,kernel
+streaming,privileges apple,apple
+streaming,apple is aware,apple
+streaming,disclose kernel memory,kernel
+streaming,disclose kernel,kernel
+streaming,double free issue,free
+streaming,code execution apple,apple
+streaming,execution apple,apple
+streaming,dfont file may,file
+streaming,cause kernel code,kernel
+streaming,cause kernel,kernel
+streaming,catalina an app,an
+streaming,improved ui handling,ui
+streaming,ui handling,ui
+streaming,ui,ui
+streaming,ui handling this,ui
+streaming,lead to ui,ui
+streaming,improved ui,ui
+streaming,ui spoofing,ui
+streaming,cause an unexpected,an
+streaming,arbitrary kernel,kernel
+streaming,arbitrary kernel read,kernel
+streaming,kernel read,kernel
+streaming,video file may,file
+streaming,sensitive kernel state,kernel
+streaming,kernel state,kernel
+streaming,leak sensitive kernel,kernel
+streaming,processing an image,an
+streaming,webpage may be,be
+streaming,kernel memory protections,kernel
+streaming,backup file may,file
+streaming,backup file,file
+streaming,crafted backup file,file
+streaming,parsing a file,file
+streaming,crafted media file,file
+streaming,processing an audio,an
+streaming,media file may,file
+cameras,d-link,d-link
+cameras,swann,swann
+cameras,netgear,netgear
+cameras,arlo,arlo
+cameras,arlo q,arlo
+cameras,arlo q plus,arlo
+cameras,hikvision,hikvision
+cameras,configuration file,file
+cameras,dahua,dahua
+cameras,foscam,foscam
+cameras,element,element
+cameras,d-link dcs,d-link
+cameras,zivif,zivif
+cameras,zivif pr115-204-p-rs,zivif
+cameras,it can be,be
+cameras,on d-link,d-link
+cameras,some dahua,dahua
+cameras,ezviz,ezviz
+cameras,foscam cameras,foscam
+cameras,foscam cameras c1,foscam
+cameras,amcrest,amcrest
+cameras,foscam c1,foscam
+cameras,by the foscam,foscam
+cameras,foscam c1 indoor,foscam
+cameras,be able,be
+cameras,enabled an attacker,an
+cameras,will be able,be
+cameras,connections will be,be
+cameras,foscam c2 devices,foscam
+cameras,opticam i5,opticam
+cameras,on foscam,foscam
+cameras,on foscam c2,foscam
+cameras,opticam,opticam
+cameras,opticam i5 devices,opticam
+cameras,discovered on foscam,foscam
+cameras,foscam c2,foscam
+cameras,cannot,cannot
+cameras,cannot be,cannot
+cameras,be changed,be
+cameras,cannot be changed,cannot
+cameras,d-link dcs-1130,d-link
+cameras,d-link dcs-1130 devices,d-link
+cameras,arm little endian,arm
+cameras,identified to be,be
+cameras,be receiving,be
+cameras,little endian,endian
+cameras,discovered on d-link,d-link
+cameras,little endian format,endian
+cameras,follows a arm,arm
+cameras,endian,endian
+cameras,endian format,endian
+cameras,on d-link dcs-1130,d-link
+cameras,arm little,arm
+cameras,arm,arm
+cameras,follows an arm,an
+cameras,d-link devices,d-link
+cameras,on d-link dcs-1100,d-link
+cameras,d-link dcs-1100,d-link
+cameras,allows d-link,d-link
+cameras,including an attacker,an
+cameras,protocol,protocol
+cameras,be initiated by,be
+cameras,can be initiated,be
+cameras,be initiated,be
+cameras,communication can be,be
+cameras,amcrest ipm-721s,amcrest
+cameras,cloud,cloud
+cameras,d-link dcs-960l,d-link
+cameras,tcp,tcp
+cameras,weave,weave
+cameras,rubetek,rubetek
+cameras,dahua products,dahua
+cameras,some dahua products,dahua
+cameras,wyze,wyze
+cameras,reolink rlc-410w,reolink
+cameras,reolink,reolink
+cameras,reboot an attacker,an
+cameras,functionality of reolink,reolink
+cameras,zoom,zoom
+cameras,tp-link tapo,tp-link
+cameras,on tp-link tapo,tp-link
+cameras,tp-link,tp-link
+cameras,on tp-link,tp-link
+cameras,x,x
+cameras,d-link dcs-932l,d-link
+cameras,vulnerability in d-link,d-link
+cameras,d-link dcs-931l,d-link
+cameras,file upload,file
+cameras,configuration file resulting,file
+cameras,msmtprc configuration file,file
+cameras,interface in foscam,foscam
+cameras,ntp,ntp
+cameras,found in dahua,dahua
+cameras,planex,planex
+cameras,android,android
+cameras,status,status
+cameras,d-link dcs-825l,d-link
+cameras,crafted weave,weave
+cameras,specially crafted weave,weave
+cameras,weave packets,weave
+cameras,crafted weave packets,weave
+cameras,weave packets can,weave
+cameras,dahua products have,dahua
+cameras,anker eufy,anker
+cameras,anker,anker
+cameras,binary of anker,anker
+cameras,anker eufy homebase,anker
+cameras,ezviz products,ezviz
+cameras,affects an unknown,an
+cameras,be difficult,be
+cameras,dahua products attackers,dahua
+cameras,dahua products after,dahua
+cameras,vivotek,vivotek
+cameras,file web,file
+cameras,may be launched,be
+cameras,be launched remotely,be
+cameras,be launched,be
+cameras,found in d-link,d-link
+cameras,file bin,file
+cameras,be initiated remotely,be
+cameras,file setsystemadmin,file
+cameras,can be launched,be
+cameras,vulnerability in reolink,reolink
+cameras,impacted element,element
+cameras,d-link dcs-935l,d-link
+cameras,reolink desktop,reolink
+cameras,reolink desktop application,reolink
+cameras,be executed remotely,be
+cameras,tp-link tapo c260,tp-link
+cameras,expected to be,be
+cameras,vivotek ip7137,vivotek
+cameras,vivotek ip7137 camera,vivotek
+cameras,be released,be
+cameras,tp-link tapo c520ws,tp-link
+cameras,identified in tp-link,tp-link
+cameras,vivotek fd8136,vivotek
+cameras,axis network,axis
+cameras,axis,axis
+cameras,qnap,qnap
+cameras,trendnet,trendnet
+cameras,tvt,tvt
+cameras,qnap viostor,qnap
+cameras,panasonic network,panasonic
+cameras,panasonic,panasonic
+cameras,edimax,edimax
+cameras,their frigate,frigate
+cameras,be tricked into,be
+cameras,get an authenticated,an
+cameras,users frigate,frigate
+cameras,frigate publicly exposed,frigate
+cameras,frigate instance,frigate
+cameras,circumstances frigate,frigate
+cameras,frigate,frigate
+cameras,requires an authenticated,an
+cameras,be tricked,be
+cameras,which links,links
+cameras,by an attacker,an
+cameras,users frigate instance,frigate
+cameras,frigate publicly,frigate
+cameras,links,links
+cameras,users frigate server,frigate
+cameras,their frigate instance,frigate
+cameras,frigate instance this,frigate
+cameras,frigate server,frigate
+cameras,circumstances frigate publicly,frigate
+cameras,frigate instance attacker,frigate
+cameras,page which links,links
+cameras,following circumstances frigate,frigate
+cameras,trendnet tv-ip1314pi,trendnet
+cameras,on trendnet tv-ip1314pi,trendnet
+cameras,on trendnet,trendnet
+cameras,be affected bc500,be
+cameras,models with synology,synology
+cameras,synology camera firmware,synology
+cameras,7-0298 may be,be
+cameras,synology,synology
+cameras,synology camera,synology
+cameras,tp-link devices,tp-link
+cameras,certain tp-link,tp-link
+cameras,certain tp-link devices,tp-link
+cameras,avtech,avtech
+cameras,avtech avn801,avtech
+cameras,castel,castel
+cameras,castel nextgen,castel
+cameras,discovered in avertx,avertx
+cameras,avertx,avertx
+cameras,avertx auto,avertx
+cameras,avertx auto focus,avertx
+cameras,on sannce,sannce
+cameras,discovered on sannce,sannce
+cameras,on sannce smart,sannce
+cameras,sannce,sannce
+cameras,sannce smart,sannce
+cameras,sannce smart hd,sannce
+cameras,validation in hitron,hitron
+cameras,hitron systems,hitron
+cameras,hitron,hitron
+cameras,blurams lumi security,blurams
+cameras,blurams,blurams
+cameras,issue in blurams,blurams
+cameras,blurams lumi,blurams

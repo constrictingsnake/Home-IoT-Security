@@ -10,83 +10,10 @@ The Bluetooth module of some Huawei Smart Screen products has an identity authen
 Successful exploitation of this vulnerability may allow attackers to access restricted functions.
 
 ",cpe:2.3:o:huawei:ajmd-370s_firmware:103.1.0.110\(sp12c00e2r1p2\):*:*:*:*:*:*:*|cpe:2.3:h:huawei:ajmd-370s:-:*:*:*:*:*:*:*,keyword_only,2023-12-06,8.8,3.1,CWE-840|CWE-287,Maybe,Low,"Huawei Smart Screen is a smart TV/display product; it has voice assistant and home IoT integration but is primarily a large-screen television, making its fit in the smart speakers category ambiguous",No,High,,No,High,,No,,No,"Huawei Smart Screen is a TV/display — belongs in streaming (TV/entertainment), not smartspeakers."
-C:Yes/High  X:No/High  G:Yes/High,judgments not unanimous,CVE-2022-48681,Some Huawei smart speakers have a memory overflow vulnerability. Successful exploitation of this vulnerability may cause certain functions to fail.,cpe:2.3:o:huawei:egrt-00_firmware:2.1.0.20\(h100sp30c00\):*:*:*:*:*:*:*|cpe:2.3:h:huawei:egrt-00:-:*:*:*:*:*:*:*,keyword_only,2024-05-28,8.8,3.1,CWE-119|CWE-120,Yes,High,,No,High,,Yes,High,,Yes,,Yes,Consumer smart speaker device — same logic as XiaoAI Speaker.
-C:No/High  X:No/High  G:Yes/Low,judgments not unanimous,CVE-2026-31562,"In the Linux kernel, the following vulnerability has been resolved:
-
-drm/mediatek: dsi: Store driver data before invoking mipi_dsi_host_register
-
-The call to mipi_dsi_host_register triggers a callback to mtk_dsi_bind,
-which uses dev_get_drvdata to retrieve the mtk_dsi struct, so this
-structure needs to be stored inside the driver data before invoking it.
-
-As drvdata is currently uninitialized it leads to a crash when
-registering the DSI DRM encoder right after acquiring
-the mode_config.idr_mutex, blocking all subsequent DRM operations.
-
-Fixes the following crash during mediatek-drm probe (tested on Xiaomi
-Smart Clock x04g):
-
-Unable to handle kernel NULL pointer dereference at virtual address
- 0000000000000040
-[...]
-Modules linked in: mediatek_drm(+) drm_display_helper cec drm_client_lib
- drm_dma_helper drm_kms_helper panel_simple
-[...]
-Call trace:
- drm_mode_object_add+0x58/0x98 (P)
- __drm_encoder_init+0x48/0x140
- drm_encoder_init+0x6c/0xa0
- drm_simple_encoder_init+0x20/0x34 [drm_kms_helper]
- mtk_dsi_bind+0x34/0x13c [mediatek_drm]
- component_bind_all+0x120/0x280
- mtk_drm_bind+0x284/0x67c [mediatek_drm]
- try_to_bring_up_aggregate_device+0x23c/0x320
- __component_add+0xa4/0x198
- component_add+0x14/0x20
- mtk_dsi_host_attach+0x78/0x100 [mediatek_drm]
- mipi_dsi_attach+0x2c/0x50
- panel_simple_dsi_probe+0x4c/0x9c [panel_simple]
- mipi_dsi_drv_probe+0x1c/0x28
- really_probe+0xc0/0x3dc
- __driver_probe_device+0x80/0x160
- driver_probe_device+0x40/0x120
- __device_attach_driver+0xbc/0x17c
- bus_for_each_drv+0x88/0xf0
- __device_attach+0x9c/0x1cc
- device_initial_probe+0x54/0x60
- bus_probe_device+0x34/0xa0
- device_add+0x5b0/0x800
- mipi_dsi_device_register_full+0xdc/0x16c
- mipi_dsi_host_register+0xc4/0x17c
- mtk_dsi_probe+0x10c/0x260 [mediatek_drm]
- platform_probe+0x5c/0xa4
- really_probe+0xc0/0x3dc
- __driver_probe_device+0x80/0x160
- driver_probe_device+0x40/0x120
- __driver_attach+0xc8/0x1f8
- bus_for_each_dev+0x7c/0xe0
- driver_attach+0x24/0x30
- bus_add_driver+0x11c/0x240
- driver_register+0x68/0x130
- __platform_register_drivers+0x64/0x160
- mtk_drm_init+0x24/0x1000 [mediatek_drm]
- do_one_initcall+0x60/0x1d0
- do_init_module+0x54/0x240
- load_module+0x1838/0x1dc0
- init_module_from_file+0xd8/0xf0
- __arm64_sys_finit_module+0x1b4/0x428
- invoke_syscall.constprop.0+0x48/0xc8
- do_el0_svc+0x3c/0xb8
- el0_svc+0x34/0xe8
- el0t_64_sync_handler+0xa0/0xe4
- el0t_64_sync+0x198/0x19c
-Code: 52800022 941004ab 2a0003f3 37f80040 (29005a80)",cpe:2.3:o:linux:linux_kernel:*:*:*:*:*:*:*:*|cpe:2.3:o:linux:linux_kernel:6.9:-:*:*:*:*:*:*|cpe:2.3:o:linux:linux_kernel:7.0:rc1:*:*:*:*:*:*|cpe:2.3:o:linux:linux_kernel:7.0:rc2:*:*:*:*:*:*|cpe:2.3:o:linux:linux_kernel:7.0:rc3:*:*:*:*:*:*|cpe:2.3:o:linux:linux_kernel:7.0:rc4:*:*:*:*:*:*|cpe:2.3:o:linux:linux_kernel:7.0:rc5:*:*:*:*:*:*|cpe:2.3:o:linux:linux_kernel:7.0:rc6:*:*:*:*:*:*|cpe:2.3:o:linux:linux_kernel:7.0:rc7:*:*:*:*:*:*,keyword_only,2026-04-24,5.5,3.1,CWE-476,No,High,,No,High,,Yes,Low,"The CVE describes a Linux kernel crash specifically tested on a 'Xiaomi Smart Clock', which is a home IoT device that functions as a smart speaker/display. However, the vulnerability is in the general Linux kernel (mediatek DRM driver), which is shared across many devices, making it a software layer issue.",No,,No,"Linux kernel bug — general OS software, not a specific home IoT device."
-C:Maybe/Low  X:Yes/High  G:No/Low,judgments not unanimous,CVE-2020-9210,"There is an insufficient integrity vulnerability in Huawei products. A module does not perform sufficient integrity check in a specific scenario. Attackers can exploit the vulnerability by physically install malware. This could compromise normal service of the affected device. (Vulnerability ID: HWPSIRT-2020-00145)
-
-This vulnerability has been assigned a Common Vulnerabilities and Exposures (CVE) ID: CVE-2020-9210.",cpe:2.3:o:huawei:myna_firmware:9.0.1.11\(h100sp8c00\):*:*:*:*:*:*:*|cpe:2.3:h:huawei:myna:-:*:*:*:*:*:*:*,cpe_expansion,2024-12-27,6.8,3.1,CWE-354,Maybe,Low,Huawei 'Myna' device of unclear class; the generic description (physical malware install / integrity check) does not confirm it is a smart speaker.,Yes,High,,No,Low,"The CPE refers to 'myna_firmware' and 'myna' device. Huawei Myna is typically a phone or tablet, not a smart speaker.",,,,
-C:No/Low  X:No/High  G:Yes/High,judgments not unanimous,CVE-2023-48417,Missing Permission checks resulting in unauthorized access and Manipulation in KeyChainActivity Application,cpe:2.3:o:google:chromecast_firmware:*:*:*:*:*:*:*:*|cpe:2.3:h:google:chromecast:-:*:*:*:*:*:*:*,cpe_expansion,2023-12-11,9.8,3.1,CWE-862,No,Low,"Google Chromecast is a media-streaming device (belongs to the streaming category), not a smart speaker with an assistant/home-control role.",No,High,,Yes,High,,,,,
-C:No/Low  X:No/High  G:Yes/High,judgments not unanimous,CVE-2023-48424,U-Boot shell vulnerability resulting in Privilege escalation in a production device,cpe:2.3:o:google:chromecast_firmware:*:*:*:*:*:*:*:*|cpe:2.3:h:google:chromecast:-:*:*:*:*:*:*:*,cpe_expansion,2023-12-11,9.8,3.1,,No,Low,"Google Chromecast is a media-streaming device (belongs to the streaming category), not a smart speaker with an assistant/home-control role.",No,High,,Yes,High,,,,,
-C:No/Low  X:No/High  G:Yes/High,judgments not unanimous,CVE-2023-48425,U-Boot vulnerability resulting in persistent Code Execution ,cpe:2.3:o:google:chromecast_firmware:*:*:*:*:*:*:*:*|cpe:2.3:h:google:chromecast:-:*:*:*:*:*:*:*,cpe_expansion,2023-12-11,9.8,3.1,CWE-20,No,Low,"Google Chromecast is a media-streaming device (belongs to the streaming category), not a smart speaker with an assistant/home-control role.",No,High,,Yes,High,,,,,
+C:No/Low  X:No/High  G:Yes/High,judgments not unanimous,CVE-2023-48417,Missing Permission checks resulting in unauthorized access and Manipulation in KeyChainActivity Application,cpe:2.3:o:google:chromecast_firmware:*:*:*:*:*:*:*:*|cpe:2.3:h:google:chromecast:-:*:*:*:*:*:*:*,cpe_expansion,2023-12-11,9.8,3.1,CWE-862,No,Low,"Google Chromecast is a media-streaming device (belongs to the streaming category), not a smart speaker with an assistant/home-control role.",No,High,,Yes,High,,No,,No,
+C:No/Low  X:No/High  G:Yes/High,judgments not unanimous,CVE-2023-48424,U-Boot shell vulnerability resulting in Privilege escalation in a production device,cpe:2.3:o:google:chromecast_firmware:*:*:*:*:*:*:*:*|cpe:2.3:h:google:chromecast:-:*:*:*:*:*:*:*,cpe_expansion,2023-12-11,9.8,3.1,,No,Low,"Google Chromecast is a media-streaming device (belongs to the streaming category), not a smart speaker with an assistant/home-control role.",No,High,,Yes,High,,No,,No,
+C:No/Low  X:No/High  G:Yes/High,judgments not unanimous,CVE-2023-48425,U-Boot vulnerability resulting in persistent Code Execution ,cpe:2.3:o:google:chromecast_firmware:*:*:*:*:*:*:*:*|cpe:2.3:h:google:chromecast:-:*:*:*:*:*:*:*,cpe_expansion,2023-12-11,9.8,3.1,CWE-20,No,Low,"Google Chromecast is a media-streaming device (belongs to the streaming category), not a smart speaker with an assistant/home-control role.",No,High,,Yes,High,,No,,No,
 C:No/Low  X:No/High  G:Yes/High,judgments not unanimous,CVE-2023-48426,"u-boot bug that allows for u-boot shell and interrupt over UART
-",cpe:2.3:o:google:chromecast_firmware:5.0:*:*:*:*:*:*:*|cpe:2.3:h:google:chromecast_ga00439:-:*:*:*:*:*:*:*|cpe:2.3:h:google:chromecast_ga3a00403a14:-:*:*:*:*:*:*:*|cpe:2.3:h:google:chromecast_h2g2-42:-:*:*:*:*:*:*:*|cpe:2.3:h:google:chromecast_nc2-645b:-:*:*:*:*:*:*:*|cpe:2.3:h:google:chromecast_nc2-6a5:-:*:*:*:*:*:*:*|cpe:2.3:h:google:chromecast_nc2-6a5-d:-:*:*:*:*:*:*:*|cpe:2.3:h:google:chromecast_rux-j42:-:*:*:*:*:*:*:*,cpe_expansion,2024-04-05,10.0,3.1,CWE-306,No,Low,"Google Chromecast is a media-streaming device (belongs to the streaming category), not a smart speaker with an assistant/home-control role.",No,High,,Yes,High,,,,,
-C:No/Low  X:No/High  G:Yes/High,judgments not unanimous,CVE-2023-6181,An oversight in BCB handling of reboot reason that allows for persistent code execution,cpe:2.3:o:google:chromecast_firmware:*:*:*:*:*:*:*:*|cpe:2.3:h:google:chromecast:-:*:*:*:*:*:*:*,cpe_expansion,2023-12-11,9.8,3.1,,No,Low,"Google Chromecast is a media-streaming device (belongs to the streaming category), not a smart speaker with an assistant/home-control role.",No,High,,Yes,High,,,,,
+",cpe:2.3:o:google:chromecast_firmware:5.0:*:*:*:*:*:*:*|cpe:2.3:h:google:chromecast_ga00439:-:*:*:*:*:*:*:*|cpe:2.3:h:google:chromecast_ga3a00403a14:-:*:*:*:*:*:*:*|cpe:2.3:h:google:chromecast_h2g2-42:-:*:*:*:*:*:*:*|cpe:2.3:h:google:chromecast_nc2-645b:-:*:*:*:*:*:*:*|cpe:2.3:h:google:chromecast_nc2-6a5:-:*:*:*:*:*:*:*|cpe:2.3:h:google:chromecast_nc2-6a5-d:-:*:*:*:*:*:*:*|cpe:2.3:h:google:chromecast_rux-j42:-:*:*:*:*:*:*:*,cpe_expansion,2024-04-05,10.0,3.1,CWE-306,No,Low,"Google Chromecast is a media-streaming device (belongs to the streaming category), not a smart speaker with an assistant/home-control role.",No,High,,Yes,High,,No,,No,
+C:No/Low  X:No/High  G:Yes/High,judgments not unanimous,CVE-2023-6181,An oversight in BCB handling of reboot reason that allows for persistent code execution,cpe:2.3:o:google:chromecast_firmware:*:*:*:*:*:*:*:*|cpe:2.3:h:google:chromecast:-:*:*:*:*:*:*:*,cpe_expansion,2023-12-11,9.8,3.1,,No,Low,"Google Chromecast is a media-streaming device (belongs to the streaming category), not a smart speaker with an assistant/home-control role.",No,High,,Yes,High,,No,,No,
+C:Yes/High  X:No/High  G:Yes/High,judgments not unanimous,CVE-2022-48681,Some Huawei smart speakers have a memory overflow vulnerability. Successful exploitation of this vulnerability may cause certain functions to fail.,cpe:2.3:o:huawei:egrt-00_firmware:2.1.0.20\(h100sp30c00\):*:*:*:*:*:*:*|cpe:2.3:h:huawei:egrt-00:-:*:*:*:*:*:*:*,intersection,2024-05-28,8.8,3.1,CWE-119|CWE-120,Yes,High,,No,High,,Yes,High,,Yes,,Yes,Consumer smart speaker device — same logic as XiaoAI Speaker.
