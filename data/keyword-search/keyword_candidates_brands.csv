@@ -34,7 +34,6 @@ alarms,channel in simplisafe,simplisafe
 alarms,simplisafe ss3 firmware,simplisafe
 alarms,simplisafe ss3,simplisafe
 alarms,using an alternate,an
-alarms,make an authenticated,an
 alarms,hex,hex
 alarms,ssid hex,hex
 alarms,hex http,hex
@@ -70,7 +69,6 @@ hub,server of samsung,samsung
 hub,samsung smartthings hub,samsung
 hub,samsung smartthings,samsung
 hub,samsung,samsung
-hub,stack an attacker,an
 hub,callback,callback
 hub,sqlite database,sqlite
 hub,sqlite database leading,sqlite
@@ -119,7 +117,6 @@ home-power,discovered in sma,sma
 home-power,sma,sma
 home-power,sma solar,sma
 home-power,sma solar technology,sma
-home-power,passwords can be,be
 home-power,protocol,protocol
 home-power,on enphase,enphase
 home-power,x devices,x
@@ -128,8 +125,6 @@ home-power,d4 x,x
 home-power,be retrieved by,be
 home-power,envoy r3 x,x
 home-power,x,x
-home-power,number can be,be
-home-power,by an unauthenticated,an
 home-power,can be retrieved,be
 home-power,on enphase envoy,enphase
 home-power,x and d4,x
@@ -170,7 +165,6 @@ pet,determined to be,be
 pet,tomofun furbo,furbo
 pet,furbo mini affected,furbo
 pet,furbo mini this,furbo
-pet,affects an unknown,an
 pet,element,element
 streaming,sony,sony
 streaming,sony bravia,sony
@@ -255,8 +249,6 @@ streaming,opengl in apple,apple
 streaming,media file,file
 streaming,api in apple,apple
 streaming,amazon fire os,amazon
-streaming,crafted xml file,file
-streaming,xml file,file
 streaming,broadcom,broadcom
 streaming,sensitive kernel,kernel
 streaming,from kernel memory,kernel
@@ -291,8 +283,6 @@ streaming,crafted text file,file
 streaming,high sierra,sierra
 streaming,macos high sierra,sierra
 streaming,sierra and security,sierra
-streaming,be able,be
-streaming,may be able,be
 streaming,sierra,sierra
 streaming,crafted audio file,file
 streaming,audio file,file
@@ -351,11 +341,9 @@ streaming,be passively,be
 streaming,may be passively,be
 streaming,be passively tracked,be
 streaming,text file may,file
-streaming,app may be,be
 streaming,high sierra tvos,sierra
 streaming,2019-007 high sierra,sierra
 streaming,high sierra ios,sierra
-streaming,maliciously crafted file,file
 streaming,usd file,file
 streaming,2020-005 high sierra,sierra
 streaming,usd file may,file
@@ -392,7 +380,6 @@ streaming,execution apple,apple
 streaming,dfont file may,file
 streaming,cause kernel code,kernel
 streaming,cause kernel,kernel
-streaming,catalina an app,an
 streaming,improved ui handling,ui
 streaming,ui handling,ui
 streaming,ui,ui
@@ -432,7 +419,6 @@ cameras,element,element
 cameras,d-link dcs,d-link
 cameras,zivif,zivif
 cameras,zivif pr115-204-p-rs,zivif
-cameras,it can be,be
 cameras,on d-link,d-link
 cameras,some dahua,dahua
 cameras,ezviz,ezviz
@@ -442,9 +428,7 @@ cameras,amcrest,amcrest
 cameras,foscam c1,foscam
 cameras,by the foscam,foscam
 cameras,foscam c1 indoor,foscam
-cameras,be able,be
 cameras,enabled an attacker,an
-cameras,will be able,be
 cameras,connections will be,be
 cameras,foscam c2 devices,foscam
 cameras,opticam i5,opticam
@@ -456,7 +440,6 @@ cameras,discovered on foscam,foscam
 cameras,foscam c2,foscam
 cameras,cannot,cannot
 cameras,cannot be,cannot
-cameras,be changed,be
 cameras,cannot be changed,cannot
 cameras,d-link dcs-1130,d-link
 cameras,d-link dcs-1130 devices,d-link
@@ -494,7 +477,6 @@ cameras,some dahua products,dahua
 cameras,wyze,wyze
 cameras,reolink rlc-410w,reolink
 cameras,reolink,reolink
-cameras,reboot an attacker,an
 cameras,functionality of reolink,reolink
 cameras,zoom,zoom
 cameras,tp-link tapo,tp-link
@@ -526,12 +508,10 @@ cameras,anker,anker
 cameras,binary of anker,anker
 cameras,anker eufy homebase,anker
 cameras,ezviz products,ezviz
-cameras,affects an unknown,an
 cameras,be difficult,be
 cameras,dahua products attackers,dahua
 cameras,dahua products after,dahua
 cameras,vivotek,vivotek
-cameras,file web,file
 cameras,may be launched,be
 cameras,be launched remotely,be
 cameras,be launched,be
@@ -571,10 +551,8 @@ cameras,frigate publicly exposed,frigate
 cameras,frigate instance,frigate
 cameras,circumstances frigate,frigate
 cameras,frigate,frigate
-cameras,requires an authenticated,an
 cameras,be tricked,be
 cameras,which links,links
-cameras,by an attacker,an
 cameras,users frigate instance,frigate
 cameras,frigate publicly,frigate
 cameras,links,links

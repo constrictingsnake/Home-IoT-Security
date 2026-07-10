@@ -71,7 +71,13 @@ csv.field_size_limit(1 << 24)
 MIN_YES_DOCS = 5  # categories below this are skipped — nothing to learn (plan Step 1)
 MIN_VENDOR_CVES = 3  # brand filter: a token counts as "brand-like" at this CPE-vendor CVE count
 
-STOPWORDS = {"the", "a", "of", "in", "and", "for", "with", "via", "an", "to", "is"}
+STOPWORDS = {
+    "the", "a", "of", "in", "and", "for", "with", "via", "an", "to", "is",
+    # bare prepositions/particles — missing here let a 1-gram like "from"/"on"/"as"
+    # survive as its own "candidate" (all_tokens_generic only drops a phrase whose
+    # every token is listed, so a 1-token phrase needs that one token listed).
+    "from", "on", "as", "at", "by", "into", "onto", "out",
+}
 
 # CVE boilerplate that would otherwise dominate discriminativeness scores without being
 # a device-type phrase. Expected to grow on first run per the plan.
@@ -158,6 +164,40 @@ GENERIC_CVE_WORDS = {
     # guardrail 2c); this is the text-search analog of that same guardrail.
     "fixed", "addressed", "improved", "macos", "ios", "ipados", "watchos",
     "handler", "handlers", "param", "params", "parser", "arbitrarily", "os",
+    "safari", "windows",
+    # macOS release codenames — same shared-desktop-platform boilerplate class as
+    # macos/ios above, just spelled as a marketing name instead of the OS name.
+    "sonoma", "ventura", "sequoia", "sur", "catalina", "monterey", "mojave",
+    "icloud", "visionos",
+    # Found leaking through as top-scoring "candidates" on the first --all run —
+    # generic CVE-description / infosec vocabulary that isn't a device-type phrase,
+    # grown here the same way the block above was (empirically, per the plan).
+    "note", "notes", "number", "numbers", "password", "passwords", "unknown",
+    "root", "high", "low", "way", "ways", "early", "late",
+    "respond", "responds", "responding", "responded",
+    "contact", "contacts", "contacted", "contacting",
+    "corruption", "corrupt", "corrupted", "corrupting",
+    "app", "apps", "able", "unable", "build", "builds", "simply",
+    "reboot", "reboots", "rebooted", "rebooting", "manipulation", "context",
+    "lack", "proper", "leverage", "leverages", "leveraging", "leveraged",
+    "installation", "installations", "json", "web", "site", "sites",
+    "payload", "payloads", "stack", "stacks",
+    "required", "require", "requires", "requiring", "incorrectly",
+    "change", "changes", "changed", "changing", "because", "only",
+    "credential", "credentials", "read", "reads", "reading",
+    "update", "updates", "updated", "updating", "electronics",
+    "command", "commands", "big", "maliciously",
+    "it", "its", "involve", "involves", "involving", "involved",
+    "management", "manage", "manages", "managed", "managing",
+    "content", "contents", "make", "makes", "making", "made",
+    "action", "actions", "xml", "format", "formats", "formatted", "formatting",
+    "arise", "arises", "arising", "arose", "sensitive", "key", "keys",
+    "valid", "validity", "admin", "administrator", "administrators", "series",
+    "deviceid",
+    # Hyphenated compounds are one TOKEN_RE token (hyphens don't split), so each
+    # needs its own entry — they don't ride in on the bare-word form above.
+    "denial-of-service", "man-in-the-middle", "network-adjacent",
+    "user-supplied", "user-controlled", "heap-based", "stack-based",
 }
 
 TOKEN_RE = re.compile(r"[a-z0-9]+(?:-[a-z0-9]+)*")
@@ -238,7 +278,12 @@ def is_covered(phrase, existing_terms):
 
 
 def is_boilerplate(phrase):
-    return phrase in BOILERPLATE_PHRASES or singularize_last(phrase) in BOILERPLATE_PHRASES
+    # TOKEN_RE keeps a hyphenated compound ("heap-based") as one token, so the 2-gram
+    # "heap-based buffer" never string-equals the space-joined boilerplate entry
+    # "heap based buffer" (3 space-separated words) without this normalization.
+    dehyphenated = phrase.replace("-", " ")
+    candidates = (phrase, singularize_last(phrase), dehyphenated, singularize_last(dehyphenated))
+    return any(c in BOILERPLATE_PHRASES for c in candidates)
 
 
 def has_version_or_cwe_token(toks):
