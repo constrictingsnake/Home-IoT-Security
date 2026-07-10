@@ -14,6 +14,12 @@ Flag rule (set by the project):
     "Needs Human Review" = Yes  when
         BOTH strong reviewers (Claude & Codex) are Low confidence
         OR the 3 judgments are not unanimous (confident disagreement)
+    EXCEPT: when Claude & Codex agree on a definite Yes/No at High confidence, a lone
+    Gemini dissent does NOT flag the row — it settles as the strong consensus
+    (finalize_judgments.py: Final Source = strong-consensus) and stays in the audit
+    pool below as its ongoing spot-check. Validated 2026-07-09 against the fully
+    worked human queue: humans sided with the Claude/Codex consensus on 293/294
+    (99.7%) such rows; at any-confidence it drops to 95.5%, so High-High is required.
     Gemini's confidence is recorded but excluded from the flag (weaker model, skews Low);
     Gemini's judgment still counts toward the unanimity check.
 
@@ -22,9 +28,10 @@ Rows not yet fully reviewed (any of the 3 judgments still blank) are marked
 without pretending the row is resolved.
 
 Alongside the merge, a small spot-check sample is written (02_high_confidence_audit.csv):
-a random N (default 10) of the "high-confidence" rows — complete, all 3 judgments unanimous,
-and both strong reviewers High. These rows are never flagged for human review, so the sample
-lets a human audit whether the AIs are confidently wrong. It carries empty Human Verdict /
+a random N (default 10) of the "high-confidence" rows — complete, both strong reviewers High,
+and either all 3 unanimous or a strong consensus with a lone Gemini dissent (the dissent is
+surfaced in a Gemini Dissent column). These rows are never flagged for human review, so the
+sample lets a human audit whether the AIs are confidently wrong. It carries empty Human Verdict /
 Human Notes columns to fill in, and the seed keeps the draw reproducible.
 
 Usage:
@@ -72,6 +79,15 @@ def load_copy(path, reviewer):
             f"{path}: missing reviewer columns {missing} — is this the {reviewer} copy?"
         )
     df["_key"] = df["cve_id"].map(normalize_cve)
+    # The 3 copies are joined on _key, so a duplicated cve_id (a CVE that leaked into two
+    # review directions — the directions are disjoint by design) multiplies rows 2^3-fold
+    # in the merge. Guard: keep the first occurrence and warn so the raws get fixed.
+    dups = df["_key"].duplicated()
+    if dups.any():
+        for cve in df.loc[dups, "cve_id"].unique():
+            print(f"  ! {os.path.basename(path)}: duplicate cve_id {cve} — "
+                  f"keeping first occurrence (directions must be disjoint; fix the 01_raw files)")
+        df = df[~dups]
     return df
 
 
@@ -89,10 +105,18 @@ def classify_row(row):
     distinct = {j.lower() for j in judgments}
     disagree = len(distinct) > 1
 
+    # Relaxed-rule class (see module docstring): Claude & Codex agree on a definite
+    # verdict at High confidence — a lone Gemini dissent doesn't force human review.
+    strong_j = [str(row[f"{r} Judgment"]).strip().lower() for r in STRONG_REVIEWERS]
+    strong_high = all(
+        str(row[f"{r} Confidence"]).strip().lower() == "high" for r in STRONG_REVIEWERS
+    )
+    strong_consensus = strong_high and strong_j[0] == strong_j[1] and strong_j[0] in ("yes", "no")
+
     reasons = []
     if low_count >= len(STRONG_REVIEWERS):  # all strong reviewers low (i.e. Claude & Codex)
         reasons.append("both strong reviewers low confidence")
-    if disagree:
+    if disagree and not strong_consensus:
         reasons.append("judgments not unanimous")
 
     if reasons:
@@ -101,17 +125,22 @@ def classify_row(row):
 
 
 def is_high_confidence(row):
-    """True when the row is complete, all 3 judgments agree, and both strong reviewers are
-    High confidence. These rows are never flagged for human review, so a sample of them is
-    drawn for spot-checking (catching confidently-wrong answers)."""
+    """True when the row is complete, both strong reviewers are High confidence, and the
+    judgments agree — either all 3 unanimous, or Claude & Codex on a definite Yes/No with
+    Gemini as sole dissenter (the relaxed-rule class, kept in this pool so its ongoing
+    spot-check continues). These rows are never flagged for human review, so a sample of
+    them is drawn for spot-checking (catching confidently-wrong answers)."""
     judgments = [str(row[f"{r} Judgment"]).strip() for r in REVIEWERS]
     if any(j == "" for j in judgments):
         return False
-    if len({j.lower() for j in judgments}) > 1:  # not unanimous
-        return False
-    return all(
+    if not all(
         str(row[f"{r} Confidence"]).strip().lower() == "high" for r in STRONG_REVIEWERS
-    )
+    ):
+        return False
+    unanimous = len({j.lower() for j in judgments}) == 1
+    claude_j, codex_j = (str(row[f"{r} Judgment"]).strip().lower() for r in STRONG_REVIEWERS)
+    strong_consensus = claude_j == codex_j and claude_j in ("yes", "no")
+    return unanimous or strong_consensus
 
 
 def write_audit_sample(merged, n, seed, out_path):
@@ -124,7 +153,12 @@ def write_audit_sample(merged, n, seed, out_path):
     sample = sample.drop(
         columns=[c for c in ("Review Status", "Needs Human Review", "Review Reason") if c in sample.columns]
     )
-    sample.insert(0, "AI Verdict (unanimous)", sample["Claude Judgment"].values)
+    sample.insert(0, "AI Verdict (consensus)", sample["Claude Judgment"].values)
+    # Surface the relaxed-rule rows (Gemini dissented, strong consensus won) for the auditor.
+    sample.insert(1, "Gemini Dissent", [
+        "Yes" if str(g).strip().lower() != str(c).strip().lower() else ""
+        for g, c in zip(sample["Gemini Judgment"], sample["Claude Judgment"])
+    ])
     sample["Human Verdict"] = ""
     sample["Human Notes"] = ""
     sample.to_csv(out_path, index=False)

@@ -1,12 +1,21 @@
 #!/usr/bin/env python3
 """Fold human verdicts back in to produce one settled judgment per CVE.
 
-Collapses each category's merged triple-AI file into a single `Final Judgment` using:
+Collapses each category's merged triple-AI file into a single `Final Judgment` using
+(first match wins):
 
-    not flagged (AIs agree, confident)         -> the AI consensus       (Final Source = ai-consensus)
-    flagged + both humans agree (not Maybe)     -> the agreed verdict     (Final Source = human)
-    flagged + humans disagree, or either blank  -> pending                (Final Source = pending)
+    both humans agree (not Maybe)               -> the agreed verdict     (Final Source = human)
+    settled `human` in judgment_store.csv       -> the stored verdict     (Final Source = human)
+    flagged, no settled human verdict           -> pending                (Final Source = pending)
+    not flagged, all 3 AIs unanimous            -> the AI consensus       (Final Source = ai-consensus)
+    not flagged, lone Gemini dissent            -> Claude/Codex verdict   (Final Source = strong-consensus)
     a reviewer hasn't judged yet (incomplete)   -> blank                  (Final Source = incomplete)
+
+Human verdicts are STICKY: once a row settled as `human` (in the store), it stays `human`
+even if a flag-rule change later unflags it or the queue sheets are regenerated without it —
+a fresh, different queue verdict is the only thing that supersedes it. `strong-consensus`
+is the relaxed-rule class (see merge_judgments.py: Claude & Codex agree on Yes/No at High
+confidence, Gemini sole dissenter — validated 99.7% against human verdicts).
 
 There are TWO independent human reviewer slots per row (Human Verdict 1/2, mirroring the
 AI triple-review model with two humans). A row only settles once both reviewers agree —
@@ -106,36 +115,54 @@ def load_human_verdicts(diff_dir):
     return verdicts
 
 
-def resolve_row(row, cat, human):
+def resolve_row(row, cat, human, prior_human):
     status = str(row.get("Review Status", "")).strip()
     if status == "incomplete":
         return "", "incomplete"
+    key = (cat, str(row["cve_id"]).strip().upper())
+    hv1, hv2 = human.get(key, ("", ""))
+    # A fresh queue verdict settles only when both reviewers have weighed in, agree, and it
+    # isn't "Maybe" — same unanimity bar as the AI triple review. It wins over everything,
+    # flagged or not (so a row that was human-settled before the flag rule relaxed keeps its
+    # human verdict, and a human can still overrule an unflagged row via the queue sheet).
+    if hv1 and hv2 and hv1 == hv2 and hv1 != "Maybe":
+        return hv1, "human"
+    # Sticky human verdicts: settled `human` rows in the store stay human even if the queue
+    # sheets were regenerated without them or the flag rule no longer flags the row.
+    if key in prior_human:
+        return prior_human[key], "human"
     if str(row.get("Needs Human Review", "")).strip() == "Yes":
-        hv1, hv2 = human.get((cat, str(row["cve_id"]).strip().upper()), ("", ""))
-        # Settles only when both reviewers have weighed in, agree, and it isn't "Maybe" —
-        # same unanimity bar as the AI triple review. Disagreement or a still-blank slot
-        # both fall through to pending rather than picking a side.
-        if hv1 and hv2 and hv1 == hv2 and hv1 != "Maybe":
-            return hv1, "human"
         return "", "pending"
-    return str(row.get("Claude Judgment", "")).strip(), "ai-consensus"
+    judgments = {
+        str(row.get(f"{r} Judgment", "")).strip().lower() for r in ("Claude", "Codex", "Gemini")
+    }
+    # Unflagged + not unanimous = the relaxed-rule class (Claude & Codex agree at High,
+    # Gemini sole dissenter) — resolve to the strong consensus, with a distinct source so
+    # it stays measurable.
+    source = "ai-consensus" if len(judgments) == 1 else "strong-consensus"
+    return str(row.get("Claude Judgment", "")).strip(), source
 
 
-def finalize(merged_path, human):
+def finalize(merged_path, human, prior_human):
     cat = cat_of(merged_path)
     df = pd.read_csv(merged_path, dtype=str).fillna("")
     if df.empty:
         df["Final Judgment"] = []
         df["Final Source"] = []
         return cat, df
-    res = df.apply(lambda r: resolve_row(r, cat, human), axis=1, result_type="expand")
+    res = df.apply(lambda r: resolve_row(r, cat, human, prior_human), axis=1, result_type="expand")
     df["Final Judgment"] = res[0]
     df["Final Source"] = res[1]
     return cat, df
 
 
 def upsert_store(df, cat, store_path):
-    """Replace all rows for this category in judgment_store.csv (upsert semantics)."""
+    """True upsert into judgment_store.csv, keyed (category, cve_id): rows present in df
+    update their store row (or insert); store rows ABSENT from df are retained. Retention
+    is the point of the store (see the refresh invariant in CLAUDE.md) — 01_raw.csv files
+    get pruned/regenerated, and settled judgments must outlive them. (Earlier versions
+    replaced the whole category here, silently deleting settled rows whose CVE had been
+    pruned from the raws.)"""
     if os.path.isfile(store_path):
         store = pd.read_csv(store_path, dtype=str).fillna("")
     else:
@@ -146,7 +173,11 @@ def upsert_store(df, cat, store_path):
     keep = ["category", "cve_id"] + [c for c in STORE_COLS[2:] if c in new_df.columns]
     new_rows = new_df[keep]
 
-    store = store[store["category"] != cat]
+    def keys(frame):
+        return frame["category"].str.strip() + "\x00" + frame["cve_id"].str.strip().str.upper()
+
+    if len(store):
+        store = store[~keys(store).isin(set(keys(new_rows)))]
     store = pd.concat([store, new_rows], ignore_index=True)
 
     # Ensure all store columns exist (fill any absent ones with "")
@@ -172,19 +203,33 @@ def main():
     print(f"  {len(human)} human verdict(s) found\n")
 
     store_path = os.path.join(args.diff_dir, "judgment_store.csv")
+
+    # Sticky human verdicts (see resolve_row): remember which rows the store already
+    # settled as `human` BEFORE this run's upserts replace the category's rows.
+    prior_human = {}
+    if os.path.isfile(store_path):
+        sdf = pd.read_csv(store_path, dtype=str).fillna("")
+        for _, r in sdf.iterrows():
+            fj = str(r.get("Final Judgment", "")).strip()
+            if str(r.get("Final Source", "")).strip() == "human" and fj:
+                prior_human[(str(r.get("category", "")).strip(),
+                             str(r.get("cve_id", "")).strip().upper())] = fj
+
     combined = []
     grand = Counter()
 
     for mp in merged_files:
-        cat, df = finalize(mp, human)
+        cat, df = finalize(mp, human, prior_human)
         out = os.path.join(os.path.dirname(mp), "03_final.csv")
         df.to_csv(out, index=False)
         c = Counter(df["Final Source"])
         grand.update(c)
         pend = c.get("pending", 0)
         flag = f"  ({pend} pending human input)" if pend else ""
-        print(f"  {cat:16} resolved={c.get('ai-consensus',0)+c.get('human',0):4} "
-              f"[ai={c.get('ai-consensus',0)}, human={c.get('human',0)}], "
+        resolved = c.get("ai-consensus", 0) + c.get("strong-consensus", 0) + c.get("human", 0)
+        print(f"  {cat:16} resolved={resolved:4} "
+              f"[ai={c.get('ai-consensus',0)}, strong={c.get('strong-consensus',0)}, "
+              f"human={c.get('human',0)}], "
               f"incomplete={c.get('incomplete',0)}{flag}")
         upsert_store(df, cat, store_path)
         df_out = df.copy()
