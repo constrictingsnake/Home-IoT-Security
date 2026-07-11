@@ -3,7 +3,7 @@
 
     python3 scripts/pipeline.py refresh   # rebuild search -> review sets -> CPE expansion ->
                                           #   blind copies, then STOP for manual Claude/Codex review
-    python3 scripts/pipeline.py settle    # Gemini + merge -> extract human queue -> finalize
+    python3 scripts/pipeline.py settle    # Gemini + merge -> finalize -> extract human queue
     python3 scripts/pipeline.py status    # per-category term coverage (computed, not stored)
     python3 scripts/pipeline.py discover-vendors --all   # mine CPE vendors missing from
                                           #   vendor_terms.csv (candidate list only, manual, optional)
@@ -16,8 +16,9 @@ human is required are the two manual pauses this orchestrator brackets:
 
 `refresh` chains: build_search.py -> build_review_sets.py --direction all --overwrite ->
 cpe_expansion.py --all -> make_review_copies.py --all --refresh.
-`settle` chains: merge_judgments.py --all [--run-gemini] -> extract_human_review.py ->
-finalize_judgments.py.
+`settle` chains: merge_judgments.py --all [--run-gemini] -> finalize_judgments.py ->
+extract_human_review.py (finalize first, so freshly filled verdicts are persisted to the
+judgment store before extract regenerates the outstanding-only queue).
 `status` computes each category's term coverage (keyword_terms.csv / vendor_terms.csv) live —
 replaces the old hand-maintained ①②③④ tags in CLAUDE.md's category table, which could drift
 out of sync with the actual term files.
@@ -93,9 +94,11 @@ def cmd_settle(args):
         if args.rps is not None:
             merge += ["--rps", str(args.rps)]
     run(merge)
-    run([script("extract_human_review.py")])
+    # finalize BEFORE extract: finalize persists freshly filled human verdicts into the
+    # judgment store, THEN extract regenerates the queue and drops those now-settled rows.
     run([script("finalize_judgments.py")])
-    print("\n✓ settle complete — adjudicate flagged rows in "
+    run([script("extract_human_review.py")])
+    print("\n✓ settle complete — adjudicate outstanding rows in "
           "data/difference/human_review_queue.csv (fill Human Verdict), then re-run settle to finalize.")
 
 

@@ -1,4 +1,5 @@
 cve_id,published,description,cvss_score,cvss_version,cwe_ids,cpe_strings,matched_terms
+CVE-2019-17098,2020-09-30,"Use of hard-coded cryptographic key vulnerability in August Connect Wi-Fi Bridge App, Connect Firmware allows an attacker to decrypt an intercepted payload containing the Wi-Fi network authentication credentials. This issue affects: August Connect Wi-Fi Bridge App version v10.11.0 and prior versions on Android. August Connect Firmware version 2.2.12 and prior versions.",6.5,3.1,CWE-321|CWE-798,cpe:2.3:a:august:august_home:*:*:*:*:*:android:*:*|cpe:2.3:o:august:connect_wi-fi_bridge_firmware:*:*:*:*:*:*:*:*|cpe:2.3:h:august:connect_wi-fi_bridge:-:*:*:*:*:*:*:*,august home
 CVE-2024-12094,2024-12-05,"This vulnerability exists in the Tinxy mobile app due to storage of logged-in user information in plaintext on the device database. An attacker with physical access to the rooted device could exploit this vulnerability by accessing its database leading to unauthorized access of user information such as username, email address and mobile number.
 Note:
 To exploit this vulnerability, the device must be rooted/jailbroken.",,,CWE-312,,tinxy

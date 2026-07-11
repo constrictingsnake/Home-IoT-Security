@@ -109,7 +109,9 @@ Honest caveats:
 See `docs/FIRST_RUN_RESULTS.md` for measured numbers.
 
 ### Refresh invariant
-Human verdicts (`extract_human_review.py`) and AI judgments (`judgment_store.csv`, read by `make_review_copies.py`) are both preserved by `(category, cve_id)`, so a deliberate `01_raw` regeneration never repeats settled work — it only creates review load for *genuinely new* rows. The store survives folder restructures and pipeline changes since it's a flat CSV independent of the review directory layout. See `docs/FIRST_RUN_RESULTS.md` for a worked example with real numbers.
+Human verdicts and AI judgments both live in `judgment_store.csv` (keyed by `(category, cve_id)`, read by `make_review_copies.py`), so a deliberate `01_raw` regeneration never repeats settled work — it only creates review load for *genuinely new* rows. The store survives folder restructures and pipeline changes since it's a flat CSV independent of the review directory layout. See `docs/FIRST_RUN_RESULTS.md` for a worked example with real numbers.
+
+**The store is the durable home for human answers.** `finalize_judgments.py` upserts the raw `Human Verdict/Notes 1 & 2` (plus the derived `Final Judgment`/`Final Source=human`) into the store; `extract_human_review.py` then regenerates `human_review_queue.csv` as **outstanding-only** — a flagged row is dropped once both human reviewers agree on a non-`Maybe` verdict, because its answer now lives in the store. Rows with no verdict, a lone verdict (awaiting the 2nd reviewer), a disagreement, or a `Maybe` stay in the queue. This is why `settle` runs **finalize before extract**: a freshly filled verdict must reach the store before the queue is regenerated to exclude it. (Human-settled rows from before this change keep their `Final Judgment` but have blank raw cells — those individual answers predate persistence and aren't recoverable.)
 
 ---
 
@@ -135,7 +137,7 @@ Home IoT Security/
     ├── vendor-search/                # Stage 2 output + user-authored vendor_terms.csv + vendor_candidates.csv (automated discovery, unreviewed)
     └── difference/                  # Stage 3+4 — vendor/keyword difference + its triple-AI review
         ├── CLASSIFICATION_PROMPT.md     # shared rubric all 3 AI reviewers judge by
-        ├── judgment_store.csv           # persistent AI judgment store — keyed (category, cve_id)
+        ├── judgment_store.csv           # persistent judgment store — keyed (category, cve_id); holds AI judgments + Final Judgment + raw Human Verdict/Notes 1&2
         ├── final_resolved.csv           # Final Judgment per CVE, all categories (derived)
         ├── term_precision.csv           # per-term precision from settled judgments (derived)
         ├── recall_estimate.csv          # per-category capture-recapture recall + POOLED total (derived)

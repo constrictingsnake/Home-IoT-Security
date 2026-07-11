@@ -80,7 +80,7 @@ python3 scripts/pipeline.py refresh
 
 # 2. ... fill the blank Claude/Codex judgments (refresh prints the per-category blank counts) ...
 
-# 3. Run Gemini + merge -> extract human queue -> finalize (upserts judgment_store.csv).
+# 3. Run Gemini + merge -> finalize (upserts judgment_store.csv) -> extract outstanding queue.
 python3 scripts/pipeline.py settle --model gemma-4-31b-it --rps 0.30
 #   (add --no-gemini to merge existing judgments only)
 
@@ -142,10 +142,11 @@ python3 scripts/merge_judgments.py --reviews data/difference/<device>/reviews \
 # Or all categories at once:
 python3 scripts/merge_judgments.py --all --run-gemini --model gemma-4-31b-it --rps 0.30
 
-# 4. Human queue -> adjudicate -> finalize:
-python3 scripts/extract_human_review.py
-#   ... fill Human Verdict in human_review_queue.csv ...
-python3 scripts/finalize_judgments.py
+# 4. Human queue -> adjudicate -> finalize -> refresh outstanding queue:
+python3 scripts/extract_human_review.py                  # outstanding-only queue
+#   ... fill Human Verdict 1 & 2 in human_review_queue.csv ...
+python3 scripts/finalize_judgments.py                    # persists verdicts into judgment_store.csv
+python3 scripts/extract_human_review.py                  # drops the now-settled rows
 
 # 5. Mine + prune:
 python3 scripts/term_precision.py
@@ -275,8 +276,8 @@ python3 scripts/build_review_sets.py data/categories.csv --direction all --overw
 python3 scripts/make_review_copies.py --all --refresh    # restores prior judgments from judgment_store.csv
 # ... re-judge only the new (blank) rows ...
 python3 scripts/merge_judgments.py --all
-python3 scripts/extract_human_review.py
-python3 scripts/finalize_judgments.py
+python3 scripts/finalize_judgments.py                    # persist verdicts -> judgment_store.csv
+python3 scripts/extract_human_review.py                  # regenerate outstanding-only queue
 ```
 
 See `CLAUDE.md` for why this preserves prior work and `docs/FIRST_RUN_RESULTS.md` for a worked example.
@@ -322,8 +323,8 @@ One line per script — full flag tables in `docs/SCRIPTS_REFERENCE.md`.
 | `gemini_classify.py` | 4 (lowest level) | Core Gemini API caller; fills `gemini.csv` |
 | `merge_judgments.py` | 4 (mid level) | Runs Gemini (optional) + merges all 3 copies into `02_merged.csv` |
 | `pipeline.py` | orchestrator | `refresh` / `settle` / `status` / `discover-vendors` / `mine-keywords` — chains the idempotent steps |
-| `extract_human_review.py` | 4 | Pulls flagged rows into the human-review queue |
-| `finalize_judgments.py` | 4 | Folds human verdicts into `Final Judgment`; upserts `judgment_store.csv` |
+| `extract_human_review.py` | 4 | Regenerates the **outstanding-only** human-review queue (drops rows already settled in the store) |
+| `finalize_judgments.py` | 4 | Folds human verdicts into `Final Judgment`; upserts AI + raw human verdicts into `judgment_store.csv` |
 | `term_precision.py` | 8 (pruning) | Per-term precision from settled judgments |
 | `cpe_expansion.py` | 5 | Third discovery method: CPE-based densification of confirmed products |
 | `cpe_brand_mining.py` | 2 (discovery) | Mines CPE vendors missing from `vendor_terms.csv`; writes a candidate list, never auto-adds |
@@ -355,8 +356,8 @@ Retired scripts live in `scripts/_legacy/` (superseded-by table in `docs/SCRIPTS
 | `<cat>/<dir>/01_raw.csv` | `Difference Type, cve_id, published, description, cvss_score, cvss_version, cwe_ids, cpe_strings` |
 | `<cat>/reviews/{ai}.csv` | raw columns + `<AI> Judgment, <AI> Confidence, <AI> Reasoning` |
 | `<cat>/02_merged.csv` | raw columns + all 9 AI columns + `Review Status, Needs Human Review, Review Reason` |
-| `<cat>/02_needs_human_review.csv` | `Verdicts, Review Reason` + raw + AI reasoning + `Human Verdict, Human Notes` |
+| `<cat>/02_needs_human_review.csv` | `Verdicts, Review Reason` + raw + AI reasoning + `Human Verdict 1, Human Notes 1, Human Verdict 2, Human Notes 2` (outstanding rows only) |
 | `<cat>/03_final.csv` | merged columns + `Final Judgment, Final Source` |
 | `human_review_queue.csv` | same as `02_needs_human_review.csv` + leading `Category, Direction` |
 | `final_resolved.csv` | same as `03_final.csv` + leading `Category, Direction` |
-| `judgment_store.csv` | `category, cve_id, Difference Type` + all 9 AI columns + `Final Judgment, Final Source` |
+| `judgment_store.csv` | `category, cve_id, Difference Type` + all 9 AI columns + `Final Judgment, Final Source` + `Human Verdict 1, Human Notes 1, Human Verdict 2, Human Notes 2` |
