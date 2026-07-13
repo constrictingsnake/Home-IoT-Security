@@ -1,1 +1,2 @@
 Difference Type,cve_id,published,description,cvss_score,cvss_version,cwe_ids,cpe_strings
+cpe_expansion,CVE-2023-33383,2023-08-02,Shelly 4PM Pro four-channel smart switch 0.11.0 allows an attacker to trigger a BLE out of bounds read fault condition that results in a device reload.,5.3,3.1,CWE-125,cpe:2.3:o:shelly:pro_4pm_firmware:0.11.0:*:*:*:*:*:*:*|cpe:2.3:h:shelly:pro_4pm:-:*:*:*:*:*:*:*

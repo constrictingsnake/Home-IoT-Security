@@ -1,6 +1,6 @@
 # NVD Query Statistics — `nvd_all.csv`
 
-_Generated 2026-07-08 19:09 UTC from `data/nvd-snapshot/nvd_all.csv`_
+_Generated 2026-07-12 05:21 UTC from `data/nvd-snapshot/nvd_all.csv`_
 
 ## Corpus
 - **Rows:** 360,981
@@ -184,43 +184,47 @@ _Generated 2026-07-08 19:09 UTC from `data/nvd-snapshot/nvd_all.csv`_
 - Fully populated (score+CWE+CPE): 249,041
 
 ## Captured CVEs (settled review verdicts)
-_From `/Users/aarav/Projects/Home IoT Security/data/difference/final_resolved.csv` — 6,773 settled rows, 6,490 distinct CVEs._
+_From `/Users/aarav/Projects/Home IoT Security/data/difference/final_resolved.csv` — 6,535 settled rows, 6,285 distinct CVEs._
 
-- **Confirmed Yes (captured):** 3,048 distinct CVEs  · No: 3,442 · Maybe: 0 · Pending: 0
-- **In this query file:** 3,048 Yes · 3,442 No · 0 Maybe · 0 pending · 354,491 not in review set (Yes = 46.96% of this file's reviewed rows)
+- **Confirmed Yes (captured):** 3,368 distinct CVEs  · No: 2,916 · Maybe: 0 · Pending: 1
+- **In this query file:** 3,368 Yes · 2,916 No · 0 Maybe · 1 pending · 354,696 not in review set (Yes = 53.6% of this file's reviewed rows)
 
 **Captured Yes by method** (the headline splits into discovery vs. densification):
 
 | Method | Distinct Yes CVEs | Note |
 |--------|------------------:|------|
-| Text-search discovery (vendor_only + keyword_only) | 1,037 | new in-scope CVEs the searches found |
-| CPE-expansion densification (cpe_expansion) | 2,024 | extra version-CVEs on already-confirmed products — not new devices |
+| Text-search discovery (vendor_only + keyword_only) | 960 | new in-scope CVEs the searches found |
+| CPE-expansion densification (cpe_expansion) | 2,002 | extra version-CVEs on already-confirmed products — not new devices |
+| Intersection audit (V∩K) | 423 | CVEs both searches agreed on |
 
 | Direction | Yes rows | Distinct Yes CVEs |
 |-----------|---------:|------------------:|
-| cpe_expansion | 2,024 | 2,024 |
-| vendor_only | 782 | 766 |
-| keyword_only | 279 | 278 |
+| cpe_expansion | 2,002 | 2,002 |
+| vendor_only | 831 | 811 |
+| intersection | 424 | 423 |
+| keyword_only | 156 | 155 |
 
 | Category | Captured (Yes rows) |
 |----------|--------------------:|
-| streaming | 2,081 |
-| cameras | 555 |
-| hub | 92 |
-| alarms | 77 |
-| smartplugs | 32 |
-| home-power | 31 |
-| smartspeakers | 31 |
-| lighting | 29 |
-| pet | 29 |
-| ev-charging | 24 |
-| doorbell | 23 |
-| robotvacuum | 23 |
-| doorlock | 17 |
-| garden | 17 |
-| thermostat | 8 |
-| babymonitor | 7 |
+| streaming | 2,090 |
+| cameras | 773 |
+| hub | 98 |
+| alarms | 88 |
+| doorbell | 44 |
+| smartspeakers | 37 |
+| smartplugs | 36 |
+| pet | 35 |
+| lighting | 34 |
+| home-power | 33 |
+| doorlock | 31 |
+| ev-charging | 27 |
+| robotvacuum | 27 |
+| garden | 18 |
+| thermostat | 17 |
+| babymonitor | 11 |
 | appliances | 3 |
 | fridge | 3 |
-| sensors | 2 |
-| airconditioner | 1 |
+| sensors | 3 |
+| airconditioner | 2 |
+| airpurifier | 2 |
+| fans | 1 |
