@@ -513,6 +513,14 @@ cameras,canon network camera
 cameras,synology surveillance station
 cameras,trendnet ip camera
 cameras,edimax ip camera
+# mined 2026-07 (cpe_brand_mining vendor_candidates — evidence-vetted):
+# NOTE: bare "abus" matches "abuses" via the plural-suffix rule — must stay qualified
+cameras,abus tvip
+cameras,mercurycom
+cameras,apollotechnologiesinc
+cameras,momentum axel
+cameras,unifi protect
+cameras,unifi video
 
 # ── alarms ──
 alarms,ring alarm
@@ -629,6 +637,11 @@ alarms,tiiwee
 alarms,kseniasecurity
 alarms,eminent
 alarms,comcast xfinity
+# mined 2026-07 (cpe_brand_mining — Abode iota kit; "abode security"/"abode iota" miss the
+# CPE vendor goabode and the "Abode Systems, Inc." description form):
+alarms,goabode
+alarms,abode systems
+alarms,abus secvest
 
 # ── babymonitor ──
 babymonitor,infant optics
@@ -1367,6 +1380,10 @@ hub,zipato
 hub,miele
 hub,bosch smart home
 hub,schneider-electric spacelogic
+# mined 2026-07: NVD writes Vera models as one word, so "vera edge" never matched
+hub,getvera
+hub,veraedge
+hub,veralite
 
 # ── lighting ──
 lighting,philips hue

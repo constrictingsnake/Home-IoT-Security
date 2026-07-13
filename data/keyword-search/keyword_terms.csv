@@ -36,6 +36,9 @@ cameras,dvr
 # high-yield protocol terms (mined from review — recover real camera CVEs)
 cameras,onvif
 cameras,rtsp
+# mined 2026-07 (keyword_mining candidates, new_yield-verified):
+cameras,camera firmware
+cameras,hd camera
 
 # ── doorbell ──
 doorbell,video doorbell
@@ -50,6 +53,9 @@ doorbell,wallpad
 # ── babymonitor ──
 babymonitor,baby monitor
 babymonitor,nanny cam
+# added 2026-07, snapshot-verified: baby camera +2, baby cam +1 ("infant monitor" yields 0)
+babymonitor,baby camera
+babymonitor,baby cam
 
 # ── doorlock ──
 doorlock,smart lock
@@ -75,6 +81,8 @@ alarms,panic button
 # high-yield terms (mined from review)
 alarms,wireless alarm system
 alarms,security panel
+# mined 2026-07 (keyword_mining — Abode-style "all-in-one security kit" phrasing):
+alarms,security kit
 
 # ── sensors ──
 sensors,motion sensor
@@ -115,6 +123,8 @@ airconditioner,smart ac
 airconditioner,mini split
 # AMBIGUOUS: "heat pump" overlaps thermostat/climate — assign to one category only.
 airconditioner,heat pump
+# added 2026-07, snapshot-verified +7 (Mitsubishi Electric AC units say "air conditioning")
+airconditioner,air conditioning
 
 # ── fans ──
 fans,smart fan
@@ -227,6 +237,14 @@ shades,window covering
 
 # ── ev-charging (home EVSE/wallbox only) ──
 ev-charging,ev charger
+# mined 2026-07 (keyword_mining; scope note keeps review to home EVSE):
+ev-charging,charging station
+ev-charging,charging stations
+# added 2026-07, snapshot-verified yields: evse +10, wallbox +36, ev charging +41, charge point +8
+ev-charging,evse
+ev-charging,wallbox
+ev-charging,ev charging
+ev-charging,charge point
 
 # ── home-power (solar + batteries + meters) ──
 home-power,home battery
@@ -234,6 +252,9 @@ home-power,solar inverter
 home-power,smart meter
 home-power,smart panel
 home-power,smart breaker
+# added 2026-07: NVD's solar-monitoring CVEs say "photovoltaic" (Sinapsi eSolar, EOS-Box,
+# Mitsubishi EcoGuide); "pv/hybrid inverter", "energy storage" etc. all yield 0 — verified
+home-power,photovoltaic
 # AMBIGUOUS: "energy monitor" overlaps smartplugs — assign to one category only.
 # home-power,energy monitor
 
@@ -245,6 +266,9 @@ garden,robot lawn mower
 garden,robot mower
 garden,weather station
 garden,pool controller
+# mined 2026-07: NVD often writes "lawnmower(s)" as one word — "robot mower" misses these
+garden,lawnmower
+garden,lawnmowers
 
 # ── pet ──
 pet,pet feeder
