@@ -1,0 +1,61 @@
+# CPE product-token scan terms (scripts/cpe_product_scan.py).
+# ---------------------------------------------------------------------------
+# Format: one "slug,token" per line (same parser as keyword_terms.csv /
+# vendor_terms.csv — build_search.read_terms). '#'-comment and blank lines are
+# ignored. Tokens are matched EXACTLY against an NVD CPE product name split on
+# [_\-.] (no substring matching, so e.g. "cam" cannot hit "camshaft").
+#
+# Scope: single device-noun tokens that are too generic to use as description
+# keywords (keyword_terms.csv) but are high-precision inside a CPE product
+# field (a product literally named "..._camera_firmware" is a camera). This is
+# the ongoing curation surface for scripts/cpe_product_scan.py — see
+# docs/plans/PLAN_cpe_product_scan.md for the algorithm and validation numbers.
+# ---------------------------------------------------------------------------
+slug,token
+cameras,camera
+cameras,cam
+cameras,ipcam
+cameras,ipcamera
+cameras,netcam
+cameras,webcam
+cameras,nvr
+cameras,dvr
+doorbell,doorbell
+doorbell,doorphone
+doorlock,lock
+doorlock,deadbolt
+doorlock,padlock
+thermostat,thermostat
+smartplugs,plug
+smartplugs,outlet
+smartplugs,socket
+lighting,bulb
+lighting,dimmer
+robotvacuum,vacuum
+ev-charging,evse
+ev-charging,wallbox
+ev-charging,charger
+home-power,inverter
+home-power,powerwall
+hub,hub
+hub,bridge
+hub,gateway
+alarms,alarm
+alarms,siren
+babymonitor,baby
+garden,sprinkler
+garden,irrigation
+garden,mower
+garden,lawnmower
+pet,feeder
+pet,petfeeder
+smartspeakers,speaker
+smartspeakers,soundbar
+fridge,refrigerator
+fridge,fridge
+sensors,sensor
+fans,fan
+shades,blind
+shades,blinds
+shades,curtain
+shades,shutter

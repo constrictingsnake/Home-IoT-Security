@@ -201,6 +201,17 @@ Mines device-type n-grams (1-3 words) from confirmed-Yes CVE descriptions that `
 
 ---
 
+### `cpe_product_scan.py` — Stage 1/2 (automated product-token discovery)
+Mines CPE **product**-name tokens (`insteon:hub_firmware` → `hub`) that `cpe-product-tokens.csv` is missing, ranked by `n_new_cves` (CVEs in neither text method's known set nor the judgment store, any verdict). The third text surface after vendor mining (CPE vendor field) and keyword mining (description) — needs no evidence trail, the product name itself is the evidence. Read-only outside its one output file: `data/cpe-product-scan/product_candidates.csv`. Never edits `cpe-product-tokens.csv` or `vendor_terms.csv` — candidates are for a human to vet.
+
+| Flag | Description |
+|------|-------------|
+| `<category> [<category> ...]` | One or more category slugs (omit when using `--all`) |
+| `--all` | Every category in `categories.csv` |
+| `--min-cves N` | Min new CVEs required for a product to be listed (default: `1`) |
+
+---
+
 ### `recall_estimate.py` — Stage 6
 Capture–recapture recall estimation over the vendor/keyword searches (+ optional CPE capture set).
 

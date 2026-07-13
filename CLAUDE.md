@@ -97,6 +97,33 @@ writes `data/keyword-search/keyword_candidates.csv` (+ the brands side file) and
 pipeline — not chained into `pipeline.py refresh`/`settle` for the same reason as
 `discover-vendors`. See `docs/plans/PLAN_keyword_mining.md` for the full algorithm.
 
+### Automated product-token discovery — CPE product scan (the third text surface)
+`cpe_product_scan.py` mines the last of three text surfaces no other method reaches: NVD's CPE
+**product** field (`cpe_brand_mining.py` mines the **vendor** field, `keyword_mining.py` mines
+**descriptions**). A single device noun — `camera`, `hub`, `alarm`, `plug`, `lock` — is unusable
+as a description keyword (too generic, half of NVD would match), but inside a CPE product field
+the same noun is high-precision: a product literally named `..._camera_firmware` is a camera.
+Unlike its two siblings, this method needs **no evidence trail at all** — the product name
+itself is the evidence, which is why it could find `insteon` (hub), `yitechnology` (cameras), or
+`summerinfant` (babymonitor) when neither text search, nor a CPE-vendor co-occurrence, ever
+would have surfaced them.
+
+Tokens (`data/cpe-product-tokens.csv`, `slug,token`) are matched **exactly** against the
+product name split on `[_\-.]` — no substring matching, so `cam` can't hit `camshaft`. Reuses
+Stage 5's device-CPE-granularity guardrails (`part ∈ {o, h}`, `GENERIC_PLATFORM_CPES` denied)
+and a per-category known set (keyword ∪ vendor results ∪ judgment store, **any** verdict, so a
+settled No never resurfaces). Because generic nouns like `gateway`/`bridge`/`sensor`/`fan` are
+unavoidably broad, every candidate is risk-flagged (`broad-token`, `non-consumer-vendor`,
+`pro-surveillance` for cameras) — flags triage, they never filter, identical to the sibling
+miners' convention. As with both siblings, **candidates are never auto-included**: the script
+only writes `data/cpe-product-scan/product_candidates.csv` and never touches
+`cpe-product-tokens.csv` or `vendor_terms.csv`. A human reviews the list and hand-adds an
+accepted product as an ordinary `vendor_terms.csv` line (the space↔underscore matcher rule
+means the term reaches the CPE string directly, so nothing is lost by routing it through the
+existing vendor-search path rather than a new review direction). Not chained into
+`pipeline.py refresh`/`settle` for the same reason as its siblings. See
+`docs/plans/PLAN_cpe_product_scan.md` for the full algorithm and prototype yield numbers.
+
 ### Stage 6 — Capture–recapture recall estimation
 Review measures **precision**; it says nothing about **recall**. Stage 6 treats the vendor and keyword searches as two independent capture occasions of the same CVE population (Lincoln–Petersen/Chapman), estimating `N̂` and combined recall `|V∪K|/N̂` without any new labelling. `--three` adds a third capture set `C` (every CVE NVD attributes to a confirmed-Yes device CPE) via an AIC-selected Poisson log-linear model, letting the data estimate V–K dependence instead of assuming it away.
 
@@ -135,6 +162,8 @@ Home IoT Security/
     ├── nvd-snapshot/                 # Fixed offline NVD dataset (one snapshot, reproducible/citeable)
     ├── keyword-search/               # Stage 1 output + user-authored keyword_terms.csv
     ├── vendor-search/                # Stage 2 output + user-authored vendor_terms.csv + vendor_candidates.csv (automated discovery, unreviewed)
+    ├── cpe-product-tokens.csv        # user-authored slug,token list for cpe_product_scan.py (automated discovery)
+    ├── cpe-product-scan/             # cpe_product_scan.py output — product_candidates.csv (unreviewed)
     └── difference/                  # Stage 3+4 — vendor/keyword difference + its triple-AI review
         ├── CLASSIFICATION_PROMPT.md     # shared rubric all 3 AI reviewers judge by
         ├── judgment_store.csv           # persistent judgment store — keyed (category, cve_id); holds AI judgments + Final Judgment + raw Human Verdict/Notes 1&2

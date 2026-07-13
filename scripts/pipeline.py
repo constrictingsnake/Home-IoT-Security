@@ -7,6 +7,8 @@
     python3 scripts/pipeline.py status    # per-category term coverage (computed, not stored)
     python3 scripts/pipeline.py discover-vendors --all   # mine CPE vendors missing from
                                           #   vendor_terms.csv (candidate list only, manual, optional)
+    python3 scripts/pipeline.py scan-products --all      # mine CPE product-name tokens
+                                          #   (candidate list only, manual, optional)
 
 Every underlying step is idempotent and judgment-preserving (settled judgments are restored
 from judgment_store.csv / carried human verdicts), so re-running is safe. The only points a
@@ -27,6 +29,9 @@ a candidate vendor is a human decision (it writes vendor_candidates.csv only, ne
 vendor_terms.csv). Run it whenever, then hand-add accepted terms and re-run `refresh`.
 `mine-keywords` runs keyword_mining.py — same story, mirrored for Stage 1: it writes
 keyword_candidates.csv (+ keyword_candidates_brands.csv) only, never edits keyword_terms.csv.
+`scan-products` runs cpe_product_scan.py — same story again, mining CPE **product** names
+instead of vendors or descriptions: it writes product_candidates.csv only, never edits
+cpe-product-tokens.csv.
 """
 import argparse
 import glob
@@ -151,6 +156,17 @@ def cmd_mine_keywords(args):
           "python3 scripts/pipeline.py refresh")
 
 
+def cmd_scan_products(args):
+    cmd = [script("cpe_product_scan.py")]
+    cmd += ["--all"] if args.all else args.categories
+    if args.min_cves != 1:
+        cmd += ["--min-cves", str(args.min_cves)]
+    run(cmd)
+    print("\n✓ candidates written to data/cpe-product-scan/product_candidates.csv — review, hand-add "
+          "accepted vendor:product terms as ordinary vendor_terms.csv lines, then run: "
+          "python3 scripts/pipeline.py refresh")
+
+
 def main():
     ap = argparse.ArgumentParser(description=__doc__,
                                  formatter_class=argparse.RawDescriptionHelpFormatter)
@@ -188,6 +204,14 @@ def main():
     mk.add_argument("--min-yes", type=int, default=3,
                     help="min Yes-doc frequency required for a candidate (default: 3)")
     mk.set_defaults(func=cmd_mine_keywords)
+
+    sp = sub.add_parser("scan-products",
+                        help="Mine CPE product-name tokens missing from cpe-product-tokens.csv (candidate list only).")
+    sp.add_argument("categories", nargs="*", help="category slug(s); omit when using --all")
+    sp.add_argument("--all", action="store_true", help="every category in categories.csv")
+    sp.add_argument("--min-cves", type=int, default=1,
+                    help="min new CVEs required for a product to be listed (default: 1)")
+    sp.set_defaults(func=cmd_scan_products)
 
     args = ap.parse_args()
     args.func(args)

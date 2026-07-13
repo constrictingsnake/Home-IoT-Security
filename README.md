@@ -91,6 +91,10 @@ python3 scripts/pipeline.py status
 # Writes a candidate list only (never edits vendor_terms.csv) — not chained into
 # refresh/settle since accepting a candidate is a human decision.
 python3 scripts/pipeline.py discover-vendors --all
+
+# Optional, manual, run any time: mine CPE product-name tokens missing from
+# cpe-product-tokens.csv. Same story — candidate list only, human decides.
+python3 scripts/pipeline.py scan-products --all
 ```
 
 Every step is judgment-preserving (see `CLAUDE.md` § Methodology Notes for the invariant), so
@@ -212,6 +216,28 @@ hand-add accepted phrases to `keyword_terms.csv`, then re-run `python3 scripts/p
 refresh` to pull their CVEs into review. See `CLAUDE.md` and
 `docs/plans/PLAN_keyword_mining.md` for the algorithm and guardrails.
 
+### Product-Token Discovery — CPE Product Scan (the third text surface)
+
+The last of three text surfaces: where vendor mining reads CPE **vendor** fields and keyword
+mining reads **descriptions**, this reads CPE **product** fields — device nouns (`camera`,
+`hub`, `alarm`) too generic for a description keyword but high-precision inside a product name
+(`insteon:hub_firmware`, `yitechnology:yi_home_camera_firmware`). Needs no evidence trail at
+all: the product name itself is the evidence.
+
+```bash
+python3 scripts/cpe_product_scan.py --all                  # every category with tokens
+python3 scripts/cpe_product_scan.py hub cameras            # subset
+python3 scripts/cpe_product_scan.py --all --min-cves 2     # drop 1-CVE products (default 1)
+# or via the orchestrator:
+python3 scripts/pipeline.py scan-products --all
+```
+
+Output: `data/cpe-product-scan/product_candidates.csv` — a candidate list only, sorted by
+`n_new_cves` desc within category. **It never edits `cpe-product-tokens.csv` or
+`vendor_terms.csv`.** Review it; an accepted product becomes an ordinary `vendor_terms.csv`
+line (`hub,insteon`), then re-run `python3 scripts/pipeline.py refresh` to pull its CVEs into
+review. See `CLAUDE.md` and `docs/plans/PLAN_cpe_product_scan.md` for the algorithm and guardrails.
+
 ### Stage 6 — Recall Estimation (Capture–Recapture)
 
 ```bash
@@ -322,13 +348,14 @@ One line per script — full flag tables in `docs/SCRIPTS_REFERENCE.md`.
 | `make_review_copies.py` | 4 | Builds blind `reviews/{claude,codex,gemini}.csv`, pre-filled from the judgment store |
 | `gemini_classify.py` | 4 (lowest level) | Core Gemini API caller; fills `gemini.csv` |
 | `merge_judgments.py` | 4 (mid level) | Runs Gemini (optional) + merges all 3 copies into `02_merged.csv` |
-| `pipeline.py` | orchestrator | `refresh` / `settle` / `status` / `discover-vendors` / `mine-keywords` — chains the idempotent steps |
+| `pipeline.py` | orchestrator | `refresh` / `settle` / `status` / `discover-vendors` / `mine-keywords` / `scan-products` — chains the idempotent steps |
 | `extract_human_review.py` | 4 | Regenerates the **outstanding-only** human-review queue (drops rows already settled in the store) |
 | `finalize_judgments.py` | 4 | Folds human verdicts into `Final Judgment`; upserts AI + raw human verdicts into `judgment_store.csv` |
 | `term_precision.py` | 8 (pruning) | Per-term precision from settled judgments |
 | `cpe_expansion.py` | 5 | Third discovery method: CPE-based densification of confirmed products |
 | `cpe_brand_mining.py` | 2 (discovery) | Mines CPE vendors missing from `vendor_terms.csv`; writes a candidate list, never auto-adds |
 | `keyword_mining.py` | 1 (discovery) | Mines device-type n-grams missing from `keyword_terms.csv`; writes a candidate list, never auto-adds |
+| `cpe_product_scan.py` | 1/2 (discovery) | Mines CPE product-name tokens missing from `cpe-product-tokens.csv`; writes a candidate list, never auto-adds |
 | `recall_estimate.py` | 6 | Capture–recapture recall estimate (Chapman + 3-source log-linear) |
 | `cwe888_analysis.py` | 7 (analysis) | CWE-888 primary-class distribution over confirmed-Yes CVEs |
 | `generate_cwe888_table.py` | 7 (report) | LaTeX Table III equivalent, shaded top-6 classes per category |
@@ -350,6 +377,8 @@ Retired scripts live in `scripts/_legacy/` (superseded-by table in `docs/SCRIPTS
 | `<cat>/09_cpe_expansion_candidates.csv` | `cve_id, published, description, cvss_score, cvss_version, cwe_ids, cpe_strings, seed_cpe, Discovery Method` |
 | `cpe_expansion_summary.csv` | `category, yes_seeds, device_seeds, app_cpe_dropped, matched, already_known, new_candidates` |
 | `vendor_candidates.csv` | `category, vendor, n_yes_evidence, n_keyword_evidence, covered_elsewhere_slug, snapshot_total, new_yield, risk_flags, sample_cves, sample_descriptions` |
+| `cpe-product-tokens.csv` | `slug, token` |
+| `product_candidates.csv` | `category, vendor_product, matched_tokens, n_new_cves, covered_elsewhere_slug, risk_flags, sample_cves, sample_descriptions` |
 | `recall_estimate.csv` | `category, method, n_vendor, n_keyword, n_both, n_observed, N_hat, N_lo, N_hi, recall, recall_lo, recall_hi, confidence` |
 | `cwe888_distribution.csv` | `category, cwe888_class, n_cwes, pct` (plus an `ALL` pseudo-category) |
 | `cwe888_cve_map.csv` | `category, cve_id, cwe_id, cwe888_classes, map_depth` (classes pipe-separated; depth 0 = in the 888 view, ≥1 = via parents, −1 = unmappable) |
