@@ -83,7 +83,8 @@ def keyword_ids(cat):
 def categories():
     cats = []
     for fn in os.listdir(os.path.join(DATA, "keyword-search")):
-        if fn.startswith("keyword_") and fn.endswith(".csv") and "terms" not in fn:
+        if (fn.startswith("keyword_") and fn.endswith(".csv")
+                and "terms" not in fn and "candidates" not in fn):
             cats.append(fn[len("keyword_"):-len(".csv")])
     return sorted(cats)
 
