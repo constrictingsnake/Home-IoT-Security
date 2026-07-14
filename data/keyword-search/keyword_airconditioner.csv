@@ -1,4 +1,5 @@
 cve_id,published,description,cvss_score,cvss_version,cwe_ids,cpe_strings,matched_terms
+CVE-2024-22894,2024-01-30,"An issue fixed in AIT-Deutschland Alpha Innotec Heatpumps V2.88.3 or later, V3.89.0 or later, V4.81.3 or later and Novelan Heatpumps V2.88.3 or later, V3.89.0 or later, V4.81.3 or later, allows remote attackers to execute arbitrary code via the password component in the shadow file.",6.8,3.1,CWE-326,cpe:2.3:o:alpha-innotec:heat_pumps_firmware:*:*:*:*:*:*:*:*|cpe:2.3:h:alpha-innotec:heat_pumps:-:*:*:*:*:*:*:*|cpe:2.3:o:novelan:heat_pumps_firmware:*:*:*:*:*:*:*:*|cpe:2.3:h:novelan:heat_pumps:-:*:*:*:*:*:*:*,heat pump
 CVE-2026-25599,2026-06-01,"Missing authentication and clear‑text transmission of data from the heat pumps to the control server, combined with the absence of input validation on aggregated data, can lead to stored XSS that enables theft of cookies from the pump’s web control interface. Older Orca heat pump devices communicating with the Orca server over an 
 unencrypted and unauthenticated HTTP connection on a non-secure port specifically enable an
  attacker to impersonate a legitimate device and inject malicious 

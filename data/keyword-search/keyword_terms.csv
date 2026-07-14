@@ -30,20 +30,21 @@ cameras,ptz camera
 cameras,pan-tilt camera
 cameras,dome camera
 cameras,bullet camera
-cameras,webcam
 cameras,nvr
 cameras,network video recorder
 cameras,dvr
 # high-yield protocol terms (mined from review — recover real camera CVEs)
 cameras,onvif
 cameras,rtsp
+# mined 2026-07 (keyword_mining candidates, new_yield-verified):
+cameras,camera firmware
+cameras,hd camera
 
 # ── doorbell ──
 doorbell,video doorbell
 doorbell,smart doorbell
 doorbell,doorbell camera
 # high-yield terms (keyword search was missing real doorbell CVEs — 83% true-match)
-doorbell,intercom
 doorbell,video intercom
 doorbell,door station
 doorbell,entrance panel
@@ -52,6 +53,9 @@ doorbell,wallpad
 # ── babymonitor ──
 babymonitor,baby monitor
 babymonitor,nanny cam
+# added 2026-07, snapshot-verified: baby camera +2, baby cam +1 ("infant monitor" yields 0)
+babymonitor,baby camera
+babymonitor,baby cam
 
 # ── doorlock ──
 doorlock,smart lock
@@ -73,11 +77,12 @@ alarms,smart alarm
 alarms,home alarm
 alarms,alarm system
 alarms,security system
-alarms,siren
 alarms,panic button
 # high-yield terms (mined from review)
 alarms,wireless alarm system
 alarms,security panel
+# mined 2026-07 (keyword_mining — Abode-style "all-in-one security kit" phrasing):
+alarms,security kit
 
 # ── sensors ──
 sensors,motion sensor
@@ -93,6 +98,7 @@ sensors,tilt sensor
 sensors,temperature sensor
 sensors,humidity sensor
 sensors,air quality sensor
+sensors,air quality monitor
 sensors,smoke detector
 sensors,heat detector
 sensors,co detector
@@ -117,6 +123,8 @@ airconditioner,smart ac
 airconditioner,mini split
 # AMBIGUOUS: "heat pump" overlaps thermostat/climate — assign to one category only.
 airconditioner,heat pump
+# added 2026-07, snapshot-verified +7 (Mitsubishi Electric AC units say "air conditioning")
+airconditioner,air conditioning
 
 # ── fans ──
 fans,smart fan
@@ -125,6 +133,7 @@ fans,tower fan
 
 # ── airpurifier ──
 airpurifier,smart air purifier
+airpurifier,air purifier
 airpurifier,smart humidifier
 airpurifier,smart dehumidifier
 
@@ -137,7 +146,6 @@ smartplugs,smart power strip
 smartplugs,smart relay
 
 # ── lighting ──
-lighting,smart switch
 lighting,light switch
 lighting,dimmer switch
 lighting,smart dimmer
@@ -155,6 +163,7 @@ lighting,light strip
 # ── fridge ──
 fridge,smart fridge
 fridge,smart refrigerator
+fridge,refrigerator
 fridge,smart freezer
 fridge,wine cooler
 
@@ -185,7 +194,6 @@ hub,home hub
 hub,home automation hub
 hub,smart home hub
 hub,iot hub
-hub,iot gateway
 hub,zigbee hub
 hub,zigbee gateway
 hub,zigbee coordinator
@@ -208,6 +216,7 @@ smartspeakers,smart clock
 # ── sleeptracker (bedside-only — wearables stay OUT) ──
 sleeptracker,sleep tracker
 sleeptracker,sleep monitor
+sleeptracker,cpap
 sleeptracker,bedside monitor
 sleeptracker,under-mattress sensor
 sleeptracker,sleep sensor
@@ -228,7 +237,14 @@ shades,window covering
 
 # ── ev-charging (home EVSE/wallbox only) ──
 ev-charging,ev charger
+# mined 2026-07 (keyword_mining; scope note keeps review to home EVSE):
+ev-charging,charging station
+ev-charging,charging stations
+# added 2026-07, snapshot-verified yields: evse +10, wallbox +36, ev charging +41, charge point +8
 ev-charging,evse
+ev-charging,wallbox
+ev-charging,ev charging
+ev-charging,charge point
 
 # ── home-power (solar + batteries + meters) ──
 home-power,home battery
@@ -236,6 +252,9 @@ home-power,solar inverter
 home-power,smart meter
 home-power,smart panel
 home-power,smart breaker
+# added 2026-07: NVD's solar-monitoring CVEs say "photovoltaic" (Sinapsi eSolar, EOS-Box,
+# Mitsubishi EcoGuide); "pv/hybrid inverter", "energy storage" etc. all yield 0 — verified
+home-power,photovoltaic
 # AMBIGUOUS: "energy monitor" overlaps smartplugs — assign to one category only.
 # home-power,energy monitor
 
@@ -247,6 +266,9 @@ garden,robot lawn mower
 garden,robot mower
 garden,weather station
 garden,pool controller
+# mined 2026-07: NVD often writes "lawnmower(s)" as one word — "robot mower" misses these
+garden,lawnmower
+garden,lawnmowers
 
 # ── pet ──
 pet,pet feeder
@@ -261,7 +283,6 @@ streaming,smart tv
 streaming,set-top box
 streaming,streaming box
 streaming,streaming stick
-streaming,media player
 streaming,media streamer
 streaming,tv box
 streaming,android tv

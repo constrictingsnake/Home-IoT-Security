@@ -20,7 +20,7 @@ Modes:
                store — only genuinely new CVEs are left blank, so no settled row is
                re-reviewed. This is the flag to use when routing Stage-5 candidates in.
   --overwrite  blank-rebuild (ignores judgment store; re-reviews everything)
-  --all        process every category listed in device_lst.txt
+  --all        process every category listed in data/categories.csv
 
 Usage:
     python scripts/make_review_copies.py cameras
@@ -30,6 +30,7 @@ Usage:
     python scripts/make_review_copies.py cameras --diff-dir data/difference
 """
 import argparse
+import csv
 import os
 import pandas as pd
 
@@ -121,16 +122,11 @@ def process_category(cat, diff_dir, store_df, overwrite, refresh=False):
 
 
 def read_device_list(diff_dir):
-    lst_path = os.path.join(os.path.dirname(os.path.abspath(diff_dir)), "device_lst.txt")
-    if not os.path.isfile(lst_path):
-        raise SystemExit(f"device_lst.txt not found at {lst_path}")
-    cats = []
-    with open(lst_path) as f:
-        for line in f:
-            line = line.strip()
-            if line and not line.startswith("#"):
-                cats.append(line)
-    return cats
+    cat_path = os.path.join(os.path.dirname(os.path.abspath(diff_dir)), "categories.csv")
+    if not os.path.isfile(cat_path):
+        raise SystemExit(f"categories.csv not found at {cat_path}")
+    with open(cat_path, newline="", encoding="utf-8") as f:
+        return [row["slug"].strip() for row in csv.DictReader(f) if row.get("slug", "").strip()]
 
 
 def main():
@@ -139,7 +135,7 @@ def main():
     )
     ap.add_argument("category", nargs="?", help="Category slug (e.g. cameras)")
     ap.add_argument("--all", action="store_true",
-                    help="Process all categories in device_lst.txt")
+                    help="Process all categories in data/categories.csv")
     ap.add_argument("--diff-dir", default="data/difference",
                     help="Difference directory root (default: data/difference)")
     ap.add_argument("--store", default=None,

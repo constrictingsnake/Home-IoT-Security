@@ -41,7 +41,7 @@ RUBRIC_DEFAULT = os.path.join(
     os.path.dirname(__file__), "..", "data", "difference", "CLASSIFICATION_PROMPT.md"
 )
 SCOPE_DEFAULT = os.path.join(
-    os.path.dirname(__file__), "..", "data", "difference", "category_scope.csv"
+    os.path.dirname(__file__), "..", "data", "categories.csv"
 )
 
 RESPONSE_SCHEMA = {
@@ -83,7 +83,7 @@ def slug_from_path(csv_path):
 
 
 def load_scope_note(scope_path, slug):
-    """Return the 2–3 line in/out scope note for a slug from category_scope.csv.
+    """Return the 2–3 line in/out scope note for a slug from data/categories.csv.
 
     Missing file or missing slug is non-fatal: warn and return "" so Gemini still runs
     (a new category without a scope row must not break the pass). Keyed by slug because
@@ -242,7 +242,7 @@ def classify_file(
         rubric = fh.read()
 
     # Per-category scope note: gives Gemini the same in/out boundary Claude/Codex read
-    # from category_scope.csv, keyed by the slug recovered from the review-copy path
+    # from data/categories.csv, keyed by the slug recovered from the review-copy path
     # (unless an explicit note/slug override is passed). Missing note is non-fatal.
     if scope_note is None:
         resolved_slug = slug if slug is not None else slug_from_path(csv_path)
@@ -350,7 +350,7 @@ def main():
     ap.add_argument("--category", required=True, help="Device category, e.g. 'security camera'")
     ap.add_argument("--model", default=os.environ.get("GEMINI_MODEL", DEFAULT_MODEL))
     ap.add_argument("--rubric", default=RUBRIC_DEFAULT, help="Path to the shared rubric markdown")
-    ap.add_argument("--scope", default=SCOPE_DEFAULT, help="Path to category_scope.csv (per-category in/out notes)")
+    ap.add_argument("--scope", default=SCOPE_DEFAULT, help="Path to categories.csv (per-category in/out notes)")
     ap.add_argument("--slug", default=None,
                     help="Category slug for the scope lookup (default: derived from the csv path)")
     ap.add_argument("--rps", type=float, default=1.0, help="Max requests per second")

@@ -48,12 +48,21 @@ import os
 import sys
 from collections import Counter, defaultdict
 
+from review_lib import write_raw  # shared Stage-4 01_raw.csv writer (canonical RAW_COLS)
+
 HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.dirname(HERE)
 DATA = os.path.join(ROOT, "data")
 SNAPSHOT = os.path.join(DATA, "nvd-snapshot", "nvd_all.csv")
 
 csv.field_size_limit(1 << 24)
+
+# The four Stage-4 review directions carry cpe_strings for their rows; falling back to
+# the snapshot covers Yes rows absent from all four (2,136/3,085 Yes rows per
+# docs/plans/PLAN_cpe_brand_mining.md — the snapshot always has the row). Without this,
+# build_seeds silently skips any Yes CVE whose row isn't in vendor_only/keyword_only,
+# starving Stage-5 seeding for exactly the small/thin categories that need it most.
+DIRECTIONS = ("vendor_only", "keyword_only", "cpe_expansion", "intersection")
 
 DEVICE_PARTS = {"o", "h"}  # firmware / hardware — guardrail 2(b)
 
@@ -111,9 +120,9 @@ def load_yes_cve_ids(category: str):
 
 
 def load_raw_rows(category: str):
-    """cve_id -> row dict across both difference directions (carries cpe_strings)."""
+    """cve_id -> row dict across all four Stage-4 review directions (carries cpe_strings)."""
     rows = {}
-    for direction in ("vendor_only", "keyword_only"):
+    for direction in DIRECTIONS:
         p = os.path.join(DATA, "difference", category, direction, "01_raw.csv")
         if not os.path.exists(p):
             continue
@@ -121,6 +130,22 @@ def load_raw_rows(category: str):
             for r in csv.DictReader(f):
                 rows.setdefault(r["cve_id"], r)
     return rows
+
+
+def load_snapshot_cpe_fallback(missing_ids):
+    """One pass over the snapshot filling cpe_strings for cve_ids absent from every
+    direction file (see DIRECTIONS comment above — the snapshot always has them)."""
+    if not missing_ids:
+        return {}
+    found = {}
+    with open(SNAPSHOT, newline="") as f:
+        for r in csv.DictReader(f):
+            cid = r["cve_id"]
+            if cid in missing_ids:
+                found[cid] = {"cpe_strings": r.get("cpe_strings", "")}
+                if len(found) == len(missing_ids):
+                    break
+    return found
 
 
 def load_known_cve_ids(category: str):
@@ -131,29 +156,26 @@ def load_known_cve_ids(category: str):
         with open(kp, newline="") as f:
             for r in csv.DictReader(f):
                 known.add(r["cve_id"])
-    vp = os.path.join(DATA, "vendor-search", f"results_all_{category}.xlsx")
+    vp = os.path.join(DATA, "vendor-search", f"results_all_{category}.csv")
     if os.path.exists(vp):
-        try:
-            import openpyxl
-            wb = openpyxl.load_workbook(vp, read_only=True)
-            for ws in wb.worksheets:
-                it = ws.iter_rows(values_only=True)
-                header = next(it, None)
-                if not header:
-                    continue
-                idx = list(header).index("cve_id") if "cve_id" in header else 0
-                for row in it:
-                    if row and row[idx]:
-                        known.add(str(row[idx]))
-        except ImportError:
-            print("  (openpyxl missing — vendor xlsx excluded from known set)", file=sys.stderr)
+        with open(vp, newline="") as f:
+            for r in csv.DictReader(f):
+                known.add(r["cve_id"])
     return known
 
 
-def build_seeds(category: str, part_filter: bool):
-    """Return (seeds set, seed_source, stats) for a category's confirmed-Yes CPEs."""
+def build_seeds(category: str, part_filter: bool, raw: dict | None = None):
+    """Return (seeds set, seed_source, stats) for a category's confirmed-Yes CPEs.
+
+    `raw` may be pre-supplied (already merged with the snapshot fallback) so callers
+    iterating many categories — see `run()` — can do ONE combined fallback pass instead
+    of one per category. If omitted (single-category CLI usage), falls back standalone.
+    """
     yes_ids = load_yes_cve_ids(category)
-    raw = load_raw_rows(category)
+    if raw is None:
+        raw = load_raw_rows(category)
+        missing = yes_ids - raw.keys()
+        raw = {**raw, **load_snapshot_cpe_fallback(missing)}
     seeds = set()
     seed_source = defaultdict(set)
     yes_with_cpe = 0
@@ -213,11 +235,6 @@ def scan_snapshot(all_seeds):
     return hits
 
 
-# Stage-4 01_raw.csv schema (identical to build_difference_sets.py output).
-STAGE4_RAW_COLS = ["Difference Type", "cve_id", "published", "description",
-                   "cvss_score", "cvss_version", "cwe_ids", "cpe_strings"]
-
-
 def write_candidates(category, new_rows):
     """Attribution file — carries seed_cpe (the CPE-expansion analogue of matched_terms)."""
     out = os.path.join(DATA, "difference", category, "09_cpe_expansion_candidates.csv")
@@ -250,18 +267,17 @@ def write_stage4_raw(category, new_rows):
     if not new_rows:
         return None
     out = os.path.join(DATA, "difference", category, "cpe_expansion", "01_raw.csv")
-    os.makedirs(os.path.dirname(out), exist_ok=True)
-    with open(out, "w", newline="") as f:
-        w = csv.DictWriter(f, fieldnames=STAGE4_RAW_COLS)
-        w.writeheader()
-        for r, _hit_seeds in sorted(new_rows, key=lambda x: x[0]["cve_id"]):
-            w.writerow({
-                "Difference Type": "cpe_expansion",
-                "cve_id": r["cve_id"], "published": r.get("published", ""),
-                "description": r.get("description", ""), "cvss_score": r.get("cvss_score", ""),
-                "cvss_version": r.get("cvss_version", ""), "cwe_ids": r.get("cwe_ids", ""),
-                "cpe_strings": r.get("cpe_strings", ""),
-            })
+    records = [
+        {
+            "Difference Type": "cpe_expansion",
+            "cve_id": r["cve_id"], "published": r.get("published", ""),
+            "description": r.get("description", ""), "cvss_score": r.get("cvss_score", ""),
+            "cvss_version": r.get("cvss_version", ""), "cwe_ids": r.get("cwe_ids", ""),
+            "cpe_strings": r.get("cpe_strings", ""),
+        }
+        for r, _hit_seeds in sorted(new_rows, key=lambda x: x[0]["cve_id"])
+    ]
+    write_raw(records, out)
     return out
 
 
@@ -277,9 +293,21 @@ def seeded_categories():
 
 
 def run(categories, part_filter, to_stage4=True):
+    # Gather each category's raw rows first, then do ONE combined snapshot pass to
+    # fall back the Yes CVEs missing from all four direction files (rather than one
+    # fallback pass per category) — same one-pass convention as scan_snapshot below.
+    raw_by_cat = {cat: load_raw_rows(cat) for cat in categories}
+    yes_by_cat = {cat: load_yes_cve_ids(cat) for cat in categories}
+    all_missing = set()
+    for cat in categories:
+        all_missing.update(yes_by_cat[cat] - raw_by_cat[cat].keys())
+    fallback = load_snapshot_cpe_fallback(all_missing)
+    for cat in categories:
+        raw_by_cat[cat] = {**raw_by_cat[cat], **fallback}
+
     all_seeds, all_src, all_stats = {}, {}, {}
     for cat in categories:
-        seeds, src, stats = build_seeds(cat, part_filter)
+        seeds, src, stats = build_seeds(cat, part_filter, raw=raw_by_cat[cat])
         if not seeds:
             print(f"  {cat}: no usable confirmed-Yes device CPEs — skipping")
             continue

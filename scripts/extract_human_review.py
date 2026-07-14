@@ -12,11 +12,18 @@ with two humans instead of one. finalize_judgments.py only settles a row when bo
   - per category : data/difference/<cat>/02_needs_human_review.csv
   - combined     : data/difference/human_review_queue.csv  (adds Category + Direction columns)
 
-**Verdict-preserving:** before overwriting, reads any Human Verdict 1/2 / Human Notes 1/2
-already filled in (from the existing combined queue or per-category sheets) and carries them
-forward, keyed by (category, cve_id). This makes re-running safe — earlier hand-filled
-verdicts are never lost. Sheets still on the old single-reviewer schema (Human Verdict /
-Human Notes) are read as Reviewer 1's answer, migrating them forward automatically.
+**Outstanding-only queue:** rows already settled by humans (both reviewers answered, agree,
+not Maybe — the same bar finalize_judgments.py uses) are DROPPED from the queue. Their raw
+verdicts live in judgment_store.csv (persisted by finalize_judgments.py), so the queue is
+just the genuine to-do list: rows with no verdict, one verdict (awaiting the 2nd reviewer),
+a disagreement, or a Maybe to reconcile. Run finalize BEFORE extract (pipeline.py settle
+does) so a freshly filled verdict reaches the store before the queue is regenerated.
+
+**Verdict-preserving:** existing Human Verdict 1/2 / Human Notes 1/2 are read from the store
+first, then from the live sheets (which win), keyed by (category, cve_id), and carried
+forward for any row that stays in the queue — earlier hand-filled verdicts are never lost.
+Sheets still on the old single-reviewer schema (Human Verdict / Human Notes) are read as
+Reviewer 1's answer, migrating them forward automatically.
 
 Rows still `incomplete` (an AI hasn't reviewed yet) are reported but NOT included — they're
 pending, not contested.
@@ -49,14 +56,18 @@ def norm(cve):
 
 
 def load_existing_verdicts(diff_dir):
-    """{(category, CVE-ID): (HV1, HN1, HV2, HN2)} from any already-filled sheets.
+    """{(category, CVE-ID): (HV1, HN1, HV2, HN2)} from the persistent store + any sheets.
 
-    Sheets on the old single-reviewer schema (Human Verdict / Human Notes) are read as
-    Reviewer 1's answer; Reviewer 2's slot comes back blank for those rows.
+    The judgment store is the durable home for human answers (finalize_judgments.py writes
+    them there), so it is read first — this is what lets already-reviewed rows be dropped
+    from the live queue yet still carried forward if they ever reappear. Live sheets are
+    read after and win over the store (a human may have just edited them). Sheets on the
+    old single-reviewer schema (Human Verdict / Human Notes) are read as Reviewer 1's
+    answer; Reviewer 2's slot comes back blank for those rows.
     """
     out = {}
 
-    def ingest(path, category):
+    def ingest(path, category, override):
         if not os.path.isfile(path):
             return
         df = pd.read_csv(path, dtype=str).fillna("")
@@ -78,13 +89,26 @@ def load_existing_verdicts(diff_dir):
                 hv2 = hn2 = ""
             if not any((hv1, hn1, hv2, hn2)):
                 continue
-            cat = category if category is not None else str(r.get("Category", "")).strip()
-            out.setdefault((cat, norm(r["cve_id"])), (hv1, hn1, hv2, hn2))
+            cat = (category if category is not None
+                   else str(r.get("Category", "")).strip() or str(r.get("category", "")).strip())
+            key = (cat, norm(r["cve_id"]))
+            if override:
+                out[key] = (hv1, hn1, hv2, hn2)
+            else:
+                out.setdefault(key, (hv1, hn1, hv2, hn2))
 
-    ingest(os.path.join(diff_dir, "human_review_queue.csv"), category=None)
+    ingest(os.path.join(diff_dir, "judgment_store.csv"), category=None, override=False)
+    ingest(os.path.join(diff_dir, "human_review_queue.csv"), category=None, override=True)
     for p in sorted(glob.glob(os.path.join(diff_dir, "*", "02_needs_human_review.csv"))):
-        ingest(p, category=cat_of(p))
+        ingest(p, category=cat_of(p), override=True)
     return out
+
+
+def is_settled(verdict_tuple):
+    """A row is settled by humans when both reviewers answered, agree, and it isn't Maybe
+    — the same unanimity bar finalize_judgments.py uses. Such rows leave the live queue."""
+    hv1, _hn1, hv2, _hn2 = verdict_tuple
+    return bool(hv1) and hv1 == hv2 and hv1 != "Maybe"
 
 
 def verdicts_summary(row):
@@ -102,7 +126,16 @@ def build_queue(merged_path, existing):
     incomplete = int((df.get("Review Status", "") == "incomplete").sum())
     flagged = df[df.get("Needs Human Review", "") == "Yes"].copy()
     if flagged.empty:
-        return flagged, 0, incomplete
+        return flagged, 0, incomplete, 0
+    # Drop rows already settled by humans — they live in the judgment store now, not the
+    # live queue. What stays is genuine outstanding work: no verdict, one verdict (awaiting
+    # the 2nd reviewer), a disagreement, or a Maybe to reconcile.
+    settled_mask = flagged["cve_id"].map(
+        lambda c: is_settled(existing.get((cat, norm(c)), ("", "", "", ""))))
+    n_settled = int(settled_mask.sum())
+    flagged = flagged[~settled_mask].copy()
+    if flagged.empty:
+        return flagged, 0, incomplete, n_settled
     flagged["Verdicts"] = flagged.apply(verdicts_summary, axis=1)
     carried = flagged["cve_id"].map(lambda c: existing.get((cat, norm(c)), ("", "", "", "")))
     flagged["Human Verdict 1"] = [v for v, _, _, _ in carried]
@@ -113,7 +146,7 @@ def build_queue(merged_path, existing):
               if c not in LEAD + AI_COLS + TAIL and c not in DROP]
     cols = LEAD + middle + AI_COLS + TAIL
     cols = [c for c in cols if c in flagged.columns]
-    return flagged[cols], len(flagged), incomplete
+    return flagged[cols], len(flagged), incomplete, n_settled
 
 
 def main():
@@ -135,14 +168,20 @@ def main():
         print(f"Carrying forward {len(existing)} existing human verdict(s).\n")
 
     combined = []
-    total_flagged = total_incomplete = 0
+    total_flagged = total_incomplete = total_settled = 0
     for mp in merged_files:
         cat = cat_of(mp)
-        q, n, inc = build_queue(mp, existing)
+        q, n, inc, settled = build_queue(mp, existing)
         out = os.path.join(os.path.dirname(mp), "02_needs_human_review.csv")
         q.to_csv(out, index=False)
-        note = f" ({inc} still incomplete — queue partial)" if inc else ""
-        print(f"  {cat:16} {n:4} flagged -> {out}{note}")
+        parts = []
+        if settled:
+            parts.append(f"{settled} settled -> store")
+        if inc:
+            parts.append(f"{inc} still incomplete — queue partial")
+        note = f" ({'; '.join(parts)})" if parts else ""
+        print(f"  {cat:16} {n:4} outstanding -> {out}{note}")
+        total_settled += settled
         if n:
             q_out = q.copy()
             # Add Direction alias from Difference Type for combined queue backward compat
@@ -162,10 +201,13 @@ def main():
             both = int(((out_df["Human Verdict 1"].str.strip() != "") &
                         (out_df["Human Verdict 2"].str.strip() != "")).sum())
             out_df.to_csv(combined_path, index=False)
-            print(f"\nCombined: {total_flagged} rows "
+            print(f"\nCombined: {total_flagged} outstanding rows "
                   f"(reviewer1={v1}, reviewer2={v2}, both={both}) -> {combined_path}")
         else:
-            print("\nNo flagged rows in any category.")
+            print("\nNo outstanding rows in any category.")
+    if total_settled:
+        print(f"Excluded {total_settled} already-settled human row(s) — persisted in "
+              f"judgment_store.csv, not the live queue.")
     if total_incomplete:
         print(f"Note: {total_incomplete} rows still incomplete (an AI hasn't reviewed) — not yet queued.")
 

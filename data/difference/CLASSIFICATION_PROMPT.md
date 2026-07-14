@@ -35,7 +35,7 @@ app that controls it) is not itself home IoT. Function (4) and class (2) are the
 
 ## Per-category scope (read this before judging)
 The five criteria above are general. Each category also has an **authoritative in/out note**
-in [`category_scope.csv`](category_scope.csv), keyed by the category slug — it spells out the
+in the `scope_note` column of [`categories.csv`](../categories.csv), keyed by the category slug — it spells out the
 specific boundary for *this* category (e.g. `ev-charging` = home wallbox only, **not** commercial/
 fleet chargers; `cameras` = consumer cameras, **not** enterprise NVR/VMS/SAN; `hub` = controllers,
 **not** plain routers/switches). **All three reviewers use the same note** so that unanimity means

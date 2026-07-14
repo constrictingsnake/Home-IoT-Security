@@ -1,0 +1,2 @@
+cve_id,published,description,cvss_score,cvss_version,cwe_ids,cpe_strings,matched_terms
+CVE-2025-69822,2026-01-22,An issue in Atomberg Atomberg Erica Smart Fan Firmware Version: V1.0.36 allows an attacker to obtain sensitive information and escalate privileges via a crafted deauth frame,7.4,3.1,CWE-200|CWE-284|CWE-287|CWE-294,cpe:2.3:o:atomberg:erica_smart_fan_firmware:1.0.36:*:*:*:*:*:*:*|cpe:2.3:h:atomberg:erica_smart_fan:-:*:*:*:*:*:*:*,smart fan

@@ -60,21 +60,15 @@ import cpe_expansion as ce  # reuse build_seeds / scan_snapshot / load helpers
 
 # ---------------------------------------------------------------- set loading
 def vendor_ids(cat):
-    p = os.path.join(DATA, "vendor-search", f"results_all_{cat}.xlsx")
+    p = os.path.join(DATA, "vendor-search", f"results_all_{cat}.csv")
     if not os.path.exists(p):
         return set()
-    import openpyxl
+    import csv
     ids = set()
-    wb = openpyxl.load_workbook(p, read_only=True)
-    for ws in wb.worksheets:
-        it = ws.iter_rows(values_only=True)
-        header = next(it, None)
-        if not header:
-            continue
-        idx = list(header).index("cve_id") if "cve_id" in header else 0
-        for row in it:
-            if row and row[idx]:
-                ids.add(str(row[idx]))
+    with open(p, newline="") as f:
+        for r in csv.DictReader(f):
+            if r.get("cve_id"):
+                ids.add(str(r["cve_id"]))
     return ids
 
 
@@ -89,7 +83,8 @@ def keyword_ids(cat):
 def categories():
     cats = []
     for fn in os.listdir(os.path.join(DATA, "keyword-search")):
-        if fn.startswith("keyword_") and fn.endswith(".csv") and "terms" not in fn:
+        if (fn.startswith("keyword_") and fn.endswith(".csv")
+                and "terms" not in fn and "candidates" not in fn):
             cats.append(fn[len("keyword_"):-len(".csv")])
     return sorted(cats)
 

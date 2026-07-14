@@ -47,7 +47,6 @@ thermostat,trane comfortlink
 thermostat,lennox icomfort
 thermostat,johnson controls thermostats
 thermostat,siemens thermostat
-thermostat,cerberus
 thermostat,schneider wiser
 thermostat,delta controls thermostat
 thermostat,Sensi
@@ -55,6 +54,7 @@ thermostat,Smart thermostat
 thermostat,Google nest
 thermostat,Alarm.com
 thermostat,Bosch thermostat
+thermostat,shelly
 thermostat,Braeburn thermostat
 thermostat,Ion thermostat
 thermostat,Verdant thermostat
@@ -94,7 +94,6 @@ airconditioner,york affinity
 airconditioner,intesis
 airconditioner,broadlink
 airconditioner,smartlife
-airconditioner,tuya
 airconditioner,MSmartHome
 airconditioner,Pioneer minisplit
 airconditioner,klimaire
@@ -120,7 +119,6 @@ airconditioner,dreo
 airconditioner,danby
 airconditioner,edendirect
 airconditioner,air conditioner
-airconditioner,fujitsu
 
 # ── fans ──
 fans,smart fan
@@ -202,7 +200,6 @@ smartplugs,lutron plug
 smartplugs,ge cync
 smartplugs,honeywell plug
 smartplugs,eufy smart plug
-smartplugs,anker eufy
 smartplugs,tplink
 smartplugs,koogeek
 smartplugs,elgato eve energy
@@ -236,6 +233,10 @@ smartplugs,smart socket
 smartplugs,wifi plug
 smartplugs,wifi socket
 smartplugs,connected plug
+smartplugs,kankunit
+smartplugs,getnexx
+smartplugs,equeshome
+smartplugs,quboworld
 
 # ── doorlock ──
 doorlock,august lock
@@ -291,6 +292,13 @@ doorlock,wifi deadbolt
 doorlock,smart deadbolt
 doorlock,smart door lock
 doorlock,keypad lock
+doorlock,tinxy
+doorlock,gluehome
+doorlock,wafucn
+doorlock,sguda
+doorlock,geniecompany
+# mined 2026-07 (cpe_product_scan product_candidates):
+doorlock,fingerprint bluetooth padlock
 
 # ── doorbell ──
 doorbell,ring doorbell
@@ -356,6 +364,7 @@ doorbell,video doorbell
 doorbell,smart doorbell
 doorbell,video intercom
 doorbell,door intercom
+doorbell,nightowlsp
 
 # ── cameras ──
 cameras,hikvision
@@ -373,24 +382,18 @@ cameras,swann
 cameras,lorex
 cameras,foscam
 cameras,vivotek
-cameras,axis camera
 cameras,hanwha
 cameras,bosch camera
-cameras,pelco
 cameras,flir home
 cameras,zmodo
 cameras,zosi
 cameras,night owl
 cameras,defender camera
 cameras,uniview
-cameras,tiandy
 cameras,TVT camera
 cameras,provision-isr
 cameras,digital watchdog
-cameras,geovision
-cameras,mobotix
 cameras,arecont
-cameras,avigilon
 cameras,wisenet
 cameras,samsung camera
 cameras,tp-link camera
@@ -433,8 +436,6 @@ cameras,360 vision
 cameras,appro international
 cameras,axcess
 cameras,av costar
-cameras,airlive
-cameras,anviz
 cameras,bqt solutions
 cameras,brickcom
 cameras,compro ip
@@ -451,8 +452,6 @@ cameras,fujifilm camera
 cameras,ganz
 cameras,geutebruck
 cameras,genie cctv
-cameras,genetec
-cameras,honeywell security
 cameras,indigovision
 cameras,ioimage
 cameras,iqeye
@@ -465,9 +464,7 @@ cameras,lilin
 cameras,linudix
 cameras,march networks
 cameras,messoa
-cameras,moxa
 cameras,mobileview
-cameras,milesight
 cameras,optex
 cameras,oncam
 cameras,panasonic camera
@@ -483,13 +480,67 @@ cameras,truvision
 cameras,vicon
 cameras,visonic
 cameras,videotec
-cameras,verint
 cameras,visionhitech
 cameras,videosphere
 cameras,verkada
-cameras,webgate
 cameras,remo+
 cameras,samsung techwin
+cameras,sannce
+cameras,castel
+cameras,avtech
+cameras,avertx
+cameras,blurams
+cameras,gncchome
+cameras,argussurveillance
+cameras,rubetek
+cameras,qvis
+cameras,sunellsecurity
+cameras,c-first
+cameras,nuuo
+cameras,tonnet
+cameras,icatchinc
+cameras,cp plus
+cameras,zivif
+cameras,genieaccess
+cameras,visual-tools
+cameras,airlink101
+cameras,cacagoo
+cameras,everfocus
+cameras,xiongmaitech
+cameras,hitron
+cameras,iodata
+cameras,planex
+cameras,lg network camera
+cameras,canon network camera
+cameras,synology surveillance station
+cameras,trendnet ip camera
+cameras,edimax ip camera
+# mined 2026-07 (cpe_brand_mining vendor_candidates — evidence-vetted):
+# NOTE: bare "abus" matches "abuses" via the plural-suffix rule — must stay qualified
+cameras,abus tvip
+cameras,mercurycom
+cameras,apollotechnologiesinc
+cameras,momentum axel
+cameras,unifi protect
+cameras,unifi video
+# mined 2026-07 (cpe_brand_mining vendor_candidates, round 2 — evidence-vetted, camera-specific
+# products only; bare tenda/qnap/axis/lg/insteon/getvera/roku/mi/anker rejected as mega-vendor
+# or wrong-product-line contamination per the yield samples):
+cameras,govicture
+cameras,hichip
+cameras,owletcare
+cameras,keruistore
+cameras,apexis
+# mined 2026-07 (cpe_product_scan product_candidates — CPE product-field tokens; endoscope/
+# broadcast-PTZ/mirrorless-photography/industrial "cam" hits rejected as non-security-camera
+# devices, ACTi/FLIR-DVTEL rejected as enterprise VMS):
+cameras,yi home camera
+cameras,camera hub g3
+cameras,clever dog smart camera
+cameras,mipc camera
+cameras,qbee multi-sensor camera
+cameras,agasio camera
+cameras,guardzilla
 
 # ── alarms ──
 alarms,ring alarm
@@ -510,10 +561,8 @@ alarms,kangaroo security
 alarms,wyze sense
 alarms,wyze alarm
 alarms,eufy alarm
-alarms,eufy homebase
 alarms,arlo security
 alarms,arlo base station
-alarms,samsung smartthings hub
 alarms,smartthings sensor
 alarms,wink hub
 alarms,hubitat
@@ -597,10 +646,24 @@ alarms,gsm alarm
 alarms,cellular alarm
 alarms,alarm communicator
 alarms,alarm receiver
-alarms,central station
 alarms,monitoring station
 alarms,alarm protocol
 alarms,smart alarm
+alarms,hozard
+alarms,mydigoo
+alarms,chuango
+alarms,d3dsecurity
+alarms,tiiwee
+alarms,kseniasecurity
+alarms,eminent
+alarms,comcast xfinity
+# mined 2026-07 (cpe_brand_mining — Abode iota kit; "abode security"/"abode iota" miss the
+# CPE vendor goabode and the "Abode Systems, Inc." description form):
+alarms,goabode
+alarms,abode systems
+alarms,abus secvest
+# mined 2026-07 (cpe_brand_mining vendor_candidates, round 2 — evidence-vetted):
+alarms,keruistore
 
 # ── babymonitor ──
 babymonitor,infant optics
@@ -686,6 +749,10 @@ babymonitor,nursery camera
 babymonitor,nursery monitor
 babymonitor,sleep monitor baby
 babymonitor,baby monitor app
+# mined 2026-07 (cpe_product_scan product_candidates):
+babymonitor,biltema
+babymonitor,mimo baby 2
+babymonitor,baby zoom wifi monitor
 
 # ── smartspeakers ──
 smartspeakers,amazon echo
@@ -779,6 +846,10 @@ smartspeakers,chromecast audio
 smartspeakers,spotify connect speaker
 smartspeakers,voice command device
 smartspeakers,smart home hub speaker
+smartspeakers,mobvoi
+smartspeakers,huawei smart speaker
+# mined 2026-07 (cpe_product_scan product_candidates):
+smartspeakers,smart ai speaker
 
 # ── streaming ──
 streaming,amazon fire tv
@@ -813,7 +884,6 @@ streaming,beelink
 streaming,ugoos
 streaming,zidoo
 streaming,dune hd
-streaming,kodi
 streaming,openelec
 streaming,libreelec
 streaming,coreelec
@@ -835,8 +905,6 @@ streaming,dlna
 streaming,upnp streaming
 streaming,iptv box
 streaming,set-top box
-streaming,amlogic
-streaming,allwinner
 streaming,realtek tv
 streaming,haier tv
 streaming,hisense tv
@@ -887,6 +955,14 @@ streaming,realme tv
 streaming,oneplus tv
 streaming,oppo tv
 streaming,vivo tv
+streaming,mxq
+streaming,h96tvbox
+streaming,hindotech
+streaming,jector
+streaming,rk max smart tv box
+streaming,v88 smart tv box
+streaming,western digital tv
+streaming,kddi home
 
 # ── gameconsoles ──
 gameconsoles,playstation
@@ -960,7 +1036,6 @@ robotvacuum,ecovacs
 robotvacuum,neato
 robotvacuum,roborock
 robotvacuum,xiaomi robot vacuum
-robotvacuum,eufy
 robotvacuum,yeedi vacuum
 robotvacuum,yeedi mop
 robotvacuum,ilife robot vacuum
@@ -969,7 +1044,6 @@ robotvacuum,proscenic
 robotvacuum,cecotec
 robotvacuum,rowenta
 robotvacuum,vorwerk
-robotvacuum,miele
 robotvacuum,lg cordzero robot
 robotvacuum,lg thinq robot
 robotvacuum,samsung jetbot
@@ -1000,11 +1074,10 @@ robotvacuum,tuya vacuum
 robotvacuum,smartlife vacuum
 robotvacuum,smart vacuum
 robotvacuum,robot vacuum
+robotvacuum,diqee
 
 # ── sleeptracker ──
 sleeptracker,fitbit
-sleeptracker,garmin
-sleeptracker,apple watch
 sleeptracker,samsung galaxy watch
 sleeptracker,withings
 sleeptracker,whoop strap
@@ -1171,6 +1244,11 @@ ev-charging,hypervolt home
 ev-charging,ev charger wallbox
 ev-charging,home ev charger
 ev-charging,wallbox evse
+ev-charging,wolfbox
+ev-charging,growatt
+# mined 2026-07 (cpe_product_scan product_candidates):
+ev-charging,garo wallbox
+ev-charging,id.charger
 
 # ── garden ──
 garden,rachio sprinkler
@@ -1273,6 +1351,13 @@ home-power,shelly em
 home-power,iotawatt
 home-power,eyedro
 home-power,ted energy
+home-power,saj electric
+# mined 2026-07 (cpe_product_scan product_candidates):
+home-power,outbackpower
+home-power,northernnep
+home-power,deyeinverter
+home-power,revolt-power
+home-power,bosswerk
 
 # ── hub ──
 hub,samsung smartthings hub
@@ -1328,6 +1413,19 @@ hub,ezlo plus
 hub,schlage bridge
 hub,wyze hub
 hub,abode gateway
+hub,zipato
+hub,miele
+hub,bosch smart home
+hub,schneider-electric spacelogic
+# mined 2026-07: NVD writes Vera models as one word, so "vera edge" never matched
+hub,getvera
+hub,veraedge
+hub,veralite
+# mined 2026-07 (cpe_product_scan product_candidates; 3com/roche/virginmedia rejected —
+# enterprise network hub, medical-device hub, and ISP router/modem "hub" respectively,
+# none are smart-home control hubs):
+hub,insteon hub
+hub,logitech harmony hub
 
 # ── lighting ──
 lighting,philips hue
@@ -1387,6 +1485,8 @@ lighting,tradfri
 lighting,linkind
 lighting,tessan smart
 lighting,mr beams
+lighting,mystrom
+lighting,syska
 
 # ── pet ──
 pet,petcube

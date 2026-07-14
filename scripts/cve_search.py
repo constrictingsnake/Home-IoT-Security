@@ -65,7 +65,7 @@ CSV_COLS = [
 ]
 
 # The fixed NVD snapshot uses CSV_COLS exactly (no term attribution — it's the raw
-# corpus). The per-category SEARCH outputs (keyword_<cat>.csv, results_all_<cat>.xlsx)
+# corpus). The per-category SEARCH outputs (keyword_<cat>.csv, results_all_<cat>.csv)
 # add one more column recording WHICH search term(s) pulled each row in, so per-term
 # precision can be computed later. Pipe-separated, like cwe_ids/cpe_strings.
 MATCHED_TERMS_COL = "matched_terms"
@@ -305,6 +305,10 @@ def filter_by_keywords(
         while preserving plurals. This is what the per-category keyword/vendor builders
         use, since both rely on short device/brand tokens. Non-alphanumeric chars
         (":" "_" "-" in CPE) act as boundaries, so CPE matching is unaffected.
+        A space in a multi-word term also matches an underscore, so "hunter douglas"
+        reaches CPE strings like "hunter_douglas:..." — CPE has no spaces, so without
+        this a multi-word term could only ever match the description half of the
+        haystack (see docs/plans/SMALL_CATEGORY_RECOVERY.md F1).
     """
     matches: list[dict] = []
     seen: set[str] = set()
@@ -326,7 +330,8 @@ def filter_by_keywords(
         # Precompile once; \b is unreliable next to ":" "_" so use explicit
         # alphanumeric-boundary look-arounds (with IGNORECASE the class covers A-Z).
         matchers = [
-            (kw, re.compile(r"(?<![a-z0-9])" + re.escape(kw) + r"(?:es|s)?(?![a-z0-9])", flags))
+            (kw, re.compile(r"(?<![a-z0-9])" + re.escape(kw).replace(r"\ ", "[ _]")
+                            + r"(?:es|s)?(?![a-z0-9])", flags))
             for kw in keywords
         ]
         for cve in cves:

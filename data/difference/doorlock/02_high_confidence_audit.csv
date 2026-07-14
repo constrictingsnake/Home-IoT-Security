@@ -1,68 +1,13 @@
-AI Verdict (unanimous),Difference Type,cve_id,published,description,cvss_score,cvss_version,cwe_ids,cpe_strings,Claude Judgment,Claude Confidence,Claude Reasoning,Codex Judgment,Codex Confidence,Codex Reasoning,Gemini Judgment,Gemini Confidence,Gemini Reasoning,Human Verdict,Human Notes
-Yes,keyword_only,CVE-2019-12944,2019-10-15,Glue Smart Lock 2.7.8 devices do not properly block guest access in certain situations where the network connection is unavailable.,7.5,3.1,CWE-862,cpe:2.3:o:gluehome:glue_smart_lock_firmware:2.7.8:*:*:*:*:*:*:*|cpe:2.3:h:gluehome:glue_smart_lock:-:*:*:*:*:*:*:*,Yes,High,,Yes,High,,Yes,High,,,
-No,vendor_only,CVE-2013-4080,2013-06-09,"The dissect_r3_upstreamcommand_queryconfig function in epan/dissectors/packet-assa_r3.c in the Assa Abloy R3 dissector in Wireshark 1.8.x before 1.8.8 does not properly handle a zero-length item, which allows remote attackers to cause a denial of service (infinite loop, and CPU and memory consumption) via a crafted packet.",5.0,2.0,CWE-119,cpe:2.3:a:wireshark:wireshark:1.8.0:*:*:*:*:*:*:*|cpe:2.3:a:wireshark:wireshark:1.8.1:*:*:*:*:*:*:*|cpe:2.3:a:wireshark:wireshark:1.8.2:*:*:*:*:*:*:*|cpe:2.3:a:wireshark:wireshark:1.8.3:*:*:*:*:*:*:*|cpe:2.3:a:wireshark:wireshark:1.8.4:*:*:*:*:*:*:*|cpe:2.3:a:wireshark:wireshark:1.8.5:*:*:*:*:*:*:*|cpe:2.3:a:wireshark:wireshark:1.8.6:*:*:*:*:*:*:*|cpe:2.3:a:wireshark:wireshark:1.8.7:*:*:*:*:*:*:*,No,High,,No,High,,No,High,,,
-No,keyword_only,CVE-2025-68711,2026-05-26,"AppLockZ App Lock and Fingerprint Lock (applock.passwordfingerprint.applockz) 4.2.11 for Android allows a local attacker with physical access to bypass the PIN lock. The lock is implemented as an overlay rather than by using Android's secure authentication APIs. By navigating cascading interface flows - insecure navigation through exposed routes facilitates app control evasion {I.N.T.E.R.F.A.C.E] via advertisement or browser intents, an attacker can evade lockscreen verification and access protected apps (e.g., Chrome). This results in information disclosure and privilege escalation.",2.4,3.1,CWE-288,,No,High,,No,High,,No,High,,,
-Yes,cpe_expansion,CVE-2023-5881,2024-01-03,"Unauthenticated access permitted to web interface page The Genie Company Aladdin Connect (Retrofit-Kit Model ALDCM) ""Garage Door Control Module Setup"" and modify the Garage door's SSID settings. 
-
-
-
-",8.2,3.1,CWE-306,cpe:2.3:o:geniecompany:aladdin_connect_garage_door_opener_firmware:*:*:*:*:*:*:*:*|cpe:2.3:h:geniecompany:aladdin_connect_garage_door_opener:-:*:*:*:*:*:*:*,Yes,High,,Yes,High,,Yes,High,,,
-No,vendor_only,CVE-2023-53490,2025-10-01,"In the Linux kernel, the following vulnerability has been resolved:
-
-mptcp: fix disconnect vs accept race
-
-Despite commit 0ad529d9fd2b (""mptcp: fix possible divide by zero in
-recvmsg()""), the mptcp protocol is still prone to a race between
-disconnect() (or shutdown) and accept.
-
-The root cause is that the mentioned commit checks the msk-level
-flag, but mptcp_stream_accept() does acquire the msk-level lock,
-as it can rely directly on the first subflow lock.
-
-As reported by Christoph than can lead to a race where an msk
-socket is accepted after that mptcp_subflow_queue_clean() releases
-the listener socket lock and just before it takes destructive
-actions leading to the following splat:
-
-BUG: kernel NULL pointer dereference, address: 0000000000000012
-PGD 5a4ca067 P4D 5a4ca067 PUD 37d4c067 PMD 0
-Oops: 0000 [#1] PREEMPT SMP
-CPU: 2 PID: 10955 Comm: syz-executor.5 Not tainted 6.5.0-rc1-gdc7b257ee5dd #37
-Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS 1.11.0-2.el7 04/01/2014
-RIP: 0010:mptcp_stream_accept+0x1ee/0x2f0 include/net/inet_sock.h:330
-Code: 0a 09 00 48 8b 1b 4c 39 e3 74 07 e8 bc 7c 7f fe eb a1 e8 b5 7c 7f fe 4c 8b 6c 24 08 eb 05 e8 a9 7c 7f fe 49 8b 85 d8 09 00 00 <0f> b6 40 12 88 44 24 07 0f b6 6c 24 07 bf 07 00 00 00 89 ee e8 89
-RSP: 0018:ffffc90000d07dc0 EFLAGS: 00010293
-RAX: 0000000000000000 RBX: ffff888037e8d020 RCX: ffff88803b093300
-RDX: 0000000000000000 RSI: ffffffff833822c5 RDI: ffffffff8333896a
-RBP: 0000607f82031520 R08: ffff88803b093300 R09: 0000000000000000
-R10: 0000000000000000 R11: 0000000000003e83 R12: ffff888037e8d020
-R13: ffff888037e8c680 R14: ffff888009af7900 R15: ffff888009af6880
-FS:  00007fc26d708640(0000) GS:ffff88807dd00000(0000) knlGS:0000000000000000
-CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
-CR2: 0000000000000012 CR3: 0000000066bc5001 CR4: 0000000000370ee0
-DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
-DR3: 0000000000000000 DR6: 00000000fffe0ff0 DR7: 0000000000000400
-Call Trace:
- <TASK>
- do_accept+0x1ae/0x260 net/socket.c:1872
- __sys_accept4+0x9b/0x110 net/socket.c:1913
- __do_sys_accept4 net/socket.c:1954 [inline]
- __se_sys_accept4 net/socket.c:1951 [inline]
- __x64_sys_accept4+0x20/0x30 net/socket.c:1951
- do_syscall_x64 arch/x86/entry/common.c:50 [inline]
- do_syscall_64+0x47/0xa0 arch/x86/entry/common.c:80
- entry_SYSCALL_64_after_hwframe+0x6e/0xd8
-
-Address the issue by temporary removing the pending request socket
-from the accept queue, so that racing accept() can't touch them.
-
-After depleting the msk - the ssk still exists, as plain TCP sockets,
-re-insert them into the accept queue, so that later inet_csk_listen_stop()
-will complete the tcp socket disposal.",4.7,3.1,CWE-362,cpe:2.3:o:linux:linux_kernel:*:*:*:*:*:*:*:*|cpe:2.3:o:linux:linux_kernel:6.3:-:*:*:*:*:*:*|cpe:2.3:o:linux:linux_kernel:6.5:rc1:*:*:*:*:*:*|cpe:2.3:o:linux:linux_kernel:6.5:rc2:*:*:*:*:*:*|cpe:2.3:o:linux:linux_kernel:6.5:rc3:*:*:*:*:*:*|cpe:2.3:o:linux:linux_kernel:6.5:rc4:*:*:*:*:*:*|cpe:2.3:o:linux:linux_kernel:6.5:rc5:*:*:*:*:*:*,No,High,,No,High,,No,High,,,
-No,vendor_only,CVE-2020-27258,2021-01-19,"In SOOIL Developments Co., Ltd Diabecare RS, AnyDana-i and AnyDana-A, an information disclosure vulnerability in the communication protocol of the insulin pump and its AnyDana-i and AnyDana-A mobile applications allows unauthenticated attackers to extract the pump’s keypad lock PIN via Bluetooth Low Energy.",6.5,3.1,CWE-522,cpe:2.3:a:sooil:anydana-a:*:*:*:*:*:*:*:*|cpe:2.3:a:sooil:anydana-i:*:*:*:*:*:*:*:*|cpe:2.3:o:sooil:dana_diabecare_rs_firmware:*:*:*:*:*:*:*:*|cpe:2.3:h:sooil:dana_diabecare_rs:-:*:*:*:*:*:*:*,No,High,,No,High,,No,High,,,
-No,keyword_only,CVE-2026-24732,2026-03-04,"Files or Directories Accessible to External Parties, Incorrect Permission Assignment for Critical Resource vulnerability in Hallo Welt! GmbH BlueSpice (Extension:NSFileRepo modules) allows Accessing Functionality Not Properly Constrained by ACLs, Bypassing Electronic Locks and Access Controls.This issue affects BlueSpice: from 5.1 through 5.1.3, from 5.2 through 5.2.0.
+AI Verdict (consensus),Gemini Dissent,Difference Type,cve_id,published,description,cvss_score,cvss_version,cwe_ids,cpe_strings,Claude Judgment,Claude Confidence,Claude Reasoning,Codex Judgment,Codex Confidence,Codex Reasoning,Gemini Judgment,Gemini Confidence,Gemini Reasoning,Human Verdict,Human Notes
+No,Yes,keyword_only,CVE-2020-12681,2021-07-26,Missing TLS certificate validation on 3xLogic Infinias eIDC32 devices through 3.4.125 allows an attacker to intercept/control the channel by which door lock policies are applied.,7.5,3.1,CWE-295,cpe:2.3:o:3xlogic:infinias_eidc32_firmware:*:*:*:*:*:*:*:*|cpe:2.3:h:3xlogic:infinias_eidc32:-:*:*:*:*:*:*:*,No,High,,No,High,,Yes,High,,,
+Yes,,intersection,CVE-2023-34553,2023-06-22,An issue was discovered in WAFU Keyless Smart Lock v1.0 allows attackers to unlock a device via code replay attack.,6.5,3.1,CWE-294,cpe:2.3:o:wafucn:wafu_keyless_smart_lock_firmware:1.0:*:*:*:*:*:*:*|cpe:2.3:h:wafucn:wafu_keyless_smart_lock:-:*:*:*:*:*:*:*,Yes,High,,Yes,High,,Yes,High,,,
+No,,vendor_only,CVE-2013-4080,2013-06-09,"The dissect_r3_upstreamcommand_queryconfig function in epan/dissectors/packet-assa_r3.c in the Assa Abloy R3 dissector in Wireshark 1.8.x before 1.8.8 does not properly handle a zero-length item, which allows remote attackers to cause a denial of service (infinite loop, and CPU and memory consumption) via a crafted packet.",5.0,2.0,CWE-119,cpe:2.3:a:wireshark:wireshark:1.8.0:*:*:*:*:*:*:*|cpe:2.3:a:wireshark:wireshark:1.8.1:*:*:*:*:*:*:*|cpe:2.3:a:wireshark:wireshark:1.8.2:*:*:*:*:*:*:*|cpe:2.3:a:wireshark:wireshark:1.8.3:*:*:*:*:*:*:*|cpe:2.3:a:wireshark:wireshark:1.8.4:*:*:*:*:*:*:*|cpe:2.3:a:wireshark:wireshark:1.8.5:*:*:*:*:*:*:*|cpe:2.3:a:wireshark:wireshark:1.8.6:*:*:*:*:*:*:*|cpe:2.3:a:wireshark:wireshark:1.8.7:*:*:*:*:*:*:*,No,High,,No,High,,No,High,,,
+Yes,,intersection,CVE-2022-32507,2024-05-14,"An issue was discovered on certain Nuki Home Solutions devices. Some BLE commands, which should have been designed to be only called from privileged accounts, could also be called from unprivileged accounts. This demonstrates that no access controls were implemented for the different BLE commands across the different accounts. This affects Nuki Smart Lock 3.0 before 3.3.5 and Nuki Smart Lock 2.0 before 2.12.4.",8.8,3.1,CWE-284,,Yes,High,,Yes,High,,Yes,High,,,
+No,,keyword_only,CVE-2026-24732,2026-03-04,"Files or Directories Accessible to External Parties, Incorrect Permission Assignment for Critical Resource vulnerability in Hallo Welt! GmbH BlueSpice (Extension:NSFileRepo modules) allows Accessing Functionality Not Properly Constrained by ACLs, Bypassing Electronic Locks and Access Controls.This issue affects BlueSpice: from 5.1 through 5.1.3, from 5.2 through 5.2.0.
 
 HINT: Versions provided apply to BlueSpice MediaWiki releases. For Extension:NSFileRepo the affected versions are 3.0 < 3.0.5",,,CWE-552|CWE-732,,No,High,,No,High,,No,High,,,
-Yes,keyword_only,CVE-2021-44905,2022-03-25,Incorrect permissions in the Bluetooth Services in the Fortessa FTBTLD Smart Lock as of 12-13-2022 allows a remote attacker to disable the lock via an unauthenticated edit to the lock name.,8.2,3.1,CWE-276,cpe:2.3:o:cef:fortessa_ftbtld_firmware:*:*:*:*:*:*:*:*|cpe:2.3:h:cef:fortessa_ftbtld:-:*:*:*:*:*:*:*,Yes,High,,Yes,High,,Yes,High,,,
-Yes,keyword_only,CVE-2023-34553,2023-06-22,An issue was discovered in WAFU Keyless Smart Lock v1.0 allows attackers to unlock a device via code replay attack.,6.5,3.1,CWE-294,cpe:2.3:o:wafucn:wafu_keyless_smart_lock_firmware:1.0:*:*:*:*:*:*:*|cpe:2.3:h:wafucn:wafu_keyless_smart_lock:-:*:*:*:*:*:*:*,Yes,High,,Yes,High,,Yes,High,,,
-No,keyword_only,CVE-2021-41847,2021-10-01,"An issue was discovered in 3xLogic Infinias Access Control through 6.7.10708.0, affecting physical security. Users with login credentials assigned to a specific zone can send modified HTTP GET and POST requests, allowing them to view user data such as personal information and Prox card credentials. Also, an authorized user of one zone can send API requests to unlock electronic locks associated with zones they are unauthorized to have access to. They can also create new user logins for zones they were not authorized to access, including the root zone of the software.",8.8,3.1,CWE-639,cpe:2.3:a:3xlogic:infinias_access_control:*:*:*:*:*:*:*:*,No,High,,No,High,,No,Low,"The CVE describes an 'Access Control' system for 'zones', which is characteristic of enterprise or commercial physical security systems rather than a residential smart lock. While it allows unlocking electronic locks, the scale and architecture (zones, root zone, Prox card credentials) suggest an industrial/commercial deployment.",,
+No,,keyword_only,CVE-2022-23849,2022-03-03,The biometric lock in Devolutions Password Hub for iOS before 2021.3.4 allows attackers to access the application because of authentication bypass. An attacker must rapidly make failed biometric authentication attempts.,6.6,3.1,,cpe:2.3:a:devolutions:password_hub:*:*:*:*:*:iphone_os:*:*,No,High,,No,High,,No,High,,,
+Yes,,intersection,CVE-2019-12944,2019-10-15,Glue Smart Lock 2.7.8 devices do not properly block guest access in certain situations where the network connection is unavailable.,7.5,3.1,CWE-862,cpe:2.3:o:gluehome:glue_smart_lock_firmware:2.7.8:*:*:*:*:*:*:*|cpe:2.3:h:gluehome:glue_smart_lock:-:*:*:*:*:*:*:*,Yes,High,,Yes,High,,Yes,High,,,
+No,,vendor_only,CVE-2020-27258,2021-01-19,"In SOOIL Developments Co., Ltd Diabecare RS, AnyDana-i and AnyDana-A, an information disclosure vulnerability in the communication protocol of the insulin pump and its AnyDana-i and AnyDana-A mobile applications allows unauthenticated attackers to extract the pump’s keypad lock PIN via Bluetooth Low Energy.",6.5,3.1,CWE-522,cpe:2.3:a:sooil:anydana-a:*:*:*:*:*:*:*:*|cpe:2.3:a:sooil:anydana-i:*:*:*:*:*:*:*:*|cpe:2.3:o:sooil:dana_diabecare_rs_firmware:*:*:*:*:*:*:*:*|cpe:2.3:h:sooil:dana_diabecare_rs:-:*:*:*:*:*:*:*,No,High,,No,High,,No,High,,,
+Yes,,intersection,CVE-2022-32506,2024-05-14,"An issue was discovered on certain Nuki Home Solutions devices. An attacker with physical access to the circuit board could use the SWD debug features to control the execution of code on the processor and debug the firmware, as well as read or alter the content of the internal and external flash memory. This affects Nuki Smart Lock 3.0 before 3.3.5, Nuki Smart Lock 2.0 before 2.12.4, as well as Nuki Bridge v1 before 1.22.0 and v2 before 2.13.2.",6.4,3.1,CWE-1263,,Yes,High,,Yes,High,,Yes,High,,,
+Yes,Yes,keyword_only,CVE-2016-1148,2017-04-21,Akerun - Smart Lock Robot App for iOS before 1.2.4 does not verify SSL certificates.,8.1,3.1,CWE-295,cpe:2.3:a:photosynth:akerun:*:*:*:*:*:iphone_os:*:*,Yes,High,,Yes,High,,No,High,,,
