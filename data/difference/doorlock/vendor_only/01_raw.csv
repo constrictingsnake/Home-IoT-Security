@@ -1,4 +1,5 @@
 Difference Type,cve_id,published,description,cvss_score,cvss_version,cwe_ids,cpe_strings
+vendor_only,CVE-2019-17098,2020-09-30,"Use of hard-coded cryptographic key vulnerability in August Connect Wi-Fi Bridge App, Connect Firmware allows an attacker to decrypt an intercepted payload containing the Wi-Fi network authentication credentials. This issue affects: August Connect Wi-Fi Bridge App version v10.11.0 and prior versions on Android. August Connect Firmware version 2.2.12 and prior versions.",6.5,3.1,CWE-321|CWE-798,cpe:2.3:a:august:august_home:*:*:*:*:*:android:*:*|cpe:2.3:o:august:connect_wi-fi_bridge_firmware:*:*:*:*:*:*:*:*|cpe:2.3:h:august:connect_wi-fi_bridge:-:*:*:*:*:*:*:*
 vendor_only,CVE-2024-12094,2024-12-05,"This vulnerability exists in the Tinxy mobile app due to storage of logged-in user information in plaintext on the device database. An attacker with physical access to the rooted device could exploit this vulnerability by accessing its database leading to unauthorized access of user information such as username, email address and mobile number.
 Note:
 To exploit this vulnerability, the device must be rooted/jailbroken.",,,CWE-312,
@@ -9,11 +10,6 @@ vendor_only,CVE-2020-27258,2021-01-19,"In SOOIL Developments Co., Ltd Diabecare 
 vendor_only,CVE-2022-46308,2023-06-02,"SGUDA U-Lock central lock control service’s user management function has incorrect authorization. A remote attacker with general user privilege can exploit this vulnerability to call privileged APIs to access, modify and delete user information.",8.8,3.1,CWE-863,cpe:2.3:o:sguda:u-lock_firmware:-:*:*:*:*:*:*:*|cpe:2.3:h:sguda:u-lock:-:*:*:*:*:*:*:*
 vendor_only,CVE-2023-5879,2024-01-03,"Users’ product account authentication data was stored in clear text in The Genie Company Aladdin Connect Mobile Application Version 5.65 Build 2075 (and below) on Android Devices. This allows the attacker, with access to the android device, to potentially retrieve users' clear text authentication credentials.
 ",6.8,3.1,CWE-922,cpe:2.3:a:geniecompany:aladdin_connect:*:*:*:*:*:android:*:*
-vendor_only,CVE-2023-5881,2024-01-03,"Unauthenticated access permitted to web interface page The Genie Company Aladdin Connect (Retrofit-Kit Model ALDCM) ""Garage Door Control Module Setup"" and modify the Garage door's SSID settings. 
-
-
-
-",8.2,3.1,CWE-306,cpe:2.3:o:geniecompany:aladdin_connect_garage_door_opener_firmware:*:*:*:*:*:*:*:*|cpe:2.3:h:geniecompany:aladdin_connect_garage_door_opener:-:*:*:*:*:*:*:*
 vendor_only,CVE-2025-2189,2025-03-11,This vulnerability exists in the Tinxy smart devices due to storage of credentials in plaintext within the device firmware. An attacker with physical access could exploit this by extracting the firmware and analyzing the binary data to obtain the plaintext credentials stored on the vulnerable device.,,,CWE-312,
 vendor_only,CVE-2023-53490,2025-10-01,"In the Linux kernel, the following vulnerability has been resolved:
 

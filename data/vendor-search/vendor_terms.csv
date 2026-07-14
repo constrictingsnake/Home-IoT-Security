@@ -297,6 +297,8 @@ doorlock,gluehome
 doorlock,wafucn
 doorlock,sguda
 doorlock,geniecompany
+# mined 2026-07 (cpe_product_scan product_candidates):
+doorlock,fingerprint bluetooth padlock
 
 # ── doorbell ──
 doorbell,ring doorbell
@@ -521,6 +523,24 @@ cameras,apollotechnologiesinc
 cameras,momentum axel
 cameras,unifi protect
 cameras,unifi video
+# mined 2026-07 (cpe_brand_mining vendor_candidates, round 2 — evidence-vetted, camera-specific
+# products only; bare tenda/qnap/axis/lg/insteon/getvera/roku/mi/anker rejected as mega-vendor
+# or wrong-product-line contamination per the yield samples):
+cameras,govicture
+cameras,hichip
+cameras,owletcare
+cameras,keruistore
+cameras,apexis
+# mined 2026-07 (cpe_product_scan product_candidates — CPE product-field tokens; endoscope/
+# broadcast-PTZ/mirrorless-photography/industrial "cam" hits rejected as non-security-camera
+# devices, ACTi/FLIR-DVTEL rejected as enterprise VMS):
+cameras,yi home camera
+cameras,camera hub g3
+cameras,clever dog smart camera
+cameras,mipc camera
+cameras,qbee multi-sensor camera
+cameras,agasio camera
+cameras,guardzilla
 
 # ── alarms ──
 alarms,ring alarm
@@ -642,6 +662,8 @@ alarms,comcast xfinity
 alarms,goabode
 alarms,abode systems
 alarms,abus secvest
+# mined 2026-07 (cpe_brand_mining vendor_candidates, round 2 — evidence-vetted):
+alarms,keruistore
 
 # ── babymonitor ──
 babymonitor,infant optics
@@ -727,6 +749,10 @@ babymonitor,nursery camera
 babymonitor,nursery monitor
 babymonitor,sleep monitor baby
 babymonitor,baby monitor app
+# mined 2026-07 (cpe_product_scan product_candidates):
+babymonitor,biltema
+babymonitor,mimo baby 2
+babymonitor,baby zoom wifi monitor
 
 # ── smartspeakers ──
 smartspeakers,amazon echo
@@ -822,6 +848,8 @@ smartspeakers,voice command device
 smartspeakers,smart home hub speaker
 smartspeakers,mobvoi
 smartspeakers,huawei smart speaker
+# mined 2026-07 (cpe_product_scan product_candidates):
+smartspeakers,smart ai speaker
 
 # ── streaming ──
 streaming,amazon fire tv
@@ -1218,6 +1246,9 @@ ev-charging,home ev charger
 ev-charging,wallbox evse
 ev-charging,wolfbox
 ev-charging,growatt
+# mined 2026-07 (cpe_product_scan product_candidates):
+ev-charging,garo wallbox
+ev-charging,id.charger
 
 # ── garden ──
 garden,rachio sprinkler
@@ -1321,6 +1352,12 @@ home-power,iotawatt
 home-power,eyedro
 home-power,ted energy
 home-power,saj electric
+# mined 2026-07 (cpe_product_scan product_candidates):
+home-power,outbackpower
+home-power,northernnep
+home-power,deyeinverter
+home-power,revolt-power
+home-power,bosswerk
 
 # ── hub ──
 hub,samsung smartthings hub
@@ -1384,6 +1421,11 @@ hub,schneider-electric spacelogic
 hub,getvera
 hub,veraedge
 hub,veralite
+# mined 2026-07 (cpe_product_scan product_candidates; 3com/roche/virginmedia rejected —
+# enterprise network hub, medical-device hub, and ISP router/modem "hub" respectively,
+# none are smart-home control hubs):
+hub,insteon hub
+hub,logitech harmony hub
 
 # ── lighting ──
 lighting,philips hue

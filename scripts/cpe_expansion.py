@@ -57,6 +57,13 @@ SNAPSHOT = os.path.join(DATA, "nvd-snapshot", "nvd_all.csv")
 
 csv.field_size_limit(1 << 24)
 
+# The four Stage-4 review directions carry cpe_strings for their rows; falling back to
+# the snapshot covers Yes rows absent from all four (2,136/3,085 Yes rows per
+# docs/plans/PLAN_cpe_brand_mining.md — the snapshot always has the row). Without this,
+# build_seeds silently skips any Yes CVE whose row isn't in vendor_only/keyword_only,
+# starving Stage-5 seeding for exactly the small/thin categories that need it most.
+DIRECTIONS = ("vendor_only", "keyword_only", "cpe_expansion", "intersection")
+
 DEVICE_PARTS = {"o", "h"}  # firmware / hardware — guardrail 2(b)
 
 # Guardrail 2(c): general-purpose computing platforms are never a home-IoT *device* seed,
@@ -113,9 +120,9 @@ def load_yes_cve_ids(category: str):
 
 
 def load_raw_rows(category: str):
-    """cve_id -> row dict across both difference directions (carries cpe_strings)."""
+    """cve_id -> row dict across all four Stage-4 review directions (carries cpe_strings)."""
     rows = {}
-    for direction in ("vendor_only", "keyword_only"):
+    for direction in DIRECTIONS:
         p = os.path.join(DATA, "difference", category, direction, "01_raw.csv")
         if not os.path.exists(p):
             continue
@@ -123,6 +130,22 @@ def load_raw_rows(category: str):
             for r in csv.DictReader(f):
                 rows.setdefault(r["cve_id"], r)
     return rows
+
+
+def load_snapshot_cpe_fallback(missing_ids):
+    """One pass over the snapshot filling cpe_strings for cve_ids absent from every
+    direction file (see DIRECTIONS comment above — the snapshot always has them)."""
+    if not missing_ids:
+        return {}
+    found = {}
+    with open(SNAPSHOT, newline="") as f:
+        for r in csv.DictReader(f):
+            cid = r["cve_id"]
+            if cid in missing_ids:
+                found[cid] = {"cpe_strings": r.get("cpe_strings", "")}
+                if len(found) == len(missing_ids):
+                    break
+    return found
 
 
 def load_known_cve_ids(category: str):
@@ -141,10 +164,18 @@ def load_known_cve_ids(category: str):
     return known
 
 
-def build_seeds(category: str, part_filter: bool):
-    """Return (seeds set, seed_source, stats) for a category's confirmed-Yes CPEs."""
+def build_seeds(category: str, part_filter: bool, raw: dict | None = None):
+    """Return (seeds set, seed_source, stats) for a category's confirmed-Yes CPEs.
+
+    `raw` may be pre-supplied (already merged with the snapshot fallback) so callers
+    iterating many categories — see `run()` — can do ONE combined fallback pass instead
+    of one per category. If omitted (single-category CLI usage), falls back standalone.
+    """
     yes_ids = load_yes_cve_ids(category)
-    raw = load_raw_rows(category)
+    if raw is None:
+        raw = load_raw_rows(category)
+        missing = yes_ids - raw.keys()
+        raw = {**raw, **load_snapshot_cpe_fallback(missing)}
     seeds = set()
     seed_source = defaultdict(set)
     yes_with_cpe = 0
@@ -262,9 +293,21 @@ def seeded_categories():
 
 
 def run(categories, part_filter, to_stage4=True):
+    # Gather each category's raw rows first, then do ONE combined snapshot pass to
+    # fall back the Yes CVEs missing from all four direction files (rather than one
+    # fallback pass per category) — same one-pass convention as scan_snapshot below.
+    raw_by_cat = {cat: load_raw_rows(cat) for cat in categories}
+    yes_by_cat = {cat: load_yes_cve_ids(cat) for cat in categories}
+    all_missing = set()
+    for cat in categories:
+        all_missing.update(yes_by_cat[cat] - raw_by_cat[cat].keys())
+    fallback = load_snapshot_cpe_fallback(all_missing)
+    for cat in categories:
+        raw_by_cat[cat] = {**raw_by_cat[cat], **fallback}
+
     all_seeds, all_src, all_stats = {}, {}, {}
     for cat in categories:
-        seeds, src, stats = build_seeds(cat, part_filter)
+        seeds, src, stats = build_seeds(cat, part_filter, raw=raw_by_cat[cat])
         if not seeds:
             print(f"  {cat}: no usable confirmed-Yes device CPEs — skipping")
             continue
