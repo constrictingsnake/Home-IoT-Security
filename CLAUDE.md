@@ -1,7 +1,7 @@
 # Home IoT Security — Project Guide
 
 This doc is reviewer rules + design rationale (the *why*). For exact commands to run any stage,
-see `README.md`; for first-run result tables and worked examples, see `docs/FIRST_RUN_RESULTS.md`;
+see `README.md`; for result tables and worked examples, see `docs/RESULTS.md`;
 for full per-script flags, see `docs/SCRIPTS_REFERENCE.md`.
 
 ## What This Project Is
@@ -45,7 +45,7 @@ It trades breadth for precision. Seeding only from confirmed-`Yes` CPEs means it
 2. **Device-CPE granularity.** (a) `vendor:product` only, never vendor-only (`tp-link:tapo_p100`, not all of `tp-link`). (b) `part ∈ {o, h}` only — a co-listed `part=a` app/library CPE riding on a device's Yes row (e.g. `openweave:openweave-core` on a camera CVE) is dropped, pinning expansion to the physical device, not its dependencies. (c) **General-purpose computing platforms are denied** (`GENERIC_PLATFORM_CPES`) even though `part=o` — Apple/Google attribute one CVE across every OS at once, so an Apple-TV Yes row co-lists `apple:tvos` with `apple:mac_os_x`/`apple:iphone_os`/`apple:watchos`; seeding those would pull the whole desktop/mobile corpus. Only shared platforms (macOS, iOS, Android, Windows, Linux kernel, NVIDIA Jetson dev boards) are denied; device-specific OS/firmware CPEs are kept. `apple:tvos` itself is deliberately kept (in-scope via criterion 4(b)).
 3. **Candidates are never auto-included** — they still go through Stage 4 (or an audit sample). High CPE precision ≠ zero false positives.
 
-See `docs/FIRST_RUN_RESULTS.md` for measured yield/precision.
+See `docs/RESULTS.md` for measured yield/precision.
 
 ### Automated vendor discovery — CPE brand mining (feeds back into Stage 2)
 `cpe_brand_mining.py` is `cpe_expansion.py`'s mirror image: where Stage 5 **densifies** a
@@ -133,10 +133,10 @@ Honest caveats:
 3. **The `yes` population isn't yet paper-grade** — needs a labelled `keyword_only` direction and labelled `V∩K` samples for a few rich categories. The `raw` (search-stage) recall is defensible today.
 4. `recall = 1.0` rows are flagged `degenerate` (one list ⊆ the other — recapture carries no information) and excluded from the pooled total.
 
-See `docs/FIRST_RUN_RESULTS.md` for measured numbers.
+See `docs/RESULTS.md` for measured numbers.
 
 ### Refresh invariant
-Human verdicts and AI judgments both live in `judgment_store.csv` (keyed by `(category, cve_id)`, read by `make_review_copies.py`), so a deliberate `01_raw` regeneration never repeats settled work — it only creates review load for *genuinely new* rows. The store survives folder restructures and pipeline changes since it's a flat CSV independent of the review directory layout. See `docs/FIRST_RUN_RESULTS.md` for a worked example with real numbers.
+Human verdicts and AI judgments both live in `judgment_store.csv` (keyed by `(category, cve_id)`, read by `make_review_copies.py`), so a deliberate `01_raw` regeneration never repeats settled work — it only creates review load for *genuinely new* rows. The store survives folder restructures and pipeline changes since it's a flat CSV independent of the review directory layout. See `docs/RESULTS.md` for a worked example with real numbers.
 
 **The store is the durable home for human answers.** `finalize_judgments.py` upserts the raw `Human Verdict/Notes 1 & 2` (plus the derived `Final Judgment`/`Final Source=human`) into the store; `extract_human_review.py` then regenerates `human_review_queue.csv` as **outstanding-only** — a flagged row is dropped once both human reviewers agree on a non-`Maybe` verdict, because its answer now lives in the store. Rows with no verdict, a lone verdict (awaiting the 2nd reviewer), a disagreement, or a `Maybe` stay in the queue. This is why `settle` runs **finalize before extract**: a freshly filled verdict must reach the store before the queue is regenerated to exclude it. (Human-settled rows from before this change keep their `Final Judgment` but have blank raw cells — those individual answers predate persistence and aren't recoverable.)
 
@@ -150,7 +150,7 @@ Home IoT Security/
 ├── README.md                        # How to run every stage
 ├── AGENTS.md                        # Codex reviewer instructions (auto-loaded by Codex)
 ├── docs/
-│   ├── FIRST_RUN_RESULTS.md             # Point-in-time result tables + worked examples
+│   ├── RESULTS.md                       # Result tables (first-run + current snapshots) + worked examples
 │   ├── SCRIPTS_REFERENCE.md             # Full per-script flag tables
 │   └── ...                              # Prior analysis docs, report draft
 │

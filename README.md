@@ -3,8 +3,8 @@
 A research pipeline that maps real-world home IoT device brands to known CVEs from NIST's NVD,
 organized by device category, using two complementary search methods audited by a triple-AI
 review system. **This doc is how to run it.** For reviewer rules, the classification rubric, and
-the design rationale behind each stage, see `CLAUDE.md`. For first-run result tables and worked
-examples, see `docs/FIRST_RUN_RESULTS.md`. For the full per-script flag reference, see
+the design rationale behind each stage, see `CLAUDE.md`. For result tables and worked
+examples, see `docs/RESULTS.md`. For the full per-script flag reference, see
 `docs/SCRIPTS_REFERENCE.md`.
 
 ---
@@ -172,7 +172,7 @@ python3 scripts/finalize_judgments.py
 
 Output: `data/difference/<cat>/09_cpe_expansion_candidates.csv`, `cpe_expansion/01_raw.csv`,
 `data/difference/cpe_expansion_summary.csv`. See `CLAUDE.md` for the three guardrails and
-`docs/FIRST_RUN_RESULTS.md` for first-run yield/precision numbers.
+`docs/RESULTS.md` for measured yield/precision numbers.
 
 ### Vendor Discovery — CPE Brand Mining (feeds back into Stage 2)
 
@@ -247,7 +247,7 @@ python3 scripts/recall_estimate.py --population yes --isect-precision 0.9
 ```
 
 Output → printed table + `data/difference/recall_estimate.csv`. See `CLAUDE.md` for the method and
-`docs/FIRST_RUN_RESULTS.md` for first-run numbers.
+`docs/RESULTS.md` for measured numbers.
 
 ### Stage 7 — CWE-888 Vulnerability-Class Analysis
 
@@ -306,7 +306,7 @@ python3 scripts/finalize_judgments.py                    # persist verdicts -> j
 python3 scripts/extract_human_review.py                  # regenerate outstanding-only queue
 ```
 
-See `CLAUDE.md` for why this preserves prior work and `docs/FIRST_RUN_RESULTS.md` for a worked example.
+See `CLAUDE.md` for why this preserves prior work and `docs/RESULTS.md` for a worked example.
 
 ---
 

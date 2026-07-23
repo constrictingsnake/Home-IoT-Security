@@ -541,6 +541,14 @@ cameras,mipc camera
 cameras,qbee multi-sensor camera
 cameras,agasio camera
 cameras,guardzilla
+cameras,ishekar
+cameras,xiaoyi
+# mega-vendor surveillance lines, qualified to block router/NAS noise (bare tenda=2085 FP):
+cameras,tenda cp3
+cameras,tenda cp6
+cameras,tenda cp7
+cameras,qvr
+cameras,vigi
 
 # ── alarms ──
 alarms,ring alarm
@@ -675,6 +683,7 @@ babymonitor,motorola baby monitor
 babymonitor,motorola mbp
 babymonitor,motorola vm
 babymonitor,summer lookout
+babymonitor,summer baby
 babymonitor,angelcare monitor
 babymonitor,angelcare ac
 babymonitor,levana baby monitor
@@ -1249,6 +1258,7 @@ ev-charging,growatt
 # mined 2026-07 (cpe_product_scan product_candidates):
 ev-charging,garo wallbox
 ev-charging,id.charger
+ev-charging,evlink
 
 # ── garden ──
 garden,rachio sprinkler
@@ -1426,6 +1436,17 @@ hub,veralite
 # none are smart-home control hubs):
 hub,insteon hub
 hub,logitech harmony hub
+hub,tapo h100
+# added 2026-07 (open-source home-automation platform mining — a brand class no existing
+# vendor/keyword term covers; whole-word verified against nvd_all.csv before adding, zero
+# overlap with existing hub keyword phrases):
+hub,esphome
+hub,openhab
+hub,tasmota
+hub,domoticz
+hub,connectedhomeip
+hub,project chip
+hub,node-red
 
 # ── lighting ──
 lighting,philips hue

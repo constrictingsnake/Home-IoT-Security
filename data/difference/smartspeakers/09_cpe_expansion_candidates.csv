@@ -1,4 +1,7 @@
 cve_id,published,description,cvss_score,cvss_version,cwe_ids,cpe_strings,seed_cpe,Discovery Method
+CVE-2020-9210,2024-12-27,"There is an insufficient integrity vulnerability in Huawei products. A module does not perform sufficient integrity check in a specific scenario. Attackers can exploit the vulnerability by physically install malware. This could compromise normal service of the affected device. (Vulnerability ID: HWPSIRT-2020-00145)
+
+This vulnerability has been assigned a Common Vulnerabilities and Exposures (CVE) ID: CVE-2020-9210.",6.8,3.1,CWE-354,cpe:2.3:o:huawei:myna_firmware:9.0.1.11\(h100sp8c00\):*:*:*:*:*:*:*|cpe:2.3:h:huawei:myna:-:*:*:*:*:*:*:*,huawei:myna|huawei:myna_firmware,cpe_expansion
 CVE-2023-48417,2023-12-11,Missing Permission checks resulting in unauthorized access and Manipulation in KeyChainActivity Application,9.8,3.1,CWE-862,cpe:2.3:o:google:chromecast_firmware:*:*:*:*:*:*:*:*|cpe:2.3:h:google:chromecast:-:*:*:*:*:*:*:*,google:chromecast|google:chromecast_firmware,cpe_expansion
 CVE-2023-48424,2023-12-11,U-Boot shell vulnerability resulting in Privilege escalation in a production device,9.8,3.1,,cpe:2.3:o:google:chromecast_firmware:*:*:*:*:*:*:*:*|cpe:2.3:h:google:chromecast:-:*:*:*:*:*:*:*,google:chromecast|google:chromecast_firmware,cpe_expansion
 CVE-2023-48425,2023-12-11,U-Boot vulnerability resulting in persistent Code Execution ,9.8,3.1,CWE-20,cpe:2.3:o:google:chromecast_firmware:*:*:*:*:*:*:*:*|cpe:2.3:h:google:chromecast:-:*:*:*:*:*:*:*,google:chromecast|google:chromecast_firmware,cpe_expansion
