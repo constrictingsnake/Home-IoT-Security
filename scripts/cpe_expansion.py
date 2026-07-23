@@ -25,9 +25,14 @@ Guardrails (see CLAUDE.md Stage 5):
            so a streaming Apple-TV Yes row co-lists apple:tvos WITH apple:mac_os_x /
            apple:iphone_os / apple:watchos; seeding those pulls the entire desktop/mobile
            corpus (~17k for `streaming` alone). Only shared platforms are denied — the
-           device-specific OS/firmware CPEs (apple:tvos, amazon:fire_os, per-model TVs) are
-           kept. NOTE: apple:tvos is deliberately KEPT (it is the Apple-TV OS and those CVEs
-           are in-scope via criterion 4(b)); it yields ~1.9k mostly-shared-WebKit candidates.
+           device-specific OS/firmware CPEs (amazon:fire_os, per-model TVs) are kept.
+           NOTE: apple:tvos itself is ALSO denied here (2026-07 scope ruling, see
+           docs/plans/PLAN_scope_exclusion.md) — its ~1.9k yield turned out to be almost
+           entirely shared-WebKit CVEs disproportionate to its device-specific share, so
+           the `streaming` scope note now excludes tvOS CVEs wholesale. This stops new
+           tvos seeds from entering; already-confirmed tvos rows are separately flagged
+           `Excluded` in judgment_store.csv by mark_excluded.py (retroactive removal from
+           analysis population without touching AI judgments).
   3. New candidates leave the pipeline as an UNREVIEWED candidate set — this script
      never auto-includes them. It tags Discovery Method = cpe_expansion and records
      the seed CPE that pulled each row in (attribution, like matched_terms), so
@@ -71,12 +76,14 @@ DEVICE_PARTS = {"o", "h"}  # firmware / hardware — guardrail 2(b)
 # single CVE across every OS at once — a streaming Apple-TV CVE co-lists apple:tvos WITH
 # apple:mac_os_x / apple:iphone_os / apple:watchos, and seeding those pulls the entire
 # desktop/mobile CVE corpus (17k+ for `streaming` alone). The device-specific OS/firmware CPEs
-# (apple:tvos, amazon:fire_os, per-model sony:kd-* TVs) are NOT denied — only shared
-# general-purpose platforms. nvidia:jetson_* are embedded dev/robotics boards (fail criteria
-# 2 & 3), not home devices, so they are denied too.
+# (amazon:fire_os, per-model sony:kd-* TVs) are NOT denied — only shared general-purpose
+# platforms. nvidia:jetson_* are embedded dev/robotics boards (fail criteria 2 & 3), not home
+# devices, so they are denied too. apple:tvos was denied 2026-07 by a separate scope ruling
+# (see docs/plans/PLAN_scope_exclusion.md) — it is device-specific, not general-purpose, but
+# its yield turned out to be almost entirely shared-WebKit CVEs, so it is excluded for volume.
 GENERIC_PLATFORM_CPES = {
-    "apple:mac_os_x", "apple:mac_os_x_server",
-    "apple:iphone_os", "apple:ipados", "apple:ipad_os", "apple:watchos",
+    "apple:mac_os_x", "apple:mac_os_x_server", "apple:macos", "apple:mac_os",
+    "apple:iphone_os", "apple:ipados", "apple:ipad_os", "apple:watchos", "apple:tvos",
     "google:android", "google:android_things",
     "microsoft:windows", "microsoft:windows_10", "microsoft:windows_11",
     "linux:linux_kernel", "canonical:ubuntu_linux", "debian:debian_linux",
@@ -110,11 +117,15 @@ def device_str(vp: str) -> str:
 
 
 def load_yes_cve_ids(category: str):
+    """Confirmed-Yes CVEs for a category, excluding rows flagged out-of-scope in the store
+    (Excluded column, set by mark_excluded.py) — an excluded row must never seed Stage 5."""
     path = os.path.join(DATA, "difference", "judgment_store.csv")
     yes = set()
     with open(path, newline="") as f:
         for r in csv.DictReader(f):
-            if r["category"] == category and (r.get("Final Judgment") or "").strip().lower() == "yes":
+            if (r["category"] == category
+                    and (r.get("Final Judgment") or "").strip().lower() == "yes"
+                    and not (r.get("Excluded") or "").strip()):
                 yes.add(r["cve_id"])
     return yes
 
@@ -282,12 +293,13 @@ def write_stage4_raw(category, new_rows):
 
 
 def seeded_categories():
-    """Categories that have at least one Final Judgment == Yes in the store."""
+    """Categories that have at least one non-excluded Final Judgment == Yes in the store."""
     cats = set()
     path = os.path.join(DATA, "difference", "judgment_store.csv")
     with open(path, newline="") as f:
         for r in csv.DictReader(f):
-            if (r.get("Final Judgment") or "").strip().lower() == "yes":
+            if ((r.get("Final Judgment") or "").strip().lower() == "yes"
+                    and not (r.get("Excluded") or "").strip()):
                 cats.add(r["category"])
     return sorted(cats)
 

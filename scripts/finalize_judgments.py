@@ -62,7 +62,7 @@ STORE_COLS = [
     "Codex Judgment", "Codex Confidence", "Codex Reasoning",
     "Gemini Judgment", "Gemini Confidence", "Gemini Reasoning",
     "Final Judgment", "Final Source",
-] + HUMAN_COLS
+] + HUMAN_COLS + ["Excluded"]
 
 
 def cat_of(merged_path):
@@ -183,23 +183,37 @@ def upsert_store(df, cat, store_path, human):
 
     The four Human Verdict/Notes columns are persisted here too, sourced from `human`
     (queue sheets + prior store). This is what lets the live queue drop already-reviewed
-    rows without losing the raw per-reviewer answers — the store becomes their home."""
+    rows without losing the raw per-reviewer answers — the store becomes their home.
+
+    `Excluded` (scope-exclusion reason, e.g. scope:tvos-2026-07; blank = in scope) is set
+    only by mark_excluded.py, never derived from df — so it must be read from the PRIOR
+    store and stamped onto new_rows before the old rows are dropped, or a plain `settle`
+    run would silently wipe every flag (see docs/plans/PLAN_scope_exclusion.md)."""
     if os.path.isfile(store_path):
         store = pd.read_csv(store_path, dtype=str).fillna("")
     else:
         store = pd.DataFrame(columns=STORE_COLS)
+
+    prior_excluded = {}
+    if len(store) and "Excluded" in store.columns:
+        for _, r in store.iterrows():
+            ex = str(r.get("Excluded", "")).strip()
+            if ex:
+                prior_excluded[(str(r["category"]).strip(), str(r["cve_id"]).strip().upper())] = ex
 
     new_df = df.copy()
     new_df["category"] = cat
     # Attach the raw human cells for each row from the resolved `human` map.
     for col in HUMAN_COLS:
         new_df[col] = ""
+    new_df["Excluded"] = ""
     for idx, cve in new_df["cve_id"].items():
         hv1, hn1, hv2, hn2 = human.get((cat, str(cve).strip().upper()), ("", "", "", ""))
         new_df.at[idx, "Human Verdict 1"] = hv1
         new_df.at[idx, "Human Notes 1"] = hn1
         new_df.at[idx, "Human Verdict 2"] = hv2
         new_df.at[idx, "Human Notes 2"] = hn2
+        new_df.at[idx, "Excluded"] = prior_excluded.get((cat, str(cve).strip().upper()), "")
     keep = ["category", "cve_id"] + [c for c in STORE_COLS[2:] if c in new_df.columns]
     new_rows = new_df[keep]
 
@@ -236,32 +250,45 @@ def main():
 
     # Sticky human verdicts (see resolve_row): remember which rows the store already
     # settled as `human` BEFORE this run's upserts replace the category's rows.
+    # Also collect prior `Excluded` reasons (set only by mark_excluded.py) so a scope
+    # exclusion survives this run and can be dropped from 03_final.csv/final_resolved.csv —
+    # see docs/plans/PLAN_scope_exclusion.md.
     prior_human = {}
+    prior_excluded = {}
     if os.path.isfile(store_path):
         sdf = pd.read_csv(store_path, dtype=str).fillna("")
         for _, r in sdf.iterrows():
+            cat_key = str(r.get("category", "")).strip()
+            cve_key = str(r.get("cve_id", "")).strip().upper()
             fj = str(r.get("Final Judgment", "")).strip()
             if str(r.get("Final Source", "")).strip() == "human" and fj:
-                prior_human[(str(r.get("category", "")).strip(),
-                             str(r.get("cve_id", "")).strip().upper())] = fj
+                prior_human[(cat_key, cve_key)] = fj
+            ex = str(r.get("Excluded", "")).strip()
+            if ex:
+                prior_excluded[(cat_key, cve_key)] = ex
 
     combined = []
     grand = Counter()
 
     for mp in merged_files:
         cat, df = finalize(mp, human, prior_human)
-        out = os.path.join(os.path.dirname(mp), "03_final.csv")
-        df.to_csv(out, index=False)
         c = Counter(df["Final Source"])
         grand.update(c)
+        excluded_mask = df["cve_id"].map(
+            lambda cve: (cat, str(cve).strip().upper()) in prior_excluded)
+        n_excluded = int(excluded_mask.sum())
+        upsert_store(df, cat, store_path, human)
+        df = df[~excluded_mask].copy()
+        out = os.path.join(os.path.dirname(mp), "03_final.csv")
+        df.to_csv(out, index=False)
         pend = c.get("pending", 0)
         flag = f"  ({pend} pending human input)" if pend else ""
+        excl = f"  (excluded: {n_excluded})" if n_excluded else ""
         resolved = c.get("ai-consensus", 0) + c.get("strong-consensus", 0) + c.get("human", 0)
         print(f"  {cat:16} resolved={resolved:4} "
               f"[ai={c.get('ai-consensus',0)}, strong={c.get('strong-consensus',0)}, "
               f"human={c.get('human',0)}], "
-              f"incomplete={c.get('incomplete',0)}{flag}")
-        upsert_store(df, cat, store_path, human)
+              f"incomplete={c.get('incomplete',0)}{flag}{excl}")
         df_out = df.copy()
         # Direction is already encoded in Difference Type; add an alias column for compat
         if "Difference Type" in df_out.columns:

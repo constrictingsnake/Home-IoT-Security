@@ -125,11 +125,19 @@ def extract_vendor_sets(cpe_strings: str):
 
 
 def load_judgment_store():
-    """category -> {cve_id: Final Judgment}, one read for every category at once."""
+    """category -> {cve_id: (Final Judgment, Excluded)}, one read for every category at once.
+
+    Excluded (set only by mark_excluded.py; blank = in scope) rides alongside the judgment
+    so callers can tell evidence-gathering (must skip excluded rows) apart from "known /
+    already judged" suppression sets (must still treat excluded rows as known — see
+    cpe_product_scan.py's build_known_sets, which only reads .keys() and is unaffected)."""
     store = defaultdict(dict)
     with open(JUDGMENT_STORE, newline="") as f:
         for r in csv.DictReader(f):
-            store[r["category"]][r["cve_id"]] = (r.get("Final Judgment") or "").strip()
+            store[r["category"]][r["cve_id"]] = (
+                (r.get("Final Judgment") or "").strip(),
+                (r.get("Excluded") or "").strip(),
+            )
     return store
 
 
@@ -163,12 +171,21 @@ def load_snapshot_cpe_fallback(missing_ids):
 
 
 def gather_evidence(categories, store):
-    """{category: {vendor: {"yes": {cve_id,...}, "kw": {cve_id,...}}}}"""
+    """{category: {vendor: {"yes": {cve_id,...}, "kw": {cve_id,...}}}}
+
+    Excluded rows (scope-out-of-population, see mark_excluded.py) contribute no evidence,
+    Tier A or Tier B — a row's exclusion is treated the same as a settled No for the
+    purposes of "don't resurface" (CLAUDE.md Stage-5-adjacent guardrail, see
+    docs/plans/PLAN_scope_exclusion.md)."""
     yes_ids_by_cat, no_ids_by_cat = {}, {}
     for cat in categories:
         judgments = store.get(cat, {})
-        yes_ids_by_cat[cat] = {c for c, j in judgments.items() if j.lower() == "yes"}
-        no_ids_by_cat[cat] = {c for c, j in judgments.items() if j.lower() == "no"}
+        yes_ids_by_cat[cat] = {
+            c for c, (j, ex) in judgments.items() if j.lower() == "yes" and not ex
+        }
+        no_ids_by_cat[cat] = {
+            c for c, (j, ex) in judgments.items() if j.lower() == "no" or ex
+        }
 
     direction_map_by_cat = {cat: load_direction_cpe_map(cat) for cat in categories}
 

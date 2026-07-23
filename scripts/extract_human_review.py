@@ -104,6 +104,25 @@ def load_existing_verdicts(diff_dir):
     return out
 
 
+def load_excluded(diff_dir):
+    """{(category, CVE-ID)} flagged Excluded in judgment_store.csv (set by mark_excluded.py).
+
+    An excluded row is settled-but-out-of-population — it must never be queued for human
+    adjudication even if it would otherwise be flagged/pending (see
+    docs/plans/PLAN_scope_exclusion.md)."""
+    path = os.path.join(diff_dir, "judgment_store.csv")
+    excluded = set()
+    if not os.path.isfile(path):
+        return excluded
+    df = pd.read_csv(path, dtype=str).fillna("")
+    if "Excluded" not in df.columns:
+        return excluded
+    for _, r in df.iterrows():
+        if str(r.get("Excluded", "")).strip():
+            excluded.add((str(r.get("category", "")).strip(), norm(r["cve_id"])))
+    return excluded
+
+
 def is_settled(verdict_tuple):
     """A row is settled by humans when both reviewers answered, agree, and it isn't Maybe
     — the same unanimity bar finalize_judgments.py uses. Such rows leave the live queue."""
@@ -120,7 +139,7 @@ def verdicts_summary(row):
     return "  ".join(parts)
 
 
-def build_queue(merged_path, existing):
+def build_queue(merged_path, existing, excluded):
     cat = cat_of(merged_path)
     df = pd.read_csv(merged_path, dtype=str).fillna("")
     incomplete = int((df.get("Review Status", "") == "incomplete").sum())
@@ -132,8 +151,11 @@ def build_queue(merged_path, existing):
     # the 2nd reviewer), a disagreement, or a Maybe to reconcile.
     settled_mask = flagged["cve_id"].map(
         lambda c: is_settled(existing.get((cat, norm(c)), ("", "", "", ""))))
+    # Drop rows flagged out-of-scope (Excluded) — settled-but-out-of-population, never
+    # queued for adjudication even if otherwise flagged.
+    excluded_mask = flagged["cve_id"].map(lambda c: (cat, norm(c)) in excluded)
     n_settled = int(settled_mask.sum())
-    flagged = flagged[~settled_mask].copy()
+    flagged = flagged[~settled_mask & ~excluded_mask].copy()
     if flagged.empty:
         return flagged, 0, incomplete, n_settled
     flagged["Verdicts"] = flagged.apply(verdicts_summary, axis=1)
@@ -166,12 +188,15 @@ def main():
     existing = load_existing_verdicts(args.diff_dir)
     if existing:
         print(f"Carrying forward {len(existing)} existing human verdict(s).\n")
+    excluded = load_excluded(args.diff_dir)
+    if excluded:
+        print(f"Suppressing {len(excluded)} scope-excluded row(s) from the queue.\n")
 
     combined = []
     total_flagged = total_incomplete = total_settled = 0
     for mp in merged_files:
         cat = cat_of(mp)
-        q, n, inc, settled = build_queue(mp, existing)
+        q, n, inc, settled = build_queue(mp, existing, excluded)
         out = os.path.join(os.path.dirname(mp), "02_needs_human_review.csv")
         q.to_csv(out, index=False)
         parts = []
