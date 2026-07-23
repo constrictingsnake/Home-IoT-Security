@@ -1,53 +1,11 @@
 AI Verdict (consensus),Gemini Dissent,Difference Type,cve_id,published,description,cvss_score,cvss_version,cwe_ids,cpe_strings,Claude Judgment,Claude Confidence,Claude Reasoning,Codex Judgment,Codex Confidence,Codex Reasoning,Gemini Judgment,Gemini Confidence,Gemini Reasoning,Human Verdict,Human Notes
-Yes,,vendor_only,CVE-2023-0354,2023-03-13,"The Akuvox E11 web server can be accessed without any user authentication, and this could allow an attacker to access sensitive information, as well as create and download packet captures with known default URLs.",9.1,3.1,,cpe:2.3:o:akuvox:e11_firmware:-:*:*:*:*:*:*:*|cpe:2.3:h:akuvox:e11:-:*:*:*:*:*:*:*,Yes,High,Akuvox E11 is a residential video door phone; unauthenticated web-server access exposing sensitive data/packet captures is in scope.,Yes,High,,Yes,High,,,
-Yes,,intersection,CVE-2025-55631,2025-08-22,"Reolink Smart 2K+ Plug-in Wi-Fi Video Doorbell with Chime - firmware v3.0.0.4662_2503122283 was discovered to manage users' sessions system wide instead of an account-by-account basis, potentially leading to a Denial of Service (DoS) via resource exhaustion. NOTE: the Supplier reports that the system-wide limit is intentional.",4.0,3.1,CWE-400,,Yes,High,,Yes,High,,Yes,High,,,
-Yes,,intersection,CVE-2019-13336,2019-10-08,"The dbell Wi-Fi Smart Video Doorbell DB01-S Gen 1 allows remote attackers to launch commands with no authentication verification via TCP port 81, because the loginuse and loginpass parameters to openlock.cgi can have arbitrary values. NOTE: the vendor's position is that this product reached end of life in 2016.",9.8,3.1,CWE-287,cpe:2.3:o:dbell:db01-s_firmware:-:*:*:*:*:*:*:*|cpe:2.3:h:dbell:db01-s:gen_1:*:*:*:*:*:*:*,Yes,High,,Yes,High,,Yes,High,,,
+Yes,,intersection,CVE-2025-56675,2025-09-30,The EKEN video doorbell T6 BT60PLUS_MAIN_V1.0_GC1084_20230531 periodically sends debug logs to the EKEN cloud servers with sensitive information such as the Wi-Fi SSID and password.,3.5,3.1,CWE-669,,Yes,High,,Yes,High,,Yes,High,,,
 Yes,,intersection,CVE-2025-64983,2025-11-26,Smart Video Doorbell firmware versions prior to 2.01.078 contain an active debug code vulnerability that allows an attacker to connect via Telnet and gain access to the device.,8.0,3.0,CWE-489,,Yes,High,,Yes,High,,Yes,Low,"The description mentions 'Smart Video Doorbell' but does not specify a brand or model, making it generic. However, it fits the category definition.",,
-No,,vendor_only,CVE-2021-47743,2025-12-31,COMMAX Biometric Access Control System 1.0.0 contains an unauthenticated reflected cross-site scripting vulnerability in cookie parameters 'CMX_ADMIN_NM' and 'CMX_COMPLEX_NM'. Attackers can inject malicious HTML and JavaScript code into these cookie values to execute arbitrary scripts in a victim's browser session.,6.1,3.1,CWE-79,,No,High,,No,High,,No,High,,,
-Yes,,intersection,CVE-2024-58337,2025-12-30,Akuvox Smart Intercom S539 contains an improper access control vulnerability that allows users with 'User' privileges to modify API access settings and configurations. Attackers can exploit this vulnerability to escalate privileges and gain unauthorized access to administrative functionalities.,4.3,3.1,CWE-862,cpe:2.3:o:akuvox:s539_firmware:912.30.1.137:*:*:*:*:*:*:*|cpe:2.3:h:akuvox:s539:-:*:*:*:*:*:*:*|cpe:2.3:o:akuvox:s532_firmware:912.30.1.137:*:*:*:*:*:*:*|cpe:2.3:h:akuvox:s532:-:*:*:*:*:*:*:*|cpe:2.3:o:akuvox:x916_firmware:912.30.1.137:*:*:*:*:*:*:*|cpe:2.3:h:akuvox:x916:-:*:*:*:*:*:*:*|cpe:2.3:o:akuvox:x915_firmware:912.30.1.137:*:*:*:*:*:*:*|cpe:2.3:h:akuvox:x915:-:*:*:*:*:*:*:*|cpe:2.3:o:akuvox:x912_firmware:912.30.1.137:*:*:*:*:*:*:*|cpe:2.3:h:akuvox:x912:-:*:*:*:*:*:*:*|cpe:2.3:o:akuvox:r29_firmware:912.30.1.137:*:*:*:*:*:*:*|cpe:2.3:h:akuvox:r29:-:*:*:*:*:*:*:*|cpe:2.3:o:akuvox:e16c_firmware:912.30.1.137:*:*:*:*:*:*:*|cpe:2.3:h:akuvox:e16c:-:*:*:*:*:*:*:*|cpe:2.3:o:akuvox:r20k-2_firmware:912.30.1.137:*:*:*:*:*:*:*|cpe:2.3:h:akuvox:r20k-2:-:*:*:*:*:*:*:*|cpe:2.3:o:akuvox:r20a-2_firmware:912.30.1.137:*:*:*:*:*:*:*|cpe:2.3:h:akuvox:r20a-2:-:*:*:*:*:*:*:*|cpe:2.3:o:akuvox:c313w-2_firmware:912.30.1.137:*:*:*:*:*:*:*|cpe:2.3:h:akuvox:c313w-2:-:*:*:*:*:*:*:*|cpe:2.3:o:akuvox:ns-2_firmware:912.30.1.137:*:*:*:*:*:*:*|cpe:2.3:h:akuvox:ns-2:-:*:*:*:*:*:*:*|cpe:2.3:o:akuvox:nc-2_firmware:912.30.1.137:*:*:*:*:*:*:*|cpe:2.3:h:akuvox:nc-2:-:*:*:*:*:*:*:*|cpe:2.3:o:akuvox:nx-2_firmware:912.30.1.137:*:*:*:*:*:*:*|cpe:2.3:h:akuvox:nx-2:-:*:*:*:*:*:*:*,Yes,High,,Yes,High,,Yes,High,,,
-No,,keyword_only,CVE-2024-29206,2024-05-07,"An Improper Access Control could allow a malicious actor authenticated in the API to enable Android Debug Bridge (ADB) and make unsupported changes to the system.
-
- 
-
-Affected Products:
-
-UniFi Connect EV Station (Version 1.1.18 and earlier) 
-
-UniFi Connect EV Station Pro (Version 1.1.18 and earlier)
-
-UniFi Access G2 Reader Pro (Version 1.2.172 and earlier)
-
-UniFi Access Reader Pro (Version 2.7.238 and earlier)
-
-UniFi Access Intercom (Version 1.0.66 and earlier)
-
-UniFi Access Intercom Viewer (Version 1.0.5 and earlier)
-
-UniFi Connect Display (Version 1.9.324 and earlier)
-
-UniFi Connect Display Cast (Version 1.6.225 and earlier)
-
- 
-
-Mitigation:
-
-Update UniFi Connect Application to Version 3.10.7 or later.
-
-Update UniFi Connect EV Station to Version 1.2.15 or later.   
-
-Update UniFi Connect EV Station Pro to Version 1.2.15 or later.
-
-Update UniFi Access G2 Reader Pro Version 1.3.37 or later.
-
-Update UniFi Access Reader Pro Version 2.8.19 or later.
-
-Update UniFi Access Intercom Version 1.1.32 or later.
-
-Update UniFi Access Intercom Viewer Version 1.1.6 or later.
-
-Update UniFi Connect Display to Version 1.11.348 or later. 
-
-Update UniFi Connect Display Cast to Version 1.8.255 or later.",2.2,3.0,CWE-284,,No,High,,No,High,,No,High,,,
-No,,keyword_only,CVE-2017-10819,2017-08-04,"MaLion for Mac 4.3.0 to 5.2.1 does not properly validate certificates, which may allow an attacker to eavesdrop on an encrypted communication.",5.9,3.1,CWE-295,cpe:2.3:a:intercom:malion:*:*:*:*:*:macos:*:*,No,High,,No,High,,No,High,,,
-Yes,,intersection,CVE-2021-31793,2021-05-06,An issue exists on NightOwl WDB-20-V2 WDB-20-V2_20190314 devices that allows an unauthenticated user to gain access to snapshots and video streams from the doorbell. The binary app offers a web server on port 80 that allows an unauthenticated user to take a snapshot from the doorbell camera via the /snapshot URI.,7.5,3.1,CWE-306,cpe:2.3:o:nightowlsp:wdb-20_firmware:20190314:*:*:*:*:*:*:*|cpe:2.3:h:nightowlsp:wdb-20:v2:*:*:*:*:*:*:*,Yes,High,,Yes,High,,Yes,High,,,
-No,,keyword_only,CVE-2014-2006,2014-06-28,Cross-site scripting (XSS) vulnerability in Intercom Web Kyukincho 3.x before 3.0.030 allows remote attackers to inject arbitrary web script or HTML via unspecified vectors.,4.3,2.0,CWE-79,cpe:2.3:a:intercom:web_kyukincho:3.0:*:*:*:*:*:*:*,No,High,,No,High,,No,High,,,
+Yes,,vendor_only,CVE-2023-0346,2023-03-13,Akuvox E11 cloud login is performed through an unencrypted HTTP connection. An attacker could gain access to the Akuvox cloud and device if the MAC address of a device if known.,7.5,3.1,,cpe:2.3:o:akuvox:e11_firmware:-:*:*:*:*:*:*:*|cpe:2.3:h:akuvox:e11:-:*:*:*:*:*:*:*,Yes,High,Akuvox E11 is a residential video door phone; cloud login over cleartext HTTP is in scope.,Yes,High,,Yes,High,,,
+No,,vendor_only,CVE-2021-47705,2025-12-09,COMMAX UMS Client ActiveX Control 1.7.0.2 contains a heap-based buffer overflow vulnerability that allows attackers to execute arbitrary code by providing excessively long string arrays through multiple functions. Attackers can exploit improper boundary validation in CNC_Ctrl.dll to cause heap corruption and potentially gain system-level access.,,,CWE-787,,No,High,,No,High,,No,Low,"The vulnerability is in an ActiveX control (UMS Client), which is a software component typically installed on a Windows PC to manage or view feeds from a device, rather than being a vulnerability in the firmware of the video doorbell itself.",,
+Yes,,intersection,CVE-2025-55631,2025-08-22,"Reolink Smart 2K+ Plug-in Wi-Fi Video Doorbell with Chime - firmware v3.0.0.4662_2503122283 was discovered to manage users' sessions system wide instead of an account-by-account basis, potentially leading to a Denial of Service (DoS) via resource exhaustion. NOTE: the Supplier reports that the system-wide limit is intentional.",4.0,3.1,CWE-400,,Yes,High,,Yes,High,,Yes,High,,,
+Yes,,intersection,CVE-2025-55626,2025-08-22,An Insecure Direct Object Reference (IDOR) vulnerability in Reolink Smart 2K+ Plug-in Wi-Fi Video Doorbell with Chime - firmware v3.0.0.4662_2503122283 allows unauthorized attackers to access the Admin-only settings and edit the session storage.,5.3,3.1,CWE-284,,Yes,High,,Yes,High,,Yes,High,,,
+Yes,,vendor_only,CVE-2023-0348,2023-03-13,"Akuvox E11 allows direct SIP calls. No access control is enforced by the SIP servers, which could allow an attacker to contact any device within Akuvox to call any other device.",7.5,3.1,,cpe:2.3:o:akuvox:e11_firmware:-:*:*:*:*:*:*:*|cpe:2.3:h:akuvox:e11:-:*:*:*:*:*:*:*,Yes,High,Akuvox E11 is a residential video door phone; unrestricted SIP calling between devices is in scope.,Yes,High,,Yes,High,,,
+Yes,,intersection,CVE-2025-55627,2025-08-22,Insufficient privilege verification in Reolink Smart 2K+ Plug-in Wi-Fi Video Doorbell with Chime - firmware v3.0.0.4662_2503122283 allows authenticated attackers to create accounts with elevated privileges.,5.3,3.1,CWE-269,,Yes,High,,Yes,High,,Yes,High,,,
+Yes,,intersection,CVE-2020-28713,2021-06-08,"Incorrect access control in push notification service in Night Owl Smart Doorbell FW version 20190505 allows remote users to send push notification events via an exposed PNS server. A remote attacker can passively record push notification events which are sent over an insecure web request. The web service does not authenticate requests, and allows attackers to send an indefinite amount of motion or doorbell events to a user's mobile application by either replaying or deliberately crafting false events.",6.5,3.1,CWE-294,cpe:2.3:o:nightowlsp:smart_doorbell_firmware:20190505:*:*:*:*:*:*:*|cpe:2.3:h:nightowlsp:smart_doorbell:-:*:*:*:*:*:*:*,Yes,High,,Yes,High,,Yes,High,,,
+No,Yes,vendor_only,CVE-2021-47719,2025-12-09,COMMAX WebViewer ActiveX Control 2.1.4.5 contains a buffer overflow vulnerability that allows attackers to execute arbitrary code by providing excessively long string arrays through multiple functions. Attackers can exploit boundary errors in Commax_WebViewer.ocx to cause buffer overflow conditions and potentially gain code execution.,,,CWE-787,,No,High,"The flaw is in the COMMAX WebViewer ActiveX control, a client-side browser viewer component; the entry gives no residential video-doorphone device context to place it in scope.",No,High,,Yes,Low,"COMMAX is a well-known manufacturer of video doorbells and intercom systems. The 'WebViewer' ActiveX control is likely used for remote monitoring of these devices via a web browser, which fits the home IoT profile for a video doorbell category.",,

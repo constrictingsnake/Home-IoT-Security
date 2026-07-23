@@ -233,9 +233,12 @@ expansion step:
 
 \paragraph{Vendor/brand search} For each category we first compiled a list of
 the manufacturers and brands that produce devices of that type, then searched the
-snapshot for those vendor and brand names. We assembled the brand lists from
-\stub[brand-list sources, e.g.\ manufacturer directories / retailer catalogues /
-targeted web searches per category]. Where a bare brand name overlaps unrelated
+snapshot for those vendor and brand names. We assembled the brand lists per
+category by surveying the major residential smart-home ecosystems---Google
+Nest/Home, Apple Home (HomeKit), Amazon Alexa, and comparable hub platforms---and
+enumerating the device types and device brands certified to interoperate within
+each ecosystem, supplemented by targeted per-category web searches for additional
+brands not surfaced through the ecosystems. Where a bare brand name overlaps unrelated
 products, we qualified it with a product word (e.g.\ ``carrier infinity'' rather
 than ``carrier'') to suppress the obvious noise. Every brand term was matched against
 both the CVE \emph{description text and the CPE (Common Platform Enumeration)
@@ -291,10 +294,15 @@ false positives (one row remained unresolved at the time of writing). By provena
 candidate pairs decompose into 3{,}069 vendor-only, 802 keyword-only, 588 intersection,
 and 2{,}076 CPE-expansion rows. A single CVE that legitimately affects devices in more
 than one category is counted once per category, so these are category-CVE pairs rather
-than distinct CVE identifiers. \stub[Note any vendors deliberately excluded for
-ambiguity --- analogous to the transportation study's conservative exclusion of Qualcomm
-chips --- e.g.\ generic chipsets or brand names that could not be confirmed as the device
-in question.]
+than distinct CVE identifiers. The transportation IoT study conservatively excluded
+ambiguous Qualcomm chipsets; the analogous deliberate exclusion here was Apple's tvOS.
+Although a streaming platform such as Apple TV nominally qualifies as a home-control
+surface, tvOS shares a codebase with Apple's general-purpose operating systems (iOS,
+macOS, watchOS), so NVD attributes a single such CVE across the entire OS family at
+once; tvOS-tagged CVEs would therefore dominate the \texttt{streaming} category by
+sheer volume while reflecting shared-platform rather than device-specific weaknesses.
+We accordingly mark tvOS CVEs out of scope for \texttt{streaming}
+(Section~\ref{sec:method-scope}).
 
 \paragraph{Comparability} An earlier iteration of this pipeline ran the keyword
 search against the live NVD API (matching the description only), while the vendor
@@ -314,8 +322,9 @@ lacked enough information to be associated with a CWE in NVD or fell outside NVD
 CWE mapping; NVD lists these as \texttt{NVD-CWE-noinfo} and \texttt{NVD-CWE-Other},
 respectively. Of the 3{,}413 confirmed home IoT CVEs in the analysis set, 633 carried
 no usable CWE mapping (an absent, \texttt{NVD-CWE-noinfo}, or \texttt{NVD-CWE-Other}
-value \stub[--- report the noinfo/Other split if the snapshot preserves it; the merged
-snapshot collapses both to an empty field]). We kept these in the CVE-level analysis
+value; our merged year-feed snapshot does not preserve the distinction among these
+three cases, collapsing all of them to an empty CWE field, so we report them together
+rather than splitting the \texttt{noinfo} and \texttt{Other} counts). We kept these in the CVE-level analysis
 (Sections~\ref{sec:rq1}--\ref{sec:rq2}), but they do not contribute to the CWE analysis.
 The remaining 2{,}780 CVEs carried CWE attributions spanning 289 unique CWE identifiers
 before mapping onto the CWE-888 view.
@@ -329,10 +338,10 @@ CVSS v2 and v3.x scores. Among the 3{,}413 confirmed CVEs, 2{,}284 carry a v3.1 
 score, 804 a v3.0 score, and 272 only a v2.0 score, while 53 carry no CVSS score at all
 (predominantly recent CVEs awaiting NVD enrichment). When a CVE has both a v2 and a v3.x
 score, we use the v3.x score, since v3 is the current scoring standard and gives the more
-comparable severity banding across the corpus. Finally, for each CVE we manually
-extracted information about the vulnerable components from the CVE descriptions
-\stub[(confirm whether component extraction was performed, and how components were
-named/normalized)].
+comparable severity banding across the corpus. We did not perform a component-level
+extraction of the vulnerable component from each CVE description in this study; a
+component breakdown mirroring the transportation study's Table~IV is left to future
+work (Section~\ref{sec:rq2}).
 
 \subsection{Mapping individual CWEs to the CWE-888 view}
 \label{sec:method-cwe888}
@@ -351,9 +360,13 @@ as primary vulnerability classes.
 When an identified CWE is itself part of the CWE-888 view, we mapped it directly to
 its corresponding primary class. When it is not, we examined its parent CWEs and mapped
 those instead, so a CWE whose parents fall under two different primary classes counts
-toward both. \stub[Report the over-counting bookkeeping for this dataset: the number
-(and percentage) of CVEs whose CWE mapped to two parents, and the number of CVEs that
-listed two distinct CWEs and how those resolved across primary classes.] This approach
+toward both. This over-counting is bounded in practice. % NUMBERS PROVISIONAL — regenerate (scripts/cwe888_analysis.py) after the tvOS scope exclusion and vulnrichment/intersection additions settle; current figures are from the 2026-07-14 data generation.
+Of the CVEs carrying at least one mapped CWE, 90 (3.0\%) have a single CWE whose parents
+fall under two different primary classes and so count toward both. A further 225 (7.6\%)
+list two or more distinct CWEs; of those, 113 resolve to a single primary class while 112
+span two or more. Taken together, 182 CVEs (6.1\%) contribute to more than one primary
+class for one of these two reasons, while the large majority (a single CWE mapping to a
+single class) contribute to exactly one. This approach
 builds a more complete picture of the vulnerability types present while keeping
 over-counting in check.
 
@@ -367,7 +380,7 @@ We therefore classified each candidate CVE in the difference set independently, 
 a true match for its category or a false positive.
 
 To make this trustworthy, every row was judged \emph{independently and blind} by
-five reviewers: two human researchers (\stub[Reviewer A] and \stub[Reviewer B]) and
+five reviewers: two human researchers (Aarav Verma and Suhani~\stub[last name]) and
 three AI reviewers (Claude Code, ChatGPT Codex, and Google's Gemini/Gemma). We enforce
 blindness structurally. Each reviewer works on its own copy of the data, containing only
 the raw fields plus its own empty judgment columns, so no reviewer can see another's

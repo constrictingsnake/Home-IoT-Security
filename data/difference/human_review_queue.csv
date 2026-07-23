@@ -1,8 +1,1 @@
 Category,Direction,Verdicts,Review Reason,cve_id,description,cpe_strings,Difference Type,published,cvss_score,cvss_version,cwe_ids,Claude Judgment,Claude Confidence,Claude Reasoning,Codex Judgment,Codex Confidence,Codex Reasoning,Gemini Judgment,Gemini Confidence,Gemini Reasoning,Human Verdict 1,Human Notes 1,Human Verdict 2,Human Notes 2
-cameras,intersection,C:No/Low  X:Yes/High  G:Yes/High,judgments not unanimous,CVE-2022-4621,"Panasonic Sanyo CCTV Network Cameras versions 1.02-05 and 2.03-0x are 
-vulnerable to CSRFs that can be exploited to allow an attacker to 
-perform changes with administrator level privileges. 
-
-
-
-",cpe:2.3:o:panasonic:vcc-hd5600p_firmware:2.03-06:*:*:*:*:*:*:*|cpe:2.3:h:panasonic:vcc-hd5600p:-:*:*:*:*:*:*:*|cpe:2.3:o:panasonic:vcc-hd3300p_firmware:1.02-05:*:*:*:*:*:*:*|cpe:2.3:o:panasonic:vcc-hd3300p_firmware:2.03-08:*:*:*:*:*:*:*|cpe:2.3:h:panasonic:vcc-hd3300p:-:*:*:*:*:*:*:*|cpe:2.3:o:panasonic:vcc-hd3300_firmware:2.03-02:*:*:*:*:*:*:*|cpe:2.3:h:panasonic:vcc-hd3300:-:*:*:*:*:*:*:*|cpe:2.3:o:panasonic:vcc-hd2100p_firmware:2.03-02:*:*:*:*:*:*:*|cpe:2.3:h:panasonic:vcc-hd2100p:-:*:*:*:*:*:*:*|cpe:2.3:o:panasonic:vcc-hd3100p_firmware:2.03-00:*:*:*:*:*:*:*|cpe:2.3:h:panasonic:vcc-hd3100p:-:*:*:*:*:*:*:*,intersection,2023-01-17,8.8,3.1,CWE-352,No,Low,"The affected network cameras belong to a professional CCTV product line sold into commercial and institutional surveillance rather than consumer retail. The cross-site request forgery flaw is deployment-independent, so exclusion rests on the product line's market.",Yes,High,,Yes,High,,No,,,
