@@ -220,6 +220,9 @@ def classify_file(
     redo=False,
     api_key=None,
     batch_size=1,
+    max_batch_tokens=0,
+    tpm=0,
+    max_batch_rows=0,
 ):
     """Fill the Gemini columns of one review copy in place. Returns rows classified.
 
@@ -229,6 +232,15 @@ def classify_file(
     batch_size > 1 sends multiple rows per API call, amortizing rubric overhead and
     dramatically reducing round-trips. Results are mapped back by cve_id. Rows not
     returned by the model are left blank for retry.
+
+    max_batch_tokens > 0 switches to token-aware packing: rows are greedily packed into
+    each request until the estimated prompt+output size (rubric overhead + per-row
+    description/CPE + an output allowance) would exceed the cap, so a cluster of rows with
+    huge CPE lists produces a smaller batch instead of one oversized request. tpm > 0 then
+    paces the run to that many tokens per minute (sleeping proportionally to each batch's
+    estimated size), keeping the whole pass under a provider TPM limit; rps still applies as
+    a floor on the inter-request gap (i.e. an RPM ceiling). max_batch_rows caps rows/batch
+    regardless of tokens (weaker models drop rows in very large batches).
     """
     api_key = api_key or os.environ.get("GEMINI_API_KEY")
     if not api_key:
@@ -265,15 +277,52 @@ def classify_file(
         print("  Gemini: nothing to do — all rows already classified.")
         return 0
 
-    use_batch = batch_size > 1
-    n_calls = -(-len(pending) // batch_size) if use_batch else len(pending)
+    use_batch = batch_size > 1 or max_batch_tokens > 0
+    cpe_of = (lambda idx: df.at[idx, cpe_col]) if cpe_col else (lambda idx: "")
+
+    # Fixed per-request overhead (rubric + category + scope + instructions) and a per-row
+    # size estimate (~4 chars/token, plus an output allowance), used for token-aware packing
+    # and TPM pacing. Deliberately rough — the safety margin below the real limit absorbs it.
+    base_tokens = (len(rubric) + len(category) + len(scope_note or "")) // 4 + 80
+
+    def est_row_tokens(idx):
+        body = df.at[idx, "cve_id"] + df.at[idx, "description"] + cpe_of(idx)
+        return len(body) // 4 + 70  # +70 ≈ per-row JSON output allowance
+
+    if max_batch_tokens > 0:
+        chunks, cur, cur_tok = [], [], base_tokens
+        for idx in pending:
+            rt = est_row_tokens(idx)
+            over_tok = cur and cur_tok + rt > max_batch_tokens
+            over_rows = cur and max_batch_rows and len(cur) >= max_batch_rows
+            if over_tok or over_rows:
+                chunks.append(cur)
+                cur, cur_tok = [], base_tokens
+            cur.append(idx)
+            cur_tok += rt
+        if cur:
+            chunks.append(cur)
+    elif use_batch:
+        chunks = [pending[i : i + batch_size] for i in range(0, len(pending), batch_size)]
+    else:
+        chunks = [[idx] for idx in pending]
+
+    sizes = [len(c) for c in chunks] or [0]
     print(
-        f"  Gemini: classifying {len(pending)} rows with {model} "
-        f"({'batch_size=' + str(batch_size) + ', ' if use_batch else ''}{n_calls} API calls) ..."
+        f"  Gemini: classifying {len(pending)} rows with {model} in {len(chunks)} API calls"
+        + (f" (token-aware ≤{max_batch_tokens} tok/batch, {min(sizes)}–{max(sizes)} rows/batch)"
+           if max_batch_tokens > 0 else
+           (f" (batch_size={batch_size})" if use_batch else ""))
+        + (f", paced to {tpm} tok/min" if tpm > 0 else "")
+        + " ..."
     )
     session = requests.Session()
     delay = 1.0 / rps if rps > 0 else 0.0
     done = 0
+
+    def _pace(chunk):
+        batch_tokens = base_tokens + sum(est_row_tokens(i) for i in chunk)
+        time.sleep(max(delay, (batch_tokens / tpm * 60.0) if tpm > 0 else 0.0))
 
     def _write_row(idx, judgment, confidence, reasoning):
         if confidence == "High" and judgment != "Maybe":
@@ -283,7 +332,6 @@ def classify_file(
         df.at[idx, REASON_COL] = reasoning
 
     if use_batch:
-        chunks = [pending[i : i + batch_size] for i in range(0, len(pending), batch_size)]
         for chunk in chunks:
             rows = [
                 (df.at[idx, "cve_id"], df.at[idx, "description"], df.at[idx, cpe_col] if cpe_col else "")
@@ -295,8 +343,7 @@ def classify_file(
             except Exception as e:
                 cve_ids = [r[0] for r in rows]
                 print(f"    batch {cve_ids}: error {e} — left blank for retry")
-                if delay:
-                    time.sleep(delay)
+                _pace(chunk)
                 continue
 
             # Map results back by cve_id; rows missing from the response stay blank.
@@ -312,11 +359,9 @@ def classify_file(
             if missing:
                 print(f"    warning: model omitted {missing} — left blank for retry")
 
-            if done % save_every < batch_size:
-                df.to_csv(csv_path, index=False)
-                print(f"    ...{done}/{len(pending)} saved")
-            if delay:
-                time.sleep(delay)
+            df.to_csv(csv_path, index=False)
+            print(f"    ...{done}/{len(pending)} classified")
+            _pace(chunk)
     else:
         for idx in pending:
             prompt = build_prompt(
@@ -359,6 +404,13 @@ def main():
     ap.add_argument("--redo", action="store_true", help="Re-classify rows that already have a Gemini judgment")
     ap.add_argument("--batch-size", type=int, default=1,
                     help="Rows per API call (default 1 = one row at a time; try 20 to cut round-trips ~20x)")
+    ap.add_argument("--max-batch-tokens", type=int, default=0,
+                    help="Token-aware packing: pack rows until est. prompt+output would exceed this "
+                         "(handles rows with huge CPE lists); overrides fixed --batch-size when > 0")
+    ap.add_argument("--tpm", type=int, default=0,
+                    help="Tokens-per-minute pacing ceiling (sleeps proportionally to each batch's size)")
+    ap.add_argument("--max-batch-rows", type=int, default=0,
+                    help="Hard cap on rows per batch regardless of tokens (0 = no cap)")
     args = ap.parse_args()
 
     try:
@@ -374,6 +426,9 @@ def main():
             limit=args.limit,
             redo=args.redo,
             batch_size=args.batch_size,
+            max_batch_tokens=args.max_batch_tokens,
+            tpm=args.tpm,
+            max_batch_rows=args.max_batch_rows,
         )
     except (RuntimeError, FileNotFoundError, ValueError) as e:
         sys.exit(str(e))
