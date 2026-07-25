@@ -28,7 +28,7 @@ Rows not yet fully reviewed (any of the 3 judgments still blank) are marked
 without pretending the row is resolved.
 
 Alongside the merge, a small spot-check sample is written (02_high_confidence_audit.csv):
-a random N (default 10) of the "high-confidence" rows — complete, both strong reviewers High,
+a random N (default 1, i.e. 24 total across categories) of the "high-confidence" rows — complete, both strong reviewers High,
 and either all 3 unanimous or a strong consensus with a lone Gemini dissent (the dissent is
 surfaced in a Gemini Dissent column). These rows are never flagged for human review, so the
 sample lets a human audit whether the AIs are confidently wrong. It carries empty Human Verdict /
@@ -272,7 +272,7 @@ def main():
     ap.add_argument("--codex", help="Path to the Codex copy (overrides --reviews)")
     ap.add_argument("--gemini", help="Path to the Gemini copy (overrides --reviews)")
     ap.add_argument("--out", default=None, help="Output path (default: <reviews>/../02_merged.csv)")
-    ap.add_argument("--audit-sample", type=int, default=10,
+    ap.add_argument("--audit-sample", type=int, default=1,
                     help="Write a random sample of N high-confidence rows for human spot-checking (0 to disable)")
     ap.add_argument("--audit-out", default=None,
                     help="Audit sample path (default: <merged dir>/02_high_confidence_audit.csv)")
