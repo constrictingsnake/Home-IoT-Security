@@ -59,15 +59,24 @@ def load_existing_verdicts(diff_dir):
     """{(category, CVE-ID): (HV1, HN1, HV2, HN2)} from the persistent store + any sheets.
 
     The judgment store is the durable home for human answers (finalize_judgments.py writes
-    them there), so it is read first — this is what lets already-reviewed rows be dropped
-    from the live queue yet still carried forward if they ever reappear. Live sheets are
-    read after and win over the store (a human may have just edited them). Sheets on the
-    old single-reviewer schema (Human Verdict / Human Notes) are read as Reviewer 1's
-    answer; Reviewer 2's slot comes back blank for those rows.
+    them there), so it is read first as the baseline — this is what lets already-reviewed
+    rows be dropped from the live queue yet still carried forward if they ever reappear.
+    Live sheets are read after and win over the store (a human may have just edited them).
+
+    Between the two live-sheet sources, the combined `human_review_queue.csv` wins over the
+    per-category `02_needs_human_review.csv` files on conflict (first ingested, kept) — the
+    same precedence finalize_judgments.py uses. This must stay symmetric with that script:
+    if the two disagreed on which sheet is authoritative, a hand-edit to one file could
+    settle a row in the store while this script kept re-queuing it from the other (or vice
+    versa). A conflict prints a warning rather than silently picking one.
+
+    Sheets on the old single-reviewer schema (Human Verdict / Human Notes) are read as
+    Reviewer 1's answer; Reviewer 2's slot comes back blank for those rows.
     """
     out = {}
+    origin = {}
 
-    def ingest(path, category, override):
+    def ingest(path, category, warn):
         if not os.path.isfile(path):
             return
         df = pd.read_csv(path, dtype=str).fillna("")
@@ -92,15 +101,19 @@ def load_existing_verdicts(diff_dir):
             cat = (category if category is not None
                    else str(r.get("Category", "")).strip() or str(r.get("category", "")).strip())
             key = (cat, norm(r["cve_id"]))
-            if override:
-                out[key] = (hv1, hn1, hv2, hn2)
-            else:
-                out.setdefault(key, (hv1, hn1, hv2, hn2))
+            tup = (hv1, hn1, hv2, hn2)
+            if warn and key in out and out[key] != tup:
+                print(f"  ! conflict for {cat}/{key[1]}: {out[key]} ({origin[key]}) "
+                      f"vs {tup} ({os.path.basename(path)}) — keeping first")
+                continue
+            out.setdefault(key, tup)
+            if warn:
+                origin.setdefault(key, os.path.basename(path))
 
-    ingest(os.path.join(diff_dir, "judgment_store.csv"), category=None, override=False)
-    ingest(os.path.join(diff_dir, "human_review_queue.csv"), category=None, override=True)
+    ingest(os.path.join(diff_dir, "judgment_store.csv"), category=None, warn=False)
+    ingest(os.path.join(diff_dir, "human_review_queue.csv"), category=None, warn=True)
     for p in sorted(glob.glob(os.path.join(diff_dir, "*", "02_needs_human_review.csv"))):
-        ingest(p, category=cat_of(p), override=True)
+        ingest(p, category=cat_of(p), warn=True)
     return out
 
 
@@ -139,13 +152,23 @@ def verdicts_summary(row):
     return "  ".join(parts)
 
 
+def queue_columns(df):
+    """The queue's column order (LEAD + category-specific middle + AI_COLS + TAIL),
+    restricted to columns actually present in df. Shared by build_queue (real rows) and
+    main()'s empty-queue fallback, so an all-settled run still writes a proper header
+    instead of an untrimmed or stale one."""
+    middle = [c for c in df.columns if c not in LEAD + AI_COLS + TAIL and c not in DROP]
+    cols = LEAD + middle + AI_COLS + TAIL
+    return [c for c in cols if c in df.columns]
+
+
 def build_queue(merged_path, existing, excluded):
     cat = cat_of(merged_path)
     df = pd.read_csv(merged_path, dtype=str).fillna("")
     incomplete = int((df.get("Review Status", "") == "incomplete").sum())
     flagged = df[df.get("Needs Human Review", "") == "Yes"].copy()
     if flagged.empty:
-        return flagged, 0, incomplete, 0
+        return flagged[queue_columns(flagged)], 0, incomplete, 0
     # Drop rows already settled by humans — they live in the judgment store now, not the
     # live queue. What stays is genuine outstanding work: no verdict, one verdict (awaiting
     # the 2nd reviewer), a disagreement, or a Maybe to reconcile.
@@ -157,18 +180,14 @@ def build_queue(merged_path, existing, excluded):
     n_settled = int(settled_mask.sum())
     flagged = flagged[~settled_mask & ~excluded_mask].copy()
     if flagged.empty:
-        return flagged, 0, incomplete, n_settled
+        return flagged[queue_columns(flagged)], 0, incomplete, n_settled
     flagged["Verdicts"] = flagged.apply(verdicts_summary, axis=1)
     carried = flagged["cve_id"].map(lambda c: existing.get((cat, norm(c)), ("", "", "", "")))
     flagged["Human Verdict 1"] = [v for v, _, _, _ in carried]
     flagged["Human Notes 1"] = [n for _, n, _, _ in carried]
     flagged["Human Verdict 2"] = [v for _, _, v, _ in carried]
     flagged["Human Notes 2"] = [n for _, _, _, n in carried]
-    middle = [c for c in flagged.columns
-              if c not in LEAD + AI_COLS + TAIL and c not in DROP]
-    cols = LEAD + middle + AI_COLS + TAIL
-    cols = [c for c in cols if c in flagged.columns]
-    return flagged[cols], len(flagged), incomplete, n_settled
+    return flagged[queue_columns(flagged)], len(flagged), incomplete, n_settled
 
 
 def main():
@@ -207,25 +226,28 @@ def main():
         note = f" ({'; '.join(parts)})" if parts else ""
         print(f"  {cat:16} {n:4} outstanding -> {out}{note}")
         total_settled += settled
-        if n:
-            q_out = q.copy()
-            # Add Direction alias from Difference Type for combined queue backward compat
-            if "Difference Type" in q_out.columns:
-                q_out.insert(0, "Direction", q_out["Difference Type"])
-            q_out.insert(0, "Category", cat)
-            combined.append(q_out)
+        # Always carry this category's frame into the combined queue, even with 0 rows —
+        # so the combined file's columns stay correct and (below) it gets rewritten/
+        # truncated on an all-settled run instead of being left with stale content from
+        # a previous run (the bug this pass is fixing).
+        q_out = q.copy()
+        # Add Direction alias from Difference Type for combined queue backward compat
+        if "Difference Type" in q_out.columns:
+            q_out.insert(0, "Direction", q_out["Difference Type"])
+        q_out.insert(0, "Category", cat)
+        combined.append(q_out)
         total_flagged += n
         total_incomplete += inc
 
     if not args.merged:
         combined_path = os.path.join(args.diff_dir, "human_review_queue.csv")
-        if combined:
-            out_df = pd.concat(combined, ignore_index=True)
-            v1 = int((out_df["Human Verdict 1"].str.strip() != "").sum())
-            v2 = int((out_df["Human Verdict 2"].str.strip() != "").sum())
-            both = int(((out_df["Human Verdict 1"].str.strip() != "") &
-                        (out_df["Human Verdict 2"].str.strip() != "")).sum())
-            out_df.to_csv(combined_path, index=False)
+        out_df = pd.concat(combined, ignore_index=True) if combined else pd.DataFrame()
+        v1 = int((out_df["Human Verdict 1"].str.strip() != "").sum()) if len(out_df) else 0
+        v2 = int((out_df["Human Verdict 2"].str.strip() != "").sum()) if len(out_df) else 0
+        both = int(((out_df["Human Verdict 1"].str.strip() != "") &
+                    (out_df["Human Verdict 2"].str.strip() != "")).sum()) if len(out_df) else 0
+        out_df.to_csv(combined_path, index=False)
+        if total_flagged:
             print(f"\nCombined: {total_flagged} outstanding rows "
                   f"(reviewer1={v1}, reviewer2={v2}, both={both}) -> {combined_path}")
         else:

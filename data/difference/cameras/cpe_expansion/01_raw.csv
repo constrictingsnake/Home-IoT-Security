@@ -63,6 +63,19 @@ cpe_expansion,CVE-2021-34358,2021-11-20,We have already fixed this vulnerability
 cpe_expansion,CVE-2021-38675,2021-10-01,"A cross-site scripting (XSS) vulnerability has been reported to affect QNAP device running Image2PDF. If exploited, this vulnerability allows remote attackers to inject malicious code. We have already fixed this vulnerability in the following versions of Image2PDF: Image2PDF 2.1.5 ( 2021/08/17 ) and later",5.4,3.1,CWE-79,cpe:2.3:a:qnap:image2pdf:*:*:*:*:*:*:*:*|cpe:2.3:h:qnap:nas:-:*:*:*:*:*:*:*
 cpe_expansion,CVE-2021-38681,2021-11-20,"A reflected cross-site scripting (XSS) vulnerability has been reported to affect QNAP NAS running Ragic Cloud DB. If exploited, this vulnerability allows remote attackers to inject malicious code. QNAP have already disabled and removed Ragic Cloud DB from the QNAP App Center, pending a security patch from Ragic.",5.4,3.1,CWE-79,cpe:2.3:a:qnap:ragic_cloud_db:*:*:*:*:*:*:*:*|cpe:2.3:h:qnap:nas:-:*:*:*:*:*:*:*
 cpe_expansion,CVE-2021-40597,2022-06-29,The firmware of EDIMAX IC-3140W Version 3.11 is hardcoded with Administrator username and password.,9.8,3.1,CWE-798,cpe:2.3:o:edimax:ic-3140w_firmware:3.11:*:*:*:*:*:*:*|cpe:2.3:h:edimax:ic-3140w:-:*:*:*:*:*:*:*
+cpe_expansion,CVE-2023-24104,2023-02-23,Ubiquiti Networks UniFi Dream Machine Pro v7.2.95 allows attackers to bypass domain restrictions via crafted packets.,9.8,3.1,,cpe:2.3:o:ui:unifi_dream_machine_pro_firmware:7.2.95:*:*:*:*:*:*:*|cpe:2.3:h:ui:unifi_dream_machine_pro:-:*:*:*:*:*:*:*
+cpe_expansion,CVE-2023-41721,2023-10-25,"Instances of UniFi Network Application that (i) are run on a UniFi Gateway Console, and (ii) are versions 7.5.176. and earlier, implement device adoption with improper access control logic, creating a risk of access to device configuration information by a malicious actor with preexisting access to the network.
+
+Affected Products:
+UDM
+UDM-PRO
+UDM-SE
+UDR
+UDW
+ 
+Mitigation:
+Update UniFi Network to Version 7.5.187 or later.
+",5.3,3.1,CWE-284,cpe:2.3:a:ui:unifi_network_application:*:*:*:*:*:*:*:*|cpe:2.3:h:ui:unifi_dream_machine:-:*:*:*:*:*:*:*|cpe:2.3:h:ui:unifi_dream_machine_pro:-:*:*:*:*:*:*:*|cpe:2.3:h:ui:unifi_dream_machine_special_edition:-:*:*:*:*:*:*:*|cpe:2.3:h:ui:unifi_dream_router:-:*:*:*:*:*:*:*|cpe:2.3:h:ui:unifi_dream_wall:-:*:*:*:*:*:*:*
 cpe_expansion,CVE-2023-49235,2024-01-09,"An issue was discovered in libremote_dbg.so on TRENDnet TV-IP1314PI 5.5.3 200714 devices. Filtering of debug information is mishandled during use of popen. Consequently, an attacker can bypass validation and execute a shell command.",9.8,3.1,CWE-78,cpe:2.3:o:trendnet:tv-ip1314pi_firmware:5.5.3:200714:*:*:*:*:*:*|cpe:2.3:h:trendnet:tv-ip1314pi:-:*:*:*:*:*:*:*
 cpe_expansion,CVE-2023-49237,2024-01-09,An issue was discovered on TRENDnet TV-IP1314PI 5.5.3 200714 devices. Command injection can occur because the system function is used by davinci to unpack language packs without strict filtering of URL strings.,9.8,3.1,CWE-77,cpe:2.3:o:trendnet:tv-ip1314pi_firmware:5.5.3:200714:*:*:*:*:*:*|cpe:2.3:h:trendnet:tv-ip1314pi:-:*:*:*:*:*:*:*
 cpe_expansion,CVE-2024-7616,2024-08-12,A vulnerability was found in Edimax IC-6220DC and IC-5150W up to 3.06. It has been rated as critical. Affected by this issue is the function cgiFormString of the file ipcam_cgi. The manipulation of the argument host leads to command injection. NOTE: The vendor was contacted early about this disclosure but did not respond in any way.,9.8,3.1,CWE-77,cpe:2.3:o:edimax:ic-6220dc_firmware:*:*:*:*:*:*:*:*|cpe:2.3:h:edimax:ic-6220dc:-:*:*:*:*:*:*:*|cpe:2.3:o:edimax:ic-5150w_firmware:*:*:*:*:*:*:*:*|cpe:2.3:h:edimax:ic-5150w:-:*:*:*:*:*:*:*
