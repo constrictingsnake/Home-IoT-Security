@@ -23,6 +23,13 @@ Generated **from** this ontology (do not hand-edit):
 | `data/ontology/families.csv` | `cwe888_analysis.py --group family` (RQ1), and RQ2 |
 | `data/ontology/homeiot-kg.ttl` | Nothing in the pipeline — it is an *output*, queried by SPARQL |
 
+Querying the KG: `scripts/kg_queries.py` is a reusable SPARQL query library over
+`homeiot.ttl` + `data/ontology/homeiot-kg.ttl` — canned queries (`list` / `run <name>` / `run all`),
+ad hoc queries (`sparql "SELECT ..."`), and two heavier analyses that don't fit a single query
+(`weakness-fingerprint` — per-category CWE-888 histogram vs. an NVD-wide baseline, chi-square
+tested; `cves-by-year` — per-category disclosure trend, cut off at 2024 for the NVD enrichment
+backlog). See its module docstring for the method.
+
 ## Commands
 
 ```bash
