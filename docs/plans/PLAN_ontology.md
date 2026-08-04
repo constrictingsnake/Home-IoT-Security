@@ -1,16 +1,85 @@
 # Plan — Home IoT Device Ontology (OWL/SKOS, native Turtle)
 
-*Status: **Proposed 2026-08-04** — no code written. Decision taken: author natively in
-RDF/OWL Turtle (not YAML→TTL) because the paper ships an ontology as a contribution and a
-generated artifact is a weaker claim than a authored one. `rdflib` becomes a new dependency.*
+*Decision taken: author natively in RDF/OWL Turtle (not YAML→TTL) because the paper ships an
+ontology as a contribution and a generated artifact is a weaker claim than an authored one.
+`rdflib`, `pyshacl`, `owlrl` are new dependencies (added to README Prerequisites).*
 
 **Goal:** replace the prose scope definition in `docs/home_iot_security_report.tex`
 §`sec:method-scope` with a machine-checkable OWL ontology that (a) formalizes the five
-definitional criteria as class axioms, (b) adds the **family hierarchy** the paper currently
-lacks, and (c) generates `data/categories.csv` byte-identically so no pipeline stage changes.
+definitional criteria as class axioms, (b) adds the **folding-category hierarchy** the paper
+currently lacks, and (c) generates `data/categories.csv` byte-identically so no pipeline stage
+changes.
 
 **The load-bearing deliverable is the hierarchy, not the artifact.** Everything else is
 framing; the family rollup changes a result.
+
+---
+
+## STATUS — paused 2026-08-04, branch `ontology`
+
+**Phases 1–3 complete and pushed. Phase 4 (KG export) and Phase 5 (paper edits) not started.**
+
+`python3 scripts/ontology_build.py --check` is the single gate. Currently green:
+
+```
+SHACL: clean
+parsed: 24 analysis categories, 3 excluded, 13 families
+categories.csv: byte-identical ✓
+families.csv:   byte-identical ✓
+alignment: all external IRIs verified against manifest ✓
+reasoner: 27/27 rulings reproduced
+```
+
+| Commit | What |
+|---|---|
+| `a1d8a65` | Phase 1 — `homeiot.ttl`, `shapes.ttl`, `ontology_build.py` |
+| `c9121f5` | Phase 2 — **scope-exclusion bug fix**, 13 supervisor folds, `--group family`, micro/macro |
+| `65802d2` | Phase 3 — `homeiot-align.ttl`, 331-IRI pinned manifest, IRI verification |
+| `7f59e0b` | 3 of 4 scope calls resolved, `hiot:noNvdFootprint` added |
+
+### The one thing still open: `shades`
+
+`shades` has **0 confirmed-Yes from 5 judged**, and `data/keyword-search/keyword_shades.csv` is
+88 bytes (header only) despite 40 vendor terms and 9 keyword terms existing. Two possible
+explanations, and they lead to opposite actions:
+
+- **(a) genuinely absent from NVD** → treat exactly like `sleeptracker`: set
+  `hiot:noNvdFootprint true` with an evidence `rdfs:comment` (SHACL enforces the comment).
+- **(b) stale search output** — approved terms that were never rebuilt into the search, the
+  failure mode recorded in the `stale-search-outputs-recall-lever` finding → this is a **recall
+  gap**, not a scope call, and the fix is a rebuild, not an ontology marker.
+
+Evidence so far leans **(a)**: `keyword_shades.csv` is dated 2026-07-23 while the shades keyword
+terms date from `c1ffb39` (2026-06-24), so the search does appear to have run *with* the terms
+and found nothing. `term_precision.csv` agrees on the vendor side — `powerview` 4 judged / 0 Yes,
+`somfy` 1 / 0. **Not yet confirmed.**
+
+**To resume:** re-run the shades terms live against the snapshot and count hits. Both attempts on
+2026-08-04 were killed before finishing — `filter_by_keywords` over 748k rows is slow, and the
+faster streaming version still ran several minutes. Consider scoping the scan to
+`description` + `cpe_strings` for the 9 keyword terms only, or just running
+`build_search.py --overwrite` for `shades` and reading the row count.
+
+Note the framing shift: the call was recorded as *"is the blinds/curtains/shutters merge
+correct?"*, but **at n=0 that question is moot** — the real question is (a) vs (b) above.
+
+### Resolved scope calls (see `hiot:resolvedScopeCall` in the TTL for the evidence)
+
+| Call | Outcome | Evidence |
+|---|---|---|
+| `ev-charging` vs `home-power` | separate | 0 shared Yes CVEs (71 vs 45); disjoint vendor terms |
+| smart-display split | stay merged | 2 of 38 Yes touch a display; `smart display` = 48 judged / 0 Yes |
+| `sleeptracker` | kept, `noNvdFootprint` | 0 Yes / 29 judged; terms correct and firing |
+
+### Carried-forward items not part of this plan
+
+1. **`tab:cwe888-matrix` in `report.tex` is stale AND predates the exclusion fix.** Regenerate
+   before submission (`scripts/generate_cwe888_table.py`). Any figure computed before `c9121f5`
+   is wrong.
+2. **`docs/plans/PLAN_scope_exclusion.md` does not exist on `main`** but is referenced from
+   `categories.csv`, `mark_excluded.py`, and `CLAUDE.md`.
+3. **`CLAUDE.md` still describes the ontology-less layout** — no mention of `ontology/`,
+   `families.csv`, or `ontology_build.py`. Update when Phase 5 lands.
 
 ---
 
