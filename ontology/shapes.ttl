@@ -78,6 +78,17 @@ hiot:SortOrderUniqueShape a sh:NodeShape ;
       }""" ] .
 
 
+# A category marked noNvdFootprint must record the evidence — otherwise the marker
+# becomes a way to quietly retire an inconvenient category.
+hiot:NoFootprintShape a sh:NodeShape ;
+  sh:target [ a sh:SPARQLTarget ;
+    sh:select """
+      SELECT ?this WHERE {
+        ?this <https://w3id.org/homeiot/ontology#noNvdFootprint> true }""" ] ;
+  sh:property [ sh:path rdfs:comment ; sh:minCount 1 ;
+                sh:message "A category marked hiot:noNvdFootprint must record the evidence (judged count, whether the terms fired, why the survivors were No) in an rdfs:comment." ] .
+
+
 # Every excluded type must say which criteria it fails — the paper publishes that.
 hiot:ExcludedTypeShape a sh:NodeShape ;
   sh:target [ a sh:SPARQLTarget ;

@@ -131,12 +131,34 @@ CVEs. SAREF is precise about meters, HVAC, lighting, shading and appliances — 
 building-management origins — and silent about most of what a consumer bought in the last
 decade. That is the empirical argument for this ontology, and `--align` recomputes it.
 
-## Open scope calls
+## Scope calls
 
-`hiot:openScopeCall` marks boundaries not finally settled: `ev-charging`/`home-power`, `shades`,
-and the `smartspeakers` smart-display split. `hiot:provisional` marks `sleeptracker` (and with
-it the single-member `Sleep` fold), pending rebuild. Per PLAN_ontology.md these must be
-resolved before the Phase 3 reasoner validation is treated as binding.
+`hiot:openScopeCall` marks a boundary still unsettled; `hiot:resolvedScopeCall` records one that
+was settled *and the evidence that settled it*, so the paper can cite why the call went the way
+it did. Resolved calls are kept, not deleted.
+
+| Call | Outcome (2026-08-04) | Evidence |
+|---|---|---|
+| `ev-charging` vs `home-power` | **separate** | zero shared confirmed-Yes CVEs (71 vs 45); disjoint vendor term sets, even the two Tesla terms |
+| smart displays split from `smartspeakers` | **stay merged** | 2 of 38 Yes rows touch a display; `smart display` scores 48 judged / 0 Yes (prune_candidate) in both term blocks |
+| `sleeptracker` | **kept, reclassified** | 0 Yes from 29 judged; terms are correct and fired — see below |
+| `shades` merge rule | see below | |
+
+### `hiot:noNvdFootprint` — the third kind of exclusion
+
+Some categories satisfy all five **definitional** criteria but fail the paper's operational
+**study-inclusion** criterion ("has a CPE-identifiable footprint in NVD"). That is a weaker and
+different exclusion than `hiot:failsCriteria`, which is for types that are not home IoT at all
+(game consoles fail criteria 2 and 4).
+
+Such a category **stays** in the ontology and in `categories.csv` — the frozen 24-category scope
+and the whole pipeline are untouched — but contributes no rows to RQ1/RQ2. Dropping it instead
+would take the scope from 24 to 23 and contradict the paper text. SHACL requires an
+`rdfs:comment` recording the evidence, so the marker cannot be used to quietly retire an
+inconvenient category.
+
+This is a finding about NVD coverage, not an embarrassment: the device class exists, is in
+scope, and is invisible to the vulnerability record.
 
 ## Folding categories
 

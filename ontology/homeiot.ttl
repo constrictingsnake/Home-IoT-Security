@@ -76,6 +76,18 @@ hiot:provisional a owl:DatatypeProperty ; rdfs:label "provisional" ;
 hiot:openScopeCall a owl:DatatypeProperty ; rdfs:label "open scope call" ;
   rdfs:comment "An unsettled boundary question. Must be empty before the reasoner validation in Phase 3 is considered binding." ;
   rdfs:domain hiot:DeviceType ; rdfs:range xsd:string .
+hiot:resolvedScopeCall a owl:DatatypeProperty ; rdfs:label "resolved scope call" ;
+  rdfs:comment "A boundary question that WAS open and has been settled, with the evidence that settled it. Kept rather than deleted so the paper can cite why the call went the way it did." ;
+  rdfs:domain hiot:DeviceType ; rdfs:range xsd:string .
+hiot:noNvdFootprint a owl:DatatypeProperty ; rdfs:label "no NVD footprint" ;
+  rdfs:comment """True when a category satisfies all five DEFINITIONAL criteria but fails the paper's
+operational STUDY-INCLUSION criterion ('has a CPE-identifiable footprint in NVD and is subject to
+CVE disclosure'). This is a different and weaker exclusion than hiot:failsCriteria: the device
+class is genuinely home IoT, it is simply invisible to NVD. Such categories stay in the ontology
+and in categories.csv (so the pipeline and the frozen 24-category scope are untouched) but
+contribute no rows to RQ1/RQ2 — which is a finding about NVD coverage, not an embarrassment.
+Requires an rdfs:comment recording the evidence, enforced by shapes.ttl.""" ;
+  rdfs:domain hiot:DeviceType ; rdfs:range xsd:boolean .
 hiot:failsCriteria a owl:DatatypeProperty ; rdfs:label "fails criteria" ;
   rdfs:comment "Which definitional criteria an excluded type fails, as published in the paper." ;
   rdfs:domain hiot:DeviceType ; rdfs:range xsd:string .
@@ -283,7 +295,7 @@ hiot:smartspeakers a owl:Class, hiot:DeviceType ;
   hiot:placement hiot:Indoor ;
   hiot:actuatesPhysical false ;
   hiot:capturesAV true ;
-  hiot:openScopeCall """Whether smart displays split out into their own category is unconfirmed; currently merged here.""" ;
+  hiot:resolvedScopeCall """RESOLVED 2026-08-04 — smart displays stay MERGED here, not split out. Evidence: of 38 confirmed-Yes rows only 2 touch a display product (a Lenovo Smart Assistant app and a Lenovo Smart Clock); the category's real content is Sonos, Bose SoundTouch, Echo Dot and Xiaomi speakers. Independently, term_precision.csv scores the term `smart display` at 48 judged / 0 Yes (prune_candidate) in BOTH the vendor and keyword blocks, and `smart screen` at 1/0. A split would yield n~2 — the same tail problem the folding categories exist to fix. Smart displays are in scope by definition but have essentially no distinct NVD footprint.""" ;
   skos:scopeNote """IN: consumer smart speakers, smart displays, and smart soundbars (Echo, Nest, HomePod) — qualify as home-control surfaces via criterion 4(b). OUT: plain Bluetooth speakers, headphones, and AV receivers with no assistant/home-control role.""" .
 
 hiot:sleeptracker a owl:Class, hiot:DeviceType ;
@@ -301,7 +313,12 @@ hiot:sleeptracker a owl:Class, hiot:DeviceType ;
   hiot:actuatesPhysical false ;
   hiot:capturesAV false ;
   hiot:provisional true ;
-  rdfs:comment """~88% of the current set is wrist wearables (out by criterion 3) with essentially no bedside monitors. Category pending rebuild and may be dropped; the Wellness family goes with it if so.""" ;
+  hiot:noNvdFootprint true ;
+  rdfs:comment """RESOLVED 2026-08-04 — NOT dropped; reclassified as definitionally in scope but operationally invisible to NVD (see hiot:noNvdFootprint).
+
+Evidence: 0 confirmed-Yes from 29 judged rows. Critically this is NOT a term problem — the keyword terms are correct and DID fire (`bedside monitor`, `under-mattress sensor`, `smart mattress`, `contactless sleep monitor`, `cpap`; the cpap term returned a BMC Medical Luna CPAP machine, judged No as a medical device). The ~88% wrist-wearable contamination is out by criterion 3, and what remains has no NVD footprint at all.
+
+Dropping the category would take the frozen scope from 24 to 23, break categories.csv, and contradict the paper text. Marking it instead uses the distinction the paper already draws in sec:method-scope between the five definitional criteria and the operational study-inclusion criterion. Precedent: game consoles are defined-then-excluded too, but they fail definitional criteria 2 and 4, which is why they carry hiot:failsCriteria and this does not.""" ;
   skos:scopeNote """IN: bedside / non-wearable sleep monitors. OUT: wrist wearables and fitness trackers (Fitbit, Apple Watch, Garmin).""" .
 
 hiot:doorbell a owl:Class, hiot:DeviceType ;
@@ -544,7 +561,7 @@ hiot:ev_charging a owl:Class, hiot:DeviceType ;
   hiot:placement hiot:Either ;
   hiot:actuatesPhysical true ;
   hiot:capturesAV false ;
-  hiot:openScopeCall """Boundary with home-power not finally settled: a wallbox that meters and load-balances against a home battery arguably belongs to either.""" ;
+  hiot:resolvedScopeCall """RESOLVED 2026-08-04 — stays SEPARATE from home-power. The hypothetical (a wallbox that meters and load-balances against a home battery) does not manifest: the two categories share ZERO confirmed-Yes CVEs (71 vs 45), and their vendor term sets are cleanly disjoint (chargepoint home / juicebox / wallbox pulsar / tesla wall connector vs enphase iq / solaredge inverter / tesla powerwall / sonnen battery) — even the two Tesla terms name distinct products. Both fold into Energy, so the RQ1 family view is unaffected either way.""" ;
   skos:scopeNote """IN: home EVSE/wallbox for a private garage or driveway. OUT: commercial/public/fleet chargers (Iocharger, Circontrol, Raption, eCharge) and the vehicle itself.""" .
 
 hiot:home_power a owl:Class, hiot:DeviceType ;
@@ -561,7 +578,7 @@ hiot:home_power a owl:Class, hiot:DeviceType ;
   hiot:placement hiot:Either ;
   hiot:actuatesPhysical true ;
   hiot:capturesAV false ;
-  hiot:openScopeCall """Boundary with ev-charging not finally settled (see ev-charging).""" ;
+  hiot:resolvedScopeCall """RESOLVED 2026-08-04 — stays SEPARATE from ev-charging (see ev-charging for the evidence: zero shared confirmed-Yes CVEs, disjoint vendor term sets).""" ;
   skos:scopeNote """IN: residential solar inverters, home batteries, and smart meters (SMA, Victron Venus, Enphase, Tesla Powerwall). OUT: utility-scale/commercial PV and grid equipment.""" .
 
 hiot:garden a owl:Class, hiot:DeviceType ;
