@@ -1,0 +1,663 @@
+@prefix hiot:  <https://w3id.org/homeiot/ontology#> .
+@prefix owl:   <http://www.w3.org/2002/07/owl#> .
+@prefix rdf:   <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs:  <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:   <http://www.w3.org/2001/XMLSchema#> .
+@prefix skos:  <http://www.w3.org/2004/02/skos/core#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+
+################################################################################
+# Home IoT Device Ontology
+#
+# Formalizes the scope definition in docs/home_iot_security_report.tex
+# (sec:method-scope) and CLAUDE.md "Definition of a Home IoT Device".
+#
+# HAND-MAINTAINED. Regenerate the derived CSVs with:
+#     python3 scripts/ontology_build.py --check    (verify, no writes)
+#     python3 scripts/ontology_build.py --write    (emit categories.csv + families.csv)
+#
+# Two invariants (see docs/plans/PLAN_ontology.md):
+#   1. data/categories.csv must regenerate BYTE-IDENTICALLY, row order included.
+#      hiot:sortOrder carries that order; do not renumber casually.
+#   2. skos:scopeNote text is MOVED here verbatim from the old hand-authored
+#      categories.csv, never synthesized. It reaches AI reviewers through
+#      gemini_classify.py, so editing it changes reviewer behaviour.
+################################################################################
+
+<https://w3id.org/homeiot/ontology> a owl:Ontology ;
+  dcterms:title "Home IoT Device Ontology" ;
+  dcterms:description "Device-type ontology for the residential IoT vulnerability study: five definitional criteria as class axioms over a closed facet vocabulary, 24 analysis categories in 7 families, plus 3 defined-but-excluded types." ;
+  owl:versionInfo "0.1.0" .
+
+################################################################################
+# Facet properties
+################################################################################
+
+hiot:hasConnectivity a owl:ObjectProperty ;
+  rdfs:label "has connectivity" ; rdfs:comment "Criterion 1." ;
+  rdfs:domain hiot:DeviceType ; rdfs:range hiot:Protocol .
+hiot:hasDeviceClass a owl:ObjectProperty ;
+  rdfs:label "has device class" ; rdfs:comment "Criterion 2." ;
+  rdfs:domain hiot:DeviceType ; rdfs:range hiot:DeviceClass .
+hiot:hasDeployment a owl:ObjectProperty ;
+  rdfs:label "has deployment context" ; rdfs:comment "Criterion 3." ;
+  rdfs:domain hiot:DeviceType ; rdfs:range hiot:DeploymentContext .
+hiot:hasFunction a owl:ObjectProperty ;
+  rdfs:label "has function" ; rdfs:comment "Criterion 4(a)." ;
+  rdfs:domain hiot:DeviceType ; rdfs:range hiot:Function .
+hiot:hasRole a owl:ObjectProperty ;
+  rdfs:label "has role" ; rdfs:comment "Criterion 4(b) — the home-control-surface disjunct." ;
+  rdfs:domain hiot:DeviceType ; rdfs:range hiot:Role .
+hiot:hasSecurityContext a owl:ObjectProperty ;
+  rdfs:label "has security context" ; rdfs:comment "Criterion 5." ;
+  rdfs:domain hiot:DeviceType ; rdfs:range hiot:SecurityContext .
+
+# Analysis facets — carried for RQ1/RQ2, NO bearing on membership.
+hiot:formFactor a owl:ObjectProperty ; rdfs:label "form factor" ;
+  rdfs:comment "Worn is what excludes wrist wearables from the sleeptracker category." ;
+  rdfs:domain hiot:DeviceType ; rdfs:range hiot:FormFactor .
+hiot:placement a owl:ObjectProperty ; rdfs:label "placement" ;
+  rdfs:domain hiot:DeviceType ; rdfs:range hiot:Placement .
+hiot:actuatesPhysical a owl:DatatypeProperty ; rdfs:label "actuates physical" ;
+  rdfs:comment "True when compromise can produce a physical-world consequence (unlock a door, energize a circuit, heat an element). CVSS impact metrics do not capture this; RQ2 uses it." ;
+  rdfs:domain hiot:DeviceType ; rdfs:range xsd:boolean .
+hiot:capturesAV a owl:DatatypeProperty ; rdfs:label "captures audio/video" ;
+  rdfs:comment "True when the device has a camera or always-listening microphone. Privacy-relevant grouping for RQ1 Information Leak." ;
+  rdfs:domain hiot:DeviceType ; rdfs:range xsd:boolean .
+
+hiot:slug a owl:DatatypeProperty ; rdfs:label "slug" ;
+  rdfs:comment "Pipeline identifier. Primary key of data/categories.csv and of judgment_store.csv (category, cve_id)." ;
+  rdfs:domain hiot:DeviceType ; rdfs:range xsd:string .
+hiot:sortOrder a owl:DatatypeProperty ; rdfs:label "sort order" ;
+  rdfs:comment "Row order in the generated categories.csv. cwe888_analysis.py reads that order into cat_order and uses it for table row ordering." ;
+  rdfs:domain hiot:DeviceType ; rdfs:range xsd:integer .
+hiot:provisional a owl:DatatypeProperty ; rdfs:label "provisional" ;
+  rdfs:domain hiot:DeviceType ; rdfs:range xsd:boolean .
+hiot:openScopeCall a owl:DatatypeProperty ; rdfs:label "open scope call" ;
+  rdfs:comment "An unsettled boundary question. Must be empty before the reasoner validation in Phase 3 is considered binding." ;
+  rdfs:domain hiot:DeviceType ; rdfs:range xsd:string .
+hiot:failsCriteria a owl:DatatypeProperty ; rdfs:label "fails criteria" ;
+  rdfs:comment "Which definitional criteria an excluded type fails, as published in the paper." ;
+  rdfs:domain hiot:DeviceType ; rdfs:range xsd:string .
+
+################################################################################
+# Facet value vocabularies (closed)
+################################################################################
+
+hiot:Protocol a owl:Class .
+hiot:DeviceClass a owl:Class .
+hiot:DeploymentContext a owl:Class .
+hiot:Function a owl:Class .
+hiot:Role a owl:Class .
+hiot:SecurityContext a owl:Class .
+hiot:FormFactor a owl:Class .
+hiot:Placement a owl:Class .
+
+hiot:wifi a hiot:Protocol . hiot:ethernet a hiot:Protocol . hiot:zigbee a hiot:Protocol .
+hiot:zwave a hiot:Protocol . hiot:thread a hiot:Protocol . hiot:matter a hiot:Protocol .
+hiot:ble a hiot:Protocol . hiot:mqtt a hiot:Protocol . hiot:coap a hiot:Protocol .
+hiot:cellular a hiot:Protocol . hiot:rtsp a hiot:Protocol . hiot:onvif a hiot:Protocol .
+
+hiot:EmbeddedSensor a hiot:DeviceClass . hiot:EmbeddedAppliance a hiot:DeviceClass .
+hiot:EmbeddedController a hiot:DeviceClass . hiot:GeneralPurposeCompute a hiot:DeviceClass .
+
+hiot:Residential a hiot:DeploymentContext . hiot:Prosumer a hiot:DeploymentContext .
+hiot:Commercial a hiot:DeploymentContext . hiot:Industrial a hiot:DeploymentContext .
+
+hiot:Monitor a hiot:Function . hiot:Automate a hiot:Function . hiot:Control a hiot:Function .
+hiot:MediaPlayback a hiot:Function . hiot:Transport a hiot:Function .
+
+hiot:HomeControlSurface a hiot:Role .
+
+hiot:ConsumerManaged a hiot:SecurityContext . hiot:ProfessionallyAdministered a hiot:SecurityContext .
+
+hiot:Fixed a hiot:FormFactor . hiot:Portable a hiot:FormFactor . hiot:Worn a hiot:FormFactor .
+hiot:Indoor a hiot:Placement . hiot:Outdoor a hiot:Placement . hiot:Either a hiot:Placement .
+
+################################################################################
+# The five criteria as an OWL equivalence axiom
+#
+# A device type is in scope iff it satisfies ALL five. Criterion 4 is the
+# disjunction: a home-control FUNCTION (4a) OR the home-control-surface ROLE (4b).
+# This is what admits streaming/smartspeakers (function is MediaPlayback, role is
+# HomeControlSurface) while excluding game consoles (same function, no role, and
+# GeneralPurposeCompute already fails criterion 2).
+################################################################################
+
+hiot:DeviceType a owl:Class ; rdfs:label "device type" .
+
+# NOTE ON PUNNING. Each of the 27 device types is declared BOTH as an owl:Class
+# (so families can subclass it and the taxonomy is a real hierarchy) AND as an
+# individual of hiot:DeviceType (so the criteria axiom below can classify it).
+# Facet values are individuals, so value groupings use owl:oneOf, not owl:unionOf
+# — union is over classes, and using it over individuals would silently produce
+# an axiom no reasoner acts on.
+
+hiot:SpecialPurposeEmbedded a owl:Class ;
+  rdfs:label "special-purpose embedded" ;
+  owl:equivalentClass [ a owl:Class ;
+    owl:oneOf (hiot:EmbeddedSensor hiot:EmbeddedAppliance hiot:EmbeddedController) ] .
+
+hiot:GeneralPurposeComputeClass a owl:Class ;
+  rdfs:label "general-purpose compute" ;
+  owl:equivalentClass [ a owl:Class ; owl:oneOf (hiot:GeneralPurposeCompute) ] ;
+  owl:disjointWith hiot:SpecialPurposeEmbedded .
+
+hiot:HomeControlFunction a owl:Class ;
+  rdfs:label "home-control function" ;
+  owl:equivalentClass [ a owl:Class ;
+    owl:oneOf (hiot:Monitor hiot:Automate hiot:Control) ] .
+
+hiot:InScopeDeviceType a owl:Class ;
+  rdfs:label "in-scope home IoT device type" ;
+  owl:equivalentClass [
+    a owl:Class ; owl:intersectionOf (
+      hiot:DeviceType
+      [ a owl:Restriction ; owl:onProperty hiot:hasConnectivity ; owl:someValuesFrom hiot:Protocol ]
+      [ a owl:Restriction ; owl:onProperty hiot:hasDeviceClass ; owl:someValuesFrom hiot:SpecialPurposeEmbedded ]
+      [ a owl:Restriction ; owl:onProperty hiot:hasDeployment ; owl:hasValue hiot:Residential ]
+      [ a owl:Class ; owl:unionOf (
+          [ a owl:Restriction ; owl:onProperty hiot:hasFunction ; owl:someValuesFrom hiot:HomeControlFunction ]
+          [ a owl:Restriction ; owl:onProperty hiot:hasRole ; owl:hasValue hiot:HomeControlSurface ] ) ]
+      [ a owl:Restriction ; owl:onProperty hiot:hasSecurityContext ; owl:hasValue hiot:ConsumerManaged ]
+    ) ] .
+
+hiot:ExcludedDeviceType a owl:Class ;
+  rdfs:label "defined but excluded device type" ;
+  rdfs:comment "Satisfies connectivity but fails the class and/or function criteria. Defined so the boundary is stated rather than implied; kept out of the analysis set." .
+
+################################################################################
+# Families
+################################################################################
+
+hiot:SecurityAccessDevice a owl:Class ;
+  rdfs:subClassOf hiot:InScopeDeviceType ;
+  rdfs:label "Security & Access" ;
+  hiot:familyId "SecurityAccess" ;
+  rdfs:comment """Devices whose primary function is monitoring or controlling access to and activity within the home. Grouped on shared primary function and heavily overlapping brand sets (the sensors brand list overlaps alarms by design).""" .
+
+hiot:ControlSurfaceDevice a owl:Class ;
+  rdfs:subClassOf hiot:InScopeDeviceType ;
+  rdfs:label "Media & Control Surfaces" ;
+  hiot:familyId "ControlSurface" ;
+  rdfs:comment """Devices admitted under criterion 4(b): their qualifying function is acting as a control surface for OTHER home IoT devices, not controlling the home environment directly.""" .
+
+hiot:ClimateAirDevice a owl:Class ;
+  rdfs:subClassOf hiot:InScopeDeviceType ;
+  rdfs:label "Climate & Air" ;
+  hiot:familyId "ClimateAir" ;
+  rdfs:comment """Devices that monitor or regulate the home's thermal and air environment.""" .
+
+hiot:EnergyDevice a owl:Class ;
+  rdfs:subClassOf hiot:InScopeDeviceType ;
+  rdfs:label "Energy" ;
+  hiot:familyId "Energy" ;
+  rdfs:comment """Devices that generate, store, meter, or switch household electrical power.""" .
+
+hiot:DomesticChoresDevice a owl:Class ;
+  rdfs:subClassOf hiot:InScopeDeviceType ;
+  rdfs:label "Domestic & Chores" ;
+  hiot:familyId "DomesticChores" ;
+  rdfs:comment """Appliances that perform or automate household tasks.""" .
+
+hiot:FixtureDevice a owl:Class ;
+  rdfs:subClassOf hiot:InScopeDeviceType ;
+  rdfs:label "Fixtures" ;
+  hiot:familyId "Fixture" ;
+  rdfs:comment """Building-integrated fixtures actuated as part of the home's fabric.""" .
+
+hiot:WellnessDevice a owl:Class ;
+  rdfs:subClassOf hiot:InScopeDeviceType ;
+  rdfs:label "Wellness" ;
+  hiot:familyId "Wellness" ;
+  rdfs:comment """Non-wearable residential health and wellness monitors. PROVISIONAL — single member pending rebuild.""" .
+
+################################################################################
+# Analysis categories (24) — order is hiot:sortOrder, mirroring categories.csv
+################################################################################
+
+hiot:doorlock a owl:Class, hiot:DeviceType ;
+  rdfs:subClassOf hiot:SecurityAccessDevice ;
+  hiot:slug "doorlock" ;
+  rdfs:label "smart lock" ;
+  hiot:sortOrder 0 ;
+  hiot:hasConnectivity hiot:ble, hiot:zigbee, hiot:zwave, hiot:wifi, hiot:thread, hiot:matter ;
+  hiot:hasDeviceClass hiot:EmbeddedController ;
+  hiot:hasDeployment hiot:Residential ;
+  hiot:hasFunction hiot:Control, hiot:Automate ;
+  hiot:hasSecurityContext hiot:ConsumerManaged ;
+  hiot:formFactor hiot:Fixed ;
+  hiot:placement hiot:Indoor ;
+  hiot:actuatesPhysical true ;
+  hiot:capturesAV false ;
+  skos:scopeNote """IN: residential smart locks and garage-door openers (Yale, August, Tinxy, SGUDA, Genie Aladdin, Zigbee lock stacks). OUT: commercial/enterprise access-control panels and building door controllers.""" .
+
+hiot:smartspeakers a owl:Class, hiot:DeviceType ;
+  rdfs:subClassOf hiot:ControlSurfaceDevice ;
+  hiot:slug "smartspeakers" ;
+  rdfs:label "smart speaker" ;
+  hiot:sortOrder 1 ;
+  hiot:hasConnectivity hiot:wifi, hiot:ble, hiot:thread, hiot:matter ;
+  hiot:hasDeviceClass hiot:EmbeddedController ;
+  hiot:hasDeployment hiot:Residential ;
+  hiot:hasFunction hiot:MediaPlayback ;
+  hiot:hasRole hiot:HomeControlSurface ;
+  hiot:hasSecurityContext hiot:ConsumerManaged ;
+  hiot:formFactor hiot:Fixed ;
+  hiot:placement hiot:Indoor ;
+  hiot:actuatesPhysical false ;
+  hiot:capturesAV true ;
+  hiot:openScopeCall """Whether smart displays split out into their own category is unconfirmed; currently merged here.""" ;
+  skos:scopeNote """IN: consumer smart speakers, smart displays, and smart soundbars (Echo, Nest, HomePod) — qualify as home-control surfaces via criterion 4(b). OUT: plain Bluetooth speakers, headphones, and AV receivers with no assistant/home-control role.""" .
+
+hiot:sleeptracker a owl:Class, hiot:DeviceType ;
+  rdfs:subClassOf hiot:WellnessDevice ;
+  hiot:slug "sleeptracker" ;
+  rdfs:label "sleep tracker" ;
+  hiot:sortOrder 2 ;
+  hiot:hasConnectivity hiot:wifi, hiot:ble ;
+  hiot:hasDeviceClass hiot:EmbeddedSensor ;
+  hiot:hasDeployment hiot:Residential ;
+  hiot:hasFunction hiot:Monitor ;
+  hiot:hasSecurityContext hiot:ConsumerManaged ;
+  hiot:formFactor hiot:Fixed ;
+  hiot:placement hiot:Indoor ;
+  hiot:actuatesPhysical false ;
+  hiot:capturesAV false ;
+  hiot:provisional true ;
+  rdfs:comment """~88% of the current set is wrist wearables (out by criterion 3) with essentially no bedside monitors. Category pending rebuild and may be dropped; the Wellness family goes with it if so.""" ;
+  skos:scopeNote """IN: bedside / non-wearable sleep monitors. OUT: wrist wearables and fitness trackers (Fitbit, Apple Watch, Garmin).""" .
+
+hiot:doorbell a owl:Class, hiot:DeviceType ;
+  rdfs:subClassOf hiot:SecurityAccessDevice ;
+  hiot:slug "doorbell" ;
+  rdfs:label "video doorbell" ;
+  hiot:sortOrder 3 ;
+  hiot:hasConnectivity hiot:wifi, hiot:ethernet ;
+  hiot:hasDeviceClass hiot:EmbeddedSensor ;
+  hiot:hasDeployment hiot:Residential ;
+  hiot:hasFunction hiot:Monitor, hiot:Control ;
+  hiot:hasSecurityContext hiot:ConsumerManaged ;
+  hiot:formFactor hiot:Fixed ;
+  hiot:placement hiot:Outdoor ;
+  hiot:actuatesPhysical false ;
+  hiot:capturesAV true ;
+  skos:scopeNote """IN: video/smart doorbells (Ring, Reolink, Foscam VD, Akuvox). OUT: standalone cameras (classify under cameras) and baby monitors (under babymonitor).""" .
+
+hiot:thermostat a owl:Class, hiot:DeviceType ;
+  rdfs:subClassOf hiot:ClimateAirDevice ;
+  hiot:slug "thermostat" ;
+  rdfs:label "smart thermostat" ;
+  hiot:sortOrder 4 ;
+  hiot:hasConnectivity hiot:wifi, hiot:zigbee, hiot:zwave, hiot:thread, hiot:matter ;
+  hiot:hasDeviceClass hiot:EmbeddedController ;
+  hiot:hasDeployment hiot:Residential ;
+  hiot:hasFunction hiot:Monitor, hiot:Automate, hiot:Control ;
+  hiot:hasSecurityContext hiot:ConsumerManaged ;
+  hiot:formFactor hiot:Fixed ;
+  hiot:placement hiot:Indoor ;
+  hiot:actuatesPhysical true ;
+  hiot:capturesAV false ;
+  skos:scopeNote """IN: residential smart thermostats. OUT: commercial building-management/HVAC controllers and industrial climate systems.""" .
+
+hiot:babymonitor a owl:Class, hiot:DeviceType ;
+  rdfs:subClassOf hiot:SecurityAccessDevice ;
+  hiot:slug "babymonitor" ;
+  rdfs:label "baby monitor" ;
+  hiot:sortOrder 5 ;
+  hiot:hasConnectivity hiot:wifi, hiot:ble ;
+  hiot:hasDeviceClass hiot:EmbeddedSensor ;
+  hiot:hasDeployment hiot:Residential ;
+  hiot:hasFunction hiot:Monitor ;
+  hiot:hasSecurityContext hiot:ConsumerManaged ;
+  hiot:formFactor hiot:Fixed ;
+  hiot:placement hiot:Indoor ;
+  hiot:actuatesPhysical false ;
+  hiot:capturesAV true ;
+  skos:scopeNote """IN: dedicated consumer baby monitors. OUT: generic IP cameras not sold as baby monitors (classify under cameras) and any enterprise surveillance gear.""" .
+
+hiot:smartplugs a owl:Class, hiot:DeviceType ;
+  rdfs:subClassOf hiot:EnergyDevice ;
+  hiot:slug "smartplugs" ;
+  rdfs:label "smart plug" ;
+  hiot:sortOrder 6 ;
+  hiot:hasConnectivity hiot:wifi, hiot:zigbee, hiot:zwave, hiot:ble, hiot:thread, hiot:matter ;
+  hiot:hasDeviceClass hiot:EmbeddedController ;
+  hiot:hasDeployment hiot:Residential ;
+  hiot:hasFunction hiot:Monitor, hiot:Control ;
+  hiot:hasSecurityContext hiot:ConsumerManaged ;
+  hiot:formFactor hiot:Fixed ;
+  hiot:placement hiot:Indoor ;
+  hiot:actuatesPhysical true ;
+  hiot:capturesAV false ;
+  skos:scopeNote """IN: consumer smart plugs, outlets, and power strips. OUT: enterprise/data-center PDUs and industrial power management.""" .
+
+hiot:alarms a owl:Class, hiot:DeviceType ;
+  rdfs:subClassOf hiot:SecurityAccessDevice ;
+  hiot:slug "alarms" ;
+  rdfs:label "home alarm" ;
+  hiot:sortOrder 7 ;
+  hiot:hasConnectivity hiot:wifi, hiot:zigbee, hiot:zwave, hiot:cellular ;
+  hiot:hasDeviceClass hiot:EmbeddedController ;
+  hiot:hasDeployment hiot:Residential ;
+  hiot:hasFunction hiot:Monitor, hiot:Automate, hiot:Control ;
+  hiot:hasSecurityContext hiot:ConsumerManaged ;
+  hiot:formFactor hiot:Fixed ;
+  hiot:placement hiot:Indoor ;
+  hiot:actuatesPhysical true ;
+  hiot:capturesAV false ;
+  skos:scopeNote """IN: consumer home security/alarm systems and their sensors (eufy/Anker HomeBase, Qolsys, Abode, Nexx). OUT: commercial/industrial alarm, fire, and building-monitoring panels.""" .
+
+hiot:robotvacuum a owl:Class, hiot:DeviceType ;
+  rdfs:subClassOf hiot:DomesticChoresDevice ;
+  hiot:slug "robotvacuum" ;
+  rdfs:label "robot vacuum" ;
+  hiot:sortOrder 8 ;
+  hiot:hasConnectivity hiot:wifi, hiot:ble ;
+  hiot:hasDeviceClass hiot:EmbeddedAppliance ;
+  hiot:hasDeployment hiot:Residential ;
+  hiot:hasFunction hiot:Automate, hiot:Control ;
+  hiot:hasSecurityContext hiot:ConsumerManaged ;
+  hiot:formFactor hiot:Portable ;
+  hiot:placement hiot:Indoor ;
+  hiot:actuatesPhysical true ;
+  hiot:capturesAV true ;
+  skos:scopeNote """IN: consumer robot vacuums and mops. OUT: industrial/commercial cleaning robots.""" .
+
+hiot:fans a owl:Class, hiot:DeviceType ;
+  rdfs:subClassOf hiot:ClimateAirDevice ;
+  hiot:slug "fans" ;
+  rdfs:label "smart fan" ;
+  hiot:sortOrder 9 ;
+  hiot:hasConnectivity hiot:wifi, hiot:ble, hiot:zigbee ;
+  hiot:hasDeviceClass hiot:EmbeddedAppliance ;
+  hiot:hasDeployment hiot:Residential ;
+  hiot:hasFunction hiot:Control ;
+  hiot:hasSecurityContext hiot:ConsumerManaged ;
+  hiot:formFactor hiot:Fixed ;
+  hiot:placement hiot:Indoor ;
+  hiot:actuatesPhysical false ;
+  hiot:capturesAV false ;
+  skos:scopeNote """IN: consumer smart/connected fans (ceiling, tower, pedestal). OUT: industrial/commercial ventilation and exhaust systems.""" .
+
+hiot:fridge a owl:Class, hiot:DeviceType ;
+  rdfs:subClassOf hiot:DomesticChoresDevice ;
+  hiot:slug "fridge" ;
+  rdfs:label "smart refrigerator" ;
+  hiot:sortOrder 10 ;
+  hiot:hasConnectivity hiot:wifi ;
+  hiot:hasDeviceClass hiot:EmbeddedAppliance ;
+  hiot:hasDeployment hiot:Residential ;
+  hiot:hasFunction hiot:Monitor, hiot:Control ;
+  hiot:hasSecurityContext hiot:ConsumerManaged ;
+  hiot:formFactor hiot:Fixed ;
+  hiot:placement hiot:Indoor ;
+  hiot:actuatesPhysical true ;
+  hiot:capturesAV false ;
+  skos:scopeNote """IN: consumer smart refrigerators. OUT: commercial/industrial refrigeration.""" .
+
+hiot:shades a owl:Class, hiot:DeviceType ;
+  rdfs:subClassOf hiot:FixtureDevice ;
+  hiot:slug "shades" ;
+  rdfs:label "smart blinds" ;
+  hiot:sortOrder 11 ;
+  hiot:hasConnectivity hiot:zigbee, hiot:zwave, hiot:ble, hiot:wifi, hiot:thread, hiot:matter ;
+  hiot:hasDeviceClass hiot:EmbeddedController ;
+  hiot:hasDeployment hiot:Residential ;
+  hiot:hasFunction hiot:Control, hiot:Automate ;
+  hiot:hasSecurityContext hiot:ConsumerManaged ;
+  hiot:formFactor hiot:Fixed ;
+  hiot:placement hiot:Indoor ;
+  hiot:actuatesPhysical true ;
+  hiot:capturesAV false ;
+  hiot:openScopeCall """Merge rule applied (blinds/curtains/shutters are one product under different labels) but not finally confirmed.""" ;
+  skos:scopeNote """IN: consumer smart blinds, shades, curtains, shutters and their motors/controllers. OUT: commercial/industrial window and facade systems.""" .
+
+hiot:sensors a owl:Class, hiot:DeviceType ;
+  rdfs:subClassOf hiot:SecurityAccessDevice ;
+  hiot:slug "sensors" ;
+  rdfs:label "home sensor" ;
+  hiot:sortOrder 12 ;
+  hiot:hasConnectivity hiot:zigbee, hiot:zwave, hiot:ble, hiot:wifi, hiot:thread ;
+  hiot:hasDeviceClass hiot:EmbeddedSensor ;
+  hiot:hasDeployment hiot:Residential ;
+  hiot:hasFunction hiot:Monitor ;
+  hiot:hasSecurityContext hiot:ConsumerManaged ;
+  hiot:formFactor hiot:Fixed ;
+  hiot:placement hiot:Either ;
+  hiot:actuatesPhysical false ;
+  hiot:capturesAV false ;
+  skos:scopeNote """IN: consumer home sensors — motion, contact, leak, temperature, air-quality, presence. OUT: industrial/enterprise sensors and PLC/SCADA field devices.""" .
+
+hiot:airpurifier a owl:Class, hiot:DeviceType ;
+  rdfs:subClassOf hiot:ClimateAirDevice ;
+  hiot:slug "airpurifier" ;
+  rdfs:label "air purifier" ;
+  hiot:sortOrder 13 ;
+  hiot:hasConnectivity hiot:wifi, hiot:ble ;
+  hiot:hasDeviceClass hiot:EmbeddedAppliance ;
+  hiot:hasDeployment hiot:Residential ;
+  hiot:hasFunction hiot:Monitor, hiot:Control ;
+  hiot:hasSecurityContext hiot:ConsumerManaged ;
+  hiot:formFactor hiot:Fixed ;
+  hiot:placement hiot:Indoor ;
+  hiot:actuatesPhysical false ;
+  hiot:capturesAV false ;
+  skos:scopeNote """IN: consumer smart air purifiers. OUT: commercial/industrial air-handling and filtration systems.""" .
+
+hiot:lighting a owl:Class, hiot:DeviceType ;
+  rdfs:subClassOf hiot:FixtureDevice ;
+  hiot:slug "lighting" ;
+  rdfs:label "smart lighting" ;
+  hiot:sortOrder 14 ;
+  hiot:hasConnectivity hiot:wifi, hiot:zigbee, hiot:zwave, hiot:ble, hiot:thread, hiot:matter ;
+  hiot:hasDeviceClass hiot:EmbeddedController ;
+  hiot:hasDeployment hiot:Residential ;
+  hiot:hasFunction hiot:Control, hiot:Automate ;
+  hiot:hasSecurityContext hiot:ConsumerManaged ;
+  hiot:formFactor hiot:Fixed ;
+  hiot:placement hiot:Either ;
+  hiot:actuatesPhysical false ;
+  hiot:capturesAV false ;
+  skos:scopeNote """IN: consumer smart bulbs, light/dimmer/wall switches, and LED controllers (Hue, LIFX). OUT: phone 'Smart Switch' data-migration software, network switches, and apps/plugins that merely reference lighting.""" .
+
+hiot:appliances a owl:Class, hiot:DeviceType ;
+  rdfs:subClassOf hiot:DomesticChoresDevice ;
+  hiot:slug "appliances" ;
+  rdfs:label "smart appliance" ;
+  hiot:sortOrder 15 ;
+  hiot:hasConnectivity hiot:wifi, hiot:ble ;
+  hiot:hasDeviceClass hiot:EmbeddedAppliance ;
+  hiot:hasDeployment hiot:Residential ;
+  hiot:hasFunction hiot:Monitor, hiot:Control ;
+  hiot:hasSecurityContext hiot:ConsumerManaged ;
+  hiot:formFactor hiot:Fixed ;
+  hiot:placement hiot:Indoor ;
+  hiot:actuatesPhysical true ;
+  hiot:capturesAV false ;
+  skos:scopeNote """IN: consumer smart kitchen/laundry appliances — oven, range, cooker, microwave, dishwasher, washer, dryer, water heater. OUT: commercial/industrial appliances.""" .
+
+hiot:hub a owl:Class, hiot:DeviceType ;
+  rdfs:subClassOf hiot:ControlSurfaceDevice ;
+  hiot:slug "hub" ;
+  rdfs:label "smart home hub" ;
+  hiot:sortOrder 16 ;
+  hiot:hasConnectivity hiot:wifi, hiot:ethernet, hiot:zigbee, hiot:zwave, hiot:thread, hiot:matter, hiot:ble, hiot:mqtt ;
+  hiot:hasDeviceClass hiot:EmbeddedController ;
+  hiot:hasDeployment hiot:Residential ;
+  hiot:hasFunction hiot:Monitor, hiot:Automate, hiot:Control ;
+  hiot:hasRole hiot:HomeControlSurface ;
+  hiot:hasSecurityContext hiot:ConsumerManaged ;
+  hiot:formFactor hiot:Fixed ;
+  hiot:placement hiot:Indoor ;
+  hiot:actuatesPhysical false ;
+  hiot:capturesAV false ;
+  skos:scopeNote """IN: IoT hubs, bridges, and Matter/Thread/Zigbee/Z-Wave controllers (SmartThings, Hubitat, Hue Bridge). OUT: plain routers, modems, ONT, and unmanaged switches — transport, not home control.""" .
+
+hiot:ev_charging a owl:Class, hiot:DeviceType ;
+  rdfs:subClassOf hiot:EnergyDevice ;
+  hiot:slug "ev-charging" ;
+  rdfs:label "EV home charger" ;
+  hiot:sortOrder 17 ;
+  hiot:hasConnectivity hiot:wifi, hiot:ethernet, hiot:ble, hiot:cellular ;
+  hiot:hasDeviceClass hiot:EmbeddedController ;
+  hiot:hasDeployment hiot:Residential ;
+  hiot:hasFunction hiot:Monitor, hiot:Control ;
+  hiot:hasSecurityContext hiot:ConsumerManaged ;
+  hiot:formFactor hiot:Fixed ;
+  hiot:placement hiot:Either ;
+  hiot:actuatesPhysical true ;
+  hiot:capturesAV false ;
+  hiot:openScopeCall """Boundary with home-power not finally settled: a wallbox that meters and load-balances against a home battery arguably belongs to either.""" ;
+  skos:scopeNote """IN: home EVSE/wallbox for a private garage or driveway. OUT: commercial/public/fleet chargers (Iocharger, Circontrol, Raption, eCharge) and the vehicle itself.""" .
+
+hiot:home_power a owl:Class, hiot:DeviceType ;
+  rdfs:subClassOf hiot:EnergyDevice ;
+  hiot:slug "home-power" ;
+  rdfs:label "home energy system" ;
+  hiot:sortOrder 18 ;
+  hiot:hasConnectivity hiot:wifi, hiot:ethernet, hiot:cellular, hiot:mqtt ;
+  hiot:hasDeviceClass hiot:EmbeddedController ;
+  hiot:hasDeployment hiot:Residential ;
+  hiot:hasFunction hiot:Monitor, hiot:Control ;
+  hiot:hasSecurityContext hiot:ConsumerManaged ;
+  hiot:formFactor hiot:Fixed ;
+  hiot:placement hiot:Either ;
+  hiot:actuatesPhysical true ;
+  hiot:capturesAV false ;
+  hiot:openScopeCall """Boundary with ev-charging not finally settled (see ev-charging).""" ;
+  skos:scopeNote """IN: residential solar inverters, home batteries, and smart meters (SMA, Victron Venus, Enphase, Tesla Powerwall). OUT: utility-scale/commercial PV and grid equipment.""" .
+
+hiot:garden a owl:Class, hiot:DeviceType ;
+  rdfs:subClassOf hiot:DomesticChoresDevice ;
+  hiot:slug "garden" ;
+  rdfs:label "smart garden" ;
+  hiot:sortOrder 19 ;
+  hiot:hasConnectivity hiot:wifi, hiot:ble, hiot:cellular ;
+  hiot:hasDeviceClass hiot:EmbeddedAppliance ;
+  hiot:hasDeployment hiot:Residential ;
+  hiot:hasFunction hiot:Monitor, hiot:Automate, hiot:Control ;
+  hiot:hasSecurityContext hiot:ConsumerManaged ;
+  hiot:formFactor hiot:Portable ;
+  hiot:placement hiot:Outdoor ;
+  hiot:actuatesPhysical true ;
+  hiot:capturesAV false ;
+  skos:scopeNote """IN: consumer irrigation controllers and robot mowers (RainMachine, Rachio, ECOVACS/Yarbo mowers). OUT: commercial/agricultural irrigation and turf equipment.""" .
+
+hiot:pet a owl:Class, hiot:DeviceType ;
+  rdfs:subClassOf hiot:DomesticChoresDevice ;
+  hiot:slug "pet" ;
+  rdfs:label "smart pet device" ;
+  hiot:sortOrder 20 ;
+  hiot:hasConnectivity hiot:wifi, hiot:ble ;
+  hiot:hasDeviceClass hiot:EmbeddedAppliance ;
+  hiot:hasDeployment hiot:Residential ;
+  hiot:hasFunction hiot:Monitor, hiot:Automate, hiot:Control ;
+  hiot:hasSecurityContext hiot:ConsumerManaged ;
+  hiot:formFactor hiot:Fixed ;
+  hiot:placement hiot:Indoor ;
+  hiot:actuatesPhysical true ;
+  hiot:capturesAV true ;
+  skos:scopeNote """IN: consumer smart pet feeders, pet cameras, and litter boxes. OUT: commercial/veterinary/livestock equipment.""" .
+
+hiot:streaming a owl:Class, hiot:DeviceType ;
+  rdfs:subClassOf hiot:ControlSurfaceDevice ;
+  hiot:slug "streaming" ;
+  rdfs:label "streaming device" ;
+  hiot:sortOrder 21 ;
+  hiot:hasConnectivity hiot:wifi, hiot:ethernet, hiot:ble, hiot:thread, hiot:matter ;
+  hiot:hasDeviceClass hiot:EmbeddedController ;
+  hiot:hasDeployment hiot:Residential ;
+  hiot:hasFunction hiot:MediaPlayback ;
+  hiot:hasRole hiot:HomeControlSurface ;
+  hiot:hasSecurityContext hiot:ConsumerManaged ;
+  hiot:formFactor hiot:Fixed ;
+  hiot:placement hiot:Indoor ;
+  hiot:actuatesPhysical false ;
+  hiot:capturesAV true ;
+  skos:scopeNote """IN: streaming TVs, sticks, and boxes (Google/Android TV, Fire TV, Apple TV, Roku) — qualify as home-control surfaces via criterion 4(b). OUT: game consoles, VR/AR headsets, pure media apps, and tvOS CVEs (scope ruling 2026-07: excluded for volume — see judgment_store.csv `Excluded` column and docs/plans/PLAN_scope_exclusion.md).""" .
+
+hiot:airconditioner a owl:Class, hiot:DeviceType ;
+  rdfs:subClassOf hiot:ClimateAirDevice ;
+  hiot:slug "airconditioner" ;
+  rdfs:label "smart air conditioner" ;
+  hiot:sortOrder 22 ;
+  hiot:hasConnectivity hiot:wifi, hiot:ble ;
+  hiot:hasDeviceClass hiot:EmbeddedAppliance ;
+  hiot:hasDeployment hiot:Residential ;
+  hiot:hasFunction hiot:Control, hiot:Automate ;
+  hiot:hasSecurityContext hiot:ConsumerManaged ;
+  hiot:formFactor hiot:Fixed ;
+  hiot:placement hiot:Indoor ;
+  hiot:actuatesPhysical true ;
+  hiot:capturesAV false ;
+  skos:scopeNote """IN: consumer smart/Wi-Fi air conditioners and mini-splits with app control. OUT: commercial rooftop units and industrial HVAC.""" .
+
+hiot:cameras a owl:Class, hiot:DeviceType ;
+  rdfs:subClassOf hiot:SecurityAccessDevice ;
+  hiot:slug "cameras" ;
+  rdfs:label "security camera" ;
+  hiot:sortOrder 23 ;
+  hiot:hasConnectivity hiot:wifi, hiot:ethernet, hiot:rtsp, hiot:onvif ;
+  hiot:hasDeviceClass hiot:EmbeddedSensor ;
+  hiot:hasDeployment hiot:Residential ;
+  hiot:hasFunction hiot:Monitor ;
+  hiot:hasSecurityContext hiot:ConsumerManaged ;
+  hiot:formFactor hiot:Fixed ;
+  hiot:placement hiot:Either ;
+  hiot:actuatesPhysical false ;
+  hiot:capturesAV true ;
+  skos:scopeNote """IN: consumer IP/Wi-Fi/battery security cameras and home DVR/NVR. OUT: enterprise NVR/VMS/SAN and cloud gateways (Hikvision Hybrid SAN, Dahua DSS, Pelco professional, wireless bridges). Video doorbells belong to doorbell; baby monitors to babymonitor.""" .
+
+################################################################################
+# Defined but excluded (not in the analysis set)
+################################################################################
+
+hiot:gameconsoles a owl:Class, hiot:DeviceType ;
+  rdfs:subClassOf hiot:ExcludedDeviceType ;
+  hiot:slug "gameconsoles" ;
+  rdfs:label "game console" ;
+  hiot:hasConnectivity hiot:wifi, hiot:ethernet, hiot:ble ;
+  hiot:hasDeviceClass hiot:GeneralPurposeCompute ;
+  hiot:hasDeployment hiot:Residential ;
+  hiot:hasFunction hiot:MediaPlayback ;
+  hiot:hasSecurityContext hiot:ConsumerManaged ;
+  hiot:formFactor hiot:Fixed ;
+  hiot:placement hiot:Indoor ;
+  hiot:actuatesPhysical false ;
+  hiot:capturesAV true ;
+  hiot:failsCriteria "2, 4" ;
+  rdfs:comment """General-purpose compute. Controlling smart lights via an app is the app acting, not the device serving as a home-control surface.""" .
+
+hiot:vrar a owl:Class, hiot:DeviceType ;
+  rdfs:subClassOf hiot:ExcludedDeviceType ;
+  hiot:slug "vrar" ;
+  rdfs:label "VR/AR headset" ;
+  hiot:hasConnectivity hiot:wifi, hiot:ble ;
+  hiot:hasDeviceClass hiot:GeneralPurposeCompute ;
+  hiot:hasDeployment hiot:Residential ;
+  hiot:hasFunction hiot:MediaPlayback ;
+  hiot:hasSecurityContext hiot:ConsumerManaged ;
+  hiot:formFactor hiot:Worn ;
+  hiot:placement hiot:Indoor ;
+  hiot:actuatesPhysical false ;
+  hiot:capturesAV true ;
+  hiot:failsCriteria "2, 4" ;
+  rdfs:comment """General-purpose compute in a worn form factor; no home-control role.""" .
+
+hiot:transport_networking a owl:Class, hiot:DeviceType ;
+  rdfs:subClassOf hiot:ExcludedDeviceType ;
+  hiot:slug "transport-networking" ;
+  rdfs:label "transport networking gear" ;
+  hiot:hasConnectivity hiot:wifi, hiot:ethernet ;
+  hiot:hasDeviceClass hiot:EmbeddedController ;
+  hiot:hasDeployment hiot:Residential ;
+  hiot:hasFunction hiot:Transport ;
+  hiot:hasSecurityContext hiot:ConsumerManaged ;
+  hiot:formFactor hiot:Fixed ;
+  hiot:placement hiot:Indoor ;
+  hiot:actuatesPhysical false ;
+  hiot:capturesAV false ;
+  hiot:failsCriteria "4" ;
+  rdfs:comment """Carries other devices' traffic but controls none of them. Per Alrawi et al. (2019) routers/modems are untrusted threat-model context, not study subjects. A mesh gateway that ALSO acts as a Matter/Thread/Zigbee controller is reviewed under hub via criterion 4(b).""" .
+

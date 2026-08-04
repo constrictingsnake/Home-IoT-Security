@@ -1,0 +1,104 @@
+# Home IoT Device Ontology
+
+Formal source of truth for the 24 analysis categories, their 7-family hierarchy, and the five
+definitional criteria from `docs/home_iot_security_report.tex` §`sec:method-scope` /
+`CLAUDE.md` § *Definition of a Home IoT Device*.
+
+Design rationale and phasing: `docs/plans/PLAN_ontology.md`.
+
+| File | What it is |
+|---|---|
+| `homeiot.ttl` | The ontology. **Hand-authored** — edit this, never the generated CSVs. |
+| `shapes.ttl` | SHACL constraints. Catches what a reasoner won't (missing facet, duplicate sortOrder, bad slug). |
+
+Generated **from** this ontology (do not hand-edit):
+
+| File | Consumed by |
+|---|---|
+| `data/categories.csv` | 11 scripts + `run_gemini.sh` |
+| `data/ontology/families.csv` | family rollups in RQ1/RQ2 analysis |
+
+## Commands
+
+```bash
+python3 scripts/ontology_build.py --check    # validate + prove CSVs unchanged; exit 1 on drift
+python3 scripts/ontology_build.py --write    # regenerate categories.csv + families.csv
+python3 scripts/ontology_build.py --reason   # 27-class in/out ruling table
+```
+
+Requires `rdflib`, `pyshacl`, `owlrl` (`pip install rdflib pyshacl owlrl`).
+
+Run `--check` before committing any edit to `homeiot.ttl`.
+
+## Two invariants you can break by accident
+
+**1. `data/categories.csv` must regenerate byte-identically, row order included.**
+`cwe888_analysis.py:249-251` reads its order into `cat_order` and uses that for RQ1 table row
+ordering, so reordering silently reorders a published table. `hiot:sortOrder` fixes the order;
+SHACL enforces uniqueness. **Never put a comment line in `categories.csv`** — unlike
+`keyword_terms.csv` / `vendor_terms.csv` (custom parser, `#` ignored), it is read by
+`csv.DictReader`, which would swallow a leading `#` line as the header row.
+
+**2. `skos:scopeNote` reaches AI reviewers.** `gemini_classify.py --scope` injects it into the
+classification prompt. The text was *moved* here verbatim from the old hand-authored
+`categories.csv` and must never be synthesized from facets — editing it changes reviewer
+behaviour and therefore every downstream precision number. See PLAN_ontology.md § *Circularity
+boundary*: the ontology must not become a classification input beyond this pass-through.
+
+## Turtle crib sheet
+
+You only need four patterns to curate this file.
+
+```turtle
+hiot:cameras a owl:Class, hiot:DeviceType ;   # ← every statement ends in ;  except the last, which ends in .
+  rdfs:subClassOf hiot:SecurityAccessDevice ; # ← which family it belongs to
+  hiot:slug "cameras" ;                       # ← quoted string
+  hiot:sortOrder 23 ;                         # ← bare integer, no quotes
+  hiot:hasConnectivity hiot:wifi, hiot:rtsp ; # ← comma = multiple values for one property
+  hiot:actuatesPhysical false ;               # ← bare true/false
+  skos:scopeNote """IN: ... OUT: ...""" .     # ← triple quotes hold commas, quotes, newlines
+```
+
+- `;` = "same subject, next property". `.` = "end of this block". A missing `.` is the usual
+  parse error.
+- `,` = "same property, another value".
+- Prefixes (`hiot:`, `skos:`, …) are declared once at the top of the file.
+- Names with a hyphen in the slug use an underscore in the class name (`hiot:ev_charging`,
+  slug `"ev-charging"`) — the slug string is what the pipeline uses.
+
+**Adding a category** is not just a Turtle edit: category membership is frozen (`CLAUDE.md` §
+*Finalized Category Scope*), and adding one forces a full chain re-run for it.
+
+## Punning (why each type is both a class and an individual)
+
+Each device type is declared `a owl:Class, hiot:DeviceType`. The class side gives a real
+hierarchy (families subclass `hiot:InScopeDeviceType`); the individual side lets the
+`hiot:InScopeDeviceType` equivalence axiom actually classify it under OWL-RL. Facet *values*
+are individuals, so value groupings use `owl:oneOf` — `owl:unionOf` is over classes and would
+produce an axiom no reasoner acts on.
+
+## The reasoner check
+
+`--reason` evaluates the criteria axiom over the asserted facets and compares its verdict to
+each type's published placement (in the analysis set, or under `hiot:ExcludedDeviceType`).
+All 27 currently agree.
+
+This is a real check, not a tautology — verified by perturbation:
+
+| Perturbation | Result |
+|---|---|
+| remove every `hasRole hiot:HomeControlSurface` | `streaming` + `smartspeakers` flip to **out** (`hub` survives on 4(a)) |
+| give `gameconsoles` `EmbeddedController` + `Control` | flips to **in** |
+| move `cameras` to `hasDeployment hiot:Commercial` | flips to **out** |
+
+**What it does not do:** the reasoner automates only what *follows* once facets are asserted.
+Deciding that a Fire TV *is* a `HomeControlSurface` remains a human judgment. The ontology makes
+that judgment explicit, located, and contestable — not automatic. Do not overclaim this in the
+paper.
+
+## Open scope calls
+
+`hiot:openScopeCall` marks boundaries not finally settled: `ev-charging`/`home-power`, `shades`,
+and the `smartspeakers` smart-display split. `hiot:provisional` marks `sleeptracker` (and with
+it the single-member `Wellness` family), pending rebuild. Per PLAN_ontology.md these must be
+resolved before the Phase 3 reasoner validation is treated as binding.

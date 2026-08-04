@@ -1,0 +1,91 @@
+@prefix sh:    <http://www.w3.org/ns/shacl#> .
+@prefix hiot:  <https://w3id.org/homeiot/ontology#> .
+@prefix rdfs:  <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos:  <http://www.w3.org/2004/02/skos/core#> .
+@prefix xsd:   <http://www.w3.org/2001/XMLSchema#> .
+
+################################################################################
+# SHACL shapes for the Home IoT device ontology.
+#
+# Catches the errors a reasoner will not: a category missing a facet, a duplicate
+# sortOrder (which would silently reorder categories.csv and with it the RQ1 table
+# rows), a slug that does not match the pipeline's key format, a missing scopeNote
+# (which would blank the note gemini_classify.py injects into reviewer prompts).
+#
+# Run via: python3 scripts/ontology_build.py --check
+################################################################################
+
+hiot:DeviceTypeShape a sh:NodeShape ;
+  sh:targetClass hiot:DeviceType ;
+
+  sh:property [ sh:path hiot:slug ; sh:minCount 1 ; sh:maxCount 1 ;
+                sh:datatype xsd:string ; sh:pattern "^[a-z][a-z0-9-]*$" ;
+                sh:message "Every device type needs exactly one slug matching ^[a-z][a-z0-9-]*$ — it is the key of categories.csv and of judgment_store.csv (category, cve_id)." ] ;
+
+  sh:property [ sh:path rdfs:label ; sh:minCount 1 ; sh:maxCount 1 ;
+                sh:message "Every device type needs exactly one rdfs:label (the categories.csv `label` column)." ] ;
+
+  # --- the five definitional criteria ---
+  sh:property [ sh:path hiot:hasConnectivity ; sh:minCount 1 ; sh:class hiot:Protocol ;
+                sh:message "Criterion 1: at least one connectivity protocol." ] ;
+  sh:property [ sh:path hiot:hasDeviceClass ; sh:minCount 1 ; sh:maxCount 1 ; sh:class hiot:DeviceClass ;
+                sh:message "Criterion 2: exactly one device class." ] ;
+  sh:property [ sh:path hiot:hasDeployment ; sh:minCount 1 ; sh:maxCount 1 ; sh:class hiot:DeploymentContext ;
+                sh:message "Criterion 3: exactly one deployment context." ] ;
+  sh:property [ sh:path hiot:hasFunction ; sh:minCount 1 ; sh:class hiot:Function ;
+                sh:message "Criterion 4(a): at least one function. (4(b) via hiot:hasRole is optional.)" ] ;
+  sh:property [ sh:path hiot:hasRole ; sh:maxCount 1 ; sh:class hiot:Role ] ;
+  sh:property [ sh:path hiot:hasSecurityContext ; sh:minCount 1 ; sh:maxCount 1 ; sh:class hiot:SecurityContext ;
+                sh:message "Criterion 5: exactly one security context." ] ;
+
+  # --- analysis facets (RQ1/RQ2), required so the ontology is never half-populated ---
+  sh:property [ sh:path hiot:formFactor ; sh:minCount 1 ; sh:maxCount 1 ; sh:class hiot:FormFactor ] ;
+  sh:property [ sh:path hiot:placement ; sh:minCount 1 ; sh:maxCount 1 ; sh:class hiot:Placement ] ;
+  sh:property [ sh:path hiot:actuatesPhysical ; sh:minCount 1 ; sh:maxCount 1 ; sh:datatype xsd:boolean ] ;
+  sh:property [ sh:path hiot:capturesAV ; sh:minCount 1 ; sh:maxCount 1 ; sh:datatype xsd:boolean ] .
+
+
+# An analysis category (as opposed to a defined-but-excluded type) is one whose
+# parent carries a familyId. It additionally needs a sortOrder and a scopeNote.
+hiot:AnalysisCategoryShape a sh:NodeShape ;
+  sh:target [ a sh:SPARQLTarget ;
+    sh:select """
+      SELECT ?this WHERE {
+        ?this <https://w3id.org/homeiot/ontology#slug> ?s ;
+              <http://www.w3.org/2000/01/rdf-schema#subClassOf> ?p .
+        ?p <https://w3id.org/homeiot/ontology#familyId> ?f .
+      }""" ] ;
+
+  sh:property [ sh:path hiot:sortOrder ; sh:minCount 1 ; sh:maxCount 1 ; sh:datatype xsd:integer ;
+                sh:message "Analysis categories need a sortOrder — it fixes categories.csv row order, which cwe888_analysis.py reads into cat_order for RQ1 table row ordering." ] ;
+  sh:property [ sh:path skos:scopeNote ; sh:minCount 1 ; sh:maxCount 1 ;
+                sh:message "Analysis categories need a scopeNote — gemini_classify.py injects it into reviewer prompts; a missing one silently blanks the note." ] .
+
+
+# sortOrder must be unique, or categories.csv row order becomes non-deterministic.
+hiot:SortOrderUniqueShape a sh:NodeShape ;
+  sh:target [ a sh:SPARQLTarget ;
+    sh:select """
+      SELECT ?this WHERE { ?this <https://w3id.org/homeiot/ontology#sortOrder> ?o }""" ] ;
+  sh:sparql [ a sh:SPARQLConstraint ;
+    sh:message "Duplicate hiot:sortOrder — categories.csv row order would be non-deterministic." ;
+    sh:prefixes hiot: ;
+    sh:select """
+      SELECT $this WHERE {
+        $this <https://w3id.org/homeiot/ontology#sortOrder> ?o .
+        ?other <https://w3id.org/homeiot/ontology#sortOrder> ?o .
+        FILTER (?other != $this)
+      }""" ] .
+
+
+# Every excluded type must say which criteria it fails — the paper publishes that.
+hiot:ExcludedTypeShape a sh:NodeShape ;
+  sh:target [ a sh:SPARQLTarget ;
+    sh:select """
+      SELECT ?this WHERE {
+        ?this <http://www.w3.org/2000/01/rdf-schema#subClassOf>
+              <https://w3id.org/homeiot/ontology#ExcludedDeviceType> }""" ] ;
+  sh:property [ sh:path hiot:failsCriteria ; sh:minCount 1 ; sh:maxCount 1 ;
+                sh:message "A defined-but-excluded type must record which definitional criteria it fails." ] ;
+  sh:property [ sh:path rdfs:comment ; sh:minCount 1 ;
+                sh:message "A defined-but-excluded type must record the rationale for its exclusion." ] .

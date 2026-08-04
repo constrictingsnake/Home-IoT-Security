@@ -1,0 +1,25 @@
+slug,family,family_label
+doorlock,SecurityAccess,Security & Access
+smartspeakers,ControlSurface,Media & Control Surfaces
+sleeptracker,Wellness,Wellness
+doorbell,SecurityAccess,Security & Access
+thermostat,ClimateAir,Climate & Air
+babymonitor,SecurityAccess,Security & Access
+smartplugs,Energy,Energy
+alarms,SecurityAccess,Security & Access
+robotvacuum,DomesticChores,Domestic & Chores
+fans,ClimateAir,Climate & Air
+fridge,DomesticChores,Domestic & Chores
+shades,Fixture,Fixtures
+sensors,SecurityAccess,Security & Access
+airpurifier,ClimateAir,Climate & Air
+lighting,Fixture,Fixtures
+appliances,DomesticChores,Domestic & Chores
+hub,ControlSurface,Media & Control Surfaces
+ev-charging,Energy,Energy
+home-power,Energy,Energy
+garden,DomesticChores,Domestic & Chores
+pet,DomesticChores,Domestic & Chores
+streaming,ControlSurface,Media & Control Surfaces
+airconditioner,ClimateAir,Climate & Air
+cameras,SecurityAccess,Security & Access
