@@ -8,6 +8,7 @@ This script is the only thing that reads it and writes anything.
     python3 scripts/ontology_build.py --check     # validate + prove CSVs unchanged (no writes)
     python3 scripts/ontology_build.py --write     # emit categories.csv + families.csv
     python3 scripts/ontology_build.py --reason    # 27-class in/out ruling table
+    python3 scripts/ontology_build.py --export-kg # emit the instance graph (Phase 4)
 
 Two invariants (docs/plans/PLAN_ontology.md):
 
@@ -46,6 +47,12 @@ ALIGN = os.path.join(ROOT, "ontology", "homeiot-align.ttl")
 EXTERNAL = os.path.join(ROOT, "ontology", "external_classes.tsv")
 CATEGORIES = os.path.join(ROOT, "data", "categories.csv")
 FAMILIES = os.path.join(ROOT, "data", "ontology", "families.csv")
+
+KG_SCHEMA = os.path.join(ROOT, "ontology", "homeiot-kg.ttl")
+KG_OUT = os.path.join(ROOT, "data", "ontology", "homeiot-kg.ttl")
+STORE = os.path.join(ROOT, "data", "difference", "judgment_store.csv")
+SNAPSHOT = os.path.join(ROOT, "data", "nvd-snapshot", "nvd_all.csv")
+CWE888_MAP = os.path.join(ROOT, "data", "difference", "cwe888_cve_map.csv")
 
 
 # ---------------------------------------------------------------- load
@@ -266,6 +273,400 @@ def reason(g, verbose=True):
     return mismatches
 
 
+# ---------------------------------------------------------------- KG export (Phase 4)
+
+
+KG_PREFIXES = {
+    "hkg": "https://w3id.org/homeiot/kg#",
+    "hiot": str(HIOT),
+    "kgv": "https://w3id.org/homeiot/kg/cve/",
+    "kgp": "https://w3id.org/homeiot/kg/product/",
+    "kgn": "https://w3id.org/homeiot/kg/vendor/",
+    "kgw": "https://w3id.org/homeiot/kg/cwe/",
+    "kgc": "https://w3id.org/homeiot/kg/cwe888/",
+    "kga": "https://w3id.org/homeiot/kg/assignment/",
+    "owl": "http://www.w3.org/2002/07/owl#",
+    "rdf": str(RDF),
+    "rdfs": str(RDFS),
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "dcterms": "http://purl.org/dc/terms/",
+}
+
+
+def _iri_segment(text):
+    """Percent-encode a CPE vendor/product token for use in an IRI path segment.
+
+    CPE names legitimately contain characters that are not IRI-safe (escaped dots,
+    backslashes, and in a few real vendors a literal '%'), so this cannot be a
+    passthrough. `safe=''` deliberately encodes '/' too — a product name containing
+    a slash must not silently create a new path level."""
+    from urllib.parse import quote
+    return quote(text, safe="")
+
+
+def _uri(prefix, *segments):
+    """A full <IRI> for a minted instance.
+
+    Minted resources are NOT written as prefixed names. A Turtle local name may not
+    contain '/', and CPE product tokens routinely do once vendor and product are joined
+    — writing kgp:tp-link/tapo_p100 produces a file that will not parse. The kgv:/kgp:/…
+    prefixes are still declared in the output because they are what a SPARQL author
+    wants to type; they are simply not used as an abbreviation mechanism here."""
+    return "<%s%s>" % (KG_PREFIXES[prefix], "/".join(segments))
+
+
+def _lit(value):
+    """A Turtle string literal with the five escapes the grammar requires."""
+    s = str(value)
+    for old, new in (("\\", "\\\\"), ('"', '\\"'), ("\n", "\\n"),
+                     ("\r", "\\r"), ("\t", "\\t")):
+        s = s.replace(old, new)
+    return '"%s"' % s
+
+
+def load_population(store_path=STORE, include_excluded=False):
+    """The confirmed-Yes analysis population, as [(category, cve_id, row)].
+
+    Reads judgment_store.csv rather than final_resolved.csv on purpose. The store is
+    the durable home for judgments (CLAUDE.md "Refresh invariant"); final_resolved.csv
+    is rebuilt from the per-category review directories and currently lacks 5 confirmed
+    rows that are in the store. cwe888_analysis.py and cvss_analysis.py already read the
+    store, so this keeps the KG on the same population as RQ1 and RQ2.
+
+    `Excluded` is a non-empty REASON string, not a boolean — mark_excluded.py writes e.g.
+    'scope:tvos-2026-07'. Same test as cwe888_analysis.py: any non-empty value excludes."""
+    out = []
+    with open(store_path, newline="", encoding="utf-8") as fh:
+        for row in csv.DictReader(fh):
+            if row.get("Final Judgment") != "Yes":
+                continue
+            if str(row.get("Excluded", "")).strip() and not include_excluded:
+                continue
+            out.append((row["category"], row["cve_id"], row))
+    return out
+
+
+def hydrate(cve_ids, snapshot=SNAPSHOT):
+    """One streaming pass over the fixed NVD snapshot for the CVEs we need."""
+    csv.field_size_limit(10 ** 9)
+    want, found = set(cve_ids), {}
+    with open(snapshot, newline="", encoding="utf-8") as fh:
+        for row in csv.DictReader(fh):
+            if row["cve_id"] in want:
+                found[row["cve_id"]] = row
+    return found
+
+
+def load_cwe888(path=CWE888_MAP):
+    """{cwe_id: (sorted CWE-888 classes, map_depth)} from the derived map, plus any
+    CWE that maps inconsistently.
+
+    The map's key is (category, cve_id, cwe_id) — one row per CWE, so a CVE with two
+    CWEs occupies two rows. But the CWE-888 assignment itself depends on nothing but the
+    CWE: CWE-639 is Access Control wherever it appears. Verified over the real file, all
+    155 distinct CWEs map consistently, so this collapses to a per-CWE function and the
+    classes are attached to the Weakness instance rather than to each CVE.
+
+    That placement is what lets the graph reproduce RQ1's counting unit. cwe888_analysis.py
+    counts a CWE ATTRIBUTION — 'a CVE with two CWEs counts twice, a CWE mapping to two
+    classes counts twice'. Hanging a deduplicated set of classes off the CVE would silently
+    undercount; walking assignment -> CVE -> weakness -> class reproduces 1,904 exactly."""
+    per_cwe, conflicts = {}, []
+    if not os.path.isfile(path):
+        return per_cwe, conflicts
+    with open(path, newline="", encoding="utf-8") as fh:
+        for row in csv.DictReader(fh):
+            classes = tuple(sorted(c for c in row["cwe888_classes"].split("|") if c.strip()))
+            entry = (classes, int(row["map_depth"]))
+            prev = per_cwe.setdefault(row["cwe_id"], entry)
+            if prev != entry:
+                conflicts.append((row["cwe_id"], prev, entry))
+    return per_cwe, conflicts
+
+
+def expected_attributions(path=CWE888_MAP, population=None):
+    """RQ1's attribution total, recomputed from the map restricted to the KG population.
+    The gate compares this against a SPARQL count over the emitted graph."""
+    if not os.path.isfile(path):
+        return None
+    keys = {(c, v) for c, v, _r in (population or load_population())}
+    total = 0
+    with open(path, newline="", encoding="utf-8") as fh:
+        for row in csv.DictReader(fh):
+            if (row["category"], row["cve_id"]) in keys:
+                total += len([c for c in row["cwe888_classes"].split("|") if c.strip()])
+    return total
+
+
+def build_kg(g, include_excluded=False):
+    """Assemble the instance graph as {subject: [(predicate, object)]} with everything
+    already rendered as Turtle terms. Returns (triples_by_subject, stats)."""
+    pop = load_population(include_excluded=include_excluded)
+    slug_to_uri = {slug: uri for _o, slug, *_r, uri in device_types(g)}
+
+    unknown = sorted({c for c, _v, _r in pop} - set(slug_to_uri))
+    if unknown:
+        raise SystemExit(f"population references slugs absent from the ontology: {unknown}")
+
+    nvd = hydrate({cve for _c, cve, _r in pop})
+    missing = sorted({cve for _c, cve, _r in pop} - set(nvd))
+    cwe888, cwe_conflicts = load_cwe888()
+
+    subj = {}
+
+    def add(s, p, o):
+        subj.setdefault(s, set()).add((p, o))
+
+    products, vendors, weaknesses, classes = {}, set(), set(), set()
+
+    for cve_id, row in sorted(nvd.items()):
+        v = _uri("kgv", cve_id)
+        add(v, "rdf:type", "hkg:Vulnerability")
+        add(v, "rdfs:label", _lit(cve_id))
+        if row.get("description", "").strip():
+            add(v, "dcterms:description", _lit(row["description"].strip()))
+        if row.get("published", "").strip():
+            add(v, "hkg:published", '%s^^xsd:date' % _lit(row["published"].strip()))
+        if row.get("cvss_score", "").strip():
+            add(v, "hkg:cvssScore", '%s^^xsd:decimal' % _lit(row["cvss_score"].strip()))
+        if row.get("cvss_version", "").strip():
+            add(v, "hkg:cvssVersion", _lit(row["cvss_version"].strip()))
+
+        for cwe in sorted({c.strip() for c in row.get("cwe_ids", "").split("|") if c.strip()}):
+            # NVD uses NVD-CWE-noinfo / NVD-CWE-Other as non-CWE placeholders; they are
+            # real values in the data and are kept as Weakness instances so a query can
+            # distinguish "no weakness assigned" from "weakness assigned but unmapped".
+            w = _uri("kgw", _iri_segment(cwe))
+            add(v, "hkg:hasWeakness", w)
+            add(w, "rdf:type", "hkg:Weakness")
+            add(w, "rdfs:label", _lit(cwe))
+            weaknesses.add(cwe)
+
+            klasses, depth = cwe888.get(cwe, ((), None))
+            for k in klasses:
+                c = _uri("kgc", _iri_segment(k.replace(" ", "")))
+                add(w, "hkg:hasCwe888Class", c)
+                add(c, "rdf:type", "hkg:Cwe888Class")
+                add(c, "rdfs:label", _lit(k))
+                classes.add(k)
+            if depth is not None:
+                add(w, "hkg:cwe888MapDepth", '%s^^xsd:integer' % _lit(depth))
+
+        for cpe in sorted({c.strip() for c in row.get("cpe_strings", "").split("|") if c.strip()}):
+            parts = cpe.split(":")
+            if len(parts) < 6 or parts[0] != "cpe" or parts[1] != "2.3":
+                continue
+            part, vend, prod = parts[2], parts[3], parts[4]
+            pid = _uri("kgp", _iri_segment(vend), _iri_segment(prod))
+            nid = _uri("kgn", _iri_segment(vend))
+            add(v, "hkg:affectsProduct", pid)
+            if pid not in products:
+                products[pid] = (vend, prod)
+                add(pid, "rdf:type", "hkg:Product")
+                add(pid, "rdfs:label", _lit("%s:%s" % (vend, prod)))
+                add(pid, "hkg:cpeName", _lit("%s:%s" % (vend, prod)))
+                add(pid, "hkg:vendor", nid)
+            # part is per-CPE, not per-product: the same vendor:product can appear as
+            # both 'o' and 'h'. Recorded as a multi-valued property rather than collapsed.
+            add(pid, "hkg:cpePart", _lit(part))
+            if vend not in vendors:
+                vendors.add(vend)
+                add(nid, "rdf:type", "hkg:Vendor")
+                add(nid, "rdfs:label", _lit(vend))
+                add(nid, "hkg:vendorName", _lit(vend))
+
+    for category, cve_id, row in sorted(pop, key=lambda r: (r[1], r[0])):
+        if cve_id not in nvd:
+            continue
+        v, dev = _uri("kgv", cve_id), slug_to_uri[category]
+        dev_t = "hiot:" + str(dev).split("#")[-1]
+        a = _uri("kga", "%s_%s" % (_iri_segment(cve_id), _iri_segment(category)))
+        add(v, "hkg:affectsCategory", dev_t)
+        add(v, "hkg:assignment", a)
+        add(a, "rdf:type", "hkg:CategoryAssignment")
+        add(a, "hkg:assignedVulnerability", v)
+        add(a, "hkg:assignedCategory", dev_t)
+        add(a, "rdfs:label", _lit("%s / %s" % (cve_id, category)))
+        if row.get("Final Source", "").strip():
+            add(a, "hkg:judgmentSource", _lit(row["Final Source"].strip()))
+        human = row.get("Final Source", "").strip() == "human"
+        add(a, "hkg:humanSettled", "true" if human else "false")
+        if row.get("Difference Type", "").strip():
+            add(a, "hkg:discoveryDirection", _lit(row["Difference Type"].strip()))
+
+    stats = {
+        "pairs": len(pop),
+        "cves": len(nvd),
+        "missing_from_snapshot": missing,
+        "products": len(products),
+        "vendors": len(vendors),
+        "weaknesses": len(weaknesses),
+        "cwe888_classes": len(classes),
+        "cwe888_conflicts": cwe_conflicts,
+        "attributions": expected_attributions(population=pop),
+        "triples": sum(len(v) for v in subj.values()),
+    }
+    return subj, stats
+
+
+def render_kg(subj, stats):
+    """Deterministic Turtle: subjects sorted, predicate/object pairs sorted within a
+    subject. PLAN_ontology.md's risk table requires this — an unsorted machine-written
+    TTL churns the diff on every regeneration and makes review impossible."""
+    import datetime
+    out = io.StringIO()
+    for pfx, uri in sorted(KG_PREFIXES.items()):
+        out.write("@prefix %-8s <%s> .\n" % (pfx + ":", uri))
+    out.write("""
+################################################################################
+# Home IoT Vulnerability Knowledge Graph — INSTANCE DATA
+#
+# GENERATED. Do not hand-edit; regenerate with
+#     python3 scripts/ontology_build.py --export-kg
+#
+# Schema: ontology/homeiot-kg.ttl. Device types resolve against
+# ontology/homeiot.ttl — load all three together to query family rollups.
+################################################################################
+
+""")
+    out.write("<https://w3id.org/homeiot/kg/graph> rdf:type owl:Ontology ;\n")
+    out.write('  dcterms:title "Home IoT Vulnerability Knowledge Graph" ;\n')
+    out.write("  owl:imports <https://w3id.org/homeiot/kg>, <https://w3id.org/homeiot/ontology> ;\n")
+    out.write('  hkg:snapshotDate "2026-06-25"^^xsd:date ;\n')
+    out.write('  dcterms:created "%s"^^xsd:date ;\n' % datetime.date.today().isoformat())
+    for line in (
+        "judgment_store.csv: %d confirmed-Yes (category, cve) pairs, Excluded applied" % stats["pairs"],
+        "nvd-snapshot/nvd_all.csv: %d distinct CVEs hydrated" % stats["cves"],
+        "cwe888_cve_map.csv: %d CWE-888 classes" % stats["cwe888_classes"],
+    ):
+        out.write('  hkg:generatedFrom %s ;\n' % _lit(line))
+    out.write('  owl:versionInfo "0.1.0" .\n\n')
+
+    for s in sorted(subj):
+        pairs = sorted(subj[s])
+        out.write(s + "\n")
+        for i, (p, o) in enumerate(pairs):
+            out.write("  %s %s%s\n" % (p, o, " ;" if i < len(pairs) - 1 else " ."))
+        out.write("\n")
+    return out.getvalue()
+
+
+def cmd_export_kg(g, include_excluded=False, write=True):
+    subj, stats = build_kg(g, include_excluded=include_excluded)
+    text = render_kg(subj, stats)
+
+    if stats["missing_from_snapshot"]:
+        print("WARNING: %d confirmed CVEs are absent from the NVD snapshot and were "
+              "skipped:" % len(stats["missing_from_snapshot"]))
+        for cve in stats["missing_from_snapshot"][:10]:
+            print("   ", cve)
+    if stats["cwe888_conflicts"]:
+        print("WARNING: %d CWEs map to different CWE-888 classes on different rows — the "
+              "per-CWE collapse in load_cwe888() is unsafe:" % len(stats["cwe888_conflicts"]))
+        for cwe, a, b in stats["cwe888_conflicts"][:5]:
+            print("    %s: %s vs %s" % (cwe, a, b))
+
+    if write:
+        os.makedirs(os.path.dirname(KG_OUT), exist_ok=True)
+        with open(KG_OUT, "w", encoding="utf-8", newline="") as fh:
+            fh.write(text)
+        print("wrote %s (%.1f MB)" % (os.path.relpath(KG_OUT, ROOT), len(text) / 1e6))
+
+    return verify_kg(text, stats, g)
+
+
+def verify_kg(text, stats, g):
+    """Phase 4 gate: the emitted graph must reparse in rdflib, its instance counts must
+    reconcile against the source CSVs, and a family rollup answered purely by the class
+    hierarchy in homeiot.ttl must match one computed from families.csv."""
+    print("\n--- Phase 4 gate ---")
+    failures = []
+
+    kg = Graph()
+    kg.parse(data=text, format="turtle")
+    print("reparse: %d triples load in rdflib ✓" % len(kg))
+
+    HKG = Namespace("https://w3id.org/homeiot/kg#")
+    counts = {
+        "Vulnerability": (len(set(kg.subjects(RDF.type, HKG.Vulnerability))), stats["cves"]),
+        "CategoryAssignment": (len(set(kg.subjects(RDF.type, HKG.CategoryAssignment))),
+                               stats["pairs"]),
+        "Product": (len(set(kg.subjects(RDF.type, HKG.Product))), stats["products"]),
+        "Vendor": (len(set(kg.subjects(RDF.type, HKG.Vendor))), stats["vendors"]),
+        "Cwe888Class": (len(set(kg.subjects(RDF.type, HKG.Cwe888Class))),
+                        stats["cwe888_classes"]),
+    }
+    print("\n%-20s %10s %10s" % ("instance class", "in graph", "expected"))
+    for name, (got, want) in counts.items():
+        ok = got == want
+        print("%-20s %10d %10d   %s" % (name, got, want, "ok" if ok else "MISMATCH"))
+        if not ok:
+            failures.append(name)
+
+    n_edges = len(list(kg.subject_objects(HKG.affectsCategory)))
+    if n_edges != stats["pairs"]:
+        print("affectsCategory edges %d != %d pairs   MISMATCH" % (n_edges, stats["pairs"]))
+        failures.append("affectsCategory")
+    else:
+        print("\naffectsCategory edges: %d = confirmed pairs ✓" % n_edges)
+
+    # Per-category reconciliation against the store, straight from the graph.
+    per_cat = Counter()
+    for _a, dev in kg.subject_objects(HKG.assignedCategory):
+        per_cat[str(next(g.objects(dev, HIOT.slug)))] += 1
+    store = Counter(c for c, _v, _r in load_population())
+    bad = {k for k in set(per_cat) | set(store) if per_cat[k] != store[k]}
+    n_defined = len(device_types(g))
+    print("per-category counts vs judgment_store: %s"
+          % ("all %d categories agree ✓ (%d of the %d defined carry no confirmed CVE)"
+             % (len(per_cat), n_defined - len(per_cat), n_defined) if not bad
+             else "MISMATCH on %s" % sorted(bad)))
+    if bad:
+        failures.append("per-category")
+
+    # RQ1 reconciliation. The counting unit is a CWE ATTRIBUTION, which is why the
+    # CWE-888 classes hang off the Weakness rather than the CVE: this walk yields
+    # (category, cve, cwe, class) tuples, exactly cwe888_analysis.py's unit.
+    q = """
+    SELECT (COUNT(*) AS ?n) WHERE {
+      ?a hkg:assignedVulnerability ?v .
+      ?v hkg:hasWeakness ?w .
+      ?w hkg:hasCwe888Class ?c .
+    }"""
+    got = int(next(iter(kg.query(q, initNs={"hkg": HKG})))[0])
+    want = stats["attributions"]
+    ok = want is not None and got == want
+    print("CWE-888 attributions (SPARQL over the graph): %d vs %s from cwe888_cve_map.csv"
+          " %s" % (got, want, "✓" if ok else "MISMATCH"))
+    if not ok:
+        failures.append("attributions")
+
+    # The point of shipping the KG with the ontology rather than a CSV: family
+    # membership is not re-encoded here, it is inferred from rdfs:subClassOf in
+    # homeiot.ttl. This must reproduce the families.csv rollup exactly.
+    fam_from_graph = Counter()
+    for _a, dev in kg.subject_objects(HKG.assignedCategory):
+        for parent in g.objects(dev, RDFS.subClassOf):
+            fid = next(g.objects(parent, HIOT.familyId), None)
+            if fid is not None:
+                fam_from_graph[str(fid)] += 1
+    fam_expected = Counter()
+    slug_fam = {slug: fam for _o, slug, _l, _n, fam, _u in device_types(g)}
+    for cat, _cve, _row in load_population():
+        fam_expected[slug_fam[cat]] += 1
+    fam_bad = {k for k in set(fam_from_graph) | set(fam_expected)
+               if fam_from_graph[k] != fam_expected[k]}
+    print("family rollup via rdfs:subClassOf: %s"
+          % ("all %d families match families.csv ✓ (%d of %d carry no confirmed CVE)"
+             % (len(fam_from_graph), len(families(g)) - len(fam_from_graph), len(families(g)))
+             if not fam_bad else "MISMATCH on %s" % sorted(fam_bad)))
+    if fam_bad:
+        failures.append("family-rollup")
+
+    print("\n%s" % ("gate: PASS" if not failures else "gate: FAIL — %s" % ", ".join(failures)))
+    return 1 if failures else 0
+
+
 # ---------------------------------------------------------------- commands
 
 
@@ -350,11 +751,21 @@ def main():
                     help="print the 27-class in/out ruling table")
     ap.add_argument("--align", action="store_true",
                     help="verify external alignment IRIs and report coverage")
+    ap.add_argument("--export-kg", action="store_true",
+                    help="emit the instance graph to data/ontology/homeiot-kg.ttl and run "
+                         "the Phase 4 gate")
+    ap.add_argument("--verify-kg", action="store_true",
+                    help="rebuild the graph in memory and run the gate without writing")
+    ap.add_argument("--include-excluded", action="store_true",
+                    help="KG export only: keep rows carrying a judgment_store Excluded "
+                         "reason (default drops them, matching cwe888_analysis.py)")
     ap.add_argument("--ttl", default=TTL, help="ontology file (default: ontology/homeiot.ttl)")
     args = ap.parse_args()
 
-    if not (args.check or args.write or args.reason or args.align):
-        ap.error("pick one of --check / --write / --reason / --align")
+    if not (args.check or args.write or args.reason or args.align
+            or args.export_kg or args.verify_kg):
+        ap.error("pick one of --check / --write / --reason / --align / --export-kg "
+                 "/ --verify-kg")
 
     g = load(args.ttl)
     rc = 0
@@ -367,6 +778,9 @@ def main():
         rc |= cmd_check(g)
     if args.write:
         rc |= cmd_write(g)
+    if args.export_kg or args.verify_kg:
+        rc |= cmd_export_kg(g, include_excluded=args.include_excluded,
+                            write=args.export_kg)
     return rc
 
 

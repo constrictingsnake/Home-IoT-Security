@@ -11,6 +11,7 @@ Design rationale and phasing: `docs/plans/PLAN_ontology.md`.
 | `homeiot.ttl` | The ontology. **Hand-authored** — edit this, never the generated CSVs. |
 | `shapes.ttl` | SHACL constraints. Catches what a reasoner won't (missing facet, duplicate sortOrder, bad slug). |
 | `homeiot-align.ttl` | Alignment to SAREF + SSN/SOSA. **Hand-authored.** Separate so a reviewer can evaluate the core without it. |
+| `homeiot-kg.ttl` | Instance-level **vocabulary** for the vulnerability knowledge graph. **Hand-authored.** Separate file so nothing about the instance layer can perturb `homeiot.ttl`. |
 | `external_classes.tsv` | Pinned manifest of 331 verified external class IRIs. Generated; regenerate only when bumping a vocabulary version. |
 | `external_sources.tsv` | Retrieval provenance for the manifest: version, URL, source sha256, date. |
 
@@ -20,14 +21,17 @@ Generated **from** this ontology (do not hand-edit):
 |---|---|
 | `data/categories.csv` | 11 scripts + `run_gemini.sh` |
 | `data/ontology/families.csv` | `cwe888_analysis.py --group family` (RQ1), and RQ2 |
+| `data/ontology/homeiot-kg.ttl` | Nothing in the pipeline — it is an *output*, queried by SPARQL |
 
 ## Commands
 
 ```bash
-python3 scripts/ontology_build.py --check    # validate + prove CSVs unchanged; exit 1 on drift
-python3 scripts/ontology_build.py --write    # regenerate categories.csv + families.csv
-python3 scripts/ontology_build.py --reason   # 27-class in/out ruling table
-python3 scripts/ontology_build.py --align    # verify alignment IRIs + coverage report
+python3 scripts/ontology_build.py --check      # validate + prove CSVs unchanged; exit 1 on drift
+python3 scripts/ontology_build.py --write      # regenerate categories.csv + families.csv
+python3 scripts/ontology_build.py --reason     # 27-class in/out ruling table
+python3 scripts/ontology_build.py --align      # verify alignment IRIs + coverage report
+python3 scripts/ontology_build.py --export-kg  # rebuild the instance graph, then verify it
+python3 scripts/ontology_build.py --verify-kg  # verify the committed graph without rewriting it
 ```
 
 Requires `rdflib`, `pyshacl`, `owlrl` (`pip install rdflib pyshacl owlrl`).
@@ -130,6 +134,83 @@ boxes, EV chargers, robot vacuums, pet devices), which is exactly where this stu
 CVEs. SAREF is precise about meters, HVAC, lighting, shading and appliances — its energy and
 building-management origins — and silent about most of what a consumer bought in the last
 decade. That is the empirical argument for this ontology, and `--align` recomputes it.
+
+## The knowledge graph (`homeiot-kg.ttl`)
+
+Two files, same split as everywhere else here: `ontology/homeiot-kg.ttl` is the hand-authored
+**vocabulary**; `data/ontology/homeiot-kg.ttl` is the **generated instance graph** (63,918
+triples, ~4.1 MB) written by `--export-kg`. It holds every confirmed-Yes CVE, the CPE
+vendor/product pairs NVD attributes it to, its raw CWEs and their CWE-888 classes, and a reified
+category assignment per (CVE, category) pair carrying how that decision settled.
+
+It is an **output**, not an input. Nothing in the pipeline reads it, and it carries no property
+that could feed a classifier — see PLAN_ontology.md § *Circularity boundary*. The graph records
+settled judgments; it never produces one.
+
+```
+hkg:Vulnerability ──affectsProduct──▶ hkg:Product ──vendor──▶ hkg:Vendor
+        │  ──hasWeakness──▶ hkg:Weakness ──hasCwe888Class──▶ hkg:Cwe888Class
+        │  ──assignment──▶ hkg:CategoryAssignment ──assignedCategory──▶ hiot:DeviceType
+        └─ ──affectsCategory────────────────────(shortcut)───────────────┘
+```
+
+That last edge is the only one crossing into `homeiot.ttl`, and it is why there is no family
+table in the KG: a rollup is answered by the `rdfs:subClassOf` hierarchy already asserted there.
+
+**Three things to know before querying it.**
+
+- **The population is `judgment_store.csv`, not `final_resolved.csv`** — 1,738 non-excluded Yes
+  rows vs 1,733. The 5 extra are 2026 CVEs in the store and the snapshot that the derived file
+  hasn't picked up. `cwe888_analysis.py` and `cvss_analysis.py` both read the store, so any other
+  source would leave the graph permanently out of step with RQ1/RQ2.
+- **`hasCwe888Class` hangs off the `Weakness`, not the `Vulnerability`.** RQ1's counting unit is a
+  CWE *attribution*, so walk `assignment → vulnerability → weakness → class` — that reproduces
+  1,904 exactly. Deduplicating classes onto the CVE undercounts. This is also why the
+  1,738-assignment numbers below don't match the 1,904-attribution family table in
+  PLAN_ontology.md: different units, both correct.
+- **CVSS is base score only.** `download_nvd.py:116-124` discards `vectorString`, so attack
+  vector, privileges required, UI and scope are simply not in the snapshot to export.
+
+Minted instances are written as full `<IRI>`s rather than prefixed names — a Turtle local name
+may not contain `/`, and joined CPE vendor:product tokens routinely do. The prefixes are still
+declared in the file. Output is deterministic (sorted subjects, sorted predicate/object pairs),
+so a re-export with unchanged inputs diffs only on the `dcterms:created` line.
+
+### `--verify-kg`
+
+The gate reparses the file in rdflib, then reconciles it against the CSVs it came from: five
+instance-class counts, the `affectsCategory` edge count, per-category counts against the
+judgment store, the CWE-888 attribution total *computed by SPARQL over the graph* against
+`cwe888_cve_map.csv`, and the family rollup via `rdfs:subClassOf` against `families.csv`. It
+prints `gate: PASS` or exits 1. Two of the 24 categories (`sleeptracker`, `shades`) and 2 of the
+13 families carry no confirmed CVE, so they are reported as absent rather than as a mismatch.
+
+### What it answers that a CSV doesn't
+
+The admission route — which criterion let a category in — lives only in the ontology, and the
+CVE counts only in the study data; joining them takes one query:
+
+```sparql
+SELECT ?route (COUNT(DISTINCT ?a) AS ?n) (COUNT(DISTINCT ?d) AS ?cats) WHERE {
+  ?a hkg:assignedCategory ?d .
+  BIND(EXISTS { ?d hiot:hasFunction ?f . VALUES ?f { hiot:Monitor hiot:Automate hiot:Control } } AS ?is4a)
+  BIND(IF(?is4a, "4(a) home-control function", "4(b) home-control surface") AS ?route)
+} GROUP BY ?route
+```
+
+→ 4(a) **1,624** assignments across 20 categories; 4(b) **114** across 2 (`streaming`,
+`smartspeakers`). So the contested half of the scope section — entertainment hardware admitted
+only because its platform is a home-control surface — accounts for 6.6% of the confirmed corpus.
+(Use `COUNT(DISTINCT ?a)`: a category asserts up to three `hasFunction` values, and a plain
+`COUNT(*)` multiplies rows by that arity.)
+
+Two more that need the join, both one query each:
+
+- **Review provenance by folding category**, without touching `families.csv` — `?d rdfs:subClassOf
+  ?f` does the rollup. Human-settled share ranges from 9% (`Hubs and Controllers`, 22/247) to 39%
+  (`Entertainment`, 30/76); the entertainment boundary really is where the reviewers disagreed.
+- **Vendors spanning multiple categories** via `affectsProduct` + `affectsCategory` — four span
+  four categories: `tp-link` (52 CVEs), `google` (19), `yeelight` (2), `mitsubishielectric` (2).
 
 ## Scope calls
 

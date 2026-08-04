@@ -17,9 +17,9 @@ framing; the family rollup changes a result.
 
 ## STATUS — paused 2026-08-04, branch `ontology`
 
-**Phases 1–3 complete and pushed. Phase 4 (KG export) and Phase 5 (paper edits) not started.**
+**Phases 1–4 complete. Phase 5 (paper edits) not started.**
 
-`python3 scripts/ontology_build.py --check` is the single gate. Currently green:
+Two gates, both currently green. `--check` covers the schema side:
 
 ```
 SHACL: clean
@@ -30,12 +30,25 @@ alignment: all external IRIs verified against manifest ✓
 reasoner: 27/27 rulings reproduced
 ```
 
+`--verify-kg` covers the instance side (see *Phase 4* below):
+
+```
+reparse: 63918 triples load in rdflib ✓
+Vulnerability 1676 | CategoryAssignment 1738 | Product 4706 | Vendor 292 | Cwe888Class 21
+affectsCategory edges: 1738 = confirmed pairs ✓
+per-category counts vs judgment_store: all 22 categories agree ✓
+CWE-888 attributions (SPARQL over the graph): 1904 vs 1904 from cwe888_cve_map.csv ✓
+family rollup via rdfs:subClassOf: all 11 families match families.csv ✓
+gate: PASS
+```
+
 | Commit | What |
 |---|---|
 | `a1d8a65` | Phase 1 — `homeiot.ttl`, `shapes.ttl`, `ontology_build.py` |
 | `c9121f5` | Phase 2 — **scope-exclusion bug fix**, 13 supervisor folds, `--group family`, micro/macro |
 | `65802d2` | Phase 3 — `homeiot-align.ttl`, 331-IRI pinned manifest, IRI verification |
 | `7f59e0b` | 3 of 4 scope calls resolved, `hiot:noNvdFootprint` added |
+| *(this branch)* | Phase 4 — `homeiot-kg.ttl` schema + `--export-kg` / `--verify-kg` |
 
 ### The one thing still open: `shades`
 
@@ -321,12 +334,58 @@ equivalence would be false and is a standard reviewer objection to alignment sec
 
 ---
 
+## Phase 4 — the instance graph (DONE 2026-08-04)
+
+`--export-kg` writes `data/ontology/homeiot-kg.ttl` (63,918 triples, ~4.1 MB): every
+confirmed-Yes CVE, the CPE vendor/product pairs NVD attributes it to, its raw CWEs, and their
+CWE-888 view classes. The vocabulary lives in `ontology/homeiot-kg.ttl` (hand-authored),
+deliberately in a *second* file so nothing about the instance layer can perturb `homeiot.ttl`
+and its byte-identical-`categories.csv` invariant. The only edge crossing the two is
+`hkg:affectsCategory` / `hkg:assignedCategory`, whose range is `hiot:DeviceType` — so the 24
+device types keep one definition and a family rollup is answered by the class hierarchy in
+`homeiot.ttl` rather than by re-encoding `families.csv`.
+
+**Four decisions worth recording:**
+
+1. **The population comes from `judgment_store.csv`, not `final_resolved.csv`** — despite the
+   gate text below saying otherwise. The store has 1,738 non-excluded Yes rows against
+   `final_resolved.csv`'s 1,733; the 5 extra are 2026 CVEs present in both the store and the
+   snapshot but not yet propagated to the derived file. `cwe888_analysis.py` and
+   `cvss_analysis.py` both read the store, so sourcing the KG anywhere else would put the graph
+   permanently 5 rows out of step with RQ1/RQ2. `Excluded` is a **reason string**, not a flag —
+   any non-empty value excludes (`--include-excluded` keeps them).
+2. **Category assignment is reified** (`hkg:CategoryAssignment`), because provenance is
+   per-*pair*, not per-CVE: the same CVE can be confirmed in two categories by different routes
+   (one by AI consensus, one by a human verdict), which a triple on the CVE alone cannot
+   express. `hkg:affectsCategory` is kept alongside as a shortcut.
+3. **CWE-888 classes hang off the `Weakness`, not the `Vulnerability`.** `cwe888_cve_map.csv` is
+   keyed `(category, cve_id, cwe_id)` — one row per CWE — and `cwe_id → classes` is a function
+   (verified: 0 inconsistencies across 155 CWEs). Attaching per-CWE is also what makes the graph
+   reproduce RQ1's counting unit, a CWE **attribution**: walking
+   `assignment → vulnerability → weakness → class` yields exactly 1,904. A deduplicated set of
+   classes on the vulnerability would silently undercount.
+4. **Minted instances are written as full `<IRI>`s, not prefixed names.** A Turtle local name may
+   not contain `/`, and CPE product tokens routinely do once vendor and product are joined
+   (`kgp:tp-link/tapo_p100` produces a file that will not parse). The prefixes are still
+   *declared* in the output for SPARQL authors.
+
+Output is deterministic — subjects sorted, predicate/object pairs sorted — so a re-export with
+unchanged inputs produces an identical diff except the one `dcterms:created` line.
+
+**What is deliberately absent.** No inferred edges, no similarity links, no attack paths, and no
+property that could feed a classifier (PLAN § *Circularity boundary*). The graph records settled
+judgments; it never produces one. CVSS is base-score-only because `download_nvd.py:116-124`
+discards `vectorString` — so AV/PR/UI/S are not representable here without a snapshot change.
+
+---
+
 ## Files
 
 ```
 ontology/
   homeiot.ttl              # core: classes, facets, criteria axioms, scopeNotes  [hand-authored]
   homeiot-align.ttl        # external alignments                                  [hand-authored]
+  homeiot-kg.ttl           # instance-level vocabulary (Phase 4)                   [hand-authored]
   shapes.ttl               # SHACL: every class needs 5 facets + parent + sortOrder
   README.md                # how to edit, how to regenerate, Turtle crib sheet
 scripts/
@@ -334,6 +393,7 @@ scripts/
 data/
   categories.csv           # GENERATED — byte-identical to today
   ontology/families.csv    # GENERATED — slug,family,family_label
+  ontology/homeiot-kg.ttl  # GENERATED — the instance graph (Phase 4)
 ```
 
 ### `scripts/ontology_build.py`
@@ -342,7 +402,10 @@ data/
 --check      parse + SHACL + reason + regenerate to temp, diff against committed CSVs; exit 1 on drift
 --write      regenerate data/categories.csv and data/ontology/families.csv in place
 --reason     run the 27-class in/out validation, print a ruling table
---export-kg  (Phase 4) emit instance graph
+--align      verify alignment IRIs against the pinned manifest + coverage report
+--export-kg  emit data/ontology/homeiot-kg.ttl, then run the verify gate
+--verify-kg  re-run the gate against the committed graph without rewriting it
+             (+ --include-excluded on either, to keep scope-excluded Yes rows)
 ```
 
 **Two hard constraints on generation:**
@@ -371,7 +434,7 @@ Consumers to leave untouched (they must not notice the swap): `make_review_copie
 | 1 | `homeiot.ttl` (24+3 classes, facets, axioms, scopeNotes), `shapes.ttl`, `ontology_build.py --check` | `categories.csv` regenerates byte-identical; SHACL clean |
 | 2 | `families.csv`; `--group family` + micro/macro rows in `cwe888_analysis.py` + `cvss_analysis.py`; **Excluded-column fix in both** | family N's sum to 1,904; `--include-excluded` reproduces pre-fix numbers |
 | 3 | ~~`homeiot-align.ttl`; reasoner validation of all 27 rulings~~ **DONE 2026-08-04** | reasoner 27/27; all 76 external IRIs verified against a pinned 331-IRI manifest |
-| 4 | KG export (`--export-kg`): confirmed-Yes CVEs, CPE vendor/product, CWE-888 classes as instances | loads in rdflib; spot-check counts vs `final_resolved.csv` |
+| 4 | ~~KG export (`--export-kg`): confirmed-Yes CVEs, CPE vendor/product, CWE-888 classes as instances~~ **DONE 2026-08-04** | 63,918 triples reparse in rdflib; `--verify-kg` reconciles 5 instance-class counts, all 22 non-empty per-category counts, the 1,904 CWE-888 attributions and all 11 non-empty family rollups. Counts are against `judgment_store.csv`, not `final_resolved.csv` — see *Phase 4* for the 5-row reason |
 | 5 | Paper edits | below |
 
 Phase 1 changes no behaviour at all — it only proves the ontology can reproduce the current

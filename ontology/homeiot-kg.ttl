@@ -1,0 +1,188 @@
+@prefix hkg:   <https://w3id.org/homeiot/kg#> .
+@prefix hiot:  <https://w3id.org/homeiot/ontology#> .
+@prefix owl:   <http://www.w3.org/2002/07/owl#> .
+@prefix rdf:   <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs:  <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:   <http://www.w3.org/2001/XMLSchema#> .
+@prefix skos:  <http://www.w3.org/2004/02/skos/core#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+
+################################################################################
+# Home IoT Vulnerability Knowledge Graph — SCHEMA
+#
+# HAND-AUTHORED. This file declares the instance-level vocabulary only; the
+# instance data is GENERATED into data/ontology/homeiot-kg.ttl by
+#
+#     python3 scripts/ontology_build.py --export-kg
+#
+# Deliberately separate from homeiot.ttl. That file is the device-type ontology
+# and carries a byte-identical-regeneration invariant on data/categories.csv;
+# nothing here may perturb it. The only edge crossing the two files is
+# hkg:affectsCategory / hkg:assignedCategory, whose range is hiot:DeviceType —
+# so the 24 device types keep their single definition, and a family rollup over
+# the KG is answered by the class hierarchy already asserted in homeiot.ttl
+# rather than by re-encoding families.csv here.
+#
+# SCOPE BOUNDARY (PLAN_ontology.md "Circularity boundary"). This graph RECORDS
+# settled judgments; it never produces one. hkg:CategoryAssignment carries the
+# provenance of a decision made by the reviewers, and no property here is an
+# input to any classifier. Adding one would make term_precision.csv
+# self-confirming.
+################################################################################
+
+<https://w3id.org/homeiot/kg> a owl:Ontology ;
+  dcterms:title "Home IoT Vulnerability Knowledge Graph (schema)" ;
+  dcterms:description """Instance-level vocabulary for the residential IoT vulnerability study: confirmed
+CVEs, the CPE products and vendors NVD attributes them to, raw CWEs, their CWE-888 view classes, and the
+reified category assignments that carry review provenance. Device types are not redefined here — they are
+hiot: classes from the device ontology.""" ;
+  owl:versionInfo "0.1.0" ;
+  rdfs:seeAlso <https://w3id.org/homeiot/ontology> .
+
+################################################################################
+# Classes
+################################################################################
+
+hkg:Vulnerability a owl:Class ;
+  rdfs:label "vulnerability" ;
+  rdfs:comment "One CVE record. Instances exist only for CVEs confirmed in scope for at least one device category (judgment_store.csv, Final Judgment = Yes, not Excluded)." .
+
+hkg:Product a owl:Class ;
+  rdfs:label "product" ;
+  rdfs:comment """One CPE vendor:product pair, version-collapsed. Device-CPE granularity, the same convention
+cpe_expansion.py seeds from: a product is vendor:product, never a bare vendor. CPE `part` is carried on the
+instance (hkg:cpePart) rather than filtered here — the KG records what NVD asserts, and part-based filtering
+is a query-time concern.""" .
+
+hkg:Vendor a owl:Class ;
+  rdfs:label "vendor" ;
+  rdfs:comment "The vendor field of a CPE name. A vendor is not a Product: it is a higher-order attribute, and a vendor-level CVE attribution is never treated as a device attribution." .
+
+hkg:Weakness a owl:Class ;
+  rdfs:label "weakness" ;
+  rdfs:comment "A raw CWE identifier as assigned by NVD, before the CWE-888 view is applied." .
+
+hkg:Cwe888Class a owl:Class ;
+  rdfs:label "CWE-888 class" ;
+  rdfs:comment "A class of the CWE-888 (Software Fault Pattern) view, as used in RQ1. Assigned by scripts/cwe888_analysis.py, which walks CWE parents when a CWE is not itself in the view." .
+
+hkg:CategoryAssignment a owl:Class ;
+  rdfs:label "category assignment" ;
+  rdfs:comment """A reified (vulnerability, device category) membership decision, carrying how it was settled.
+Reified rather than a plain edge because provenance is per-pair, not per-CVE: the same CVE can be confirmed
+in two categories by different routes (one by AI consensus, one by human verdict), and a triple on the CVE
+alone could not express that. hkg:affectsCategory is kept alongside as a shortcut for simple queries.""" .
+
+################################################################################
+# Vulnerability properties
+################################################################################
+
+hkg:affectsCategory a owl:ObjectProperty ;
+  rdfs:label "affects category" ;
+  rdfs:comment "Shortcut for the hkg:assignment / hkg:assignedCategory path. Present on every confirmed pair; use the reified form when provenance matters." ;
+  rdfs:domain hkg:Vulnerability ; rdfs:range hiot:DeviceType .
+
+hkg:assignment a owl:ObjectProperty ;
+  rdfs:label "assignment" ;
+  rdfs:domain hkg:Vulnerability ; rdfs:range hkg:CategoryAssignment .
+
+hkg:assignedCategory a owl:ObjectProperty ;
+  rdfs:label "assigned category" ;
+  rdfs:domain hkg:CategoryAssignment ; rdfs:range hiot:DeviceType .
+
+hkg:assignedVulnerability a owl:ObjectProperty ;
+  rdfs:label "assigned vulnerability" ;
+  rdfs:domain hkg:CategoryAssignment ; rdfs:range hkg:Vulnerability .
+
+hkg:affectsProduct a owl:ObjectProperty ;
+  rdfs:label "affects product" ;
+  rdfs:comment "NVD's own CPE attribution. Independent of the reviewers' category judgment — this edge is asserted by NVD, hkg:affectsCategory by this study." ;
+  rdfs:domain hkg:Vulnerability ; rdfs:range hkg:Product .
+
+hkg:hasWeakness a owl:ObjectProperty ;
+  rdfs:label "has weakness" ;
+  rdfs:domain hkg:Vulnerability ; rdfs:range hkg:Weakness .
+
+hkg:hasCwe888Class a owl:ObjectProperty ;
+  rdfs:label "has CWE-888 class" ;
+  rdfs:comment """Attached to the WEAKNESS, not to the vulnerability. The CWE-888 view assignment depends on
+nothing but the CWE — CWE-639 is Access Control wherever it occurs — and all 155 CWEs in the corpus map
+consistently. Placing it here is also what makes the graph reproduce RQ1's counting unit: RQ1 counts a CWE
+ATTRIBUTION (a CVE with two CWEs counts twice; a CWE mapping to two classes counts twice), so the total is
+obtained by walking assignment -> vulnerability -> weakness -> class. A deduplicated set of classes hung off
+the vulnerability would silently undercount.""" ;
+  rdfs:domain hkg:Weakness ; rdfs:range hkg:Cwe888Class .
+
+hkg:cwe888MapDepth a owl:DatatypeProperty ;
+  rdfs:label "CWE-888 map depth" ;
+  rdfs:comment "How many CWE parent hops were needed to reach the CWE-888 view. 0 = the assigned CWE is itself in the view; -1 = no mapping found. Carried because a deep mapping is weaker evidence than a direct one." ;
+  rdfs:domain hkg:Weakness ; rdfs:range xsd:integer .
+
+hkg:cvssScore a owl:DatatypeProperty ;
+  rdfs:label "CVSS base score" ;
+  rdfs:comment "Base score only. The snapshot does not carry the CVSS vector string — download_nvd.py keeps baseScore and version and discards vectorString — so attack vector, privileges required and scope are not representable in this graph." ;
+  rdfs:domain hkg:Vulnerability ; rdfs:range xsd:decimal .
+
+hkg:cvssVersion a owl:DatatypeProperty ;
+  rdfs:label "CVSS version" ;
+  rdfs:domain hkg:Vulnerability ; rdfs:range xsd:string .
+
+hkg:published a owl:DatatypeProperty ;
+  rdfs:label "published" ;
+  rdfs:domain hkg:Vulnerability ; rdfs:range xsd:date .
+
+################################################################################
+# Provenance properties (on hkg:CategoryAssignment)
+################################################################################
+
+hkg:judgmentSource a owl:DatatypeProperty ;
+  rdfs:label "judgment source" ;
+  rdfs:comment "How the assignment settled: ai-consensus (3 blind AI reviewers agreed), strong-consensus (Claude+Codex High/High, lone Gemini dissent), or human (a human verdict pair). Values are judgment_store.csv `Final Source` verbatim." ;
+  rdfs:domain hkg:CategoryAssignment ; rdfs:range xsd:string .
+
+hkg:humanSettled a owl:DatatypeProperty ;
+  rdfs:label "human settled" ;
+  rdfs:comment "True when the assignment carries a human verdict. Human verdicts are sticky in finalize_judgments.py, so this is a durable property of the decision." ;
+  rdfs:domain hkg:CategoryAssignment ; rdfs:range xsd:boolean .
+
+hkg:discoveryDirection a owl:DatatypeProperty ;
+  rdfs:label "discovery direction" ;
+  rdfs:comment """Which review direction surfaced this pair: vendor_only, keyword_only, intersection (the three
+partition V union K) or cpe_expansion (Stage 5, outside it). Recorded so a recall or method-comparison query
+can be answered from the graph — it is the one place the KG carries information about HOW a CVE was found
+rather than what it is.""" ;
+  rdfs:domain hkg:CategoryAssignment ; rdfs:range xsd:string .
+
+################################################################################
+# Product properties
+################################################################################
+
+hkg:vendor a owl:ObjectProperty ;
+  rdfs:label "vendor" ;
+  rdfs:domain hkg:Product ; rdfs:range hkg:Vendor .
+
+hkg:cpePart a owl:DatatypeProperty ;
+  rdfs:label "CPE part" ;
+  rdfs:comment "The CPE part letter: o (operating system / firmware), h (hardware), a (application). Stage 5 seeds only from o and h; this graph records all three so companion-app CVEs stay visible." ;
+  rdfs:domain hkg:Product ; rdfs:range xsd:string .
+
+hkg:cpeName a owl:DatatypeProperty ;
+  rdfs:label "CPE name" ;
+  rdfs:comment "The version-collapsed vendor:product string as it appears in the CPE." ;
+  rdfs:domain hkg:Product ; rdfs:range xsd:string .
+
+hkg:vendorName a owl:DatatypeProperty ;
+  rdfs:label "vendor name" ;
+  rdfs:domain hkg:Vendor ; rdfs:range xsd:string .
+
+################################################################################
+# Provenance of the graph itself
+################################################################################
+
+hkg:snapshotDate a owl:DatatypeProperty ;
+  rdfs:label "snapshot date" ;
+  rdfs:comment "Date of the fixed NVD snapshot the graph was built from. Every count in the graph is 'as of' this date." .
+
+hkg:generatedFrom a owl:DatatypeProperty ;
+  rdfs:label "generated from" ;
+  rdfs:comment "Source files the export read, with their row counts, so a published graph can be traced to the exact inputs." .
