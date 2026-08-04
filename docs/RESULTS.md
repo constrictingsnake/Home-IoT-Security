@@ -107,31 +107,38 @@ counted as Yes/No here).
 
 ---
 
-## Recall estimate — full 24-category coverage (`recall_estimate.csv`, 2026-07-23 post-rebuild)
+## Recall estimate — full 24-category coverage (`recall_estimate.csv`, 2026-07-26)
 
-All 24 analysis categories below, **recomputed against the 2026-07-23 `--overwrite` rebuild**
-(`python3 scripts/recall_estimate.py --three`). This is the `raw` (search-stage) population, which
-reads V/K directly from the fresh search outputs — so it is current and does **not** wait on the
-new candidates being reviewed. (The `yes`-population recall, which *does* need the reviews, is not
-recomputed here.) Rows ordered by 2-src recall within each confidence tier.
+All 24 analysis categories below (`python3 scripts/recall_estimate.py --three`). The **2-source**
+columns (V, K, ∩, Obs, N̂ 2-src, Recall 2-src) read V/K directly from the **2026-07-23** search
+outputs and are **unchanged since that rebuild**. The **3-source** column (Recall 3-src) was
+**recomputed 2026-07-26** against the current `judgment_store.csv` — the third capture set `C` is
+reseeded from confirmed-Yes device CPEs, so it shifts whenever judgments settle, and the 220 human
+verdicts landed between the two dates. This is the `raw` (search-stage) population; the
+`yes`-population recall (which needs the reviews) is not recomputed here. Two things are **not yet
+folded in**: the 7 pending Claude judgments (uncommitted) and the hubble vendor terms (added
+2026-07-24, never rebuilt into the vendor search), so V and the C set will both move again on the
+next full refresh. 3-src N̂ is volatile with wide CIs (see the log-linear caveats in `CLAUDE.md`
+§ Stage 6) — read the 3-src column as indicative, not precise. Rows ordered by 2-src recall within
+each confidence tier.
 
 | Category | V | K | ∩ | Obs | N̂ (2-src) | Recall 2-src | Recall 3-src | Note |
 |----------|--:|--:|--:|----:|----------:|-------------:|-------------:|------|
 | doorbell | 60 | 22 | 21 | 61 | 63 | 0.972 | 0.970 | ok |
-| smartspeakers | 83 | 67 | 57 | 93 | 98 | **0.954** | 0.990 | ok — near-complete |
+| smartspeakers | 83 | 67 | 57 | 93 | 98 | **0.954** | 0.992 | ok — near-complete |
 | thermostat | 51 | 15 | 13 | 53 | 58 | 0.907 | 0.914 | ok |
 | alarms | 103 | 112 | 65 | 150 | 177 | **0.847** ⬆ | 0.500 | ok — rose from 0.638 (new captures overlap) |
-| babymonitor | 79 | 10 | 8 | 81 | 97 | 0.837 | 0.843 | ok — **no longer degenerate** (K grew 7→10) |
-| doorlock | 35 | 37 | 20 | 52 | 64 | 0.811 | 0.086 | ok (3-src CI very wide) |
+| babymonitor | 79 | 10 | 8 | 81 | 97 | 0.837 | 0.874 | ok — **no longer degenerate** (K grew 7→10) |
+| doorlock | 35 | 37 | 20 | 52 | 64 | 0.811 | 0.247 | ok (3-src CI very wide) |
 | lighting | 32 | 15 | 10 | 37 | 47 | 0.787 | 0.988 | ok |
 | streaming | 218 | 35 | 25 | 228 | 302 | 0.754 | 0.640 | ok (unchanged — no new streaming terms) |
-| smartplugs | 68 | 13 | 9 | 72 | 96 | 0.753 | 0.964 | ok |
-| cameras | 2914 | 823 | 491 | 3246 | 4881 | **0.665** | 0.672 | ok — 2-src/3-src converge |
-| **ev-charging** | 93 | 175 | 48 | 220 | 337 | **0.654** ⬆ | 0.902 | ok — rose from 0.502 (was low-recall target) |
-| **hub** | 282 | 79 | 17 | 344 | 1257 | **0.274** ⬇ | 0.328 | ok — captured 2× more, but N̂ ballooned (see note) |
+| smartplugs | 68 | 13 | 9 | 72 | 96 | 0.753 | 0.862 | ok |
+| cameras | 2914 | 823 | 491 | 3246 | 4881 | **0.665** | 0.655 | ok — 2-src/3-src converge |
+| **ev-charging** | 93 | 175 | 48 | 220 | 337 | **0.654** ⬆ | 0.344 | ok — 2-src rose from 0.502 (was low-recall target) |
+| **hub** | 282 | 79 | 17 | 344 | 1257 | **0.274** ⬇ | 0.794 | ok — captured 2× more, but N̂ ballooned (see note) |
 | garden | 12 | 13 | 1 | 24 | 90 | 0.267 | 0.914 | low — thin overlap |
-| airconditioner | 15 | 10 | 1 | 24 | 87 | 0.276 | — | low; **no 3-src** (see below) |
-| home-power | 38 | 16 | 2 | 52 | 220 | 0.236 | 0.171 | low — thin overlap |
+| airconditioner | 15 | 10 | 1 | 24 | 87 | 0.276 | 0.160 | low; 3-src now formed (C=3, unstable) |
+| home-power | 38 | 16 | 2 | 52 | 220 | 0.236 | 0.967 | low 2-src — thin overlap; 3-src wide CI |
 | sleeptracker | 3 | 1 | 0 | 4 | 7 | 0.571 | — | low; **no 3-src** (see below) |
 | appliances | 2 | 2 | 0 | 4 | 8 | 0.500 | 1.000 | low — tiny n |
 | pet | 35 | 6 | 6 | 35 | 35 | 1.000 | 1.000 | **degenerate** (K ⊆ V) |
@@ -164,10 +171,12 @@ The rebuild moved recall in *both* directions, and the direction tells you *why*
    (`if not V or not K: continue`). `shades` has 5 vendor CVEs but **0 keyword terms**; `airpurifier`
    has 8 keyword CVEs but **0 vendor terms**. Populate the missing side (add a keyword sheet for
    `shades`, vendor terms for `airpurifier`) and both get estimates on the next run.
-2. **No 3-source row — `airconditioner`, `sleeptracker`.** The third capture set `C` is seeded from
-   confirmed-Yes device CPEs (`part ∈ {o,h}`, generic platforms denied). Neither category has enough
-   qualifying confirmed-Yes seeds to form a `C` set (`sleeptracker` has 0 in-scope Yes; `airconditioner`
-   only 2, yielding no usable device CPE), so only the 2-source Chapman estimate is produced.
+2. **No 3-source row — `sleeptracker`.** The third capture set `C` is seeded from
+   confirmed-Yes device CPEs (`part ∈ {o,h}`, generic platforms denied). `sleeptracker` has 0
+   in-scope confirmed-Yes seeds, so no `C` set forms and only the 2-source Chapman estimate is
+   produced. (`airconditioner`, which had no `C` set on the 2026-07-23 run, now forms a minimal
+   `C=3` from newly settled Yes rows and so gained a 3-source row this run — but with only 3 seeds
+   its 3-src N̂ is highly unstable, hence the 0.160 with a CI running to 1.0.)
 3. **`recall = 1.000` flagged `degenerate` — `pet`, `robotvacuum`, `sensors`, `fridge`, `fans`.**
    One capture list is a strict subset of the other (`∩ = min(V,K)`), so recapture carries no
    information and N̂ collapses to the larger list. These are **excluded from the POOLED total** —
