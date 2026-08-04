@@ -61,6 +61,39 @@ ROOT =os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DEFAULT_STORE = os.path.join(ROOT, "data", "difference", "judgment_store.csv")
 DEFAULT_SNAPSHOT = os.path.join(ROOT, "data", "nvd-snapshot", "nvd_all.csv")
 DEFAULT_CATEGORIES = os.path.join(ROOT, "data", "categories.csv")
+DEFAULT_FAMILIES = os.path.join(ROOT, "data", "ontology", "families.csv")
+
+
+def load_families(path):
+    """slug -> family_label, plus the family order (first appearance). Generated from
+    ontology/homeiot.ttl by scripts/ontology_build.py --write."""
+    fam, order = {}, []
+    with open(path, newline="", encoding="utf-8-sig") as f:
+        for r in csv.DictReader(f):
+            label = r["family_label"].strip()
+            fam[r["slug"].strip()] = label
+            if label not in order:
+                order.append(label)
+    return fam, order
+
+
+def macro_profile(counters, class_names):
+    """Unweighted mean of each unit's percentage profile — the macro-average.
+
+    The `ALL` row is a micro-average: it pools attributions, so a unit with 20x the
+    CVEs contributes 20x the weight and the overall shape is whatever the largest
+    unit's shape is. The macro-average gives every unit with data an equal vote,
+    answering 'what does a typical home IoT device category look like' rather than
+    'what does the corpus look like'. Report both; the gap between them measures how
+    concentrated the corpus is."""
+    profiles = []
+    for c in counters:
+        total = sum(c.values())
+        if total:
+            profiles.append({cls: 100 * c[cls] / total for cls in class_names})
+    if not profiles:
+        return {cls: 0.0 for cls in class_names}
+    return {cls: sum(p[cls] for p in profiles) / len(profiles) for cls in class_names}
 DEFAULT_CWE_XML = os.path.join(ROOT, "data", "cwe", "cwec_v4.12.xml")
 DEFAULT_OUT_DIR = os.path.join(ROOT, "data", "difference")
 
@@ -186,6 +219,17 @@ def main():
                     help="Restrict to one category slug (repeatable; default: all)")
     ap.add_argument("--out-dir", default=DEFAULT_OUT_DIR,
                     help="Output directory (default: data/difference)")
+    ap.add_argument("--include-excluded", action="store_true",
+                    help="Keep rows a scope ruling took out of the analysis population "
+                         "(judgment_store.csv `Excluded`). Off by default — mark_excluded.py's "
+                         "rulings are meant to apply.")
+    ap.add_argument("--group", choices=("category", "family"), default="category",
+                    help="Unit of analysis. 'family' folds the 24 categories into the "
+                         "supervisor-agreed folding categories from data/ontology/families.csv "
+                         "and writes *_family.* outputs, leaving the per-category files "
+                         "untouched.")
+    ap.add_argument("--families", default=DEFAULT_FAMILIES,
+                    help="families.csv from the ontology (default: data/ontology/families.csv)")
     args = ap.parse_args()
 
     cwe_to_classes, parents, class_names = load_cwe_catalog(args.cwe_xml)
@@ -194,11 +238,20 @@ def main():
 
     # confirmed-Yes rows, grouped cve -> categories
     yes_rows = []                     # (category, cve_id)
+    n_excluded = 0
     with open(args.store, newline="", encoding="utf-8-sig") as f:
         for row in csv.DictReader(f):
             if str(row.get("Final Judgment", "")).strip() == "Yes":
                 cat = row["category"].strip()
                 if args.category and cat not in args.category:
+                    continue
+                # A scope ruling (mark_excluded.py) takes a settled row OUT of the
+                # analysis population without touching its judgment. finalize_judgments.py
+                # already drops these from final_resolved.csv; this script reads the store
+                # directly, so it must apply the same filter or the ruling silently does
+                # not reach RQ1.
+                if str(row.get("Excluded", "")).strip() and not args.include_excluded:
+                    n_excluded += 1
                     continue
                 yes_rows.append((cat, row["cve_id"].strip().upper()))
     if not yes_rows:
@@ -206,6 +259,11 @@ def main():
     needed = {cve for _, cve in yes_rows}
     print(f"Confirmed-Yes rows: {len(yes_rows)} "
           f"({len(needed)} distinct CVEs, {len({c for c, _ in yes_rows})} categories)")
+    if n_excluded:
+        print(f"  excluded by scope ruling: {n_excluded} "
+              f"(use --include-excluded to keep them)")
+    elif args.include_excluded:
+        print("  --include-excluded: scope-excluded rows KEPT in the population")
 
     # cwe_ids lookup from the fixed snapshot, only for needed CVEs
     cwe_of = {}
@@ -245,19 +303,38 @@ def main():
             for cls in classes:
                 counts[cat][cls] += 1
 
-    cat_order = []
-    if os.path.isfile(args.categories):
-        with open(args.categories, newline="", encoding="utf-8-sig") as f:
-            cat_order = [r["slug"].strip() for r in csv.DictReader(f)]
+    # ---- fold categories into families, if asked
+    suffix = ""
+    if args.group == "family":
+        fam_of, fam_order = load_families(args.families)
+        missing = sorted(set(counts) - set(fam_of))
+        if missing:
+            raise SystemExit(f"No family for: {', '.join(missing)} — "
+                             f"rerun scripts/ontology_build.py --write")
+        folded, folded_stats = defaultdict(Counter), defaultdict(Counter)
+        for cat, c in counts.items():
+            folded[fam_of[cat]].update(c)
+            folded_stats[fam_of[cat]].update(stats[cat])
+        counts, stats = folded, folded_stats
+        cat_order, suffix = fam_order, "_family"
+        for row in map_rows:
+            row["category"] = fam_of[row["category"]]
+    else:
+        cat_order = []
+        if os.path.isfile(args.categories):
+            with open(args.categories, newline="", encoding="utf-8-sig") as f:
+                cat_order = [r["slug"].strip() for r in csv.DictReader(f)]
+
     cats = [c for c in cat_order if c in counts] + sorted(set(counts) - set(cat_order))
     all_counts = Counter()
     for cat in cats:
         all_counts.update(counts[cat])
+    macro = macro_profile([counts[c] for c in cats], class_names)
 
     os.makedirs(args.out_dir, exist_ok=True)
 
     # ---- long-form distribution CSV
-    dist_path = os.path.join(args.out_dir, "cwe888_distribution.csv")
+    dist_path = os.path.join(args.out_dir, f"cwe888_distribution{suffix}.csv")
     with open(dist_path, "w", newline="") as f:
         w = csv.writer(f)
         w.writerow(["category", "cwe888_class", "n_cwes", "pct"])
@@ -267,9 +344,13 @@ def main():
             for cls in class_names:
                 if c[cls]:
                     w.writerow([cat, cls, c[cls], round(100 * c[cls] / total, 1)])
+        # ALL-MACRO carries no counts — it is a mean of percentages, so n_cwes is blank.
+        for cls in class_names:
+            if macro[cls]:
+                w.writerow(["ALL-MACRO", cls, "", round(macro[cls], 1)])
 
     # ---- per-attribution audit CSV
-    map_path = os.path.join(args.out_dir, "cwe888_cve_map.csv")
+    map_path = os.path.join(args.out_dir, f"cwe888_cve_map{suffix}.csv")
     with open(map_path, "w", newline="") as f:
         w = csv.DictWriter(f, fieldnames=["category", "cve_id", "cwe_id",
                                           "cwe888_classes", "map_depth"])
@@ -281,30 +362,40 @@ def main():
         total = sum(c.values())
         return f"{c[cls]} ({100 * c[cls] / total:.0f}%)" if c[cls] else ""
 
-    md_path = os.path.join(args.out_dir, "cwe888_matrix.md")
-    L = ["# CWE-888 primary-class distribution — confirmed-Yes CVEs", ""]
+    md_path = os.path.join(args.out_dir, f"cwe888_matrix{suffix}.md")
+    unit = "folding category" if args.group == "family" else "category"
+    L = [f"# CWE-888 primary-class distribution — confirmed-Yes CVEs (by {unit})", ""]
     L.append("Counting matches Table III of the transportation IoT study: unit = CWE "
              "attribution; a CVE with two CWEs counts twice, a CWE mapping to two "
              "primary classes counts in both. `All` sums the category columns "
              "(a CVE confirmed in several categories counts once per category).")
     L.append("")
-    header = ["Primary CWE-888 Class"] + cats + ["All"]
+    L.append("")
+    L.append("`All` is a **micro**-average (pooled attributions, so the largest unit "
+             "dominates the shape); `All-macro` is a **macro**-average (unweighted mean "
+             "of each unit's percentage profile, so every unit with data gets an equal "
+             "vote). Read them together — the gap between the two is how concentrated "
+             "the corpus is.")
+    L.append("")
+    header = ["Primary CWE-888 Class"] + cats + ["All", "All-macro"]
     L.append("| " + " | ".join(header) + " |")
     L.append("|" + "---|" * len(header))
     for cls in class_names:
         L.append("| " + " | ".join(
-            [cls] + [cell(counts[c], cls) for c in cats] + [cell(all_counts, cls)]) + " |")
+            [cls] + [cell(counts[c], cls) for c in cats] + [cell(all_counts, cls)]
+            + [f"{macro[cls]:.0f}%" if macro[cls] else ""]) + " |")
     top6 = ["**Top-6 share**"]
     for c in [counts[c] for c in cats] + [all_counts]:
         total = sum(c.values())
         t6 = sum(n for _, n in c.most_common(6))
         top6.append(f"{t6} ({100 * t6 / total:.0f}%)" if total else "")
+    top6.append(f"{sum(sorted(macro.values(), reverse=True)[:6]):.0f}%")
     L.append("| " + " | ".join(top6) + " |")
     L.append("| " + " | ".join(
         ["**Total CWEs**"] + [str(sum(counts[c].values())) for c in cats]
-        + [str(sum(all_counts.values()))]) + " |")
+        + [str(sum(all_counts.values())), "—"]) + " |")
     L += ["", "## Coverage", "",
-          "| Category | Yes CVEs | with CWE | CWE attributions | unmapped CWEs |",
+          f"| {unit.title()} | Yes CVEs | with CWE | CWE attributions | unmapped CWEs |",
           "|---|---|---|---|---|"]
     for cat in cats:
         s = stats[cat]

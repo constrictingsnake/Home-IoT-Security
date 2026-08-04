@@ -1,0 +1,176 @@
+category,cwe888_class,n_cwes,pct
+Access Control,Access Control,9,20.9
+Access Control,Authentication,8,18.6
+Access Control,Channel,3,7.0
+Access Control,Cryptography,1,2.3
+Access Control,Information Leak,7,16.3
+Access Control,Memory Access,4,9.3
+Access Control,Other,2,4.7
+Access Control,Path Resolution,1,2.3
+Access Control,Predictability,3,7.0
+Access Control,Resource Management,4,9.3
+Access Control,Tainted Input,1,2.3
+Audio,Access Control,3,9.1
+Audio,Authentication,3,9.1
+Audio,Information Leak,1,3.0
+Audio,Memory Access,13,39.4
+Audio,Path Resolution,1,3.0
+Audio,Privilege,1,3.0
+Audio,Resource Management,3,9.1
+Audio,Risky Values,3,9.1
+Audio,Tainted Input,5,15.2
+Cameras and Monitors,API,5,0.5
+Cameras and Monitors,Access Control,56,5.3
+Cameras and Monitors,Authentication,163,15.5
+Cameras and Monitors,Channel,9,0.9
+Cameras and Monitors,Cryptography,17,1.6
+Cameras and Monitors,Entry Points,3,0.3
+Cameras and Monitors,Exception Management,6,0.6
+Cameras and Monitors,Failure to Release Memory,1,0.1
+Cameras and Monitors,Information Leak,104,9.9
+Cameras and Monitors,Memory Access,170,16.2
+Cameras and Monitors,Other,67,6.4
+Cameras and Monitors,Path Resolution,33,3.1
+Cameras and Monitors,Predictability,75,7.1
+Cameras and Monitors,Privilege,15,1.4
+Cameras and Monitors,Resource Management,21,2.0
+Cameras and Monitors,Risky Values,8,0.8
+Cameras and Monitors,Synchronization,2,0.2
+Cameras and Monitors,Tainted Input,297,28.2
+Climate & Air,Access Control,1,3.0
+Climate & Air,Authentication,4,12.1
+Climate & Air,Channel,3,9.1
+Climate & Air,Cryptography,2,6.1
+Climate & Air,Information Leak,7,21.2
+Climate & Air,Memory Access,3,9.1
+Climate & Air,Other,3,9.1
+Climate & Air,Predictability,3,9.1
+Climate & Air,Tainted Input,7,21.2
+Electrical & Lighting,Access Control,4,6.7
+Electrical & Lighting,Authentication,12,20.0
+Electrical & Lighting,Channel,1,1.7
+Electrical & Lighting,Cryptography,4,6.7
+Electrical & Lighting,Information Leak,8,13.3
+Electrical & Lighting,Memory Access,12,20.0
+Electrical & Lighting,Other,3,5.0
+Electrical & Lighting,Predictability,3,5.0
+Electrical & Lighting,Privilege,1,1.7
+Electrical & Lighting,Resource Management,6,10.0
+Electrical & Lighting,Tainted Input,6,10.0
+Alarms & Sensors,Access Control,4,4.5
+Alarms & Sensors,Authentication,9,10.1
+Alarms & Sensors,Channel,14,15.7
+Alarms & Sensors,Entry Points,2,2.2
+Alarms & Sensors,Faulty Resource Release,1,1.1
+Alarms & Sensors,Information Leak,14,15.7
+Alarms & Sensors,Memory Access,1,1.1
+Alarms & Sensors,Memory Management,1,1.1
+Alarms & Sensors,Other,3,3.4
+Alarms & Sensors,Predictability,5,5.6
+Alarms & Sensors,Risky Values,1,1.1
+Alarms & Sensors,Tainted Input,34,38.2
+Appliances,API,1,2.4
+Appliances,Access Control,2,4.9
+Appliances,Authentication,7,17.1
+Appliances,Channel,1,2.4
+Appliances,Cryptography,3,7.3
+Appliances,Information Leak,4,9.8
+Appliances,Memory Access,3,7.3
+Appliances,Other,6,14.6
+Appliances,Predictability,7,17.1
+Appliances,Tainted Input,7,17.1
+Hubs and Controllers,Access Control,14,5.0
+Hubs and Controllers,Authentication,22,7.8
+Hubs and Controllers,Channel,5,1.8
+Hubs and Controllers,Cryptography,6,2.1
+Hubs and Controllers,Exception Management,1,0.4
+Hubs and Controllers,Information Leak,14,5.0
+Hubs and Controllers,Memory Access,172,61.0
+Hubs and Controllers,Other,2,0.7
+Hubs and Controllers,Path Resolution,6,2.1
+Hubs and Controllers,Predictability,2,0.7
+Hubs and Controllers,Privilege,6,2.1
+Hubs and Controllers,Resource Management,1,0.4
+Hubs and Controllers,Risky Values,2,0.7
+Hubs and Controllers,Tainted Input,29,10.3
+Energy,Access Control,11,8.1
+Energy,Authentication,22,16.3
+Energy,Channel,5,3.7
+Energy,Cryptography,4,3.0
+Energy,Information Leak,17,12.6
+Energy,Memory Access,16,11.9
+Energy,Other,13,9.6
+Energy,Path Resolution,6,4.4
+Energy,Predictability,11,8.1
+Energy,Privilege,1,0.7
+Energy,Risky Values,1,0.7
+Energy,Tainted Input,26,19.3
+Energy,UI,2,1.5
+Outdoor & Pet,API,1,1.3
+Outdoor & Pet,Access Control,7,9.3
+Outdoor & Pet,Authentication,15,20.0
+Outdoor & Pet,Channel,3,4.0
+Outdoor & Pet,Cryptography,4,5.3
+Outdoor & Pet,Information Leak,11,14.7
+Outdoor & Pet,Memory Access,3,4.0
+Outdoor & Pet,Other,6,8.0
+Outdoor & Pet,Predictability,5,6.7
+Outdoor & Pet,Privilege,2,2.7
+Outdoor & Pet,Resource Management,7,9.3
+Outdoor & Pet,Synchronization,1,1.3
+Outdoor & Pet,Tainted Input,9,12.0
+Outdoor & Pet,UI,1,1.3
+Entertainment,Access Control,2,3.3
+Entertainment,Authentication,7,11.5
+Entertainment,Channel,1,1.6
+Entertainment,Information Leak,11,18.0
+Entertainment,Memory Access,22,36.1
+Entertainment,Other,1,1.6
+Entertainment,Path Resolution,1,1.6
+Entertainment,Predictability,1,1.6
+Entertainment,Resource Management,3,4.9
+Entertainment,Risky Values,1,1.6
+Entertainment,Synchronization,1,1.6
+Entertainment,Tainted Input,10,16.4
+ALL,API,7,0.4
+ALL,Access Control,113,5.9
+ALL,Authentication,272,14.3
+ALL,Channel,45,2.4
+ALL,Cryptography,41,2.2
+ALL,Entry Points,5,0.3
+ALL,Exception Management,7,0.4
+ALL,Failure to Release Memory,1,0.1
+ALL,Faulty Resource Release,1,0.1
+ALL,Information Leak,198,10.4
+ALL,Memory Access,419,22.0
+ALL,Memory Management,1,0.1
+ALL,Other,106,5.6
+ALL,Path Resolution,48,2.5
+ALL,Predictability,115,6.0
+ALL,Privilege,26,1.4
+ALL,Resource Management,45,2.4
+ALL,Risky Values,16,0.8
+ALL,Synchronization,4,0.2
+ALL,Tainted Input,431,22.6
+ALL,UI,3,0.2
+ALL-MACRO,API,,0.4
+ALL-MACRO,Access Control,,7.3
+ALL-MACRO,Authentication,,14.4
+ALL-MACRO,Channel,,4.4
+ALL-MACRO,Cryptography,,3.1
+ALL-MACRO,Entry Points,,0.2
+ALL-MACRO,Exception Management,,0.1
+ALL-MACRO,Failure to Release Memory,,0.0
+ALL-MACRO,Faulty Resource Release,,0.1
+ALL-MACRO,Information Leak,,12.7
+ALL-MACRO,Memory Access,,19.6
+ALL-MACRO,Memory Management,,0.1
+ALL-MACRO,Other,,5.7
+ALL-MACRO,Path Resolution,,1.5
+ALL-MACRO,Predictability,,6.2
+ALL-MACRO,Privilege,,1.1
+ALL-MACRO,Resource Management,,4.1
+ALL-MACRO,Risky Values,,1.3
+ALL-MACRO,Synchronization,,0.3
+ALL-MACRO,Tainted Input,,17.3
+ALL-MACRO,UI,,0.3

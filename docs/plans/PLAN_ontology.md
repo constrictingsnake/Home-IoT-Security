@@ -16,59 +16,75 @@ framing; the family rollup changes a result.
 
 ## Measured motivation
 
-Numbers below are from **live** `data/difference/cwe888_distribution.csv` (verified 2026-08-04),
-N = CWE attributions. Note the committed `tab:cwe888-matrix` in `report.tex` is **stale**
-(N=2,879 over 20 category rows vs. live N=3,259 over 22) — regenerate via
-`scripts/generate_cwe888_table.py` before submission, independent of this plan.
+> **Corrected 2026-08-04.** The first version of this section argued from
+> `streaming` = 55% of all CWE attributions. That figure was an artifact of a bug, not a
+> property of the data — see *The exclusion bug* below. The corrected numbers are here; the
+> argument for the hierarchy survives, the argument about corpus skew largely does not.
 
-| | N | share |
+### The exclusion bug (found while validating this plan; fixed 2026-08-04)
+
+`mark_excluded.py` applies a scope ruling by setting `Excluded` on a settled row: the judgment
+stands, but the row leaves the analysis population, and `finalize_judgments.py` drops it from
+`final_resolved.csv`. That worked. But **`cwe888_analysis.py` and `cvss_analysis.py` both read
+`judgment_store.csv` directly and tested only `Final Judgment == Yes`** — so the 2,015 tvOS rows
+excluded in July 2026 were silently back in RQ1 and RQ2.
+
+| | as computed | exclusion applied |
 |---|---|---|
-| `streaming` | 1,791 | **55.0%** |
-| `cameras` | 883 | 27.1% |
-| `hub` | 109 | 3.3% |
-| `alarms` | 86 | 2.6% |
-| …18 more rows | 390 | 12.0% |
-| **All** | **3,259** | |
+| confirmed-Yes rows | 3,753 | **1,738** |
+| CWE attributions | 3,635 | **1,904** |
+| `streaming` share | 50.8% | **3.5%** |
+| `cameras` share | 26.3% | **55.3%** |
 
-Two structural defects follow:
+Independently corroborated: the supervisor-agreed folding table (streaming 75, cameras 778,
+hub 98 …) reconciles against `final_resolved.csv` to within ±1 on most categories, so the
+supervisors were already looking at the exclusion-applied population.
 
-1. **The `All` row is largely the `streaming` row.** `streaming`+`cameras` = **82%** of
-   attributions, so the overall class distribution is dominated by two categories and any claim
-   about "home IoT devices" from that row is mostly a claim about streaming platforms.
-2. **Six categories have N ≤ 5** and are published as percentages: `sensors` N=2,
-   `airpurifier` N=2, `appliances` N=3, `fans` N=4, `fridge` N=4, `airconditioner` N=5. A cell
-   reading "Channel 100%" on N=2 is two attributions rendered as a finding. These rows cannot
-   support the per-category discussion the `\stub` at `report.tex:493` requests.
+Both scripts now filter `Excluded` by default, with `--include-excluded` to reproduce the old
+behaviour. **Any `report.tex` figure predating this fix is wrong**, including `tab:cwe888-matrix`
+(which was already stale at N=2,879 over 20 rows).
 
-Family rollup (sums to exactly 3,259 — verified against live data):
+### What remains true
 
-| Family | Members | N | largest member | its share of family |
-|---|---|---|---|---|
-| Media & Control Surfaces | streaming, hub, smartspeakers | 1,932 | streaming 1,791 | 93% |
-| Security & Access | cameras, alarms, doorlock, doorbell, babymonitor, sensors | 1,052 | cameras 883 | 84% |
-| Domestic & Chores | pet, robotvacuum, garden, appliances, fridge | 114 | pet 49 | 43% |
-| Energy | home-power, ev-charging, smartplugs | 101 | ev-charging 38 | 38% |
-| Fixtures | lighting, shades | 31 | lighting 31 | 100% |
-| Climate & Air | thermostat, airconditioner, airpurifier, fans | 29 | thermostat 18 | 62% |
-| Wellness | sleeptracker | 0 | — | — |
+**The tail problem is real and unchanged.** Six categories sit at N ≤ 5 (`sensors`,
+`airpurifier`, `appliances`, `fans`, `fridge`, `airconditioner`) yet are published as
+percentages — a cell reading "Channel 100%" on N=2 is two attributions rendered as a finding.
+These rows cannot support the per-category discussion the `\stub` at `report.tex:493` requests.
+Folding is the direct answer.
 
-### What the hierarchy does and does not fix (be precise about this in the paper)
+**The skew problem is much smaller than claimed.** Measured micro vs macro gap on the corrected
+population: max **7.3** points by category (Memory Access), max **5.3** by family. Real, worth
+reporting, *not* a headline. `Cameras and Monitors` is still 55% of the corpus, but its CWE
+profile is close enough to the mean that pooling does not badly distort the overall shape.
+Report both averages as standard practice; do not build a claim on the gap.
 
-**Fixes the tail.** Climate & Air pools 2+4+5+18 → 29; Energy pools 28+35+38 → 101; Domestic &
-Chores pools 3+4+24+34+49 → 114. That makes **12 of 24 categories** reportable that individually
-are not, and it is the direct answer to defect 2.
+### Folding categories (supervisor-agreed — authoritative)
 
-**Does not fix the head.** Media & Control Surfaces is 93% `streaming` and Security & Access is
-84% `cameras` — the concentration simply moves up one level. Rolling up alone does **not** cure
-defect 1, and claiming it does would be indefensible.
+These 13 replace the 7 families originally invented in this plan. Agreed with supervisors as the
+"more abstract, high-level overview"; the rule is *keep categories with a large enough n
+standalone*, which is why `hub`, `streaming`, `smartspeakers`, `doorlock`, `sleeptracker`, and
+`shades` fold to themselves. N = CWE attributions, exclusion applied.
 
-**Defect 1 needs a second, orthogonal fix: macro-averaging.** Report the overall profile two
-ways — attribution-weighted (micro, what exists today) and unweighted mean of per-unit profiles
-(macro), at both category and family level. The micro/macro gap *is* the finding: it quantifies
-how much of "home IoT vulnerability distribution" is really streaming. The ontology's
-contribution here is supplying the family level at which macro-averaging is meaningful; the
-averaging itself is arithmetic and carries no ontological commitment. Both must be reported
-together, never one instead of the other.
+| Folding category | Members | N | share |
+|---|---|---|---|
+| Cameras and Monitors | cameras, doorbell, babymonitor | 1,052 | 55.3% |
+| Hubs and Controllers | hub | 282 | 14.8% |
+| Energy | ev-charging, home-power | 135 | 7.1% |
+| Alarms & Sensors | alarms, sensors | 89 | 4.7% |
+| Outdoor & Pet | garden, pet | 75 | 3.9% |
+| Entertainment | streaming | 61 | 3.2% |
+| Electrical & Lighting | smartplugs, lighting | 60 | 3.2% |
+| Access Control | doorlock | 43 | 2.3% |
+| Appliances | robotvacuum, fridge, appliances | 41 | 2.2% |
+| Audio | smartspeakers | 33 | 1.7% |
+| Climate & Air | thermostat, airconditioner, fans, airpurifier | 33 | 1.7% |
+| Sleep | sleeptracker | 0 | — |
+| Shades | shades | 0 | — |
+
+Sums to 1,904, matching the per-category total exactly. Note this grouping tracks **admission
+route** where it matters: `Hubs and Controllers` (criterion 4(a), primary home control) is kept
+apart from `Entertainment` and `Audio` (in only via 4(b)) — the distinction the paper's scope
+section is built on.
 
 ---
 
@@ -76,7 +92,7 @@ together, never one instead of the other.
 
 **Does:**
 - Formalize criteria 1–5 as OWL axioms over a facet vocabulary.
-- Add a 6-family (+1 provisional) hierarchy over the 24 frozen leaf categories.
+- Add the 13 supervisor-agreed folding categories as a hierarchy over the 24 frozen leaves.
 - Generate `data/categories.csv` (byte-identical) and a new `data/ontology/families.csv`.
 - Add `--group family` rollups **and micro/macro-averaged overall rows** to
   `cwe888_analysis.py` and `cvss_analysis.py`.
@@ -105,17 +121,23 @@ guards against at its lines 85–86 by excluding `rule:*` rows from the precisio
 
 ## Class tree
 
-Root `hiot:HomeIoTDeviceType`, 7 families, 24 in-scope leaves, 3 defined-but-excluded classes.
+Root `hiot:HomeIoTDeviceType`, 13 folding categories, 24 in-scope leaves, 3 defined-but-excluded classes.
 
 ```
-HomeIoTDeviceType
-├── SecurityAccessDevice     cameras, doorbell, babymonitor, alarms, sensors, doorlock
-├── ControlSurfaceDevice     hub, smartspeakers, streaming
-├── ClimateAirDevice         thermostat, airconditioner, airpurifier, fans
-├── EnergyDevice             home-power, ev-charging, smartplugs
-├── DomesticChoresDevice     appliances, fridge, robotvacuum, garden, pet
-├── FixtureDevice            lighting, shades
-└── WellnessDevice           sleeptracker            [provisional — see below]
+HomeIoTDeviceType                     (13 supervisor-agreed folding categories)
+├── CamerasMonitorsDevice     cameras, doorbell, babymonitor
+├── HubsControllersDevice     hub                     [standalone — large enough n, and 4(a)]
+├── AlarmsSensorsDevice       alarms, sensors
+├── EntertainmentDevice       streaming               [standalone — in via 4(b)]
+├── ElectricalLightingDevice  smartplugs, lighting
+├── EnergyDevice              ev-charging, home-power
+├── OutdoorPetDevice          garden, pet
+├── AudioDevice               smartspeakers           [standalone — in via 4(b)]
+├── AppliancesDevice          robotvacuum, fridge, appliances
+├── AccessControlDevice       doorlock                [standalone]
+├── ClimateAirDevice          thermostat, airconditioner, fans, airpurifier
+├── SleepDevice               sleeptracker            [provisional — see below]
+└── ShadesDevice              shades
 
 ExcludedDeviceType (defined, not in the analysis set)
 ├── GameConsole              fails criteria 2, 4
@@ -123,16 +145,16 @@ ExcludedDeviceType (defined, not in the analysis set)
 └── TransportNetworking      fails criterion 4 (plain routers, modems, ONT, switches)
 ```
 
-`WellnessDevice` is a singleton flagged `hiot:provisional true` — `sleeptracker` is ~88%
+`SleepDevice` is a singleton flagged `hiot:provisional true` — `sleeptracker` is ~88%
 wrist wearables (out by criterion 3) with essentially no bedside monitors and is pending a
 rebuild that may drop it (`CLAUDE.md` § Open scoping note). Encoding the provisional status is
 better than hiding it; if the category is dropped, the family goes with it.
 
-**Family assignment is a judgment call and must be defensible per leaf.** The rule mirrors the
-existing granularity rule: leaves share a family when they share a *primary function*, not a
-brand set. `sensors` sits under Security & Access (motion/contact/leak feed alarm systems, and
-its brand set overlaps `alarms`), not under Climate, despite temperature sensors existing.
-Record the rationale as `rdfs:comment` on each family.
+**Family assignment is not ours to invent — it was agreed with supervisors.** The rationale for
+each fold is recorded as `rdfs:comment` on the family class in `homeiot.ttl`. Two rules are
+visible in the agreed list and worth stating in the paper: *keep categories with a large enough n
+standalone* (six folds are singletons for this reason), and folds do not cross the 4(a)/4(b)
+admission boundary (`Hubs and Controllers` stays apart from `Entertainment`/`Audio`).
 
 ---
 
@@ -267,7 +289,7 @@ Consumers to leave untouched (they must not notice the swap): `make_review_copie
 | # | Deliverable | Gate |
 |---|---|---|
 | 1 | `homeiot.ttl` (24+3 classes, facets, axioms, scopeNotes), `shapes.ttl`, `ontology_build.py --check` | `categories.csv` regenerates byte-identical; SHACL clean |
-| 2 | `families.csv`; `--group family` + micro/macro rows in `cwe888_analysis.py` + `cvss_analysis.py` | family N's sum to 3,259; per-category output byte-unchanged |
+| 2 | `families.csv`; `--group family` + micro/macro rows in `cwe888_analysis.py` + `cvss_analysis.py`; **Excluded-column fix in both** | family N's sum to 1,904; `--include-excluded` reproduces pre-fix numbers |
 | 3 | `homeiot-align.ttl`; reasoner validation of all 27 rulings | reasoner matches published rulings, or discrepancies documented |
 | 4 | KG export (`--export-kg`): confirmed-Yes CVEs, CPE vendor/product, CWE-888 classes as instances | loads in rdflib; spot-check counts vs `final_resolved.csv` |
 | 5 | Paper edits | below |
@@ -278,9 +300,9 @@ file. Do not proceed to Phase 2 until `--check` is green.
 ### Phase 5 — paper integration
 
 - §`sec:method-scope` — keep the prose; add the ontology as its formal counterpart + artifact cite.
-- §`sec:rq1` — regenerate the stale `tab:cwe888-matrix` first (N=2,879→3,259, 20→22 rows); add
-  the family-level rollup table; report the overall profile **both** micro- and macro-averaged,
-  and make the gap between them an explicit finding about streaming/camera dominance.
+- §`sec:rq1` — regenerate `tab:cwe888-matrix` (it predates the exclusion fix); add the folding-
+  category rollup table; report the overall profile **both** micro- and macro-averaged. Do NOT
+  build a claim on the micro/macro gap — measured at ≤7.3 points, it is a robustness note.
 - `sec:rq1-cat1`–`cat4` (currently empty, `report.tex:581-593`) — one subsection per major family.
 - §`sec:threats-construct` — the 27-ruling reasoner check as a validation mechanism.
 - §`sec:threats-reliability` — optional: facet-level triage of reviewer disagreement
@@ -306,8 +328,8 @@ file. Do not proceed to Phase 2 until `--check` is green.
 1. `python3 scripts/ontology_build.py --check` exits 0 with `categories.csv` byte-identical.
 2. SHACL validation clean: all 27 classes carry 5 criterion facets, a parent, and a sortOrder.
 3. Reasoner reproduces all 27 in/out rulings, or every discrepancy is documented and resolved.
-4. `cwe888_analysis.py --group family` family totals sum to the per-category total (3,259 as of
-   2026-08-04); the existing per-category output is byte-unchanged by the new flag.
+4. `cwe888_analysis.py --group family` family totals sum to the per-category total (1,904 as of
+   2026-08-04, exclusion applied), and `--include-excluded` reproduces the pre-fix population.
 5. No change to `judgment_store.csv`, `final_resolved.csv`, `term_precision.csv`, or
    `recall_estimate.csv` — verified by diff before and after.
 ```

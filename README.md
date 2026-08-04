@@ -27,6 +27,7 @@ examples, see `docs/RESULTS.md`. For the full per-script flag reference, see
 - Dependencies: `pandas`, `openpyxl`, `numpy`, `requests`, `scipy` (install with `pip install pandas openpyxl numpy requests scipy`)
 - `matplotlib`, `squarify` — only for `generate_cwe888_treemaps.py` (`pip install matplotlib squarify`)
 - `tqdm` optional — adds progress bars to `cve_search.py` (`pip install tqdm`)
+- `rdflib`, `pyshacl`, `owlrl` — only for `ontology_build.py` (`pip install rdflib pyshacl owlrl`)
 - **API keys** in a gitignored `.env` file (never hardcode):
   - `GEMINI_API_KEY` — for the Gemini/Gemma reviewer
   - `NVD_API_KEY` — for downloading the NVD snapshot (`download_nvd.py`). Get one free at <https://nvd.nist.gov/developers/request-an-api-key>; it raises the API rate limit dramatically and is strongly recommended.

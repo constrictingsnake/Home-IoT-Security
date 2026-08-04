@@ -170,54 +170,90 @@ hiot:ExcludedDeviceType a owl:Class ;
 # Families
 ################################################################################
 
-hiot:SecurityAccessDevice a owl:Class ;
+hiot:CamerasMonitorsDevice a owl:Class ;
   rdfs:subClassOf hiot:InScopeDeviceType ;
-  rdfs:label "Security & Access" ;
-  hiot:familyId "SecurityAccess" ;
-  rdfs:comment """Devices whose primary function is monitoring or controlling access to and activity within the home. Grouped on shared primary function and heavily overlapping brand sets (the sensors brand list overlaps alarms by design).""" .
+  rdfs:label "Cameras and Monitors" ;
+  hiot:familyId "CamerasMonitors" ;
+  rdfs:comment """cameras + doorbell + babymonitor. Folded despite differing brand sets: at the high level a consumer reads all three as the same product class (a networked camera in the home). The granularity rule keeps them separate as ANALYSIS categories; this folding is the abstract view over them.""" .
 
-hiot:ControlSurfaceDevice a owl:Class ;
+hiot:HubsControllersDevice a owl:Class ;
   rdfs:subClassOf hiot:InScopeDeviceType ;
-  rdfs:label "Media & Control Surfaces" ;
-  hiot:familyId "ControlSurface" ;
-  rdfs:comment """Devices admitted under criterion 4(b): their qualifying function is acting as a control surface for OTHER home IoT devices, not controlling the home environment directly.""" .
+  rdfs:label "Hubs and Controllers" ;
+  hiot:familyId "HubsControllers" ;
+  rdfs:comment """hub, standalone. Kept unfolded because n is large enough to stand alone, and because its qualifying function is criterion 4(a) primary home control — not the 4(b) control-surface route that admits Entertainment and Audio.""" .
 
-hiot:ClimateAirDevice a owl:Class ;
+hiot:AlarmsSensorsDevice a owl:Class ;
   rdfs:subClassOf hiot:InScopeDeviceType ;
-  rdfs:label "Climate & Air" ;
-  hiot:familyId "ClimateAir" ;
-  rdfs:comment """Devices that monitor or regulate the home's thermal and air environment.""" .
+  rdfs:label "Alarms & Sensors" ;
+  hiot:familyId "AlarmsSensors" ;
+  rdfs:comment """alarms + sensors. Folded on shared function and heavily overlapping brand sets (the sensors brand list overlaps alarms by design).""" .
+
+hiot:EntertainmentDevice a owl:Class ;
+  rdfs:subClassOf hiot:InScopeDeviceType ;
+  rdfs:label "Entertainment" ;
+  hiot:familyId "Entertainment" ;
+  rdfs:comment """streaming, standalone. In scope only via criterion 4(b) — the platform acts as a Matter/Thread controller and surfaces camera feeds.""" .
+
+hiot:ElectricalLightingDevice a owl:Class ;
+  rdfs:subClassOf hiot:InScopeDeviceType ;
+  rdfs:label "Electrical & Lighting" ;
+  hiot:familyId "ElectricalLighting" ;
+  rdfs:comment """smartplugs + lighting. Folded as switched mains loads in the home's electrical fabric — distinct from Energy, which generates, stores, or meters power.""" .
 
 hiot:EnergyDevice a owl:Class ;
   rdfs:subClassOf hiot:InScopeDeviceType ;
   rdfs:label "Energy" ;
   hiot:familyId "Energy" ;
-  rdfs:comment """Devices that generate, store, meter, or switch household electrical power.""" .
+  rdfs:comment """ev-charging + home-power. Generation, storage, and metering of household power.""" .
 
-hiot:DomesticChoresDevice a owl:Class ;
+hiot:OutdoorPetDevice a owl:Class ;
   rdfs:subClassOf hiot:InScopeDeviceType ;
-  rdfs:label "Domestic & Chores" ;
-  hiot:familyId "DomesticChores" ;
-  rdfs:comment """Appliances that perform or automate household tasks.""" .
+  rdfs:label "Outdoor & Pet" ;
+  hiot:familyId "OutdoorPet" ;
+  rdfs:comment """garden + pet. Folded as the household's living-things tier — irrigation, mowers, feeders, litter boxes, pet cameras.""" .
 
-hiot:FixtureDevice a owl:Class ;
+hiot:AudioDevice a owl:Class ;
   rdfs:subClassOf hiot:InScopeDeviceType ;
-  rdfs:label "Fixtures" ;
-  hiot:familyId "Fixture" ;
-  rdfs:comment """Building-integrated fixtures actuated as part of the home's fabric.""" .
+  rdfs:label "Audio" ;
+  hiot:familyId "Audio" ;
+  rdfs:comment """smartspeakers, standalone. In scope via criterion 4(b), same route as Entertainment, but kept separate: n is large enough and the brand set is distinct.""" .
 
-hiot:WellnessDevice a owl:Class ;
+hiot:AppliancesDevice a owl:Class ;
   rdfs:subClassOf hiot:InScopeDeviceType ;
-  rdfs:label "Wellness" ;
-  hiot:familyId "Wellness" ;
-  rdfs:comment """Non-wearable residential health and wellness monitors. PROVISIONAL — single member pending rebuild.""" .
+  rdfs:label "Appliances" ;
+  hiot:familyId "Appliances" ;
+  rdfs:comment """robotvacuum + fridge + appliances. Folded as consumer white goods and chore automation.""" .
+
+hiot:AccessControlDevice a owl:Class ;
+  rdfs:subClassOf hiot:InScopeDeviceType ;
+  rdfs:label "Access Control" ;
+  hiot:familyId "AccessControl" ;
+  rdfs:comment """doorlock, standalone. Kept unfolded because n is large enough and physical access control is its own threat surface.""" .
+
+hiot:ClimateAirDevice a owl:Class ;
+  rdfs:subClassOf hiot:InScopeDeviceType ;
+  rdfs:label "Climate & Air" ;
+  hiot:familyId "ClimateAir" ;
+  rdfs:comment """thermostat + airconditioner + fans + airpurifier. Folded as devices that monitor or regulate the home's thermal and air environment.""" .
+
+hiot:SleepDevice a owl:Class ;
+  rdfs:subClassOf hiot:InScopeDeviceType ;
+  rdfs:label "Sleep" ;
+  hiot:familyId "Sleep" ;
+  rdfs:comment """sleeptracker, standalone. n = 0; PROVISIONAL — the category is ~88% wrist wearables (out by criterion 3) and is pending rebuild.""" .
+
+hiot:ShadesDevice a owl:Class ;
+  rdfs:subClassOf hiot:InScopeDeviceType ;
+  rdfs:label "Shades" ;
+  hiot:familyId "Shades" ;
+  rdfs:comment """shades, standalone. n = 0 in the current snapshot; kept as its own fold rather than merged, per the supervisor-agreed list.""" .
 
 ################################################################################
 # Analysis categories (24) — order is hiot:sortOrder, mirroring categories.csv
 ################################################################################
 
 hiot:doorlock a owl:Class, hiot:DeviceType ;
-  rdfs:subClassOf hiot:SecurityAccessDevice ;
+  rdfs:subClassOf hiot:AccessControlDevice ;
   hiot:slug "doorlock" ;
   rdfs:label "smart lock" ;
   hiot:sortOrder 0 ;
@@ -233,7 +269,7 @@ hiot:doorlock a owl:Class, hiot:DeviceType ;
   skos:scopeNote """IN: residential smart locks and garage-door openers (Yale, August, Tinxy, SGUDA, Genie Aladdin, Zigbee lock stacks). OUT: commercial/enterprise access-control panels and building door controllers.""" .
 
 hiot:smartspeakers a owl:Class, hiot:DeviceType ;
-  rdfs:subClassOf hiot:ControlSurfaceDevice ;
+  rdfs:subClassOf hiot:AudioDevice ;
   hiot:slug "smartspeakers" ;
   rdfs:label "smart speaker" ;
   hiot:sortOrder 1 ;
@@ -251,7 +287,7 @@ hiot:smartspeakers a owl:Class, hiot:DeviceType ;
   skos:scopeNote """IN: consumer smart speakers, smart displays, and smart soundbars (Echo, Nest, HomePod) — qualify as home-control surfaces via criterion 4(b). OUT: plain Bluetooth speakers, headphones, and AV receivers with no assistant/home-control role.""" .
 
 hiot:sleeptracker a owl:Class, hiot:DeviceType ;
-  rdfs:subClassOf hiot:WellnessDevice ;
+  rdfs:subClassOf hiot:SleepDevice ;
   hiot:slug "sleeptracker" ;
   rdfs:label "sleep tracker" ;
   hiot:sortOrder 2 ;
@@ -269,7 +305,7 @@ hiot:sleeptracker a owl:Class, hiot:DeviceType ;
   skos:scopeNote """IN: bedside / non-wearable sleep monitors. OUT: wrist wearables and fitness trackers (Fitbit, Apple Watch, Garmin).""" .
 
 hiot:doorbell a owl:Class, hiot:DeviceType ;
-  rdfs:subClassOf hiot:SecurityAccessDevice ;
+  rdfs:subClassOf hiot:CamerasMonitorsDevice ;
   hiot:slug "doorbell" ;
   rdfs:label "video doorbell" ;
   hiot:sortOrder 3 ;
@@ -301,7 +337,7 @@ hiot:thermostat a owl:Class, hiot:DeviceType ;
   skos:scopeNote """IN: residential smart thermostats. OUT: commercial building-management/HVAC controllers and industrial climate systems.""" .
 
 hiot:babymonitor a owl:Class, hiot:DeviceType ;
-  rdfs:subClassOf hiot:SecurityAccessDevice ;
+  rdfs:subClassOf hiot:CamerasMonitorsDevice ;
   hiot:slug "babymonitor" ;
   rdfs:label "baby monitor" ;
   hiot:sortOrder 5 ;
@@ -317,7 +353,7 @@ hiot:babymonitor a owl:Class, hiot:DeviceType ;
   skos:scopeNote """IN: dedicated consumer baby monitors. OUT: generic IP cameras not sold as baby monitors (classify under cameras) and any enterprise surveillance gear.""" .
 
 hiot:smartplugs a owl:Class, hiot:DeviceType ;
-  rdfs:subClassOf hiot:EnergyDevice ;
+  rdfs:subClassOf hiot:ElectricalLightingDevice ;
   hiot:slug "smartplugs" ;
   rdfs:label "smart plug" ;
   hiot:sortOrder 6 ;
@@ -333,7 +369,7 @@ hiot:smartplugs a owl:Class, hiot:DeviceType ;
   skos:scopeNote """IN: consumer smart plugs, outlets, and power strips. OUT: enterprise/data-center PDUs and industrial power management.""" .
 
 hiot:alarms a owl:Class, hiot:DeviceType ;
-  rdfs:subClassOf hiot:SecurityAccessDevice ;
+  rdfs:subClassOf hiot:AlarmsSensorsDevice ;
   hiot:slug "alarms" ;
   rdfs:label "home alarm" ;
   hiot:sortOrder 7 ;
@@ -349,7 +385,7 @@ hiot:alarms a owl:Class, hiot:DeviceType ;
   skos:scopeNote """IN: consumer home security/alarm systems and their sensors (eufy/Anker HomeBase, Qolsys, Abode, Nexx). OUT: commercial/industrial alarm, fire, and building-monitoring panels.""" .
 
 hiot:robotvacuum a owl:Class, hiot:DeviceType ;
-  rdfs:subClassOf hiot:DomesticChoresDevice ;
+  rdfs:subClassOf hiot:AppliancesDevice ;
   hiot:slug "robotvacuum" ;
   rdfs:label "robot vacuum" ;
   hiot:sortOrder 8 ;
@@ -381,7 +417,7 @@ hiot:fans a owl:Class, hiot:DeviceType ;
   skos:scopeNote """IN: consumer smart/connected fans (ceiling, tower, pedestal). OUT: industrial/commercial ventilation and exhaust systems.""" .
 
 hiot:fridge a owl:Class, hiot:DeviceType ;
-  rdfs:subClassOf hiot:DomesticChoresDevice ;
+  rdfs:subClassOf hiot:AppliancesDevice ;
   hiot:slug "fridge" ;
   rdfs:label "smart refrigerator" ;
   hiot:sortOrder 10 ;
@@ -397,7 +433,7 @@ hiot:fridge a owl:Class, hiot:DeviceType ;
   skos:scopeNote """IN: consumer smart refrigerators. OUT: commercial/industrial refrigeration.""" .
 
 hiot:shades a owl:Class, hiot:DeviceType ;
-  rdfs:subClassOf hiot:FixtureDevice ;
+  rdfs:subClassOf hiot:ShadesDevice ;
   hiot:slug "shades" ;
   rdfs:label "smart blinds" ;
   hiot:sortOrder 11 ;
@@ -414,7 +450,7 @@ hiot:shades a owl:Class, hiot:DeviceType ;
   skos:scopeNote """IN: consumer smart blinds, shades, curtains, shutters and their motors/controllers. OUT: commercial/industrial window and facade systems.""" .
 
 hiot:sensors a owl:Class, hiot:DeviceType ;
-  rdfs:subClassOf hiot:SecurityAccessDevice ;
+  rdfs:subClassOf hiot:AlarmsSensorsDevice ;
   hiot:slug "sensors" ;
   rdfs:label "home sensor" ;
   hiot:sortOrder 12 ;
@@ -446,7 +482,7 @@ hiot:airpurifier a owl:Class, hiot:DeviceType ;
   skos:scopeNote """IN: consumer smart air purifiers. OUT: commercial/industrial air-handling and filtration systems.""" .
 
 hiot:lighting a owl:Class, hiot:DeviceType ;
-  rdfs:subClassOf hiot:FixtureDevice ;
+  rdfs:subClassOf hiot:ElectricalLightingDevice ;
   hiot:slug "lighting" ;
   rdfs:label "smart lighting" ;
   hiot:sortOrder 14 ;
@@ -462,7 +498,7 @@ hiot:lighting a owl:Class, hiot:DeviceType ;
   skos:scopeNote """IN: consumer smart bulbs, light/dimmer/wall switches, and LED controllers (Hue, LIFX). OUT: phone 'Smart Switch' data-migration software, network switches, and apps/plugins that merely reference lighting.""" .
 
 hiot:appliances a owl:Class, hiot:DeviceType ;
-  rdfs:subClassOf hiot:DomesticChoresDevice ;
+  rdfs:subClassOf hiot:AppliancesDevice ;
   hiot:slug "appliances" ;
   rdfs:label "smart appliance" ;
   hiot:sortOrder 15 ;
@@ -478,7 +514,7 @@ hiot:appliances a owl:Class, hiot:DeviceType ;
   skos:scopeNote """IN: consumer smart kitchen/laundry appliances — oven, range, cooker, microwave, dishwasher, washer, dryer, water heater. OUT: commercial/industrial appliances.""" .
 
 hiot:hub a owl:Class, hiot:DeviceType ;
-  rdfs:subClassOf hiot:ControlSurfaceDevice ;
+  rdfs:subClassOf hiot:HubsControllersDevice ;
   hiot:slug "hub" ;
   rdfs:label "smart home hub" ;
   hiot:sortOrder 16 ;
@@ -529,7 +565,7 @@ hiot:home_power a owl:Class, hiot:DeviceType ;
   skos:scopeNote """IN: residential solar inverters, home batteries, and smart meters (SMA, Victron Venus, Enphase, Tesla Powerwall). OUT: utility-scale/commercial PV and grid equipment.""" .
 
 hiot:garden a owl:Class, hiot:DeviceType ;
-  rdfs:subClassOf hiot:DomesticChoresDevice ;
+  rdfs:subClassOf hiot:OutdoorPetDevice ;
   hiot:slug "garden" ;
   rdfs:label "smart garden" ;
   hiot:sortOrder 19 ;
@@ -545,7 +581,7 @@ hiot:garden a owl:Class, hiot:DeviceType ;
   skos:scopeNote """IN: consumer irrigation controllers and robot mowers (RainMachine, Rachio, ECOVACS/Yarbo mowers). OUT: commercial/agricultural irrigation and turf equipment.""" .
 
 hiot:pet a owl:Class, hiot:DeviceType ;
-  rdfs:subClassOf hiot:DomesticChoresDevice ;
+  rdfs:subClassOf hiot:OutdoorPetDevice ;
   hiot:slug "pet" ;
   rdfs:label "smart pet device" ;
   hiot:sortOrder 20 ;
@@ -561,7 +597,7 @@ hiot:pet a owl:Class, hiot:DeviceType ;
   skos:scopeNote """IN: consumer smart pet feeders, pet cameras, and litter boxes. OUT: commercial/veterinary/livestock equipment.""" .
 
 hiot:streaming a owl:Class, hiot:DeviceType ;
-  rdfs:subClassOf hiot:ControlSurfaceDevice ;
+  rdfs:subClassOf hiot:EntertainmentDevice ;
   hiot:slug "streaming" ;
   rdfs:label "streaming device" ;
   hiot:sortOrder 21 ;
@@ -594,7 +630,7 @@ hiot:airconditioner a owl:Class, hiot:DeviceType ;
   skos:scopeNote """IN: consumer smart/Wi-Fi air conditioners and mini-splits with app control. OUT: commercial rooftop units and industrial HVAC.""" .
 
 hiot:cameras a owl:Class, hiot:DeviceType ;
-  rdfs:subClassOf hiot:SecurityAccessDevice ;
+  rdfs:subClassOf hiot:CamerasMonitorsDevice ;
   hiot:slug "cameras" ;
   rdfs:label "security camera" ;
   hiot:sortOrder 23 ;

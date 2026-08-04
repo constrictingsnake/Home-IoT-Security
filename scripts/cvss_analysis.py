@@ -137,15 +137,26 @@ def main():
                          "test (default: 5; paper's smallest category had 24)")
     ap.add_argument("--out-dir", default=DEFAULT_OUT_DIR,
                     help="Output directory (default: data/difference)")
+    ap.add_argument("--include-excluded", action="store_true",
+                    help="Keep rows a scope ruling took out of the analysis population "
+                         "(judgment_store.csv `Excluded`). Off by default — mark_excluded.py's "
+                         "rulings are meant to apply.")
     args = ap.parse_args()
 
     # confirmed-Yes rows, deduped per (category, cve)
     yes_pairs = set()
+    n_excluded = 0
     with open(args.store, newline="", encoding="utf-8-sig") as f:
         for row in csv.DictReader(f):
             if str(row.get("Final Judgment", "")).strip() == "Yes":
                 cat = row["category"].strip()
                 if args.category and cat not in args.category:
+                    continue
+                # See cwe888_analysis.py: a scope ruling takes a settled row out of the
+                # analysis population without touching its judgment, and this script reads
+                # the store directly rather than final_resolved.csv.
+                if str(row.get("Excluded", "")).strip() and not args.include_excluded:
+                    n_excluded += 1
                     continue
                 yes_pairs.add((cat, row["cve_id"].strip().upper()))
     if not yes_pairs:
@@ -153,6 +164,11 @@ def main():
     needed = {cve for _, cve in yes_pairs}
     print(f"Confirmed-Yes rows: {len(yes_pairs)} "
           f"({len(needed)} distinct CVEs, {len({c for c, _ in yes_pairs})} categories)")
+    if n_excluded:
+        print(f"  excluded by scope ruling: {n_excluded} "
+              f"(use --include-excluded to keep them)")
+    elif args.include_excluded:
+        print("  --include-excluded: scope-excluded rows KEPT in the population")
 
     # cvss_score lookup from the fixed snapshot, only for needed CVEs
     score_of = {}

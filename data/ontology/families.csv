@@ -1,25 +1,25 @@
 slug,family,family_label
-doorlock,SecurityAccess,Security & Access
-smartspeakers,ControlSurface,Media & Control Surfaces
-sleeptracker,Wellness,Wellness
-doorbell,SecurityAccess,Security & Access
+doorlock,AccessControl,Access Control
+smartspeakers,Audio,Audio
+sleeptracker,Sleep,Sleep
+doorbell,CamerasMonitors,Cameras and Monitors
 thermostat,ClimateAir,Climate & Air
-babymonitor,SecurityAccess,Security & Access
-smartplugs,Energy,Energy
-alarms,SecurityAccess,Security & Access
-robotvacuum,DomesticChores,Domestic & Chores
+babymonitor,CamerasMonitors,Cameras and Monitors
+smartplugs,ElectricalLighting,Electrical & Lighting
+alarms,AlarmsSensors,Alarms & Sensors
+robotvacuum,Appliances,Appliances
 fans,ClimateAir,Climate & Air
-fridge,DomesticChores,Domestic & Chores
-shades,Fixture,Fixtures
-sensors,SecurityAccess,Security & Access
+fridge,Appliances,Appliances
+shades,Shades,Shades
+sensors,AlarmsSensors,Alarms & Sensors
 airpurifier,ClimateAir,Climate & Air
-lighting,Fixture,Fixtures
-appliances,DomesticChores,Domestic & Chores
-hub,ControlSurface,Media & Control Surfaces
+lighting,ElectricalLighting,Electrical & Lighting
+appliances,Appliances,Appliances
+hub,HubsControllers,Hubs and Controllers
 ev-charging,Energy,Energy
 home-power,Energy,Energy
-garden,DomesticChores,Domestic & Chores
-pet,DomesticChores,Domestic & Chores
-streaming,ControlSurface,Media & Control Surfaces
+garden,OutdoorPet,Outdoor & Pet
+pet,OutdoorPet,Outdoor & Pet
+streaming,Entertainment,Entertainment
 airconditioner,ClimateAir,Climate & Air
-cameras,SecurityAccess,Security & Access
+cameras,CamerasMonitors,Cameras and Monitors

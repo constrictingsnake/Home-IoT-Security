@@ -1,7 +1,7 @@
 # Home IoT Device Ontology
 
-Formal source of truth for the 24 analysis categories, their 7-family hierarchy, and the five
-definitional criteria from `docs/home_iot_security_report.tex` §`sec:method-scope` /
+Formal source of truth for the 24 analysis categories, the 13 supervisor-agreed **folding
+categories** above them, and the five definitional criteria from `docs/home_iot_security_report.tex` §`sec:method-scope` /
 `CLAUDE.md` § *Definition of a Home IoT Device*.
 
 Design rationale and phasing: `docs/plans/PLAN_ontology.md`.
@@ -16,7 +16,7 @@ Generated **from** this ontology (do not hand-edit):
 | File | Consumed by |
 |---|---|
 | `data/categories.csv` | 11 scripts + `run_gemini.sh` |
-| `data/ontology/families.csv` | family rollups in RQ1/RQ2 analysis |
+| `data/ontology/families.csv` | `cwe888_analysis.py --group family` (RQ1), and RQ2 |
 
 ## Commands
 
@@ -51,7 +51,7 @@ You only need four patterns to curate this file.
 
 ```turtle
 hiot:cameras a owl:Class, hiot:DeviceType ;   # ← every statement ends in ;  except the last, which ends in .
-  rdfs:subClassOf hiot:SecurityAccessDevice ; # ← which family it belongs to
+  rdfs:subClassOf hiot:CamerasMonitorsDevice ; # ← which folding category it belongs to
   hiot:slug "cameras" ;                       # ← quoted string
   hiot:sortOrder 23 ;                         # ← bare integer, no quotes
   hiot:hasConnectivity hiot:wifi, hiot:rtsp ; # ← comma = multiple values for one property
@@ -100,5 +100,33 @@ paper.
 
 `hiot:openScopeCall` marks boundaries not finally settled: `ev-charging`/`home-power`, `shades`,
 and the `smartspeakers` smart-display split. `hiot:provisional` marks `sleeptracker` (and with
-it the single-member `Wellness` family), pending rebuild. Per PLAN_ontology.md these must be
+it the single-member `Sleep` fold), pending rebuild. Per PLAN_ontology.md these must be
 resolved before the Phase 3 reasoner validation is treated as binding.
+
+## Folding categories
+
+The 13 folds are **supervisor-agreed**, not derived — do not re-derive or "improve" them without
+taking it back to the supervisors. Two rules are visible in the agreed list and are worth stating
+in the paper:
+
+- **Keep categories with a large enough n standalone.** Six folds are singletons for this reason
+  (`hub`, `streaming`, `smartspeakers`, `doorlock`, `sleeptracker`, `shades`).
+- **Folds do not cross the 4(a)/4(b) admission boundary.** `Hubs and Controllers` (in via 4(a),
+  primary home control) stays separate from `Entertainment` and `Audio` (in only via 4(b)) —
+  the distinction the paper's scope section is built on.
+
+| Fold | Members |
+|---|---|
+| Cameras and Monitors | cameras, doorbell, babymonitor |
+| Hubs and Controllers | hub |
+| Alarms & Sensors | alarms, sensors |
+| Entertainment | streaming |
+| Electrical & Lighting | smartplugs, lighting |
+| Energy | ev-charging, home-power |
+| Outdoor & Pet | garden, pet |
+| Audio | smartspeakers |
+| Appliances | robotvacuum, fridge, appliances |
+| Access Control | doorlock |
+| Climate & Air | thermostat, airconditioner, fans, airpurifier |
+| Sleep | sleeptracker |
+| Shades | shades |

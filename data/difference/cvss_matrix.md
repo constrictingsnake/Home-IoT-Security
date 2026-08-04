@@ -4,43 +4,53 @@ Mirrors RQ2 of the transportation IoT study (Section V): per-category CVSS score
 
 | Category | N (Yes) | N Scored | Mean | Median | Std | Min | Q1 | Q3 | Max | Critical% | High% | Medium% | Low% | None% |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| doorlock | 31 | 27 | 7.34 | 7.5 | 1.61 | 2.4 | 6.5 | 8.8 | 9.8 | 10% | 39% | 35% | 3% |  |
-| smartspeakers | 37 | 37 | 7.43 | 7.6 | 1.85 | 3.3 | 6.3 | 8.8 | 9.8 | 16% | 35% | 46% | 3% |  |
-| doorbell | 44 | 44 | 7.23 | 7.5 | 1.77 | 3.5 | 5.98 | 8.8 | 9.8 | 20% | 41% | 36% | 2% |  |
-| thermostat | 17 | 17 | 7.54 | 7.5 | 1.81 | 3.5 | 6.5 | 8.8 | 9.8 | 24% | 41% | 29% | 6% |  |
-| babymonitor | 11 | 11 | 7.38 | 7.3 | 1.14 | 5.5 | 6.8 | 7.5 | 9.8 | 9% | 64% | 27% |  |  |
-| smartplugs | 36 | 36 | 7.55 | 7.5 | 1.7 | 4.3 | 6.5 | 8.93 | 10.0 | 25% | 33% | 42% |  |  |
-| alarms | 88 | 88 | 8.09 | 8.8 | 1.87 | 2.4 | 6.57 | 9.8 | 10.0 | 42% | 31% | 26% | 1% |  |
+| doorlock | 36 | 32 | 7.31 | 7.3 | 1.6 | 2.4 | 6.5 | 8.8 | 9.8 | 11% | 36% | 39% | 3% |  |
+| smartspeakers | 38 | 38 | 7.42 | 7.2 | 1.83 | 3.3 | 6.32 | 8.8 | 9.8 | 16% | 34% | 47% | 3% |  |
+| doorbell | 45 | 45 | 7.29 | 7.5 | 1.79 | 3.5 | 6.2 | 8.8 | 9.8 | 22% | 40% | 36% | 2% |  |
+| thermostat | 18 | 18 | 7.43 | 7.5 | 1.81 | 3.5 | 6.05 | 8.68 | 9.8 | 22% | 39% | 33% | 6% |  |
+| babymonitor | 18 | 18 | 7.71 | 7.5 | 1.35 | 5.3 | 7.05 | 8.8 | 9.8 | 17% | 61% | 22% |  |  |
+| smartplugs | 37 | 37 | 7.55 | 7.5 | 1.67 | 4.3 | 6.5 | 8.8 | 10.0 | 24% | 35% | 41% |  |  |
+| alarms | 89 | 89 | 8.06 | 8.8 | 1.88 | 2.4 | 6.5 | 9.8 | 10.0 | 42% | 30% | 27% | 1% |  |
 | robotvacuum | 27 | 26 | 6.64 | 7.4 | 1.93 | 2.3 | 5.78 | 7.5 | 9.8 | 11% | 44% | 30% | 11% |  |
 | fans | 1 | 1 | 7.4 | 7.4 | 0.0 | 7.4 | 7.4 | 7.4 | 7.4 |  | 100% |  |  |  |
 | fridge | 3 | 2 | 7.95 | 7.95 | 2.62 | 6.1 | 7.02 | 8.88 | 9.8 | 33% |  | 33% |  |  |
-| sensors | 3 | 2 | 7.8 | 7.8 | 1.84 | 6.5 | 7.15 | 8.45 | 9.1 | 33% |  | 33% |  |  |
+| sensors | 4 | 3 | 7.37 | 6.5 | 1.5 | 6.5 | 6.5 | 7.8 | 9.1 | 25% |  | 50% |  |  |
 | airpurifier | 2 | 2 | 7.95 | 7.95 | 2.62 | 6.1 | 7.02 | 8.88 | 9.8 | 50% |  | 50% |  |  |
 | lighting | 34 | 34 | 7.58 | 7.5 | 1.1 | 4.6 | 6.75 | 8.1 | 9.8 | 6% | 68% | 26% |  |  |
 | appliances | 3 | 3 | 8.13 | 8.1 | 1.65 | 6.5 | 7.3 | 8.95 | 9.8 | 33% | 33% | 33% |  |  |
-| hub | 98 | 95 | 8.07 | 8.2 | 1.63 | 2.2 | 7.45 | 9.6 | 10.0 | 27% | 51% | 18% | 1% |  |
-| ev-charging | 31 | 31 | 7.46 | 8.0 | 1.43 | 4.2 | 6.5 | 8.8 | 8.8 |  | 65% | 35% |  |  |
-| home-power | 33 | 33 | 7.99 | 8.1 | 1.78 | 3.4 | 6.5 | 9.8 | 9.8 | 39% | 30% | 27% | 3% |  |
-| garden | 18 | 18 | 7.8 | 8.1 | 2.25 | 2.3 | 6.72 | 9.8 | 9.8 | 39% | 33% | 17% | 11% |  |
+| hub | 247 | 244 | 8.75 | 9.8 | 1.52 | 2.2 | 7.98 | 9.9 | 10.0 | 53% | 34% | 12% | 1% |  |
+| ev-charging | 71 | 71 | 7.2 | 7.5 | 1.81 | 3.1 | 6.1 | 8.8 | 9.8 | 11% | 44% | 39% | 6% |  |
+| home-power | 45 | 45 | 8.08 | 7.5 | 1.69 | 3.4 | 6.8 | 9.8 | 10.0 | 40% | 33% | 24% | 2% |  |
+| garden | 19 | 19 | 7.73 | 8.1 | 2.21 | 2.3 | 6.5 | 9.8 | 9.8 | 37% | 32% | 21% | 11% |  |
 | pet | 35 | 35 | 7.36 | 8.1 | 2.22 | 2.4 | 5.7 | 9.8 | 9.8 | 31% | 26% | 37% | 6% |  |
-| streaming | 2090 | 2090 | 7.25 | 7.8 | 1.57 | 1.9 | 6.1 | 8.8 | 10.0 | 7% | 55% | 36% | 2% |  |
-| airconditioner | 2 | 1 | 6.3 | 6.3 | 0.0 | 6.3 | 6.3 | 6.3 | 6.3 |  |  | 50% |  |  |
-| cameras | 778 | 736 | 7.78 | 7.7 | 1.55 | 1.6 | 6.8 | 8.8 | 10.0 | 22% | 48% | 24% | 1% |  |
+| streaming | 76 | 76 | 7.34 | 7.8 | 1.62 | 2.6 | 6.1 | 8.1 | 10.0 | 14% | 49% | 36% | 1% |  |
+| airconditioner | 5 | 4 | 7.25 | 6.55 | 1.73 | 6.1 | 6.25 | 7.55 | 9.8 | 20% |  | 60% |  |  |
+| cameras | 885 | 838 | 7.81 | 7.7 | 1.54 | 1.6 | 6.8 | 8.8 | 10.0 | 22% | 48% | 24% | 1% |  |
 
 ## Kruskal-Wallis omnibus test
 
 Categories with >= 5 scored CVEs (n=16): doorlock, smartspeakers, doorbell, thermostat, babymonitor, smartplugs, alarms, robotvacuum, lighting, hub, ev-charging, home-power, garden, pet, streaming, cameras
 
-H = 86.500, df = 15, p = 4.43919e-12 — **significant** at alpha=0.05.
+H = 165.510, df = 15, p = 1.94311e-27 — **significant** at alpha=0.05.
 
 Excluded (6, below --min-n 5 scored CVEs): fans, fridge, sensors, airpurifier, appliances, airconditioner
 
 ## Dunn's post-hoc pairwise comparisons (Bonferroni-adjusted)
 
-5 of 120 pairs significant (p_bonferroni < 0.05), most significant first:
+15 of 120 pairs significant (p_bonferroni < 0.05), most significant first:
 
-- **cameras** vs **streaming** (n=736 vs 2090): z=5.979, p_bonferroni=2.701e-07
-- **hub** vs **streaming** (n=95 vs 2090): z=5.176, p_bonferroni=2.713e-05
-- **alarms** vs **streaming** (n=88 vs 2090): z=4.892, p_bonferroni=0.0001196
-- **hub** vs **robotvacuum** (n=95 vs 26): z=4.172, p_bonferroni=0.003628
-- **alarms** vs **robotvacuum** (n=88 vs 26): z=4.089, p_bonferroni=0.005204
+- **cameras** vs **hub** (n=838 vs 244): z=-10.221, p_bonferroni=1.907e-22
+- **ev-charging** vs **hub** (n=71 vs 244): z=-7.724, p_bonferroni=1.357e-12
+- **hub** vs **streaming** (n=244 vs 76): z=7.385, p_bonferroni=1.833e-11
+- **hub** vs **robotvacuum** (n=244 vs 26): z=6.56, p_bonferroni=6.455e-09
+- **doorbell** vs **hub** (n=45 vs 244): z=-6.304, p_bonferroni=3.478e-08
+- **doorlock** vs **hub** (n=32 vs 244): z=-5.537, p_bonferroni=3.698e-06
+- **hub** vs **smartspeakers** (n=244 vs 38): z=5.398, p_bonferroni=8.069e-06
+- **hub** vs **smartplugs** (n=244 vs 37): z=5.014, p_bonferroni=6.402e-05
+- **hub** vs **lighting** (n=244 vs 34): z=4.992, p_bonferroni=7.173e-05
+- **hub** vs **pet** (n=244 vs 35): z=4.899, p_bonferroni=0.0001158
+- **alarms** vs **hub** (n=89 vs 244): z=-4.148, p_bonferroni=0.004029
+- **hub** vs **thermostat** (n=244 vs 18): z=3.849, p_bonferroni=0.01421
+- **alarms** vs **robotvacuum** (n=89 vs 26): z=3.767, p_bonferroni=0.01985
+- **babymonitor** vs **hub** (n=18 vs 244): z=-3.629, p_bonferroni=0.03419
+- **home-power** vs **hub** (n=45 vs 244): z=-3.576, p_bonferroni=0.04189

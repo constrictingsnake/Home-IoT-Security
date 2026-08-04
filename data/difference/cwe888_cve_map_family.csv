@@ -1,0 +1,1854 @@
+category,cve_id,cwe_id,cwe888_classes,map_depth
+Cameras and Monitors,CVE-2026-28747,CWE-639,Access Control,0
+Cameras and Monitors,CVE-2026-20766,CWE-122,Memory Access,0
+Cameras and Monitors,CVE-2026-32644,CWE-321,Authentication,0
+Cameras and Monitors,CVE-2026-32649,CWE-78,Tainted Input,0
+Electrical & Lighting,CVE-2026-30613,CWE-200,Information Leak,0
+Climate & Air,CVE-2022-33321,CWE-319,Information Leak,0
+Climate & Air,CVE-2022-33322,CWE-79,Tainted Input,0
+Climate & Air,CVE-2024-22894,CWE-326,Cryptography,0
+Climate & Air,CVE-2026-25599,CWE-79,Tainted Input,0
+Climate & Air,CVE-2026-25599,CWE-306,Authentication,0
+Climate & Air,CVE-2026-25599,CWE-319,Information Leak,0
+Climate & Air,CVE-2026-5667,CWE-798,Other|Predictability,1
+Climate & Air,CVE-2022-33321,CWE-319,Information Leak,0
+Climate & Air,CVE-2022-33322,CWE-79,Tainted Input,0
+Alarms & Sensors,CVE-2018-11399,CWE-319,Information Leak,0
+Alarms & Sensors,CVE-2018-11402,CWE-319,Information Leak,0
+Alarms & Sensors,CVE-2018-12073,CWE-79,Tainted Input,0
+Alarms & Sensors,CVE-2019-3997,CWE-287,Authentication,0
+Alarms & Sensors,CVE-2023-1748,CWE-798,Other|Predictability,1
+Alarms & Sensors,CVE-2023-1749,CWE-639,Access Control,0
+Alarms & Sensors,CVE-2023-1750,CWE-639,Access Control,0
+Alarms & Sensors,CVE-2023-1752,CWE-287,Authentication,0
+Alarms & Sensors,CVE-2023-31761,CWE-294,Channel,0
+Alarms & Sensors,CVE-2014-5531,CWE-310,,-1
+Alarms & Sensors,CVE-2015-6032,CWE-255,,-1
+Alarms & Sensors,CVE-2015-6033,CWE-310,,-1
+Alarms & Sensors,CVE-2019-3998,CWE-287,Authentication,0
+Alarms & Sensors,CVE-2020-5727,CWE-287,Authentication,0
+Alarms & Sensors,CVE-2020-14158,CWE-287,Authentication,0
+Alarms & Sensors,CVE-2024-0242,CWE-200,Information Leak,0
+Alarms & Sensors,CVE-2025-15111,CWE-259,Authentication,0
+Alarms & Sensors,CVE-2025-15112,CWE-601,Tainted Input,0
+Alarms & Sensors,CVE-2025-15113,CWE-256,Information Leak,0
+Alarms & Sensors,CVE-2025-15113,CWE-522,Information Leak,0
+Alarms & Sensors,CVE-2014-8362,CWE-284,Access Control,0
+Alarms & Sensors,CVE-2023-24709,CWE-94,Tainted Input,0
+Alarms & Sensors,CVE-2025-67135,CWE-294,Channel,0
+Alarms & Sensors,CVE-2022-27804,CWE-78,Tainted Input,0
+Alarms & Sensors,CVE-2022-27805,CWE-284,Access Control,0
+Alarms & Sensors,CVE-2022-29472,CWE-78,Tainted Input,0
+Alarms & Sensors,CVE-2022-29475,CWE-294,Channel,0
+Alarms & Sensors,CVE-2022-29477,CWE-798,Other|Predictability,1
+Alarms & Sensors,CVE-2022-29520,CWE-489,Entry Points,0
+Alarms & Sensors,CVE-2022-29520,CWE-78,Tainted Input,0
+Alarms & Sensors,CVE-2022-29889,CWE-798,Other|Predictability,1
+Alarms & Sensors,CVE-2022-30541,CWE-78,Tainted Input,0
+Alarms & Sensors,CVE-2022-30603,CWE-78,Tainted Input,0
+Alarms & Sensors,CVE-2022-32454,CWE-121,Memory Access,0
+Alarms & Sensors,CVE-2022-32574,CWE-415,Faulty Resource Release|Memory Management,0
+Alarms & Sensors,CVE-2022-32586,CWE-78,Tainted Input,0
+Alarms & Sensors,CVE-2022-32760,CWE-489,Entry Points,0
+Alarms & Sensors,CVE-2022-32773,CWE-78,Tainted Input,0
+Alarms & Sensors,CVE-2022-32775,CWE-190,Risky Values,0
+Alarms & Sensors,CVE-2022-33189,CWE-78,Tainted Input,0
+Alarms & Sensors,CVE-2022-33192,CWE-78,Tainted Input,0
+Alarms & Sensors,CVE-2022-33193,CWE-78,Tainted Input,0
+Alarms & Sensors,CVE-2022-33194,CWE-78,Tainted Input,0
+Alarms & Sensors,CVE-2022-33195,CWE-78,Tainted Input,0
+Alarms & Sensors,CVE-2022-33204,CWE-78,Tainted Input,0
+Alarms & Sensors,CVE-2022-33205,CWE-78,Tainted Input,0
+Alarms & Sensors,CVE-2022-33206,CWE-78,Tainted Input,0
+Alarms & Sensors,CVE-2022-33207,CWE-78,Tainted Input,0
+Alarms & Sensors,CVE-2022-33938,CWE-134,Tainted Input,0
+Alarms & Sensors,CVE-2022-35244,CWE-134,Tainted Input,0
+Alarms & Sensors,CVE-2022-35874,CWE-134,Tainted Input,0
+Alarms & Sensors,CVE-2022-35875,CWE-134,Tainted Input,0
+Alarms & Sensors,CVE-2022-35876,CWE-134,Tainted Input,0
+Alarms & Sensors,CVE-2022-35877,CWE-134,Tainted Input,0
+Alarms & Sensors,CVE-2022-35878,CWE-134,Tainted Input,0
+Alarms & Sensors,CVE-2022-35879,CWE-134,Tainted Input,0
+Alarms & Sensors,CVE-2022-35880,CWE-134,Tainted Input,0
+Alarms & Sensors,CVE-2022-35881,CWE-134,Tainted Input,0
+Alarms & Sensors,CVE-2022-35884,CWE-134,Tainted Input,0
+Alarms & Sensors,CVE-2022-35885,CWE-134,Tainted Input,0
+Alarms & Sensors,CVE-2022-35886,CWE-134,Tainted Input,0
+Alarms & Sensors,CVE-2022-35887,CWE-134,Tainted Input,0
+Alarms & Sensors,CVE-2016-2398,CWE-254,,-1
+Alarms & Sensors,CVE-2023-31759,CWE-294,Channel,0
+Alarms & Sensors,CVE-2023-31762,CWE-294,Channel,0
+Alarms & Sensors,CVE-2023-31763,CWE-294,Channel,0
+Alarms & Sensors,CVE-2019-9659,CWE-294,Channel,0
+Alarms & Sensors,CVE-2019-9862,CWE-311,Information Leak,0
+Alarms & Sensors,CVE-2019-9863,CWE-330,Predictability,0
+Alarms & Sensors,CVE-2019-9860,CWE-319,Information Leak,0
+Alarms & Sensors,CVE-2019-9860,CWE-330,Predictability,0
+Alarms & Sensors,CVE-2019-9861,CWE-310,,-1
+Alarms & Sensors,CVE-2019-14261,CWE-310,,-1
+Alarms & Sensors,CVE-2020-14157,CWE-319,Information Leak,0
+Alarms & Sensors,CVE-2020-28973,CWE-287,Authentication,0
+Alarms & Sensors,CVE-2021-40170,CWE-294,Channel,0
+Alarms & Sensors,CVE-2020-8105,CWE-78,Tainted Input,0
+Alarms & Sensors,CVE-2023-39842,CWE-311,Information Leak,0
+Alarms & Sensors,CVE-2023-50123,CWE-307,Authentication,0
+Alarms & Sensors,CVE-2023-50125,CWE-522,Information Leak,0
+Alarms & Sensors,CVE-2023-50126,CWE-311,Information Leak,0
+Alarms & Sensors,CVE-2023-50127,CWE-287,Authentication,0
+Alarms & Sensors,CVE-2023-50128,CWE-294,Channel,0
+Alarms & Sensors,CVE-2025-30072,CWE-294,Channel,0
+Alarms & Sensors,CVE-2025-15114,CWE-403,Information Leak,0
+Alarms & Sensors,CVE-2025-15114,CWE-668,Information Leak,0
+Alarms & Sensors,CVE-2025-65552,CWE-294,Channel,0
+Alarms & Sensors,CVE-2025-65553,CWE-294,Channel,0
+Appliances,CVE-2020-28592,CWE-120,Memory Access,0
+Appliances,CVE-2020-28592,CWE-787,Memory Access,1
+Appliances,CVE-2020-28593,CWE-912,API,1
+Cameras and Monitors,CVE-2015-2888,CWE-306,Authentication,0
+Cameras and Monitors,CVE-2015-2889,CWE-264,,-1
+Cameras and Monitors,CVE-2018-10825,CWE-287,Authentication,0
+Cameras and Monitors,CVE-2018-10825,CWE-311,Information Leak,0
+Cameras and Monitors,CVE-2024-48798,CWE-200,Information Leak,0
+Cameras and Monitors,CVE-2025-55581,CWE-269,Privilege,0
+Cameras and Monitors,CVE-2025-55581,CWE-306,Authentication,0
+Cameras and Monitors,CVE-2025-55581,CWE-494,Tainted Input,0
+Cameras and Monitors,CVE-2025-55582,CWE-269,Privilege,0
+Cameras and Monitors,CVE-2025-55582,CWE-494,Tainted Input,0
+Cameras and Monitors,CVE-2026-1532,CWE-22,Path Resolution,0
+Cameras and Monitors,CVE-2015-2880,CWE-287,Authentication,0
+Cameras and Monitors,CVE-2018-18767,CWE-326,Cryptography,0
+Cameras and Monitors,CVE-2026-1419,CWE-74,Tainted Input,0
+Cameras and Monitors,CVE-2026-1419,CWE-77,Tainted Input,0
+Cameras and Monitors,CVE-2015-2886,CWE-200,Information Leak,0
+Cameras and Monitors,CVE-2015-2887,CWE-798,Other|Predictability,1
+Cameras and Monitors,CVE-2022-34138,CWE-639,Access Control,0
+Cameras and Monitors,CVE-2017-11563,CWE-119,Memory Access,0
+Cameras and Monitors,CVE-2017-11564,CWE-787,Memory Access,1
+Cameras and Monitors,CVE-2024-46959,CWE-259,Authentication,0
+Cameras and Monitors,CVE-2026-33361,CWE-326,Cryptography,0
+Cameras and Monitors,CVE-2017-7921,CWE-287,Authentication,0
+Cameras and Monitors,CVE-2017-7923,CWE-260,Information Leak,0
+Cameras and Monitors,CVE-2017-7923,CWE-200,Information Leak,0
+Cameras and Monitors,CVE-2017-7925,CWE-260,Information Leak,0
+Cameras and Monitors,CVE-2017-7925,CWE-522,Information Leak,0
+Cameras and Monitors,CVE-2017-7927,CWE-836,Authentication,2
+Cameras and Monitors,CVE-2017-7927,CWE-798,Other|Predictability,1
+Cameras and Monitors,CVE-2017-7577,CWE-22,Path Resolution,0
+Cameras and Monitors,CVE-2017-7648,CWE-798,Other|Predictability,1
+Cameras and Monitors,CVE-2017-7852,CWE-352,Authentication,1
+Cameras and Monitors,CVE-2017-2111,CWE-93,Tainted Input,0
+Cameras and Monitors,CVE-2017-2112,CWE-78,Tainted Input,0
+Cameras and Monitors,CVE-2017-2113,CWE-119,Memory Access,0
+Cameras and Monitors,CVE-2017-17105,CWE-78,Tainted Input,0
+Cameras and Monitors,CVE-2017-17106,CWE-522,Information Leak,0
+Cameras and Monitors,CVE-2017-17107,CWE-798,Other|Predictability,1
+Cameras and Monitors,CVE-2016-6914,CWE-276,Access Control,0
+Cameras and Monitors,CVE-2014-3972,CWE-22,Path Resolution,0
+Cameras and Monitors,CVE-2017-17020,CWE-78,Tainted Input,0
+Cameras and Monitors,CVE-2018-10088,CWE-119,Memory Access,0
+Cameras and Monitors,CVE-2018-12257,CWE-295,Authentication,1
+Cameras and Monitors,CVE-2018-12259,CWE-732,Access Control,0
+Cameras and Monitors,CVE-2018-12260,CWE-522,Information Leak,0
+Cameras and Monitors,CVE-2018-12261,CWE-269,Privilege,0
+Cameras and Monitors,CVE-2018-12323,CWE-798,Other|Predictability,1
+Cameras and Monitors,CVE-2018-6830,CWE-22,Path Resolution,0
+Cameras and Monitors,CVE-2018-6831,CWE-78,Tainted Input,0
+Cameras and Monitors,CVE-2018-6832,CWE-787,Memory Access,1
+Cameras and Monitors,CVE-2018-16546,CWE-798,Other|Predictability,1
+Cameras and Monitors,CVE-2018-17915,CWE-311,Information Leak,0
+Cameras and Monitors,CVE-2018-17917,CWE-341,Predictability,0
+Cameras and Monitors,CVE-2018-17917,CWE-200,Information Leak,0
+Cameras and Monitors,CVE-2018-17919,CWE-912,API,1
+Cameras and Monitors,CVE-2018-17919,CWE-798,Other|Predictability,1
+Cameras and Monitors,CVE-2018-19063,CWE-798,Other|Predictability,1
+Cameras and Monitors,CVE-2018-19064,CWE-521,Authentication,0
+Cameras and Monitors,CVE-2018-19065,CWE-798,Other|Predictability,1
+Cameras and Monitors,CVE-2018-19066,CWE-798,Other|Predictability,1
+Cameras and Monitors,CVE-2018-19067,CWE-798,Other|Predictability,1
+Cameras and Monitors,CVE-2018-19069,CWE-798,Other|Predictability,1
+Cameras and Monitors,CVE-2018-19070,CWE-78,Tainted Input,0
+Cameras and Monitors,CVE-2018-19071,CWE-732,Access Control,0
+Cameras and Monitors,CVE-2018-19072,CWE-732,Access Control,0
+Cameras and Monitors,CVE-2018-19073,CWE-78,Tainted Input,0
+Cameras and Monitors,CVE-2018-19075,CWE-200,Information Leak,0
+Cameras and Monitors,CVE-2018-5560,CWE-798,Other|Predictability,1
+Cameras and Monitors,CVE-2019-12919,CWE-306,Authentication,0
+Cameras and Monitors,CVE-2019-12920,CWE-798,Other|Predictability,1
+Cameras and Monitors,CVE-2017-8408,CWE-77,Tainted Input,0
+Cameras and Monitors,CVE-2017-8404,CWE-77,Tainted Input,0
+Cameras and Monitors,CVE-2017-8407,CWE-352,Authentication,1
+Cameras and Monitors,CVE-2017-8411,CWE-77,Tainted Input,0
+Cameras and Monitors,CVE-2017-8406,CWE-352,Authentication,1
+Cameras and Monitors,CVE-2017-8409,CWE-285,Access Control,0
+Cameras and Monitors,CVE-2017-8414,CWE-119,Memory Access,0
+Cameras and Monitors,CVE-2017-8412,CWE-119,Memory Access,0
+Cameras and Monitors,CVE-2017-8413,CWE-77,Tainted Input,0
+Cameras and Monitors,CVE-2017-8415,CWE-798,Other|Predictability,1
+Cameras and Monitors,CVE-2017-8416,CWE-119,Memory Access,0
+Cameras and Monitors,CVE-2017-8417,CWE-255,,-1
+Cameras and Monitors,CVE-2017-13719,CWE-119,Memory Access,0
+Cameras and Monitors,CVE-2017-8226,CWE-798,Other|Predictability,1
+Cameras and Monitors,CVE-2017-8228,CWE-264,,-1
+Cameras and Monitors,CVE-2017-8229,CWE-255,,-1
+Cameras and Monitors,CVE-2017-8230,CWE-264,,-1
+Cameras and Monitors,CVE-2019-3949,CWE-16,,-1
+Cameras and Monitors,CVE-2019-3950,CWE-798,Other|Predictability,1
+Cameras and Monitors,CVE-2019-3948,CWE-306,Authentication,0
+Cameras and Monitors,CVE-2018-20955,CWE-798,Other|Predictability,1
+Cameras and Monitors,CVE-2018-20956,CWE-532,Information Leak,0
+Cameras and Monitors,CVE-2019-17146,CWE-121,Memory Access,0
+Cameras and Monitors,CVE-2019-17146,CWE-306,Authentication,0
+Cameras and Monitors,CVE-2020-7222,CWE-287,Authentication,0
+Cameras and Monitors,CVE-2013-1600,CWE-287,Authentication,0
+Cameras and Monitors,CVE-2013-1601,CWE-200,Information Leak,0
+Cameras and Monitors,CVE-2019-5043,CWE-400,Resource Management,0
+Cameras and Monitors,CVE-2019-5043,CWE-770,Resource Management,0
+Cameras and Monitors,CVE-2019-15595,CWE-77,Tainted Input,0
+Cameras and Monitors,CVE-2020-25749,CWE-798,Other|Predictability,1
+Cameras and Monitors,CVE-2021-22943,CWE-287,Authentication,0
+Cameras and Monitors,CVE-2021-33044,CWE-287,Authentication,0
+Cameras and Monitors,CVE-2021-36260,CWE-78,Tainted Input,0
+Cameras and Monitors,CVE-2021-41503,CWE-287,Authentication,0
+Cameras and Monitors,CVE-2019-12266,CWE-121,Memory Access,0
+Cameras and Monitors,CVE-2019-12266,CWE-787,Memory Access,1
+Cameras and Monitors,CVE-2019-9564,CWE-287,Authentication,0
+Cameras and Monitors,CVE-2021-40405,CWE-284,Access Control,0
+Cameras and Monitors,CVE-2021-40405,CWE-404,Resource Management,0
+Cameras and Monitors,CVE-2021-44354,CWE-20,Tainted Input,0
+Cameras and Monitors,CVE-2021-44355,CWE-20,Tainted Input,0
+Cameras and Monitors,CVE-2021-44356,CWE-20,Tainted Input,0
+Cameras and Monitors,CVE-2021-44357,CWE-20,Tainted Input,0
+Cameras and Monitors,CVE-2021-44366,CWE-20,Tainted Input,0
+Cameras and Monitors,CVE-2021-44375,CWE-20,Tainted Input,0
+Cameras and Monitors,CVE-2021-44394,CWE-20,Tainted Input,0
+Cameras and Monitors,CVE-2021-40149,CWE-552,Information Leak,0
+Cameras and Monitors,CVE-2021-40150,CWE-552,Information Leak,0
+Cameras and Monitors,CVE-2021-38827,CWE-294,Channel,0
+Cameras and Monitors,CVE-2021-38828,CWE-319,Information Leak,0
+Cameras and Monitors,CVE-2022-41505,CWE-306,Authentication,0
+Cameras and Monitors,CVE-2022-30564,CWE-284,Access Control,0
+Cameras and Monitors,CVE-2023-48121,CWE-287,Authentication,0
+Cameras and Monitors,CVE-2024-3434,CWE-285,Access Control,0
+Cameras and Monitors,CVE-2024-3850,CWE-79,Tainted Input,0
+Cameras and Monitors,CVE-2024-37066,CWE-78,Tainted Input,0
+Cameras and Monitors,CVE-2024-44097,CWE-269,Privilege,0
+Cameras and Monitors,CVE-2023-37822,CWE-331,Predictability,0
+Cameras and Monitors,CVE-2024-48168,CWE-94,Tainted Input,0
+Cameras and Monitors,CVE-2024-48799,CWE-200,Information Leak,0
+Cameras and Monitors,CVE-2009-0644,CWE-255,,-1
+Cameras and Monitors,CVE-2009-0640,CWE-22,Path Resolution,0
+Cameras and Monitors,CVE-2010-4964,CWE-94,Tainted Input,0
+Cameras and Monitors,CVE-2010-4965,CWE-255,,-1
+Cameras and Monitors,CVE-2014-1201,CWE-119,Memory Access,0
+Cameras and Monitors,CVE-2012-4046,CWE-200,Information Leak,0
+Cameras and Monitors,CVE-2013-2560,CWE-22,Path Resolution,0
+Cameras and Monitors,CVE-2014-1911,CWE-287,Authentication,0
+Cameras and Monitors,CVE-2014-2227,CWE-264,,-1
+Cameras and Monitors,CVE-2015-2048,CWE-352,Authentication,1
+Cameras and Monitors,CVE-2016-5081,CWE-798,Other|Predictability,1
+Cameras and Monitors,CVE-2016-5650,CWE-284,Access Control,0
+Cameras and Monitors,CVE-2016-7814,CWE-200,Information Leak,0
+Cameras and Monitors,CVE-2016-7819,CWE-78,Tainted Input,0
+Cameras and Monitors,CVE-2016-7820,CWE-119,Memory Access,0
+Cameras and Monitors,CVE-2016-8731,CWE-798,Other|Predictability,1
+Cameras and Monitors,CVE-2017-7851,CWE-352,Authentication,1
+Cameras and Monitors,CVE-2017-9316,CWE-287,Authentication,0
+Cameras and Monitors,CVE-2018-7698,CWE-522,Information Leak,0
+Cameras and Monitors,CVE-2017-11563,CWE-119,Memory Access,0
+Cameras and Monitors,CVE-2017-11564,CWE-787,Memory Access,1
+Cameras and Monitors,CVE-2017-12574,CWE-798,Other|Predictability,1
+Cameras and Monitors,CVE-2017-12576,CWE-668,Information Leak,0
+Cameras and Monitors,CVE-2017-12577,CWE-798,Other|Predictability,1
+Cameras and Monitors,CVE-2018-18441,CWE-200,Information Leak,0
+Cameras and Monitors,CVE-2018-18767,CWE-326,Cryptography,0
+Cameras and Monitors,CVE-2018-18600,CWE-78,Tainted Input,0
+Cameras and Monitors,CVE-2018-18601,CWE-119,Memory Access,0
+Cameras and Monitors,CVE-2019-11001,CWE-78,Tainted Input,0
+Cameras and Monitors,CVE-2019-5430,CWE-352,Authentication,1
+Cameras and Monitors,CVE-2019-10999,CWE-787,Memory Access,1
+Cameras and Monitors,CVE-2019-11878,CWE-190,Risky Values,0
+Cameras and Monitors,CVE-2019-5040,CWE-190,Risky Values,0
+Cameras and Monitors,CVE-2019-5034,CWE-125,Memory Access,0
+Cameras and Monitors,CVE-2019-5035,CWE-307,Authentication,0
+Cameras and Monitors,CVE-2019-5035,CWE-327,Cryptography,0
+Cameras and Monitors,CVE-2019-5036,CWE-284,Access Control,0
+Cameras and Monitors,CVE-2019-5036,CWE-346,Authentication,0
+Cameras and Monitors,CVE-2019-9681,CWE-311,Information Leak,0
+Cameras and Monitors,CVE-2019-9677,CWE-120,Memory Access,0
+Cameras and Monitors,CVE-2019-9679,CWE-276,Access Control,0
+Cameras and Monitors,CVE-2019-15940,CWE-306,Authentication,0
+Cameras and Monitors,CVE-2016-11021,CWE-78,Tainted Input,0
+Cameras and Monitors,CVE-2020-8144,CWE-22,Path Resolution,0
+Cameras and Monitors,CVE-2020-8146,CWE-427,Tainted Input,0
+Cameras and Monitors,CVE-2020-6852,CWE-307,Authentication,0
+Cameras and Monitors,CVE-2020-9499,CWE-120,Memory Access,0
+Cameras and Monitors,CVE-2019-9682,CWE-276,Access Control,0
+Cameras and Monitors,CVE-2020-9502,CWE-330,Predictability,0
+Cameras and Monitors,CVE-2020-25079,CWE-77,Tainted Input,0
+Cameras and Monitors,CVE-2020-8188,CWE-77,Tainted Input,0
+Cameras and Monitors,CVE-2020-8188,CWE-78,Tainted Input,0
+Cameras and Monitors,CVE-2020-8213,CWE-209,Information Leak,0
+Cameras and Monitors,CVE-2020-9527,CWE-120,Memory Access,0
+Cameras and Monitors,CVE-2020-9528,CWE-327,Cryptography,0
+Cameras and Monitors,CVE-2020-8267,CWE-287,Authentication,0
+Cameras and Monitors,CVE-2021-3182,CWE-787,Memory Access,1
+Cameras and Monitors,CVE-2021-3182,CWE-120,Memory Access,0
+Cameras and Monitors,CVE-2020-25169,CWE-319,Information Leak,0
+Cameras and Monitors,CVE-2020-25173,CWE-321,Authentication,0
+Cameras and Monitors,CVE-2020-25173,CWE-798,Other|Predictability,1
+Cameras and Monitors,CVE-2020-24755,CWE-427,Tainted Input,0
+Cameras and Monitors,CVE-2021-33818,CWE-400,Resource Management,0
+Cameras and Monitors,CVE-2021-31505,CWE-798,Other|Predictability,1
+Cameras and Monitors,CVE-2021-22957,CWE-16,,-1
+Cameras and Monitors,CVE-2021-38685,CWE-78,Tainted Input,0
+Cameras and Monitors,CVE-2021-38686,CWE-287,Authentication,0
+Cameras and Monitors,CVE-2021-21950,CWE-119,Memory Access,0
+Cameras and Monitors,CVE-2021-21950,CWE-1284,Tainted Input,1
+Cameras and Monitors,CVE-2021-21951,CWE-119,Memory Access,0
+Cameras and Monitors,CVE-2021-21951,CWE-1284,Tainted Input,1
+Cameras and Monitors,CVE-2021-21954,CWE-78,Tainted Input,0
+Cameras and Monitors,CVE-2021-21955,CWE-334,Predictability,0
+Cameras and Monitors,CVE-2021-21955,CWE-287,Authentication,0
+Cameras and Monitors,CVE-2021-40404,CWE-284,Access Control,0
+Cameras and Monitors,CVE-2021-40404,CWE-287,Authentication,0
+Cameras and Monitors,CVE-2021-40406,CWE-400,Resource Management,0
+Cameras and Monitors,CVE-2021-40407,CWE-78,Tainted Input,0
+Cameras and Monitors,CVE-2021-40408,CWE-78,Tainted Input,0
+Cameras and Monitors,CVE-2021-40409,CWE-78,Tainted Input,0
+Cameras and Monitors,CVE-2021-40410,CWE-78,Tainted Input,0
+Cameras and Monitors,CVE-2021-40411,CWE-78,Tainted Input,0
+Cameras and Monitors,CVE-2021-40412,CWE-78,Tainted Input,0
+Cameras and Monitors,CVE-2021-40413,CWE-284,Access Control,0
+Cameras and Monitors,CVE-2021-40413,CWE-276,Access Control,0
+Cameras and Monitors,CVE-2021-40414,CWE-284,Access Control,0
+Cameras and Monitors,CVE-2021-40414,CWE-276,Access Control,0
+Cameras and Monitors,CVE-2021-40415,CWE-284,Access Control,0
+Cameras and Monitors,CVE-2021-40415,CWE-276,Access Control,0
+Cameras and Monitors,CVE-2021-40416,CWE-284,Access Control,0
+Cameras and Monitors,CVE-2021-40416,CWE-276,Access Control,0
+Cameras and Monitors,CVE-2021-40419,CWE-489,Entry Points,0
+Cameras and Monitors,CVE-2021-40423,CWE-20,Tainted Input,0
+Cameras and Monitors,CVE-2022-21134,CWE-347,Cryptography,0
+Cameras and Monitors,CVE-2022-21199,CWE-321,Authentication,0
+Cameras and Monitors,CVE-2022-21199,CWE-798,Other|Predictability,1
+Cameras and Monitors,CVE-2022-21217,CWE-457,Risky Values,0
+Cameras and Monitors,CVE-2022-21217,CWE-787,Memory Access,1
+Cameras and Monitors,CVE-2022-21236,CWE-219,Information Leak,0
+Cameras and Monitors,CVE-2022-21236,CWE-552,Information Leak,0
+Cameras and Monitors,CVE-2022-21796,CWE-20,Tainted Input,0
+Cameras and Monitors,CVE-2022-21796,CWE-787,Memory Access,1
+Cameras and Monitors,CVE-2022-21801,CWE-190,Risky Values,0
+Cameras and Monitors,CVE-2021-44358,CWE-20,Tainted Input,0
+Cameras and Monitors,CVE-2021-44359,CWE-20,Tainted Input,0
+Cameras and Monitors,CVE-2021-44360,CWE-20,Tainted Input,0
+Cameras and Monitors,CVE-2021-44361,CWE-20,Tainted Input,0
+Cameras and Monitors,CVE-2021-44362,CWE-20,Tainted Input,0
+Cameras and Monitors,CVE-2021-44363,CWE-20,Tainted Input,0
+Cameras and Monitors,CVE-2021-44364,CWE-20,Tainted Input,0
+Cameras and Monitors,CVE-2021-44365,CWE-20,Tainted Input,0
+Cameras and Monitors,CVE-2021-44367,CWE-20,Tainted Input,0
+Cameras and Monitors,CVE-2021-44368,CWE-20,Tainted Input,0
+Cameras and Monitors,CVE-2021-44369,CWE-20,Tainted Input,0
+Cameras and Monitors,CVE-2021-44370,CWE-20,Tainted Input,0
+Cameras and Monitors,CVE-2021-44371,CWE-20,Tainted Input,0
+Cameras and Monitors,CVE-2021-44372,CWE-20,Tainted Input,0
+Cameras and Monitors,CVE-2021-44373,CWE-20,Tainted Input,0
+Cameras and Monitors,CVE-2021-44374,CWE-20,Tainted Input,0
+Cameras and Monitors,CVE-2021-44376,CWE-20,Tainted Input,0
+Cameras and Monitors,CVE-2021-44377,CWE-20,Tainted Input,0
+Cameras and Monitors,CVE-2021-44378,CWE-20,Tainted Input,0
+Cameras and Monitors,CVE-2021-44379,CWE-20,Tainted Input,0
+Cameras and Monitors,CVE-2021-44380,CWE-20,Tainted Input,0
+Cameras and Monitors,CVE-2021-44381,CWE-20,Tainted Input,0
+Cameras and Monitors,CVE-2021-44382,CWE-20,Tainted Input,0
+Cameras and Monitors,CVE-2021-44383,CWE-20,Tainted Input,0
+Cameras and Monitors,CVE-2021-44384,CWE-20,Tainted Input,0
+Cameras and Monitors,CVE-2021-44385,CWE-20,Tainted Input,0
+Cameras and Monitors,CVE-2021-44386,CWE-20,Tainted Input,0
+Cameras and Monitors,CVE-2021-44387,CWE-20,Tainted Input,0
+Cameras and Monitors,CVE-2021-44388,CWE-20,Tainted Input,0
+Cameras and Monitors,CVE-2021-44389,CWE-20,Tainted Input,0
+Cameras and Monitors,CVE-2021-44390,CWE-20,Tainted Input,0
+Cameras and Monitors,CVE-2021-44391,CWE-20,Tainted Input,0
+Cameras and Monitors,CVE-2021-44392,CWE-20,Tainted Input,0
+Cameras and Monitors,CVE-2021-44393,CWE-20,Tainted Input,0
+Cameras and Monitors,CVE-2021-44395,CWE-20,Tainted Input,0
+Cameras and Monitors,CVE-2021-44396,CWE-20,Tainted Input,0
+Cameras and Monitors,CVE-2021-44397,CWE-20,Tainted Input,0
+Cameras and Monitors,CVE-2021-44398,CWE-20,Tainted Input,0
+Cameras and Monitors,CVE-2021-44399,CWE-20,Tainted Input,0
+Cameras and Monitors,CVE-2021-44400,CWE-20,Tainted Input,0
+Cameras and Monitors,CVE-2021-44401,CWE-20,Tainted Input,0
+Cameras and Monitors,CVE-2021-44402,CWE-20,Tainted Input,0
+Cameras and Monitors,CVE-2021-44403,CWE-20,Tainted Input,0
+Cameras and Monitors,CVE-2021-44404,CWE-20,Tainted Input,0
+Cameras and Monitors,CVE-2021-44405,CWE-20,Tainted Input,0
+Cameras and Monitors,CVE-2021-44406,CWE-20,Tainted Input,0
+Cameras and Monitors,CVE-2021-44407,CWE-20,Tainted Input,0
+Cameras and Monitors,CVE-2021-44408,CWE-20,Tainted Input,0
+Cameras and Monitors,CVE-2021-44409,CWE-20,Tainted Input,0
+Cameras and Monitors,CVE-2021-44410,CWE-20,Tainted Input,0
+Cameras and Monitors,CVE-2021-44411,CWE-20,Tainted Input,0
+Cameras and Monitors,CVE-2021-44412,CWE-20,Tainted Input,0
+Cameras and Monitors,CVE-2021-44413,CWE-20,Tainted Input,0
+Cameras and Monitors,CVE-2021-44414,CWE-20,Tainted Input,0
+Cameras and Monitors,CVE-2021-44415,CWE-20,Tainted Input,0
+Cameras and Monitors,CVE-2021-44416,CWE-20,Tainted Input,0
+Cameras and Monitors,CVE-2021-44417,CWE-20,Tainted Input,0
+Cameras and Monitors,CVE-2021-44418,CWE-20,Tainted Input,0
+Cameras and Monitors,CVE-2021-44419,CWE-20,Tainted Input,0
+Cameras and Monitors,CVE-2021-21952,CWE-288,Authentication,0
+Cameras and Monitors,CVE-2021-21952,CWE-287,Authentication,0
+Cameras and Monitors,CVE-2021-21953,CWE-300,Channel,0
+Cameras and Monitors,CVE-2021-33046,CWE-287,Authentication,0
+Cameras and Monitors,CVE-2023-23080,CWE-77,Tainted Input,0
+Cameras and Monitors,CVE-2023-27126,CWE-522,Information Leak,0
+Cameras and Monitors,CVE-2023-28809,CWE-284,Access Control,0
+Cameras and Monitors,CVE-2023-28809,CWE-384,Path Resolution,1
+Cameras and Monitors,CVE-2023-28810,CWE-284,Access Control,0
+Cameras and Monitors,CVE-2023-34551,CWE-787,Memory Access,1
+Cameras and Monitors,CVE-2023-34552,CWE-787,Memory Access,1
+Cameras and Monitors,CVE-2023-34552,CWE-121,Memory Access,0
+Cameras and Monitors,CVE-2023-39068,CWE-120,Memory Access,0
+Cameras and Monitors,CVE-2018-16739,CWE-22,Path Resolution,0
+Cameras and Monitors,CVE-2018-17558,CWE-798,Other|Predictability,1
+Cameras and Monitors,CVE-2018-17558,CWE-78,Tainted Input,0
+Cameras and Monitors,CVE-2018-17559,CWE-59,Path Resolution,0
+Cameras and Monitors,CVE-2018-17559,CWE-284,Access Control,0
+Cameras and Monitors,CVE-2018-17878,CWE-120,Memory Access,0
+Cameras and Monitors,CVE-2018-17879,CWE-78,Tainted Input,0
+Cameras and Monitors,CVE-2023-39610,CWE-400,Resource Management,0
+Cameras and Monitors,CVE-2023-34829,CWE-319,Information Leak,0
+Cameras and Monitors,CVE-2023-27098,CWE-312,Information Leak,0
+Cameras and Monitors,CVE-2024-25063,CWE-285,Access Control,0
+Cameras and Monitors,CVE-2024-4063,CWE-295,Authentication,1
+Cameras and Monitors,CVE-2024-31340,CWE-295,Authentication,1
+Cameras and Monitors,CVE-2023-41610,CWE-256,Information Leak,0
+Cameras and Monitors,CVE-2023-41610,CWE-798,Other|Predictability,1
+Cameras and Monitors,CVE-2023-41611,CWE-798,Other|Predictability,1
+Cameras and Monitors,CVE-2023-41612,CWE-798,Other|Predictability,1
+Cameras and Monitors,CVE-2024-44589,CWE-121,Memory Access,0
+Cameras and Monitors,CVE-2024-39944,CWE-770,Resource Management,0
+Cameras and Monitors,CVE-2024-39944,CWE-20,Tainted Input,0
+Cameras and Monitors,CVE-2024-39945,CWE-703,Exception Management,0
+Cameras and Monitors,CVE-2024-39948,CWE-476,Memory Access,0
+Cameras and Monitors,CVE-2024-39948,CWE-20,Tainted Input,0
+Cameras and Monitors,CVE-2024-39949,CWE-617,API,0
+Cameras and Monitors,CVE-2024-39949,CWE-20,Tainted Input,0
+Cameras and Monitors,CVE-2024-39950,CWE-121,Memory Access,0
+Cameras and Monitors,CVE-2024-39950,CWE-20,Tainted Input,0
+Cameras and Monitors,CVE-2024-7029,CWE-77,Tainted Input,0
+Cameras and Monitors,CVE-2024-7443,CWE-77,Tainted Input,0
+Cameras and Monitors,CVE-2024-37606,CWE-120,Memory Access,0
+Cameras and Monitors,CVE-2024-12984,CWE-200,Information Leak,0
+Cameras and Monitors,CVE-2024-12984,CWE-284,Access Control,0
+Cameras and Monitors,CVE-2024-13130,CWE-23,Path Resolution,0
+Cameras and Monitors,CVE-2024-13130,CWE-24,Path Resolution,0
+Cameras and Monitors,CVE-2025-1099,CWE-321,Authentication,0
+Cameras and Monitors,CVE-2025-23115,CWE-416,Resource Management,0
+Cameras and Monitors,CVE-2025-23116,CWE-287,Authentication,0
+Cameras and Monitors,CVE-2025-23117,CWE-346,Authentication,0
+Cameras and Monitors,CVE-2025-23118,CWE-295,Authentication,1
+Cameras and Monitors,CVE-2025-23119,CWE-77,Tainted Input,0
+Cameras and Monitors,CVE-2025-4841,CWE-119,Memory Access,0
+Cameras and Monitors,CVE-2025-4841,CWE-121,Memory Access,0
+Cameras and Monitors,CVE-2025-4841,CWE-787,Memory Access,1
+Cameras and Monitors,CVE-2025-4842,CWE-119,Memory Access,0
+Cameras and Monitors,CVE-2025-4842,CWE-121,Memory Access,0
+Cameras and Monitors,CVE-2025-4842,CWE-787,Memory Access,1
+Cameras and Monitors,CVE-2025-4843,CWE-119,Memory Access,0
+Cameras and Monitors,CVE-2025-4843,CWE-121,Memory Access,0
+Cameras and Monitors,CVE-2025-4843,CWE-787,Memory Access,1
+Cameras and Monitors,CVE-2025-23123,CWE-122,Memory Access,0
+Cameras and Monitors,CVE-2025-23164,CWE-284,Access Control,0
+Cameras and Monitors,CVE-2025-5215,CWE-119,Memory Access,0
+Cameras and Monitors,CVE-2025-5215,CWE-121,Memory Access,0
+Cameras and Monitors,CVE-2025-5215,CWE-787,Memory Access,1
+Cameras and Monitors,CVE-2025-5571,CWE-77,Tainted Input,0
+Cameras and Monitors,CVE-2025-5571,CWE-78,Tainted Input,0
+Cameras and Monitors,CVE-2025-5572,CWE-119,Memory Access,0
+Cameras and Monitors,CVE-2025-5572,CWE-121,Memory Access,0
+Cameras and Monitors,CVE-2025-5572,CWE-787,Memory Access,1
+Cameras and Monitors,CVE-2025-5573,CWE-77,Tainted Input,0
+Cameras and Monitors,CVE-2025-5573,CWE-78,Tainted Input,0
+Cameras and Monitors,CVE-2025-5763,CWE-74,Tainted Input,0
+Cameras and Monitors,CVE-2025-5763,CWE-77,Tainted Input,0
+Cameras and Monitors,CVE-2025-7723,CWE-78,Tainted Input,0
+Cameras and Monitors,CVE-2025-7724,CWE-78,Tainted Input,0
+Cameras and Monitors,CVE-2025-31700,CWE-120,Memory Access,0
+Cameras and Monitors,CVE-2025-31701,CWE-120,Memory Access,0
+Cameras and Monitors,CVE-2025-8155,CWE-79,Tainted Input,0
+Cameras and Monitors,CVE-2025-8155,CWE-94,Tainted Input,0
+Cameras and Monitors,CVE-2025-6931,CWE-330,Predictability,0
+Cameras and Monitors,CVE-2025-6931,CWE-331,Predictability,0
+Cameras and Monitors,CVE-2025-6932,CWE-255,,-1
+Cameras and Monitors,CVE-2025-6932,CWE-259,Authentication,0
+Cameras and Monitors,CVE-2025-52364,CWE-1391,Authentication,2
+Cameras and Monitors,CVE-2025-52363,CWE-798,Other|Predictability,1
+Cameras and Monitors,CVE-2025-55619,CWE-321,Authentication,0
+Cameras and Monitors,CVE-2025-55620,CWE-79,Tainted Input,0
+Cameras and Monitors,CVE-2025-55621,CWE-639,Access Control,0
+Cameras and Monitors,CVE-2025-55622,CWE-491,Entry Points,0
+Cameras and Monitors,CVE-2025-55623,CWE-288,Authentication,0
+Cameras and Monitors,CVE-2025-55624,CWE-601,Tainted Input,0
+Cameras and Monitors,CVE-2025-55625,CWE-601,Tainted Input,0
+Cameras and Monitors,CVE-2025-55581,CWE-269,Privilege,0
+Cameras and Monitors,CVE-2025-55581,CWE-306,Authentication,0
+Cameras and Monitors,CVE-2025-55581,CWE-494,Tainted Input,0
+Cameras and Monitors,CVE-2025-55582,CWE-269,Privilege,0
+Cameras and Monitors,CVE-2025-55582,CWE-494,Tainted Input,0
+Cameras and Monitors,CVE-2025-52856,CWE-287,Authentication,0
+Cameras and Monitors,CVE-2025-9828,CWE-310,,-1
+Cameras and Monitors,CVE-2025-9828,CWE-327,Cryptography,0
+Cameras and Monitors,CVE-2025-10779,CWE-119,Memory Access,0
+Cameras and Monitors,CVE-2025-10779,CWE-121,Memory Access,0
+Cameras and Monitors,CVE-2025-10779,CWE-787,Memory Access,1
+Cameras and Monitors,CVE-2025-31702,CWE-732,Access Control,0
+Cameras and Monitors,CVE-2025-56799,CWE-77,Tainted Input,0
+Cameras and Monitors,CVE-2025-56800,CWE-290,Channel,0
+Cameras and Monitors,CVE-2025-56801,CWE-321,Authentication,0
+Cameras and Monitors,CVE-2025-56802,CWE-321,Authentication,0
+Cameras and Monitors,CVE-2025-46408,CWE-297,Authentication,0
+Cameras and Monitors,CVE-2025-50944,CWE-295,Authentication,1
+Cameras and Monitors,CVE-2021-4468,CWE-306,Authentication,0
+Cameras and Monitors,CVE-2025-57200,CWE-77,Tainted Input,0
+Cameras and Monitors,CVE-2025-57198,CWE-77,Tainted Input,0
+Cameras and Monitors,CVE-2025-57199,CWE-77,Tainted Input,0
+Cameras and Monitors,CVE-2025-57201,CWE-77,Tainted Input,0
+Cameras and Monitors,CVE-2025-57202,CWE-79,Tainted Input,0
+Cameras and Monitors,CVE-2025-14225,CWE-74,Tainted Input,0
+Cameras and Monitors,CVE-2025-14225,CWE-77,Tainted Input,0
+Cameras and Monitors,CVE-2025-65290,CWE-295,Authentication,1
+Cameras and Monitors,CVE-2025-65291,CWE-295,Authentication,1
+Cameras and Monitors,CVE-2025-65292,CWE-77,Tainted Input,0
+Cameras and Monitors,CVE-2025-65293,CWE-77,Tainted Input,0
+Cameras and Monitors,CVE-2025-65294,CWE-94,Tainted Input,0
+Cameras and Monitors,CVE-2025-65295,CWE-326,Cryptography,0
+Cameras and Monitors,CVE-2025-65295,CWE-347,Cryptography,0
+Cameras and Monitors,CVE-2025-65295,CWE-457,Risky Values,0
+Cameras and Monitors,CVE-2025-65296,CWE-476,Memory Access,0
+Cameras and Monitors,CVE-2025-65297,CWE-5,Information Leak,0
+Cameras and Monitors,CVE-2025-14553,CWE-200,Information Leak,0
+Cameras and Monitors,CVE-2025-14299,CWE-770,Resource Management,0
+Cameras and Monitors,CVE-2025-14299,CWE-190,Risky Values,0
+Cameras and Monitors,CVE-2025-14300,CWE-306,Authentication,0
+Cameras and Monitors,CVE-2025-15245,CWE-22,Path Resolution,0
+Cameras and Monitors,CVE-2026-0629,CWE-287,Authentication,0
+Cameras and Monitors,CVE-2026-1419,CWE-74,Tainted Input,0
+Cameras and Monitors,CVE-2026-1419,CWE-77,Tainted Input,0
+Cameras and Monitors,CVE-2026-0918,CWE-476,Memory Access,0
+Cameras and Monitors,CVE-2026-0919,CWE-20,Tainted Input,0
+Cameras and Monitors,CVE-2026-1315,CWE-20,Tainted Input,0
+Cameras and Monitors,CVE-2026-1532,CWE-22,Path Resolution,0
+Cameras and Monitors,CVE-2026-1457,CWE-121,Memory Access,0
+Cameras and Monitors,CVE-2026-2218,CWE-74,Tainted Input,0
+Cameras and Monitors,CVE-2026-2218,CWE-77,Tainted Input,0
+Cameras and Monitors,CVE-2026-2227,CWE-74,Tainted Input,0
+Cameras and Monitors,CVE-2026-2227,CWE-77,Tainted Input,0
+Cameras and Monitors,CVE-2026-2260,CWE-77,Tainted Input,0
+Cameras and Monitors,CVE-2026-2260,CWE-78,Tainted Input,0
+Cameras and Monitors,CVE-2026-0651,CWE-22,Path Resolution,0
+Cameras and Monitors,CVE-2026-0652,CWE-78,Tainted Input,0
+Cameras and Monitors,CVE-2026-0653,CWE-284,Access Control,0
+Cameras and Monitors,CVE-2026-21633,CWE-287,Authentication,0
+Cameras and Monitors,CVE-2026-21634,CWE-119,Memory Access,0
+Cameras and Monitors,CVE-2025-66050,CWE-1393,Authentication,4
+Cameras and Monitors,CVE-2025-66051,CWE-22,Path Resolution,0
+Cameras and Monitors,CVE-2025-66052,CWE-78,Tainted Input,0
+Cameras and Monitors,CVE-2025-65396,CWE-119,Memory Access,0
+Cameras and Monitors,CVE-2025-65396,CWE-125,Memory Access,0
+Cameras and Monitors,CVE-2025-65396,CWE-1274,Access Control,1
+Cameras and Monitors,CVE-2025-65397,CWE-20,Tainted Input,0
+Cameras and Monitors,CVE-2025-65397,CWE-287,Authentication,0
+Cameras and Monitors,CVE-2019-25353,CWE-120,Memory Access,0
+Cameras and Monitors,CVE-2019-25437,CWE-121,Memory Access,0
+Cameras and Monitors,CVE-2024-51346,CWE-330,Predictability,0
+Cameras and Monitors,CVE-2026-34118,CWE-122,Memory Access,0
+Cameras and Monitors,CVE-2026-34119,CWE-122,Memory Access,0
+Cameras and Monitors,CVE-2026-34120,CWE-122,Memory Access,0
+Cameras and Monitors,CVE-2026-34121,CWE-287,Authentication,0
+Cameras and Monitors,CVE-2026-34122,CWE-121,Memory Access,0
+Cameras and Monitors,CVE-2026-34124,CWE-120,Memory Access,0
+Cameras and Monitors,CVE-2026-4475,CWE-259,Authentication,0
+Cameras and Monitors,CVE-2026-4475,CWE-798,Other|Predictability,1
+Cameras and Monitors,CVE-2026-4476,CWE-287,Authentication,0
+Cameras and Monitors,CVE-2026-4476,CWE-306,Authentication,0
+Cameras and Monitors,CVE-2026-4477,CWE-320,,-1
+Cameras and Monitors,CVE-2026-4477,CWE-321,Authentication,0
+Cameras and Monitors,CVE-2026-4478,CWE-345,Authentication,0
+Cameras and Monitors,CVE-2026-4478,CWE-347,Cryptography,0
+Cameras and Monitors,CVE-2026-32683,CWE-319,Information Leak,0
+Cameras and Monitors,CVE-2026-8260,CWE-119,Memory Access,0
+Cameras and Monitors,CVE-2026-8260,CWE-120,Memory Access,0
+Cameras and Monitors,CVE-2026-36983,CWE-77,Tainted Input,0
+Cameras and Monitors,CVE-2026-11497,CWE-266,Privilege,0
+Cameras and Monitors,CVE-2026-11497,CWE-272,Privilege,0
+Cameras and Monitors,CVE-2026-29114,CWE-538,Information Leak,0
+Cameras and Monitors,CVE-2026-29115,CWE-617,API,0
+Cameras and Monitors,CVE-2026-29116,CWE-617,API,0
+Cameras and Monitors,CVE-2026-50005,CWE-1392,Authentication,3
+Cameras and Monitors,CVE-2026-12174,CWE-119,Memory Access,0
+Cameras and Monitors,CVE-2026-12174,CWE-134,Tainted Input,0
+Cameras and Monitors,CVE-2026-35717,CWE-121,Memory Access,0
+Cameras and Monitors,CVE-2026-30649,CWE-121,Memory Access,0
+Cameras and Monitors,CVE-2026-30650,CWE-120,Memory Access,0
+Cameras and Monitors,CVE-2026-30652,CWE-120,Memory Access,0
+Cameras and Monitors,CVE-2026-35716,CWE-121,Memory Access,0
+Cameras and Monitors,CVE-2026-35718,CWE-22,Path Resolution,0
+Cameras and Monitors,CVE-2026-34123,CWE-287,Authentication,0
+Cameras and Monitors,CVE-2026-12760,CWE-770,Resource Management,0
+Cameras and Monitors,CVE-2026-9274,CWE-312,Information Leak,0
+Cameras and Monitors,CVE-2026-34126,CWE-319,Information Leak,0
+Cameras and Monitors,CVE-2022-38399,CWE-287,Authentication,0
+Cameras and Monitors,CVE-2022-2471,CWE-121,Memory Access,0
+Cameras and Monitors,CVE-2022-2472,CWE-665,Exception Management,0
+Cameras and Monitors,CVE-2012-5319,CWE-352,Authentication,1
+Cameras and Monitors,CVE-2009-2305,CWE-20,Tainted Input,0
+Cameras and Monitors,CVE-2009-2306,CWE-264,,-1
+Cameras and Monitors,CVE-2015-8257,CWE-77,Tainted Input,0
+Cameras and Monitors,CVE-2015-8256,CWE-79,Tainted Input,0
+Cameras and Monitors,CVE-2018-10734,CWE-200,Information Leak,0
+Cameras and Monitors,CVE-2018-16946,CWE-552,Information Leak,0
+Cameras and Monitors,CVE-2018-18428,CWE-200,Information Leak,0
+Cameras and Monitors,CVE-2018-13115,CWE-20,Tainted Input,0
+Cameras and Monitors,CVE-2021-34345,CWE-787,Memory Access,1
+Cameras and Monitors,CVE-2021-34346,CWE-787,Memory Access,1
+Cameras and Monitors,CVE-2021-26627,CWE-284,Access Control,0
+Cameras and Monitors,CVE-2021-26627,CWE-287,Authentication,0
+Cameras and Monitors,CVE-2023-23120,CWE-354,Tainted Input,0
+Cameras and Monitors,CVE-2023-22984,CWE-79,Tainted Input,0
+Cameras and Monitors,CVE-2024-3721,CWE-78,Tainted Input,0
+Cameras and Monitors,CVE-2024-5463,CWE-120,Memory Access,0
+Cameras and Monitors,CVE-2024-5631,CWE-319,Information Leak,0
+Cameras and Monitors,CVE-2024-5632,CWE-1392,Authentication,3
+Cameras and Monitors,CVE-2007-5212,CWE-79,Tainted Input,0
+Cameras and Monitors,CVE-2007-5213,CWE-352,Authentication,1
+Cameras and Monitors,CVE-2007-5214,CWE-79,Tainted Input,0
+Cameras and Monitors,CVE-2011-3828,CWE-94,Tainted Input,0
+Cameras and Monitors,CVE-2013-3543,CWE-264,,-1
+Cameras and Monitors,CVE-2013-6023,CWE-22,Path Resolution,0
+Cameras and Monitors,CVE-2013-0142,CWE-255,,-1
+Cameras and Monitors,CVE-2013-0143,CWE-94,Tainted Input,0
+Cameras and Monitors,CVE-2013-0144,CWE-352,Authentication,1
+Cameras and Monitors,CVE-2011-5261,CWE-79,Tainted Input,0
+Cameras and Monitors,CVE-2014-8755,CWE-20,Tainted Input,0
+Cameras and Monitors,CVE-2015-2866,CWE-89,Tainted Input,0
+Cameras and Monitors,CVE-2017-10796,CWE-287,Authentication,0
+Cameras and Monitors,CVE-2017-15885,CWE-79,Tainted Input,0
+Cameras and Monitors,CVE-2018-3856,CWE-88,Tainted Input,0
+Cameras and Monitors,CVE-2018-20299,CWE-119,Memory Access,0
+Cameras and Monitors,CVE-2019-17101,CWE-77,Tainted Input,0
+Cameras and Monitors,CVE-2020-12763,CWE-787,Memory Access,1
+Cameras and Monitors,CVE-2020-26097,CWE-798,Other|Predictability,1
+Cameras and Monitors,CVE-2021-30165,CWE-798,Other|Predictability,1
+Cameras and Monitors,CVE-2021-30167,CWE-522,Information Leak,0
+Cameras and Monitors,CVE-2021-30167,CWE-306,Authentication,0
+Cameras and Monitors,CVE-2023-3704,CWE-20,Tainted Input,0
+Cameras and Monitors,CVE-2023-3705,CWE-200,Information Leak,0
+Cameras and Monitors,CVE-2023-3705,CWE-20,Tainted Input,0
+Cameras and Monitors,CVE-2023-5746,CWE-134,Tainted Input,0
+Cameras and Monitors,CVE-2023-45670,CWE-352,Authentication,1
+Cameras and Monitors,CVE-2023-45671,CWE-79,Tainted Input,0
+Cameras and Monitors,CVE-2023-45672,CWE-502,Tainted Input,0
+Cameras and Monitors,CVE-2023-45801,CWE-287,Authentication,0
+Cameras and Monitors,CVE-2023-49236,CWE-787,Memory Access,1
+Cameras and Monitors,CVE-2023-49236,CWE-121,Memory Access,0
+Cameras and Monitors,CVE-2023-7227,CWE-77,Tainted Input,0
+Cameras and Monitors,CVE-2024-22514,CWE-22,Path Resolution,0
+Cameras and Monitors,CVE-2024-22514,CWE-94,Tainted Input,0
+Cameras and Monitors,CVE-2024-22515,CWE-434,Information Leak,1
+Cameras and Monitors,CVE-2023-6095,CWE-121,Memory Access,0
+Cameras and Monitors,CVE-2023-6096,CWE-668,Information Leak,0
+Cameras and Monitors,CVE-2023-47802,CWE-78,Tainted Input,0
+Cameras and Monitors,CVE-2023-47803,CWE-22,Path Resolution,0
+Cameras and Monitors,CVE-2024-39349,CWE-120,Memory Access,0
+Cameras and Monitors,CVE-2024-39351,CWE-78,Tainted Input,0
+Cameras and Monitors,CVE-2024-39352,CWE-863,Access Control,1
+Cameras and Monitors,CVE-2024-39350,CWE-290,Channel,0
+Cameras and Monitors,CVE-2024-46959,CWE-259,Authentication,0
+Cameras and Monitors,CVE-2024-41882,CWE-121,Memory Access,0
+Cameras and Monitors,CVE-2024-41883,CWE-476,Memory Access,0
+Cameras and Monitors,CVE-2024-41884,CWE-476,Memory Access,0
+Cameras and Monitors,CVE-2024-41885,CWE-547,Authentication,0
+Cameras and Monitors,CVE-2024-41886,CWE-755,Exception Management,0
+Cameras and Monitors,CVE-2024-41887,CWE-22,Path Resolution,0
+Cameras and Monitors,CVE-2025-25680,CWE-94,Tainted Input,0
+Cameras and Monitors,CVE-2024-11131,CWE-125,Memory Access,0
+Cameras and Monitors,CVE-2025-6031,CWE-672,Resource Management,0
+Cameras and Monitors,CVE-2025-34036,CWE-78,Tainted Input,0
+Cameras and Monitors,CVE-2025-6561,CWE-256,Information Leak,0
+Cameras and Monitors,CVE-2025-6561,CWE-497,Information Leak,0
+Cameras and Monitors,CVE-2025-6562,CWE-78,Tainted Input,0
+Cameras and Monitors,CVE-2025-34043,CWE-20,Tainted Input,0
+Cameras and Monitors,CVE-2025-34043,CWE-78,Tainted Input,0
+Cameras and Monitors,CVE-2025-9983,CWE-306,Authentication,0
+Cameras and Monitors,CVE-2025-56438,CWE-345,Authentication,0
+Cameras and Monitors,CVE-2025-12351,CWE-639,Access Control,0
+Cameras and Monitors,CVE-2025-12351,CWE-668,Information Leak,0
+Cameras and Monitors,CVE-2025-10264,CWE-497,Information Leak,0
+Cameras and Monitors,CVE-2025-10265,CWE-78,Tainted Input,0
+Cameras and Monitors,CVE-2025-55810,CWE-434,Information Leak,1
+Cameras and Monitors,CVE-2025-62674,CWE-306,Authentication,0
+Cameras and Monitors,CVE-2018-25126,CWE-78,Tainted Input,0
+Cameras and Monitors,CVE-2018-25126,CWE-798,Other|Predictability,1
+Cameras and Monitors,CVE-2024-14007,CWE-306,Authentication,0
+Cameras and Monitors,CVE-2020-36871,CWE-306,Authentication,0
+Cameras and Monitors,CVE-2020-36873,CWE-306,Authentication,0
+Cameras and Monitors,CVE-2020-36874,CWE-306,Authentication,0
+Cameras and Monitors,CVE-2021-47707,CWE-1392,Authentication,3
+Cameras and Monitors,CVE-2021-47710,CWE-306,Authentication,0
+Cameras and Monitors,CVE-2025-14746,CWE-287,Authentication,0
+Cameras and Monitors,CVE-2025-14747,CWE-404,Resource Management,0
+Cameras and Monitors,CVE-2019-25236,CWE-306,Authentication,0
+Cameras and Monitors,CVE-2019-25240,CWE-306,Authentication,0
+Cameras and Monitors,CVE-2019-25248,CWE-306,Authentication,0
+Cameras and Monitors,CVE-2020-37146,CWE-306,Authentication,0
+Cameras and Monitors,CVE-2020-37157,CWE-306,Authentication,0
+Cameras and Monitors,CVE-2020-36925,CWE-331,Predictability,0
+Cameras and Monitors,CVE-2026-0853,CWE-497,Information Leak,0
+Cameras and Monitors,CVE-2021-47799,CWE-266,Privilege,0
+Cameras and Monitors,CVE-2021-47796,CWE-798,Other|Predictability,1
+Cameras and Monitors,CVE-2026-34005,CWE-78,Tainted Input,0
+Cameras and Monitors,CVE-2021-47945,CWE-428,Path Resolution,0
+Cameras and Monitors,CVE-2026-6824,CWE-79,Tainted Input,0
+Cameras and Monitors,CVE-2008-3482,CWE-79,Tainted Input,0
+Cameras and Monitors,CVE-2018-8072,CWE-787,Memory Access,1
+Cameras and Monitors,CVE-2019-15498,CWE-88,Tainted Input,0
+Cameras and Monitors,CVE-2020-10231,CWE-476,Memory Access,0
+Cameras and Monitors,CVE-2020-12109,CWE-78,Tainted Input,0
+Cameras and Monitors,CVE-2020-12110,CWE-798,Other|Predictability,1
+Cameras and Monitors,CVE-2020-12111,CWE-78,Tainted Input,0
+Cameras and Monitors,CVE-2020-13224,CWE-120,Memory Access,0
+Cameras and Monitors,CVE-2020-26762,CWE-787,Memory Access,1
+Cameras and Monitors,CVE-2021-26614,CWE-749,Other,0
+Cameras and Monitors,CVE-2021-30168,CWE-200,Information Leak,0
+Cameras and Monitors,CVE-2021-30168,CWE-522,Information Leak,0
+Cameras and Monitors,CVE-2021-30169,CWE-200,Information Leak,0
+Cameras and Monitors,CVE-2021-30169,CWE-522,Information Leak,0
+Cameras and Monitors,CVE-2021-40597,CWE-798,Other|Predictability,1
+Cameras and Monitors,CVE-2023-49235,CWE-78,Tainted Input,0
+Cameras and Monitors,CVE-2023-49237,CWE-77,Tainted Input,0
+Cameras and Monitors,CVE-2024-7616,CWE-77,Tainted Input,0
+Cameras and Monitors,CVE-2014-9234,CWE-22,Path Resolution,0
+Cameras and Monitors,CVE-2014-9238,CWE-22,Path Resolution,0
+Cameras and Monitors,CVE-2014-4880,CWE-119,Memory Access,0
+Cameras and Monitors,CVE-2014-9517,CWE-79,Tainted Input,0
+Cameras and Monitors,CVE-2016-10115,CWE-798,Other|Predictability,1
+Cameras and Monitors,CVE-2016-10116,CWE-264,,-1
+Cameras and Monitors,CVE-2017-5674,CWE-200,Information Leak,0
+Cameras and Monitors,CVE-2017-5675,CWE-77,Tainted Input,0
+Cameras and Monitors,CVE-2017-6180,CWE-352,Authentication,1
+Cameras and Monitors,CVE-2017-7461,CWE-22,Path Resolution,0
+Cameras and Monitors,CVE-2017-7462,CWE-22,Path Resolution,0
+Cameras and Monitors,CVE-2017-7462,CWE-798,Other|Predictability,1
+Cameras and Monitors,CVE-2017-8221,CWE-311,Information Leak,0
+Cameras and Monitors,CVE-2017-8222,CWE-522,Information Leak,0
+Cameras and Monitors,CVE-2017-8223,CWE-287,Authentication,0
+Cameras and Monitors,CVE-2017-8224,CWE-798,Other|Predictability,1
+Cameras and Monitors,CVE-2017-8225,CWE-522,Information Leak,0
+Cameras and Monitors,CVE-2017-14743,CWE-89,Tainted Input,0
+Cameras and Monitors,CVE-2017-16725,CWE-119,Memory Access,0
+Cameras and Monitors,CVE-2017-11632,CWE-798,Other|Predictability,1
+Cameras and Monitors,CVE-2017-11634,CWE-798,Other|Predictability,1
+Cameras and Monitors,CVE-2017-11635,CWE-200,Information Leak,0
+Cameras and Monitors,CVE-2018-11560,CWE-787,Memory Access,1
+Cameras and Monitors,CVE-2018-12640,CWE-119,Memory Access,0
+Cameras and Monitors,CVE-2018-11653,CWE-200,Information Leak,0
+Cameras and Monitors,CVE-2018-11654,CWE-200,Information Leak,0
+Cameras and Monitors,CVE-2018-15745,CWE-22,Path Resolution,0
+Cameras and Monitors,CVE-2018-0663,CWE-798,Other|Predictability,1
+Cameras and Monitors,CVE-2017-2854,CWE-120,Memory Access,0
+Cameras and Monitors,CVE-2017-2856,CWE-120,Memory Access,0
+Cameras and Monitors,CVE-2017-2857,CWE-120,Memory Access,0
+Cameras and Monitors,CVE-2017-2872,CWE-287,Authentication,0
+Cameras and Monitors,CVE-2018-16225,CWE-319,Information Leak,0
+Cameras and Monitors,CVE-2017-2855,CWE-120,Memory Access,0
+Cameras and Monitors,CVE-2017-2875,CWE-120,Memory Access,0
+Cameras and Monitors,CVE-2017-2878,CWE-120,Memory Access,0
+Cameras and Monitors,CVE-2017-2879,CWE-120,Memory Access,0
+Cameras and Monitors,CVE-2017-2873,CWE-78,Tainted Input,0
+Cameras and Monitors,CVE-2017-2876,CWE-120,Memory Access,0
+Cameras and Monitors,CVE-2017-2877,CWE-755,Exception Management,0
+Cameras and Monitors,CVE-2018-13111,CWE-20,Tainted Input,0
+Cameras and Monitors,CVE-2018-12666,CWE-287,Authentication,0
+Cameras and Monitors,CVE-2018-12667,CWE-287,Authentication,0
+Cameras and Monitors,CVE-2018-12668,CWE-798,Other|Predictability,1
+Cameras and Monitors,CVE-2018-12670,CWE-78,Tainted Input,0
+Cameras and Monitors,CVE-2018-12671,CWE-200,Information Leak,0
+Cameras and Monitors,CVE-2018-12672,CWE-79,Tainted Input,0
+Cameras and Monitors,CVE-2018-12673,CWE-200,Information Leak,0
+Cameras and Monitors,CVE-2018-12674,CWE-319,Information Leak,0
+Cameras and Monitors,CVE-2018-12675,CWE-601,Tainted Input,0
+Cameras and Monitors,CVE-2018-3900,CWE-119,Memory Access,0
+Cameras and Monitors,CVE-2018-3910,CWE-78,Tainted Input,0
+Cameras and Monitors,CVE-2018-3928,CWE-200,Information Leak,0
+Cameras and Monitors,CVE-2018-3947,CWE-200,Information Leak,0
+Cameras and Monitors,CVE-2018-3890,CWE-78,Tainted Input,0
+Cameras and Monitors,CVE-2018-3892,CWE-120,Memory Access,0
+Cameras and Monitors,CVE-2018-3898,CWE-120,Memory Access,0
+Cameras and Monitors,CVE-2018-3899,CWE-120,Memory Access,0
+Cameras and Monitors,CVE-2018-3935,CWE-400,Resource Management,0
+Cameras and Monitors,CVE-2018-19076,CWE-287,Authentication,0
+Cameras and Monitors,CVE-2018-19077,CWE-125,Memory Access,0
+Cameras and Monitors,CVE-2018-19078,CWE-522,Information Leak,0
+Cameras and Monitors,CVE-2018-19079,CWE-306,Authentication,0
+Cameras and Monitors,CVE-2018-19079,CWE-862,Access Control,1
+Cameras and Monitors,CVE-2018-19080,CWE-79,Tainted Input,0
+Cameras and Monitors,CVE-2018-19081,CWE-78,Tainted Input,0
+Cameras and Monitors,CVE-2018-19082,CWE-787,Memory Access,1
+Cameras and Monitors,CVE-2017-18377,CWE-77,Tainted Input,0
+Cameras and Monitors,CVE-2019-7315,CWE-22,Path Resolution,0
+Cameras and Monitors,CVE-2017-8405,CWE-287,Authentication,0
+Cameras and Monitors,CVE-2017-8410,CWE-119,Memory Access,0
+Cameras and Monitors,CVE-2017-8227,CWE-254,,-1
+Cameras and Monitors,CVE-2017-18483,CWE-79,Tainted Input,0
+Cameras and Monitors,CVE-2020-7057,CWE-307,Authentication,0
+Cameras and Monitors,CVE-2012-6451,CWE-287,Authentication,0
+Cameras and Monitors,CVE-2013-1599,CWE-78,Tainted Input,0
+Cameras and Monitors,CVE-2013-1602,CWE-200,Information Leak,0
+Cameras and Monitors,CVE-2013-1603,CWE-798,Other|Predictability,1
+Cameras and Monitors,CVE-2013-2567,CWE-798,Other|Predictability,1
+Cameras and Monitors,CVE-2013-2568,CWE-78,Tainted Input,0
+Cameras and Monitors,CVE-2013-2569,CWE-287,Authentication,0
+Cameras and Monitors,CVE-2013-2570,CWE-78,Tainted Input,0
+Cameras and Monitors,CVE-2013-2572,CWE-798,Other|Predictability,1
+Cameras and Monitors,CVE-2013-2573,CWE-78,Tainted Input,0
+Cameras and Monitors,CVE-2013-2574,CWE-863,Access Control,1
+Cameras and Monitors,CVE-2013-3311,CWE-22,Path Resolution,0
+Cameras and Monitors,CVE-2013-3312,CWE-352,Authentication,1
+Cameras and Monitors,CVE-2013-3313,CWE-522,Information Leak,0
+Cameras and Monitors,CVE-2013-3314,CWE-200,Information Leak,0
+Cameras and Monitors,CVE-2013-4982,CWE-287,Authentication,0
+Cameras and Monitors,CVE-2020-25747,CWE-306,Authentication,0
+Cameras and Monitors,CVE-2020-25748,CWE-319,Information Leak,0
+Cameras and Monitors,CVE-2020-15744,CWE-121,Memory Access,0
+Cameras and Monitors,CVE-2020-15744,CWE-787,Memory Access,1
+Cameras and Monitors,CVE-2021-42071,CWE-78,Tainted Input,0
+Cameras and Monitors,CVE-2022-26259,CWE-120,Memory Access,0
+Cameras and Monitors,CVE-2019-25062,CWE-121,Memory Access,0
+Cameras and Monitors,CVE-2019-25062,CWE-787,Memory Access,1
+Cameras and Monitors,CVE-2019-25063,CWE-119,Memory Access,0
+Cameras and Monitors,CVE-2019-25063,CWE-787,Memory Access,1
+Cameras and Monitors,CVE-2018-17240,CWE-401,Failure to Release Memory,0
+Cameras and Monitors,CVE-2021-41506,CWE-287,Authentication,0
+Cameras and Monitors,CVE-2022-28743,CWE-367,Synchronization,0
+Cameras and Monitors,CVE-2021-41419,CWE-502,Tainted Input,0
+Cameras and Monitors,CVE-2022-40785,CWE-78,Tainted Input,0
+Cameras and Monitors,CVE-2022-40784,CWE-787,Memory Access,1
+Cameras and Monitors,CVE-2016-20016,CWE-78,Tainted Input,0
+Cameras and Monitors,CVE-2022-45045,CWE-78,Tainted Input,0
+Cameras and Monitors,CVE-2022-34138,CWE-639,Access Control,0
+Cameras and Monitors,CVE-2023-22370,CWE-79,Tainted Input,0
+Cameras and Monitors,CVE-2023-22375,CWE-352,Authentication,1
+Cameras and Monitors,CVE-2023-22376,CWE-79,Tainted Input,0
+Cameras and Monitors,CVE-2023-23458,CWE-200,Information Leak,0
+Cameras and Monitors,CVE-2023-23463,CWE-522,Information Leak,0
+Cameras and Monitors,CVE-2022-45460,CWE-787,Memory Access,1
+Cameras and Monitors,CVE-2023-30351,CWE-326,Cryptography,0
+Cameras and Monitors,CVE-2023-30351,CWE-798,Other|Predictability,1
+Cameras and Monitors,CVE-2023-30352,CWE-798,Other|Predictability,1
+Cameras and Monitors,CVE-2023-30353,CWE-77,Tainted Input,0
+Cameras and Monitors,CVE-2023-30354,CWE-319,Information Leak,0
+Cameras and Monitors,CVE-2023-30354,CWE-798,Other|Predictability,1
+Cameras and Monitors,CVE-2023-30356,CWE-354,Tainted Input,0
+Cameras and Monitors,CVE-2023-29862,CWE-94,Tainted Input,0
+Cameras and Monitors,CVE-2023-47213,CWE-798,Other|Predictability,1
+Cameras and Monitors,CVE-2023-47674,CWE-306,Authentication,0
+Cameras and Monitors,CVE-2023-28811,CWE-120,Memory Access,0
+Cameras and Monitors,CVE-2024-51362,CWE-306,Authentication,0
+Cameras and Monitors,CVE-2024-48644,CWE-203,Information Leak,0
+Cameras and Monitors,CVE-2024-47789,CWE-319,Information Leak,0
+Cameras and Monitors,CVE-2024-47790,CWE-862,Access Control,1
+Cameras and Monitors,CVE-2025-25984,CWE-259,Authentication,0
+Cameras and Monitors,CVE-2025-25985,CWE-256,Information Leak,0
+Cameras and Monitors,CVE-2013-3688,CWE-264,,-1
+Cameras and Monitors,CVE-2013-2578,CWE-78,Tainted Input,0
+Cameras and Monitors,CVE-2013-2579,CWE-255,,-1
+Cameras and Monitors,CVE-2013-2581,CWE-264,,-1
+Cameras and Monitors,CVE-2013-5215,CWE-79,Tainted Input,0
+Cameras and Monitors,CVE-2013-3612,CWE-255,,-1
+Cameras and Monitors,CVE-2013-3613,CWE-287,Authentication,0
+Cameras and Monitors,CVE-2013-3614,CWE-264,,-1
+Cameras and Monitors,CVE-2013-3615,CWE-255,,-1
+Cameras and Monitors,CVE-2013-5754,CWE-264,,-1
+Cameras and Monitors,CVE-2012-3002,CWE-287,Authentication,0
+Cameras and Monitors,CVE-2013-4980,CWE-119,Memory Access,0
+Cameras and Monitors,CVE-2013-4981,CWE-119,Memory Access,0
+Cameras and Monitors,CVE-2013-1604,CWE-22,Path Resolution,0
+Cameras and Monitors,CVE-2013-1605,CWE-119,Memory Access,0
+Cameras and Monitors,CVE-2014-1849,CWE-255,,-1
+Cameras and Monitors,CVE-2014-3895,CWE-287,Authentication,0
+Cameras and Monitors,CVE-2016-5677,CWE-200,Information Leak,0
+Cameras and Monitors,CVE-2017-2805,CWE-787,Memory Access,1
+Cameras and Monitors,CVE-2017-2827,CWE-78,Tainted Input,0
+Cameras and Monitors,CVE-2017-2828,CWE-78,Tainted Input,0
+Cameras and Monitors,CVE-2017-2829,CWE-22,Path Resolution,0
+Cameras and Monitors,CVE-2017-2830,CWE-120,Memory Access,0
+Cameras and Monitors,CVE-2017-2831,CWE-120,Memory Access,0
+Cameras and Monitors,CVE-2017-2841,CWE-78,Tainted Input,0
+Cameras and Monitors,CVE-2017-2842,CWE-78,Tainted Input,0
+Cameras and Monitors,CVE-2017-2843,CWE-78,Tainted Input,0
+Cameras and Monitors,CVE-2017-2844,CWE-78,Tainted Input,0
+Cameras and Monitors,CVE-2017-2845,CWE-78,Tainted Input,0
+Cameras and Monitors,CVE-2017-2846,CWE-78,Tainted Input,0
+Cameras and Monitors,CVE-2017-2847,CWE-78,Tainted Input,0
+Cameras and Monitors,CVE-2017-2848,CWE-78,Tainted Input,0
+Cameras and Monitors,CVE-2017-2849,CWE-78,Tainted Input,0
+Cameras and Monitors,CVE-2017-2850,CWE-78,Tainted Input,0
+Cameras and Monitors,CVE-2017-2851,CWE-120,Memory Access,0
+Cameras and Monitors,CVE-2017-2223,CWE-352,Authentication,1
+Cameras and Monitors,CVE-2015-2280,CWE-78,Tainted Input,0
+Cameras and Monitors,CVE-2017-16566,CWE-287,Authentication,0
+Cameras and Monitors,CVE-2017-14953,CWE-311,Information Leak,0
+Cameras and Monitors,CVE-2017-11510,CWE-200,Information Leak,0
+Cameras and Monitors,CVE-2017-11510,CWE-522,Information Leak,0
+Cameras and Monitors,CVE-2017-2871,CWE-287,Authentication,0
+Cameras and Monitors,CVE-2018-10328,CWE-798,Other|Predictability,1
+Cameras and Monitors,CVE-2017-2832,CWE-77,Tainted Input,0
+Cameras and Monitors,CVE-2017-2833,CWE-77,Tainted Input,0
+Cameras and Monitors,CVE-2017-3223,CWE-121,Memory Access,0
+Cameras and Monitors,CVE-2017-3223,CWE-119,Memory Access,0
+Cameras and Monitors,CVE-2018-19864,CWE-20,Tainted Input,0
+Cameras and Monitors,CVE-2018-19864,CWE-119,Memory Access,0
+Cameras and Monitors,CVE-2018-20051,CWE-20,Tainted Input,0
+Cameras and Monitors,CVE-2018-20342,CWE-287,Authentication,0
+Cameras and Monitors,CVE-2018-18602,CWE-330,Predictability,0
+Cameras and Monitors,CVE-2019-10710,CWE-732,Access Control,0
+Cameras and Monitors,CVE-2019-5037,CWE-190,Risky Values,0
+Cameras and Monitors,CVE-2019-5037,CWE-125,Memory Access,0
+Cameras and Monitors,CVE-2020-3923,CWE-287,Authentication,0
+Cameras and Monitors,CVE-2020-3924,CWE-77,Tainted Input,0
+Cameras and Monitors,CVE-2013-7487,CWE-74,Tainted Input,0
+Cameras and Monitors,CVE-2020-9349,CWE-306,Authentication,0
+Cameras and Monitors,CVE-2020-5735,CWE-121,Memory Access,0
+Cameras and Monitors,CVE-2020-5735,CWE-787,Memory Access,1
+Cameras and Monitors,CVE-2020-5736,CWE-476,Memory Access,0
+Cameras and Monitors,CVE-2020-10513,CWE-732,Access Control,0
+Cameras and Monitors,CVE-2020-10514,CWE-77,Tainted Input,0
+Cameras and Monitors,CVE-2020-11679,CWE-862,Access Control,1
+Cameras and Monitors,CVE-2020-11680,CWE-862,Access Control,1
+Cameras and Monitors,CVE-2020-11681,CWE-522,Information Leak,0
+Cameras and Monitors,CVE-2020-11682,CWE-352,Authentication,1
+Cameras and Monitors,CVE-2020-11624,CWE-521,Authentication,0
+Cameras and Monitors,CVE-2020-11625,CWE-203,Information Leak,0
+Cameras and Monitors,CVE-2020-19639,CWE-352,Authentication,1
+Cameras and Monitors,CVE-2020-19642,CWE-434,Information Leak,1
+Cameras and Monitors,CVE-2020-19643,CWE-79,Tainted Input,0
+Cameras and Monitors,CVE-2019-20464,CWE-287,Authentication,0
+Cameras and Monitors,CVE-2019-20466,CWE-916,Cryptography,1
+Cameras and Monitors,CVE-2020-7848,CWE-20,Tainted Input,0
+Cameras and Monitors,CVE-2020-7848,CWE-77,Tainted Input,0
+Cameras and Monitors,CVE-2021-22882,CWE-400,Resource Management,0
+Cameras and Monitors,CVE-2021-26611,CWE-798,Other|Predictability,1
+Cameras and Monitors,CVE-2020-7879,CWE-78,Tainted Input,0
+Cameras and Monitors,CVE-2022-25012,CWE-326,Cryptography,0
+Cameras and Monitors,CVE-2021-4045,CWE-77,Tainted Input,0
+Cameras and Monitors,CVE-2021-32941,CWE-121,Memory Access,0
+Cameras and Monitors,CVE-2021-32941,CWE-787,Memory Access,1
+Cameras and Monitors,CVE-2021-3555,CWE-120,Memory Access,0
+Cameras and Monitors,CVE-2022-37255,CWE-798,Other|Predictability,1
+Cameras and Monitors,CVE-2021-45039,CWE-120,Memory Access,0
+Cameras and Monitors,CVE-2023-30146,CWE-312,Information Leak,0
+Cameras and Monitors,CVE-2022-23382,CWE-400,Resource Management,0
+Cameras and Monitors,CVE-2023-0773,CWE-287,Authentication,0
+Cameras and Monitors,CVE-2023-47565,CWE-78,Tainted Input,0
+Cameras and Monitors,CVE-2023-49515,CWE-922,Resource Management,1
+Cameras and Monitors,CVE-2024-22768,CWE-20,Tainted Input,0
+Cameras and Monitors,CVE-2024-22768,CWE-798,Other|Predictability,1
+Cameras and Monitors,CVE-2024-22769,CWE-20,Tainted Input,0
+Cameras and Monitors,CVE-2024-22769,CWE-798,Other|Predictability,1
+Cameras and Monitors,CVE-2024-22770,CWE-20,Tainted Input,0
+Cameras and Monitors,CVE-2024-22770,CWE-798,Other|Predictability,1
+Cameras and Monitors,CVE-2024-22771,CWE-20,Tainted Input,0
+Cameras and Monitors,CVE-2024-22771,CWE-798,Other|Predictability,1
+Cameras and Monitors,CVE-2024-22772,CWE-20,Tainted Input,0
+Cameras and Monitors,CVE-2024-22772,CWE-798,Other|Predictability,1
+Cameras and Monitors,CVE-2024-23842,CWE-20,Tainted Input,0
+Cameras and Monitors,CVE-2024-23842,CWE-798,Other|Predictability,1
+Cameras and Monitors,CVE-2023-50488,CWE-94,Tainted Input,0
+Cameras and Monitors,CVE-2023-51820,CWE-94,Tainted Input,0
+Cameras and Monitors,CVE-2023-47353,CWE-494,Tainted Input,0
+Cameras and Monitors,CVE-2023-35717,CWE-640,Cryptography,0
+Cameras and Monitors,CVE-2023-41184,CWE-121,Memory Access,0
+Cameras and Monitors,CVE-2023-41184,CWE-787,Memory Access,1
+Cameras and Monitors,CVE-2023-51624,CWE-121,Memory Access,0
+Cameras and Monitors,CVE-2023-51624,CWE-787,Memory Access,1
+Cameras and Monitors,CVE-2023-51625,CWE-78,Tainted Input,0
+Cameras and Monitors,CVE-2023-51626,CWE-121,Memory Access,0
+Cameras and Monitors,CVE-2023-51626,CWE-787,Memory Access,1
+Cameras and Monitors,CVE-2023-51627,CWE-121,Memory Access,0
+Cameras and Monitors,CVE-2023-51627,CWE-787,Memory Access,1
+Cameras and Monitors,CVE-2023-51628,CWE-121,Memory Access,0
+Cameras and Monitors,CVE-2023-51628,CWE-787,Memory Access,1
+Cameras and Monitors,CVE-2023-51629,CWE-259,Authentication,0
+Cameras and Monitors,CVE-2023-51629,CWE-798,Other|Predictability,1
+Cameras and Monitors,CVE-2024-32874,CWE-770,Resource Management,0
+Cameras and Monitors,CVE-2023-6322,CWE-121,Memory Access,0
+Cameras and Monitors,CVE-2023-6322,CWE-787,Memory Access,1
+Cameras and Monitors,CVE-2023-6323,CWE-345,Authentication,0
+Cameras and Monitors,CVE-2023-6324,CWE-457,Risky Values,0
+Cameras and Monitors,CVE-2023-6324,CWE-908,Exception Management,1
+Cameras and Monitors,CVE-2024-35341,CWE-200,Information Leak,0
+Cameras and Monitors,CVE-2024-35342,CWE-306,Authentication,0
+Cameras and Monitors,CVE-2024-35343,CWE-200,Information Leak,0
+Cameras and Monitors,CVE-2024-35344,CWE-321,Authentication,0
+Cameras and Monitors,CVE-2024-45836,CWE-79,Tainted Input,0
+Cameras and Monitors,CVE-2024-39091,CWE-78,Tainted Input,0
+Cameras and Monitors,CVE-2024-41623,CWE-94,Tainted Input,0
+Cameras and Monitors,CVE-2024-31798,CWE-798,Other|Predictability,1
+Cameras and Monitors,CVE-2024-31798,CWE-259,Authentication,0
+Cameras and Monitors,CVE-2024-31799,CWE-319,Information Leak,0
+Cameras and Monitors,CVE-2024-31799,CWE-200,Information Leak,0
+Cameras and Monitors,CVE-2024-31800,CWE-287,Authentication,0
+Cameras and Monitors,CVE-2024-31800,CWE-522,Information Leak,0
+Cameras and Monitors,CVE-2024-42531,CWE-20,Tainted Input,0
+Cameras and Monitors,CVE-2024-6246,CWE-122,Memory Access,0
+Cameras and Monitors,CVE-2024-6246,CWE-787,Memory Access,1
+Cameras and Monitors,CVE-2024-6247,CWE-78,Tainted Input,0
+Cameras and Monitors,CVE-2024-6248,CWE-287,Authentication,0
+Cameras and Monitors,CVE-2024-6249,CWE-121,Memory Access,0
+Cameras and Monitors,CVE-2024-6249,CWE-787,Memory Access,1
+Cameras and Monitors,CVE-2025-50777,CWE-284,Access Control,0
+Cameras and Monitors,CVE-2025-50777,CWE-312,Information Leak,0
+Cameras and Monitors,CVE-2025-34042,CWE-78,Tainted Input,0
+Cameras and Monitors,CVE-2025-34050,CWE-352,Authentication,1
+Cameras and Monitors,CVE-2025-34051,CWE-200,Information Leak,0
+Cameras and Monitors,CVE-2025-34051,CWE-918,Channel,1
+Cameras and Monitors,CVE-2025-34053,CWE-290,Channel,0
+Cameras and Monitors,CVE-2025-34054,CWE-78,Tainted Input,0
+Cameras and Monitors,CVE-2025-34055,CWE-20,Tainted Input,0
+Cameras and Monitors,CVE-2025-34055,CWE-78,Tainted Input,0
+Cameras and Monitors,CVE-2025-34056,CWE-20,Tainted Input,0
+Cameras and Monitors,CVE-2025-34056,CWE-78,Tainted Input,0
+Cameras and Monitors,CVE-2025-34065,CWE-290,Channel,0
+Cameras and Monitors,CVE-2025-34066,CWE-295,Authentication,1
+Cameras and Monitors,CVE-2025-7503,CWE-798,Other|Predictability,1
+Cameras and Monitors,CVE-2025-9380,CWE-259,Authentication,0
+Cameras and Monitors,CVE-2025-9380,CWE-798,Other|Predictability,1
+Cameras and Monitors,CVE-2025-9381,CWE-200,Information Leak,0
+Cameras and Monitors,CVE-2025-9381,CWE-284,Access Control,0
+Cameras and Monitors,CVE-2025-9382,CWE-912,API,1
+Cameras and Monitors,CVE-2025-9383,CWE-327,Cryptography,0
+Cameras and Monitors,CVE-2025-9383,CWE-328,Cryptography,0
+Cameras and Monitors,CVE-2025-62382,CWE-73,Path Resolution,0
+Cameras and Monitors,CVE-2025-11852,CWE-287,Authentication,0
+Cameras and Monitors,CVE-2025-11852,CWE-306,Authentication,0
+Cameras and Monitors,CVE-2025-53701,CWE-79,Tainted Input,0
+Cameras and Monitors,CVE-2025-53702,CWE-755,Exception Management,0
+Cameras and Monitors,CVE-2021-4469,CWE-306,Authentication,0
+Cameras and Monitors,CVE-2021-4469,CWE-1242,Access Control,1
+Cameras and Monitors,CVE-2025-63674,CWE-77,Tainted Input,0
+Cameras and Monitors,CVE-2025-63296,CWE-77,Tainted Input,0
+Cameras and Monitors,CVE-2025-63667,CWE-284,Access Control,0
+Cameras and Monitors,CVE-2025-66173,CWE-269,Privilege,0
+Cameras and Monitors,CVE-2025-66174,CWE-287,Authentication,0
+Cameras and Monitors,CVE-2025-8065,CWE-121,Memory Access,0
+Cameras and Monitors,CVE-2025-8065,CWE-120,Memory Access,0
+Cameras and Monitors,CVE-2025-65817,CWE-94,Tainted Input,0
+Cameras and Monitors,CVE-2025-65856,CWE-306,Authentication,0
+Cameras and Monitors,CVE-2025-65857,CWE-359,Other,0
+Cameras and Monitors,CVE-2018-25130,CWE-256,Information Leak,0
+Cameras and Monitors,CVE-2019-25246,CWE-22,Path Resolution,0
+Cameras and Monitors,CVE-2019-25247,CWE-352,Authentication,1
+Cameras and Monitors,CVE-2026-25643,CWE-78,Tainted Input,0
+Cameras and Monitors,CVE-2026-25643,CWE-250,Privilege,0
+Cameras and Monitors,CVE-2026-25643,CWE-269,Privilege,0
+Cameras and Monitors,CVE-2026-25643,CWE-668,Information Leak,0
+Cameras and Monitors,CVE-2025-66049,CWE-306,Authentication,0
+Cameras and Monitors,CVE-2026-0855,CWE-78,Tainted Input,0
+Cameras and Monitors,CVE-2024-51347,CWE-120,Memory Access,0
+Cameras and Monitors,CVE-2026-33469,CWE-863,Access Control,1
+Cameras and Monitors,CVE-2026-33470,CWE-862,Access Control,1
+Cameras and Monitors,CVE-2026-33470,CWE-863,Access Control,1
+Cameras and Monitors,CVE-2025-69986,CWE-20,Tainted Input,0
+Cameras and Monitors,CVE-2025-69986,CWE-121,Memory Access,0
+Cameras and Monitors,CVE-2026-33124,CWE-287,Authentication,0
+Cameras and Monitors,CVE-2026-33125,CWE-285,Access Control,0
+Cameras and Monitors,CVE-2026-33126,CWE-918,Channel,1
+Cameras and Monitors,CVE-2026-31256,CWE-476,Memory Access,0
+Cameras and Monitors,CVE-2026-35901,CWE-400,Resource Management,0
+Cameras and Monitors,CVE-2026-35902,CWE-307,Authentication,0
+Cameras and Monitors,CVE-2026-35903,CWE-287,Authentication,0
+Cameras and Monitors,CVE-2026-6250,CWE-134,Tainted Input,0
+Cameras and Monitors,CVE-2026-1871,CWE-121,Memory Access,0
+Cameras and Monitors,CVE-2026-8714,CWE-20,Tainted Input,0
+Cameras and Monitors,CVE-2026-6239,CWE-121,Memory Access,0
+Cameras and Monitors,CVE-2026-6240,CWE-121,Memory Access,0
+Cameras and Monitors,CVE-2026-6241,CWE-134,Tainted Input,0
+Cameras and Monitors,CVE-2026-6242,CWE-134,Tainted Input,0
+Cameras and Monitors,CVE-2026-12527,CWE-306,Authentication,0
+Cameras and Monitors,CVE-2009-3828,CWE-287,Authentication,0
+Cameras and Monitors,CVE-2012-5306,CWE-119,Memory Access,0
+Cameras and Monitors,CVE-2017-16778,CWE-863,Access Control,1
+Cameras and Monitors,CVE-2022-40903,CWE-307,Authentication,0
+Cameras and Monitors,CVE-2023-0343,CWE-330,Predictability,0
+Cameras and Monitors,CVE-2024-44097,CWE-269,Privilege,0
+Cameras and Monitors,CVE-2024-48774,CWE-306,Authentication,0
+Cameras and Monitors,CVE-2020-9474,CWE-494,Tainted Input,0
+Cameras and Monitors,CVE-2020-9475,CWE-362,Synchronization,0
+Cameras and Monitors,CVE-2021-31726,CWE-77,Tainted Input,0
+Cameras and Monitors,CVE-2019-14453,CWE-269,Privilege,0
+Cameras and Monitors,CVE-2023-0350,CWE-345,Authentication,0
+Cameras and Monitors,CVE-2023-0351,CWE-77,Tainted Input,0
+Cameras and Monitors,CVE-2024-58336,CWE-306,Authentication,0
+Cameras and Monitors,CVE-2024-58337,CWE-862,Access Control,1
+Cameras and Monitors,CVE-2018-25130,CWE-256,Information Leak,0
+Cameras and Monitors,CVE-2015-4400,CWE-255,,-1
+Cameras and Monitors,CVE-2019-9483,CWE-327,Cryptography,0
+Cameras and Monitors,CVE-2019-13336,CWE-287,Authentication,0
+Cameras and Monitors,CVE-2019-19163,CWE-20,Tainted Input,0
+Cameras and Monitors,CVE-2020-8101,CWE-77,Tainted Input,0
+Cameras and Monitors,CVE-2021-31793,CWE-306,Authentication,0
+Cameras and Monitors,CVE-2020-28713,CWE-294,Channel,0
+Cameras and Monitors,CVE-2025-55626,CWE-284,Access Control,0
+Cameras and Monitors,CVE-2025-55627,CWE-269,Privilege,0
+Cameras and Monitors,CVE-2025-55629,CWE-378,Information Leak,0
+Cameras and Monitors,CVE-2025-55630,CWE-284,Access Control,0
+Cameras and Monitors,CVE-2025-55631,CWE-400,Resource Management,0
+Cameras and Monitors,CVE-2025-55634,CWE-400,Resource Management,0
+Cameras and Monitors,CVE-2025-55637,CWE-77,Tainted Input,0
+Cameras and Monitors,CVE-2025-56675,CWE-669,Information Leak,0
+Cameras and Monitors,CVE-2025-60855,CWE-77,Tainted Input,0
+Cameras and Monitors,CVE-2025-60856,CWE-306,Authentication,0
+Cameras and Monitors,CVE-2025-60856,CWE-922,Resource Management,1
+Cameras and Monitors,CVE-2025-64983,CWE-489,Entry Points,0
+Cameras and Monitors,CVE-2025-60858,CWE-200,Information Leak,0
+Cameras and Monitors,CVE-2026-38740,CWE-319,Information Leak,0
+Access Control,CVE-2019-17098,CWE-321,Authentication,0
+Access Control,CVE-2019-17098,CWE-798,Other|Predictability,1
+Access Control,CVE-2024-12094,CWE-312,Information Leak,0
+Access Control,CVE-2020-10876,CWE-307,Authentication,0
+Access Control,CVE-2020-10876,CWE-613,Authentication,0
+Access Control,CVE-2020-8790,CWE-307,Authentication,0
+Access Control,CVE-2020-8790,CWE-521,Authentication,0
+Access Control,CVE-2020-8791,CWE-639,Access Control,0
+Access Control,CVE-2020-8792,CWE-330,Predictability,0
+Access Control,CVE-2022-46308,CWE-863,Access Control,1
+Access Control,CVE-2023-5879,CWE-922,Resource Management,1
+Access Control,CVE-2025-2189,CWE-312,Information Leak,0
+Access Control,CVE-2016-1148,CWE-295,Authentication,1
+Access Control,CVE-2021-44905,CWE-276,Access Control,0
+Access Control,CVE-2024-48548,CWE-863,Access Control,1
+Access Control,CVE-2020-9059,CWE-400,Resource Management,0
+Access Control,CVE-2020-9059,CWE-770,Resource Management,0
+Access Control,CVE-2023-26943,CWE-326,Cryptography,0
+Access Control,CVE-2026-47149,CWE-125,Memory Access,0
+Access Control,CVE-2026-47151,CWE-787,Memory Access,1
+Access Control,CVE-2019-12944,CWE-862,Access Control,1
+Access Control,CVE-2019-17518,CWE-120,Memory Access,0
+Access Control,CVE-2020-9438,CWE-294,Channel,0
+Access Control,CVE-2022-46307,CWE-863,Access Control,1
+Access Control,CVE-2023-39841,CWE-311,Information Leak,0
+Access Control,CVE-2023-39843,CWE-311,Information Leak,0
+Access Control,CVE-2023-34553,CWE-294,Channel,0
+Access Control,CVE-2022-46480,CWE-294,Channel,0
+Access Control,CVE-2022-46480,CWE-384,Path Resolution,1
+Access Control,CVE-2023-5880,CWE-79,Tainted Input,0
+Access Control,CVE-2023-5881,CWE-306,Authentication,0
+Access Control,CVE-2023-50124,CWE-798,Other|Predictability,1
+Access Control,CVE-2023-50129,CWE-311,Information Leak,0
+Access Control,CVE-2022-32504,CWE-120,Memory Access,0
+Access Control,CVE-2022-32505,CWE-400,Resource Management,0
+Access Control,CVE-2022-32506,CWE-1263,Access Control,1
+Access Control,CVE-2022-32507,CWE-284,Access Control,0
+Access Control,CVE-2022-32509,CWE-295,Authentication,1
+Access Control,CVE-2025-44612,CWE-319,Information Leak,0
+Access Control,CVE-2025-44614,CWE-312,Information Leak,0
+Access Control,CVE-2025-44619,CWE-284,Access Control,0
+Energy,CVE-2024-5684,CWE-345,Authentication,0
+Energy,CVE-2024-5313,CWE-668,Information Leak,0
+Energy,CVE-2024-7391,CWE-200,Information Leak,0
+Energy,CVE-2024-7392,CWE-410,Other,0
+Energy,CVE-2025-31929,CWE-1326,Other,1
+Energy,CVE-2025-8320,CWE-1284,Tainted Input,1
+Energy,CVE-2025-8321,CWE-1328,Access Control,1
+Energy,CVE-2025-54564,CWE-20,Tainted Input,0
+Energy,CVE-2025-54564,CWE-77,Tainted Input,0
+Energy,CVE-2026-4157,CWE-78,Tainted Input,0
+Energy,CVE-2023-0863,CWE-287,Authentication,0
+Energy,CVE-2023-0864,CWE-319,Information Leak,0
+Energy,CVE-2024-23957,CWE-121,Memory Access,0
+Energy,CVE-2024-23957,CWE-787,Memory Access,1
+Energy,CVE-2024-23958,CWE-798,Other|Predictability,1
+Energy,CVE-2024-23959,CWE-121,Memory Access,0
+Energy,CVE-2024-23959,CWE-787,Memory Access,1
+Energy,CVE-2024-7795,CWE-121,Memory Access,0
+Energy,CVE-2024-7795,CWE-119,Memory Access,0
+Energy,CVE-2025-5741,CWE-22,Path Resolution,0
+Energy,CVE-2025-5743,CWE-78,Tainted Input,0
+Energy,CVE-2025-10504,CWE-122,Memory Access,0
+Energy,CVE-2025-5517,CWE-122,Memory Access,0
+Energy,CVE-2025-12143,CWE-121,Memory Access,0
+Energy,CVE-2025-12142,CWE-120,Memory Access,0
+Energy,CVE-2026-9394,CWE-521,Authentication,0
+Energy,CVE-2026-9395,CWE-522,Information Leak,0
+Energy,CVE-2026-9396,CWE-1021,Channel|UI,1
+Energy,CVE-2026-9397,CWE-266,Privilege,0
+Energy,CVE-2026-9397,CWE-285,Access Control,0
+Energy,CVE-2026-9398,CWE-287,Authentication,0
+Energy,CVE-2026-9398,CWE-294,Channel,0
+Energy,CVE-2024-23967,CWE-121,Memory Access,0
+Energy,CVE-2024-23967,CWE-787,Memory Access,1
+Energy,CVE-2021-45876,CWE-77,Tainted Input,0
+Energy,CVE-2021-45877,CWE-798,Other|Predictability,1
+Energy,CVE-2021-45878,CWE-306,Authentication,0
+Energy,CVE-2023-30399,CWE-732,Access Control,0
+Energy,CVE-2023-29114,CWE-200,Information Leak,0
+Energy,CVE-2025-26857,CWE-639,Access Control,0
+Energy,CVE-2025-27575,CWE-639,Access Control,0
+Energy,CVE-2025-31147,CWE-639,Access Control,0
+Energy,CVE-2025-31950,CWE-639,Access Control,0
+Energy,CVE-2021-22706,CWE-79,Tainted Input,0
+Energy,CVE-2021-22707,CWE-798,Other|Predictability,1
+Energy,CVE-2021-22708,CWE-347,Cryptography,0
+Energy,CVE-2021-22721,CWE-200,Information Leak,0
+Energy,CVE-2021-22722,CWE-79,Tainted Input,0
+Energy,CVE-2021-22723,CWE-79,Tainted Input,0
+Energy,CVE-2021-22726,CWE-918,Channel,1
+Energy,CVE-2021-22727,CWE-331,Predictability,0
+Energy,CVE-2021-22728,CWE-200,Information Leak,0
+Energy,CVE-2021-22729,CWE-259,Authentication,0
+Energy,CVE-2021-22730,CWE-798,Other|Predictability,1
+Energy,CVE-2021-22773,CWE-620,Authentication,0
+Energy,CVE-2021-22774,CWE-916,Cryptography,1
+Energy,CVE-2021-22724,CWE-352,Authentication,1
+Energy,CVE-2021-22725,CWE-352,Authentication,1
+Energy,CVE-2021-22818,CWE-307,Authentication,0
+Energy,CVE-2021-22819,CWE-1021,Channel|UI,1
+Energy,CVE-2021-22820,CWE-613,Authentication,0
+Energy,CVE-2021-22821,CWE-918,Channel,1
+Energy,CVE-2021-22822,CWE-79,Tainted Input,0
+Energy,CVE-2024-1707,CWE-79,Tainted Input,0
+Energy,CVE-2024-23968,CWE-120,Memory Access,0
+Energy,CVE-2024-23969,CWE-787,Memory Access,1
+Energy,CVE-2024-23970,CWE-295,Authentication,1
+Energy,CVE-2024-23971,CWE-77,Tainted Input,0
+Energy,CVE-2024-23920,CWE-284,Access Control,0
+Energy,CVE-2024-23921,CWE-94,Tainted Input,0
+Energy,CVE-2025-5747,CWE-115,Other,0
+Energy,CVE-2025-5748,CWE-749,Other,0
+Energy,CVE-2025-5749,CWE-457,Risky Values,0
+Energy,CVE-2025-5750,CWE-122,Memory Access,0
+Energy,CVE-2025-5751,CWE-798,Other|Predictability,1
+Energy,CVE-2026-0778,CWE-306,Authentication,0
+Energy,CVE-2026-4155,CWE-540,Information Leak,0
+Energy,CVE-2026-4156,CWE-121,Memory Access,0
+Climate & Air,CVE-2025-69822,CWE-200,Information Leak,0
+Climate & Air,CVE-2025-69822,CWE-284,Access Control,0
+Climate & Air,CVE-2025-69822,CWE-287,Authentication,0
+Climate & Air,CVE-2025-69822,CWE-294,Channel,0
+Appliances,CVE-2022-33321,CWE-319,Information Leak,0
+Appliances,CVE-2022-33322,CWE-79,Tainted Input,0
+Appliances,CVE-2026-5667,CWE-798,Other|Predictability,1
+Outdoor & Pet,CVE-2018-6011,CWE-287,Authentication,0
+Outdoor & Pet,CVE-2018-6012,CWE-94,Tainted Input,0
+Outdoor & Pet,CVE-2018-6906,CWE-79,Tainted Input,0
+Outdoor & Pet,CVE-2018-6907,CWE-352,Authentication,1
+Outdoor & Pet,CVE-2018-6908,CWE-287,Authentication,0
+Outdoor & Pet,CVE-2018-6909,CWE-1021,Channel|UI,1
+Outdoor & Pet,CVE-2026-7413,CWE-912,API,1
+Outdoor & Pet,CVE-2026-7414,CWE-798,Other|Predictability,1
+Outdoor & Pet,CVE-2026-7415,CWE-306,Authentication,0
+Outdoor & Pet,CVE-2026-10557,CWE-798,Other|Predictability,1
+Outdoor & Pet,CVE-2026-7368,CWE-862,Access Control,1
+Outdoor & Pet,CVE-2024-52325,CWE-77,Tainted Input,0
+Outdoor & Pet,CVE-2024-11147,CWE-798,Other|Predictability,1
+Outdoor & Pet,CVE-2024-12078,CWE-321,Authentication,0
+Outdoor & Pet,CVE-2024-12079,CWE-312,Information Leak,0
+Outdoor & Pet,CVE-2024-52327,CWE-603,Authentication,0
+Outdoor & Pet,CVE-2024-52327,CWE-807,Other,1
+Outdoor & Pet,CVE-2024-52328,CWE-732,Access Control,0
+Outdoor & Pet,CVE-2024-52330,CWE-295,Authentication,1
+Outdoor & Pet,CVE-2024-52331,CWE-327,Cryptography,0
+Outdoor & Pet,CVE-2024-52331,CWE-494,Tainted Input,0
+Outdoor & Pet,CVE-2024-52331,CWE-1391,Authentication,2
+Energy,CVE-2018-12927,CWE-200,Information Leak,0
+Energy,CVE-2019-7676,CWE-521,Authentication,0
+Energy,CVE-2019-7677,CWE-79,Tainted Input,0
+Energy,CVE-2019-7678,CWE-22,Path Resolution,0
+Energy,CVE-2023-0808,CWE-259,Authentication,0
+Energy,CVE-2023-0808,CWE-798,Other|Predictability,1
+Energy,CVE-2017-9852,CWE-798,Other|Predictability,1
+Energy,CVE-2017-9853,CWE-521,Authentication,0
+Energy,CVE-2017-9854,CWE-311,Information Leak,0
+Energy,CVE-2017-9855,CWE-863,Access Control,1
+Energy,CVE-2017-9856,CWE-256,Information Leak,0
+Energy,CVE-2017-9857,CWE-287,Authentication,0
+Energy,CVE-2017-9858,CWE-200,Information Leak,0
+Energy,CVE-2017-9859,CWE-327,Cryptography,0
+Energy,CVE-2017-9860,CWE-287,Authentication,0
+Energy,CVE-2017-9861,CWE-74,Tainted Input,0
+Energy,CVE-2017-9863,CWE-352,Authentication,1
+Energy,CVE-2020-25752,CWE-798,Other|Predictability,1
+Energy,CVE-2020-25754,CWE-916,Cryptography,1
+Energy,CVE-2020-25755,CWE-78,Tainted Input,0
+Energy,CVE-2023-33869,CWE-78,Tainted Input,0
+Energy,CVE-2024-21876,CWE-22,Path Resolution,0
+Energy,CVE-2024-21877,CWE-22,Path Resolution,0
+Energy,CVE-2024-21878,CWE-77,Tainted Input,0
+Energy,CVE-2024-21878,CWE-78,Tainted Input,0
+Energy,CVE-2024-21879,CWE-77,Tainted Input,0
+Energy,CVE-2024-21879,CWE-78,Tainted Input,0
+Energy,CVE-2024-21880,CWE-77,Tainted Input,0
+Energy,CVE-2024-21880,CWE-78,Tainted Input,0
+Energy,CVE-2025-24861,CWE-77,Tainted Input,0
+Energy,CVE-2025-25281,CWE-200,Information Leak,0
+Energy,CVE-2025-26473,CWE-598,Information Leak,0
+Energy,CVE-2021-4459,CWE-23,Path Resolution,0
+Energy,CVE-2025-15574,CWE-330,Predictability,0
+Energy,CVE-2018-12735,CWE-200,Information Leak,0
+Energy,CVE-2022-33321,CWE-319,Information Leak,0
+Energy,CVE-2025-30257,CWE-639,Access Control,0
+Energy,CVE-2012-5861,CWE-89,Tainted Input,0
+Energy,CVE-2012-5862,CWE-259,Authentication,0
+Energy,CVE-2012-5862,CWE-310,,-1
+Energy,CVE-2012-5863,CWE-78,Tainted Input,0
+Energy,CVE-2012-5863,CWE-264,,-1
+Energy,CVE-2012-5864,CWE-287,Authentication,0
+Energy,CVE-2012-5864,CWE-264,,-1
+Energy,CVE-2025-30254,CWE-639,Access Control,0
+Energy,CVE-2025-5022,CWE-521,Authentication,0
+Energy,CVE-2025-5023,CWE-798,Other|Predictability,1
+Energy,CVE-2019-19228,CWE-312,Information Leak,0
+Energy,CVE-2019-19229,CWE-22,Path Resolution,0
+Hubs and Controllers,CVE-2017-14797,CWE-326,Cryptography,0
+Hubs and Controllers,CVE-2017-5251,CWE-294,Channel,0
+Hubs and Controllers,CVE-2017-5251,CWE-311,Information Leak,0
+Hubs and Controllers,CVE-2018-3893,CWE-787,Memory Access,1
+Hubs and Controllers,CVE-2018-3904,CWE-787,Memory Access,1
+Hubs and Controllers,CVE-2018-3918,CWE-707,Tainted Input,0
+Hubs and Controllers,CVE-2018-3927,CWE-295,Authentication,1
+Hubs and Controllers,CVE-2018-3926,CWE-191,Risky Values,0
+Hubs and Controllers,CVE-2018-3895,CWE-120,Memory Access,0
+Hubs and Controllers,CVE-2018-3908,CWE-444,Tainted Input,0
+Hubs and Controllers,CVE-2018-3916,CWE-787,Memory Access,1
+Hubs and Controllers,CVE-2018-3896,CWE-120,Memory Access,0
+Hubs and Controllers,CVE-2018-3897,CWE-120,Memory Access,0
+Hubs and Controllers,CVE-2018-3875,CWE-119,Memory Access,0
+Hubs and Controllers,CVE-2017-14443,CWE-200,Information Leak,0
+Hubs and Controllers,CVE-2018-3864,CWE-120,Memory Access,0
+Hubs and Controllers,CVE-2018-3865,CWE-120,Memory Access,0
+Hubs and Controllers,CVE-2018-3873,CWE-119,Memory Access,0
+Hubs and Controllers,CVE-2018-3874,CWE-119,Memory Access,0
+Hubs and Controllers,CVE-2018-3876,CWE-120,Memory Access,0
+Hubs and Controllers,CVE-2018-3877,CWE-119,Memory Access,0
+Hubs and Controllers,CVE-2018-3894,CWE-120,Memory Access,0
+Hubs and Controllers,CVE-2018-3906,CWE-787,Memory Access,1
+Hubs and Controllers,CVE-2018-3913,CWE-787,Memory Access,1
+Hubs and Controllers,CVE-2018-3914,CWE-787,Memory Access,1
+Hubs and Controllers,CVE-2018-3915,CWE-787,Memory Access,1
+Hubs and Controllers,CVE-2017-9388,CWE-77,Tainted Input,0
+Hubs and Controllers,CVE-2017-9381,CWE-352,Authentication,1
+Hubs and Controllers,CVE-2017-9384,CWE-77,Tainted Input,0
+Hubs and Controllers,CVE-2017-9382,CWE-22,Path Resolution,0
+Hubs and Controllers,CVE-2017-9383,CWE-287,Authentication,0
+Hubs and Controllers,CVE-2017-9385,CWE-255,,-1
+Hubs and Controllers,CVE-2017-9386,CWE-22,Path Resolution,0
+Hubs and Controllers,CVE-2017-9387,CWE-79,Tainted Input,0
+Hubs and Controllers,CVE-2017-9389,CWE-287,Authentication,0
+Hubs and Controllers,CVE-2017-9390,CWE-79,Tainted Input,0
+Hubs and Controllers,CVE-2017-9391,CWE-119,Memory Access,0
+Hubs and Controllers,CVE-2017-9392,CWE-119,Memory Access,0
+Hubs and Controllers,CVE-2020-6007,CWE-122,Memory Access,0
+Hubs and Controllers,CVE-2020-6007,CWE-787,Memory Access,1
+Hubs and Controllers,CVE-2013-4861,CWE-22,Path Resolution,0
+Hubs and Controllers,CVE-2013-4862,CWE-863,Access Control,1
+Hubs and Controllers,CVE-2013-4863,CWE-287,Authentication,0
+Hubs and Controllers,CVE-2013-4864,CWE-918,Channel,1
+Hubs and Controllers,CVE-2013-4865,CWE-352,Authentication,1
+Hubs and Controllers,CVE-2013-4859,CWE-276,Access Control,0
+Hubs and Controllers,CVE-2022-39065,CWE-241,Tainted Input,0
+Hubs and Controllers,CVE-2017-16256,CWE-121,Memory Access,0
+Hubs and Controllers,CVE-2017-16256,CWE-787,Memory Access,1
+Hubs and Controllers,CVE-2017-16257,CWE-121,Memory Access,0
+Hubs and Controllers,CVE-2017-16257,CWE-787,Memory Access,1
+Hubs and Controllers,CVE-2017-16258,CWE-121,Memory Access,0
+Hubs and Controllers,CVE-2017-16258,CWE-787,Memory Access,1
+Hubs and Controllers,CVE-2017-16259,CWE-121,Memory Access,0
+Hubs and Controllers,CVE-2017-16259,CWE-787,Memory Access,1
+Hubs and Controllers,CVE-2017-16260,CWE-121,Memory Access,0
+Hubs and Controllers,CVE-2017-16260,CWE-787,Memory Access,1
+Hubs and Controllers,CVE-2017-16261,CWE-121,Memory Access,0
+Hubs and Controllers,CVE-2017-16261,CWE-787,Memory Access,1
+Hubs and Controllers,CVE-2017-16262,CWE-121,Memory Access,0
+Hubs and Controllers,CVE-2017-16262,CWE-787,Memory Access,1
+Hubs and Controllers,CVE-2017-16263,CWE-121,Memory Access,0
+Hubs and Controllers,CVE-2017-16263,CWE-787,Memory Access,1
+Hubs and Controllers,CVE-2017-16264,CWE-121,Memory Access,0
+Hubs and Controllers,CVE-2017-16264,CWE-787,Memory Access,1
+Hubs and Controllers,CVE-2017-16265,CWE-121,Memory Access,0
+Hubs and Controllers,CVE-2017-16265,CWE-787,Memory Access,1
+Hubs and Controllers,CVE-2017-16266,CWE-121,Memory Access,0
+Hubs and Controllers,CVE-2017-16266,CWE-787,Memory Access,1
+Hubs and Controllers,CVE-2017-16267,CWE-121,Memory Access,0
+Hubs and Controllers,CVE-2017-16267,CWE-787,Memory Access,1
+Hubs and Controllers,CVE-2017-16268,CWE-121,Memory Access,0
+Hubs and Controllers,CVE-2017-16268,CWE-787,Memory Access,1
+Hubs and Controllers,CVE-2017-16269,CWE-121,Memory Access,0
+Hubs and Controllers,CVE-2017-16269,CWE-787,Memory Access,1
+Hubs and Controllers,CVE-2017-16270,CWE-121,Memory Access,0
+Hubs and Controllers,CVE-2017-16270,CWE-787,Memory Access,1
+Hubs and Controllers,CVE-2017-16271,CWE-121,Memory Access,0
+Hubs and Controllers,CVE-2017-16272,CWE-121,Memory Access,0
+Hubs and Controllers,CVE-2017-16273,CWE-121,Memory Access,0
+Hubs and Controllers,CVE-2017-16273,CWE-787,Memory Access,1
+Hubs and Controllers,CVE-2017-16274,CWE-121,Memory Access,0
+Hubs and Controllers,CVE-2017-16275,CWE-121,Memory Access,0
+Hubs and Controllers,CVE-2017-16276,CWE-121,Memory Access,0
+Hubs and Controllers,CVE-2017-16277,CWE-121,Memory Access,0
+Hubs and Controllers,CVE-2017-16278,CWE-121,Memory Access,0
+Hubs and Controllers,CVE-2017-16279,CWE-121,Memory Access,0
+Hubs and Controllers,CVE-2017-16280,CWE-121,Memory Access,0
+Hubs and Controllers,CVE-2017-16281,CWE-121,Memory Access,0
+Hubs and Controllers,CVE-2017-16281,CWE-787,Memory Access,1
+Hubs and Controllers,CVE-2017-16282,CWE-121,Memory Access,0
+Hubs and Controllers,CVE-2017-16283,CWE-121,Memory Access,0
+Hubs and Controllers,CVE-2017-16284,CWE-121,Memory Access,0
+Hubs and Controllers,CVE-2017-16285,CWE-121,Memory Access,0
+Hubs and Controllers,CVE-2017-16286,CWE-121,Memory Access,0
+Hubs and Controllers,CVE-2017-16287,CWE-121,Memory Access,0
+Hubs and Controllers,CVE-2017-16288,CWE-121,Memory Access,0
+Hubs and Controllers,CVE-2017-16289,CWE-121,Memory Access,0
+Hubs and Controllers,CVE-2017-16290,CWE-121,Memory Access,0
+Hubs and Controllers,CVE-2017-16291,CWE-121,Memory Access,0
+Hubs and Controllers,CVE-2017-16292,CWE-121,Memory Access,0
+Hubs and Controllers,CVE-2017-16292,CWE-787,Memory Access,1
+Hubs and Controllers,CVE-2017-16293,CWE-121,Memory Access,0
+Hubs and Controllers,CVE-2017-16294,CWE-121,Memory Access,0
+Hubs and Controllers,CVE-2017-16295,CWE-121,Memory Access,0
+Hubs and Controllers,CVE-2017-16296,CWE-121,Memory Access,0
+Hubs and Controllers,CVE-2017-16297,CWE-121,Memory Access,0
+Hubs and Controllers,CVE-2017-16298,CWE-121,Memory Access,0
+Hubs and Controllers,CVE-2017-16299,CWE-121,Memory Access,0
+Hubs and Controllers,CVE-2017-16300,CWE-121,Memory Access,0
+Hubs and Controllers,CVE-2017-16301,CWE-121,Memory Access,0
+Hubs and Controllers,CVE-2017-16301,CWE-787,Memory Access,1
+Hubs and Controllers,CVE-2017-16302,CWE-121,Memory Access,0
+Hubs and Controllers,CVE-2017-16302,CWE-787,Memory Access,1
+Hubs and Controllers,CVE-2017-16303,CWE-121,Memory Access,0
+Hubs and Controllers,CVE-2017-16304,CWE-121,Memory Access,0
+Hubs and Controllers,CVE-2017-16305,CWE-121,Memory Access,0
+Hubs and Controllers,CVE-2017-16306,CWE-121,Memory Access,0
+Hubs and Controllers,CVE-2017-16307,CWE-121,Memory Access,0
+Hubs and Controllers,CVE-2017-16308,CWE-121,Memory Access,0
+Hubs and Controllers,CVE-2017-16309,CWE-121,Memory Access,0
+Hubs and Controllers,CVE-2017-16310,CWE-121,Memory Access,0
+Hubs and Controllers,CVE-2017-16311,CWE-121,Memory Access,0
+Hubs and Controllers,CVE-2017-16312,CWE-121,Memory Access,0
+Hubs and Controllers,CVE-2017-16313,CWE-121,Memory Access,0
+Hubs and Controllers,CVE-2017-16314,CWE-121,Memory Access,0
+Hubs and Controllers,CVE-2017-16315,CWE-121,Memory Access,0
+Hubs and Controllers,CVE-2017-16316,CWE-121,Memory Access,0
+Hubs and Controllers,CVE-2017-16317,CWE-121,Memory Access,0
+Hubs and Controllers,CVE-2017-16318,CWE-121,Memory Access,0
+Hubs and Controllers,CVE-2017-16318,CWE-787,Memory Access,1
+Hubs and Controllers,CVE-2017-16319,CWE-121,Memory Access,0
+Hubs and Controllers,CVE-2017-16320,CWE-121,Memory Access,0
+Hubs and Controllers,CVE-2017-16321,CWE-121,Memory Access,0
+Hubs and Controllers,CVE-2017-16322,CWE-121,Memory Access,0
+Hubs and Controllers,CVE-2017-16323,CWE-121,Memory Access,0
+Hubs and Controllers,CVE-2017-16324,CWE-121,Memory Access,0
+Hubs and Controllers,CVE-2017-16325,CWE-121,Memory Access,0
+Hubs and Controllers,CVE-2017-16326,CWE-121,Memory Access,0
+Hubs and Controllers,CVE-2017-16326,CWE-787,Memory Access,1
+Hubs and Controllers,CVE-2017-16327,CWE-121,Memory Access,0
+Hubs and Controllers,CVE-2017-16328,CWE-121,Memory Access,0
+Hubs and Controllers,CVE-2017-16329,CWE-121,Memory Access,0
+Hubs and Controllers,CVE-2017-16329,CWE-787,Memory Access,1
+Hubs and Controllers,CVE-2017-16330,CWE-121,Memory Access,0
+Hubs and Controllers,CVE-2017-16331,CWE-121,Memory Access,0
+Hubs and Controllers,CVE-2017-16332,CWE-121,Memory Access,0
+Hubs and Controllers,CVE-2017-16333,CWE-121,Memory Access,0
+Hubs and Controllers,CVE-2017-16334,CWE-121,Memory Access,0
+Hubs and Controllers,CVE-2017-16335,CWE-121,Memory Access,0
+Hubs and Controllers,CVE-2017-16336,CWE-121,Memory Access,0
+Hubs and Controllers,CVE-2017-14454,CWE-120,Memory Access,0
+Hubs and Controllers,CVE-2023-42189,CWE-732,Access Control,0
+Hubs and Controllers,CVE-2024-3454,CWE-209,Information Leak,0
+Hubs and Controllers,CVE-2011-4835,CWE-22,Path Resolution,0
+Hubs and Controllers,CVE-2011-4836,CWE-79,Tainted Input,0
+Hubs and Controllers,CVE-2011-4837,CWE-352,Authentication,1
+Hubs and Controllers,CVE-2017-14444,CWE-119,Memory Access,0
+Hubs and Controllers,CVE-2017-14445,CWE-120,Memory Access,0
+Hubs and Controllers,CVE-2017-14446,CWE-787,Memory Access,1
+Hubs and Controllers,CVE-2017-16338,CWE-120,Memory Access,0
+Hubs and Controllers,CVE-2017-16339,CWE-120,Memory Access,0
+Hubs and Controllers,CVE-2017-16340,CWE-120,Memory Access,0
+Hubs and Controllers,CVE-2017-16341,CWE-120,Memory Access,0
+Hubs and Controllers,CVE-2017-16342,CWE-120,Memory Access,0
+Hubs and Controllers,CVE-2017-16343,CWE-120,Memory Access,0
+Hubs and Controllers,CVE-2017-16344,CWE-120,Memory Access,0
+Hubs and Controllers,CVE-2017-16345,CWE-120,Memory Access,0
+Hubs and Controllers,CVE-2017-16346,CWE-120,Memory Access,0
+Hubs and Controllers,CVE-2017-16347,CWE-120,Memory Access,0
+Hubs and Controllers,CVE-2018-3834,CWE-346,Authentication,0
+Hubs and Controllers,CVE-2017-14447,CWE-119,Memory Access,0
+Hubs and Controllers,CVE-2017-16252,CWE-787,Memory Access,1
+Hubs and Controllers,CVE-2017-16348,CWE-287,Authentication,0
+Hubs and Controllers,CVE-2018-3832,CWE-434,Information Leak,1
+Hubs and Controllers,CVE-2017-14453,CWE-119,Memory Access,0
+Hubs and Controllers,CVE-2017-14455,CWE-119,Memory Access,0
+Hubs and Controllers,CVE-2017-16337,CWE-120,Memory Access,0
+Hubs and Controllers,CVE-2018-3863,CWE-787,Memory Access,1
+Hubs and Controllers,CVE-2018-3867,CWE-787,Memory Access,1
+Hubs and Controllers,CVE-2018-3878,CWE-119,Memory Access,0
+Hubs and Controllers,CVE-2018-3879,CWE-89,Tainted Input,0
+Hubs and Controllers,CVE-2018-3902,CWE-787,Memory Access,1
+Hubs and Controllers,CVE-2018-3903,CWE-787,Memory Access,1
+Hubs and Controllers,CVE-2018-3905,CWE-119,Memory Access,0
+Hubs and Controllers,CVE-2018-3917,CWE-119,Memory Access,0
+Hubs and Controllers,CVE-2018-3919,CWE-787,Memory Access,1
+Hubs and Controllers,CVE-2018-3925,CWE-119,Memory Access,0
+Hubs and Controllers,CVE-2017-14452,CWE-119,Memory Access,0
+Hubs and Controllers,CVE-2018-3912,CWE-787,Memory Access,1
+Hubs and Controllers,CVE-2018-3856,CWE-88,Tainted Input,0
+Hubs and Controllers,CVE-2018-3866,CWE-787,Memory Access,1
+Hubs and Controllers,CVE-2018-3872,CWE-119,Memory Access,0
+Hubs and Controllers,CVE-2018-3880,CWE-787,Memory Access,1
+Hubs and Controllers,CVE-2018-3911,CWE-113,Tainted Input,0
+Hubs and Controllers,CVE-2018-3907,CWE-444,Tainted Input,0
+Hubs and Controllers,CVE-2018-3909,CWE-444,Tainted Input,0
+Hubs and Controllers,CVE-2018-15720,CWE-798,Other|Predictability,1
+Hubs and Controllers,CVE-2018-15721,CWE-287,Authentication,0
+Hubs and Controllers,CVE-2018-15722,CWE-78,Tainted Input,0
+Hubs and Controllers,CVE-2018-15723,CWE-346,Authentication,0
+Hubs and Controllers,CVE-2017-16253,CWE-787,Memory Access,1
+Hubs and Controllers,CVE-2017-16254,CWE-787,Memory Access,1
+Hubs and Controllers,CVE-2017-16255,CWE-120,Memory Access,0
+Hubs and Controllers,CVE-2019-10664,CWE-89,Tainted Input,0
+Hubs and Controllers,CVE-2019-10678,CWE-93,Tainted Input,0
+Hubs and Controllers,CVE-2019-15480,CWE-79,Tainted Input,0
+Hubs and Controllers,CVE-2020-5242,CWE-284,Access Control,0
+Hubs and Controllers,CVE-2020-5242,CWE-863,Access Control,1
+Hubs and Controllers,CVE-2020-9462,CWE-312,Information Leak,0
+Hubs and Controllers,CVE-2020-6781,CWE-295,Authentication,1
+Hubs and Controllers,CVE-2021-21266,CWE-611,Tainted Input,0
+Hubs and Controllers,CVE-2021-20989,CWE-295,Authentication,1
+Hubs and Controllers,CVE-2021-20990,CWE-306,Authentication,0
+Hubs and Controllers,CVE-2021-20991,CWE-78,Tainted Input,0
+Hubs and Controllers,CVE-2021-20991,CWE-77,Tainted Input,0
+Hubs and Controllers,CVE-2021-20992,CWE-319,Information Leak,0
+Hubs and Controllers,CVE-2020-21990,CWE-863,Access Control,1
+Hubs and Controllers,CVE-2020-36517,CWE-203,Information Leak,0
+Hubs and Controllers,CVE-2024-42467,CWE-918,Channel,1
+Hubs and Controllers,CVE-2024-42468,CWE-22,Path Resolution,0
+Hubs and Controllers,CVE-2024-42469,CWE-22,Path Resolution,0
+Hubs and Controllers,CVE-2024-42470,CWE-862,Access Control,1
+Hubs and Controllers,CVE-2024-56317,CWE-281,Access Control,0
+Hubs and Controllers,CVE-2024-56318,CWE-476,Memory Access,0
+Hubs and Controllers,CVE-2024-56319,CWE-770,Resource Management,0
+Hubs and Controllers,CVE-2025-65290,CWE-295,Authentication,1
+Hubs and Controllers,CVE-2025-65291,CWE-295,Authentication,1
+Hubs and Controllers,CVE-2025-65292,CWE-77,Tainted Input,0
+Hubs and Controllers,CVE-2025-65294,CWE-94,Tainted Input,0
+Hubs and Controllers,CVE-2025-65295,CWE-326,Cryptography,0
+Hubs and Controllers,CVE-2025-65295,CWE-347,Cryptography,0
+Hubs and Controllers,CVE-2025-65295,CWE-457,Risky Values,0
+Hubs and Controllers,CVE-2025-65296,CWE-476,Memory Access,0
+Hubs and Controllers,CVE-2025-65297,CWE-5,Information Leak,0
+Hubs and Controllers,CVE-2026-1201,CWE-639,Access Control,0
+Hubs and Controllers,CVE-2025-15557,CWE-295,Authentication,1
+Hubs and Controllers,CVE-2026-1001,CWE-79,Tainted Input,0
+Hubs and Controllers,CVE-2026-3555,CWE-122,Memory Access,0
+Hubs and Controllers,CVE-2026-3556,CWE-122,Memory Access,0
+Hubs and Controllers,CVE-2026-3557,CWE-122,Memory Access,0
+Hubs and Controllers,CVE-2026-3558,CWE-306,Authentication,0
+Hubs and Controllers,CVE-2026-3559,CWE-323,Cryptography,0
+Hubs and Controllers,CVE-2026-3560,CWE-122,Memory Access,0
+Hubs and Controllers,CVE-2026-3561,CWE-122,Memory Access,0
+Hubs and Controllers,CVE-2026-3562,CWE-347,Cryptography,0
+Hubs and Controllers,CVE-2026-3588,CWE-918,Channel,1
+Hubs and Controllers,CVE-2022-34753,CWE-78,Tainted Input,0
+Hubs and Controllers,CVE-2023-0970,CWE-125,Memory Access,0
+Hubs and Controllers,CVE-2023-0970,CWE-787,Memory Access,1
+Hubs and Controllers,CVE-2023-0970,CWE-120,Memory Access,0
+Hubs and Controllers,CVE-2023-0971,CWE-268,Privilege,0
+Hubs and Controllers,CVE-2023-0971,CWE-863,Access Control,1
+Hubs and Controllers,CVE-2023-5310,CWE-248,Exception Management,0
+Hubs and Controllers,CVE-2025-3442,CWE-312,Information Leak,0
+Hubs and Controllers,CVE-2021-27289,CWE-294,Channel,0
+Hubs and Controllers,CVE-2025-29628,CWE-924,Authentication,1
+Hubs and Controllers,CVE-2025-29628,CWE-77,Tainted Input,0
+Hubs and Controllers,CVE-2025-29628,CWE-200,Information Leak,0
+Hubs and Controllers,CVE-2025-59447,CWE-497,Information Leak,0
+Hubs and Controllers,CVE-2025-59450,CWE-312,Information Leak,0
+Hubs and Controllers,CVE-2025-65293,CWE-77,Tainted Input,0
+Hubs and Controllers,CVE-2019-11891,CWE-266,Privilege,0
+Hubs and Controllers,CVE-2019-11891,CWE-269,Privilege,0
+Hubs and Controllers,CVE-2019-11892,CWE-284,Access Control,0
+Hubs and Controllers,CVE-2019-11893,CWE-266,Privilege,0
+Hubs and Controllers,CVE-2019-11893,CWE-269,Privilege,0
+Hubs and Controllers,CVE-2019-11894,CWE-284,Access Control,0
+Hubs and Controllers,CVE-2019-11895,CWE-284,Access Control,0
+Hubs and Controllers,CVE-2019-11896,CWE-284,Access Control,0
+Hubs and Controllers,CVE-2019-11896,CWE-269,Privilege,0
+Hubs and Controllers,CVE-2019-13598,CWE-78,Tainted Input,0
+Hubs and Controllers,CVE-2024-10523,CWE-312,Information Leak,0
+Hubs and Controllers,CVE-2018-15124,CWE-326,Cryptography,0
+Hubs and Controllers,CVE-2018-15125,CWE-200,Information Leak,0
+Hubs and Controllers,CVE-2019-15498,CWE-88,Tainted Input,0
+Hubs and Controllers,CVE-2019-20480,CWE-352,Authentication,1
+Hubs and Controllers,CVE-2019-20481,CWE-287,Authentication,0
+Hubs and Controllers,CVE-2020-28952,CWE-798,Other|Predictability,1
+Hubs and Controllers,CVE-2024-7322,CWE-940,Authentication,1
+Hubs and Controllers,CVE-2025-7964,CWE-229,Tainted Input,0
+Electrical & Lighting,CVE-2017-14797,CWE-326,Cryptography,0
+Electrical & Lighting,CVE-2018-15477,CWE-78,Tainted Input,0
+Electrical & Lighting,CVE-2020-6007,CWE-122,Memory Access,0
+Electrical & Lighting,CVE-2020-6007,CWE-787,Memory Access,1
+Electrical & Lighting,CVE-2022-39064,CWE-241,Tainted Input,0
+Electrical & Lighting,CVE-2022-39065,CWE-241,Tainted Input,0
+Electrical & Lighting,CVE-2018-7580,CWE-400,Resource Management,0
+Electrical & Lighting,CVE-2022-47758,CWE-295,Authentication,1
+Electrical & Lighting,CVE-2025-56562,CWE-306,Authentication,0
+Electrical & Lighting,CVE-2026-33268,CWE-400,Resource Management,0
+Electrical & Lighting,CVE-2026-3555,CWE-122,Memory Access,0
+Electrical & Lighting,CVE-2026-3556,CWE-122,Memory Access,0
+Electrical & Lighting,CVE-2026-3557,CWE-122,Memory Access,0
+Electrical & Lighting,CVE-2026-3558,CWE-306,Authentication,0
+Electrical & Lighting,CVE-2026-3559,CWE-323,Cryptography,0
+Electrical & Lighting,CVE-2026-3560,CWE-122,Memory Access,0
+Electrical & Lighting,CVE-2026-3561,CWE-122,Memory Access,0
+Electrical & Lighting,CVE-2026-3562,CWE-347,Cryptography,0
+Electrical & Lighting,CVE-2023-45956,CWE-400,Resource Management,0
+Electrical & Lighting,CVE-2023-33383,CWE-125,Memory Access,0
+Electrical & Lighting,CVE-2018-15476,CWE-295,Authentication,1
+Electrical & Lighting,CVE-2018-15478,CWE-287,Authentication,0
+Electrical & Lighting,CVE-2018-15479,CWE-287,Authentication,0
+Electrical & Lighting,CVE-2019-18980,CWE-306,Authentication,0
+Electrical & Lighting,CVE-2019-18980,CWE-311,Information Leak,0
+Electrical & Lighting,CVE-2022-47100,CWE-20,Tainted Input,0
+Electrical & Lighting,CVE-2023-42189,CWE-732,Access Control,0
+Electrical & Lighting,CVE-2017-18642,CWE-200,Information Leak,0
+Electrical & Lighting,CVE-2023-29779,CWE-770,Resource Management,0
+Electrical & Lighting,CVE-2023-45955,CWE-400,Resource Management,0
+Outdoor & Pet,CVE-2019-16730,CWE-78,Tainted Input,0
+Outdoor & Pet,CVE-2019-16731,CWE-306,Authentication,0
+Outdoor & Pet,CVE-2019-16732,CWE-319,Information Leak,0
+Outdoor & Pet,CVE-2019-16732,CWE-347,Cryptography,0
+Outdoor & Pet,CVE-2019-16733,CWE-78,Tainted Input,0
+Outdoor & Pet,CVE-2019-16734,CWE-798,Other|Predictability,1
+Outdoor & Pet,CVE-2019-16735,CWE-787,Memory Access,1
+Outdoor & Pet,CVE-2019-16736,CWE-787,Memory Access,1
+Outdoor & Pet,CVE-2019-16737,CWE-78,Tainted Input,0
+Outdoor & Pet,CVE-2019-17364,CWE-78,Tainted Input,0
+Outdoor & Pet,CVE-2020-24918,CWE-120,Memory Access,0
+Outdoor & Pet,CVE-2023-28704,CWE-78,Tainted Input,0
+Outdoor & Pet,CVE-2025-11633,CWE-287,Authentication,0
+Outdoor & Pet,CVE-2025-11633,CWE-295,Authentication,1
+Outdoor & Pet,CVE-2025-11634,CWE-200,Information Leak,0
+Outdoor & Pet,CVE-2025-11634,CWE-284,Access Control,0
+Outdoor & Pet,CVE-2025-11635,CWE-400,Resource Management,0
+Outdoor & Pet,CVE-2025-11635,CWE-404,Resource Management,0
+Outdoor & Pet,CVE-2025-11636,CWE-918,Channel,1
+Outdoor & Pet,CVE-2025-11637,CWE-362,Synchronization,0
+Outdoor & Pet,CVE-2025-11638,CWE-404,Resource Management,0
+Outdoor & Pet,CVE-2025-11639,CWE-200,Information Leak,0
+Outdoor & Pet,CVE-2025-11639,CWE-922,Resource Management,1
+Outdoor & Pet,CVE-2025-11640,CWE-310,,-1
+Outdoor & Pet,CVE-2025-11640,CWE-319,Information Leak,0
+Outdoor & Pet,CVE-2025-11641,CWE-266,Privilege,0
+Outdoor & Pet,CVE-2025-11641,CWE-284,Access Control,0
+Outdoor & Pet,CVE-2025-11642,CWE-404,Resource Management,0
+Outdoor & Pet,CVE-2025-11643,CWE-259,Authentication,0
+Outdoor & Pet,CVE-2025-11643,CWE-798,Other|Predictability,1
+Outdoor & Pet,CVE-2025-11644,CWE-200,Information Leak,0
+Outdoor & Pet,CVE-2025-11644,CWE-922,Resource Management,1
+Outdoor & Pet,CVE-2025-11645,CWE-200,Information Leak,0
+Outdoor & Pet,CVE-2025-11645,CWE-922,Resource Management,1
+Outdoor & Pet,CVE-2025-11646,CWE-266,Privilege,0
+Outdoor & Pet,CVE-2025-11646,CWE-284,Access Control,0
+Outdoor & Pet,CVE-2025-11647,CWE-200,Information Leak,0
+Outdoor & Pet,CVE-2025-11647,CWE-284,Access Control,0
+Outdoor & Pet,CVE-2025-11648,CWE-918,Channel,1
+Outdoor & Pet,CVE-2025-11649,CWE-255,,-1
+Outdoor & Pet,CVE-2025-11649,CWE-259,Authentication,0
+Outdoor & Pet,CVE-2025-11650,CWE-327,Cryptography,0
+Outdoor & Pet,CVE-2025-11650,CWE-328,Cryptography,0
+Outdoor & Pet,CVE-2025-15115,CWE-862,Access Control,1
+Outdoor & Pet,CVE-2025-3646,CWE-306,Authentication,0
+Outdoor & Pet,CVE-2025-3652,CWE-288,Authentication,0
+Outdoor & Pet,CVE-2025-3653,CWE-612,Information Leak,0
+Outdoor & Pet,CVE-2025-3654,CWE-612,Information Leak,0
+Outdoor & Pet,CVE-2025-3660,CWE-612,Information Leak,0
+Appliances,CVE-2018-10988,CWE-347,Cryptography,0
+Appliances,CVE-2018-17176,CWE-294,Channel,0
+Appliances,CVE-2018-17177,CWE-326,Cryptography,0
+Appliances,CVE-2018-18638,CWE-78,Tainted Input,0
+Appliances,CVE-2018-19441,CWE-330,Predictability,0
+Appliances,CVE-2024-48786,CWE-863,Access Control,1
+Appliances,CVE-2018-19442,CWE-119,Memory Access,0
+Appliances,CVE-2024-42911,CWE-94,Tainted Input,0
+Appliances,CVE-2024-52325,CWE-77,Tainted Input,0
+Appliances,CVE-2024-11147,CWE-798,Other|Predictability,1
+Appliances,CVE-2024-12078,CWE-321,Authentication,0
+Appliances,CVE-2024-12079,CWE-312,Information Leak,0
+Appliances,CVE-2024-52327,CWE-603,Authentication,0
+Appliances,CVE-2024-52327,CWE-807,Other,1
+Appliances,CVE-2024-52328,CWE-732,Access Control,0
+Appliances,CVE-2024-52329,CWE-295,Authentication,1
+Appliances,CVE-2024-52330,CWE-295,Authentication,1
+Appliances,CVE-2024-52331,CWE-327,Cryptography,0
+Appliances,CVE-2024-52331,CWE-494,Tainted Input,0
+Appliances,CVE-2024-52331,CWE-1391,Authentication,2
+Appliances,CVE-2025-2394,CWE-798,Other|Predictability,1
+Appliances,CVE-2025-44251,CWE-319,Information Leak,0
+Appliances,CVE-2025-30199,CWE-494,Tainted Input,0
+Appliances,CVE-2018-10987,CWE-78,Tainted Input,0
+Appliances,CVE-2019-12820,CWE-319,Information Leak,0
+Appliances,CVE-2019-12821,CWE-330,Predictability,0
+Appliances,CVE-2025-30198,CWE-321,Authentication,0
+Appliances,CVE-2025-30198,CWE-798,Other|Predictability,1
+Appliances,CVE-2025-30200,CWE-321,Authentication,0
+Appliances,CVE-2025-30200,CWE-798,Other|Predictability,1
+Alarms & Sensors,CVE-2024-7408,CWE-319,Information Leak,0
+Alarms & Sensors,CVE-2021-27289,CWE-294,Channel,0
+Alarms & Sensors,CVE-2025-10693,CWE-757,Channel,0
+Electrical & Lighting,CVE-2018-10544,CWE-287,Authentication,0
+Electrical & Lighting,CVE-2018-6401,CWE-798,Other|Predictability,1
+Electrical & Lighting,CVE-2020-7470,CWE-79,Tainted Input,0
+Electrical & Lighting,CVE-2019-17094,CWE-121,Memory Access,0
+Electrical & Lighting,CVE-2019-17094,CWE-787,Memory Access,1
+Electrical & Lighting,CVE-2013-2748,CWE-434,Information Leak,1
+Electrical & Lighting,CVE-2021-3774,CWE-319,Information Leak,0
+Electrical & Lighting,CVE-2023-1749,CWE-639,Access Control,0
+Electrical & Lighting,CVE-2023-1750,CWE-639,Access Control,0
+Electrical & Lighting,CVE-2023-1752,CWE-287,Authentication,0
+Electrical & Lighting,CVE-2024-46548,CWE-200,Information Leak,0
+Electrical & Lighting,CVE-2024-46549,CWE-269,Privilege,0
+Electrical & Lighting,CVE-2024-35495,CWE-319,Information Leak,0
+Electrical & Lighting,CVE-2013-6948,CWE-94,Tainted Input,0
+Electrical & Lighting,CVE-2013-6949,CWE-264,,-1
+Electrical & Lighting,CVE-2013-6950,CWE-310,,-1
+Electrical & Lighting,CVE-2013-6951,CWE-310,,-1
+Electrical & Lighting,CVE-2013-6952,CWE-310,,-1
+Electrical & Lighting,CVE-2019-17532,CWE-306,Authentication,0
+Electrical & Lighting,CVE-2023-34829,CWE-319,Information Leak,0
+Electrical & Lighting,CVE-2025-15557,CWE-295,Authentication,1
+Electrical & Lighting,CVE-2023-42189,CWE-732,Access Control,0
+Electrical & Lighting,CVE-2024-46040,CWE-613,Authentication,0
+Electrical & Lighting,CVE-2024-46041,CWE-294,Channel,0
+Electrical & Lighting,CVE-2014-7279,CWE-264,,-1
+Electrical & Lighting,CVE-2023-1748,CWE-798,Other|Predictability,1
+Electrical & Lighting,CVE-2023-27217,CWE-787,Memory Access,1
+Electrical & Lighting,CVE-2015-4080,CWE-310,,-1
+Electrical & Lighting,CVE-2018-6692,CWE-787,Memory Access,1
+Electrical & Lighting,CVE-2019-15745,CWE-798,Other|Predictability,1
+Electrical & Lighting,CVE-2023-33768,CWE-347,Cryptography,0
+Electrical & Lighting,CVE-2023-36161,CWE-400,Resource Management,0
+Audio,CVE-2017-6520,CWE-417,,-1
+Audio,CVE-2018-11567,CWE-384,Path Resolution,1
+Audio,CVE-2018-12716,CWE-200,Information Leak,0
+Audio,CVE-2020-9285,CWE-1191,Access Control,1
+Audio,CVE-2025-1048,CWE-416,Resource Management,0
+Audio,CVE-2025-1049,CWE-122,Memory Access,0
+Audio,CVE-2025-1050,CWE-787,Memory Access,1
+Audio,CVE-2017-17749,CWE-79,Tainted Input,0
+Audio,CVE-2017-17750,CWE-79,Tainted Input,0
+Audio,CVE-2018-12638,CWE-79,Tainted Input,0
+Audio,CVE-2018-20007,CWE-732,Access Control,0
+Audio,CVE-2022-24046,CWE-191,Risky Values,0
+Audio,CVE-2022-24049,CWE-121,Memory Access,0
+Audio,CVE-2022-24049,CWE-787,Memory Access,1
+Audio,CVE-2023-27352,CWE-416,Resource Management,0
+Audio,CVE-2023-27353,CWE-125,Memory Access,0
+Audio,CVE-2023-27354,CWE-190,Risky Values,0
+Audio,CVE-2023-27355,CWE-121,Memory Access,0
+Audio,CVE-2023-48419,CWE-269,Privilege,0
+Audio,CVE-2025-1051,CWE-122,Memory Access,0
+Audio,CVE-2025-1051,CWE-787,Memory Access,1
+Audio,CVE-2026-4149,CWE-119,Memory Access,0
+Audio,CVE-2020-8994,CWE-287,Authentication,0
+Audio,CVE-2020-10263,CWE-306,Authentication,0
+Audio,CVE-2024-41624,CWE-862,Access Control,1
+Audio,CVE-2024-32928,CWE-295,Authentication,1
+Audio,CVE-2024-5256,CWE-191,Risky Values,0
+Audio,CVE-2024-5267,CWE-787,Memory Access,1
+Audio,CVE-2024-5268,CWE-125,Memory Access,0
+Audio,CVE-2024-5269,CWE-416,Resource Management,0
+Audio,CVE-2023-0896,CWE-20,Tainted Input,0
+Audio,CVE-2022-48681,CWE-119,Memory Access,0
+Audio,CVE-2022-48681,CWE-120,Memory Access,0
+Audio,CVE-2026-26478,CWE-78,Tainted Input,0
+Entertainment,CVE-2012-2210,CWE-399,,-1
+Entertainment,CVE-2016-4613,CWE-200,Information Leak,0
+Entertainment,CVE-2017-2362,CWE-119,Memory Access,0
+Entertainment,CVE-2018-4188,CWE-20,Tainted Input,0
+Entertainment,CVE-2018-4198,CWE-20,Tainted Input,0
+Entertainment,CVE-2018-4206,CWE-119,Memory Access,0
+Entertainment,CVE-2018-4211,CWE-119,Memory Access,0
+Entertainment,CVE-2018-4223,CWE-200,Information Leak,0
+Entertainment,CVE-2018-4224,CWE-200,Information Leak,0
+Entertainment,CVE-2018-4235,CWE-74,Tainted Input,0
+Entertainment,CVE-2018-4241,CWE-119,Memory Access,0
+Entertainment,CVE-2018-4243,CWE-119,Memory Access,0
+Entertainment,CVE-2018-4249,CWE-190,Risky Values,0
+Entertainment,CVE-2018-4249,CWE-787,Memory Access,1
+Entertainment,CVE-2018-1151,CWE-119,Memory Access,0
+Entertainment,CVE-2018-11314,CWE-20,Tainted Input,0
+Entertainment,CVE-2018-16593,CWE-78,Tainted Input,0
+Entertainment,CVE-2018-16594,CWE-22,Path Resolution,0
+Entertainment,CVE-2018-16595,CWE-119,Memory Access,0
+Entertainment,CVE-2019-5679,CWE-287,Authentication,0
+Entertainment,CVE-2011-3259,CWE-399,,-1
+Entertainment,CVE-2011-3427,CWE-200,Information Leak,0
+Entertainment,CVE-2018-4082,CWE-119,Memory Access,0
+Entertainment,CVE-2018-4085,CWE-119,Memory Access,0
+Entertainment,CVE-2018-4086,CWE-295,Authentication,1
+Entertainment,CVE-2018-4087,CWE-119,Memory Access,0
+Entertainment,CVE-2018-4088,CWE-119,Memory Access,0
+Entertainment,CVE-2018-4089,CWE-119,Memory Access,0
+Entertainment,CVE-2018-4090,CWE-200,Information Leak,0
+Entertainment,CVE-2018-4092,CWE-362,Synchronization,0
+Entertainment,CVE-2018-4093,CWE-200,Information Leak,0
+Entertainment,CVE-2018-4094,CWE-119,Memory Access,0
+Entertainment,CVE-2018-4095,CWE-119,Memory Access,0
+Entertainment,CVE-2018-4096,CWE-119,Memory Access,0
+Entertainment,CVE-2018-4109,CWE-119,Memory Access,0
+Entertainment,CVE-2016-4642,CWE-254,,-1
+Entertainment,CVE-2016-4643,CWE-200,Information Leak,0
+Entertainment,CVE-2016-4644,CWE-200,Information Leak,0
+Entertainment,CVE-2018-4189,CWE-119,Memory Access,0
+Entertainment,CVE-2019-5699,CWE-119,Memory Access,0
+Entertainment,CVE-2019-5700,CWE-20,Tainted Input,0
+Entertainment,CVE-2021-1068,CWE-125,Memory Access,0
+Entertainment,CVE-2021-1069,CWE-476,Memory Access,0
+Entertainment,CVE-2023-1383,CWE-841,Other,1
+Entertainment,CVE-2023-1384,CWE-80,Tainted Input,0
+Entertainment,CVE-2023-1384,CWE-79,Tainted Input,0
+Entertainment,CVE-2023-1385,CWE-330,Predictability,0
+Entertainment,CVE-2021-27944,CWE-78,Tainted Input,0
+Entertainment,CVE-2020-27403,CWE-200,Information Leak,0
+Entertainment,CVE-2020-28055,CWE-732,Access Control,0
+Entertainment,CVE-2021-27943,CWE-307,Authentication,0
+Entertainment,CVE-2015-7292,CWE-119,Memory Access,0
+Entertainment,CVE-2019-10886,CWE-306,Authentication,0
+Entertainment,CVE-2019-7399,CWE-346,Authentication,0
+Entertainment,CVE-2015-5729,CWE-200,Information Leak,0
+Entertainment,CVE-2019-9871,CWE-306,Authentication,0
+Entertainment,CVE-2019-11890,CWE-400,Resource Management,0
+Entertainment,CVE-2020-21405,CWE-400,Resource Management,0
+Entertainment,CVE-2023-41270,CWE-307,Authentication,0
+Entertainment,CVE-2018-14987,CWE-732,Access Control,0
+Entertainment,CVE-2018-14988,CWE-20,Tainted Input,0
+Entertainment,CVE-2019-11336,CWE-532,Information Leak,0
+Entertainment,CVE-2025-55971,CWE-918,Channel,1
+Entertainment,CVE-2025-55972,CWE-400,Resource Management,0
+Climate & Air,CVE-2015-2867,CWE-798,Other|Predictability,1
+Climate & Air,CVE-2015-2868,CWE-119,Memory Access,0
+Climate & Air,CVE-2018-6402,CWE-327,Cryptography,0
+Climate & Air,CVE-2021-27952,CWE-798,Other|Predictability,1
+Climate & Air,CVE-2021-27953,CWE-476,Memory Access,0
+Climate & Air,CVE-2021-27954,CWE-787,Memory Access,1
+Climate & Air,CVE-2023-46889,CWE-319,Information Leak,0
+Climate & Air,CVE-2018-11315,CWE-20,Tainted Input,0
+Climate & Air,CVE-2022-43704,CWE-294,Channel,0
+Climate & Air,CVE-2013-4860,CWE-264,,-1
+Climate & Air,CVE-2023-4212,CWE-74,Tainted Input,0
+Climate & Air,CVE-2023-4212,CWE-77,Tainted Input,0
+Climate & Air,CVE-2023-42143,CWE-354,Tainted Input,0
+Climate & Air,CVE-2023-42144,CWE-319,Information Leak,0
+Climate & Air,CVE-2023-46892,CWE-294,Channel,0
+Climate & Air,CVE-2025-6260,CWE-306,Authentication,0
+Climate & Air,CVE-2019-25708,CWE-352,Authentication,1
+Climate & Air,CVE-2018-25396,CWE-256,Information Leak,0
