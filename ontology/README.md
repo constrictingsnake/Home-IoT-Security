@@ -10,6 +10,9 @@ Design rationale and phasing: `docs/plans/PLAN_ontology.md`.
 |---|---|
 | `homeiot.ttl` | The ontology. **Hand-authored** — edit this, never the generated CSVs. |
 | `shapes.ttl` | SHACL constraints. Catches what a reasoner won't (missing facet, duplicate sortOrder, bad slug). |
+| `homeiot-align.ttl` | Alignment to SAREF + SSN/SOSA. **Hand-authored.** Separate so a reviewer can evaluate the core without it. |
+| `external_classes.tsv` | Pinned manifest of 331 verified external class IRIs. Generated; regenerate only when bumping a vocabulary version. |
+| `external_sources.tsv` | Retrieval provenance for the manifest: version, URL, source sha256, date. |
 
 Generated **from** this ontology (do not hand-edit):
 
@@ -24,6 +27,7 @@ Generated **from** this ontology (do not hand-edit):
 python3 scripts/ontology_build.py --check    # validate + prove CSVs unchanged; exit 1 on drift
 python3 scripts/ontology_build.py --write    # regenerate categories.csv + families.csv
 python3 scripts/ontology_build.py --reason   # 27-class in/out ruling table
+python3 scripts/ontology_build.py --align    # verify alignment IRIs + coverage report
 ```
 
 Requires `rdflib`, `pyshacl`, `owlrl` (`pip install rdflib pyshacl owlrl`).
@@ -95,6 +99,37 @@ This is a real check, not a tautology — verified by perturbation:
 Deciding that a Fire TV *is* a `HomeControlSurface` remains a human judgment. The ontology makes
 that judgment explicit, located, and contestable — not automatic. Do not overclaim this in the
 paper.
+
+## External alignment
+
+`homeiot-align.ttl` maps the 24 categories onto SAREF (core, 4BLDG, 4ENER, 4WEAR) and W3C
+SSN/SOSA. Three rules:
+
+1. **Never `owl:equivalentClass`.** Our classes are strictly narrower than theirs
+   (`hiot:cameras` is residential consumer IP cameras; `saref:Sensor` is any sensor).
+   `rdfs:subClassOf` + `skos:broadMatch` is what the relationship actually is, and
+   over-claimed alignment is a standard reviewer objection.
+2. **Every external IRI is verified** against `external_classes.tsv` before it can be
+   committed — `--check` fails otherwise. This is not theoretical: `saref:Multimedia`,
+   `saref:WashingMachine`, `saref:Generator` and `sosa:System` are all plausible-sounding
+   classes that **do not exist**, and all four were caught this way (negative-tested).
+3. **The external vocabularies are not `owl:imports`-ed** — the pipeline runs offline against
+   a fixed snapshot. Consequence, stated plainly: no reasoner validates these `subClassOf`
+   assertions. They are curatorial claims, checked for IRI *existence* but not semantic
+   correctness.
+
+### The coverage finding
+
+**9 of 24 categories (38%) align exactly. 15 of 24 (62%) have no corresponding class in any
+of the six vocabularies** and can only sit under a generic `Device`/`Sensor`/`Actuator`/
+`Appliance` superclass.
+
+The gap is not random — it falls almost entirely on the consumer security-and-convenience
+tier (cameras, doorbells, baby monitors, alarm panels, smart locks, hubs, speakers, streaming
+boxes, EV chargers, robot vacuums, pet devices), which is exactly where this study finds the
+CVEs. SAREF is precise about meters, HVAC, lighting, shading and appliances — its energy and
+building-management origins — and silent about most of what a consumer bought in the last
+decade. That is the empirical argument for this ontology, and `--align` recomputes it.
 
 ## Open scope calls
 

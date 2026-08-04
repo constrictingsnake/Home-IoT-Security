@@ -1,0 +1,226 @@
+@prefix hiot:    <https://w3id.org/homeiot/ontology#> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+@prefix skos:    <http://www.w3.org/2004/02/skos/core#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+
+@prefix saref:   <https://saref.etsi.org/core/> .
+@prefix s4bldg:  <https://saref.etsi.org/saref4bldg/> .
+@prefix s4ener:  <https://saref.etsi.org/saref4ener/> .
+@prefix s4wear:  <https://saref.etsi.org/saref4wear/> .
+@prefix sosa:    <http://www.w3.org/ns/sosa/> .
+@prefix ssn:     <http://www.w3.org/ns/ssn/> .
+
+################################################################################
+# External alignment for the Home IoT device ontology.
+#
+# SEPARATE FILE BY DESIGN — a reviewer can evaluate homeiot.ttl without it, and
+# dropping this file changes nothing about the analysis pipeline.
+#
+# Every external IRI used here is verified against ontology/external_classes.tsv,
+# a pinned manifest of 331 class IRIs extracted from the actual published
+# vocabularies. Retrieval provenance (version, URL, source sha256, date) is in
+# ontology/external_sources.tsv.
+# `scripts/ontology_build.py --check` fails if this file references an IRI that is
+# not in the manifest. This exists because the obvious mistakes here are inventing
+# a plausible-sounding class that does not exist: SAREF core has no `Multimedia`,
+# no `WashingMachine`, no `Generator`, and `sosa:System` is not a class (it is
+# `ssn:System`) — all four were caught this way.
+#
+# NO owl:equivalentClass ANYWHERE. Our classes are strictly narrower than their
+# external counterparts (hiot:cameras is residential consumer IP cameras;
+# saref:Sensor is any sensor). Asserting equivalence would be false, and
+# over-claimed alignment is a standard reviewer objection. rdfs:subClassOf plus
+# skos:broadMatch is what the relationship actually is.
+#
+# The external vocabularies are NOT owl:imports-ed: the pipeline runs offline
+# against a fixed snapshot, and importing would make the build depend on ETSI/W3C
+# availability. Consequence, stated plainly: no reasoner validates these
+# subClassOf assertions — they are curatorial claims, checked for IRI existence
+# but not for semantic correctness.
+################################################################################
+
+<https://w3id.org/homeiot/ontology/alignment> a owl:Ontology ;
+  dcterms:title "Home IoT Device Ontology — external alignment" ;
+  dcterms:description "Alignment of the 24 home IoT analysis categories to SAREF (core, 4BLDG, 4ENER, 4WEAR) and W3C SSN/SOSA." ;
+  dcterms:source <https://saref.etsi.org/core/v3.2.1/saref.ttl> ,
+                 <https://saref.etsi.org/saref4bldg/v1.1.2/saref4bldg.ttl> ,
+                 <https://saref.etsi.org/saref4ener/v1.2.1/saref4ener.ttl> ,
+                 <https://saref.etsi.org/saref4wear/v1.1.1/saref4wear.ttl> ,
+                 <http://www.w3.org/ns/sosa/> , <http://www.w3.org/ns/ssn/> ;
+  owl:versionInfo "0.1.0" .
+
+# How good is each match? Recorded per category so the coverage gap is measurable
+# rather than rhetorical (see the COVERAGE FINDING at the foot of this file).
+hiot:alignmentPrecision a owl:AnnotationProperty ;
+  rdfs:label "alignment precision" ;
+  rdfs:comment """exact  — the external class denotes the same device type.
+coarse — only a generic superclass exists (Device/Sensor/Actuator/Appliance);
+         the external vocabulary has no class for this device type.""" .
+
+################################################################################
+# Root
+################################################################################
+
+hiot:DeviceType rdfs:subClassOf saref:Device ; skos:broadMatch saref:Device .
+
+################################################################################
+# EXACT — the external vocabulary has a class for this device type
+################################################################################
+
+hiot:lighting rdfs:subClassOf saref:Light ;
+  skos:closeMatch saref:Light ; skos:relatedMatch s4bldg:Lamp , saref:LightSwitch ;
+  hiot:alignmentPrecision "exact" .
+
+hiot:shades rdfs:subClassOf s4bldg:ShadingDevice ;
+  skos:closeMatch s4bldg:ShadingDevice ;
+  hiot:alignmentPrecision "exact" .
+
+hiot:fans rdfs:subClassOf s4bldg:Fan ;
+  skos:closeMatch s4bldg:Fan ;
+  hiot:alignmentPrecision "exact" .
+
+hiot:smartplugs rdfs:subClassOf saref:Switch ;
+  skos:closeMatch saref:Switch ;
+  hiot:alignmentPrecision "exact" .
+
+hiot:thermostat rdfs:subClassOf saref:HVAC ;
+  skos:closeMatch saref:HVAC ; skos:relatedMatch saref:TemperatureSensor ;
+  hiot:alignmentPrecision "exact" .
+
+hiot:airconditioner rdfs:subClassOf saref:HVAC ;
+  skos:closeMatch saref:HVAC ;
+  hiot:alignmentPrecision "exact" .
+
+hiot:appliances rdfs:subClassOf saref:Appliance ;
+  skos:closeMatch saref:Appliance ;
+  hiot:alignmentPrecision "exact" .
+
+hiot:sensors rdfs:subClassOf saref:Sensor , sosa:Sensor ;
+  skos:closeMatch saref:Sensor ; skos:relatedMatch saref:SmokeSensor , saref:TemperatureSensor ;
+  hiot:alignmentPrecision "exact" .
+
+# home-power is the one category whose parts land on three different classes.
+hiot:home_power rdfs:subClassOf saref:Meter ;
+  skos:broadMatch saref:Meter ;
+  skos:relatedMatch s4bldg:SolarDevice , s4ener:Storage , s4ener:PowerProfile ;
+  rdfs:comment "Smart meters -> saref:Meter; residential PV -> s4bldg:SolarDevice; home batteries -> s4ener:Storage. No single external class covers the category." ;
+  hiot:alignmentPrecision "exact" .
+
+################################################################################
+# COARSE — only a generic superclass exists. These are the coverage gaps.
+################################################################################
+
+hiot:cameras rdfs:subClassOf saref:Sensor , sosa:Sensor ;
+  skos:broadMatch saref:Sensor ;
+  rdfs:comment "No camera class in SAREF or SSN/SOSA." ;
+  hiot:alignmentPrecision "coarse" .
+
+hiot:doorbell rdfs:subClassOf saref:Sensor , sosa:Sensor ;
+  skos:broadMatch saref:Sensor ;
+  rdfs:comment "No doorbell class in SAREF or SSN/SOSA." ;
+  hiot:alignmentPrecision "coarse" .
+
+hiot:babymonitor rdfs:subClassOf saref:Sensor , sosa:Sensor ;
+  skos:broadMatch saref:Sensor ;
+  rdfs:comment "No baby-monitor class in SAREF or SSN/SOSA." ;
+  hiot:alignmentPrecision "coarse" .
+
+hiot:alarms rdfs:subClassOf saref:Device ;
+  skos:broadMatch saref:Device ; skos:relatedMatch saref:SmokeSensor ;
+  rdfs:comment "SAREF has SmokeSensor but no security/alarm panel class." ;
+  hiot:alignmentPrecision "coarse" .
+
+hiot:doorlock rdfs:subClassOf saref:Actuator , sosa:Actuator ;
+  skos:broadMatch saref:Actuator ; skos:relatedMatch saref:DoorSwitch ;
+  rdfs:comment "saref:DoorSwitch is a door state switch, NOT a lock — related, deliberately not a superclass." ;
+  hiot:alignmentPrecision "coarse" .
+
+hiot:hub rdfs:subClassOf saref:Device , ssn:System ;
+  skos:broadMatch saref:Device ; skos:relatedMatch sosa:Platform ;
+  rdfs:comment "No hub/controller/border-router class in SAREF. ssn:System is the closest structural notion." ;
+  hiot:alignmentPrecision "coarse" .
+
+hiot:smartspeakers rdfs:subClassOf saref:Device ;
+  skos:broadMatch saref:Device ; skos:relatedMatch sosa:Platform ;
+  rdfs:comment "No smart-speaker or media class in SAREF core (it has no Multimedia class)." ;
+  hiot:alignmentPrecision "coarse" .
+
+hiot:streaming rdfs:subClassOf saref:Device ;
+  skos:broadMatch saref:Device ; skos:relatedMatch sosa:Platform ;
+  rdfs:comment "No streaming-device or media class in SAREF core." ;
+  hiot:alignmentPrecision "coarse" .
+
+hiot:ev_charging rdfs:subClassOf saref:Device ;
+  skos:broadMatch saref:Device ; skos:relatedMatch s4ener:PowerProfile ;
+  rdfs:comment "No EVSE/charge-point class in SAREF core or SAREF4ENER." ;
+  hiot:alignmentPrecision "coarse" .
+
+hiot:airpurifier rdfs:subClassOf saref:Appliance ;
+  skos:broadMatch saref:Appliance ;
+  rdfs:comment "No air-purifier class; SAREF4BLDG has ventilation equipment but not a consumer purifier." ;
+  hiot:alignmentPrecision "coarse" .
+
+hiot:fridge rdfs:subClassOf saref:Appliance ;
+  skos:broadMatch saref:Appliance ;
+  rdfs:comment "No refrigerator class in SAREF core." ;
+  hiot:alignmentPrecision "coarse" .
+
+hiot:robotvacuum rdfs:subClassOf saref:Appliance ;
+  skos:broadMatch saref:Appliance ;
+  rdfs:comment "No robot/vacuum class in SAREF." ;
+  hiot:alignmentPrecision "coarse" .
+
+hiot:garden rdfs:subClassOf saref:Actuator , sosa:Actuator ;
+  skos:broadMatch saref:Actuator ;
+  rdfs:comment "No irrigation-controller or mower class in SAREF core (SAREF4AGRI targets agriculture, not domestic gardens)." ;
+  hiot:alignmentPrecision "coarse" .
+
+hiot:pet rdfs:subClassOf saref:Appliance ;
+  skos:broadMatch saref:Appliance ;
+  rdfs:comment "No pet-device class in SAREF." ;
+  hiot:alignmentPrecision "coarse" .
+
+hiot:sleeptracker rdfs:subClassOf saref:Sensor , sosa:Sensor ;
+  skos:broadMatch saref:Sensor ;
+  rdfs:comment "Deliberately NOT aligned to s4wear:Wearable: the in-scope category is bedside, non-worn monitors. The wrist wearables currently contaminating this category (~88%) are exactly what s4wear:OnBodyWearable denotes and are out by criterion 3 — see hiot:vrar for the one place that class is used correctly." ;
+  hiot:alignmentPrecision "coarse" .
+
+################################################################################
+# Defined-but-excluded types
+################################################################################
+
+hiot:vrar rdfs:subClassOf s4wear:OnBodyWearable ;
+  skos:closeMatch s4wear:OnBodyWearable ;
+  hiot:alignmentPrecision "exact" .
+
+hiot:gameconsoles skos:relatedMatch saref:Device ;
+  rdfs:comment "No subClassOf asserted: out of scope by criteria 2 and 4, and general-purpose compute is not a saref:Device in the intended sense." .
+
+hiot:transport_networking skos:relatedMatch saref:Device ;
+  rdfs:comment "No subClassOf asserted: transport gear is threat-model context, not a study subject (Alrawi et al. 2019)." .
+
+################################################################################
+# COVERAGE FINDING (quantified by scripts/ontology_build.py --align)
+#
+# 9 of 24 categories (38%) align exactly to an existing external class.
+# 15 of 24 (62%) have NO corresponding class in SAREF core, SAREF4BLDG,
+# SAREF4ENER, SAREF4WEAR, SSN or SOSA, and can only be placed under a generic
+# Device/Sensor/Actuator/Appliance superclass.
+#
+# The 15: airpurifier, alarms, babymonitor, cameras, doorbell, doorlock,
+# ev-charging, fridge, garden, hub, pet, robotvacuum, sleeptracker,
+# smartspeakers, streaming.
+#
+# The gap is not random. It falls almost entirely on the *consumer security and
+# convenience* tier — cameras, doorbells, baby monitors, alarm panels, smart locks,
+# hubs, speakers, streaming boxes, EV chargers, robot vacuums, pet devices —
+# i.e. the devices this study finds carry the most CVEs. SAREF's device coverage
+# reflects its origin in energy and building management: it is precise about
+# meters, HVAC, lighting, shading and appliances, and silent about everything a
+# consumer bought in the last decade.
+#
+# This is the empirical argument for the present ontology, and it is checkable
+# rather than rhetorical: regenerate the count with --align.
+################################################################################

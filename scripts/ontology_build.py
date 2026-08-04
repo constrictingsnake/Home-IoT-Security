@@ -32,6 +32,8 @@ import io
 import os
 import sys
 
+from collections import Counter
+
 from rdflib import Graph, Namespace, RDF, RDFS
 from rdflib.namespace import SKOS
 
@@ -40,6 +42,8 @@ HIOT = Namespace("https://w3id.org/homeiot/ontology#")
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 TTL = os.path.join(ROOT, "ontology", "homeiot.ttl")
 SHAPES = os.path.join(ROOT, "ontology", "shapes.ttl")
+ALIGN = os.path.join(ROOT, "ontology", "homeiot-align.ttl")
+EXTERNAL = os.path.join(ROOT, "ontology", "external_classes.tsv")
 CATEGORIES = os.path.join(ROOT, "data", "categories.csv")
 FAMILIES = os.path.join(ROOT, "data", "ontology", "families.csv")
 
@@ -147,6 +151,77 @@ def criteria_report(g, uri):
     return out
 
 
+ALIGN_PREDS = (RDFS.subClassOf, SKOS.closeMatch, SKOS.broadMatch, SKOS.relatedMatch)
+
+
+def check_alignment(verbose=True):
+    """Verify every external IRI in homeiot-align.ttl exists in the pinned manifest,
+    and report alignment coverage.
+
+    The failure mode this exists to catch is inventing a plausible external class.
+    SAREF core has no `Multimedia`, no `WashingMachine`, no `Generator`; `sosa:System`
+    is not a class (it is `ssn:System`). All four were caught here. The manifest
+    (ontology/external_classes.tsv) is extracted from the published vocabularies with
+    versions and source hashes recorded, so this check runs offline."""
+    if not os.path.isfile(ALIGN):
+        return None, "homeiot-align.ttl not found", {}
+    if not os.path.isfile(EXTERNAL):
+        return None, "external_classes.tsv not found — cannot verify alignment IRIs", {}
+
+    known = {}
+    with open(EXTERNAL, newline="", encoding="utf-8") as fh:
+        for r in csv.DictReader(fh, delimiter="\t"):
+            known[r["iri"]] = r["vocabulary"]
+
+    ag = Graph()
+    ag.parse(ALIGN, format="turtle")
+
+    bad, used = [], Counter()
+    for s, p, o in ag:
+        if p in ALIGN_PREDS and str(o).startswith("http") \
+                and not str(o).startswith(str(HIOT)):
+            if str(o) in known:
+                used[known[str(o)]] += 1
+            else:
+                bad.append((str(s).split("#")[-1], str(p).split("#")[-1], str(o)))
+
+    prec = {str(s).split("#")[-1]: str(o)
+            for s, o in ag.subject_objects(HIOT.alignmentPrecision)
+            if not str(s).endswith("alignmentPrecision")}
+
+    if verbose:
+        print(f"\nalignment: {sum(used.values())} external references, "
+              f"{len(known)} IRIs in manifest")
+        for v, n in used.most_common():
+            print(f"  {v:14} {n:4} references")
+        if bad:
+            print("\n  UNVERIFIED IRIs (not in manifest — likely fabricated):")
+            for s, p, o in bad:
+                print(f"    {s} {p} {o}")
+
+        # Coverage is a claim about the 24 ANALYSIS categories. The 3 excluded types
+        # carry alignments too (hiot:vrar -> s4wear:OnBodyWearable is exact), and
+        # counting them here would inflate the "exact" figure.
+        g = load()
+        analysis = {slug for _o, slug, *_r in device_types(g)}
+        exact = sorted(k for k, v in prec.items()
+                       if v == "exact" and k.replace("_", "-") in analysis)
+        coarse = sorted(k for k, v in prec.items()
+                        if v == "coarse" and k.replace("_", "-") in analysis)
+        other = sorted(k for k in prec if k.replace("_", "-") not in analysis)
+        n = len(analysis)
+        print(f"\n  coverage over the {n} analysis categories: "
+              f"{len(exact)} exact ({100*len(exact)/n:.0f}%), "
+              f"{len(coarse)} coarse ({100*len(coarse)/n:.0f}%)")
+        print(f"    no external class exists for: {', '.join(coarse)}")
+        if other:
+            print(f"    (excluded types, not counted: {', '.join(other)})")
+        if len(exact) + len(coarse) != n:
+            print(f"    WARNING: {n - len(exact) - len(coarse)} categories carry no "
+                  f"alignmentPrecision annotation")
+    return (not bad), bad, prec
+
+
 def reason(g, verbose=True):
     """Run OWL-RL closure and check each device type's inferred membership in
     hiot:InScopeDeviceType against its asserted placement in the taxonomy.
@@ -229,6 +304,17 @@ def cmd_check(g):
             sys.stdout.writelines(diff[:40])
             failures.append(label)
 
+    ok_align, bad_align, _prec = check_alignment(verbose=False)
+    if ok_align is None:
+        print(f"alignment: NOT RUN — {bad_align}")
+    elif ok_align:
+        print("alignment: all external IRIs verified against manifest ✓")
+    else:
+        print(f"alignment: {len(bad_align)} UNVERIFIED external IRI(s)")
+        for sbj, pred, obj in bad_align:
+            print(f"  {sbj} {pred} {obj}")
+        failures.append("alignment")
+
     mismatches = reason(g, verbose=False)
     print(f"reasoner: {27 - len(mismatches)}/27 rulings reproduced"
           if not mismatches else
@@ -262,14 +348,19 @@ def main():
                     help="regenerate data/categories.csv and data/ontology/families.csv")
     ap.add_argument("--reason", action="store_true",
                     help="print the 27-class in/out ruling table")
+    ap.add_argument("--align", action="store_true",
+                    help="verify external alignment IRIs and report coverage")
     ap.add_argument("--ttl", default=TTL, help="ontology file (default: ontology/homeiot.ttl)")
     args = ap.parse_args()
 
-    if not (args.check or args.write or args.reason):
-        ap.error("pick one of --check / --write / --reason")
+    if not (args.check or args.write or args.reason or args.align):
+        ap.error("pick one of --check / --write / --reason / --align")
 
     g = load(args.ttl)
     rc = 0
+    if args.align:
+        ok, bad, _ = check_alignment()
+        rc |= 0 if ok else 1
     if args.reason:
         rc |= 1 if reason(g) else 0
     if args.check:

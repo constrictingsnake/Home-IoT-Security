@@ -227,12 +227,23 @@ make it automatic. Do not overclaim this.
 
 Separate file (`ontology/homeiot-align.ttl`) so a reviewer can evaluate the core without it.
 
-| Target | Use | Predicate |
-|---|---|---|
-| SAREF (ETSI) | `saref:Device`, `saref:Sensor`, `saref:Actuator`, `saref:Appliance` | `rdfs:subClassOf` |
-| SAREF4ENER | Energy family | `rdfs:subClassOf` |
-| W3C SSN/SOSA | `sosa:Sensor`, `sosa:Actuator`, `sosa:Platform` (hubs) | `rdfs:subClassOf` |
-| CWE / CPE / CVE | existing NVD/MITRE identifiers, reused not redefined | `dcterms:references` |
+**Implemented 2026-08-04** — `ontology/homeiot-align.ttl`, 76 external references across
+SAREF core v3.2.1, SAREF4BLDG v1.1.2, SAREF4ENER v1.2.1, SAREF4WEAR v1.1.1, W3C SOSA and SSN.
+
+Every external IRI is verified against `ontology/external_classes.tsv` (331 class IRIs pulled
+from the published vocabularies; provenance in `external_sources.tsv`). `--check` fails on an
+unverified IRI. This caught four plausible-but-nonexistent classes that were in the original
+draft of this plan: `saref:Multimedia`, `saref:WashingMachine`, `saref:Generator`, and
+`sosa:System` (the class is `ssn:System`). Negative-tested — all four are re-caught on demand.
+
+**Coverage finding — this is a publishable result, not bookkeeping.** Only **9 of 24 categories
+(38%)** align exactly to an existing external class. **15 of 24 (62%)** have no corresponding
+class in *any* of the six vocabularies: airpurifier, alarms, babymonitor, cameras, doorbell,
+doorlock, ev-charging, fridge, garden, hub, pet, robotvacuum, sleeptracker, smartspeakers,
+streaming. The gap falls almost entirely on the consumer security-and-convenience tier — which
+is exactly where this study finds the CVEs. SAREF is precise about meters, HVAC, lighting,
+shading and appliances (its energy/building-management origins) and silent about most consumer
+home IoT. Recompute with `--align`.
 
 **Do not use `owl:equivalentClass` against SAREF.** Our classes are strictly *narrower*
 (`hiot:cameras` is residential consumer IP cameras; `saref:Sensor` is any sensor). Asserting
@@ -290,7 +301,7 @@ Consumers to leave untouched (they must not notice the swap): `make_review_copie
 |---|---|---|
 | 1 | `homeiot.ttl` (24+3 classes, facets, axioms, scopeNotes), `shapes.ttl`, `ontology_build.py --check` | `categories.csv` regenerates byte-identical; SHACL clean |
 | 2 | `families.csv`; `--group family` + micro/macro rows in `cwe888_analysis.py` + `cvss_analysis.py`; **Excluded-column fix in both** | family N's sum to 1,904; `--include-excluded` reproduces pre-fix numbers |
-| 3 | `homeiot-align.ttl`; reasoner validation of all 27 rulings | reasoner matches published rulings, or discrepancies documented |
+| 3 | ~~`homeiot-align.ttl`; reasoner validation of all 27 rulings~~ **DONE 2026-08-04** | reasoner 27/27; all 76 external IRIs verified against a pinned 331-IRI manifest |
 | 4 | KG export (`--export-kg`): confirmed-Yes CVEs, CPE vendor/product, CWE-888 classes as instances | loads in rdflib; spot-check counts vs `final_resolved.csv` |
 | 5 | Paper edits | below |
 

@@ -1,0 +1,7 @@
+file	version	url	sha256_16	retrieved
+saref.ttl	v3.2.1	https://saref.etsi.org/core/v3.2.1/saref.ttl	d3d859e57c7a0755	2026-08-04
+saref4bldg.ttl	v1.1.2	https://saref.etsi.org/saref4bldg/v1.1.2/saref4bldg.ttl	5e00a083a7961d4c	2026-08-04
+saref4ener.ttl	v1.2.1	https://saref.etsi.org/saref4ener/v1.2.1/saref4ener.ttl	d9055c041ae957d9	2026-08-04
+saref4wear.ttl	v1.1.1	https://saref.etsi.org/saref4wear/v1.1.1/saref4wear.ttl	eab45c75c936a843	2026-08-04
+sosa.ttl	-	http://www.w3.org/ns/sosa/	c70b0d1c843c0047	2026-08-04
+ssn.ttl	-	http://www.w3.org/ns/ssn/	184d86189191146e	2026-08-04

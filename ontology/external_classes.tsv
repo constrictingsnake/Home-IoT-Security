@@ -1,0 +1,332 @@
+iri	vocabulary
+http://www.w3.org/ns/sosa/ActuatableProperty	W3C SOSA
+http://www.w3.org/ns/sosa/Actuation	W3C SOSA
+http://www.w3.org/ns/sosa/Actuator	W3C SOSA
+http://www.w3.org/ns/sosa/FeatureOfInterest	W3C SOSA
+http://www.w3.org/ns/sosa/ObservableProperty	W3C SOSA
+http://www.w3.org/ns/sosa/Observation	W3C SOSA
+http://www.w3.org/ns/sosa/Platform	W3C SOSA
+http://www.w3.org/ns/sosa/Procedure	W3C SOSA
+http://www.w3.org/ns/sosa/Result	W3C SOSA
+http://www.w3.org/ns/sosa/Sample	W3C SOSA
+http://www.w3.org/ns/sosa/Sampler	W3C SOSA
+http://www.w3.org/ns/sosa/Sampling	W3C SOSA
+http://www.w3.org/ns/sosa/Sensor	W3C SOSA
+http://www.w3.org/ns/ssn/Deployment	W3C SSN
+http://www.w3.org/ns/ssn/Input	W3C SSN
+http://www.w3.org/ns/ssn/Output	W3C SSN
+http://www.w3.org/ns/ssn/Property	W3C SSN
+http://www.w3.org/ns/ssn/Stimulus	W3C SSN
+http://www.w3.org/ns/ssn/System	W3C SSN
+http://www.w3.org/ns/ssn/systems/SystemCapability	W3C SSN
+https://saref.etsi.org/core/ActuatingFunction	SAREF core
+https://saref.etsi.org/core/Actuation	SAREF core
+https://saref.etsi.org/core/Actuator	SAREF core
+https://saref.etsi.org/core/Appliance	SAREF core
+https://saref.etsi.org/core/CloseCommand	SAREF core
+https://saref.etsi.org/core/CloseState	SAREF core
+https://saref.etsi.org/core/Coal	SAREF core
+https://saref.etsi.org/core/Command	SAREF core
+https://saref.etsi.org/core/CommandExecution	SAREF core
+https://saref.etsi.org/core/CommandOfInterest	SAREF core
+https://saref.etsi.org/core/Commodity	SAREF core
+https://saref.etsi.org/core/Currency	SAREF core
+https://saref.etsi.org/core/Device	SAREF core
+https://saref.etsi.org/core/DoorSwitch	SAREF core
+https://saref.etsi.org/core/Electricity	SAREF core
+https://saref.etsi.org/core/Energy	SAREF core
+https://saref.etsi.org/core/EnergyCommodity	SAREF core
+https://saref.etsi.org/core/EnergyUnit	SAREF core
+https://saref.etsi.org/core/EventFunction	SAREF core
+https://saref.etsi.org/core/FeatureKind	SAREF core
+https://saref.etsi.org/core/FeatureOfInterest	SAREF core
+https://saref.etsi.org/core/Function	SAREF core
+https://saref.etsi.org/core/FunctionOfInterest	SAREF core
+https://saref.etsi.org/core/Gas	SAREF core
+https://saref.etsi.org/core/GetCommand	SAREF core
+https://saref.etsi.org/core/GetCurrentMeterValueCommand	SAREF core
+https://saref.etsi.org/core/GetMeterDataCommand	SAREF core
+https://saref.etsi.org/core/GetMeterHistoryCommand	SAREF core
+https://saref.etsi.org/core/GetSensingDataCommand	SAREF core
+https://saref.etsi.org/core/HVAC	SAREF core
+https://saref.etsi.org/core/Humidity	SAREF core
+https://saref.etsi.org/core/IlluminanceUnit	SAREF core
+https://saref.etsi.org/core/LevelControlFunction	SAREF core
+https://saref.etsi.org/core/Light	SAREF core
+https://saref.etsi.org/core/LightSwitch	SAREF core
+https://saref.etsi.org/core/Measurement	SAREF core
+https://saref.etsi.org/core/Meter	SAREF core
+https://saref.etsi.org/core/MeteringFunction	SAREF core
+https://saref.etsi.org/core/Motion	SAREF core
+https://saref.etsi.org/core/MultiLevelState	SAREF core
+https://saref.etsi.org/core/NaturalResourceCommodity	SAREF core
+https://saref.etsi.org/core/NotifyCommand	SAREF core
+https://saref.etsi.org/core/Observation	SAREF core
+https://saref.etsi.org/core/Occupancy	SAREF core
+https://saref.etsi.org/core/OffCommand	SAREF core
+https://saref.etsi.org/core/OffState	SAREF core
+https://saref.etsi.org/core/OnCommand	SAREF core
+https://saref.etsi.org/core/OnOffFunction	SAREF core
+https://saref.etsi.org/core/OnOffState	SAREF core
+https://saref.etsi.org/core/OnState	SAREF core
+https://saref.etsi.org/core/OpenCloseFunction	SAREF core
+https://saref.etsi.org/core/OpenCloseState	SAREF core
+https://saref.etsi.org/core/OpenCommand	SAREF core
+https://saref.etsi.org/core/OpenState	SAREF core
+https://saref.etsi.org/core/Operation	SAREF core
+https://saref.etsi.org/core/OperationExecution	SAREF core
+https://saref.etsi.org/core/PauseCommand	SAREF core
+https://saref.etsi.org/core/Power	SAREF core
+https://saref.etsi.org/core/PowerUnit	SAREF core
+https://saref.etsi.org/core/Pressure	SAREF core
+https://saref.etsi.org/core/PressureUnit	SAREF core
+https://saref.etsi.org/core/Price	SAREF core
+https://saref.etsi.org/core/ProcedureExecution	SAREF core
+https://saref.etsi.org/core/Profile	SAREF core
+https://saref.etsi.org/core/Property	SAREF core
+https://saref.etsi.org/core/PropertyOfInterest	SAREF core
+https://saref.etsi.org/core/PropertyValue	SAREF core
+https://saref.etsi.org/core/SensingFunction	SAREF core
+https://saref.etsi.org/core/Sensor	SAREF core
+https://saref.etsi.org/core/Service	SAREF core
+https://saref.etsi.org/core/SetAbsoluteLevelCommand	SAREF core
+https://saref.etsi.org/core/SetLevelCommand	SAREF core
+https://saref.etsi.org/core/SetRelativeLevelCommand	SAREF core
+https://saref.etsi.org/core/Smoke	SAREF core
+https://saref.etsi.org/core/SmokeSensor	SAREF core
+https://saref.etsi.org/core/StartCommand	SAREF core
+https://saref.etsi.org/core/StartState	SAREF core
+https://saref.etsi.org/core/StartStopFunction	SAREF core
+https://saref.etsi.org/core/StartStopState	SAREF core
+https://saref.etsi.org/core/State	SAREF core
+https://saref.etsi.org/core/StateOfInterest	SAREF core
+https://saref.etsi.org/core/StepDownCommand	SAREF core
+https://saref.etsi.org/core/StepUpCommand	SAREF core
+https://saref.etsi.org/core/StopCommand	SAREF core
+https://saref.etsi.org/core/StopState	SAREF core
+https://saref.etsi.org/core/Switch	SAREF core
+https://saref.etsi.org/core/SwitchOnService	SAREF core
+https://saref.etsi.org/core/Task	SAREF core
+https://saref.etsi.org/core/Temperature	SAREF core
+https://saref.etsi.org/core/TemperatureSensor	SAREF core
+https://saref.etsi.org/core/TemperatureUnit	SAREF core
+https://saref.etsi.org/core/Time	SAREF core
+https://saref.etsi.org/core/ToggleCommand	SAREF core
+https://saref.etsi.org/core/UnitOfMeasure	SAREF core
+https://saref.etsi.org/core/Water	SAREF core
+https://saref.etsi.org/saref4bldg/Actuator	SAREF4BLDG
+https://saref.etsi.org/saref4bldg/AirToAirHeatRecovery	SAREF4BLDG
+https://saref.etsi.org/saref4bldg/Alarm	SAREF4BLDG
+https://saref.etsi.org/saref4bldg/AudioVisualAppliance	SAREF4BLDG
+https://saref.etsi.org/saref4bldg/Boiler	SAREF4BLDG
+https://saref.etsi.org/saref4bldg/Building	SAREF4BLDG
+https://saref.etsi.org/saref4bldg/BuildingDevice	SAREF4BLDG
+https://saref.etsi.org/saref4bldg/BuildingObject	SAREF4BLDG
+https://saref.etsi.org/saref4bldg/BuildingSpace	SAREF4BLDG
+https://saref.etsi.org/saref4bldg/Burner	SAREF4BLDG
+https://saref.etsi.org/saref4bldg/Chiller	SAREF4BLDG
+https://saref.etsi.org/saref4bldg/Coil	SAREF4BLDG
+https://saref.etsi.org/saref4bldg/CommunicationAppliance	SAREF4BLDG
+https://saref.etsi.org/saref4bldg/Compressor	SAREF4BLDG
+https://saref.etsi.org/saref4bldg/Condenser	SAREF4BLDG
+https://saref.etsi.org/saref4bldg/Controller	SAREF4BLDG
+https://saref.etsi.org/saref4bldg/CooledBeam	SAREF4BLDG
+https://saref.etsi.org/saref4bldg/CoolingTower	SAREF4BLDG
+https://saref.etsi.org/saref4bldg/Damper	SAREF4BLDG
+https://saref.etsi.org/saref4bldg/DistributionControlDevice	SAREF4BLDG
+https://saref.etsi.org/saref4bldg/DistributionDevice	SAREF4BLDG
+https://saref.etsi.org/saref4bldg/DistributionFlowDevice	SAREF4BLDG
+https://saref.etsi.org/saref4bldg/DuctSilencer	SAREF4BLDG
+https://saref.etsi.org/saref4bldg/ElectricAppliance	SAREF4BLDG
+https://saref.etsi.org/saref4bldg/ElectricFlowStorageDevice	SAREF4BLDG
+https://saref.etsi.org/saref4bldg/ElectricGenerator	SAREF4BLDG
+https://saref.etsi.org/saref4bldg/ElectricMotor	SAREF4BLDG
+https://saref.etsi.org/saref4bldg/ElectricTimeControl	SAREF4BLDG
+https://saref.etsi.org/saref4bldg/EnergyConversionDevice	SAREF4BLDG
+https://saref.etsi.org/saref4bldg/Engine	SAREF4BLDG
+https://saref.etsi.org/saref4bldg/EvaporativeCooler	SAREF4BLDG
+https://saref.etsi.org/saref4bldg/Evaporator	SAREF4BLDG
+https://saref.etsi.org/saref4bldg/Fan	SAREF4BLDG
+https://saref.etsi.org/saref4bldg/Filter	SAREF4BLDG
+https://saref.etsi.org/saref4bldg/FireSuppressionTerminal	SAREF4BLDG
+https://saref.etsi.org/saref4bldg/FlowController	SAREF4BLDG
+https://saref.etsi.org/saref4bldg/FlowInstrument	SAREF4BLDG
+https://saref.etsi.org/saref4bldg/FlowMeter	SAREF4BLDG
+https://saref.etsi.org/saref4bldg/FlowMovingDevice	SAREF4BLDG
+https://saref.etsi.org/saref4bldg/FlowStorageDevice	SAREF4BLDG
+https://saref.etsi.org/saref4bldg/FlowTerminal	SAREF4BLDG
+https://saref.etsi.org/saref4bldg/FlowTreatmentDevice	SAREF4BLDG
+https://saref.etsi.org/saref4bldg/HeatExchanger	SAREF4BLDG
+https://saref.etsi.org/saref4bldg/Humidifier	SAREF4BLDG
+https://saref.etsi.org/saref4bldg/Interceptor	SAREF4BLDG
+https://saref.etsi.org/saref4bldg/Lamp	SAREF4BLDG
+https://saref.etsi.org/saref4bldg/MedicalDevice	SAREF4BLDG
+https://saref.etsi.org/saref4bldg/Outlet	SAREF4BLDG
+https://saref.etsi.org/saref4bldg/PhysicalObject	SAREF4BLDG
+https://saref.etsi.org/saref4bldg/ProtectiveDevice	SAREF4BLDG
+https://saref.etsi.org/saref4bldg/ProtectiveDeviceTrippingUnit	SAREF4BLDG
+https://saref.etsi.org/saref4bldg/Pump	SAREF4BLDG
+https://saref.etsi.org/saref4bldg/SanitaryTerminal	SAREF4BLDG
+https://saref.etsi.org/saref4bldg/Sensor	SAREF4BLDG
+https://saref.etsi.org/saref4bldg/ShadingDevice	SAREF4BLDG
+https://saref.etsi.org/saref4bldg/SolarDevice	SAREF4BLDG
+https://saref.etsi.org/saref4bldg/SpaceHeater	SAREF4BLDG
+https://saref.etsi.org/saref4bldg/SwitchingDevice	SAREF4BLDG
+https://saref.etsi.org/saref4bldg/Tank	SAREF4BLDG
+https://saref.etsi.org/saref4bldg/Transformer	SAREF4BLDG
+https://saref.etsi.org/saref4bldg/TransportElement	SAREF4BLDG
+https://saref.etsi.org/saref4bldg/TubeBundle	SAREF4BLDG
+https://saref.etsi.org/saref4bldg/UnitaryControlElement	SAREF4BLDG
+https://saref.etsi.org/saref4bldg/Valve	SAREF4BLDG
+https://saref.etsi.org/saref4bldg/VibrationIsolator	SAREF4BLDG
+https://saref.etsi.org/saref4ener/ActivationDelayDurationDescription	SAREF4ENER
+https://saref.etsi.org/saref4ener/ActiveDurationDescription	SAREF4ENER
+https://saref.etsi.org/saref4ener/ActiveDurationMax	SAREF4ENER
+https://saref.etsi.org/saref4ener/ActiveDurationMin	SAREF4ENER
+https://saref.etsi.org/saref4ener/ActiveDurationSumMax	SAREF4ENER
+https://saref.etsi.org/saref4ener/ActiveDurationSumMin	SAREF4ENER
+https://saref.etsi.org/saref4ener/ActuatorLevel	SAREF4ENER
+https://saref.etsi.org/saref4ener/ActuatorSwitch	SAREF4ENER
+https://saref.etsi.org/saref4ener/AllowedLimitRange	SAREF4ENER
+https://saref.etsi.org/saref4ener/AlternativesGroup	SAREF4ENER
+https://saref.etsi.org/saref4ener/AnticipationDurationDescription	SAREF4ENER
+https://saref.etsi.org/saref4ener/CommodityQuantity	SAREF4ENER
+https://saref.etsi.org/saref4ener/ContractualPowerLimit	SAREF4ENER
+https://saref.etsi.org/saref4ener/DDBCInstruction	SAREF4ENER
+https://saref.etsi.org/saref4ener/DataPoint	SAREF4ENER
+https://saref.etsi.org/saref4ener/DefaultDuration	SAREF4ENER
+https://saref.etsi.org/saref4ener/DefaultDurationDescription	SAREF4ENER
+https://saref.etsi.org/saref4ener/DemandDrivenProfile	SAREF4ENER
+https://saref.etsi.org/saref4ener/Device	SAREF4ENER
+https://saref.etsi.org/saref4ener/DurationUncertainty	SAREF4ENER
+https://saref.etsi.org/saref4ener/DurationUncertaintyDescription	SAREF4ENER
+https://saref.etsi.org/saref4ener/EarliestStartTime	SAREF4ENER
+https://saref.etsi.org/saref4ener/ElapsedSlotTime	SAREF4ENER
+https://saref.etsi.org/saref4ener/EndInterruptionInstruction	SAREF4ENER
+https://saref.etsi.org/saref4ener/EndTime	SAREF4ENER
+https://saref.etsi.org/saref4ener/EndTimeDurationDescription	SAREF4ENER
+https://saref.etsi.org/saref4ener/Energy	SAREF4ENER
+https://saref.etsi.org/saref4ener/EnergyConstraint	SAREF4ENER
+https://saref.etsi.org/saref4ener/EnergyExpected	SAREF4ENER
+https://saref.etsi.org/saref4ener/EnergyMax	SAREF4ENER
+https://saref.etsi.org/saref4ener/EnergyMin	SAREF4ENER
+https://saref.etsi.org/saref4ener/EnergySkewness	SAREF4ENER
+https://saref.etsi.org/saref4ener/EnergyStandardDeviation	SAREF4ENER
+https://saref.etsi.org/saref4ener/EventActionConsume	SAREF4ENER
+https://saref.etsi.org/saref4ener/EventActionProduce	SAREF4ENER
+https://saref.etsi.org/saref4ener/EventStateConsume	SAREF4ENER
+https://saref.etsi.org/saref4ener/EventStateProduce	SAREF4ENER
+https://saref.etsi.org/saref4ener/FRBCInstruction	SAREF4ENER
+https://saref.etsi.org/saref4ener/FailsafePowerLimit	SAREF4ENER
+https://saref.etsi.org/saref4ener/FailsafeState	SAREF4ENER
+https://saref.etsi.org/saref4ener/FillLevelTargetProfile	SAREF4ENER
+https://saref.etsi.org/saref4ener/FillLevelTargetProfileElement	SAREF4ENER
+https://saref.etsi.org/saref4ener/FillRateProfile	SAREF4ENER
+https://saref.etsi.org/saref4ener/FlexOffer	SAREF4ENER
+https://saref.etsi.org/saref4ener/FlexRequest	SAREF4ENER
+https://saref.etsi.org/saref4ener/FlexibilityInstruction	SAREF4ENER
+https://saref.etsi.org/saref4ener/FlexibilityProfile	SAREF4ENER
+https://saref.etsi.org/saref4ener/GaussianDataPoint	SAREF4ENER
+https://saref.etsi.org/saref4ener/Incentive	SAREF4ENER
+https://saref.etsi.org/saref4ener/IncentiveTableBasedProfile	SAREF4ENER
+https://saref.etsi.org/saref4ener/IncentiveTableSlot	SAREF4ENER
+https://saref.etsi.org/saref4ener/IncentiveTableTier	SAREF4ENER
+https://saref.etsi.org/saref4ener/IncentiveType	SAREF4ENER
+https://saref.etsi.org/saref4ener/InstructionStatus	SAREF4ENER
+https://saref.etsi.org/saref4ener/InterruptionInstruction	SAREF4ENER
+https://saref.etsi.org/saref4ener/LatestEndTime	SAREF4ENER
+https://saref.etsi.org/saref4ener/LeakageBehaviour	SAREF4ENER
+https://saref.etsi.org/saref4ener/LeakageBehaviourElement	SAREF4ENER
+https://saref.etsi.org/saref4ener/LoadControlEventAction	SAREF4ENER
+https://saref.etsi.org/saref4ener/LoadControlEventData	SAREF4ENER
+https://saref.etsi.org/saref4ener/LoadControlEventState	SAREF4ENER
+https://saref.etsi.org/saref4ener/LoadControlStateData	SAREF4ENER
+https://saref.etsi.org/saref4ener/MaxActivationDelay	SAREF4ENER
+https://saref.etsi.org/saref4ener/MaxAnticipation	SAREF4ENER
+https://saref.etsi.org/saref4ener/MaxDuration	SAREF4ENER
+https://saref.etsi.org/saref4ener/MinDuration	SAREF4ENER
+https://saref.etsi.org/saref4ener/NominalPowerLimit	SAREF4ENER
+https://saref.etsi.org/saref4ener/NumberRange	SAREF4ENER
+https://saref.etsi.org/saref4ener/OMBCInstruction	SAREF4ENER
+https://saref.etsi.org/saref4ener/OperationMode	SAREF4ENER
+https://saref.etsi.org/saref4ener/OperationModeElement	SAREF4ENER
+https://saref.etsi.org/saref4ener/OperationModeProfile	SAREF4ENER
+https://saref.etsi.org/saref4ener/PEBCInstruction	SAREF4ENER
+https://saref.etsi.org/saref4ener/PPBCInstruction	SAREF4ENER
+https://saref.etsi.org/saref4ener/PauseDurationDescription	SAREF4ENER
+https://saref.etsi.org/saref4ener/PauseDurationMax	SAREF4ENER
+https://saref.etsi.org/saref4ener/PauseDurationMin	SAREF4ENER
+https://saref.etsi.org/saref4ener/PauseTime	SAREF4ENER
+https://saref.etsi.org/saref4ener/Power	SAREF4ENER
+https://saref.etsi.org/saref4ener/PowerConstraint	SAREF4ENER
+https://saref.etsi.org/saref4ener/PowerEnvelope	SAREF4ENER
+https://saref.etsi.org/saref4ener/PowerEnvelopeConsequenceType	SAREF4ENER
+https://saref.etsi.org/saref4ener/PowerEnvelopeLimitType	SAREF4ENER
+https://saref.etsi.org/saref4ener/PowerEnvelopeProfile	SAREF4ENER
+https://saref.etsi.org/saref4ener/PowerExpected	SAREF4ENER
+https://saref.etsi.org/saref4ener/PowerLimit	SAREF4ENER
+https://saref.etsi.org/saref4ener/PowerLimitProfile	SAREF4ENER
+https://saref.etsi.org/saref4ener/PowerMax	SAREF4ENER
+https://saref.etsi.org/saref4ener/PowerMin	SAREF4ENER
+https://saref.etsi.org/saref4ener/PowerPlan	SAREF4ENER
+https://saref.etsi.org/saref4ener/PowerProfile	SAREF4ENER
+https://saref.etsi.org/saref4ener/PowerRange	SAREF4ENER
+https://saref.etsi.org/saref4ener/PowerSequence	SAREF4ENER
+https://saref.etsi.org/saref4ener/PowerSequenceContainer	SAREF4ENER
+https://saref.etsi.org/saref4ener/PowerSequenceElement	SAREF4ENER
+https://saref.etsi.org/saref4ener/PowerSequenceState	SAREF4ENER
+https://saref.etsi.org/saref4ener/PowerSequenceStatus	SAREF4ENER
+https://saref.etsi.org/saref4ener/PowerSkewness	SAREF4ENER
+https://saref.etsi.org/saref4ener/PowerSource	SAREF4ENER
+https://saref.etsi.org/saref4ener/PowerStandardDeviation	SAREF4ENER
+https://saref.etsi.org/saref4ener/RemainingPauseTime	SAREF4ENER
+https://saref.etsi.org/saref4ener/RemainingSlotTime	SAREF4ENER
+https://saref.etsi.org/saref4ener/ResumeCostEstimated	SAREF4ENER
+https://saref.etsi.org/saref4ener/ResumeEnergyEstimated	SAREF4ENER
+https://saref.etsi.org/saref4ener/Role	SAREF4ENER
+https://saref.etsi.org/saref4ener/RoleType	SAREF4ENER
+https://saref.etsi.org/saref4ener/ScheduleInstruction	SAREF4ENER
+https://saref.etsi.org/saref4ener/ScopeType	SAREF4ENER
+https://saref.etsi.org/saref4ener/Slot	SAREF4ENER
+https://saref.etsi.org/saref4ener/SlotTimeDurationDescription	SAREF4ENER
+https://saref.etsi.org/saref4ener/StartInterruptionInstruction	SAREF4ENER
+https://saref.etsi.org/saref4ener/StartTime	SAREF4ENER
+https://saref.etsi.org/saref4ener/StartTimeDurationDescription	SAREF4ENER
+https://saref.etsi.org/saref4ener/State	SAREF4ENER
+https://saref.etsi.org/saref4ener/Storage	SAREF4ENER
+https://saref.etsi.org/saref4ener/TimePeriod	SAREF4ENER
+https://saref.etsi.org/saref4ener/TimePeriodDurationDescription	SAREF4ENER
+https://saref.etsi.org/saref4ener/TimeSeries	SAREF4ENER
+https://saref.etsi.org/saref4ener/Timer	SAREF4ENER
+https://saref.etsi.org/saref4ener/Transition	SAREF4ENER
+https://saref.etsi.org/saref4ener/Usage	SAREF4ENER
+https://saref.etsi.org/saref4ener/ValueSource	SAREF4ENER
+https://saref.etsi.org/saref4ener/ValueTendency	SAREF4ENER
+https://saref.etsi.org/saref4syst/System	SAREF4SYST
+https://saref.etsi.org/saref4wear/BiometricProperty	SAREF4WEAR
+https://saref.etsi.org/saref4wear/CommunicatingFunction	SAREF4WEAR
+https://saref.etsi.org/saref4wear/ControllingFunction	SAREF4WEAR
+https://saref.etsi.org/saref4wear/CrowdProperty	SAREF4WEAR
+https://saref.etsi.org/saref4wear/ElectricalProperty	SAREF4WEAR
+https://saref.etsi.org/saref4wear/ElectricalSafetyProperty	SAREF4WEAR
+https://saref.etsi.org/saref4wear/EmissionProperty	SAREF4WEAR
+https://saref.etsi.org/saref4wear/EnvironmentalProperty	SAREF4WEAR
+https://saref.etsi.org/saref4wear/FabricWearable	SAREF4WEAR
+https://saref.etsi.org/saref4wear/InBodyWearable	SAREF4WEAR
+https://saref.etsi.org/saref4wear/Interface	SAREF4WEAR
+https://saref.etsi.org/saref4wear/LivingOrganism	SAREF4WEAR
+https://saref.etsi.org/saref4wear/MemoryStorage	SAREF4WEAR
+https://saref.etsi.org/saref4wear/NavigatingFunction	SAREF4WEAR
+https://saref.etsi.org/saref4wear/NearBodyWearable	SAREF4WEAR
+https://saref.etsi.org/saref4wear/Occurrence	SAREF4WEAR
+https://saref.etsi.org/saref4wear/OnBodyWearable	SAREF4WEAR
+https://saref.etsi.org/saref4wear/Policy	SAREF4WEAR
+https://saref.etsi.org/saref4wear/PowerSupply	SAREF4WEAR
+https://saref.etsi.org/saref4wear/Software	SAREF4WEAR
+https://saref.etsi.org/saref4wear/TextileBasedSensor	SAREF4WEAR
+https://saref.etsi.org/saref4wear/TextileBasedWearable	SAREF4WEAR
+https://saref.etsi.org/saref4wear/User	SAREF4WEAR
+https://saref.etsi.org/saref4wear/Wearable	SAREF4WEAR
+https://saref.etsi.org/saref4wear/WearableProperty	SAREF4WEAR
+https://saref.etsi.org/saref4wear/Wearer	SAREF4WEAR
+https://saref.etsi.org/saref4wear/WearerProperty	SAREF4WEAR
