@@ -15,9 +15,10 @@ framing; the family rollup changes a result.
 
 ---
 
-## STATUS — paused 2026-08-04, branch `ontology`
+## STATUS — 2026-08-05, branch `ontology`
 
-**Phases 1–4 complete. Phase 5 (paper edits) not started.**
+**Phases 1–5 complete.** The one open item is `shades` (below); everything else in this plan
+has landed.
 
 Two gates, both currently green. `--check` covers the schema side:
 
@@ -48,7 +49,49 @@ gate: PASS
 | `c9121f5` | Phase 2 — **scope-exclusion bug fix**, 13 supervisor folds, `--group family`, micro/macro |
 | `65802d2` | Phase 3 — `homeiot-align.ttl`, 331-IRI pinned manifest, IRI verification |
 | `7f59e0b` | 3 of 4 scope calls resolved, `hiot:noNvdFootprint` added |
-| *(this branch)* | Phase 4 — `homeiot-kg.ttl` schema + `--export-kg` / `--verify-kg` |
+| `c5106d0` | Phase 4 — `homeiot-kg.ttl` schema + `--export-kg` / `--verify-kg` |
+| *(this branch)* | Phase 5 — paper integration (below) |
+
+### Phase 5 — what landed (2026-08-05)
+
+**Data regenerated first** (everything downstream depended on it):
+`tab:cwe888-matrix` was stale *and* pre-exclusion-fix (N=2,879 over 20 categories, `streaming`
+at 1,785). Regenerated to **N=1,904 over 22 categories**; `cameras` is now 52% of attributions
+and `streaming` 3%. Two generator bugs surfaced and were fixed:
+- Both generators crashed on the `ALL-MACRO` pseudo-row Phase 2 added (percentages only, so
+  `n_cwes` is empty by construction). The table now renders it as an `All (macro)` row; the
+  treemap script skips it, since treemap area is a count.
+- Family labels are prose, not slugs, so `Alarms & Sensors` emitted an **unescaped `&`** that
+  silently added a table column. `generate_cwe888_table.py` now escapes row labels.
+
+`generate_cwe888_table.py` gained `--label`, `--unit-label`, and `--order-by-n` so the same
+script emits both the per-category and the folding-category table. Treemap
+`DEFAULT_CATEGORIES` was re-picked on corrected data: the `N > 75` rule now selects
+**cameras, hub, alarms, ev-charging** (`streaming` at 61 drops out); the stale
+`cwe888_treemap_streaming.pdf` was deleted.
+
+**Paper edits** (`docs/home_iot_security_report.tex`):
+- §`sec:method-scope` — ontology as the formal counterpart to the prose criteria, incl. the
+  4(a)/4(b) admission-route split (**1,624 vs 114**, so the contested entertainment boundary
+  governs 6.6% of the corpus).
+- §`sec:rq1` — both tables inlined, the `\stub` discussion written, micro/macro reported as a
+  robustness note (7.3 pts by category, narrowing to 5.3 by family).
+- `sec:rq1-cat1`–`cat4` — filled with the four largest folding categories (Cameras and
+  Monitors, Hubs and Controllers, Energy, Alarms and Sensors = 82% of attributions).
+- §`sec:threats-construct` — the 27-ruling reasoner check *and* the alignment gap.
+- Data Availability — the `.ttl` artifacts + KG.
+- Fixed a pre-existing dangling reference: the paper cited `category_scope.csv` twice; the
+  actual file is `data/categories.csv`.
+
+**Numbers worth not re-deriving.** The plan's "six categories at N ≤ 5" is true of **confirmed
+CVEs** (airconditioner 5, sensors 4, appliances 3, fridge 3, airpurifier 2, fans 1), *not* of
+CWE attributions — by attributions only five sit at ≤5 and airconditioner is 8. Keep the two
+units distinct when citing. The alignment gap is **9 exact / 15 coarse** over the 24 analysis
+categories (a 10th "exact", `vrar`, is an excluded class — don't count it), and those 15
+coarse categories carry **91.5%** of confirmed CVEs / 92.3% of attributions.
+
+**Not done (was marked optional in Phase 5):** the facet-level triage of reviewer disagreement
+in §`sec:threats-reliability`.
 
 ### The one thing still open: `shades`
 
@@ -86,13 +129,16 @@ correct?"*, but **at n=0 that question is moot** — the real question is (a) vs
 
 ### Carried-forward items not part of this plan
 
-1. **`tab:cwe888-matrix` in `report.tex` is stale AND predates the exclusion fix.** Regenerate
-   before submission (`scripts/generate_cwe888_table.py`). Any figure computed before `c9121f5`
-   is wrong.
-2. **`docs/plans/PLAN_scope_exclusion.md` does not exist on `main`** but is referenced from
-   `categories.csv`, `mark_excluded.py`, and `CLAUDE.md`.
-3. **`CLAUDE.md` still describes the ontology-less layout** — no mention of `ontology/`,
-   `families.csv`, or `ontology_build.py`. Update when Phase 5 lands.
+1. ~~`tab:cwe888-matrix` is stale AND predates the exclusion fix.~~ **Done in Phase 5** — table,
+   family table, and all treemaps regenerated at N=1,904.
+2. **`docs/plans/PLAN_scope_exclusion.md` is referenced but unreachable.** Nine files on this
+   branch cite it (`data/categories.csv`, `ontology/homeiot.ttl`, `mark_excluded.py`,
+   `cpe_expansion.py`, `cpe_brand_mining.py`, `finalize_judgments.py`,
+   `extract_human_review.py`, `docs/RESULTS.md`, this plan). It was never deleted — it exists
+   only on the unmerged branches `docs/tvos-scope-exclusion` and `vulnrichment-test`. Decide
+   whether to merge one of those or cherry-pick the file; **still open.**
+3. ~~`CLAUDE.md` still describes the ontology-less layout.~~ **Done in Phase 5** — added
+   `ontology/` + `data/ontology/` to the file structure and a design-rationale section.
 
 ---
 

@@ -88,18 +88,48 @@ def main():
     ap.add_argument("--out", default=os.path.join(ROOT, "data/difference/cwe888_table.tex"))
     ap.add_argument("--highlight-color", default="yellow",
                      help="xcolor spec used for \\cellcolor on each row's top-6 classes")
+    ap.add_argument("--label", default="tab:cwe888-matrix",
+                     help="LaTeX \\label for the emitted table")
+    ap.add_argument("--unit-label", default="category",
+                     help="noun for the unit of analysis, used in the caption and row header "
+                          "(e.g. 'folding category' for a --group family distribution)")
+    ap.add_argument("--order-by-n", action="store_true",
+                     help="order rows by descending N instead of by --categories file order; "
+                          "use for family rollups, whose labels are not in categories.csv")
     args = ap.parse_args()
 
+    # cwe888_analysis.py emits two pseudo-rows alongside the real categories:
+    # "ALL" (micro totals, which this script recomputes by summing anyway) and
+    # "ALL-MACRO" (each category weighted equally, so it carries percentages
+    # only and its n_cwes cell is empty by construction).
     counts = {}
+    macro_pcts = {}
     with open(args.distribution, newline="", encoding="utf-8-sig") as f:
         for row in csv.DictReader(f):
-            counts.setdefault(row["category"], Counter())[row["cwe888_class"]] = int(row["n_cwes"])
+            cat, cls = row["category"], row["cwe888_class"]
+            if cat == "ALL-MACRO":
+                macro_pcts[cls] = float(row["pct"] or 0)
+                continue
+            n = row["n_cwes"].strip()
+            counts.setdefault(cat, Counter())[cls] = int(n) if n else 0
 
-    cat_order = []
-    with open(args.categories, newline="", encoding="utf-8-sig") as f:
-        cat_order = [r["slug"].strip() for r in csv.DictReader(f)]
-    cats = [c for c in cat_order if c in counts and c != "ALL"]
-    cats += sorted(c for c in counts if c not in cat_order and c != "ALL")
+    if args.order_by_n:
+        cats = sorted((c for c in counts if c != "ALL"),
+                       key=lambda c: -sum(counts[c].values()))
+    else:
+        cat_order = []
+        with open(args.categories, newline="", encoding="utf-8-sig") as f:
+            cat_order = [r["slug"].strip() for r in csv.DictReader(f)]
+        cats = [c for c in cat_order if c in counts and c != "ALL"]
+        cats += sorted(c for c in counts if c not in cat_order and c != "ALL")
+
+    def tex_escape(s):
+        # Family labels are prose ("Alarms & Sensors"), not slugs, so they can
+        # carry characters that are LaTeX-active. An unescaped "&" silently
+        # adds a column and breaks the whole tabular.
+        for ch in ("&", "%", "$", "#", "_"):
+            s = s.replace(ch, "\\" + ch)
+        return s
 
     def row_cells(c):
         total = sum(c.values())
@@ -124,17 +154,21 @@ def main():
     lines.append("\\begin{table*}[t]")
     lines.append("\\centering")
     lines.append("\\caption{Distribution of confirmed home IoT CVE CWE attributions across "
-                  "CWE-888 primary classes, by category. Each cell is the row's percentage of "
-                  "its category's total CWE attributions ($N$); shaded cells "
+                  f"CWE-888 primary classes, by {args.unit_label}. Each cell is the row's "
+                  f"percentage of its {args.unit_label}'s total CWE attributions ($N$); shaded cells "
                   "(\\colorbox{" + args.highlight_color + "}{\\phantom{0}}) mark that row's "
                   "6 most common classes, mirroring Table~III of the transportation IoT study. "
+                  "The two overall rows differ in weighting: \\emph{micro} pools every "
+                  "attribution, so the largest rows dominate, while \\emph{macro} averages the "
+                  "individual row profiles with equal weight and therefore has no attribution "
+                  "count of its own. "
                   "Exact counts are in \\texttt{data/difference/cwe888\\_matrix.md}.}")
-    lines.append("\\label{tab:cwe888-matrix}")
+    lines.append(f"\\label{{{args.label}}}")
     lines.append("\\resizebox{\\textwidth}{!}{%")
     col_spec = "l" + "r" * len(CLASS_ORDER) + "rr"
     lines.append(f"\\begin{{tabular}}{{{col_spec}}}")
     lines.append("\\toprule")
-    header = ["Category"] + [f"\\rotatebox{{90}}{{{CLASS_ABBREV[c]}}}" for c in CLASS_ORDER] \
+    header = [args.unit_label.title()] + [f"\\rotatebox{{90}}{{{CLASS_ABBREV[c]}}}" for c in CLASS_ORDER] \
         + ["\\rotatebox{90}{$N$}", "\\rotatebox{90}{Top-6\\%}"]
     lines.append(" & ".join(header) + " \\\\")
     lines.append("\\midrule")
@@ -143,11 +177,31 @@ def main():
     for cat in cats:
         all_counts.update(counts[cat])
         cells, total, top6_pct = row_cells(counts[cat])
-        lines.append(" & ".join([cat] + cells + [str(total), str(top6_pct)]) + " \\\\")
+        lines.append(" & ".join([tex_escape(cat)] + cells + [str(total), str(top6_pct)]) + " \\\\")
 
     lines.append("\\midrule")
     cells, total, top6_pct = row_cells(all_counts)
-    lines.append(" & ".join(["\\textbf{All}"] + cells + [str(total), str(top6_pct)]) + " \\\\")
+    lines.append(" & ".join(["\\textbf{All} (micro)"] + cells + [str(total), str(top6_pct)]) + " \\\\")
+
+    # Macro row: every category weighted equally regardless of its N, so the
+    # profile is not dominated by the largest category. Percentages come
+    # straight from cwe888_analysis.py rather than being re-derived here, so
+    # the two stay consistent; there is no attribution count to report.
+    if macro_pcts:
+        top6_macro = {cls for cls, _ in Counter(macro_pcts).most_common(6)}
+        macro_cells = []
+        for cls in CLASS_ORDER:
+            pct = macro_pcts.get(cls, 0)
+            if not round(pct):
+                macro_cells.append("")
+                continue
+            text = f"{round(pct)}"
+            if cls in top6_macro:
+                text = f"\\cellcolor{{{args.highlight_color}}}{text}"
+            macro_cells.append(text)
+        top6_macro_pct = round(sum(p for _, p in Counter(macro_pcts).most_common(6)))
+        lines.append(" & ".join(["\\textbf{All} (macro)"] + macro_cells
+                                 + ["---", str(top6_macro_pct)]) + " \\\\")
     lines.append("\\bottomrule")
     lines.append("\\end{tabular}}")
     lines.append("\\end{table*}")

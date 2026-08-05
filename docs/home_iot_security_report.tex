@@ -217,6 +217,27 @@ membership before large-scale collection, so that a later change to one category
 a re-run of only that category's chain rather than the whole pipeline. The per-category
 \emph{term} lists, by contrast, stay open to refinement (Section~\ref{sec:method-precision}).
 
+The criteria above are also published in machine-readable form as an OWL~2
+ontology, which serves three purposes in this study. First, it makes the scope
+decision auditable: each of the 24 in-scope categories and each defined-but-excluded
+type carries an explicit value for all five criteria, and criteria~1--5 are stated as an
+equivalence axiom, so an OWL reasoner --- rather than the prose --- decides membership.
+Running it reproduces all 27 published in-scope and out-of-scope rulings, which we report
+as a construct-validity check in Section~\ref{sec:threats-construct}. Second, it records
+the admission route, not merely the verdict. Because criterion~4 admits a device either
+by direct home control (4(a)) or by acting as a control surface for other devices (4(b)),
+and because 4(b) is the contested clause that lets entertainment hardware in, the
+distinction is worth quantifying: 1{,}624 of the 1{,}738 confirmed CVE--category
+assignments enter through 4(a) and only 114 through 4(b), so the boundary that attracts
+the most methodological objection governs 6.6\% of the corpus. Third, it defines a
+coarser tier of 13 \emph{folding categories} over the 24 leaves, used for reporting
+wherever a leaf category is too sparse to interpret (Section~\ref{sec:rq1}). The
+ontology generates \texttt{categories.csv} --- the same file that supplies every
+reviewer's scope note --- so the formal model and the artifact the pipeline actually
+consumes cannot drift apart. It holds classes and scope notes only, never judgments: no
+CVE is classified by the ontology, and no reviewer sees information the prose scope note
+did not already contain.
+
 \subsection{CVE collection from NVD}
 \label{sec:method-collect}
 
@@ -474,28 +495,80 @@ global precision over all of a term's matches.
 To answer RQ1, we refer to Table~\ref{tab:cwe888-matrix}, which maps every
 CWE attributed to a confirmed home IoT device CVE onto the 22 non-empty
 CWE-888 primary vulnerability classes (Section~\ref{sec:method-cwe888}),
-broken down by category. Figures~\ref{fig:cwe888-treemap-all}--\ref{fig:cwe888-treemap-alarms}
+broken down by category. The corpus behind it is 1{,}738 confirmed
+CVE--category assignments over 1{,}676 distinct CVEs, yielding 1{,}904 mapped
+CWE attributions across the 22 categories with confirmed data.
+Figures~\ref{fig:cwe888-treemap-all}--\ref{fig:cwe888-treemap-evcharging}
 show the same distribution as area-proportional treemaps — one overall and
-one each for the four categories with the most confirmed CVEs (\texttt{streaming},
-\texttt{cameras}, \texttt{hub}, \texttt{alarms}) — mirroring Figs.~2--4 of the
-transportation IoT study. Unlike Table~III of the transportation IoT study,
-which lists 23 classes as rows against 4 device categories as columns, this
-study's 20 categories with confirmed data are shown as rows against the
-CWE-888 classes as columns, so that each category's own dominant classes read
-across a single line; the shaded cells in each row
+one each for the four categories with the most confirmed CVEs (\texttt{cameras},
+\texttt{hub}, \texttt{alarms}, \texttt{ev-charging}, the only categories above
+$N=75$) — mirroring Figs.~2--4 of the transportation IoT study. Unlike
+Table~III of the transportation IoT study, which lists 23 classes as rows
+against 4 device categories as columns, this study's categories are shown as
+rows against the CWE-888 classes as columns, so that each category's own
+dominant classes read across a single line; the shaded cells in each row
 (\colorbox{yellow}{\phantom{0}}) mark that category's 6 most common classes,
 the same highlighting convention the transportation study uses to identify
-its dominant classes per column. \stub[Discuss the dominant classes per
-category and overall, mirroring Section IV of the transportation study:
-which classes recur across most categories (\texttt{Authentication},
-\texttt{Information Leak}, \texttt{Memory Access}, and \texttt{Tainted Input}
-are common in the \texttt{All} row here), which are category-specific, and
-how the top-6 share compares category to category.]
+its dominant classes per column.
+
+Two findings stand out at the corpus level. First, a small number of classes
+account for most of the corpus: \texttt{Tainted Input} (23\%) and
+\texttt{Memory Access} (22\%) together cover almost half of all attributions,
+followed by \texttt{Authentication} (14\%) and \texttt{Information Leak}
+(10\%); the six most common classes account for 81\% of every attribution we
+observe. This is a markedly input-validation- and memory-centric profile,
+consistent with a device population built largely on embedded C firmware
+exposed through network-facing parsers and web interfaces. Second, the
+classes that \emph{recur} are not quite the ones that \emph{dominate}.
+\texttt{Information Leak} appears in 21 of the 22 categories and
+\texttt{Tainted Input} in 19, while \texttt{Memory Access} --- the second
+largest class by volume --- appears in only 14. Memory-safety defects are
+therefore concentrated rather than universal: they are the signature of
+specific device classes, not a property of home IoT as a whole.
+
+That concentration is visible in the per-category rows. \texttt{Memory
+Access} accounts for 61\% of \texttt{hub} attributions, 39\% of
+\texttt{smartspeakers}, and 36\% of \texttt{streaming} --- the three
+categories whose devices run the most substantial general-purpose software
+stacks --- against 17\% for \texttt{cameras}. The camera-style categories
+instead lead with \texttt{Tainted Input} (29\% for \texttt{cameras}, 40\% for
+\texttt{alarms}), reflecting the web-management and RTSP/ONVIF interfaces
+those devices expose. \texttt{Access Control} peaks in \texttt{doorlock}
+(21\%), the one category where the access-control decision \emph{is} the
+device's function. Reading the top-6 share as a concentration measure, the
+larger categories cluster tightly in the 76--91\% range, with \texttt{pet}
+(76\%) the most diffuse and \texttt{hub} (91\%) the most concentrated.
+
+The top-6 figures of 100\% in \texttt{fans}, \texttt{fridge},
+\texttt{sensors}, \texttt{airpurifier}, \texttt{appliances}, and
+\texttt{airconditioner} are an artifact of small $N$ rather than a finding:
+each of those categories rests on five or fewer confirmed CVEs, so six
+classes trivially exhaust them, and a cell reading ``\texttt{Channel} 67\%''
+in \texttt{sensors} represents two attributions. We therefore do not
+interpret those rows individually, and Section~\ref{sec:rq1-cat1} onward
+analyzes the folding categories of Table~\ref{tab:cwe888-family}, which
+aggregate them to a level where the percentages are supportable.
+
+Because one category (\texttt{cameras}) supplies 52\% of all attributions,
+Table~\ref{tab:cwe888-matrix} reports the overall profile under both
+weightings. The micro row pools every attribution, so it describes the
+average \emph{vulnerability}; the macro row averages the 22 per-category
+profiles with equal weight, so it describes the average \emph{category}. The
+two agree on the leading class and on \texttt{Authentication} at 14\%, and
+diverge most on \texttt{Memory Access} (22.0\% micro against 14.7\% macro, a
+7.3-point gap) and \texttt{Information Leak} (10.4\% against 16.2\%). The
+direction of both gaps restates the concentration finding above: memory
+defects are over-represented in the largest categories and information
+leakage is spread more evenly across small ones. We report the gap as a
+robustness check rather than a result --- at 7.3 points it is modest, and it
+narrows to 5.3 points once categories are folded
+(Table~\ref{tab:cwe888-family}), which is the expected effect of pooling
+small categories into better-populated ones.
 
 % BEGIN GENERATED FIGURES — from scripts/generate_cwe888_treemaps.py, output
 % docs/figures/cwe888_treemap_*.pdf. One treemap for the overall ("ALL") CWE-888
-% class distribution plus the four categories with N > 75 (streaming, cameras,
-% hub, alarms), mirroring Figs. 2-4 of the transportation IoT study. Box area is
+% class distribution plus the four categories with N > 75 (cameras, hub, alarms,
+% ev-charging), mirroring Figs. 2-4 of the transportation IoT study. Box area is
 % each class's share of that category's confirmed CWE attributions; the same
 % class keeps the same color across every figure. Re-run the script after the
 % underlying data changes — output paths are already relative to docs/, so no
@@ -505,13 +578,6 @@ how the top-6 share compares category to category.]
 \includegraphics[width=\columnwidth]{figures/cwe888_treemap_all.pdf}
 \caption{Distribution of confirmed home IoT CVEs' CWE-888 primary classes, overall.}
 \label{fig:cwe888-treemap-all}
-\end{figure}
-
-\begin{figure}[t]
-\centering
-\includegraphics[width=\columnwidth]{figures/cwe888_treemap_streaming.pdf}
-\caption{Distribution of \texttt{streaming} category CVEs' CWE-888 primary classes.}
-\label{fig:cwe888-treemap-streaming}
 \end{figure}
 
 \begin{figure}[t]
@@ -534,6 +600,13 @@ how the top-6 share compares category to category.]
 \caption{Distribution of \texttt{alarms} category CVEs' CWE-888 primary classes.}
 \label{fig:cwe888-treemap-alarms}
 \end{figure}
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\columnwidth]{figures/cwe888_treemap_ev-charging.pdf}
+\caption{Distribution of \texttt{ev-charging} category CVEs' CWE-888 primary classes.}
+\label{fig:cwe888-treemap-evcharging}
+\end{figure}
 % END GENERATED FIGURES
 
 % BEGIN GENERATED TABLE — from scripts/generate_cwe888_table.py, output
@@ -542,56 +615,183 @@ how the top-6 share compares category to category.]
 % "../" path outside it. To refresh after the underlying data changes:
 % re-run the script locally and paste the new file contents in between
 % these markers.
+% Auto-generated by scripts/generate_cwe888_table.py — do not edit by hand.
 \begin{table*}[t]
 \centering
-\caption{Distribution of confirmed home IoT CVE CWE attributions across CWE-888 primary classes, by category. Each cell is the row's percentage of its category's total CWE attributions ($N$); shaded cells (\colorbox{yellow}{\phantom{0}}) mark that row's 6 most common classes, mirroring Table~III of the transportation IoT study. Exact counts are in \texttt{data/difference/cwe888\_matrix.md}.}
+\caption{Distribution of confirmed home IoT CVE CWE attributions across CWE-888 primary classes, by category. Each cell is the row's percentage of its category's total CWE attributions ($N$); shaded cells (\colorbox{yellow}{\phantom{0}}) mark that row's 6 most common classes, mirroring Table~III of the transportation IoT study. The two overall rows differ in weighting: \emph{micro} pools every attribution, so the largest rows dominate, while \emph{macro} averages the individual row profiles with equal weight and therefore has no attribution count of its own. Exact counts are in \texttt{data/difference/cwe888\_matrix.md}.}
 \label{tab:cwe888-matrix}
 \resizebox{\textwidth}{!}{%
 \begin{tabular}{lrrrrrrrrrrrrrrrrrrrrrrrr}
 \toprule
 Category & \rotatebox{90}{API} & \rotatebox{90}{AccCtrl} & \rotatebox{90}{Auth} & \rotatebox{90}{Channel} & \rotatebox{90}{Crypto} & \rotatebox{90}{EntryPt} & \rotatebox{90}{ExcMgmt} & \rotatebox{90}{FailRelMem} & \rotatebox{90}{FaultResRel} & \rotatebox{90}{InfoLeak} & \rotatebox{90}{Malware} & \rotatebox{90}{MemAccess} & \rotatebox{90}{MemMgmt} & \rotatebox{90}{Other} & \rotatebox{90}{PathRes} & \rotatebox{90}{Predict} & \rotatebox{90}{Privilege} & \rotatebox{90}{ResMgmt} & \rotatebox{90}{RiskyVal} & \rotatebox{90}{Sync} & \rotatebox{90}{TaintIn} & \rotatebox{90}{UI} & \rotatebox{90}{$N$} & \rotatebox{90}{Top-6\%} \\
 \midrule
-doorlock &  & \cellcolor{yellow}33 & \cellcolor{yellow}11 & \cellcolor{yellow}11 & 6 &  &  &  &  & \cellcolor{yellow}11 &  & \cellcolor{yellow}11 &  &  &  &  &  & \cellcolor{yellow}11 &  &  & 6 &  & 18 & 89 \\
-smartspeakers &  & \cellcolor{yellow}7 & \cellcolor{yellow}11 &  &  &  &  &  &  & 4 &  & \cellcolor{yellow}41 &  &  & 4 &  & 4 & \cellcolor{yellow}7 & \cellcolor{yellow}7 &  & \cellcolor{yellow}15 &  & 27 & 89 \\
-doorbell &  & \cellcolor{yellow}8 & \cellcolor{yellow}31 &  & \cellcolor{yellow}8 &  &  &  &  & \cellcolor{yellow}8 &  &  &  &  &  & \cellcolor{yellow}8 & 8 &  &  & 8 & \cellcolor{yellow}23 &  & 13 & 85 \\
-thermostat &  &  &  &  & \cellcolor{yellow}10 &  &  &  &  & \cellcolor{yellow}10 &  & \cellcolor{yellow}30 &  & \cellcolor{yellow}20 &  & \cellcolor{yellow}20 &  &  &  &  & \cellcolor{yellow}10 &  & 10 & 100 \\
-babymonitor &  &  & \cellcolor{yellow}10 &  & \cellcolor{yellow}10 &  &  &  &  & \cellcolor{yellow}10 &  &  &  &  & \cellcolor{yellow}10 &  & \cellcolor{yellow}20 &  &  &  & \cellcolor{yellow}40 &  & 10 & 100 \\
-smartplugs &  & \cellcolor{yellow}8 & \cellcolor{yellow}20 & 4 &  &  &  &  &  & \cellcolor{yellow}20 &  & \cellcolor{yellow}8 &  & \cellcolor{yellow}12 &  & \cellcolor{yellow}12 & 4 & 4 &  &  & 8 &  & 25 & 80 \\
-alarms &  & \cellcolor{yellow}5 & \cellcolor{yellow}10 & \cellcolor{yellow}13 &  & 3 &  &  & 1 & \cellcolor{yellow}13 &  & 1 & 1 & \cellcolor{yellow}4 &  & 4 &  &  & 1 &  & \cellcolor{yellow}43 &  & 77 & 88 \\
-robotvacuum &  & \cellcolor{yellow}8 & \cellcolor{yellow}19 & 4 & \cellcolor{yellow}12 &  &  &  &  & 8 &  & 4 &  & \cellcolor{yellow}12 &  & \cellcolor{yellow}12 &  &  &  &  & \cellcolor{yellow}23 &  & 26 & 85 \\
+doorlock &  & \cellcolor{yellow}21 & \cellcolor{yellow}19 & \cellcolor{yellow}7 & 2 &  &  &  &  & \cellcolor{yellow}16 &  & \cellcolor{yellow}9 &  & 5 & 2 & 7 &  & \cellcolor{yellow}9 &  &  & 2 &  & 43 & 81 \\
+smartspeakers &  & \cellcolor{yellow}9 & \cellcolor{yellow}9 &  &  &  &  &  &  & 3 &  & \cellcolor{yellow}39 &  &  & 3 &  & 3 & \cellcolor{yellow}9 & \cellcolor{yellow}9 &  & \cellcolor{yellow}15 &  & 33 & 91 \\
+doorbell &  & \cellcolor{yellow}12 & \cellcolor{yellow}21 & 3 & 3 & 3 &  &  &  & \cellcolor{yellow}15 &  &  &  &  &  & 3 & \cellcolor{yellow}9 & \cellcolor{yellow}9 &  & 3 & \cellcolor{yellow}21 &  & 34 & 85 \\
+thermostat &  &  & \cellcolor{yellow}11 & \cellcolor{yellow}11 & 5 &  &  &  &  & \cellcolor{yellow}16 &  & \cellcolor{yellow}16 &  & \cellcolor{yellow}11 &  & 11 &  &  &  &  & \cellcolor{yellow}21 &  & 19 & 84 \\
+babymonitor &  & 5 & \cellcolor{yellow}23 &  & \cellcolor{yellow}9 &  &  &  &  & \cellcolor{yellow}14 &  & \cellcolor{yellow}9 &  & 5 & 5 & 5 & \cellcolor{yellow}9 &  &  &  & \cellcolor{yellow}18 &  & 22 & 82 \\
+smartplugs &  & \cellcolor{yellow}10 & \cellcolor{yellow}17 & 3 & 3 &  &  &  &  & \cellcolor{yellow}17 &  & \cellcolor{yellow}14 &  & \cellcolor{yellow}10 &  & \cellcolor{yellow}10 & 3 & 3 &  &  & 7 &  & 29 & 79 \\
+alarms &  & \cellcolor{yellow}5 & \cellcolor{yellow}10 & \cellcolor{yellow}14 &  & 2 &  &  & 1 & \cellcolor{yellow}15 &  & 1 & 1 & 3 &  & \cellcolor{yellow}6 &  &  & 1 &  & \cellcolor{yellow}40 &  & 86 & 90 \\
+robotvacuum &  & 6 & \cellcolor{yellow}21 & 3 & \cellcolor{yellow}9 &  &  &  &  & \cellcolor{yellow}9 &  & 3 &  & \cellcolor{yellow}15 &  & \cellcolor{yellow}18 &  &  &  &  & \cellcolor{yellow}18 &  & 34 & 88 \\
+fans &  & \cellcolor{yellow}25 & \cellcolor{yellow}25 & \cellcolor{yellow}25 &  &  &  &  &  & \cellcolor{yellow}25 &  &  &  &  &  &  &  &  &  &  &  &  & 4 & 100 \\
 fridge &  &  &  &  &  &  &  &  &  & \cellcolor{yellow}25 &  &  &  & \cellcolor{yellow}25 &  & \cellcolor{yellow}25 &  &  &  &  & \cellcolor{yellow}25 &  & 4 & 100 \\
-sensors &  &  &  & \cellcolor{yellow}100 &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  &  & 2 & 100 \\
-lighting &  &  & \cellcolor{yellow}24 &  & \cellcolor{yellow}12 &  &  &  &  & \cellcolor{yellow}8 &  & \cellcolor{yellow}32 &  &  &  &  &  & \cellcolor{yellow}12 &  &  & \cellcolor{yellow}12 &  & 25 & 100 \\
+sensors &  &  &  & \cellcolor{yellow}67 &  &  &  &  &  & \cellcolor{yellow}33 &  &  &  &  &  &  &  &  &  &  &  &  & 3 & 100 \\
+airpurifier &  &  &  &  &  &  &  &  &  & \cellcolor{yellow}50 &  &  &  &  &  &  &  &  &  &  & \cellcolor{yellow}50 &  & 2 & 100 \\
+lighting &  & 3 & \cellcolor{yellow}23 &  & \cellcolor{yellow}10 &  &  &  &  & \cellcolor{yellow}10 &  & \cellcolor{yellow}26 &  &  &  &  &  & \cellcolor{yellow}16 &  &  & \cellcolor{yellow}13 &  & 31 & 97 \\
 appliances & \cellcolor{yellow}33 &  &  &  &  &  &  &  &  &  &  & \cellcolor{yellow}67 &  &  &  &  &  &  &  &  &  &  & 3 & 100 \\
-hub &  & \cellcolor{yellow}6 & \cellcolor{yellow}11 & 2 & \cellcolor{yellow}6 &  & 1 &  &  & \cellcolor{yellow}10 &  & \cellcolor{yellow}41 &  &  & 1 &  & 6 &  & 2 &  & \cellcolor{yellow}15 &  & 102 & 88 \\
-ev-charging &  & \cellcolor{yellow}23 & \cellcolor{yellow}8 &  &  &  &  &  &  & \cellcolor{yellow}8 &  & \cellcolor{yellow}12 &  & \cellcolor{yellow}19 &  & 4 &  &  & 4 &  & \cellcolor{yellow}23 &  & 26 & 92 \\
-home-power &  & \cellcolor{yellow}9 & \cellcolor{yellow}15 &  & 6 &  &  &  &  & \cellcolor{yellow}12 &  &  &  & 6 & \cellcolor{yellow}12 & \cellcolor{yellow}9 &  &  &  &  & \cellcolor{yellow}30 &  & 33 & 88 \\
-garden & \cellcolor{yellow}5 & \cellcolor{yellow}9 & \cellcolor{yellow}32 & 5 & 5 &  &  &  &  & 5 &  &  &  & \cellcolor{yellow}9 &  & \cellcolor{yellow}9 &  &  &  &  & \cellcolor{yellow}18 & 5 & 22 & 82 \\
-pet &  & \cellcolor{yellow}9 & \cellcolor{yellow}12 & 5 & \cellcolor{yellow}7 &  &  &  &  & \cellcolor{yellow}16 &  & 7 &  & 5 &  & 5 & 5 & \cellcolor{yellow}16 &  & 2 & \cellcolor{yellow}12 &  & 43 & 72 \\
-streaming & 0 & \cellcolor{yellow}3 & 2 & 0 & 0 &  & 1 & 0 & 0 & \cellcolor{yellow}6 & 0 & \cellcolor{yellow}58 & 0 & 1 & 2 & 0 & 1 & \cellcolor{yellow}9 & \cellcolor{yellow}3 & 3 & \cellcolor{yellow}10 & 0 & 1785 & 89 \\
-airconditioner &  &  & \cellcolor{yellow}33 &  &  &  &  &  &  & \cellcolor{yellow}33 &  &  &  &  &  &  &  &  &  &  & \cellcolor{yellow}33 &  & 3 & 100 \\
-cameras & 0 & 5 & \cellcolor{yellow}13 & 1 & 1 & 0 & 1 &  &  & \cellcolor{yellow}9 &  & \cellcolor{yellow}16 &  & \cellcolor{yellow}6 & 3 & \cellcolor{yellow}7 & 1 & 2 & 1 &  & \cellcolor{yellow}33 &  & 625 & 85 \\
+hub &  & \cellcolor{yellow}5 & \cellcolor{yellow}8 & 2 & \cellcolor{yellow}2 &  & 0 &  &  & \cellcolor{yellow}5 &  & \cellcolor{yellow}61 &  & 1 & 2 & 1 & 2 & 0 & 1 &  & \cellcolor{yellow}10 &  & 282 & 91 \\
+ev-charging &  & \cellcolor{yellow}9 & \cellcolor{yellow}15 & 6 & 2 &  &  &  &  & \cellcolor{yellow}9 &  & \cellcolor{yellow}19 &  & \cellcolor{yellow}11 & 1 & 7 & 1 &  & 1 &  & \cellcolor{yellow}15 & 2 & 85 & 79 \\
+home-power &  & 6 & \cellcolor{yellow}18 &  & 4 &  &  &  &  & \cellcolor{yellow}18 &  &  &  & \cellcolor{yellow}8 & \cellcolor{yellow}10 & \cellcolor{yellow}10 &  &  &  &  & \cellcolor{yellow}26 &  & 50 & 90 \\
+garden & \cellcolor{yellow}4 & \cellcolor{yellow}8 & \cellcolor{yellow}31 & 4 & 4 &  &  &  &  & 4 &  &  &  & \cellcolor{yellow}15 &  & \cellcolor{yellow}12 &  &  &  &  & \cellcolor{yellow}15 & 4 & 26 & 85 \\
+pet &  & \cellcolor{yellow}10 & \cellcolor{yellow}14 & 4 & \cellcolor{yellow}6 &  &  &  &  & \cellcolor{yellow}20 &  & 6 &  & 4 &  & 4 & 4 & \cellcolor{yellow}14 &  & 2 & \cellcolor{yellow}10 &  & 49 & 76 \\
+streaming &  & \cellcolor{yellow}3 & \cellcolor{yellow}11 & 2 &  &  &  &  &  & \cellcolor{yellow}18 &  & \cellcolor{yellow}36 &  & 2 & 2 & 2 &  & \cellcolor{yellow}5 & 2 & 2 & \cellcolor{yellow}16 &  & 61 & 90 \\
+airconditioner &  &  & \cellcolor{yellow}12 &  & \cellcolor{yellow}12 &  &  &  &  & \cellcolor{yellow}25 &  &  &  & \cellcolor{yellow}12 &  & \cellcolor{yellow}12 &  &  &  &  & \cellcolor{yellow}25 &  & 8 & 100 \\
+cameras & 1 & 5 & \cellcolor{yellow}15 & 1 & 1 & 0 & 1 & 0 &  & \cellcolor{yellow}10 &  & \cellcolor{yellow}17 &  & \cellcolor{yellow}7 & 3 & \cellcolor{yellow}7 & 1 & 2 & 1 & 0 & \cellcolor{yellow}29 &  & 996 & 84 \\
 \midrule
-\textbf{All} & 0 & \cellcolor{yellow}4 & \cellcolor{yellow}6 & 1 & 1 & 0 & 1 & 0 & 0 & \cellcolor{yellow}8 & 0 & \cellcolor{yellow}42 & 0 & 3 & 2 & 2 & 1 & \cellcolor{yellow}6 & 2 & 2 & \cellcolor{yellow}17 & 0 & 2879 & 83 \\
+\textbf{All} (micro) & 0 & \cellcolor{yellow}6 & \cellcolor{yellow}14 & 2 & 2 & 0 & 0 & 0 & 0 & \cellcolor{yellow}10 &  & \cellcolor{yellow}22 & 0 & 6 & 3 & \cellcolor{yellow}6 & 1 & 2 & 1 & 0 & \cellcolor{yellow}23 & 0 & 1904 & 81 \\
+\textbf{All} (macro) & 2 & \cellcolor{yellow}6 & \cellcolor{yellow}14 & \cellcolor{yellow}7 & 3 &  &  &  &  & \cellcolor{yellow}16 &  & \cellcolor{yellow}15 &  & 6 & 1 & 6 & 2 & 3 & 1 &  & \cellcolor{yellow}17 &  & --- & 75 \\
 \bottomrule
 \end{tabular}}
 \end{table*}
 % END GENERATED TABLE
 
-\subsection{}
+% BEGIN GENERATED TABLE (family rollup) — same script, run with
+% --distribution data/difference/cwe888_distribution_family.csv
+% --label tab:cwe888-family --unit-label "folding category" --order-by-n
+% Folds the 24 leaf categories into the 13 supervisor-agreed folding
+% categories from data/ontology/families.csv (2 of which have no confirmed
+% CVEs and so do not appear). Refresh the same way as the table above.
+% Auto-generated by scripts/generate_cwe888_table.py — do not edit by hand.
+\begin{table*}[t]
+\centering
+\caption{Distribution of confirmed home IoT CVE CWE attributions across CWE-888 primary classes, by folding category. Each cell is the row's percentage of its folding category's total CWE attributions ($N$); shaded cells (\colorbox{yellow}{\phantom{0}}) mark that row's 6 most common classes, mirroring Table~III of the transportation IoT study. The two overall rows differ in weighting: \emph{micro} pools every attribution, so the largest rows dominate, while \emph{macro} averages the individual row profiles with equal weight and therefore has no attribution count of its own. Exact counts are in \texttt{data/difference/cwe888\_matrix.md}.}
+\label{tab:cwe888-family}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{lrrrrrrrrrrrrrrrrrrrrrrrr}
+\toprule
+Folding Category & \rotatebox{90}{API} & \rotatebox{90}{AccCtrl} & \rotatebox{90}{Auth} & \rotatebox{90}{Channel} & \rotatebox{90}{Crypto} & \rotatebox{90}{EntryPt} & \rotatebox{90}{ExcMgmt} & \rotatebox{90}{FailRelMem} & \rotatebox{90}{FaultResRel} & \rotatebox{90}{InfoLeak} & \rotatebox{90}{Malware} & \rotatebox{90}{MemAccess} & \rotatebox{90}{MemMgmt} & \rotatebox{90}{Other} & \rotatebox{90}{PathRes} & \rotatebox{90}{Predict} & \rotatebox{90}{Privilege} & \rotatebox{90}{ResMgmt} & \rotatebox{90}{RiskyVal} & \rotatebox{90}{Sync} & \rotatebox{90}{TaintIn} & \rotatebox{90}{UI} & \rotatebox{90}{$N$} & \rotatebox{90}{Top-6\%} \\
+\midrule
+Cameras and Monitors & 0 & 5 & \cellcolor{yellow}15 & 1 & 2 & 0 & 1 & 0 &  & \cellcolor{yellow}10 &  & \cellcolor{yellow}16 &  & \cellcolor{yellow}6 & 3 & \cellcolor{yellow}7 & 1 & 2 & 1 & 0 & \cellcolor{yellow}28 &  & 1052 & 83 \\
+Hubs and Controllers &  & \cellcolor{yellow}5 & \cellcolor{yellow}8 & 2 & \cellcolor{yellow}2 &  & 0 &  &  & \cellcolor{yellow}5 &  & \cellcolor{yellow}61 &  & 1 & 2 & 1 & 2 & 0 & 1 &  & \cellcolor{yellow}10 &  & 282 & 91 \\
+Energy &  & \cellcolor{yellow}8 & \cellcolor{yellow}16 & 4 & 3 &  &  &  &  & \cellcolor{yellow}13 &  & \cellcolor{yellow}12 &  & \cellcolor{yellow}10 & 4 & 8 & 1 &  & 1 &  & \cellcolor{yellow}19 & 1 & 135 & 78 \\
+Alarms \& Sensors &  & \cellcolor{yellow}4 & \cellcolor{yellow}10 & \cellcolor{yellow}16 &  & 2 &  &  & 1 & \cellcolor{yellow}16 &  & 1 & 1 & 3 &  & \cellcolor{yellow}6 &  &  & 1 &  & \cellcolor{yellow}38 &  & 89 & 90 \\
+Outdoor \& Pet & 1 & \cellcolor{yellow}9 & \cellcolor{yellow}20 & 4 & 5 &  &  &  &  & \cellcolor{yellow}15 &  & 4 &  & \cellcolor{yellow}8 &  & 7 & 3 & \cellcolor{yellow}9 &  & 1 & \cellcolor{yellow}12 & 1 & 75 & 73 \\
+Entertainment &  & \cellcolor{yellow}3 & \cellcolor{yellow}11 & 2 &  &  &  &  &  & \cellcolor{yellow}18 &  & \cellcolor{yellow}36 &  & 2 & 2 & 2 &  & \cellcolor{yellow}5 & 2 & 2 & \cellcolor{yellow}16 &  & 61 & 90 \\
+Electrical \& Lighting &  & \cellcolor{yellow}7 & \cellcolor{yellow}20 & 2 & 7 &  &  &  &  & \cellcolor{yellow}13 &  & \cellcolor{yellow}20 &  & 5 &  & 5 & 2 & \cellcolor{yellow}10 &  &  & \cellcolor{yellow}10 &  & 60 & 80 \\
+Access Control &  & \cellcolor{yellow}21 & \cellcolor{yellow}19 & \cellcolor{yellow}7 & 2 &  &  &  &  & \cellcolor{yellow}16 &  & \cellcolor{yellow}9 &  & 5 & 2 & 7 &  & \cellcolor{yellow}9 &  &  & 2 &  & 43 & 81 \\
+Appliances & 2 & 5 & \cellcolor{yellow}17 & 2 & \cellcolor{yellow}7 &  &  &  &  & \cellcolor{yellow}10 &  & 7 &  & \cellcolor{yellow}15 &  & \cellcolor{yellow}17 &  &  &  &  & \cellcolor{yellow}17 &  & 41 & 83 \\
+Audio &  & \cellcolor{yellow}9 & \cellcolor{yellow}9 &  &  &  &  &  &  & 3 &  & \cellcolor{yellow}39 &  &  & 3 &  & 3 & \cellcolor{yellow}9 & \cellcolor{yellow}9 &  & \cellcolor{yellow}15 &  & 33 & 91 \\
+Climate \& Air &  & 3 & \cellcolor{yellow}12 & \cellcolor{yellow}9 & 6 &  &  &  &  & \cellcolor{yellow}21 &  & \cellcolor{yellow}9 &  & \cellcolor{yellow}9 &  & 9 &  &  &  &  & \cellcolor{yellow}21 &  & 33 & 82 \\
+\midrule
+\textbf{All} (micro) & 0 & \cellcolor{yellow}6 & \cellcolor{yellow}14 & 2 & 2 & 0 & 0 & 0 & 0 & \cellcolor{yellow}10 &  & \cellcolor{yellow}22 & 0 & 6 & 3 & \cellcolor{yellow}6 & 1 & 2 & 1 & 0 & \cellcolor{yellow}23 & 0 & 1904 & 81 \\
+\textbf{All} (macro) &  & \cellcolor{yellow}7 & \cellcolor{yellow}14 & 4 & 3 &  &  &  &  & \cellcolor{yellow}13 &  & \cellcolor{yellow}20 &  & 6 & 2 & \cellcolor{yellow}6 & 1 & 4 & 1 &  & \cellcolor{yellow}17 &  & --- & 78 \\
+\bottomrule
+\end{tabular}}
+\end{table*}
+% END GENERATED TABLE
+
+
+The subsections that follow discuss the four largest folding categories of
+Table~\ref{tab:cwe888-family}, which between them carry 1{,}558 of the 1{,}904
+attributions (82\%). The folding categories are the coarser grouping defined
+over the 24 leaf categories in the device ontology
+(Section~\ref{sec:method-scope}); we discuss results at this level because six
+leaf categories rest on five or fewer confirmed CVEs and cannot support
+per-category interpretation, while the folded groups are populated enough to
+compare. Per-category numbers remain in Table~\ref{tab:cwe888-matrix}
+throughout, and the folding never re-labels a CVE --- it is a view over the
+same judgments.
+
+\subsection{Cameras and Monitors}
 \label{sec:rq1-cat1}
 
+The \texttt{cameras}, \texttt{doorbell}, and \texttt{babymonitor} categories
+fold into a single group of 948 confirmed CVEs and 1{,}052 CWE attributions,
+55\% of the corpus and by a wide margin the largest group in the study. Its
+profile is led by \texttt{Tainted Input} (28\%), followed by \texttt{Memory
+Access} (16\%), \texttt{Authentication} (15\%), and \texttt{Information Leak}
+(10\%), with a top-6 share of 83\%.
 
-\subsection{}
+The dominance of \texttt{Tainted Input} is the clearest device-level signal in
+our data. These are network-facing devices whose management surface is
+typically an embedded web interface and whose media path speaks RTSP or ONVIF,
+so they expose an unusually large amount of externally supplied input to
+firmware parsers written in C. That the same profile holds across all three
+leaf categories --- 29\% for \texttt{cameras}, 21\% for \texttt{doorbell},
+18\% for \texttt{babymonitor} --- supports the ontology's decision to fold
+them: consumers treat them as three products with distinct brand sets, but
+their vulnerability profiles are close enough that the group behaves as one
+population. \texttt{Authentication} is the second consistent thread, at
+15--23\% across the three, reflecting the recurring pattern of default
+credentials and weak session handling in consumer camera firmware. We note
+that \texttt{babymonitor} is the category most affected by the vendor-list
+contamination discussed in Section~\ref{sec:threats-internal}, so its 22
+attributions should be read as the most provisional of the three.
+
+\subsection{Hubs and Controllers}
 \label{sec:rq1-cat2}
 
+The \texttt{hub} category stands alone as a folding category, with 247
+confirmed CVEs and 282 attributions (15\% of the corpus). Its profile is the
+most distinctive in the study: \texttt{Memory Access} alone accounts for 61\%
+of its attributions, more than any other class in any other group, and its
+top-6 share of 91\% is the highest of the four groups discussed here.
 
-\subsection{}
+This is a genuine architectural difference rather than a sampling artifact.
+Hubs and controllers run the most substantial software stacks of any device
+class in scope --- full Linux systems bridging Zigbee, Z-Wave, Thread, and IP,
+often with a local automation runtime --- and that additional native code
+surface is where memory-safety defects accumulate. The contrast with the
+camera group is the sharpest result in Table~\ref{tab:cwe888-family}:
+\texttt{Memory Access} is 61\% here against 16\% there, while
+\texttt{Tainted Input} inverts, at 10\% here against 28\% there. Cameras are
+compromised through what they parse; hubs are compromised through how they are
+built. The security implication also differs in kind, because a hub is by
+definition a control surface for other devices, so a memory-safety defect
+there is a pivot into every device it manages rather than a compromise of one
+endpoint.
+
+\subsection{Energy}
 \label{sec:rq1-cat3}
 
+The \texttt{ev-charging} and \texttt{home-power} categories fold into an
+energy group of 116 confirmed CVEs and 135 attributions (7\%). The ontology
+keeps these two leaves separate --- they share no confirmed CVE and their
+vendor sets are disjoint --- but folds them for reporting, and their combined
+profile is the most evenly spread of the four groups: \texttt{Tainted Input}
+(19\%), \texttt{Authentication} (16\%), \texttt{Information Leak} (13\%), and
+\texttt{Memory Access} (12\%), with the lowest top-6 concentration of the
+group at 78\%.
 
-\subsection{}
+That flatness is itself the finding. Where cameras and hubs each have a single
+defect class accounting for a quarter to two-thirds of their attributions,
+energy devices distribute across the full range, which is consistent with a
+category that spans two quite different architectures: vehicle-charging
+equipment with OCPP-style backend connectivity on one side, and inverters and
+home battery systems with cloud-linked monitoring on the other. The elevated
+\texttt{Authentication} share (16\%, against 14\% corpus-wide) is notable
+given that these devices mediate physical electrical load, where an
+authentication bypass has consequences beyond information disclosure.
+
+\subsection{Alarms and Sensors}
 \label{sec:rq1-cat4}
+
+The \texttt{alarms} and \texttt{sensors} categories fold into a group of 93
+confirmed CVEs and 89 attributions (5\%), though the group is effectively the
+\texttt{alarms} category: \texttt{sensors} contributes only 3 attributions and
+is one of the six under-populated leaves noted above.
+
+The group's profile is the most \texttt{Tainted Input}-heavy in the study at
+38\%, ahead even of the camera group, and it is the only group in which
+\texttt{Channel} appears among the leading classes (16\%, against 2\%
+corpus-wide). That \texttt{Channel} share is the substantive result here: it
+covers defects in the communication path itself, and it surfaces in alarm
+systems because they rely on wireless sensor links --- frequently
+proprietary sub-GHz protocols --- whose confidentiality and integrity
+properties have historically been weak. An alarm system is also the category
+where a channel-level defect maps most directly onto the threat the device
+exists to counter, since suppressing or spoofing a sensor link defeats the
+system without touching its software at all.
 
 
 %==============================================================================
@@ -704,10 +904,32 @@ Our operationalization of ``home IoT device'' rests on five definitional criteri
 margin: whether a streaming device's platform genuinely acts as a home-control surface,
 say, or whether a brand's product line is residential rather than commercial or
 industrial. We mitigated this by freezing the category list before large-scale collection
-and by pinning a shared, written scope note per category (\texttt{category\_scope.csv})
+and by pinning a shared, written scope note per category (\texttt{categories.csv})
 that every reviewer, human or AI, judges against. Even so, the underlying category
 boundaries are themselves a modeling choice, and a different set of criteria could redraw
-them. Mapping individual CWEs onto the CWE-888 Software Fault Pattern clusters
+them.
+
+Two further checks bound this threat. First, encoding the five criteria as OWL axioms
+(Section~\ref{sec:method-scope}) lets us test whether our published scope decisions
+actually follow from our stated criteria, rather than from case-by-case intuition. An
+OWL~2~RL reasoner over the criterion facets reproduces all 27 in-scope and out-of-scope
+rulings, so no category is in the study for reasons its own criteria do not support.
+This is a consistency check and not a validity proof --- the facet values are themselves
+assigned by us, so the reasoner confirms that our decisions are internally coherent, not
+that the criteria are the right ones. Second, aligning the categories to established
+smart-home vocabularies quantifies how far the scope departs from existing practice. Of
+the 24 categories, only 9 (38\%) have an exactly corresponding class in SAREF (core,
+4BLDG, 4ENER, 4WEAR) or W3C SSN/SOSA; the remaining 15 (62\%) can be placed only under a
+generic superclass such as \texttt{Device} or \texttt{Sensor}. The gap is not evenly
+distributed: it falls almost entirely on the consumer security and monitoring tier ---
+cameras, doorbells, baby monitors, alarms, door locks, hubs --- which carries 91.5\% of
+our confirmed CVEs. The categories the standard vocabularies model precisely are largely
+the ones with the fewest disclosed vulnerabilities. This supports the choice to define
+categories from consumer product boundaries rather than adopt an existing vocabulary,
+but it is equally a limitation on comparability: our categories cannot be mapped
+one-to-one onto studies built on those vocabularies.
+
+Mapping individual CWEs onto the CWE-888 Software Fault Pattern clusters
 (Section~\ref{sec:method-cwe888}) is a second construct-validity threat. When a CWE is not
 itself in CWE-888, we map through its parent CWEs, and a CWE whose parents span two
 primary clusters is counted in both, which can inflate cluster totals relative to a
@@ -796,10 +1018,20 @@ raw per-category search outputs (\texttt{results\_all\_<category>.xlsx},
 \texttt{keyword\_<category>.csv}); the offline search engine and pipeline scripts (CVE
 collection, set reconciliation, CPE expansion, review generation and merging, and
 term-precision); the shared classification rubric and per-category scope notes used
-by every reviewer (\texttt{CLASSIFICATION\_PROMPT.md}, \texttt{category\_scope.csv}); the
+by every reviewer (\texttt{CLASSIFICATION\_PROMPT.md}, \texttt{categories.csv}); the
 blind per-reviewer judgment files and their merged, human-adjudicated, and finalized outputs
 for every category; and the persistent judgment store keyed by (category, CVE) that backs
-the entire review process. The one artifact not tracked in the repository is the bulk NVD
+the entire review process. The device ontology is included as a citable artifact in its own
+right: \texttt{homeiot.ttl} (the OWL~2 class hierarchy, criterion facets, and folding
+categories), \texttt{shapes.ttl} (the SHACL constraints every class must satisfy),
+\texttt{homeiot-align.ttl} (alignment to SAREF and SSN/SOSA, kept in a separate file so it
+can be dropped without affecting the pipeline, together with the pinned manifest of
+external class IRIs it is validated against), and \texttt{families.csv} (the generated
+leaf-to-folding-category map used for the rollups in Section~\ref{sec:rq1}). We also
+publish \texttt{homeiot-kg.ttl}, an RDF knowledge graph of the confirmed dataset that
+expresses every CVE, product, vendor, category assignment, and CWE-888 class as linked
+data, so the counts reported in this paper can be reproduced by SPARQL query rather than
+by re-running the pipeline. The one artifact not tracked in the repository is the bulk NVD
 snapshot itself (\texttt{nvd\_all.csv}, 360{,}981 CVE records merged from the NVD 2.0
 API as of 2026-06-25), which is excluded for size rather than for access reasons; the
 snapshot's provenance and exact rebuild procedure are documented in

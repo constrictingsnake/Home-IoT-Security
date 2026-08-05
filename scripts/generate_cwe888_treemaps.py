@@ -6,8 +6,8 @@ one per CWE-888 class, sized by that class's share of the category's CWEs).
 Reads the same source as generate_cwe888_table.py (data/difference/
 cwe888_distribution.csv) so the two stay consistent by construction. One
 figure is produced for the "ALL" (overall) row plus the top-N categories by
-total CWE count (default: streaming, cameras, hub, alarms — the only
-categories with N > 75, a natural break from the next-largest at N=43).
+total CWE count (default: cameras, hub, alarms, ev-charging — the only
+categories with N > 75, a natural break from the next-largest at N=61).
 
 Each CWE-888 class keeps the same fixed color across every figure (assigned
 by class identity in CLASS_ORDER, never by size/rank within a given
@@ -24,7 +24,7 @@ for why paths outside docs/ don't resolve there).
 
 Usage:
     python3 scripts/generate_cwe888_treemaps.py
-    python3 scripts/generate_cwe888_treemaps.py --categories streaming cameras hub alarms
+    python3 scripts/generate_cwe888_treemaps.py --categories cameras hub alarms ev-charging
 """
 import argparse
 import csv
@@ -79,9 +79,9 @@ def _text_color(hex_color):
     luminance = 0.299 * r + 0.587 * g + 0.114 * b
     return "#0b0b0b" if luminance > 150 else "#ffffff"
 
-# Categories with N > 75 (streaming 1785, cameras 625, hub 102, alarms 77);
-# the next-largest (pet, N=43) is a clear break below that.
-DEFAULT_CATEGORIES = ["streaming", "cameras", "hub", "alarms"]
+# Categories with N > 75 (cameras 996, hub 282, alarms 86, ev-charging 85);
+# the next-largest (streaming, N=61) is a clear break below that.
+DEFAULT_CATEGORIES = ["cameras", "hub", "alarms", "ev-charging"]
 
 # Boxes whose area share is below this fraction are too small to hold a
 # readable in-box label; they're called out in a side legend instead, sorted
@@ -91,10 +91,16 @@ SMALL_SLICE_THRESHOLD = 0.10
 
 
 def load_counts(distribution_csv):
+    # "ALL-MACRO" is a percentage-only pseudo-row (each category weighted
+    # equally, so it has no attribution count); treemap areas are counts, so
+    # it is skipped here. The micro "ALL" row is kept — it is the overall figure.
     counts = {}
     with open(distribution_csv, newline="", encoding="utf-8-sig") as f:
         for row in csv.DictReader(f):
-            counts.setdefault(row["category"], Counter())[row["cwe888_class"]] = int(row["n_cwes"])
+            if row["category"] == "ALL-MACRO":
+                continue
+            n = row["n_cwes"].strip()
+            counts.setdefault(row["category"], Counter())[row["cwe888_class"]] = int(n) if n else 0
     return counts
 
 
