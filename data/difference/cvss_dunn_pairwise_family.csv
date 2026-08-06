@@ -1,0 +1,56 @@
+cat_a,cat_b,n_a,n_b,z,p,p_bonferroni,sig
+Cameras and Monitors,Hubs and Controllers,936,247,-10.498,8.852917607576089e-26,4.8691046841668486e-24,True
+Energy,Hubs and Controllers,116,247,-7.549,4.39261086763977e-14,2.4159359772018732e-12,True
+Entertainment,Hubs and Controllers,76,247,-7.316,2.5637278804143135e-13,1.4100503342278724e-11,True
+Appliances,Hubs and Controllers,33,247,-6.783,1.1750885471403465e-11,6.462987009271906e-10,True
+Access Control,Hubs and Controllers,36,247,-6.274,3.5262876737876246e-10,1.9394582205831936e-08,True
+Electrical & Lighting,Hubs and Controllers,66,247,-6.1,1.0623879993956117e-09,5.843133996675864e-08,True
+Hubs and Controllers,Outdoor & Pet,247,54,5.383,7.330288824750548e-08,4.031658853612802e-06,True
+Audio,Hubs and Controllers,38,247,-5.332,9.704961964717806e-08,5.3377290805947935e-06,True
+Climate & Air,Hubs and Controllers,24,247,-4.701,2.5879035511526473e-06,0.0001423346953133956,True
+Alarms & Sensors,Hubs and Controllers,93,247,-4.308,1.650977384896539e-05,0.0009080375616930964,True
+Alarms & Sensors,Appliances,93,33,3.618,0.00029645019488488576,0.016304760718668716,True
+Access Control,Alarms & Sensors,36,93,-3.032,0.0024290417344866575,0.13359729539676615,False
+Appliances,Cameras and Monitors,33,936,-2.858,0.004257079866218417,0.23413939264201292,False
+Alarms & Sensors,Entertainment,93,76,2.817,0.004851895576062153,0.2668542566834184,False
+Access Control,Appliances,36,33,0.573,0.566908131404209,1.0,False
+Access Control,Audio,36,38,-0.817,0.4138001580988335,1.0,False
+Access Control,Cameras and Monitors,36,936,-2.168,0.030125762204159155,1.0,False
+Access Control,Climate & Air,36,24,-0.433,0.6650956331478088,1.0,False
+Access Control,Electrical & Lighting,36,66,-1.322,0.1860041662222256,1.0,False
+Access Control,Energy,36,116,-1.413,0.15771036217115975,1.0,False
+Access Control,Entertainment,36,76,-0.789,0.43016469763338805,1.0,False
+Access Control,Outdoor & Pet,36,54,-1.443,0.14888920507545136,1.0,False
+Alarms & Sensors,Audio,93,38,2.104,0.03537474834077124,1.0,False
+Alarms & Sensors,Cameras and Monitors,93,936,2.087,0.036915798070298884,1.0,False
+Alarms & Sensors,Climate & Air,93,24,2.101,0.03561821280957924,1.0,False
+Alarms & Sensors,Electrical & Lighting,93,66,1.995,0.04600089102316644,1.0,False
+Alarms & Sensors,Energy,93,116,2.339,0.019312482003139748,1.0,False
+Alarms & Sensors,Outdoor & Pet,93,54,1.663,0.0962411583604378,1.0,False
+Appliances,Audio,33,38,-1.379,0.16797220787855183,1.0,False
+Appliances,Climate & Air,33,24,-0.94,0.3474091429512346,1.0,False
+Appliances,Electrical & Lighting,33,66,-1.933,0.053297259530415336,1.0,False
+Appliances,Energy,33,116,-2.066,0.03885816101955928,1.0,False
+Appliances,Entertainment,33,76,-1.428,0.1534071688086231,1.0,False
+Appliances,Outdoor & Pet,33,54,-2.03,0.04233684417014887,1.0,False
+Audio,Cameras and Monitors,38,936,-1.077,0.28149091060146614,1.0,False
+Audio,Climate & Air,38,24,0.291,0.7706983255302143,1.0,False
+Audio,Electrical & Lighting,38,66,-0.412,0.6801797405336074,1.0,False
+Audio,Energy,38,116,-0.425,0.6707048703347814,1.0,False
+Audio,Entertainment,38,76,0.153,0.878177832153984,1.0,False
+Audio,Outdoor & Pet,38,54,-0.569,0.5692487990785844,1.0,False
+Cameras and Monitors,Climate & Air,936,24,1.23,0.21880104861587035,1.0,False
+Cameras and Monitors,Electrical & Lighting,936,66,0.74,0.4591415897408112,1.0,False
+Cameras and Monitors,Energy,936,116,1.003,0.3157649188249141,1.0,False
+Cameras and Monitors,Entertainment,936,76,1.75,0.08019945674153334,1.0,False
+Cameras and Monitors,Outdoor & Pet,936,54,0.412,0.6801045669964287,1.0,False
+Climate & Air,Electrical & Lighting,24,66,-0.671,0.5022397596424466,1.0,False
+Climate & Air,Energy,24,116,-0.693,0.4881367634672269,1.0,False
+Climate & Air,Entertainment,24,76,-0.194,0.8457876280233373,1.0,False
+Climate & Air,Outdoor & Pet,24,54,-0.801,0.4231278824790532,1.0,False
+Electrical & Lighting,Energy,66,116,0.029,0.9768699836588326,1.0,False
+Electrical & Lighting,Entertainment,66,76,0.68,0.49656876681904316,1.0,False
+Electrical & Lighting,Outdoor & Pet,66,54,-0.199,0.8420205185429317,1.0,False
+Energy,Entertainment,116,76,0.745,0.4563475070456572,1.0,False
+Energy,Outdoor & Pet,116,54,-0.249,0.8032567729007623,1.0,False
+Entertainment,Outdoor & Pet,76,54,-0.848,0.39630709780371287,1.0,False

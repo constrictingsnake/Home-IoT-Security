@@ -1,0 +1,44 @@
+category,severity,n,pct
+Access Control,Critical,4,11.1
+Access Control,High,14,38.9
+Access Control,Medium,17,47.2
+Access Control,Low,1,2.8
+Audio,Critical,6,15.8
+Audio,High,13,34.2
+Audio,Medium,18,47.4
+Audio,Low,1,2.6
+Cameras and Monitors,Critical,217,23.2
+Cameras and Monitors,High,464,49.6
+Cameras and Monitors,Medium,245,26.2
+Cameras and Monitors,Low,10,1.1
+Climate & Air,Critical,5,20.8
+Climate & Air,High,9,37.5
+Climate & Air,Medium,9,37.5
+Climate & Air,Low,1,4.2
+Electrical & Lighting,Critical,11,16.7
+Electrical & Lighting,High,34,51.5
+Electrical & Lighting,Medium,21,31.8
+Alarms & Sensors,Critical,38,40.9
+Alarms & Sensors,High,28,30.1
+Alarms & Sensors,Medium,26,28.0
+Alarms & Sensors,Low,1,1.1
+Appliances,Critical,5,15.2
+Appliances,High,14,42.4
+Appliances,Medium,11,33.3
+Appliances,Low,3,9.1
+Hubs and Controllers,Critical,132,53.4
+Hubs and Controllers,High,83,33.6
+Hubs and Controllers,Medium,30,12.1
+Hubs and Controllers,Low,2,0.8
+Energy,Critical,26,22.4
+Energy,High,46,39.7
+Energy,Medium,39,33.6
+Energy,Low,5,4.3
+Outdoor & Pet,Critical,18,33.3
+Outdoor & Pet,High,15,27.8
+Outdoor & Pet,Medium,17,31.5
+Outdoor & Pet,Low,4,7.4
+Entertainment,Critical,11,14.5
+Entertainment,High,37,48.7
+Entertainment,Medium,27,35.5
+Entertainment,Low,1,1.3

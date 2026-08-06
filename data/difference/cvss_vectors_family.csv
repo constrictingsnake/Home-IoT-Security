@@ -1,0 +1,302 @@
+category,metric,value,n,pct
+Access Control,attack_vector,Network,18,50.0
+Access Control,attack_vector,Adjacent,10,27.8
+Access Control,attack_vector,Local,1,2.8
+Access Control,attack_vector,Physical,7,19.4
+Access Control,attack_complexity,Low,32,88.9
+Access Control,attack_complexity,High,4,11.1
+Access Control,privileges_required,None,31,86.1
+Access Control,privileges_required,Low,5,13.9
+Access Control,user_interaction,None,35,97.2
+Access Control,user_interaction,Required,1,2.8
+Access Control,scope,Unchanged,32,88.9
+Access Control,scope,Changed,4,11.1
+Access Control,confidentiality,High,21,58.3
+Access Control,confidentiality,Low,2,5.6
+Access Control,confidentiality,None,13,36.1
+Access Control,integrity,High,21,58.3
+Access Control,integrity,Low,6,16.7
+Access Control,integrity,None,9,25.0
+Access Control,availability,High,18,50.0
+Access Control,availability,None,18,50.0
+Access Control,impact_combination,C+I+A,13,36.1
+Access Control,impact_combination,C+I,4,11.1
+Access Control,impact_combination,I+A,2,5.6
+Access Control,impact_combination,C,6,16.7
+Access Control,impact_combination,I,8,22.2
+Access Control,impact_combination,A,3,8.3
+Audio,attack_vector,Network,12,31.6
+Audio,attack_vector,Adjacent,18,47.4
+Audio,attack_vector,Local,1,2.6
+Audio,attack_vector,Physical,7,18.4
+Audio,attack_complexity,Low,35,92.1
+Audio,attack_complexity,High,3,7.9
+Audio,privileges_required,None,35,92.1
+Audio,privileges_required,Low,3,7.9
+Audio,user_interaction,None,32,84.2
+Audio,user_interaction,Required,6,15.8
+Audio,scope,Unchanged,35,92.1
+Audio,scope,Changed,3,7.9
+Audio,confidentiality,High,29,76.3
+Audio,confidentiality,Low,9,23.7
+Audio,integrity,High,24,63.2
+Audio,integrity,Low,5,13.2
+Audio,integrity,None,9,23.7
+Audio,availability,High,25,65.8
+Audio,availability,Low,1,2.6
+Audio,availability,None,12,31.6
+Audio,impact_combination,C+I+A,25,65.8
+Audio,impact_combination,C+I,4,10.5
+Audio,impact_combination,C+A,1,2.6
+Audio,impact_combination,C,8,21.1
+Cameras and Monitors,attack_vector,Network,684,78.1
+Cameras and Monitors,attack_vector,Adjacent,107,12.2
+Cameras and Monitors,attack_vector,Local,47,5.4
+Cameras and Monitors,attack_vector,Physical,38,4.3
+Cameras and Monitors,attack_complexity,Low,805,91.9
+Cameras and Monitors,attack_complexity,High,71,8.1
+Cameras and Monitors,privileges_required,None,601,68.6
+Cameras and Monitors,privileges_required,Low,212,24.2
+Cameras and Monitors,privileges_required,High,63,7.2
+Cameras and Monitors,user_interaction,None,818,93.4
+Cameras and Monitors,user_interaction,Required,58,6.6
+Cameras and Monitors,scope,Unchanged,767,87.6
+Cameras and Monitors,scope,Changed,109,12.4
+Cameras and Monitors,confidentiality,High,583,66.6
+Cameras and Monitors,confidentiality,Low,86,9.8
+Cameras and Monitors,confidentiality,None,207,23.6
+Cameras and Monitors,integrity,High,494,56.4
+Cameras and Monitors,integrity,Low,66,7.5
+Cameras and Monitors,integrity,None,316,36.1
+Cameras and Monitors,availability,High,603,68.8
+Cameras and Monitors,availability,Low,24,2.7
+Cameras and Monitors,availability,None,249,28.4
+Cameras and Monitors,impact_combination,C+I+A,457,52.2
+Cameras and Monitors,impact_combination,C+I,47,5.4
+Cameras and Monitors,impact_combination,C+A,6,0.7
+Cameras and Monitors,impact_combination,I+A,13,1.5
+Cameras and Monitors,impact_combination,C,159,18.2
+Cameras and Monitors,impact_combination,I,43,4.9
+Cameras and Monitors,impact_combination,A,151,17.2
+Climate & Air,attack_vector,Network,14,60.9
+Climate & Air,attack_vector,Adjacent,6,26.1
+Climate & Air,attack_vector,Local,1,4.3
+Climate & Air,attack_vector,Physical,2,8.7
+Climate & Air,attack_complexity,Low,21,91.3
+Climate & Air,attack_complexity,High,2,8.7
+Climate & Air,privileges_required,None,20,87.0
+Climate & Air,privileges_required,Low,3,13.0
+Climate & Air,user_interaction,None,18,78.3
+Climate & Air,user_interaction,Required,5,21.7
+Climate & Air,scope,Unchanged,20,87.0
+Climate & Air,scope,Changed,3,13.0
+Climate & Air,confidentiality,High,13,56.5
+Climate & Air,confidentiality,Low,3,13.0
+Climate & Air,confidentiality,None,7,30.4
+Climate & Air,integrity,High,11,47.8
+Climate & Air,integrity,Low,6,26.1
+Climate & Air,integrity,None,6,26.1
+Climate & Air,availability,High,13,56.5
+Climate & Air,availability,Low,2,8.7
+Climate & Air,availability,None,8,34.8
+Climate & Air,impact_combination,C+I+A,11,47.8
+Climate & Air,impact_combination,C+I,2,8.7
+Climate & Air,impact_combination,I+A,1,4.3
+Climate & Air,impact_combination,C,3,13.0
+Climate & Air,impact_combination,I,3,13.0
+Climate & Air,impact_combination,A,3,13.0
+Electrical & Lighting,attack_vector,Network,35,58.3
+Electrical & Lighting,attack_vector,Adjacent,22,36.7
+Electrical & Lighting,attack_vector,Local,2,3.3
+Electrical & Lighting,attack_vector,Physical,1,1.7
+Electrical & Lighting,attack_complexity,Low,56,93.3
+Electrical & Lighting,attack_complexity,High,4,6.7
+Electrical & Lighting,privileges_required,None,51,85.0
+Electrical & Lighting,privileges_required,Low,8,13.3
+Electrical & Lighting,privileges_required,High,1,1.7
+Electrical & Lighting,user_interaction,None,52,86.7
+Electrical & Lighting,user_interaction,Required,8,13.3
+Electrical & Lighting,scope,Unchanged,56,93.3
+Electrical & Lighting,scope,Changed,4,6.7
+Electrical & Lighting,confidentiality,High,37,61.7
+Electrical & Lighting,confidentiality,Low,5,8.3
+Electrical & Lighting,confidentiality,None,18,30.0
+Electrical & Lighting,integrity,High,30,50.0
+Electrical & Lighting,integrity,Low,6,10.0
+Electrical & Lighting,integrity,None,24,40.0
+Electrical & Lighting,availability,High,37,61.7
+Electrical & Lighting,availability,Low,4,6.7
+Electrical & Lighting,availability,None,19,31.7
+Electrical & Lighting,impact_combination,C+I+A,26,43.3
+Electrical & Lighting,impact_combination,C+I,5,8.3
+Electrical & Lighting,impact_combination,I+A,2,3.3
+Electrical & Lighting,impact_combination,C,11,18.3
+Electrical & Lighting,impact_combination,I,3,5.0
+Electrical & Lighting,impact_combination,A,13,21.7
+Alarms & Sensors,attack_vector,Network,62,68.9
+Alarms & Sensors,attack_vector,Adjacent,18,20.0
+Alarms & Sensors,attack_vector,Local,3,3.3
+Alarms & Sensors,attack_vector,Physical,7,7.8
+Alarms & Sensors,attack_complexity,Low,78,86.7
+Alarms & Sensors,attack_complexity,High,12,13.3
+Alarms & Sensors,privileges_required,None,72,80.0
+Alarms & Sensors,privileges_required,Low,18,20.0
+Alarms & Sensors,user_interaction,None,84,93.3
+Alarms & Sensors,user_interaction,Required,6,6.7
+Alarms & Sensors,scope,Unchanged,79,87.8
+Alarms & Sensors,scope,Changed,11,12.2
+Alarms & Sensors,confidentiality,High,62,68.9
+Alarms & Sensors,confidentiality,Low,3,3.3
+Alarms & Sensors,confidentiality,None,25,27.8
+Alarms & Sensors,integrity,High,68,75.6
+Alarms & Sensors,integrity,Low,5,5.6
+Alarms & Sensors,integrity,None,17,18.9
+Alarms & Sensors,availability,High,66,73.3
+Alarms & Sensors,availability,Low,2,2.2
+Alarms & Sensors,availability,None,22,24.4
+Alarms & Sensors,impact_combination,C+I+A,54,60.0
+Alarms & Sensors,impact_combination,C+I,5,5.6
+Alarms & Sensors,impact_combination,I+A,3,3.3
+Alarms & Sensors,impact_combination,C,6,6.7
+Alarms & Sensors,impact_combination,I,11,12.2
+Alarms & Sensors,impact_combination,A,11,12.2
+Appliances,attack_vector,Network,19,57.6
+Appliances,attack_vector,Adjacent,6,18.2
+Appliances,attack_vector,Local,5,15.2
+Appliances,attack_vector,Physical,3,9.1
+Appliances,attack_complexity,Low,21,63.6
+Appliances,attack_complexity,High,12,36.4
+Appliances,privileges_required,None,26,78.8
+Appliances,privileges_required,Low,5,15.2
+Appliances,privileges_required,High,2,6.1
+Appliances,user_interaction,None,30,90.9
+Appliances,user_interaction,Required,3,9.1
+Appliances,scope,Unchanged,29,87.9
+Appliances,scope,Changed,4,12.1
+Appliances,confidentiality,High,20,60.6
+Appliances,confidentiality,Low,8,24.2
+Appliances,confidentiality,None,5,15.2
+Appliances,integrity,High,19,57.6
+Appliances,integrity,Low,9,27.3
+Appliances,integrity,None,5,15.2
+Appliances,availability,High,12,36.4
+Appliances,availability,Low,7,21.2
+Appliances,availability,None,14,42.4
+Appliances,impact_combination,C+I+A,18,54.5
+Appliances,impact_combination,C+I,5,15.2
+Appliances,impact_combination,I+A,1,3.0
+Appliances,impact_combination,C,5,15.2
+Appliances,impact_combination,I,4,12.1
+Hubs and Controllers,attack_vector,Network,205,84.4
+Hubs and Controllers,attack_vector,Adjacent,23,9.5
+Hubs and Controllers,attack_vector,Local,10,4.1
+Hubs and Controllers,attack_vector,Physical,5,2.1
+Hubs and Controllers,attack_complexity,Low,225,92.6
+Hubs and Controllers,attack_complexity,High,18,7.4
+Hubs and Controllers,privileges_required,None,78,32.1
+Hubs and Controllers,privileges_required,Low,159,65.4
+Hubs and Controllers,privileges_required,High,6,2.5
+Hubs and Controllers,user_interaction,None,225,92.6
+Hubs and Controllers,user_interaction,Required,18,7.4
+Hubs and Controllers,scope,Unchanged,111,45.7
+Hubs and Controllers,scope,Changed,132,54.3
+Hubs and Controllers,confidentiality,High,206,84.8
+Hubs and Controllers,confidentiality,Low,9,3.7
+Hubs and Controllers,confidentiality,None,28,11.5
+Hubs and Controllers,integrity,High,204,84.0
+Hubs and Controllers,integrity,Low,5,2.1
+Hubs and Controllers,integrity,None,34,14.0
+Hubs and Controllers,availability,High,201,82.7
+Hubs and Controllers,availability,Low,2,0.8
+Hubs and Controllers,availability,None,40,16.5
+Hubs and Controllers,impact_combination,C+I+A,183,75.3
+Hubs and Controllers,impact_combination,C+I,11,4.5
+Hubs and Controllers,impact_combination,I+A,7,2.9
+Hubs and Controllers,impact_combination,C,21,8.6
+Hubs and Controllers,impact_combination,I,8,3.3
+Hubs and Controllers,impact_combination,A,13,5.3
+Energy,attack_vector,Network,73,65.2
+Energy,attack_vector,Adjacent,33,29.5
+Energy,attack_vector,Local,1,0.9
+Energy,attack_vector,Physical,5,4.5
+Energy,attack_complexity,Low,100,89.3
+Energy,attack_complexity,High,12,10.7
+Energy,privileges_required,None,87,77.7
+Energy,privileges_required,Low,17,15.2
+Energy,privileges_required,High,8,7.1
+Energy,user_interaction,None,100,89.3
+Energy,user_interaction,Required,12,10.7
+Energy,scope,Unchanged,104,92.9
+Energy,scope,Changed,8,7.1
+Energy,confidentiality,High,76,67.9
+Energy,confidentiality,Low,21,18.8
+Energy,confidentiality,None,15,13.4
+Energy,integrity,High,72,64.3
+Energy,integrity,Low,11,9.8
+Energy,integrity,None,29,25.9
+Energy,availability,High,63,56.2
+Energy,availability,Low,1,0.9
+Energy,availability,None,48,42.9
+Energy,impact_combination,C+I+A,58,51.8
+Energy,impact_combination,C+I,11,9.8
+Energy,impact_combination,C+A,1,0.9
+Energy,impact_combination,I+A,4,3.6
+Energy,impact_combination,C,27,24.1
+Energy,impact_combination,I,10,8.9
+Energy,impact_combination,A,1,0.9
+Outdoor & Pet,attack_vector,Network,36,66.7
+Outdoor & Pet,attack_vector,Adjacent,7,13.0
+Outdoor & Pet,attack_vector,Local,3,5.6
+Outdoor & Pet,attack_vector,Physical,8,14.8
+Outdoor & Pet,attack_complexity,Low,38,70.4
+Outdoor & Pet,attack_complexity,High,16,29.6
+Outdoor & Pet,privileges_required,None,45,83.3
+Outdoor & Pet,privileges_required,Low,8,14.8
+Outdoor & Pet,privileges_required,High,1,1.9
+Outdoor & Pet,user_interaction,None,50,92.6
+Outdoor & Pet,user_interaction,Required,4,7.4
+Outdoor & Pet,scope,Unchanged,51,94.4
+Outdoor & Pet,scope,Changed,3,5.6
+Outdoor & Pet,confidentiality,High,41,75.9
+Outdoor & Pet,confidentiality,Low,5,9.3
+Outdoor & Pet,confidentiality,None,8,14.8
+Outdoor & Pet,integrity,High,34,63.0
+Outdoor & Pet,integrity,Low,5,9.3
+Outdoor & Pet,integrity,None,15,27.8
+Outdoor & Pet,availability,High,33,61.1
+Outdoor & Pet,availability,Low,2,3.7
+Outdoor & Pet,availability,None,19,35.2
+Outdoor & Pet,impact_combination,C+I+A,29,53.7
+Outdoor & Pet,impact_combination,C+I,6,11.1
+Outdoor & Pet,impact_combination,C+A,1,1.9
+Outdoor & Pet,impact_combination,I+A,1,1.9
+Outdoor & Pet,impact_combination,C,10,18.5
+Outdoor & Pet,impact_combination,I,3,5.6
+Outdoor & Pet,impact_combination,A,4,7.4
+Entertainment,attack_vector,Network,34,46.6
+Entertainment,attack_vector,Adjacent,9,12.3
+Entertainment,attack_vector,Local,28,38.4
+Entertainment,attack_vector,Physical,2,2.7
+Entertainment,attack_complexity,Low,67,91.8
+Entertainment,attack_complexity,High,6,8.2
+Entertainment,privileges_required,None,56,76.7
+Entertainment,privileges_required,Low,17,23.3
+Entertainment,user_interaction,None,50,68.5
+Entertainment,user_interaction,Required,23,31.5
+Entertainment,scope,Unchanged,69,94.5
+Entertainment,scope,Changed,4,5.5
+Entertainment,confidentiality,High,51,69.9
+Entertainment,confidentiality,Low,2,2.7
+Entertainment,confidentiality,None,20,27.4
+Entertainment,integrity,High,47,64.4
+Entertainment,integrity,Low,5,6.8
+Entertainment,integrity,None,21,28.8
+Entertainment,availability,High,49,67.1
+Entertainment,availability,Low,3,4.1
+Entertainment,availability,None,21,28.8
+Entertainment,impact_combination,C+I+A,39,53.4
+Entertainment,impact_combination,C+I,3,4.1
+Entertainment,impact_combination,I+A,3,4.1
+Entertainment,impact_combination,C,11,15.1
+Entertainment,impact_combination,I,7,9.6
+Entertainment,impact_combination,A,10,13.7

@@ -352,9 +352,15 @@ def main():
               f"will be DELETED and re-downloaded from scratch.\n"
               f"  The vintage in that file is irreproducible — NVD serves current state only.",
               flush=True)
-        if not args.yes and input("  Type 'refresh' to confirm: ").strip() != "refresh":
-            print("Aborted.", flush=True)
-            sys.exit(1)
+        if not args.yes:
+            try:
+                confirmed = input("  Type 'refresh' to confirm: ").strip() == "refresh"
+            except EOFError:      # non-interactive stdin: refuse rather than assume yes
+                confirmed = False
+                print("  (no tty — pass --yes to confirm non-interactively)", flush=True)
+            if not confirmed:
+                print("Aborted.", flush=True)
+                sys.exit(1)
         os.remove(out)
         if os.path.exists(progress_path):
             os.remove(progress_path)

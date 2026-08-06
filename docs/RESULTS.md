@@ -181,3 +181,84 @@ The rebuild moved recall in *both* directions, and the direction tells you *why*
    One capture list is a strict subset of the other (`∩ = min(V,K)`), so recapture carries no
    information and N̂ collapses to the larger list. These are **excluded from the POOLED total** —
    the 1.000 is an artifact, not real completeness.
+
+---
+
+## NVD snapshot refresh — 2026-06-25 → 2026-08-05 (`PLAN_nvd_update.md`)
+
+New pinned snapshot: **373,518 CVEs** (from 360,981 — **+12,537** in six weeks), downloaded in
+1.2 min over 187 pages. Schema gained a `vector_string` column; `cvssMetricV40` is now read. The
+June vintage is retained as `data/nvd-snapshot/nvd_all_2026-06.csv` (gitignored), so anything
+published off the old numbers stays reproducible.
+
+### What the refresh fixed (parser, not data)
+
+All **57** confirmed-Yes CVEs that were silently `Unscored` now carry a base score — **54** were
+scored only under CVSS 4.0 and were being dropped by a metric loop that never looked at
+`cvssMetricV40`; the other 3 were genuinely new NVD analysis. Every category now reports
+`n_scored == n_cves` in `cvss_distribution.csv` (previously `doorlock` 32/36, `hub` 244/247,
+`fridge` 2/3, `sensors` 3/4, `robotvacuum` 26/27). **Vector coverage is 1,676 / 1,676 — 100%**,
+so RQ3 carries no missing-data caveat.
+
+### What it did NOT fix — NVD reanalysis churn is ~zero
+
+`PLAN_nvd_update.md` §2.4 argued the strongest reason to refresh was NVD's CWE/CPE backlog. Over
+the 1,676 confirmed-Yes CVEs (`snapshot_churn.md`), that did not happen:
+
+| condition | predicted | measured |
+|---|---|---|
+| no usable CWE (118) | would enter the CWE-888 distribution | **0 gained a CWE** |
+| no CPE string (196) | would unblock Stage 5 / the `C` capture set | **3 gained CPEs** |
+| v2.0-only (81) | some re-scored under v3.x | **0 re-scored** |
+| base score changed | — | **0** |
+| newly REJECTED | — | **0** |
+
+All 3 real changes are 2026 CVEs NVD was still analysing for the *first* time — first analysis,
+not re-analysis. **A fixed confirmed-CVE set is far more stable across NVD vintages than the
+"NVD reanalyses records" caveat implies.** The 7.0% of the confirmed set with no usable CWE and
+the 11.5% with no CPE are limitations to report, not backlog to wait out; a future refresh will
+not clear them.
+
+### Re-run cost, and the refresh invariant again
+
+Both searches rebuilt against the new snapshot (`build_search.py --overwrite`, 49 files, ~2 h —
+each category is a full scan of 373k CVEs). Downstream:
+
+| Step | Result |
+|---|---|
+| review sets | 68 regenerated, 4 skipped |
+| CPE expansion | **140** new candidate CVEs across 22 categories |
+| blind copies | **5,122** rows total — **5,011 restored from the store, 111 genuinely new** |
+
+111 new rows across 10 categories (`cameras` 63, `hub` 14, `ev-charging` 14, `babymonitor` 9,
+rest ≤3) is the entire manual review cost of a full snapshot refresh plus re-search — more
+evidence for the refresh invariant.
+
+Pooled 2-source recall moved **0.602 → 0.603** (N̂ 7,888 → 8,046 over 4,849 found): the corpus grew
+and the searches found proportionally more, so coverage is flat.
+
+### RQ3 — CVSS vector distributions (first run)
+
+1,657 of 1,738 (category, CVE) rows normalise to CVSS 3.x; the other 81 are v2.0-only and are
+reported as unconvertible rather than reshaped (v2 has no Scope metric).
+
+| Metric | Pooled result |
+|---|---|
+| Attack Vector | **73% Network**, 16% Adjacent, 6% Local, 5% Physical |
+| Scope | 83% Unchanged, **17% Changed** |
+| CIA impact | **56% C+I+A**, 17% C-only, 13% A-only, 6% I-only, rest mixed pairs |
+| Attack Complexity | 90% Low |
+
+Two figures that need care before citing:
+
+- **`hub` reports 54% Changed scope** against the 17% pooled rate — but `hub` is 45% single-vendor
+  (insteon). This is exactly the concentration sensitivity check `PLAN_nvd_update.md` §9 proposes;
+  do not cite it as a category property until that runs.
+- **v2.0/v3.x pooling persists** in the Kruskal-Wallis (81 v2 scores among 1,657 v3.x). The refresh
+  cannot fix it — 0 were re-scored — so it is now purely an analysis decision.
+  `cvss_analysis.py --score-versions 3` implements the exclusion; the default remains `all` so no
+  published number moved silently.
+
+Both ontology gates stayed green throughout (`--check`: SHACL clean, both CSVs byte-identical,
+27/27 rulings; `--verify-kg`: 1,676 / 1,738 / 1,904 all reconciling), confirming §4.3 — the T-Box
+cannot move when CVE data changes.
