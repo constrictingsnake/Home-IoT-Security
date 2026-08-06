@@ -31,6 +31,12 @@ data/nvd-snapshot/*.csv
 data/nvd-snapshot/*.json
 data/nvd-snapshot/*.json.gz
 
+# ...except snapshot_churn.py's per-CVE record of what NVD changed between two
+# vintages, which is curated output rather than bulk data: the old vintage is
+# irreproducible (NVD serves current state only), so this diff is the only
+# surviving evidence of the drift.
+!data/nvd-snapshot/snapshot_churn.csv
+
 # Per-category prep marker touched by run_gemma_column.sh — local, per-machine
 # bookkeeping only. Must NOT be tracked: if checked out elsewhere it would make
 # the script skip the one-time backup/blank of the Gemini column.

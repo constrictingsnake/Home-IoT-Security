@@ -6,7 +6,8 @@ Pulls every CVE from the **NVD 2.0 REST API** and writes them to
 `data/nvd-snapshot/nvd_all.csv` in the project's common schema
 (`cve_id, published, description, cvss_score, cvss_version, cwe_ids,
 cpe_strings`) — the *exact* columns Stage 1/2 (`cve_search.py`,
-`build_search.py`) search against. Pinning one downloaded snapshot
+`build_search.py`) search against — plus `vector_string`, the CVSS base
+vector, which only the analysis scripts read. Pinning one downloaded snapshot
 is what makes the keyword and vendor searches comparable and the study
 reproducible / citeable ("dataset as of <date>"). See `data/nvd-snapshot/SNAPSHOT.md`.
 
@@ -24,6 +25,21 @@ and rows are appended to `<out>` immediately. So:
                 existing CSV, skips finished pages, and de-duplicates by CVE ID
                 (so even a torn page on resume can't create duplicates).
 You never lose more than the one page in flight (~2000 CVEs).
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+RESUME IS NOT REFRESH
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+The same machinery that makes a run resumable makes it useless for *refreshing* an
+existing snapshot: an already-present CVE ID is skipped, so re-pointing this script
+at a populated `nvd_all.csv` appends only the CVEs published since — every existing
+row keeps its old vintage (old CVSS, no CWE backfill, no CPE backfill), producing a
+file that looks complete while being silently half-stale.
+
+To refresh, download to a NEW path (`--out data/nvd-snapshot/nvd_all_<yyyy-mm>.csv`)
+and cut over once the churn diff is recorded — the previous vintage is
+irreproducible (NVD serves current state only), so keep it until then. Passing
+`--refresh` forces a from-scratch rewrite of an existing path; it is the
+destructive option and prompts before truncating.
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 USAGE
@@ -65,9 +81,14 @@ from urllib3.util.retry import Retry
 csv.field_size_limit(sys.maxsize)
 
 # Same columns as every other dataset in the project (01_raw.csv, vendor files,
-# keyword files). Keep in lock-step with cve_search.py's CSV_COLS.
+# keyword files), plus `vector_string` — the snapshot carries one column the
+# search schema does not. Keep the first seven in lock-step with cve_search.py's
+# CSV_COLS; `vector_string` is read straight off the snapshot by the analysis
+# scripts (cvss_analysis.py RQ3) and is deliberately NOT propagated into search
+# outputs or review copies, which have no use for it.
 CSV_COLS = ["cve_id", "published", "description",
-            "cvss_score", "cvss_version", "cwe_ids", "cpe_strings"]
+            "cvss_score", "cvss_version", "cwe_ids", "cpe_strings",
+            "vector_string"]
 
 NVD_API = "https://services.nvd.nist.gov/rest/json/cves/2.0"
 RESULTS_PER_PAGE = 2000          # NVD 2.0 hard maximum per request
@@ -114,14 +135,19 @@ def parse_nvd_20(item):
         return None
 
     metrics = cve.get("metrics", {})
-    cvss_score, cvss_version = None, None
-    for key in ("cvssMetricV31", "cvssMetricV30", "cvssMetricV2"):
+    cvss_score, cvss_version, vector_string = None, None, None
+    # Preference order is deliberate: v3.1 -> v3.0 -> v4.0 -> v2.0. v4.0 sits BELOW
+    # both v3s so the bulk of the corpus stays on v3.x (mixing base-score versions
+    # in one distribution is a confound); it is used only where no v3 metric exists,
+    # which is what recovers CVEs NVD has scored under v4.0 alone. v2.0 stays last.
+    for key in ("cvssMetricV31", "cvssMetricV30", "cvssMetricV40", "cvssMetricV2"):
         entries = metrics.get(key, [])
         if entries:
             primary = next((e for e in entries if e.get("type") == "Primary"), entries[0])
             cvss_data = primary.get("cvssData", {})
             cvss_score = cvss_data.get("baseScore")
             cvss_version = cvss_data.get("version")
+            vector_string = cvss_data.get("vectorString")
             break
 
     cwe_ids = []
@@ -147,6 +173,7 @@ def parse_nvd_20(item):
         "cvss_version": cvss_version or "",
         "cwe_ids": "|".join(dict.fromkeys(cwe_ids)),
         "cpe_strings": "|".join(dict.fromkeys(cpe_strings)),
+        "vector_string": vector_string or "",
     }
 
 
@@ -214,7 +241,7 @@ def worker(thread_id, work_queue, fail_counts, api_key, writer,
             work_queue.task_done()
 
 
-SNAPSHOT_MD_TEMPLATE = """# NVD Snapshot
+SNAPSHOT_MD_TEMPLATE = """# NVD Snapshot — `{basename}`
 
 This directory holds the **fixed, offline NVD dataset** that Stage 1 (keyword search) and
 Stage 2 (vendor/brand search) — both `scripts/build_search.py` — run against. Pinning one
@@ -245,21 +272,31 @@ python3 scripts/build_search.py
 - **Source:** NVD 2.0 API (`https://services.nvd.nist.gov/rest/json/cves/2.0`), downloaded via `scripts/download_nvd.py` with NVD API key ({results_per_page} CVEs/page, {threads} threads)
 - **Years included:** all CVEs in NVD as of download date
 - **Total CVEs:** {total:,}
-- **Notes:** Count is the number of unique CVE records (the `written` value in `nvd_all.csv.progress.json`), **not** `wc -l nvd_all.csv` — the latter over-counts because CVE descriptions contain embedded newlines, so one CVE can span several physical lines.
+- **Columns:** `{columns}`
+- **Notes:** Count is the number of unique CVE records (the `written` value in `{basename}.progress.json`), **not** `wc -l {basename}` — the latter over-counts because CVE descriptions contain embedded newlines, so one CVE can span several physical lines.
 
 _This file is written automatically by `scripts/download_nvd.py` on a clean (no-failed-pages) run — do not hand-edit the Provenance section, it will be overwritten on the next run._
 """
 
 
 def write_snapshot_md(out_path, total_written, threads):
-    """Auto-write data/nvd-snapshot/SNAPSHOT.md (date + CVE count) after a clean run,
-    replacing the old manual copy-paste reminder."""
-    md_path = os.path.join(os.path.dirname(out_path), "SNAPSHOT.md")
+    """Auto-write the provenance markdown (date + CVE count) after a clean run,
+    replacing the old manual copy-paste reminder.
+
+    A download to a non-default path gets its own `SNAPSHOT_<stem>.md` rather than
+    overwriting `SNAPSHOT.md` — during a refresh the canonical `nvd_all.csv` is still
+    the OLD vintage, and its provenance file must keep describing it until cutover."""
+    basename = os.path.basename(out_path)
+    md_name = ("SNAPSHOT.md" if basename == "nvd_all.csv"
+               else f"SNAPSHOT_{os.path.splitext(basename)[0]}.md")
+    md_path = os.path.join(os.path.dirname(out_path), md_name)
     content = SNAPSHOT_MD_TEMPLATE.format(
         date=datetime.date.today().isoformat(),
         results_per_page=RESULTS_PER_PAGE,
         threads=threads,
         total=total_written,
+        basename=basename,
+        columns=", ".join(CSV_COLS),
     )
     with open(md_path, "w", encoding="utf-8") as f:
         f.write(content)
@@ -290,6 +327,13 @@ def main():
                         help=f"Output CSV (default: {DEFAULT_OUT}).")
     parser.add_argument("--threads", type=int, default=DEFAULT_THREADS,
                         help=f"Concurrent download threads (default: {DEFAULT_THREADS}).")
+    parser.add_argument("--refresh", action="store_true",
+                        help="Rewrite --out from scratch instead of resuming: discards the "
+                             "existing CSV and its progress file so every record gets the "
+                             "current NVD vintage. Prompts first. Prefer a fresh --out path "
+                             "(see 'RESUME IS NOT REFRESH' in the header).")
+    parser.add_argument("--yes", action="store_true",
+                        help="Skip the --refresh confirmation prompt (non-interactive runs).")
     args = parser.parse_args()
 
     if not args.api_key:
@@ -300,6 +344,35 @@ def main():
     out = os.path.abspath(args.out)
     os.makedirs(os.path.dirname(out), exist_ok=True)
     progress_path = out + ".progress.json"
+    existing = os.path.exists(out) and os.path.getsize(out) > 0
+
+    # --- --refresh: throw the old vintage away and start clean ---
+    if args.refresh and existing:
+        print(f"--refresh: {out} ({os.path.getsize(out) / 1e6:.0f} MB) and its progress file "
+              f"will be DELETED and re-downloaded from scratch.\n"
+              f"  The vintage in that file is irreproducible — NVD serves current state only.",
+              flush=True)
+        if not args.yes and input("  Type 'refresh' to confirm: ").strip() != "refresh":
+            print("Aborted.", flush=True)
+            sys.exit(1)
+        os.remove(out)
+        if os.path.exists(progress_path):
+            os.remove(progress_path)
+        existing = False
+    elif args.refresh:
+        print(f"--refresh: {out} does not exist yet — downloading normally.", flush=True)
+
+    # --- Schema guard: appending rows to a file written under an older column set
+    # silently produces a CSV whose header lies about its own contents. ---
+    if existing:
+        with open(out, newline="", encoding="utf-8") as f:
+            header = next(csv.reader(f), [])
+        if header != CSV_COLS:
+            print(f"ERROR: {out} has columns {header},\n"
+                  f"       but this script now writes {CSV_COLS}.\n"
+                  f"       Resuming would append mismatched rows. Download to a fresh --out "
+                  f"path, or re-run with --refresh.", flush=True)
+            sys.exit(1)
 
     # --- Resume state: finished pages + already-written CVE IDs ---
     completed_pages = set()
@@ -309,12 +382,14 @@ def main():
         print(f"Resuming: {len(completed_pages)} pages already complete.", flush=True)
 
     seen_ids = set()
-    if os.path.exists(out) and os.path.getsize(out) > 0:
+    if existing:
         print(f"Loading existing CVE IDs from {out} ...", flush=True)
         with open(out, newline="", encoding="utf-8") as f:
             for row in csv.DictReader(f):
                 seen_ids.add(row["cve_id"])
         print(f"  Loaded {len(seen_ids):,} existing CVE IDs.", flush=True)
+        print("  NOTE: these are SKIPPED, not updated — this is a resume, not a refresh.",
+              flush=True)
 
     # --- How many pages total? ---
     print("Fetching total CVE count from NVD ...", flush=True)
@@ -346,7 +421,7 @@ def main():
         "failed_pages": [],
     }
 
-    file_mode = "a" if (os.path.exists(out) and os.path.getsize(out) > 0) else "w"
+    file_mode = "a" if existing else "w"
     t_start = time.time()
 
     with open(out, file_mode, newline="", encoding="utf-8") as f:

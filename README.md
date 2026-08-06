@@ -50,8 +50,28 @@ python3 scripts/download_nvd.py        # → data/nvd-snapshot/nvd_all.csv
 Resumable — after every completed page (2000 CVEs), progress is saved to
 `data/nvd-snapshot/nvd_all.csv.progress.json` and rows are appended immediately. `Ctrl-C` to pause;
 re-run the same command to resume (skips finished pages, de-dupes by CVE ID). A full run is
-~360k CVEs / ~181 pages, ~2–3 hours. On a clean finish it writes `data/nvd-snapshot/SNAPSHOT.md`
-itself (snapshot date + true CVE count).
+~374k CVEs / ~187 pages; budget a few hours, though a healthy API day finishes in minutes. On a
+clean finish it writes `data/nvd-snapshot/SNAPSHOT.md` itself (snapshot date + true CVE count).
+
+### Moving to a newer snapshot
+
+**Resume is not refresh.** The de-dupe that makes a run resumable also means re-pointing
+`download_nvd.py` at the populated `nvd_all.csv` appends only CVEs published since — every
+existing row keeps its old vintage. Download to a new path instead, diff, then cut over:
+
+```bash
+python3 scripts/download_nvd.py --out data/nvd-snapshot/nvd_all_2026-08.csv
+python3 scripts/snapshot_churn.py --new data/nvd-snapshot/nvd_all_2026-08.csv   # BEFORE cutover
+mv data/nvd-snapshot/nvd_all.csv data/nvd-snapshot/nvd_all_<old-vintage>.csv    # keep it
+mv data/nvd-snapshot/nvd_all_2026-08.csv data/nvd-snapshot/nvd_all.csv
+python3 scripts/build_search.py --overwrite                                     # both searches
+```
+
+The churn diff has to run *before* the cutover: the old vintage is irreproducible (NVD serves
+current state only), so once it is gone the drift can never be measured. Keep the old CSV until
+the searches are re-run and the result tables restated — it is gitignored, so it costs nothing.
+Pinning still holds across a refresh: the invariant is that *both search methods see the same
+snapshot*, not that the snapshot never moves.
 
 **Fallback — build from per-year NVD 1.1 feeds** (if you prefer static feeds or the API is down):
 
@@ -277,12 +297,14 @@ can't resolve a path outside its project root); the treemap script writes straig
 `docs/figures/`, which the report already `\includegraphics`-references, so no copy step
 is needed there. Requires `matplotlib` and `squarify` (see Prerequisites).
 
-### Stage 8 — CVSS Score Analysis
+### Stage 8 — CVSS Score & Vector Analysis
 
 ```bash
 python3 scripts/cvss_analysis.py                          # all confirmed-Yes rows in the judgment store
 python3 scripts/cvss_analysis.py --category cameras       # restrict to one category (repeatable)
 python3 scripts/cvss_analysis.py --min-n 10                # raise the group-size floor for the stats test
+python3 scripts/cvss_analysis.py --group family            # report at the folding-category tier
+python3 scripts/cvss_analysis.py --score-versions 3        # drop v2.0-only rows from the stats test
 ```
 
 Per-category CVSS score distribution and severity buckets (None/Low/Medium/High/Critical),
@@ -293,6 +315,14 @@ plus a Kruskal-Wallis omnibus test with Dunn's post-hoc pairwise comparisons
 excluded from the statistical test but still reported descriptively.
 Output → printed summary + `data/difference/cvss_distribution.csv`, `cvss_severity.csv`,
 `cvss_dunn_pairwise.csv` (only if the omnibus test is significant), `cvss_matrix.md`.
+
+The same run also produces **RQ3** of the 2025 paper extension (Section VI): per-category
+distributions of Attack Vector, Scope, and the CIA impact combination →
+`cvss_vectors.csv` + `cvss_vector_matrix.md`. This half reads the snapshot's `vector_string`
+column and is skipped with a warning on a snapshot downloaded before that column existed.
+Vectors are pinned to CVSS 3.x, with 4.0 back-converted (VC/VI/VA → C/I/A; any non-None
+SC/SI/SA → `Scope: Changed`); v2.0-only CVEs have no 3.x equivalent and are counted as
+unconvertible rather than reshaped.
 
 ### Refreshing difference sets without losing review work
 
@@ -342,6 +372,7 @@ One line per script — full flag tables in `docs/SCRIPTS_REFERENCE.md`.
 | Script | Stage | Purpose |
 |--------|-------|---------|
 | `download_nvd.py` | Setup | Bulk-download the NVD snapshot via the API (resumable) |
+| `snapshot_churn.py` | Setup | Diffs two snapshot vintages over the confirmed-Yes set — run **before** a cutover |
 | `cve_search.py` | 1 & 2 (engine) | Core NVD search engine: `--convert`, `--merge`, `--input` modes |
 | `build_search.py` | 1 & 2 | Per-category keyword + vendor search against the fixed snapshot |
 | `review_lib.py` | 3/4 (shared lib) | Shared helpers: `load_cves`, `difference_rows`, `intersection_rows`, `write_raw` |
@@ -361,7 +392,8 @@ One line per script — full flag tables in `docs/SCRIPTS_REFERENCE.md`.
 | `cwe888_analysis.py` | 7 (analysis) | CWE-888 primary-class distribution over confirmed-Yes CVEs |
 | `generate_cwe888_table.py` | 7 (report) | LaTeX Table III equivalent, shaded top-6 classes per category |
 | `generate_cwe888_treemaps.py` | 7 (report) | LaTeX Figs. 2-4 equivalent — area-proportional CWE-888 treemaps |
-| `cvss_analysis.py` | 8 (analysis) | CVSS score distribution + Kruskal-Wallis/Dunn's test over confirmed-Yes CVEs |
+| `cvss_analysis.py` | 8 (analysis) | CVSS score distribution + Kruskal-Wallis/Dunn's test (RQ2) and vector-component distributions (RQ3) |
+| `cvss_vector.py` | 8 (shared lib) | CVSS vector parsing normalised to 3.x (4.0 back-conversion); shared by `cvss_analysis.py` and `ontology_build.py` |
 
 Retired scripts live in `scripts/_legacy/` (superseded-by table in `docs/SCRIPTS_REFERENCE.md`).
 

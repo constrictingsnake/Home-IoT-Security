@@ -1,6 +1,7 @@
 # Plan — NVD Snapshot Update (vector capture + backlog backfill)
 
-*Status: **Proposed** (2026-08-05). Refresh the fixed NVD snapshot from 2026-06-25 to a current
+*Status: **Implemented** (2026-08-05) — Steps 1-6 done; see § 11 for what the refresh actually
+measured, including the one finding that contradicts § 2.4. Refresh the fixed NVD snapshot from 2026-06-25 to a current
 vintage, capturing two fields the current snapshot never recorded (`vectorString`, CVSS 4.0
 metrics) and picking up NVD's CWE/CPE backfill on records we already confirmed. Triggered by
 `Onboarding-Docs/2025_Paper_Extension (1).pdf`, whose RQ3 (CVSS vector analysis) is not
@@ -285,10 +286,67 @@ These came out of the same review of the paper extension but need no snapshot ch
 
 ## 10. Open decisions
 
-1. **v2-only remainder (§2.2).** After the churn diff shows how many of the 81 were re-scored,
-   decide: report v2 separately, or exclude from the pooled Kruskal-Wallis. Defer until measured.
-2. **Metric preference order (Step 1).** Proposed v3.1 → v3.0 → v4.0 → v2.0 keeps the corpus on
-   v3.x and uses v4.0 only as a fallback. The alternative — prefer v4.0 where present — would
-   re-version a growing share of recent CVEs and worsen §2.2. Recommend as proposed.
-3. **When to delete the old snapshot.** Recommend: after Step 4 completes and the churn diff is
-   recorded, not before.
+1. **v2-only remainder (§2.2).** ~~After the churn diff shows how many of the 81 were re-scored~~
+   — **measured: zero of the 81 were re-scored** (§11.2). The refresh does not shrink this at all,
+   so it is now purely an analysis decision. `cvss_analysis.py --score-versions 3` implements the
+   exclusion; the default stays `all` so published numbers do not move silently, and
+   `cvss_matrix.md` now prints the version mix plus an explicit confound caveat. **Recommend
+   switching the published figure to `--score-versions 3`** and reporting the 81 v2-only CVEs
+   separately — they are 5% of the population and the extension pins to one version. Not done here:
+   it changes a published number, which is the supervisor's call.
+2. **Metric preference order (Step 1).** ~~Proposed~~ **implemented** as v3.1 → v3.0 → v4.0 → v2.0.
+   Confirmed correct in practice: of the 57 previously unscored CVEs, 54 are v4.0-only and now
+   carry a score, while no CVE already scored under v3.x was re-versioned (§11.1).
+3. **When to delete the old snapshot.** Not deleted. The 2026-06-25 vintage is retained as
+   `data/nvd-snapshot/nvd_all_2026-06.csv` (+ its progress file and
+   `SNAPSHOT_nvd_all_2026-06.md`), all gitignored. Retaining it costs nothing and is what makes
+   "reproduce this table" answerable for anything published off the June numbers.
+
+---
+
+## 11. What the refresh actually measured (2026-08-05)
+
+New snapshot: **373,518 CVEs** (from 360,981 — **+12,537** in six weeks). Download took 1.2 min
+over 187 pages, not the estimated 15-30 min. Churn recorded in
+`data/nvd-snapshot/snapshot_churn.md` / `.csv` before cutover.
+
+### 11.1 The parser fix delivered in full
+
+All **57** unscored confirmed-Yes CVEs now carry a base score: **54** were v4.0-only (recovered by
+adding `cvssMetricV40`) and **3** were genuinely new NVD analysis. `vector_string` coverage is
+**1,676 / 1,676 — 100%**, so RQ3 has no missing-data caveat at all. 1,657 of those normalise to
+CVSS 3.x; the other 81 are the v2.0-only records, which are reported as unconvertible.
+
+### 11.2 §2.4's backfill argument does not survive contact with the data
+
+The plan's strongest stated argument for refreshing — 118 CWE-less and 196 CPE-less confirmed CVEs
+waiting on NVD's backlog — **did not materialise**:
+
+| condition | predicted effect | measured over six weeks |
+|---|---|---|
+| no usable CWE (118) | would enter the CWE-888 distribution | **0 gained a CWE** (still 118) |
+| no CPE string (196) | would unblock Stage 5 / the `C` capture set | **3 gained CPEs** (now 193) |
+| v2.0-only (81) | some re-scored under v3.x | **0 re-scored** (still 81) |
+| base score changed | unknown | **0** |
+| newly REJECTED | unknown | **0** |
+
+Every one of the 3 real changes is a 2026 CVE that was still mid-analysis at the June download —
+i.e. NVD finishing *first* analysis, not *re*-analysis. **NVD reanalysis churn on already-analysed
+records is effectively nil at this timescale.** Two consequences:
+
+- The 7.0% of the confirmed set invisible to RQ1 for want of a CWE is **not** a backlog artefact
+  that waiting will fix. If those 118 matter, they need a different remedy (manual CWE
+  attribution, or reporting the coverage gap as a limitation) — a future refresh will not do it.
+- Refreshing again for backfill alone is not worth the re-review cost. The justification for
+  *this* refresh reduces to the two parser fixes (§11.1), which were real and complete.
+
+This is a citable threats-to-validity finding in its own right: a fixed confirmed-CVE set is far
+more stable across NVD vintages than the "NVD reanalyses records" caveat implies, and the churn
+that does occur is concentrated entirely in CVEs published within the last few months.
+
+### 11.3 The ontology held, exactly as §4.3 predicted
+
+`ontology_build.py --check` stayed green throughout (SHACL clean, both CSVs byte-identical,
+27/27 rulings reproduced), and `--verify-kg` passes against the new vintage with every count
+reconciling (1,676 Vulnerability / 1,738 CategoryAssignment / 1,904 CWE-888 attributions). The
+KG grew to ~80k triples with the vector predicates added.

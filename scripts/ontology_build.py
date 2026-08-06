@@ -38,6 +38,9 @@ from collections import Counter
 from rdflib import Graph, Namespace, RDF, RDFS
 from rdflib.namespace import SKOS
 
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from cvss_vector import impact_combination, parse_vector   # noqa: E402
+
 HIOT = Namespace("https://w3id.org/homeiot/ontology#")
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -53,6 +56,28 @@ KG_OUT = os.path.join(ROOT, "data", "ontology", "homeiot-kg.ttl")
 STORE = os.path.join(ROOT, "data", "difference", "judgment_store.csv")
 SNAPSHOT = os.path.join(ROOT, "data", "nvd-snapshot", "nvd_all.csv")
 CWE888_MAP = os.path.join(ROOT, "data", "difference", "cwe888_cve_map.csv")
+
+
+def snapshot_date(path):
+    """The vintage a snapshot CSV was downloaded at, for hkg:snapshotDate.
+
+    Read from the provenance markdown download_nvd.py writes beside it
+    (SNAPSHOT.md for nvd_all.csv, SNAPSHOT_<stem>.md otherwise) and fall back to
+    the file's mtime. Hardcoding this is how a graph ends up claiming a vintage
+    it was not built from."""
+    import datetime, re
+    base = os.path.basename(path)
+    md = os.path.join(os.path.dirname(path),
+                      "SNAPSHOT.md" if base == "nvd_all.csv"
+                      else "SNAPSHOT_%s.md" % os.path.splitext(base)[0])
+    if os.path.isfile(md):
+        with open(md, encoding="utf-8") as fh:
+            m = re.search(r"\*\*Snapshot date:\*\*\s*(\d{4}-\d{2}-\d{2})", fh.read())
+        if m:
+            return m.group(1)
+    if os.path.isfile(path):
+        return datetime.date.fromtimestamp(os.path.getmtime(path)).isoformat()
+    return "unknown"
 
 
 # ---------------------------------------------------------------- load
@@ -398,7 +423,19 @@ def expected_attributions(path=CWE888_MAP, population=None):
     return total
 
 
-def build_kg(g, include_excluded=False):
+VECTOR_PREDICATES = {
+    "attack_vector": "hkg:attackVector",
+    "attack_complexity": "hkg:attackComplexity",
+    "privileges_required": "hkg:privilegesRequired",
+    "user_interaction": "hkg:userInteraction",
+    "scope": "hkg:scope",
+    "confidentiality": "hkg:confidentialityImpact",
+    "integrity": "hkg:integrityImpact",
+    "availability": "hkg:availabilityImpact",
+}
+
+
+def build_kg(g, include_excluded=False, snapshot=SNAPSHOT):
     """Assemble the instance graph as {subject: [(predicate, object)]} with everything
     already rendered as Turtle terms. Returns (triples_by_subject, stats)."""
     pop = load_population(include_excluded=include_excluded)
@@ -408,7 +445,7 @@ def build_kg(g, include_excluded=False):
     if unknown:
         raise SystemExit(f"population references slugs absent from the ontology: {unknown}")
 
-    nvd = hydrate({cve for _c, cve, _r in pop})
+    nvd = hydrate({cve for _c, cve, _r in pop}, snapshot=snapshot)
     missing = sorted({cve for _c, cve, _r in pop} - set(nvd))
     cwe888, cwe_conflicts = load_cwe888()
 
@@ -418,6 +455,7 @@ def build_kg(g, include_excluded=False):
         subj.setdefault(s, set()).add((p, o))
 
     products, vendors, weaknesses, classes = {}, set(), set(), set()
+    n_vectors = [0]                     # CVEs carrying a 3.x-normalised vector
 
     for cve_id, row in sorted(nvd.items()):
         v = _uri("kgv", cve_id)
@@ -431,6 +469,18 @@ def build_kg(g, include_excluded=False):
             add(v, "hkg:cvssScore", '%s^^xsd:decimal' % _lit(row["cvss_score"].strip()))
         if row.get("cvss_version", "").strip():
             add(v, "hkg:cvssVersion", _lit(row["cvss_version"].strip()))
+        # RQ3 vector metrics. Emitted only when the vector normalises to CVSS 3.x —
+        # a 2.0-only CVE gets none of them rather than a converted approximation
+        # (see ontology/homeiot-kg.ttl for why absence is meaningful here).
+        vector = row.get("vector_string", "").strip()
+        if vector:
+            add(v, "hkg:cvssVector", _lit(vector))
+            metrics = parse_vector(vector)
+            if metrics:
+                n_vectors[0] += 1
+                for key, pred in VECTOR_PREDICATES.items():
+                    add(v, pred, _lit(metrics[key]))
+                add(v, "hkg:impactCombination", _lit(impact_combination(metrics)))
 
         for cwe in sorted({c.strip() for c in row.get("cwe_ids", "").split("|") if c.strip()}):
             # NVD uses NVD-CWE-noinfo / NVD-CWE-Other as non-CWE placeholders; they are
@@ -504,6 +554,8 @@ def build_kg(g, include_excluded=False):
         "cwe888_classes": len(classes),
         "cwe888_conflicts": cwe_conflicts,
         "attributions": expected_attributions(population=pop),
+        "vectors": n_vectors[0],
+        "snapshot": snapshot,
         "triples": sum(len(v) for v in subj.values()),
     }
     return subj, stats
@@ -532,11 +584,12 @@ def render_kg(subj, stats):
     out.write("<https://w3id.org/homeiot/kg/graph> rdf:type owl:Ontology ;\n")
     out.write('  dcterms:title "Home IoT Vulnerability Knowledge Graph" ;\n')
     out.write("  owl:imports <https://w3id.org/homeiot/kg>, <https://w3id.org/homeiot/ontology> ;\n")
-    out.write('  hkg:snapshotDate "2026-06-25"^^xsd:date ;\n')
+    out.write('  hkg:snapshotDate "%s"^^xsd:date ;\n' % snapshot_date(stats["snapshot"]))
     out.write('  dcterms:created "%s"^^xsd:date ;\n' % datetime.date.today().isoformat())
     for line in (
         "judgment_store.csv: %d confirmed-Yes (category, cve) pairs, Excluded applied" % stats["pairs"],
-        "nvd-snapshot/nvd_all.csv: %d distinct CVEs hydrated" % stats["cves"],
+        "nvd-snapshot/%s: %d distinct CVEs hydrated, %d with a CVSS 3.x vector"
+        % (os.path.basename(stats["snapshot"]), stats["cves"], stats["vectors"]),
         "cwe888_cve_map.csv: %d CWE-888 classes" % stats["cwe888_classes"],
     ):
         out.write('  hkg:generatedFrom %s ;\n' % _lit(line))
@@ -551,8 +604,8 @@ def render_kg(subj, stats):
     return out.getvalue()
 
 
-def cmd_export_kg(g, include_excluded=False, write=True):
-    subj, stats = build_kg(g, include_excluded=include_excluded)
+def cmd_export_kg(g, include_excluded=False, write=True, snapshot=SNAPSHOT):
+    subj, stats = build_kg(g, include_excluded=include_excluded, snapshot=snapshot)
     text = render_kg(subj, stats)
 
     if stats["missing_from_snapshot"]:
@@ -760,6 +813,12 @@ def main():
                     help="KG export only: keep rows carrying a judgment_store Excluded "
                          "reason (default drops them, matching cwe888_analysis.py)")
     ap.add_argument("--ttl", default=TTL, help="ontology file (default: ontology/homeiot.ttl)")
+    ap.add_argument("--snapshot", default=SNAPSHOT,
+                    help="KG export only: NVD snapshot to hydrate CVEs from (default: "
+                         "data/nvd-snapshot/nvd_all.csv). cwe888_analysis.py and "
+                         "cvss_analysis.py take the same flag — point all three at one "
+                         "vintage, or the graph reconciles against a CWE map built from "
+                         "different data.")
     args = ap.parse_args()
 
     if not (args.check or args.write or args.reason or args.align
@@ -780,7 +839,7 @@ def main():
         rc |= cmd_write(g)
     if args.export_kg or args.verify_kg:
         rc |= cmd_export_kg(g, include_excluded=args.include_excluded,
-                            write=args.export_kg)
+                            write=args.export_kg, snapshot=args.snapshot)
     return rc
 
 

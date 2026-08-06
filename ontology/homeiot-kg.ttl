@@ -120,11 +120,77 @@ hkg:cwe888MapDepth a owl:DatatypeProperty ;
 
 hkg:cvssScore a owl:DatatypeProperty ;
   rdfs:label "CVSS base score" ;
-  rdfs:comment "Base score only. The snapshot does not carry the CVSS vector string — download_nvd.py keeps baseScore and version and discards vectorString — so attack vector, privileges required and scope are not representable in this graph." ;
+  rdfs:comment "Base score under hkg:cvssVersion. Metric versions are NOT comparable — v2.0 uses a different formula and skews low — so a query that aggregates scores across CVEs should filter on hkg:cvssVersion or accept the confound." ;
   rdfs:domain hkg:Vulnerability ; rdfs:range xsd:decimal .
 
 hkg:cvssVersion a owl:DatatypeProperty ;
   rdfs:label "CVSS version" ;
+  rdfs:domain hkg:Vulnerability ; rdfs:range xsd:string .
+
+hkg:cvssVector a owl:DatatypeProperty ;
+  rdfs:label "CVSS vector string" ;
+  rdfs:comment "The base vector exactly as NVD published it, at whatever version hkg:cvssVersion names. The parsed metrics below are normalised to CVSS 3.x; this is the unnormalised original, kept so any re-derivation can be checked against the source." ;
+  rdfs:domain hkg:Vulnerability ; rdfs:range xsd:string .
+
+################################################################################
+# CVSS 3.x vector metrics (RQ3).
+#
+# All eight are the CVSS 3.x metric set in long form ("Network", "Changed",
+# "High"), parsed by scripts/cvss_vector.py — the same parser that produces
+# cvss_vectors.csv, so the graph and the tables cannot disagree.
+#
+# A 4.0 vector is back-converted to 3.x before these are emitted (VC/VI/VA are
+# the 3.x C/I/A; 4.0 dropped Scope, so any non-None subsequent-system impact
+# SC/SI/SA becomes Scope: Changed). A 2.0-only CVE gets NONE of these
+# properties: v2 has no Scope metric and its None/Partial/Complete impact scale
+# is not 3.x's None/Low/High, so converting would invent data. Absence is
+# therefore meaningful — query hkg:cvssVersion to tell "no vector" from
+# "vector not convertible to 3.x".
+################################################################################
+
+hkg:attackVector a owl:DatatypeProperty ;
+  rdfs:label "attack vector" ;
+  rdfs:comment "Network | Adjacent | Local | Physical — how remote the attacker can be." ;
+  rdfs:domain hkg:Vulnerability ; rdfs:range xsd:string .
+
+hkg:attackComplexity a owl:DatatypeProperty ;
+  rdfs:label "attack complexity" ;
+  rdfs:comment "Low | High." ;
+  rdfs:domain hkg:Vulnerability ; rdfs:range xsd:string .
+
+hkg:privilegesRequired a owl:DatatypeProperty ;
+  rdfs:label "privileges required" ;
+  rdfs:comment "None | Low | High." ;
+  rdfs:domain hkg:Vulnerability ; rdfs:range xsd:string .
+
+hkg:userInteraction a owl:DatatypeProperty ;
+  rdfs:label "user interaction" ;
+  rdfs:comment "None | Required. CVSS 4.0's three-valued form (None/Passive/Active) collapses to Required for both non-None values." ;
+  rdfs:domain hkg:Vulnerability ; rdfs:range xsd:string .
+
+hkg:scope a owl:DatatypeProperty ;
+  rdfs:label "scope" ;
+  rdfs:comment "Unchanged | Changed. Changed means the exploit can affect resources beyond the vulnerable component's own security scope." ;
+  rdfs:domain hkg:Vulnerability ; rdfs:range xsd:string .
+
+hkg:confidentialityImpact a owl:DatatypeProperty ;
+  rdfs:label "confidentiality impact" ;
+  rdfs:comment "None | Low | High." ;
+  rdfs:domain hkg:Vulnerability ; rdfs:range xsd:string .
+
+hkg:integrityImpact a owl:DatatypeProperty ;
+  rdfs:label "integrity impact" ;
+  rdfs:comment "None | Low | High." ;
+  rdfs:domain hkg:Vulnerability ; rdfs:range xsd:string .
+
+hkg:availabilityImpact a owl:DatatypeProperty ;
+  rdfs:label "availability impact" ;
+  rdfs:comment "None | Low | High." ;
+  rdfs:domain hkg:Vulnerability ; rdfs:range xsd:string .
+
+hkg:impactCombination a owl:DatatypeProperty ;
+  rdfs:label "CIA impact combination" ;
+  rdfs:comment "Which security attributes the CVE affects at all, as the extension's Fig. 10 combos: C+I+A, C+I, C+A, I+A, C, I, A, or none. Derived from the three impact metrics — stored rather than left to query time so the graph reproduces the published table directly." ;
   rdfs:domain hkg:Vulnerability ; rdfs:range xsd:string .
 
 hkg:published a owl:DatatypeProperty ;

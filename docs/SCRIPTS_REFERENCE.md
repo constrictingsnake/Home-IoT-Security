@@ -12,8 +12,40 @@ Downloads the entire NVD database from the NVD 2.0 REST API into the snapshot CS
 | Flag | Description |
 |------|-------------|
 | `--api-key KEY` | NVD API key (default: `$NVD_API_KEY`). Strongly recommended. |
-| `--out FILE` | Output CSV (default: `data/nvd-snapshot/nvd_all.csv`). |
+| `--out FILE` | Output CSV (default: `data/nvd-snapshot/nvd_all.csv`). A non-default path gets its own `SNAPSHOT_<stem>.md` instead of overwriting `SNAPSHOT.md`. |
 | `--threads N` | Concurrent download threads (default: `3`). |
+| `--refresh` | Rewrite `--out` from scratch rather than resuming. Prompts before truncating. |
+| `--yes` | Skip the `--refresh` prompt (non-interactive runs). |
+
+**Resume is not refresh.** The de-dupe that makes a run resumable also means re-pointing the
+script at a populated snapshot appends only CVEs published since — every existing row keeps
+its old vintage. To move to a new vintage, download to a *new* `--out` path, run
+`snapshot_churn.py`, then cut over; the previous vintage is irreproducible (NVD serves current
+state only), so keep it until the diff is recorded. `--refresh` is the destructive shortcut.
+
+Columns written: `cve_id, published, description, cvss_score, cvss_version, cwe_ids,
+cpe_strings, vector_string`. The first seven are the search schema (`cve_search.py`'s
+`CSV_COLS`); `vector_string` is snapshot-only and read by `cvss_analysis.py` (RQ3) and
+`ontology_build.py`. Metric preference is v3.1 → v3.0 → v4.0 → v2.0 — v4.0 sits below both v3s
+so the corpus stays on v3.x and 4.0 is used only where no v3 metric exists.
+
+---
+
+### `snapshot_churn.py` — Setup (pre-cutover gate)
+Diffs two NVD snapshot vintages over the confirmed-Yes population: base-score changes, CVEs that
+gained/lost a score, metric-version moves (in particular v2.0 → v3.x re-scores), CWE and CPE
+backfill, records withdrawn upstream, and vector-string coverage in the new file. Run it *before*
+replacing `nvd_all.csv` — afterwards the old vintage is gone and the drift is unmeasurable.
+Writes `data/nvd-snapshot/snapshot_churn.csv` (per-CVE) and `snapshot_churn.md` (summary).
+
+| Flag | Description |
+|------|-------------|
+| `--new FILE` | New snapshot CSV (**required**) |
+| `--old FILE` | Old snapshot CSV (default: `data/nvd-snapshot/nvd_all.csv`) |
+| `--store FILE` | Judgment store CSV (default: `data/difference/judgment_store.csv`) |
+| `--all` | Diff every CVE in both snapshots, not just the confirmed-Yes set |
+| `--include-excluded` | Keep rows a scope ruling took out of the analysis population |
+| `--out-dir DIR` | Output directory (default: `data/nvd-snapshot`) |
 
 ---
 
@@ -235,6 +267,37 @@ Groups the CWEs of every confirmed-Yes CVE in the judgment store into the 23 pri
 | `--categories FILE` | `categories.csv` for column ordering (default: `data/categories.csv`) |
 | `--category SLUG` | Restrict to one category slug (repeatable; default: all) |
 | `--out-dir DIR` | Output directory (default: `data/difference`) |
+
+---
+
+### `cvss_analysis.py` — Stage 8 (analysis)
+Two research questions over the same confirmed-Yes population. **RQ2** (transportation IoT study,
+Section V): per-category CVSS score distribution, severity buckets, and a Kruskal-Wallis omnibus
+test with Dunn's post-hoc pairwise comparisons. **RQ3** (2025 paper extension, Section VI): the
+distribution of CVSS *vector* components — Attack Vector, Scope, and the CIA impact combination —
+mirroring its Figs. 8-10. RQ3 needs the snapshot's `vector_string` column and is skipped with a
+warning on an older snapshot. Vectors are pinned to CVSS 3.x; 4.0 is back-converted (VC/VI/VA →
+C/I/A, any non-None SC/SI/SA → `Scope: Changed`) by `cvss_vector.py`, the same parser
+`ontology_build.py` uses, so the tables and the KG cannot disagree. A v2.0-only CVE has no 3.x
+equivalent (v2 has no Scope metric, and its None/Partial/Complete impact scale is not
+None/Low/High) and is reported as unconvertible rather than reshaped. Requires `scipy`.
+
+| Flag | Description |
+|------|-------------|
+| `--store FILE` | Judgment store CSV (default: `data/difference/judgment_store.csv`) |
+| `--snapshot FILE` | NVD snapshot with `cvss_score` / `vector_string` (default: `data/nvd-snapshot/nvd_all.csv`) |
+| `--categories FILE` | `categories.csv` for ordering/labels (default: `data/categories.csv`) |
+| `--category SLUG` | Restrict to one category slug (repeatable; default: all) |
+| `--min-n N` | Minimum scored CVEs to enter the stats test (default: `5`) |
+| `--group category\|family` | Unit of analysis; `family` folds to the ontology's folding categories and writes `*_family.*` alongside (default: `category`) |
+| `--families FILE` | `families.csv` from the ontology (default: `data/ontology/families.csv`) |
+| `--score-versions all\|3` | Which base-score versions enter the distribution and stats test. `3` drops v2.0-only records — v2 uses a different formula and skews low, so pooling is a confound (default: `all`, preserving published numbers) |
+| `--include-excluded` | Keep rows a scope ruling took out of the analysis population |
+| `--out-dir DIR` | Output directory (default: `data/difference`) |
+
+Writes `cvss_distribution.csv`, `cvss_severity.csv`, `cvss_matrix.md`, `cvss_dunn_pairwise.csv`
+(only if the omnibus test is significant), plus `cvss_vectors.csv` and `cvss_vector_matrix.md`
+for RQ3.
 
 ---
 

@@ -154,6 +154,35 @@ QUERIES = {
         } GROUP BY ?slug ORDER BY DESC(?n)
     """, "Average CVSS base score per category"),
 
+    "attack-vector-by-category": ("""
+        SELECT ?slug ?av (COUNT(?v) AS ?n) WHERE {
+          ?a a hkg:CategoryAssignment ; hkg:assignedCategory ?cat ; hkg:assignedVulnerability ?v .
+          ?cat hiot:slug ?slug . ?v hkg:attackVector ?av .
+        } GROUP BY ?slug ?av ORDER BY ?slug DESC(?n)
+    """, "RQ3: Attack Vector distribution per category (the extension's Fig. 8)"),
+
+    "scope-changed": ("""
+        SELECT ?slug (COUNT(?v) AS ?n) WHERE {
+          ?a a hkg:CategoryAssignment ; hkg:assignedCategory ?cat ; hkg:assignedVulnerability ?v .
+          ?cat hiot:slug ?slug . ?v hkg:scope "Changed" .
+        } GROUP BY ?slug ORDER BY DESC(?n)
+    """, "RQ3: confirmed CVEs whose exploit escapes the vulnerable component's scope (Fig. 9)"),
+
+    "impact-combination": ("""
+        SELECT ?combo (COUNT(?v) AS ?n) WHERE {
+          ?v a hkg:Vulnerability ; hkg:impactCombination ?combo .
+        } GROUP BY ?combo ORDER BY DESC(?n)
+    """, "RQ3: which CIA attributes confirmed CVEs affect (Fig. 10)"),
+
+    "remote-unauthenticated": ("""
+        SELECT ?slug (COUNT(?v) AS ?n) WHERE {
+          ?a a hkg:CategoryAssignment ; hkg:assignedCategory ?cat ; hkg:assignedVulnerability ?v .
+          ?cat hiot:slug ?slug .
+          ?v hkg:attackVector "Network" ; hkg:privilegesRequired "None" ;
+             hkg:userInteraction "None" .
+        } GROUP BY ?slug ORDER BY DESC(?n)
+    """, "Network-reachable, no privileges, no user interaction — the worst-case exposure profile"),
+
     "physical-consequence": ("""
         SELECT ?slug (COUNT(?a) AS ?n) WHERE {
           ?a a hkg:CategoryAssignment ; hkg:assignedCategory ?cat .
