@@ -880,13 +880,76 @@ def cmd_check(g):
             print(f"  {sbj} {pred} {obj}")
         failures.append("sources")
 
+    # Never hardcode the ruling count. It was literally "27" here, so adding a
+    # negative case would have printed "28/27 rulings reproduced".
+    n_rulings = len(cats) + len(device_types(g, excluded=True))
     mismatches = reason(g, verbose=False)
-    print(f"reasoner: {27 - len(mismatches)}/27 rulings reproduced"
+    print(f"reasoner: {n_rulings - len(mismatches)}/{n_rulings} rulings reproduced"
           if not mismatches else
           f"reasoner: {len(mismatches)} MISMATCH — run --reason")
     if mismatches:
         failures.append("reasoner")
 
+    return 1 if failures else 0
+
+
+# The five conjuncts of hiot:InScopeDeviceType, as they appear verbatim in the TTL.
+# --self-test deletes each in turn and requires the reasoner to notice.
+AXIOM_CONJUNCTS = {
+    "1 connectivity": "      [ a owl:Restriction ; owl:onProperty hiot:hasConnectivity ; "
+                      "owl:someValuesFrom hiot:Protocol ]\n",
+    "2 device class": "      [ a owl:Restriction ; owl:onProperty hiot:hasDeviceClass ; "
+                      "owl:someValuesFrom hiot:SpecialPurposeEmbedded ]\n",
+    "3 deployment":   "      [ a owl:Restriction ; owl:onProperty hiot:hasDeployment ; "
+                      "owl:hasValue hiot:Residential ]\n",
+    "4 function/role": """      [ a owl:Class ; owl:unionOf (
+          [ a owl:Restriction ; owl:onProperty hiot:hasFunction ; owl:someValuesFrom hiot:HomeControlFunction ]
+          [ a owl:Restriction ; owl:onProperty hiot:hasRole ; owl:someValuesFrom hiot:HomeControlSurfaceRole ] ) ]\n""",
+    "5 security ctx": "      [ a owl:Restriction ; owl:onProperty hiot:hasSecurityContext ; "
+                      "owl:hasValue hiot:ConsumerManaged ]\n",
+}
+
+
+def cmd_self_test(ttl=TTL):
+    """Prove every criterion in the membership axiom is load-bearing.
+
+    Deletes each conjunct in turn and requires --reason to report a mismatch. A
+    criterion that can be removed while the build stays green is not being enforced,
+    and the 'the reasoner reproduces every published ruling' claim is worth exactly
+    as much as the negative cases behind it.
+
+    Measured before the single-criterion boundary cases were added: only criterion 4
+    was caught (by transport-networking, the sole type failing one criterion alone);
+    1, 2, 3 and 5 were all silently deletable. gameconsoles and vrar caught nothing,
+    because each fails 2 AND 4 and so isolates neither."""
+    with open(ttl, encoding="utf-8") as fh:
+        src = fh.read()
+
+    print("axiom self-test: deleting each criterion, expecting the reasoner to object\n")
+    print(f"{'deleted conjunct':20} {'detected by':>34}   result")
+    print("-" * 72)
+    failures = []
+    for name, conjunct in AXIOM_CONJUNCTS.items():
+        if conjunct not in src:
+            print(f"{name:20} {'':>34}   ANCHOR NOT FOUND — axiom text changed")
+            failures.append(name)
+            continue
+        g2 = Graph()
+        g2.parse(data=src.replace(conjunct, "", 1), format="turtle")
+        caught = reason(g2, verbose=False)
+        who = ", ".join(sorted(slug for slug, *_r in caught)) if caught else "nothing"
+        ok = bool(caught)
+        print(f"{name:20} {who[:34]:>34}   {'ok' if ok else 'NOT ENFORCED'}")
+        if not ok:
+            failures.append(name)
+
+    print("-" * 72)
+    if failures:
+        print(f"self-test: FAIL — {len(failures)} criterion/criteria not enforced by any "
+              f"negative case: {', '.join(failures)}")
+        print("  Fix by adding a defined-but-excluded type that fails ONLY that criterion.")
+    else:
+        print(f"self-test: PASS — all {len(AXIOM_CONJUNCTS)} criteria are load-bearing")
     return 1 if failures else 0
 
 
@@ -915,6 +978,10 @@ def main():
                     help="print the 27-class in/out ruling table")
     ap.add_argument("--align", action="store_true",
                     help="verify external alignment IRIs and report coverage")
+    ap.add_argument("--self-test", action="store_true",
+                    help="delete each criterion from the membership axiom in turn and "
+                         "require the reasoner to catch it; proves the criteria are "
+                         "load-bearing rather than decorative")
     ap.add_argument("--sources", action="store_true",
                     help="verify study citations against the pinned manifest and report "
                          "how much confirmed-CVE mass rests on categories no study "
@@ -937,9 +1004,9 @@ def main():
     args = ap.parse_args()
 
     if not (args.check or args.write or args.reason or args.align or args.sources
-            or args.export_kg or args.verify_kg):
+            or args.self_test or args.export_kg or args.verify_kg):
         ap.error("pick one of --check / --write / --reason / --align / --sources "
-                 "/ --export-kg / --verify-kg")
+                 "/ --self-test / --export-kg / --verify-kg")
 
     g = load(args.ttl)
     rc = 0
@@ -951,6 +1018,8 @@ def main():
         rc |= 0 if ok else 1
     if args.reason:
         rc |= 1 if reason(g) else 0
+    if args.self_test:
+        rc |= cmd_self_test(args.ttl)
     if args.check:
         rc |= cmd_check(g)
     if args.write:

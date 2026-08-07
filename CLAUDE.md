@@ -141,8 +141,22 @@ facet vocabulary, with every category carrying an explicit value for all five. I
 three reasons, none of which is "because RDF":
 
 1. **The scope decision becomes auditable.** A reasoner, not the prose, decides membership — and
-   it reproduces all **27** published in/out rulings. If a facet edit ever contradicts a
+   it reproduces every published in/out ruling (**31/31**). If a facet edit ever contradicts a
    published ruling, `--check` fails. That is the check working, not a bug.
+
+   **But the ruling count is the weak claim; the negative cases are the strong one.** Most of
+   those rulings are in-scope categories confirming they are in scope — true by construction and
+   verifying nothing. What gives the gate teeth is a defined-but-excluded type that fails
+   **exactly one** criterion, because it fails the build the moment that criterion stops being
+   enforced. `--self-test` proves this by deleting each conjunct of the membership axiom in turn
+   and requiring the reasoner to object. Measured before the boundary cases existed: **only
+   criterion 4 was enforced** — 1, 2, 3 and 5 could each be deleted with the build staying green,
+   because `gameconsoles` and `vrar` both fail criteria 2 *and* 4 and so isolate neither. Now all
+   five are load-bearing, one boundary case each: `non-networked-detector` (1),
+   `tablet-control-panel` (2), `commercial-hvac-controller` (3), `transport-networking` (4),
+   `monitored-alarm-service` (5). **Do not report "N/N rulings reproduced" as the headline** —
+   report that every criterion is enforced by a negative case, which is the claim that survives
+   scrutiny.
 2. **The tail problem needs a coarser tier.** Six leaf categories rest on ≤5 confirmed CVEs yet
    were being published as percentages (a cell reading "Channel 100%" on N=2). The 13
    **supervisor-agreed folding categories** are the fix; `--group family` on
@@ -200,9 +214,10 @@ by `--sources`: 13 of 24 categories (54%) have a direct study, 10 are methodolog
 `streaming` has none at all; weighted by confirmed CVEs, **14.6% of the population sits on
 categories no study examines directly**. That is the literature-side twin of the SAREF gap finding.
 
-Three gates, all must stay green: `ontology_build.py --check` (SHACL + IRI verification + citation
-verification + reasoner + byte-identical CSVs), `--sources`, and `--verify-kg` (the instance graph
-reconciles against `judgment_store.csv` and `cwe888_cve_map.csv`). Never reserialize the
+Four gates, all must stay green: `ontology_build.py --check` (SHACL + IRI verification + citation
+verification + reasoner + byte-identical CSVs), `--self-test` (every criterion enforced by a
+negative case), `--sources`, and `--verify-kg` (the instance graph reconciles against
+`judgment_store.csv` and `cwe888_cve_map.csv`). Never reserialize the
 hand-authored `.ttl` files — `--write` only ever emits CSVs, so rdflib can't churn the diffs.
 
 ### Refresh invariant

@@ -26,8 +26,13 @@ hiot:DeviceTypeShape a sh:NodeShape ;
                 sh:message "Every device type needs exactly one rdfs:label (the categories.csv `label` column)." ] ;
 
   # --- the five definitional criteria ---
-  sh:property [ sh:path hiot:hasConnectivity ; sh:minCount 1 ; sh:class hiot:Protocol ;
-                sh:message "Criterion 1: at least one connectivity protocol." ] ;
+  # NO minCount here. A defined-but-excluded type must be able to fail criterion 1,
+  # and a device that fails criterion 1 is one with no connectivity at all — so
+  # requiring connectivity on every hiot:DeviceType made the connectivity criterion
+  # the one criterion no negative case could ever test. minCount moved to
+  # AnalysisCategoryShape, where "in scope but not networked" really is a contradiction.
+  sh:property [ sh:path hiot:hasConnectivity ; sh:class hiot:Protocol ;
+                sh:message "Criterion 1: connectivity values must be hiot:Protocol." ] ;
   sh:property [ sh:path hiot:hasDeviceClass ; sh:minCount 1 ; sh:maxCount 1 ; sh:class hiot:DeviceClass ;
                 sh:message "Criterion 2: exactly one device class." ] ;
   sh:property [ sh:path hiot:hasDeployment ; sh:minCount 1 ; sh:maxCount 1 ; sh:class hiot:DeploymentContext ;
@@ -63,6 +68,9 @@ hiot:AnalysisCategoryShape a sh:NodeShape ;
                 sh:message "Analysis categories need a sortOrder — it fixes categories.csv row order, which cwe888_analysis.py reads into cat_order for RQ1 table row ordering." ] ;
   sh:property [ sh:path skos:scopeNote ; sh:minCount 1 ; sh:maxCount 1 ;
                 sh:message "Analysis categories need a scopeNote — gemini_classify.py injects it into reviewer prompts; a missing one silently blanks the note." ] ;
+
+  sh:property [ sh:path hiot:hasConnectivity ; sh:minCount 1 ; sh:class hiot:Protocol ;
+                sh:message "Criterion 1: an in-scope analysis category must carry at least one connectivity protocol." ] ;
 
   # --- descriptive sub-facets ---------------------------------------------------
   # Required on the 24 ANALYSIS categories only, not on hiot:DeviceType at large:

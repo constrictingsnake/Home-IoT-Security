@@ -26,7 +26,7 @@
 
 <https://w3id.org/homeiot/ontology> a owl:Ontology ;
   dcterms:title "Home IoT Device Ontology" ;
-  dcterms:description "Device-type ontology for the residential IoT vulnerability study: five definitional criteria as class axioms over a closed facet vocabulary, 24 analysis categories in 7 families, plus 3 defined-but-excluded types." ;
+  dcterms:description "Device-type ontology for the residential IoT vulnerability study: five definitional criteria as class axioms over a closed facet vocabulary, plus descriptive sub-facets for analysis. 24 analysis categories in 13 folding families, plus defined-but-excluded types including one single-criterion boundary case per criterion." ;
   owl:versionInfo "0.1.0" .
 
 ################################################################################
@@ -130,7 +130,7 @@ hiot:alsoDeployedIn a owl:ObjectProperty ; rdfs:label "also deployed in" ;
   rdfs:comment """Non-residential contexts the same product line genuinely serves. Activates the Prosumer/Commercial/Industrial vocabulary, which was declared from the start and never asserted. This is what makes 'cameras is contaminated by pro surveillance' a queryable property rather than a remark in a scope note.""" ;
   rdfs:domain hiot:DeviceType ; rdfs:range hiot:DeploymentContext .
 hiot:consumerAvailability a owl:ObjectProperty ; rdfs:label "consumer availability" ;
-  rdfs:comment """Sales channel: can a non-expert consumer buy and self-install it? This encodes the rule the human reviewers ALREADY used to settle the pro-camera Yes/No disagreements (see the human-review reconciliation record) — moving it from an undocumented heuristic into a machine-checkable facet, the same win as the reasoner reproducing the 27 published rulings.""" ;
+  rdfs:comment """Sales channel: can a non-expert consumer buy and self-install it? This encodes the rule the human reviewers ALREADY used to settle the pro-camera Yes/No disagreements (see the human-review reconciliation record) — moving it from an undocumented heuristic into a machine-checkable facet, the same win as the reasoner reproducing the published rulings.""" ;
   rdfs:domain hiot:DeviceType ; rdfs:range hiot:ConsumerAvailability .
 
 # --- criterion 4 refinement: function / role ---------------------------------
@@ -219,7 +219,7 @@ hiot:SupportLifetime a owl:Class .
 # new is the layer split: the flat bag mixed link-layer radios (how the device is
 # physically reachable, which bears on CVSS Attack Vector) with application
 # protocols (what speaks over that link, which bears on weakness class). Both types
-# are asserted explicitly rather than left to subclass inference — the 27/27
+# are asserted explicitly rather than left to subclass inference — the reasoner
 # reasoner gate must not depend on OWL-RL type propagation to keep passing.
 hiot:LinkLayerProtocol a owl:Class ; rdfs:subClassOf hiot:Protocol ;
   rdfs:label "link-layer protocol" .
@@ -366,7 +366,7 @@ hiot:Indoor a hiot:Placement . hiot:Outdoor a hiot:Placement . hiot:Either a hio
 
 hiot:DeviceType a owl:Class ; rdfs:label "device type" .
 
-# NOTE ON PUNNING. Each of the 27 device types is declared BOTH as an owl:Class
+# NOTE ON PUNNING. Each device type is declared BOTH as an owl:Class
 # (so families can subclass it and the taxonomy is a real hierarchy) AND as an
 # individual of hiot:DeviceType (so the criteria axiom below can classify it).
 # Facet values are individuals, so value groupings use owl:oneOf, not owl:unionOf
@@ -392,7 +392,7 @@ hiot:HomeControlFunction a owl:Class ;
 # (owl:hasValue hiot:HomeControlSurface); it now admits any of the four named
 # mechanisms via owl:someValuesFrom. The criterion's MEANING is unchanged — the
 # prose already listed these three routes plus the rule engine — so the published
-# in/out rulings must not move. That is exactly what the 27/27 gate verifies.
+# in/out rulings must not move. That is exactly what the reasoner gate verifies.
 hiot:HomeControlSurfaceRole a owl:Class ;
   rdfs:label "home-control surface role" ;
   owl:equivalentClass [ a owl:Class ;
@@ -1267,6 +1267,119 @@ hiot:vrar a owl:Class, hiot:DeviceType ;
   hiot:capturesAV true ;
   hiot:failsCriteria "2, 4" ;
   rdfs:comment """General-purpose compute in a worn form factor; no home-control role.""" .
+
+################################################################################
+# Single-criterion boundary cases
+#
+# WHY THESE EXIST. The reasoner gate is only as strong as its negative cases, and
+# measured against the original three it was very weak: deleting a conjunct from
+# the hiot:InScopeDeviceType axiom and re-running --reason caught the edit for
+# criterion 4 ONLY. Criteria 1, 2, 3 and 5 could each be deleted outright and the
+# build stayed green.
+#
+# The reason is that the original negatives do not isolate a criterion.
+# gameconsoles and vrar each fail criteria 2 AND 4, so removing either one leaves
+# the other still excluding them; the two are also redundant with each other.
+# transport-networking fails criterion 4 alone, which is why it was the only case
+# carrying any weight.
+#
+# A criterion that can be deleted without failing the build is not doing any work
+# — the same standard applied to the SHACL constraints, which are negative-tested
+# rather than assumed. Each type below therefore fails EXACTLY ONE criterion and
+# satisfies the other four, so it fails the build the moment its criterion stops
+# being enforced. Verify with:  python3 scripts/ontology_build.py --self-test
+#
+# These are boundary MARKERS, not categories. They subclass hiot:ExcludedDeviceType,
+# which carries no hiot:familyId, so device_types() never returns them and
+# categories.csv / families.csv are byte-identical with or without them. They were
+# chosen to be real scope questions the project has actually argued about, not
+# devices invented to satisfy a test.
+################################################################################
+
+hiot:non_networked_detector a owl:Class, hiot:DeviceType ;
+  rdfs:subClassOf hiot:ExcludedDeviceType ;
+  hiot:slug "non-networked-detector" ;
+  rdfs:label "standalone (non-networked) detector" ;
+  # No hiot:hasConnectivity at all — that IS the exclusion.
+  hiot:hasDeviceClass hiot:EmbeddedSensor ;
+  hiot:hasDeployment hiot:Residential ;
+  hiot:hasFunction hiot:Monitor ;
+  hiot:hasSecurityContext hiot:ConsumerManaged ;
+  hiot:formFactor hiot:Fixed ;
+  hiot:placement hiot:Indoor ;
+  hiot:actuatesPhysical false ;
+  hiot:capturesAV false ;
+  hiot:failsCriteria "1" ;
+  rdfs:comment """A standalone battery smoke or CO alarm. Special-purpose sensor, in a home,
+monitoring the home environment, maintained by a non-expert — it satisfies criteria 2, 3, 4 and 5
+and is excluded solely because it is not networked. This is the guiding principle stated in reverse:
+'connectivity is not membership' rules devices OUT for being networked-but-not-home-control, and
+this rules one out for being home-control-but-not-networked. It also isolates criterion 1, which no
+other negative case can test, since every other device type in the file is networked.""" .
+
+hiot:tablet_control_panel a owl:Class, hiot:DeviceType ;
+  rdfs:subClassOf hiot:ExcludedDeviceType ;
+  hiot:slug "tablet-control-panel" ;
+  rdfs:label "wall-mounted tablet control panel" ;
+  hiot:hasConnectivity hiot:wifi, hiot:ble ;
+  hiot:hasDeviceClass hiot:GeneralPurposeCompute ;
+  hiot:hasDeployment hiot:Residential ;
+  hiot:hasFunction hiot:MediaPlayback ;
+  hiot:hasRole hiot:ControllerRole, hiot:FeedSurfaceRole ;
+  hiot:hasSecurityContext hiot:ConsumerManaged ;
+  hiot:formFactor hiot:Fixed ;
+  hiot:placement hiot:Indoor ;
+  hiot:actuatesPhysical false ;
+  hiot:capturesAV true ;
+  hiot:failsCriteria "2" ;
+  rdfs:comment """An iPad or Android tablet mounted in a hallway as a home dashboard. Unlike game
+consoles this genuinely IS a home-control surface — it runs the controller app and displays camera
+feeds, so it satisfies criterion 4(b) outright. It is excluded on criterion 2 alone: a general-
+purpose computer does not become a home IoT device by being used as one. That makes it the sharpest
+statement of the criterion-2 line in the file, and the only case that isolates criterion 2
+(gameconsoles and vrar both fail 2 AND 4, so neither can test 2 on its own).""" .
+
+hiot:commercial_hvac_controller a owl:Class, hiot:DeviceType ;
+  rdfs:subClassOf hiot:ExcludedDeviceType ;
+  hiot:slug "commercial-hvac-controller" ;
+  rdfs:label "small-premises commercial HVAC controller" ;
+  hiot:hasConnectivity hiot:ethernet, hiot:wifi ;
+  hiot:hasDeviceClass hiot:EmbeddedController ;
+  hiot:hasDeployment hiot:Commercial ;
+  hiot:hasFunction hiot:Monitor, hiot:Automate, hiot:Control ;
+  hiot:hasSecurityContext hiot:ConsumerManaged ;
+  hiot:formFactor hiot:Fixed ;
+  hiot:placement hiot:Indoor ;
+  hiot:actuatesPhysical true ;
+  hiot:capturesAV false ;
+  hiot:failsCriteria "3" ;
+  rdfs:comment """A connected thermostat/HVAC controller in a small shop or cafe, set up and
+managed by the owner rather than a facilities team. Deliberately consumer-managed: that keeps
+criterion 5 satisfied so this case isolates criterion 3, and it is realistic rather than contrived
+— a sole trader administering their own shop thermostat has no more IT oversight than a
+householder. Hardware identical to hiot:thermostat; excluded purely on deployment context. This is
+the case the scope notes gesture at whenever they say 'OUT: commercial/industrial'.""" .
+
+hiot:monitored_alarm_service a owl:Class, hiot:DeviceType ;
+  rdfs:subClassOf hiot:ExcludedDeviceType ;
+  hiot:slug "monitored-alarm-service" ;
+  rdfs:label "professionally monitored alarm installation" ;
+  hiot:hasConnectivity hiot:cellular, hiot:wifi, hiot:ethernet ;
+  hiot:hasDeviceClass hiot:EmbeddedController ;
+  hiot:hasDeployment hiot:Residential ;
+  hiot:hasFunction hiot:Monitor, hiot:Automate, hiot:Control ;
+  hiot:hasSecurityContext hiot:ProfessionallyAdministered ;
+  hiot:formFactor hiot:Fixed ;
+  hiot:placement hiot:Indoor ;
+  hiot:actuatesPhysical true ;
+  hiot:capturesAV false ;
+  hiot:failsCriteria "5" ;
+  rdfs:comment """A residentially deployed alarm panel that the monitoring company owns, commissions
+and patches (the ADT/Vivint service model). Physically in a home, doing home security, on consumer
+premises — excluded on criterion 5 alone, because the defining clause of this study's definition is
+'without dedicated IT security oversight' and here that oversight exists. It is the direct boundary
+against hiot:alarms and the only case that isolates criterion 5, which nothing else in the file
+tests: every other type is ConsumerManaged.""" .
 
 hiot:transport_networking a owl:Class, hiot:DeviceType ;
   rdfs:subClassOf hiot:ExcludedDeviceType ;
