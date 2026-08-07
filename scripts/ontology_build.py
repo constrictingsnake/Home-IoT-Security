@@ -48,6 +48,8 @@ TTL = os.path.join(ROOT, "ontology", "homeiot.ttl")
 SHAPES = os.path.join(ROOT, "ontology", "shapes.ttl")
 ALIGN = os.path.join(ROOT, "ontology", "homeiot-align.ttl")
 EXTERNAL = os.path.join(ROOT, "ontology", "external_classes.tsv")
+SOURCES = os.path.join(ROOT, "ontology", "homeiot-sources.ttl")
+STUDY_MANIFEST = os.path.join(ROOT, "ontology", "study_sources.tsv")
 CATEGORIES = os.path.join(ROOT, "data", "categories.csv")
 FAMILIES = os.path.join(ROOT, "data", "ontology", "families.csv")
 
@@ -167,8 +169,14 @@ CRITERIA = [
     ("2 device class",  "?d hiot:hasDeviceClass ?v . "
                         "VALUES ?v { hiot:EmbeddedSensor hiot:EmbeddedAppliance hiot:EmbeddedController }"),
     ("3 deployment",    "?d hiot:hasDeployment hiot:Residential . BIND(1 AS ?v)"),
+    # 4(b) is the four named control-surface mechanisms, not the single
+    # hiot:HomeControlSurface individual it used to be. Kept in sync with the
+    # owl:oneOf in hiot:HomeControlSurfaceRole — this report is what a reviewer
+    # reads when the reasoner and a published ruling disagree, so it must test
+    # the same thing the axiom does.
     ("4 function/role", "{ ?d hiot:hasFunction ?v . VALUES ?v { hiot:Monitor hiot:Automate hiot:Control } } "
-                        "UNION { ?d hiot:hasRole hiot:HomeControlSurface . BIND(1 AS ?v) }"),
+                        "UNION { ?d hiot:hasRole ?v . VALUES ?v { hiot:ControllerRole hiot:AssistantRole "
+                        "hiot:FeedSurfaceRole hiot:AutomationEngineRole } }"),
     ("5 security ctx",  "?d hiot:hasSecurityContext hiot:ConsumerManaged . BIND(1 AS ?v)"),
 ]
 
@@ -252,6 +260,98 @@ def check_alignment(verbose=True):
             print(f"    WARNING: {n - len(exact) - len(coarse)} categories carry no "
                   f"alignmentPrecision annotation")
     return (not bad), bad, prec
+
+
+def check_sources(verbose=True):
+    """Verify every study cited in homeiot-sources.ttl exists in the pinned manifest,
+    and report how much of the confirmed CVE mass rests on categories no study has
+    examined.
+
+    Same mechanism as check_alignment, one level weaker on purpose: it can prove a
+    citation KEY is one we registered, never that its bibliographic detail is correct.
+    That is what study_sources.tsv's verified= column is for, and why entries marked
+    `no` must be confirmed against the actual paper before they reach the report."""
+    if not os.path.isfile(SOURCES):
+        return None, "homeiot-sources.ttl not found", {}
+    if not os.path.isfile(STUDY_MANIFEST):
+        return None, "study_sources.tsv not found — cannot verify citations", {}
+
+    known, unverified = {}, set()
+    with open(STUDY_MANIFEST, newline="", encoding="utf-8") as fh:
+        for r in csv.DictReader((ln for ln in fh if not ln.startswith("#")),
+                                delimiter="\t"):
+            known[r["iri"]] = r["title"]
+            if r["verified"].strip() != "yes":
+                unverified.add(r["iri"])
+
+    sg = Graph()
+    sg.parse(SOURCES, format="turtle")
+
+    DCT = Namespace("http://purl.org/dc/terms/")
+    bad, cited = [], Counter()
+    direct, methodological = {}, {}
+    for pred, bucket in ((DCT.source, direct), (HIOT.methodologicalSource, methodological)):
+        for s, o in sg.subject_objects(pred):
+            if not str(s).startswith(str(HIOT)):
+                continue
+            bucket.setdefault(str(s).split("#")[-1], set()).add(str(o))
+            if str(o) in known:
+                cited[str(o)] += 1
+            else:
+                bad.append((str(s).split("#")[-1], str(pred).split("/")[-1], str(o)))
+
+    no_study = {str(s).split("#")[-1]
+                for s, _o in sg.subject_objects(HIOT.noDirectStudy)}
+
+    if verbose:
+        # The sources file keys on IRI local names (hiot:home_power), the judgment
+        # store keys on slugs (home-power). They differ wherever a slug contains a
+        # hyphen, so the two must be mapped, not assumed equal.
+        g = load()
+        slug_of = {str(uri).split("#")[-1]: slug
+                   for _o, slug, _l, _n, _f, uri in device_types(g)}
+        analysis = set(slug_of)                    # local names of the 24 categories
+        print(f"\nsources: {sum(cited.values())} citations over "
+              f"{len(known)} registered studies")
+        if unverified:
+            print(f"  {len(unverified)} of {len(known)} studies are verified=no — "
+                  f"titles are real, bibliographic detail is NOT confirmed")
+        if bad:
+            print("\n  UNREGISTERED citations (not in manifest — likely fabricated):")
+            for s, p, o in bad:
+                print(f"    {s} {p} {o}")
+
+        n = len(analysis)
+        d = sorted(k for k in direct if k in analysis)
+        m = sorted(k for k in analysis if k not in direct and k in methodological)
+        none_ = sorted(k for k in analysis if k not in direct and k not in methodological)
+        print(f"\n  over the {n} analysis categories: {len(d)} with a direct study "
+              f"({100*len(d)/n:.0f}%), {len(m)} methodological only, {len(none_)} with none")
+        if m:
+            print(f"    methodological only: {', '.join(m)}")
+        if none_:
+            print(f"    no study at all:     {', '.join(none_)}")
+
+        # Weight the gap by confirmed CVEs — a gap over empty categories would not
+        # matter. This is the literature-side twin of the SAREF coverage figure.
+        try:
+            direct_slugs = {slug_of[k] for k in direct if k in slug_of}
+            pop = Counter(c for c, _v, _r in load_population())
+            total = sum(pop.values())
+            if total:
+                by_direct = sum(v for k, v in pop.items() if k in direct_slugs)
+                print(f"\n  weighted by confirmed CVEs (n={total}): "
+                      f"{100*by_direct/total:.1f}% sit on categories a study evaluates "
+                      f"directly, {100*(total-by_direct)/total:.1f}% do not")
+                gap = sorted(((v, k) for k, v in pop.items() if k not in direct_slugs),
+                             reverse=True)[:5]
+                if gap:
+                    print("    largest unexamined categories: "
+                          + ", ".join(f"{k} ({v})" for v, k in gap))
+        except (OSError, KeyError):
+            pass
+    return (not bad), bad, {"direct": direct, "methodological": methodological,
+                            "noDirectStudy": no_study, "unverified": unverified}
 
 
 def reason(g, verbose=True):
@@ -769,6 +869,17 @@ def cmd_check(g):
             print(f"  {sbj} {pred} {obj}")
         failures.append("alignment")
 
+    ok_src, bad_src, _info = check_sources(verbose=False)
+    if ok_src is None:
+        print(f"sources: NOT RUN — {bad_src}")
+    elif ok_src:
+        print("sources: all cited studies verified against manifest ✓")
+    else:
+        print(f"sources: {len(bad_src)} UNREGISTERED citation(s)")
+        for sbj, pred, obj in bad_src:
+            print(f"  {sbj} {pred} {obj}")
+        failures.append("sources")
+
     mismatches = reason(g, verbose=False)
     print(f"reasoner: {27 - len(mismatches)}/27 rulings reproduced"
           if not mismatches else
@@ -804,6 +915,10 @@ def main():
                     help="print the 27-class in/out ruling table")
     ap.add_argument("--align", action="store_true",
                     help="verify external alignment IRIs and report coverage")
+    ap.add_argument("--sources", action="store_true",
+                    help="verify study citations against the pinned manifest and report "
+                         "how much confirmed-CVE mass rests on categories no study "
+                         "examines directly")
     ap.add_argument("--export-kg", action="store_true",
                     help="emit the instance graph to data/ontology/homeiot-kg.ttl and run "
                          "the Phase 4 gate")
@@ -821,15 +936,18 @@ def main():
                          "different data.")
     args = ap.parse_args()
 
-    if not (args.check or args.write or args.reason or args.align
+    if not (args.check or args.write or args.reason or args.align or args.sources
             or args.export_kg or args.verify_kg):
-        ap.error("pick one of --check / --write / --reason / --align / --export-kg "
-                 "/ --verify-kg")
+        ap.error("pick one of --check / --write / --reason / --align / --sources "
+                 "/ --export-kg / --verify-kg")
 
     g = load(args.ttl)
     rc = 0
     if args.align:
         ok, bad, _ = check_alignment()
+        rc |= 0 if ok else 1
+    if args.sources:
+        ok, bad, _ = check_sources()
         rc |= 0 if ok else 1
     if args.reason:
         rc |= 1 if reason(g) else 0

@@ -1,0 +1,205 @@
+@prefix hiot:    <https://w3id.org/homeiot/ontology#> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+
+################################################################################
+# Literature provenance for the Home IoT device ontology.
+#
+# SEPARATE FILE BY DESIGN, for the same reason homeiot-align.ttl is separate: a
+# reviewer can evaluate homeiot.ttl without it, and deleting this file changes
+# nothing about the pipeline or the reasoner's 27 rulings.
+#
+# WHAT THIS ANSWERS. Until now the ontology could say what a category IS (facets)
+# and what it EXCLUDES (scope notes), but not why the category exists at all. That
+# rationale lived in a separate prose dossier the team compiled and nowhere the
+# build could see. Encoding it means "which categories rest on published work, and
+# which are ours alone?" is a query rather than a memory.
+#
+# TWO PREDICATES, deliberately distinguished:
+#   dcterms:source              the study EVALUATES this device type by name.
+#   hiot:methodologicalSource   the study's method covers it, but it never names
+#                               the device. Real support, weaker support — and
+#                               collapsing the two would overstate the grounding.
+#
+# THE MEASURED GAP. hiot:noDirectStudy marks a category no study evaluates
+# directly. This is the literature-side twin of the SAREF/SSN finding: there, 15
+# of 24 categories had no external ontology class; here, the question is how much
+# of the confirmed CVE mass sits on categories the literature never examined.
+# Run: python3 scripts/ontology_build.py --sources
+#
+# EVERY CITED KEY IS VERIFIED against ontology/study_sources.tsv by
+# `ontology_build.py --check`. Note the manifest's verified= column: entries
+# marked `no` carry a real title from the project dossier but UNCONFIRMED
+# bibliographic detail, and must be checked against the actual paper before they
+# reach the report. The check enforces that a key exists, not that its metadata
+# is right — no offline check can do the latter.
+################################################################################
+
+hiot:methodologicalSource a owl:AnnotationProperty ;
+  rdfs:label "methodological source" ;
+  rdfs:comment "A study whose methodology covers this device type without naming it. Distinguished from dcterms:source so that 'grounded in published work' is not silently inflated by studies that merely could have covered the device." .
+
+hiot:noDirectStudy a owl:DatatypeProperty ;
+  rdfs:label "no direct study" ;
+  rdfs:domain hiot:DeviceType ; rdfs:range xsd:boolean ;
+  rdfs:comment "True when no study in the manifest evaluates this device type by name. Not a defect — consumer IoT security literature concentrates heavily on cameras, locks, and hubs, and naming the untouched categories is a contribution." .
+
+################################################################################
+# Studies (labels only — bibliographic detail lives in study_sources.tsv)
+################################################################################
+
+<https://w3id.org/homeiot/source/alrawi2019> a dcterms:BibliographicResource ;
+  rdfs:label "SoK: Security Evaluation of Home-Based IoT Deployments (2019)" ;
+  rdfs:comment "Supplies the study's deployment threat model and the hub-in / router-out precedent." .
+<https://w3id.org/homeiot/source/fernandes2016> a dcterms:BibliographicResource ;
+  rdfs:label "Security Analysis of Emerging Smart Home Applications (2016)" ;
+  rdfs:comment "SmartThings analysis; locks, alarms, and sensors are central attack targets." .
+<https://w3id.org/homeiot/source/baltaozkan2013> a dcterms:BibliographicResource ;
+  rdfs:label "Social barriers to the adoption of smart homes (2013)" ;
+  rdfs:comment "One of the two sources of the residential-deployment clause in the project's definition." .
+<https://w3id.org/homeiot/source/notra2014> a dcterms:BibliographicResource ;
+  rdfs:label "An Experimental Study of Security and Privacy Risks with Emerging Household Appliances" .
+<https://w3id.org/homeiot/source/loi2017> a dcterms:BibliographicResource ;
+  rdfs:label "Systematically Evaluating Security and Privacy for Consumer IoT Devices" .
+<https://w3id.org/homeiot/source/ali2018> a dcterms:BibliographicResource ;
+  rdfs:label "Cyber and Physical Security Vulnerability Assessment for IoT-Based Smart Homes" .
+<https://w3id.org/homeiot/source/zhou2019> a dcterms:BibliographicResource ;
+  rdfs:label "Discovering and Understanding the Security Hazards in the Interactions between IoT Devices, Mobile Apps, and Clouds on Smart Home Platforms" .
+<https://w3id.org/homeiot/source/smarthomecase> a dcterms:BibliographicResource ;
+  rdfs:label "Vulnerability Studies and Security Postures of IoT Devices: A Smart Home Case Study" .
+<https://w3id.org/homeiot/source/smartcameras> a dcterms:BibliographicResource ;
+  rdfs:label "Investigation of Vulnerabilities in Smart Connected Cameras" .
+<https://w3id.org/homeiot/source/stanfordiot> a dcterms:BibliographicResource ;
+  rdfs:label "Minimum Security Standards: Internet of Things (IoT) Devices" ;
+  rdfs:comment "An institutional IoT security policy that explicitly lists routers, switches, and access points as NON-IoT. Cited as independent corroboration of this project's transport-networking exclusion, which was reached separately from criteria 2 and 4." .
+
+################################################################################
+# Cameras and Monitors
+################################################################################
+
+hiot:cameras
+  dcterms:source <https://w3id.org/homeiot/source/alrawi2019>,
+                 <https://w3id.org/homeiot/source/smartcameras> .
+hiot:doorbell
+  dcterms:source <https://w3id.org/homeiot/source/alrawi2019> .
+hiot:babymonitor
+  hiot:methodologicalSource <https://w3id.org/homeiot/source/alrawi2019> ;
+  hiot:noDirectStudy true ;
+  rdfs:comment "Covered as an IP camera by the camera literature, never as a baby monitor. That is the same conflation the category's own review load suffers from — ~95% of its difference set is generic IP cameras — so the literature gap and the data-quality problem share a cause." .
+
+################################################################################
+# Access Control / Alarms & Sensors
+################################################################################
+
+hiot:doorlock
+  dcterms:source <https://w3id.org/homeiot/source/alrawi2019>,
+                 <https://w3id.org/homeiot/source/fernandes2016> .
+hiot:alarms
+  dcterms:source <https://w3id.org/homeiot/source/alrawi2019>,
+                 <https://w3id.org/homeiot/source/fernandes2016> .
+hiot:sensors
+  dcterms:source <https://w3id.org/homeiot/source/alrawi2019>,
+                 <https://w3id.org/homeiot/source/fernandes2016> .
+
+################################################################################
+# Climate & Air
+################################################################################
+
+hiot:thermostat
+  dcterms:source <https://w3id.org/homeiot/source/alrawi2019>,
+                 <https://w3id.org/homeiot/source/fernandes2016> .
+hiot:airconditioner
+  hiot:methodologicalSource <https://w3id.org/homeiot/source/fernandes2016> ;
+  hiot:noDirectStudy true .
+hiot:fans
+  hiot:methodologicalSource <https://w3id.org/homeiot/source/fernandes2016> ;
+  hiot:noDirectStudy true .
+hiot:airpurifier
+  hiot:methodologicalSource <https://w3id.org/homeiot/source/fernandes2016> ;
+  hiot:noDirectStudy true .
+
+################################################################################
+# Electrical & Lighting
+################################################################################
+
+hiot:smartplugs
+  dcterms:source <https://w3id.org/homeiot/source/notra2014>,
+                 <https://w3id.org/homeiot/source/loi2017> .
+hiot:lighting
+  dcterms:source <https://w3id.org/homeiot/source/notra2014>,
+                 <https://w3id.org/homeiot/source/loi2017> .
+
+################################################################################
+# Appliances
+################################################################################
+
+hiot:fridge
+  dcterms:source <https://w3id.org/homeiot/source/ali2018>,
+                 <https://w3id.org/homeiot/source/smarthomecase> .
+hiot:appliances
+  dcterms:source <https://w3id.org/homeiot/source/ali2018>,
+                 <https://w3id.org/homeiot/source/smarthomecase> .
+hiot:robotvacuum
+  hiot:methodologicalSource <https://w3id.org/homeiot/source/smarthomecase> ;
+  hiot:noDirectStudy true .
+
+################################################################################
+# Hubs and Controllers / Audio
+################################################################################
+
+hiot:hub
+  dcterms:source <https://w3id.org/homeiot/source/alrawi2019>,
+                 <https://w3id.org/homeiot/source/zhou2019> .
+hiot:smartspeakers
+  dcterms:source <https://w3id.org/homeiot/source/smarthomecase> .
+
+################################################################################
+# Entertainment — the one in-scope category with no literature at all
+################################################################################
+
+hiot:streaming
+  hiot:noDirectStudy true ;
+  rdfs:comment """No study in the manifest covers streaming devices, directly or methodologically — the project's own category dossier records that the home IoT security literature simply does not treat entertainment hardware as a study subject. The category is admitted on criterion 4(b) (the platform is a Matter/Thread controller and surfaces camera feeds), which is this project's argument rather than a borrowed one. Worth stating plainly in the paper: the inclusion is defensible but unprecedented, and it carries 76 confirmed CVEs.""" .
+
+################################################################################
+# Energy / Outdoor & Pet / Shades / Sleep
+################################################################################
+
+hiot:home_power
+  dcterms:source <https://w3id.org/homeiot/source/ali2018> .
+hiot:ev_charging
+  hiot:methodologicalSource <https://w3id.org/homeiot/source/ali2018> ;
+  hiot:noDirectStudy true ;
+  rdfs:comment "The dossier flags EV chargers as borderline on the 'monitor/automate/control the home environment' clause. The ontology resolves it on facets, not on literature: residential deployment, consumer-managed, SafetyActuation." .
+hiot:garden
+  hiot:methodologicalSource <https://w3id.org/homeiot/source/alrawi2019>,
+                            <https://w3id.org/homeiot/source/ali2018> ;
+  hiot:noDirectStudy true .
+hiot:pet
+  hiot:methodologicalSource <https://w3id.org/homeiot/source/ali2018> ;
+  hiot:noDirectStudy true .
+hiot:shades
+  hiot:methodologicalSource <https://w3id.org/homeiot/source/alrawi2019> ;
+  hiot:noDirectStudy true ;
+  rdfs:comment "Supported only by protocol-stack overlap — shades run the same Zigbee/Z-Wave/Matter stack the deployment studies analyse. No study evaluates a motorised window covering." .
+hiot:sleeptracker
+  hiot:methodologicalSource <https://w3id.org/homeiot/source/loi2017> ;
+  hiot:noDirectStudy true ;
+  rdfs:comment "Doubly unsupported: no study evaluates bedside sleep monitors, and the category also has no NVD footprint (see hiot:noNvdFootprint). The two gaps are independent and both are reportable." .
+
+################################################################################
+# Defined but excluded
+################################################################################
+
+hiot:transport_networking
+  dcterms:source <https://w3id.org/homeiot/source/alrawi2019>,
+                 <https://w3id.org/homeiot/source/stanfordiot> ;
+  rdfs:comment "The only exclusion with external corroboration: Alrawi et al. treat routers/modems as untrusted threat-model context rather than study subjects, and the Stanford standard lists them as explicitly non-IoT. Both were reached independently of this project's criteria 2 and 4." .
+hiot:gameconsoles
+  hiot:noDirectStudy true ;
+  rdfs:comment "Excluded on criteria 2 and 4; no study treats consoles as home IoT, which is consistent with the ruling." .
+hiot:vrar
+  hiot:noDirectStudy true ;
+  rdfs:comment "Excluded on criteria 2 and 4; no study treats headsets as home IoT." .

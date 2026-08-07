@@ -167,10 +167,43 @@ nonexistent classes drafted from memory (`saref:Multimedia`, `saref:WashingMachi
 just hygiene: **15 of 24 categories (62%) have no corresponding external class**, and those
 categories carry **91.5%** of the confirmed CVEs.
 
-Two gates, both must stay green: `ontology_build.py --check` (SHACL + IRI verification + reasoner
-+ byte-identical CSVs) and `--verify-kg` (the instance graph reconciles against
-`judgment_store.csv` and `cwe888_cve_map.csv`). Never reserialize the hand-authored `.ttl` files —
-`--write` only ever emits CSVs, so rdflib can't churn the diffs.
+**Descriptive sub-facets — and the dominance rule that governs them.** The five criteria as first
+encoded were membership tests, too coarse to analyse with: criterion 5 was one value asserted
+identically on all 24 categories, criterion 1 a flat bag mixing radios with application protocols,
+criterion 3 asserted `Residential` while `Prosumer`/`Commercial`/`Industrial` sat declared and never
+used, and criterion 4's `Role` class had a single member despite the prose naming three mechanisms.
+Each criterion now carries sub-facets (`cloudDependence`, `computeTier`, `hasWebAdminUI`,
+`consumerAvailability`, `actuationConsequence`, `dataSensitivity`, `credentialModel`, …). **None
+appears in the equivalence axiom**, so none can move a published ruling — same contract as the
+pre-existing `formFactor`/`placement` analysis facets. Read them with `facet_analysis.py`.
+
+The admission rule for any new facet is the **dominance check**: what share of the positive cell
+comes from one category? `cameras` is 51% of the confirmed population, so a facet can look like an
+independent grouping while being a rename of `cameras`. Measured: `capturesAV=true` is 1,120 rows of
+which cameras is 881 (**79%** — nearly worthless as an independent variable), against
+`actuatesPhysical=true` at 388 rows over 13 categories, top share 23% (genuinely informative). The
+script flags cells above the threshold; **flags triage, they never filter** (same convention as the
+discovery miners). The structural limit, stated plainly: a per-*category* facet can never resolve
+below 24 buckets, so the majority cell of nearly every facet inherits cameras' mass. Contrast the
+**minority** cells, report at `--group family` where n allows, and treat a dominated cell as a
+hypothesis needing product-level facets, not as a result.
+
+**Literature provenance.** `ontology/homeiot-sources.ttl` records why each category exists, split
+into `dcterms:source` (the study evaluates this device type by name) and `hiot:methodologicalSource`
+(its method covers the device but never names it) — collapsing the two would overstate the
+grounding. Citations are verified against the pinned `ontology/study_sources.tsv`, the same
+mechanism `external_classes.tsv` gives alignment IRIs and for the same reason. **Note the manifest's
+`verified=` column: 7 of 10 entries carry a real title from the team's category dossier but
+UNCONFIRMED bibliographic detail, and must be checked against the actual paper before reaching the
+report** — the check proves a citation key is registered, never that its metadata is right. Measured
+by `--sources`: 13 of 24 categories (54%) have a direct study, 10 are methodological-only, and
+`streaming` has none at all; weighted by confirmed CVEs, **14.6% of the population sits on
+categories no study examines directly**. That is the literature-side twin of the SAREF gap finding.
+
+Three gates, all must stay green: `ontology_build.py --check` (SHACL + IRI verification + citation
+verification + reasoner + byte-identical CSVs), `--sources`, and `--verify-kg` (the instance graph
+reconciles against `judgment_store.csv` and `cwe888_cve_map.csv`). Never reserialize the
+hand-authored `.ttl` files — `--write` only ever emits CSVs, so rdflib can't churn the diffs.
 
 ### Refresh invariant
 Human verdicts and AI judgments both live in `judgment_store.csv` (keyed by `(category, cve_id)`, read by `make_review_copies.py`), so a deliberate `01_raw` regeneration never repeats settled work — it only creates review load for *genuinely new* rows. The store survives folder restructures and pipeline changes since it's a flat CSV independent of the review directory layout. See `docs/RESULTS.md` for a worked example with real numbers.
@@ -215,8 +248,10 @@ Home IoT Security/
 │   ├── homeiot.ttl                       # 24 leaf categories, 13 folding categories, criteria 1-5 as axioms
 │   ├── shapes.ttl                        # SHACL constraints every class must satisfy
 │   ├── homeiot-align.ttl                 # SAREF + SSN/SOSA alignment (separate file, droppable)
+│   ├── homeiot-sources.ttl               # literature provenance per category (separate file, droppable)
 │   ├── homeiot-kg.ttl                    # instance vocabulary for the exported knowledge graph
-│   └── external_classes.tsv              # pinned 331-IRI manifest the alignment is verified against
+│   ├── external_classes.tsv              # pinned 331-IRI manifest the alignment is verified against
+│   └── study_sources.tsv                 # pinned study manifest the citations are verified against
 │
 ├── scripts/                         # All pipeline scripts (see README "Scripts" for one-liners)
 │   └── _legacy/                          # Retired — superseded, kept for reference only

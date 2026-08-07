@@ -65,6 +65,100 @@ hiot:capturesAV a owl:DatatypeProperty ; rdfs:label "captures audio/video" ;
   rdfs:comment "True when the device has a camera or always-listening microphone. Privacy-relevant grouping for RQ1 Information Leak." ;
   rdfs:domain hiot:DeviceType ; rdfs:range xsd:boolean .
 
+################################################################################
+# Descriptive sub-facets (the criterion refinement)
+#
+# Every property below is an ANALYSIS facet: none appears in the
+# hiot:InScopeDeviceType equivalence axiom, so none can move a published in/out
+# ruling. They exist because the five criteria as originally encoded are too
+# coarse to support analysis:
+#
+#   - criterion 5 was a single value (ConsumerManaged) asserted identically on
+#     all 24 categories. A criterion that never varies contributes nothing.
+#   - criterion 1 was a flat 12-value bag mixing link-layer radios with
+#     application protocols, tested only as "has some protocol".
+#   - criterion 3 asserted Residential on all 24 while Prosumer/Commercial/
+#     Industrial sat declared and never used once.
+#   - criterion 4's Role class had exactly one member, collapsing the three
+#     distinct mechanisms the prose criterion itself names.
+#
+# ADMISSION RULE (the dominance check). A facet earns its place only if the
+# positive cell is not dominated by one category. Measured over the 1,733
+# confirmed-Yes CVEs: hiot:capturesAV=true is 1,120 rows of which cameras alone
+# is 881 (79%) — it is very nearly a rename of `cameras`, and a finding stated
+# over it is really a finding about cameras. hiot:actuatesPhysical=true is 388
+# rows spread over 13 categories, none above 23%. Facets added here were chosen
+# to look like the second case, not the first.
+#
+# n-FLOOR. 1,733 confirmed CVEs over 24 categories. Any facet finer than binary
+# must be reportable at the 13-family fold level (--group family), not per
+# category, or the cells are too small to publish. This is the same tail problem
+# the folding categories exist to fix.
+################################################################################
+
+# --- criterion 1 refinement: connectivity ------------------------------------
+# hiot:hasConnectivity itself is UNCHANGED (the axiom tests it). What changed is
+# that its values are now typed: see hiot:LinkLayerProtocol / hiot:AppProtocol.
+
+hiot:cloudDependence a owl:ObjectProperty ; rdfs:label "cloud dependence" ;
+  rdfs:comment """Whether the device's primary control path requires vendor cloud. The RQ3 hypothesis this exists to test: a device's connectivity profile should PREDICT its CVSS Attack Vector distribution (AV:N for cloud-required, AV:A for local-mesh). The flat protocol bag could not express that hypothesis, let alone test it.""" ;
+  rdfs:domain hiot:DeviceType ; rdfs:range hiot:CloudDependence .
+hiot:topology a owl:ObjectProperty ; rdfs:label "network topology" ;
+  rdfs:comment "How the device is reached. Multi-valued: a hub is both directly addressable and the mediator for others." ;
+  rdfs:domain hiot:DeviceType ; rdfs:range hiot:Topology .
+hiot:pairingModel a owl:ObjectProperty ; rdfs:label "pairing model" ;
+  rdfs:comment "How a device is enrolled. Onboarding is a recurring weakness locus (unauthenticated pairing windows, static setup PINs); multi-valued because most categories support more than one route." ;
+  rdfs:domain hiot:DeviceType ; rdfs:range hiot:PairingModel .
+
+# --- criterion 2 refinement: device class ------------------------------------
+
+hiot:computeTier a owl:ObjectProperty ; rdfs:label "compute tier" ;
+  rdfs:comment """Software substrate, which is what actually predicts weakness class: embedded-Linux devices carry the web/network stack CWEs (command injection, path traversal), MCU-class devices carry memory-safety ones. Cross-cuts the 24 categories and subdivides cameras, which hiot:hasDeviceClass does not.""" ;
+  rdfs:domain hiot:DeviceType ; rdfs:range hiot:ComputeTier .
+hiot:hasWebAdminUI a owl:DatatypeProperty ; rdfs:label "has web admin UI" ;
+  rdfs:comment "True when the device typically exposes an HTTP(S) administrative interface on the LAN. This is the precondition for CWE-79 / CWE-22 / CWE-352 existing on the device at all, so it is the single highest-value discriminator added here." ;
+  rdfs:domain hiot:DeviceType ; rdfs:range xsd:boolean .
+hiot:firmwareUpdateModel a owl:ObjectProperty ; rdfs:label "firmware update model" ;
+  rdfs:comment "How patches reach the device. Bears directly on whether a disclosed CVE is realistically remediated in the field — the 'without dedicated IT security oversight' clause in operational form." ;
+  rdfs:domain hiot:DeviceType ; rdfs:range hiot:FirmwareUpdateModel .
+
+# --- criterion 3 refinement: deployment context ------------------------------
+# hiot:hasDeployment stays hiot:Residential on all 24 (the axiom tests it).
+# These record the market reality the single value flattens away.
+
+hiot:alsoDeployedIn a owl:ObjectProperty ; rdfs:label "also deployed in" ;
+  rdfs:comment """Non-residential contexts the same product line genuinely serves. Activates the Prosumer/Commercial/Industrial vocabulary, which was declared from the start and never asserted. This is what makes 'cameras is contaminated by pro surveillance' a queryable property rather than a remark in a scope note.""" ;
+  rdfs:domain hiot:DeviceType ; rdfs:range hiot:DeploymentContext .
+hiot:consumerAvailability a owl:ObjectProperty ; rdfs:label "consumer availability" ;
+  rdfs:comment """Sales channel: can a non-expert consumer buy and self-install it? This encodes the rule the human reviewers ALREADY used to settle the pro-camera Yes/No disagreements (see the human-review reconciliation record) — moving it from an undocumented heuristic into a machine-checkable facet, the same win as the reasoner reproducing the 27 published rulings.""" ;
+  rdfs:domain hiot:DeviceType ; rdfs:range hiot:ConsumerAvailability .
+
+# --- criterion 4 refinement: function / role ---------------------------------
+
+hiot:actuationConsequence a owl:ObjectProperty ; rdfs:label "actuation consequence" ;
+  rdfs:comment """Graded refinement of hiot:actuatesPhysical: what a successful compromise can do in the physical world. The boolean states THAT there is a consequence; this states how bad. RQ2 turns on exactly this gap — CVSS impact metrics model confidentiality/integrity/availability of data and have no term for 'unlocks the front door' or 'energizes a heating element'. With only 388 actuating rows, report this at family level.""" ;
+  rdfs:domain hiot:DeviceType ; rdfs:range hiot:ActuationConsequence .
+hiot:dataSensitivity a owl:ObjectProperty ; rdfs:label "data sensitivity" ;
+  rdfs:comment "Graded refinement of hiot:capturesAV, which currently does double duty for 'has a camera' and 'handles sensitive data'. Separating them is what stops the AV facet from being read as a privacy claim when it is really a hardware claim." ;
+  rdfs:domain hiot:DeviceType ; rdfs:range hiot:DataSensitivity .
+
+# --- criterion 5 refinement: security context --------------------------------
+# hiot:hasSecurityContext stays ConsumerManaged on all 24 (the axiom tests it).
+# These are the four ways that single constant actually varies in the field.
+
+hiot:adminModel a owl:ObjectProperty ; rdfs:label "administration model" ;
+  rdfs:comment "How the owner administers the device. Determines whether an authentication weakness is reachable from the LAN, from the vendor cloud, or not at all." ;
+  rdfs:domain hiot:DeviceType ; rdfs:range hiot:AdminModel .
+hiot:credentialModel a owl:ObjectProperty ; rdfs:label "credential model" ;
+  rdfs:comment "How the device authenticates its owner at first use. Maps directly onto CWE-798 (hardcoded credentials), a top CWE-888 class in this study's own RQ1 results — which is why this is the first of the criterion-5 facets worth building." ;
+  rdfs:domain hiot:DeviceType ; rdfs:range hiot:CredentialModel .
+hiot:patchResponsibility a owl:ObjectProperty ; rdfs:label "patch responsibility" ;
+  rdfs:comment "Who must act for a fix to land. The operational content of 'without dedicated IT security oversight': a user-initiated patch on a consumer device is, in practice, frequently no patch." ;
+  rdfs:domain hiot:DeviceType ; rdfs:range hiot:PatchResponsibility .
+hiot:supportLifetime a owl:ObjectProperty ; rdfs:label "support lifetime" ;
+  rdfs:comment "Whether the vendor publishes an end-of-support date. Undeclared lifetime is the norm in consumer IoT and is why a disclosed CVE can remain live indefinitely." ;
+  rdfs:domain hiot:DeviceType ; rdfs:range hiot:SupportLifetime .
+
 hiot:slug a owl:DatatypeProperty ; rdfs:label "slug" ;
   rdfs:comment "Pipeline identifier. Primary key of data/categories.csv and of judgment_store.csv (category, cve_id)." ;
   rdfs:domain hiot:DeviceType ; rdfs:range xsd:string .
@@ -105,23 +199,156 @@ hiot:SecurityContext a owl:Class .
 hiot:FormFactor a owl:Class .
 hiot:Placement a owl:Class .
 
-hiot:wifi a hiot:Protocol . hiot:ethernet a hiot:Protocol . hiot:zigbee a hiot:Protocol .
-hiot:zwave a hiot:Protocol . hiot:thread a hiot:Protocol . hiot:matter a hiot:Protocol .
-hiot:ble a hiot:Protocol . hiot:mqtt a hiot:Protocol . hiot:coap a hiot:Protocol .
-hiot:cellular a hiot:Protocol . hiot:rtsp a hiot:Protocol . hiot:onvif a hiot:Protocol .
+# Sub-facet value classes (see "Descriptive sub-facets" above).
+hiot:CloudDependence a owl:Class .
+hiot:Topology a owl:Class .
+hiot:PairingModel a owl:Class .
+hiot:ComputeTier a owl:Class .
+hiot:FirmwareUpdateModel a owl:Class .
+hiot:ConsumerAvailability a owl:Class .
+hiot:ActuationConsequence a owl:Class .
+hiot:DataSensitivity a owl:Class .
+hiot:AdminModel a owl:Class .
+hiot:CredentialModel a owl:Class .
+hiot:PatchResponsibility a owl:Class .
+hiot:SupportLifetime a owl:Class .
 
+# --- criterion 1 values, now TYPED --------------------------------------------
+# The 12 protocol individuals are unchanged and every one is still a hiot:Protocol,
+# so the equivalence axiom's `someValuesFrom hiot:Protocol` is untouched. What is
+# new is the layer split: the flat bag mixed link-layer radios (how the device is
+# physically reachable, which bears on CVSS Attack Vector) with application
+# protocols (what speaks over that link, which bears on weakness class). Both types
+# are asserted explicitly rather than left to subclass inference — the 27/27
+# reasoner gate must not depend on OWL-RL type propagation to keep passing.
+hiot:LinkLayerProtocol a owl:Class ; rdfs:subClassOf hiot:Protocol ;
+  rdfs:label "link-layer protocol" .
+hiot:AppProtocol a owl:Class ; rdfs:subClassOf hiot:Protocol ;
+  rdfs:label "application-layer protocol" .
+
+hiot:wifi     a hiot:Protocol, hiot:LinkLayerProtocol .
+hiot:ethernet a hiot:Protocol, hiot:LinkLayerProtocol .
+hiot:zigbee   a hiot:Protocol, hiot:LinkLayerProtocol .
+hiot:zwave    a hiot:Protocol, hiot:LinkLayerProtocol .
+hiot:thread   a hiot:Protocol, hiot:LinkLayerProtocol .
+hiot:ble      a hiot:Protocol, hiot:LinkLayerProtocol .
+hiot:cellular a hiot:Protocol, hiot:LinkLayerProtocol .
+# Matter is application-layer: it runs OVER Wi-Fi, Thread, or Ethernet.
+hiot:matter   a hiot:Protocol, hiot:AppProtocol .
+hiot:mqtt     a hiot:Protocol, hiot:AppProtocol .
+hiot:coap     a hiot:Protocol, hiot:AppProtocol .
+hiot:rtsp     a hiot:Protocol, hiot:AppProtocol .
+hiot:onvif    a hiot:Protocol, hiot:AppProtocol .
+
+hiot:LocalOnly a hiot:CloudDependence ; rdfs:label "local-only" ;
+  rdfs:comment "Fully controllable with no vendor cloud reachable." .
+hiot:CloudOptional a hiot:CloudDependence ; rdfs:label "cloud-optional" ;
+  rdfs:comment "Local control works; cloud adds remote access and is the common default." .
+hiot:CloudRequired a hiot:CloudDependence ; rdfs:label "cloud-required" ;
+  rdfs:comment "Primary control path traverses vendor cloud; the device is inert without it." .
+
+hiot:DirectIP a hiot:Topology ; rdfs:label "directly addressable" .
+hiot:MeshLeaf a hiot:Topology ; rdfs:label "mesh leaf" ;
+  rdfs:comment "Reachable only through a mesh (Zigbee/Z-Wave/Thread), never routable from the internet on its own." .
+hiot:HubMediated a hiot:Topology ; rdfs:label "hub-mediated" ;
+  rdfs:comment "Control passes through a separate controller; the hub is the exposed surface, not the device." .
+
+hiot:BleProvisioned a hiot:PairingModel ; rdfs:label "BLE provisioning" .
+hiot:WpsPaired a hiot:PairingModel ; rdfs:label "WPS / AP-mode setup" .
+hiot:QrPaired a hiot:PairingModel ; rdfs:label "QR / setup-code paired" .
+hiot:AccountLinked a hiot:PairingModel ; rdfs:label "cloud-account linked" .
+hiot:MeshJoin a hiot:PairingModel ; rdfs:label "mesh join (Zigbee/Z-Wave/Thread)" .
+
+# --- criterion 2 values --------------------------------------------------------
 hiot:EmbeddedSensor a hiot:DeviceClass . hiot:EmbeddedAppliance a hiot:DeviceClass .
 hiot:EmbeddedController a hiot:DeviceClass . hiot:GeneralPurposeCompute a hiot:DeviceClass .
 
+hiot:McuClass a hiot:ComputeTier ; rdfs:label "MCU-class (no OS)" ;
+  rdfs:comment "Bare-metal microcontroller. Weaknesses skew to memory safety; no web stack to attack." .
+hiot:Rtos a hiot:ComputeTier ; rdfs:label "RTOS" .
+hiot:EmbeddedLinux a hiot:ComputeTier ; rdfs:label "embedded Linux" ;
+  rdfs:comment "Full network/web stack, busybox userland, often a vendor CGI admin interface. The tier that carries injection and traversal weaknesses." .
+hiot:AndroidDerived a hiot:ComputeTier ; rdfs:label "Android-derived" ;
+  rdfs:comment "Android/AOSP or a fork (Fire OS, Google TV, Tizen, webOS). Inherits the mobile platform's CVE stream, which is why streaming needs a volume ruling rather than a scope ruling." .
+
+hiot:OtaAutomatic a hiot:FirmwareUpdateModel ; rdfs:label "automatic OTA" .
+hiot:OtaUserInitiated a hiot:FirmwareUpdateModel ; rdfs:label "user-initiated OTA" .
+hiot:ManualFlash a hiot:FirmwareUpdateModel ; rdfs:label "manual flash" .
+hiot:NoUpdatePath a hiot:FirmwareUpdateModel ; rdfs:label "no update path" .
+
+# --- criterion 3 values --------------------------------------------------------
 hiot:Residential a hiot:DeploymentContext . hiot:Prosumer a hiot:DeploymentContext .
 hiot:Commercial a hiot:DeploymentContext . hiot:Industrial a hiot:DeploymentContext .
 
+hiot:RetailConsumer a hiot:ConsumerAvailability ; rdfs:label "retail consumer" ;
+  rdfs:comment "Bought off the shelf and self-installed by a non-expert." .
+hiot:MixedChannel a hiot:ConsumerAvailability ; rdfs:label "mixed channel" ;
+  rdfs:comment "Sold both retail and through installers — the ambiguous case that generates most reviewer disagreement (e.g. Hikvision/Dahua camera lines)." .
+hiot:InstallerChannel a hiot:ConsumerAvailability ; rdfs:label "installer channel" ;
+  rdfs:comment "Normally specified and commissioned by a trade installer, even when technically purchasable." .
+
+# --- criterion 4 values --------------------------------------------------------
 hiot:Monitor a hiot:Function . hiot:Automate a hiot:Function . hiot:Control a hiot:Function .
 hiot:MediaPlayback a hiot:Function . hiot:Transport a hiot:Function .
 
-hiot:HomeControlSurface a hiot:Role .
+# Criterion 4(b) was one undifferentiated value, hiot:HomeControlSurface, even
+# though the prose criterion names three separate mechanisms ("acts as a
+# Matter/Thread controller or border router, runs a voice assistant, or surfaces
+# camera/sensor feeds"). Collapsing them discarded a distinction the definition
+# already draws for free. The four values below replace it; hiot:HomeControlSurfaceRole
+# groups them for the equivalence axiom, so criterion 4(b) still means exactly what
+# it meant and the published rulings are unaffected.
+hiot:ControllerRole a hiot:Role ; rdfs:label "IoT controller / border router" ;
+  rdfs:comment "Discovers and commands other home IoT devices (Matter/Thread/Zigbee/Z-Wave)." .
+hiot:AssistantRole a hiot:Role ; rdfs:label "voice assistant surface" ;
+  rdfs:comment "Runs an assistant that actuates other home IoT devices by voice." .
+hiot:FeedSurfaceRole a hiot:Role ; rdfs:label "feed / state surface" ;
+  rdfs:comment "Displays another device's camera feed or sensor state (a TV showing the doorbell)." .
+hiot:AutomationEngineRole a hiot:Role ; rdfs:label "automation engine" ;
+  rdfs:comment "Evaluates user-authored rules across devices. Distinct from ControllerRole: a Hue Bridge controls without an engine; Home Assistant does both." .
 
+hiot:NoActuation a hiot:ActuationConsequence ; rdfs:label "no physical actuation" .
+hiot:ComfortActuation a hiot:ActuationConsequence ; rdfs:label "comfort" ;
+  rdfs:comment "Reversible, non-damaging: a light, a fan, a blind." .
+hiot:PropertyActuation a hiot:ActuationConsequence ; rdfs:label "property / access" ;
+  rdfs:comment "Bears on physical security or property: a lock, a garage door, a valve." .
+hiot:SafetyActuation a hiot:ActuationConsequence ; rdfs:label "safety" ;
+  rdfs:comment "Can injure or start a fire: a heating element, an oven, a breaker, a high-current EVSE." .
+
+hiot:NoData a hiot:DataSensitivity ; rdfs:label "no sensitive data" .
+hiot:TelemetryData a hiot:DataSensitivity ; rdfs:label "telemetry" ;
+  rdfs:comment "State and usage traces. Occupancy inference is the privacy risk, not content." .
+hiot:AvStreamData a hiot:DataSensitivity ; rdfs:label "audio/video stream" .
+hiot:BiometricData a hiot:DataSensitivity ; rdfs:label "biometric" ;
+  rdfs:comment "Fingerprint/face templates or physiological signals." .
+
+# --- criterion 5 values --------------------------------------------------------
 hiot:ConsumerManaged a hiot:SecurityContext . hiot:ProfessionallyAdministered a hiot:SecurityContext .
+
+hiot:NoAdminInterface a hiot:AdminModel ; rdfs:label "no admin interface" .
+hiot:AppOnlyAdmin a hiot:AdminModel ; rdfs:label "app-only" .
+hiot:LocalWebAdmin a hiot:AdminModel ; rdfs:label "local web admin" ;
+  rdfs:comment "An HTTP admin surface on the LAN — the classic consumer-IoT exposure." .
+hiot:CloudPortalAdmin a hiot:AdminModel ; rdfs:label "cloud portal" .
+
+hiot:DefaultPassword a hiot:CredentialModel ; rdfs:label "shipped default password" ;
+  rdfs:comment "The CWE-798 case: a documented or hardcoded credential present until the owner changes it, which most never do." .
+hiot:ForcedCredentialSetup a hiot:CredentialModel ; rdfs:label "forced setup credential" ;
+  rdfs:comment "Setup refuses to complete until a unique credential is chosen." .
+hiot:AccountBound a hiot:CredentialModel ; rdfs:label "cloud-account bound" .
+hiot:CertificateBound a hiot:CredentialModel ; rdfs:label "certificate / attestation bound" ;
+  rdfs:comment "Per-device attestation, as Matter requires." .
+hiot:NoCredential a hiot:CredentialModel ; rdfs:label "no credential" ;
+  rdfs:comment "Possession of the radio link is the only authentication — common on cheap mesh leaves." .
+
+hiot:VendorPatched a hiot:PatchResponsibility ; rdfs:label "vendor-pushed" .
+hiot:UserPatched a hiot:PatchResponsibility ; rdfs:label "user-initiated" .
+hiot:InstallerPatched a hiot:PatchResponsibility ; rdfs:label "installer-serviced" .
+hiot:Unmaintained a hiot:PatchResponsibility ; rdfs:label "unmaintained" .
+
+hiot:DeclaredLifetime a hiot:SupportLifetime ; rdfs:label "declared end-of-support" .
+hiot:UndeclaredLifetime a hiot:SupportLifetime ; rdfs:label "undeclared" ;
+  rdfs:comment "The consumer-IoT norm: no published support window, so a disclosed CVE can stay live indefinitely." .
 
 hiot:Fixed a hiot:FormFactor . hiot:Portable a hiot:FormFactor . hiot:Worn a hiot:FormFactor .
 hiot:Indoor a hiot:Placement . hiot:Outdoor a hiot:Placement . hiot:Either a hiot:Placement .
@@ -130,10 +357,11 @@ hiot:Indoor a hiot:Placement . hiot:Outdoor a hiot:Placement . hiot:Either a hio
 # The five criteria as an OWL equivalence axiom
 #
 # A device type is in scope iff it satisfies ALL five. Criterion 4 is the
-# disjunction: a home-control FUNCTION (4a) OR the home-control-surface ROLE (4b).
-# This is what admits streaming/smartspeakers (function is MediaPlayback, role is
-# HomeControlSurface) while excluding game consoles (same function, no role, and
-# GeneralPurposeCompute already fails criterion 2).
+# disjunction: a home-control FUNCTION (4a) OR a home-control-surface ROLE (4b).
+# This is what admits streaming/smartspeakers (function is MediaPlayback, but they
+# carry ControllerRole/AssistantRole/FeedSurfaceRole) while excluding game consoles
+# (same function, no role at all, and GeneralPurposeCompute already fails
+# criterion 2).
 ################################################################################
 
 hiot:DeviceType a owl:Class ; rdfs:label "device type" .
@@ -160,6 +388,17 @@ hiot:HomeControlFunction a owl:Class ;
   owl:equivalentClass [ a owl:Class ;
     owl:oneOf (hiot:Monitor hiot:Automate hiot:Control) ] .
 
+# Criterion 4(b), grouped. Previously the axiom pinned a single individual
+# (owl:hasValue hiot:HomeControlSurface); it now admits any of the four named
+# mechanisms via owl:someValuesFrom. The criterion's MEANING is unchanged — the
+# prose already listed these three routes plus the rule engine — so the published
+# in/out rulings must not move. That is exactly what the 27/27 gate verifies.
+hiot:HomeControlSurfaceRole a owl:Class ;
+  rdfs:label "home-control surface role" ;
+  owl:equivalentClass [ a owl:Class ;
+    owl:oneOf (hiot:ControllerRole hiot:AssistantRole
+               hiot:FeedSurfaceRole hiot:AutomationEngineRole) ] .
+
 hiot:InScopeDeviceType a owl:Class ;
   rdfs:label "in-scope home IoT device type" ;
   owl:equivalentClass [
@@ -170,7 +409,7 @@ hiot:InScopeDeviceType a owl:Class ;
       [ a owl:Restriction ; owl:onProperty hiot:hasDeployment ; owl:hasValue hiot:Residential ]
       [ a owl:Class ; owl:unionOf (
           [ a owl:Restriction ; owl:onProperty hiot:hasFunction ; owl:someValuesFrom hiot:HomeControlFunction ]
-          [ a owl:Restriction ; owl:onProperty hiot:hasRole ; owl:hasValue hiot:HomeControlSurface ] ) ]
+          [ a owl:Restriction ; owl:onProperty hiot:hasRole ; owl:someValuesFrom hiot:HomeControlSurfaceRole ] ) ]
       [ a owl:Restriction ; owl:onProperty hiot:hasSecurityContext ; owl:hasValue hiot:ConsumerManaged ]
     ) ] .
 
@@ -278,6 +517,19 @@ hiot:doorlock a owl:Class, hiot:DeviceType ;
   hiot:placement hiot:Indoor ;
   hiot:actuatesPhysical true ;
   hiot:capturesAV false ;
+  hiot:cloudDependence hiot:CloudOptional ;
+  hiot:topology hiot:MeshLeaf, hiot:HubMediated ;
+  hiot:pairingModel hiot:BleProvisioned, hiot:MeshJoin, hiot:AccountLinked ;
+  hiot:computeTier hiot:McuClass ;
+  hiot:hasWebAdminUI false ;
+  hiot:firmwareUpdateModel hiot:OtaUserInitiated ;
+  hiot:consumerAvailability hiot:RetailConsumer ;
+  hiot:actuationConsequence hiot:PropertyActuation ;
+  hiot:dataSensitivity hiot:BiometricData ;
+  hiot:adminModel hiot:AppOnlyAdmin ;
+  hiot:credentialModel hiot:AccountBound, hiot:NoCredential ;
+  hiot:patchResponsibility hiot:UserPatched ;
+  hiot:supportLifetime hiot:UndeclaredLifetime ;
   skos:scopeNote """IN: residential smart locks and garage-door openers (Yale, August, Tinxy, SGUDA, Genie Aladdin, Zigbee lock stacks). OUT: commercial/enterprise access-control panels and building door controllers.""" .
 
 hiot:smartspeakers a owl:Class, hiot:DeviceType ;
@@ -289,12 +541,25 @@ hiot:smartspeakers a owl:Class, hiot:DeviceType ;
   hiot:hasDeviceClass hiot:EmbeddedController ;
   hiot:hasDeployment hiot:Residential ;
   hiot:hasFunction hiot:MediaPlayback ;
-  hiot:hasRole hiot:HomeControlSurface ;
+  hiot:hasRole hiot:AssistantRole, hiot:ControllerRole ;
   hiot:hasSecurityContext hiot:ConsumerManaged ;
   hiot:formFactor hiot:Fixed ;
   hiot:placement hiot:Indoor ;
   hiot:actuatesPhysical false ;
   hiot:capturesAV true ;
+  hiot:cloudDependence hiot:CloudRequired ;
+  hiot:topology hiot:DirectIP ;
+  hiot:pairingModel hiot:BleProvisioned, hiot:AccountLinked ;
+  hiot:computeTier hiot:EmbeddedLinux ;
+  hiot:hasWebAdminUI false ;
+  hiot:firmwareUpdateModel hiot:OtaAutomatic ;
+  hiot:consumerAvailability hiot:RetailConsumer ;
+  hiot:actuationConsequence hiot:NoActuation ;
+  hiot:dataSensitivity hiot:AvStreamData ;
+  hiot:adminModel hiot:AppOnlyAdmin, hiot:CloudPortalAdmin ;
+  hiot:credentialModel hiot:AccountBound ;
+  hiot:patchResponsibility hiot:VendorPatched ;
+  hiot:supportLifetime hiot:DeclaredLifetime ;
   hiot:resolvedScopeCall """RESOLVED 2026-08-04 — smart displays stay MERGED here, not split out. Evidence: of 38 confirmed-Yes rows only 2 touch a display product (a Lenovo Smart Assistant app and a Lenovo Smart Clock); the category's real content is Sonos, Bose SoundTouch, Echo Dot and Xiaomi speakers. Independently, term_precision.csv scores the term `smart display` at 48 judged / 0 Yes (prune_candidate) in BOTH the vendor and keyword blocks, and `smart screen` at 1/0. A split would yield n~2 — the same tail problem the folding categories exist to fix. Smart displays are in scope by definition but have essentially no distinct NVD footprint.""" ;
   skos:scopeNote """IN: consumer smart speakers, smart displays, and smart soundbars (Echo, Nest, HomePod) — qualify as home-control surfaces via criterion 4(b). OUT: plain Bluetooth speakers, headphones, and AV receivers with no assistant/home-control role.""" .
 
@@ -312,6 +577,19 @@ hiot:sleeptracker a owl:Class, hiot:DeviceType ;
   hiot:placement hiot:Indoor ;
   hiot:actuatesPhysical false ;
   hiot:capturesAV false ;
+  hiot:cloudDependence hiot:CloudRequired ;
+  hiot:topology hiot:DirectIP ;
+  hiot:pairingModel hiot:BleProvisioned, hiot:AccountLinked ;
+  hiot:computeTier hiot:McuClass ;
+  hiot:hasWebAdminUI false ;
+  hiot:firmwareUpdateModel hiot:OtaAutomatic ;
+  hiot:consumerAvailability hiot:RetailConsumer ;
+  hiot:actuationConsequence hiot:NoActuation ;
+  hiot:dataSensitivity hiot:BiometricData ;
+  hiot:adminModel hiot:AppOnlyAdmin ;
+  hiot:credentialModel hiot:AccountBound ;
+  hiot:patchResponsibility hiot:VendorPatched ;
+  hiot:supportLifetime hiot:UndeclaredLifetime ;
   hiot:provisional true ;
   hiot:noNvdFootprint true ;
   rdfs:comment """RESOLVED 2026-08-04 — NOT dropped; reclassified as definitionally in scope but operationally invisible to NVD (see hiot:noNvdFootprint).
@@ -335,6 +613,20 @@ hiot:doorbell a owl:Class, hiot:DeviceType ;
   hiot:placement hiot:Outdoor ;
   hiot:actuatesPhysical false ;
   hiot:capturesAV true ;
+  hiot:cloudDependence hiot:CloudRequired ;
+  hiot:topology hiot:DirectIP ;
+  hiot:pairingModel hiot:WpsPaired, hiot:QrPaired, hiot:AccountLinked ;
+  hiot:computeTier hiot:EmbeddedLinux ;
+  hiot:hasWebAdminUI true ;
+  hiot:firmwareUpdateModel hiot:OtaAutomatic ;
+  hiot:alsoDeployedIn hiot:Commercial ;
+  hiot:consumerAvailability hiot:MixedChannel ;
+  hiot:actuationConsequence hiot:NoActuation ;
+  hiot:dataSensitivity hiot:AvStreamData ;
+  hiot:adminModel hiot:AppOnlyAdmin, hiot:LocalWebAdmin ;
+  hiot:credentialModel hiot:AccountBound, hiot:DefaultPassword ;
+  hiot:patchResponsibility hiot:VendorPatched ;
+  hiot:supportLifetime hiot:UndeclaredLifetime ;
   skos:scopeNote """IN: video/smart doorbells (Ring, Reolink, Foscam VD, Akuvox). OUT: standalone cameras (classify under cameras) and baby monitors (under babymonitor).""" .
 
 hiot:thermostat a owl:Class, hiot:DeviceType ;
@@ -351,6 +643,20 @@ hiot:thermostat a owl:Class, hiot:DeviceType ;
   hiot:placement hiot:Indoor ;
   hiot:actuatesPhysical true ;
   hiot:capturesAV false ;
+  hiot:cloudDependence hiot:CloudOptional ;
+  hiot:topology hiot:DirectIP, hiot:MeshLeaf ;
+  hiot:pairingModel hiot:WpsPaired, hiot:AccountLinked, hiot:MeshJoin ;
+  hiot:computeTier hiot:EmbeddedLinux ;
+  hiot:hasWebAdminUI false ;
+  hiot:firmwareUpdateModel hiot:OtaAutomatic ;
+  hiot:alsoDeployedIn hiot:Commercial ;
+  hiot:consumerAvailability hiot:RetailConsumer ;
+  hiot:actuationConsequence hiot:SafetyActuation ;
+  hiot:dataSensitivity hiot:TelemetryData ;
+  hiot:adminModel hiot:AppOnlyAdmin ;
+  hiot:credentialModel hiot:AccountBound ;
+  hiot:patchResponsibility hiot:VendorPatched ;
+  hiot:supportLifetime hiot:UndeclaredLifetime ;
   skos:scopeNote """IN: residential smart thermostats. OUT: commercial building-management/HVAC controllers and industrial climate systems.""" .
 
 hiot:babymonitor a owl:Class, hiot:DeviceType ;
@@ -367,6 +673,19 @@ hiot:babymonitor a owl:Class, hiot:DeviceType ;
   hiot:placement hiot:Indoor ;
   hiot:actuatesPhysical false ;
   hiot:capturesAV true ;
+  hiot:cloudDependence hiot:CloudOptional ;
+  hiot:topology hiot:DirectIP ;
+  hiot:pairingModel hiot:WpsPaired, hiot:QrPaired, hiot:AccountLinked ;
+  hiot:computeTier hiot:EmbeddedLinux ;
+  hiot:hasWebAdminUI true ;
+  hiot:firmwareUpdateModel hiot:OtaUserInitiated ;
+  hiot:consumerAvailability hiot:RetailConsumer ;
+  hiot:actuationConsequence hiot:NoActuation ;
+  hiot:dataSensitivity hiot:AvStreamData ;
+  hiot:adminModel hiot:AppOnlyAdmin, hiot:LocalWebAdmin ;
+  hiot:credentialModel hiot:DefaultPassword, hiot:AccountBound ;
+  hiot:patchResponsibility hiot:UserPatched ;
+  hiot:supportLifetime hiot:UndeclaredLifetime ;
   skos:scopeNote """IN: dedicated consumer baby monitors. OUT: generic IP cameras not sold as baby monitors (classify under cameras) and any enterprise surveillance gear.""" .
 
 hiot:smartplugs a owl:Class, hiot:DeviceType ;
@@ -383,6 +702,19 @@ hiot:smartplugs a owl:Class, hiot:DeviceType ;
   hiot:placement hiot:Indoor ;
   hiot:actuatesPhysical true ;
   hiot:capturesAV false ;
+  hiot:cloudDependence hiot:CloudOptional ;
+  hiot:topology hiot:DirectIP, hiot:MeshLeaf ;
+  hiot:pairingModel hiot:WpsPaired, hiot:AccountLinked, hiot:MeshJoin ;
+  hiot:computeTier hiot:McuClass ;
+  hiot:hasWebAdminUI false ;
+  hiot:firmwareUpdateModel hiot:OtaUserInitiated ;
+  hiot:consumerAvailability hiot:RetailConsumer ;
+  hiot:actuationConsequence hiot:SafetyActuation ;
+  hiot:dataSensitivity hiot:TelemetryData ;
+  hiot:adminModel hiot:AppOnlyAdmin ;
+  hiot:credentialModel hiot:AccountBound, hiot:NoCredential ;
+  hiot:patchResponsibility hiot:UserPatched ;
+  hiot:supportLifetime hiot:UndeclaredLifetime ;
   skos:scopeNote """IN: consumer smart plugs, outlets, and power strips. OUT: enterprise/data-center PDUs and industrial power management.""" .
 
 hiot:alarms a owl:Class, hiot:DeviceType ;
@@ -399,6 +731,20 @@ hiot:alarms a owl:Class, hiot:DeviceType ;
   hiot:placement hiot:Indoor ;
   hiot:actuatesPhysical true ;
   hiot:capturesAV false ;
+  hiot:cloudDependence hiot:CloudRequired ;
+  hiot:topology hiot:DirectIP, hiot:HubMediated ;
+  hiot:pairingModel hiot:MeshJoin, hiot:AccountLinked ;
+  hiot:computeTier hiot:EmbeddedLinux ;
+  hiot:hasWebAdminUI true ;
+  hiot:firmwareUpdateModel hiot:OtaAutomatic ;
+  hiot:alsoDeployedIn hiot:Commercial ;
+  hiot:consumerAvailability hiot:MixedChannel ;
+  hiot:actuationConsequence hiot:PropertyActuation ;
+  hiot:dataSensitivity hiot:TelemetryData ;
+  hiot:adminModel hiot:AppOnlyAdmin, hiot:LocalWebAdmin, hiot:CloudPortalAdmin ;
+  hiot:credentialModel hiot:DefaultPassword, hiot:AccountBound ;
+  hiot:patchResponsibility hiot:VendorPatched, hiot:InstallerPatched ;
+  hiot:supportLifetime hiot:UndeclaredLifetime ;
   skos:scopeNote """IN: consumer home security/alarm systems and their sensors (eufy/Anker HomeBase, Qolsys, Abode, Nexx). OUT: commercial/industrial alarm, fire, and building-monitoring panels.""" .
 
 hiot:robotvacuum a owl:Class, hiot:DeviceType ;
@@ -415,6 +761,19 @@ hiot:robotvacuum a owl:Class, hiot:DeviceType ;
   hiot:placement hiot:Indoor ;
   hiot:actuatesPhysical true ;
   hiot:capturesAV true ;
+  hiot:cloudDependence hiot:CloudRequired ;
+  hiot:topology hiot:DirectIP ;
+  hiot:pairingModel hiot:WpsPaired, hiot:AccountLinked ;
+  hiot:computeTier hiot:EmbeddedLinux ;
+  hiot:hasWebAdminUI false ;
+  hiot:firmwareUpdateModel hiot:OtaAutomatic ;
+  hiot:consumerAvailability hiot:RetailConsumer ;
+  hiot:actuationConsequence hiot:ComfortActuation ;
+  hiot:dataSensitivity hiot:AvStreamData ;
+  hiot:adminModel hiot:AppOnlyAdmin ;
+  hiot:credentialModel hiot:AccountBound ;
+  hiot:patchResponsibility hiot:VendorPatched ;
+  hiot:supportLifetime hiot:UndeclaredLifetime ;
   skos:scopeNote """IN: consumer robot vacuums and mops. OUT: industrial/commercial cleaning robots.""" .
 
 hiot:fans a owl:Class, hiot:DeviceType ;
@@ -431,6 +790,19 @@ hiot:fans a owl:Class, hiot:DeviceType ;
   hiot:placement hiot:Indoor ;
   hiot:actuatesPhysical false ;
   hiot:capturesAV false ;
+  hiot:cloudDependence hiot:CloudOptional ;
+  hiot:topology hiot:DirectIP, hiot:MeshLeaf ;
+  hiot:pairingModel hiot:WpsPaired, hiot:AccountLinked ;
+  hiot:computeTier hiot:McuClass ;
+  hiot:hasWebAdminUI false ;
+  hiot:firmwareUpdateModel hiot:OtaUserInitiated ;
+  hiot:consumerAvailability hiot:RetailConsumer ;
+  hiot:actuationConsequence hiot:NoActuation ;
+  hiot:dataSensitivity hiot:NoData ;
+  hiot:adminModel hiot:AppOnlyAdmin ;
+  hiot:credentialModel hiot:AccountBound ;
+  hiot:patchResponsibility hiot:UserPatched ;
+  hiot:supportLifetime hiot:UndeclaredLifetime ;
   skos:scopeNote """IN: consumer smart/connected fans (ceiling, tower, pedestal). OUT: industrial/commercial ventilation and exhaust systems.""" .
 
 hiot:fridge a owl:Class, hiot:DeviceType ;
@@ -447,6 +819,19 @@ hiot:fridge a owl:Class, hiot:DeviceType ;
   hiot:placement hiot:Indoor ;
   hiot:actuatesPhysical true ;
   hiot:capturesAV false ;
+  hiot:cloudDependence hiot:CloudRequired ;
+  hiot:topology hiot:DirectIP ;
+  hiot:pairingModel hiot:WpsPaired, hiot:AccountLinked ;
+  hiot:computeTier hiot:AndroidDerived ;
+  hiot:hasWebAdminUI false ;
+  hiot:firmwareUpdateModel hiot:OtaAutomatic ;
+  hiot:consumerAvailability hiot:RetailConsumer ;
+  hiot:actuationConsequence hiot:PropertyActuation ;
+  hiot:dataSensitivity hiot:TelemetryData ;
+  hiot:adminModel hiot:AppOnlyAdmin ;
+  hiot:credentialModel hiot:AccountBound ;
+  hiot:patchResponsibility hiot:VendorPatched ;
+  hiot:supportLifetime hiot:UndeclaredLifetime ;
   skos:scopeNote """IN: consumer smart refrigerators. OUT: commercial/industrial refrigeration.""" .
 
 hiot:shades a owl:Class, hiot:DeviceType ;
@@ -463,6 +848,20 @@ hiot:shades a owl:Class, hiot:DeviceType ;
   hiot:placement hiot:Indoor ;
   hiot:actuatesPhysical true ;
   hiot:capturesAV false ;
+  hiot:cloudDependence hiot:CloudOptional ;
+  hiot:topology hiot:MeshLeaf, hiot:HubMediated ;
+  hiot:pairingModel hiot:MeshJoin, hiot:BleProvisioned ;
+  hiot:computeTier hiot:McuClass ;
+  hiot:hasWebAdminUI false ;
+  hiot:firmwareUpdateModel hiot:OtaUserInitiated ;
+  hiot:alsoDeployedIn hiot:Commercial ;
+  hiot:consumerAvailability hiot:MixedChannel ;
+  hiot:actuationConsequence hiot:ComfortActuation ;
+  hiot:dataSensitivity hiot:TelemetryData ;
+  hiot:adminModel hiot:AppOnlyAdmin ;
+  hiot:credentialModel hiot:NoCredential, hiot:AccountBound ;
+  hiot:patchResponsibility hiot:UserPatched ;
+  hiot:supportLifetime hiot:UndeclaredLifetime ;
   hiot:openScopeCall """Merge rule applied (blinds/curtains/shutters are one product under different labels) but not finally confirmed.""" ;
   skos:scopeNote """IN: consumer smart blinds, shades, curtains, shutters and their motors/controllers. OUT: commercial/industrial window and facade systems.""" .
 
@@ -480,6 +879,19 @@ hiot:sensors a owl:Class, hiot:DeviceType ;
   hiot:placement hiot:Either ;
   hiot:actuatesPhysical false ;
   hiot:capturesAV false ;
+  hiot:cloudDependence hiot:CloudOptional ;
+  hiot:topology hiot:MeshLeaf, hiot:HubMediated ;
+  hiot:pairingModel hiot:MeshJoin, hiot:BleProvisioned ;
+  hiot:computeTier hiot:McuClass ;
+  hiot:hasWebAdminUI false ;
+  hiot:firmwareUpdateModel hiot:OtaUserInitiated ;
+  hiot:consumerAvailability hiot:RetailConsumer ;
+  hiot:actuationConsequence hiot:NoActuation ;
+  hiot:dataSensitivity hiot:TelemetryData ;
+  hiot:adminModel hiot:NoAdminInterface, hiot:AppOnlyAdmin ;
+  hiot:credentialModel hiot:NoCredential ;
+  hiot:patchResponsibility hiot:UserPatched ;
+  hiot:supportLifetime hiot:UndeclaredLifetime ;
   skos:scopeNote """IN: consumer home sensors — motion, contact, leak, temperature, air-quality, presence. OUT: industrial/enterprise sensors and PLC/SCADA field devices.""" .
 
 hiot:airpurifier a owl:Class, hiot:DeviceType ;
@@ -496,6 +908,19 @@ hiot:airpurifier a owl:Class, hiot:DeviceType ;
   hiot:placement hiot:Indoor ;
   hiot:actuatesPhysical false ;
   hiot:capturesAV false ;
+  hiot:cloudDependence hiot:CloudRequired ;
+  hiot:topology hiot:DirectIP ;
+  hiot:pairingModel hiot:WpsPaired, hiot:AccountLinked ;
+  hiot:computeTier hiot:McuClass ;
+  hiot:hasWebAdminUI false ;
+  hiot:firmwareUpdateModel hiot:OtaUserInitiated ;
+  hiot:consumerAvailability hiot:RetailConsumer ;
+  hiot:actuationConsequence hiot:NoActuation ;
+  hiot:dataSensitivity hiot:TelemetryData ;
+  hiot:adminModel hiot:AppOnlyAdmin ;
+  hiot:credentialModel hiot:AccountBound ;
+  hiot:patchResponsibility hiot:UserPatched ;
+  hiot:supportLifetime hiot:UndeclaredLifetime ;
   skos:scopeNote """IN: consumer smart air purifiers. OUT: commercial/industrial air-handling and filtration systems.""" .
 
 hiot:lighting a owl:Class, hiot:DeviceType ;
@@ -512,6 +937,19 @@ hiot:lighting a owl:Class, hiot:DeviceType ;
   hiot:placement hiot:Either ;
   hiot:actuatesPhysical false ;
   hiot:capturesAV false ;
+  hiot:cloudDependence hiot:CloudOptional ;
+  hiot:topology hiot:MeshLeaf, hiot:HubMediated, hiot:DirectIP ;
+  hiot:pairingModel hiot:MeshJoin, hiot:WpsPaired, hiot:BleProvisioned ;
+  hiot:computeTier hiot:McuClass ;
+  hiot:hasWebAdminUI false ;
+  hiot:firmwareUpdateModel hiot:OtaUserInitiated ;
+  hiot:consumerAvailability hiot:RetailConsumer ;
+  hiot:actuationConsequence hiot:NoActuation ;
+  hiot:dataSensitivity hiot:TelemetryData ;
+  hiot:adminModel hiot:AppOnlyAdmin ;
+  hiot:credentialModel hiot:NoCredential, hiot:AccountBound ;
+  hiot:patchResponsibility hiot:UserPatched ;
+  hiot:supportLifetime hiot:UndeclaredLifetime ;
   skos:scopeNote """IN: consumer smart bulbs, light/dimmer/wall switches, and LED controllers (Hue, LIFX). OUT: phone 'Smart Switch' data-migration software, network switches, and apps/plugins that merely reference lighting.""" .
 
 hiot:appliances a owl:Class, hiot:DeviceType ;
@@ -528,6 +966,19 @@ hiot:appliances a owl:Class, hiot:DeviceType ;
   hiot:placement hiot:Indoor ;
   hiot:actuatesPhysical true ;
   hiot:capturesAV false ;
+  hiot:cloudDependence hiot:CloudRequired ;
+  hiot:topology hiot:DirectIP ;
+  hiot:pairingModel hiot:WpsPaired, hiot:AccountLinked ;
+  hiot:computeTier hiot:EmbeddedLinux ;
+  hiot:hasWebAdminUI false ;
+  hiot:firmwareUpdateModel hiot:OtaAutomatic ;
+  hiot:consumerAvailability hiot:RetailConsumer ;
+  hiot:actuationConsequence hiot:SafetyActuation ;
+  hiot:dataSensitivity hiot:TelemetryData ;
+  hiot:adminModel hiot:AppOnlyAdmin ;
+  hiot:credentialModel hiot:AccountBound ;
+  hiot:patchResponsibility hiot:VendorPatched ;
+  hiot:supportLifetime hiot:UndeclaredLifetime ;
   skos:scopeNote """IN: consumer smart kitchen/laundry appliances — oven, range, cooker, microwave, dishwasher, washer, dryer, water heater. OUT: commercial/industrial appliances.""" .
 
 hiot:hub a owl:Class, hiot:DeviceType ;
@@ -539,12 +990,26 @@ hiot:hub a owl:Class, hiot:DeviceType ;
   hiot:hasDeviceClass hiot:EmbeddedController ;
   hiot:hasDeployment hiot:Residential ;
   hiot:hasFunction hiot:Monitor, hiot:Automate, hiot:Control ;
-  hiot:hasRole hiot:HomeControlSurface ;
+  hiot:hasRole hiot:ControllerRole, hiot:AutomationEngineRole ;
   hiot:hasSecurityContext hiot:ConsumerManaged ;
   hiot:formFactor hiot:Fixed ;
   hiot:placement hiot:Indoor ;
   hiot:actuatesPhysical false ;
   hiot:capturesAV false ;
+  hiot:cloudDependence hiot:CloudOptional ;
+  hiot:topology hiot:DirectIP, hiot:HubMediated ;
+  hiot:pairingModel hiot:WpsPaired, hiot:AccountLinked, hiot:MeshJoin, hiot:QrPaired ;
+  hiot:computeTier hiot:EmbeddedLinux ;
+  hiot:hasWebAdminUI true ;
+  hiot:firmwareUpdateModel hiot:OtaAutomatic ;
+  hiot:alsoDeployedIn hiot:Prosumer ;
+  hiot:consumerAvailability hiot:RetailConsumer ;
+  hiot:actuationConsequence hiot:NoActuation ;
+  hiot:dataSensitivity hiot:TelemetryData ;
+  hiot:adminModel hiot:LocalWebAdmin, hiot:CloudPortalAdmin, hiot:AppOnlyAdmin ;
+  hiot:credentialModel hiot:AccountBound, hiot:DefaultPassword ;
+  hiot:patchResponsibility hiot:VendorPatched, hiot:UserPatched ;
+  hiot:supportLifetime hiot:UndeclaredLifetime ;
   skos:scopeNote """IN: IoT hubs, bridges, and Matter/Thread/Zigbee/Z-Wave controllers (SmartThings, Hubitat, Hue Bridge). OUT: plain routers, modems, ONT, and unmanaged switches — transport, not home control.""" .
 
 hiot:ev_charging a owl:Class, hiot:DeviceType ;
@@ -561,6 +1026,20 @@ hiot:ev_charging a owl:Class, hiot:DeviceType ;
   hiot:placement hiot:Either ;
   hiot:actuatesPhysical true ;
   hiot:capturesAV false ;
+  hiot:cloudDependence hiot:CloudOptional ;
+  hiot:topology hiot:DirectIP ;
+  hiot:pairingModel hiot:WpsPaired, hiot:AccountLinked ;
+  hiot:computeTier hiot:EmbeddedLinux ;
+  hiot:hasWebAdminUI true ;
+  hiot:firmwareUpdateModel hiot:OtaAutomatic ;
+  hiot:alsoDeployedIn hiot:Commercial ;
+  hiot:consumerAvailability hiot:MixedChannel ;
+  hiot:actuationConsequence hiot:SafetyActuation ;
+  hiot:dataSensitivity hiot:TelemetryData ;
+  hiot:adminModel hiot:LocalWebAdmin, hiot:CloudPortalAdmin, hiot:AppOnlyAdmin ;
+  hiot:credentialModel hiot:DefaultPassword, hiot:AccountBound ;
+  hiot:patchResponsibility hiot:VendorPatched, hiot:InstallerPatched ;
+  hiot:supportLifetime hiot:UndeclaredLifetime ;
   hiot:resolvedScopeCall """RESOLVED 2026-08-04 — stays SEPARATE from home-power. The hypothetical (a wallbox that meters and load-balances against a home battery) does not manifest: the two categories share ZERO confirmed-Yes CVEs (71 vs 45), and their vendor term sets are cleanly disjoint (chargepoint home / juicebox / wallbox pulsar / tesla wall connector vs enphase iq / solaredge inverter / tesla powerwall / sonnen battery) — even the two Tesla terms name distinct products. Both fold into Energy, so the RQ1 family view is unaffected either way.""" ;
   skos:scopeNote """IN: home EVSE/wallbox for a private garage or driveway. OUT: commercial/public/fleet chargers (Iocharger, Circontrol, Raption, eCharge) and the vehicle itself.""" .
 
@@ -578,6 +1057,20 @@ hiot:home_power a owl:Class, hiot:DeviceType ;
   hiot:placement hiot:Either ;
   hiot:actuatesPhysical true ;
   hiot:capturesAV false ;
+  hiot:cloudDependence hiot:CloudRequired ;
+  hiot:topology hiot:DirectIP ;
+  hiot:pairingModel hiot:WpsPaired, hiot:AccountLinked ;
+  hiot:computeTier hiot:EmbeddedLinux ;
+  hiot:hasWebAdminUI true ;
+  hiot:firmwareUpdateModel hiot:OtaAutomatic ;
+  hiot:alsoDeployedIn hiot:Commercial, hiot:Industrial ;
+  hiot:consumerAvailability hiot:InstallerChannel ;
+  hiot:actuationConsequence hiot:SafetyActuation ;
+  hiot:dataSensitivity hiot:TelemetryData ;
+  hiot:adminModel hiot:LocalWebAdmin, hiot:CloudPortalAdmin ;
+  hiot:credentialModel hiot:DefaultPassword ;
+  hiot:patchResponsibility hiot:InstallerPatched, hiot:VendorPatched ;
+  hiot:supportLifetime hiot:UndeclaredLifetime ;
   hiot:resolvedScopeCall """RESOLVED 2026-08-04 — stays SEPARATE from ev-charging (see ev-charging for the evidence: zero shared confirmed-Yes CVEs, disjoint vendor term sets).""" ;
   skos:scopeNote """IN: residential solar inverters, home batteries, and smart meters (SMA, Victron Venus, Enphase, Tesla Powerwall). OUT: utility-scale/commercial PV and grid equipment.""" .
 
@@ -595,6 +1088,20 @@ hiot:garden a owl:Class, hiot:DeviceType ;
   hiot:placement hiot:Outdoor ;
   hiot:actuatesPhysical true ;
   hiot:capturesAV false ;
+  hiot:cloudDependence hiot:CloudRequired ;
+  hiot:topology hiot:DirectIP ;
+  hiot:pairingModel hiot:WpsPaired, hiot:AccountLinked, hiot:BleProvisioned ;
+  hiot:computeTier hiot:EmbeddedLinux ;
+  hiot:hasWebAdminUI true ;
+  hiot:firmwareUpdateModel hiot:OtaAutomatic ;
+  hiot:alsoDeployedIn hiot:Commercial ;
+  hiot:consumerAvailability hiot:RetailConsumer ;
+  hiot:actuationConsequence hiot:PropertyActuation ;
+  hiot:dataSensitivity hiot:TelemetryData ;
+  hiot:adminModel hiot:LocalWebAdmin, hiot:AppOnlyAdmin ;
+  hiot:credentialModel hiot:DefaultPassword, hiot:AccountBound ;
+  hiot:patchResponsibility hiot:VendorPatched ;
+  hiot:supportLifetime hiot:UndeclaredLifetime ;
   skos:scopeNote """IN: consumer irrigation controllers and robot mowers (RainMachine, Rachio, ECOVACS/Yarbo mowers). OUT: commercial/agricultural irrigation and turf equipment.""" .
 
 hiot:pet a owl:Class, hiot:DeviceType ;
@@ -611,6 +1118,19 @@ hiot:pet a owl:Class, hiot:DeviceType ;
   hiot:placement hiot:Indoor ;
   hiot:actuatesPhysical true ;
   hiot:capturesAV true ;
+  hiot:cloudDependence hiot:CloudRequired ;
+  hiot:topology hiot:DirectIP ;
+  hiot:pairingModel hiot:WpsPaired, hiot:AccountLinked ;
+  hiot:computeTier hiot:EmbeddedLinux ;
+  hiot:hasWebAdminUI false ;
+  hiot:firmwareUpdateModel hiot:OtaAutomatic ;
+  hiot:consumerAvailability hiot:RetailConsumer ;
+  hiot:actuationConsequence hiot:PropertyActuation ;
+  hiot:dataSensitivity hiot:AvStreamData ;
+  hiot:adminModel hiot:AppOnlyAdmin ;
+  hiot:credentialModel hiot:AccountBound ;
+  hiot:patchResponsibility hiot:VendorPatched ;
+  hiot:supportLifetime hiot:UndeclaredLifetime ;
   skos:scopeNote """IN: consumer smart pet feeders, pet cameras, and litter boxes. OUT: commercial/veterinary/livestock equipment.""" .
 
 hiot:streaming a owl:Class, hiot:DeviceType ;
@@ -622,12 +1142,25 @@ hiot:streaming a owl:Class, hiot:DeviceType ;
   hiot:hasDeviceClass hiot:EmbeddedController ;
   hiot:hasDeployment hiot:Residential ;
   hiot:hasFunction hiot:MediaPlayback ;
-  hiot:hasRole hiot:HomeControlSurface ;
+  hiot:hasRole hiot:ControllerRole, hiot:FeedSurfaceRole, hiot:AssistantRole ;
   hiot:hasSecurityContext hiot:ConsumerManaged ;
   hiot:formFactor hiot:Fixed ;
   hiot:placement hiot:Indoor ;
   hiot:actuatesPhysical false ;
   hiot:capturesAV true ;
+  hiot:cloudDependence hiot:CloudRequired ;
+  hiot:topology hiot:DirectIP ;
+  hiot:pairingModel hiot:AccountLinked, hiot:QrPaired ;
+  hiot:computeTier hiot:AndroidDerived ;
+  hiot:hasWebAdminUI false ;
+  hiot:firmwareUpdateModel hiot:OtaAutomatic ;
+  hiot:consumerAvailability hiot:RetailConsumer ;
+  hiot:actuationConsequence hiot:NoActuation ;
+  hiot:dataSensitivity hiot:AvStreamData ;
+  hiot:adminModel hiot:AppOnlyAdmin, hiot:CloudPortalAdmin ;
+  hiot:credentialModel hiot:AccountBound ;
+  hiot:patchResponsibility hiot:VendorPatched ;
+  hiot:supportLifetime hiot:DeclaredLifetime ;
   skos:scopeNote """IN: streaming TVs, sticks, and boxes (Google/Android TV, Fire TV, Apple TV, Roku) — qualify as home-control surfaces via criterion 4(b). OUT: game consoles, VR/AR headsets, pure media apps, and tvOS CVEs (scope ruling 2026-07: excluded for volume — see judgment_store.csv `Excluded` column and docs/plans/PLAN_scope_exclusion.md).""" .
 
 hiot:airconditioner a owl:Class, hiot:DeviceType ;
@@ -644,6 +1177,20 @@ hiot:airconditioner a owl:Class, hiot:DeviceType ;
   hiot:placement hiot:Indoor ;
   hiot:actuatesPhysical true ;
   hiot:capturesAV false ;
+  hiot:cloudDependence hiot:CloudRequired ;
+  hiot:topology hiot:DirectIP ;
+  hiot:pairingModel hiot:WpsPaired, hiot:AccountLinked ;
+  hiot:computeTier hiot:McuClass ;
+  hiot:hasWebAdminUI false ;
+  hiot:firmwareUpdateModel hiot:OtaUserInitiated ;
+  hiot:alsoDeployedIn hiot:Commercial ;
+  hiot:consumerAvailability hiot:MixedChannel ;
+  hiot:actuationConsequence hiot:SafetyActuation ;
+  hiot:dataSensitivity hiot:TelemetryData ;
+  hiot:adminModel hiot:AppOnlyAdmin ;
+  hiot:credentialModel hiot:AccountBound, hiot:DefaultPassword ;
+  hiot:patchResponsibility hiot:UserPatched, hiot:InstallerPatched ;
+  hiot:supportLifetime hiot:UndeclaredLifetime ;
   skos:scopeNote """IN: consumer smart/Wi-Fi air conditioners and mini-splits with app control. OUT: commercial rooftop units and industrial HVAC.""" .
 
 hiot:cameras a owl:Class, hiot:DeviceType ;
@@ -660,6 +1207,29 @@ hiot:cameras a owl:Class, hiot:DeviceType ;
   hiot:placement hiot:Either ;
   hiot:actuatesPhysical false ;
   hiot:capturesAV true ;
+  hiot:cloudDependence hiot:CloudOptional ;
+  hiot:topology hiot:DirectIP ;
+  hiot:pairingModel hiot:WpsPaired, hiot:QrPaired, hiot:AccountLinked ;
+  hiot:computeTier hiot:EmbeddedLinux ;
+  hiot:hasWebAdminUI true ;
+  hiot:firmwareUpdateModel hiot:OtaUserInitiated ;
+  hiot:alsoDeployedIn hiot:Prosumer, hiot:Commercial ;
+  hiot:consumerAvailability hiot:MixedChannel ;
+  hiot:actuationConsequence hiot:NoActuation ;
+  hiot:dataSensitivity hiot:AvStreamData ;
+  hiot:adminModel hiot:LocalWebAdmin, hiot:AppOnlyAdmin, hiot:CloudPortalAdmin ;
+  hiot:credentialModel hiot:DefaultPassword, hiot:AccountBound ;
+  hiot:patchResponsibility hiot:UserPatched ;
+  hiot:supportLifetime hiot:UndeclaredLifetime ;
+  rdfs:comment """FACET NOTE — this is the category the descriptive facets were added
+for. cameras is 881 of the 1,733 confirmed-Yes CVEs (51%), so any category-level
+statistic is half a statement about cameras. Three facets here are what make the
+long-standing caveats queryable instead of prose: hiot:alsoDeployedIn Prosumer,
+Commercial and hiot:consumerAvailability MixedChannel encode the pro-surveillance
+contamination the scope note describes and that the human reviewers settled by
+consumer-availability; hiot:hasWebAdminUI true and hiot:computeTier EmbeddedLinux
+state why this category carries the web-stack weakness classes (CWE-79/22/352 need
+an HTTP admin surface to exist at all).""" ;
   skos:scopeNote """IN: consumer IP/Wi-Fi/battery security cameras and home DVR/NVR. OUT: enterprise NVR/VMS/SAN and cloud gateways (Hikvision Hybrid SAN, Dahua DSS, Pelco professional, wireless bridges). Video doorbells belong to doorbell; baby monitors to babymonitor.""" .
 
 ################################################################################

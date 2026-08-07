@@ -394,6 +394,8 @@ One line per script — full flag tables in `docs/SCRIPTS_REFERENCE.md`.
 | `generate_cwe888_treemaps.py` | 7 (report) | LaTeX Figs. 2-4 equivalent — area-proportional CWE-888 treemaps |
 | `cvss_analysis.py` | 8 (analysis) | CVSS score distribution + Kruskal-Wallis/Dunn's test (RQ2) and vector-component distributions (RQ3) |
 | `cvss_vector.py` | 8 (shared lib) | CVSS vector parsing normalised to 3.x (4.0 back-conversion); shared by `cvss_analysis.py` and `ontology_build.py` |
+| `ontology_build.py` | ontology | `--check` / `--write` / `--reason` / `--align` / `--sources` / `--export-kg` / `--verify-kg` |
+| `facet_analysis.py` | ontology → analysis | Slices the confirmed-Yes population by ontology facet, with a dominance column and `--cross cwe888` / `--cross attack_vector` |
 
 Retired scripts live in `scripts/_legacy/` (superseded-by table in `docs/SCRIPTS_REFERENCE.md`).
 

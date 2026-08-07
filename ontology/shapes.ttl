@@ -34,7 +34,10 @@ hiot:DeviceTypeShape a sh:NodeShape ;
                 sh:message "Criterion 3: exactly one deployment context." ] ;
   sh:property [ sh:path hiot:hasFunction ; sh:minCount 1 ; sh:class hiot:Function ;
                 sh:message "Criterion 4(a): at least one function. (4(b) via hiot:hasRole is optional.)" ] ;
-  sh:property [ sh:path hiot:hasRole ; sh:maxCount 1 ; sh:class hiot:Role ] ;
+  # Criterion 4(b). maxCount was 1 while hiot:Role had a single member; the role is
+  # now split into its four named mechanisms and a device may legitimately carry
+  # several (a streaming platform is controller + feed surface + assistant).
+  sh:property [ sh:path hiot:hasRole ; sh:class hiot:Role ] ;
   sh:property [ sh:path hiot:hasSecurityContext ; sh:minCount 1 ; sh:maxCount 1 ; sh:class hiot:SecurityContext ;
                 sh:message "Criterion 5: exactly one security context." ] ;
 
@@ -59,7 +62,72 @@ hiot:AnalysisCategoryShape a sh:NodeShape ;
   sh:property [ sh:path hiot:sortOrder ; sh:minCount 1 ; sh:maxCount 1 ; sh:datatype xsd:integer ;
                 sh:message "Analysis categories need a sortOrder — it fixes categories.csv row order, which cwe888_analysis.py reads into cat_order for RQ1 table row ordering." ] ;
   sh:property [ sh:path skos:scopeNote ; sh:minCount 1 ; sh:maxCount 1 ;
-                sh:message "Analysis categories need a scopeNote — gemini_classify.py injects it into reviewer prompts; a missing one silently blanks the note." ] .
+                sh:message "Analysis categories need a scopeNote — gemini_classify.py injects it into reviewer prompts; a missing one silently blanks the note." ] ;
+
+  # --- descriptive sub-facets ---------------------------------------------------
+  # Required on the 24 ANALYSIS categories only, not on hiot:DeviceType at large:
+  # the three defined-but-excluded types are boundary markers, and demanding a
+  # credential model for "transport networking gear" would be noise. A half-populated
+  # facet is worse than an absent one — it looks like data and analyses as a bias.
+  sh:property [ sh:path hiot:cloudDependence ; sh:minCount 1 ; sh:maxCount 1 ; sh:class hiot:CloudDependence ] ;
+  sh:property [ sh:path hiot:topology ; sh:minCount 1 ; sh:class hiot:Topology ] ;
+  sh:property [ sh:path hiot:pairingModel ; sh:minCount 1 ; sh:class hiot:PairingModel ] ;
+  sh:property [ sh:path hiot:computeTier ; sh:minCount 1 ; sh:maxCount 1 ; sh:class hiot:ComputeTier ] ;
+  sh:property [ sh:path hiot:hasWebAdminUI ; sh:minCount 1 ; sh:maxCount 1 ; sh:datatype xsd:boolean ] ;
+  sh:property [ sh:path hiot:firmwareUpdateModel ; sh:minCount 1 ; sh:maxCount 1 ; sh:class hiot:FirmwareUpdateModel ] ;
+  sh:property [ sh:path hiot:consumerAvailability ; sh:minCount 1 ; sh:maxCount 1 ; sh:class hiot:ConsumerAvailability ] ;
+  sh:property [ sh:path hiot:actuationConsequence ; sh:minCount 1 ; sh:maxCount 1 ; sh:class hiot:ActuationConsequence ] ;
+  sh:property [ sh:path hiot:dataSensitivity ; sh:minCount 1 ; sh:maxCount 1 ; sh:class hiot:DataSensitivity ] ;
+  sh:property [ sh:path hiot:adminModel ; sh:minCount 1 ; sh:class hiot:AdminModel ] ;
+  sh:property [ sh:path hiot:credentialModel ; sh:minCount 1 ; sh:class hiot:CredentialModel ] ;
+  sh:property [ sh:path hiot:patchResponsibility ; sh:minCount 1 ; sh:class hiot:PatchResponsibility ] ;
+  sh:property [ sh:path hiot:supportLifetime ; sh:minCount 1 ; sh:maxCount 1 ; sh:class hiot:SupportLifetime ] ;
+  # alsoDeployedIn is deliberately OPTIONAL — most categories are residential-only,
+  # and asserting an empty non-residential context would be a claim, not a blank.
+  sh:property [ sh:path hiot:alsoDeployedIn ; sh:class hiot:DeploymentContext ] .
+
+
+# The graded facets REFINE the two booleans rather than replacing them: kg_queries.py
+# still reads hiot:actuatesPhysical and hiot:capturesAV, and the RQ2 discussion cites
+# them. Two sources of truth for one fact is how they silently drift apart, so these
+# two constraints pin the refinement to its boolean. Editing one without the other
+# now fails the build instead of quietly producing two different answers.
+hiot:ActuationConsistencyShape a sh:NodeShape ;
+  sh:target [ a sh:SPARQLTarget ;
+    sh:select """
+      SELECT ?this WHERE {
+        ?this <https://w3id.org/homeiot/ontology#actuationConsequence> ?c }""" ] ;
+  sh:sparql [ a sh:SPARQLConstraint ;
+    sh:message "hiot:actuatesPhysical and hiot:actuationConsequence disagree: the boolean is true iff the graded value is anything other than hiot:NoActuation." ;
+    sh:select """
+      SELECT $this WHERE {
+        { $this <https://w3id.org/homeiot/ontology#actuatesPhysical> true ;
+                <https://w3id.org/homeiot/ontology#actuationConsequence>
+                  <https://w3id.org/homeiot/ontology#NoActuation> }
+        UNION
+        { $this <https://w3id.org/homeiot/ontology#actuatesPhysical> false ;
+                <https://w3id.org/homeiot/ontology#actuationConsequence> ?c .
+          FILTER (?c != <https://w3id.org/homeiot/ontology#NoActuation>) }
+      }""" ] .
+
+
+hiot:DataSensitivityConsistencyShape a sh:NodeShape ;
+  sh:target [ a sh:SPARQLTarget ;
+    sh:select """
+      SELECT ?this WHERE {
+        ?this <https://w3id.org/homeiot/ontology#dataSensitivity> ?d }""" ] ;
+  sh:sparql [ a sh:SPARQLConstraint ;
+    sh:message "hiot:capturesAV and hiot:dataSensitivity disagree: the boolean is true iff the graded value is hiot:AvStreamData. (hiot:BiometricData does NOT imply a camera or microphone — a fingerprint lock is biometric with capturesAV false, which is precisely the conflation splitting these two facets exists to remove.)" ;
+    sh:select """
+      SELECT $this WHERE {
+        { $this <https://w3id.org/homeiot/ontology#capturesAV> true .
+          FILTER NOT EXISTS { $this <https://w3id.org/homeiot/ontology#dataSensitivity>
+                                    <https://w3id.org/homeiot/ontology#AvStreamData> } }
+        UNION
+        { $this <https://w3id.org/homeiot/ontology#capturesAV> false ;
+                <https://w3id.org/homeiot/ontology#dataSensitivity>
+                  <https://w3id.org/homeiot/ontology#AvStreamData> }
+      }""" ] .
 
 
 # sortOrder must be unique, or categories.csv row order becomes non-deterministic.

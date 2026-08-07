@@ -1,0 +1,25 @@
+#	PINNED MANIFEST of literature backing each category's inclusion ruling.
+#	ontology/homeiot-sources.ttl may only cite a key that appears here;
+#	scripts/ontology_build.py --check (and --sources) fails otherwise. This is the
+#	same mechanism external_classes.tsv provides for alignment IRIs, and it exists
+#	for the same reason: the failure mode in this file is a plausible-sounding
+#	citation that does not exist. Four fabricated external classes were caught that
+#	way; a fabricated reference would be worse, because it reaches the paper.
+#
+#	verified=yes   bibliographic details confirmed and safe to cite.
+#	verified=no    TITLE comes from the project's own category dossier (a real
+#	               document the team compiled), but authors/venue/year here are
+#	               NOT confirmed and MUST be checked against the actual paper
+#	               before any of this reaches the report. Treat as a pointer to a
+#	               known study, not as a citation.
+key	iri	title	authors	venue	year	verified
+alrawi2019	https://w3id.org/homeiot/source/alrawi2019	SoK: Security Evaluation of Home-Based IoT Deployments	Alrawi, Lever, Antonakakis, Monrose	IEEE Symposium on Security and Privacy	2019	yes
+fernandes2016	https://w3id.org/homeiot/source/fernandes2016	Security Analysis of Emerging Smart Home Applications	Fernandes, Jung, Prakash	IEEE Symposium on Security and Privacy	2016	yes
+baltaozkan2013	https://w3id.org/homeiot/source/baltaozkan2013	Social barriers to the adoption of smart homes	Balta-Ozkan, Davidson, Bicket, Whitmarsh	Energy Policy	2013	yes
+notra2014	https://w3id.org/homeiot/source/notra2014	An Experimental Study of Security and Privacy Risks with Emerging Household Appliances				no
+loi2017	https://w3id.org/homeiot/source/loi2017	Systematically Evaluating Security and Privacy for Consumer IoT Devices				no
+ali2018	https://w3id.org/homeiot/source/ali2018	Cyber and Physical Security Vulnerability Assessment for IoT-Based Smart Homes				no
+zhou2019	https://w3id.org/homeiot/source/zhou2019	Discovering and Understanding the Security Hazards in the Interactions between IoT Devices, Mobile Apps, and Clouds on Smart Home Platforms				no
+smarthomecase	https://w3id.org/homeiot/source/smarthomecase	Vulnerability Studies and Security Postures of IoT Devices: A Smart Home Case Study				no
+smartcameras	https://w3id.org/homeiot/source/smartcameras	Investigation of Vulnerabilities in Smart Connected Cameras				no
+stanfordiot	https://w3id.org/homeiot/source/stanfordiot	Minimum Security Standards: Internet of Things (IoT) Devices				no
