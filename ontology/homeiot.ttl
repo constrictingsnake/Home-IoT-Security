@@ -54,7 +54,7 @@ hiot:hasSecurityContext a owl:ObjectProperty ;
 
 # Analysis facets — carried for RQ1/RQ2, NO bearing on membership.
 hiot:formFactor a owl:ObjectProperty ; rdfs:label "form factor" ;
-  rdfs:comment "Worn is what excludes wrist wearables from the sleeptracker category." ;
+  rdfs:comment "Whether the device is fixed in place, moved around the home, or carried on the body. Bears on who can physically reach it and on which deployment context applies." ;
   rdfs:domain hiot:DeviceType ; rdfs:range hiot:FormFactor ;
   hiot:evidenceTier hiot:Estimated .
 hiot:placement a owl:ObjectProperty ; rdfs:label "placement" ;
@@ -307,17 +307,31 @@ hiot:CloudOptional a hiot:CloudDependence ; rdfs:label "cloud-optional" ;
 hiot:CloudRequired a hiot:CloudDependence ; rdfs:label "cloud-required" ;
   rdfs:comment "Primary control path traverses vendor cloud; the device is inert without it." .
 
-hiot:DirectIP a hiot:Topology ; rdfs:label "directly addressable" .
+hiot:DirectIP a hiot:Topology ; rdfs:label "directly addressable" ;
+  rdfs:comment "Has its own IP address on the home network and can be reached directly by a client on that network, with no hub or mesh relaying on its behalf. At category granularity this is not exclusive with hiot:MeshLeaf: a category can contain both Wi-Fi and Zigbee variants of the same product, and both values then apply." .
 hiot:MeshLeaf a hiot:Topology ; rdfs:label "mesh leaf" ;
   rdfs:comment "Reachable only through a mesh (Zigbee/Z-Wave/Thread), never routable from the internet on its own." .
 hiot:HubMediated a hiot:Topology ; rdfs:label "hub-mediated" ;
   rdfs:comment "Control passes through a separate controller; the hub is the exposed surface, not the device." .
 
-hiot:BleProvisioned a hiot:PairingModel ; rdfs:label "BLE provisioning" .
-hiot:WpsPaired a hiot:PairingModel ; rdfs:label "WPS / AP-mode setup" .
-hiot:QrPaired a hiot:PairingModel ; rdfs:label "QR / setup-code paired" .
-hiot:AccountLinked a hiot:PairingModel ; rdfs:label "cloud-account linked" .
-hiot:MeshJoin a hiot:PairingModel ; rdfs:label "mesh join (Zigbee/Z-Wave/Thread)" .
+hiot:BleProvisioned a hiot:PairingModel ; rdfs:label "BLE provisioning" ;
+  rdfs:comment "Enrolled over Bluetooth Low Energy: the setup app connects to the device's BLE advertisement and hands it network credentials." .
+# hiot:WpsPaired formerly read "WPS / AP-mode setup" and covered both mechanisms. They were
+# split because this facet exists to characterise ONBOARDING WEAKNESS, and the two have
+# different weakness stories — WPS PIN brute-forcing and weak key derivation on one side, an
+# open unauthenticated setup AP with a predictable SSID on the other. Merged, the value could
+# not support a claim about either. Existing WpsPaired assertions were made under the merged
+# meaning and are ambiguous until re-annotated.
+hiot:WpsPaired a hiot:PairingModel ; rdfs:label "WPS" ;
+  rdfs:comment "Enrolled using Wi-Fi Protected Setup: the owner pushes a button or enters a PIN on the router, and the device joins without the network passphrase being entered on it." .
+hiot:SoftApPaired a hiot:PairingModel ; rdfs:label "SoftAP setup" ;
+  rdfs:comment "Enrolled through a temporary access point the device itself broadcasts: the owner joins that network and hands over the real network credentials, after which the setup AP closes." .
+hiot:QrPaired a hiot:PairingModel ; rdfs:label "QR / setup-code paired" ;
+  rdfs:comment "Enrolled by scanning a printed code that carries the device's identity and a setup passcode, as in the Matter and HomeKit onboarding models." .
+hiot:AccountLinked a hiot:PairingModel ; rdfs:label "cloud-account linked" ;
+  rdfs:comment "Enrollment completes by binding the device to the owner's vendor-cloud account; the device is not usable until that link exists." .
+hiot:MeshJoin a hiot:PairingModel ; rdfs:label "mesh join (Zigbee/Z-Wave/Thread)" ;
+  rdfs:comment "Enrolled by joining a low-power mesh through its coordinator, typically during a permit-join window opened on the controller." .
 
 # --- criterion 2 values --------------------------------------------------------
 hiot:EmbeddedSensor a hiot:DeviceClass . hiot:EmbeddedAppliance a hiot:DeviceClass .
@@ -325,25 +339,38 @@ hiot:EmbeddedController a hiot:DeviceClass . hiot:GeneralPurposeCompute a hiot:D
 
 hiot:McuClass a hiot:ComputeTier ; rdfs:label "MCU-class (no OS)" ;
   rdfs:comment "Bare-metal microcontroller. Weaknesses skew to memory safety; no web stack to attack." .
-hiot:Rtos a hiot:ComputeTier ; rdfs:label "RTOS" .
+hiot:Rtos a hiot:ComputeTier ; rdfs:label "RTOS" ;
+  rdfs:comment "Runs a real-time OS kernel (FreeRTOS, Zephyr, ThreadX): task scheduling and a network stack, but no general-purpose userland, filesystem, or shell. Sits between hiot:McuClass (bare metal) and hiot:EmbeddedLinux (full userland)." .
 hiot:EmbeddedLinux a hiot:ComputeTier ; rdfs:label "embedded Linux" ;
   rdfs:comment "Full network/web stack, busybox userland, often a vendor CGI admin interface. The tier that carries injection and traversal weaknesses." .
 hiot:AndroidDerived a hiot:ComputeTier ; rdfs:label "Android-derived" ;
-  rdfs:comment "Android/AOSP or a fork (Fire OS, Google TV, Tizen, webOS). Inherits the mobile platform's CVE stream, which is why streaming needs a volume ruling rather than a scope ruling." .
+  rdfs:comment "Android, or a vendor fork of AOSP. Inherits the mobile platform's userland and its CVE stream." .
 
-hiot:OtaAutomatic a hiot:FirmwareUpdateModel ; rdfs:label "automatic OTA" .
-hiot:OtaUserInitiated a hiot:FirmwareUpdateModel ; rdfs:label "user-initiated OTA" .
-hiot:ManualFlash a hiot:FirmwareUpdateModel ; rdfs:label "manual flash" .
-hiot:NoUpdatePath a hiot:FirmwareUpdateModel ; rdfs:label "no update path" .
+hiot:OtaAutomatic a hiot:FirmwareUpdateModel ; rdfs:label "automatic OTA" ;
+  rdfs:comment "The device fetches and applies firmware over the network on its own, with no owner action required." .
+hiot:OtaUserInitiated a hiot:FirmwareUpdateModel ; rdfs:label "user-initiated OTA" ;
+  rdfs:comment "The device can fetch firmware over the network, but the transfer starts only when the owner approves or triggers it." .
+hiot:ManualFlash a hiot:FirmwareUpdateModel ; rdfs:label "manual flash" ;
+  rdfs:comment "Updating requires the owner to obtain a firmware image and transfer it to the device by hand: a local upload page, USB, SD card, or a serial/JTAG header." .
+hiot:NoUpdatePath a hiot:FirmwareUpdateModel ; rdfs:label "no update path" ;
+  rdfs:comment "The device has no mechanism to receive new firmware at all; the shipped image is final. Distinct from hiot:Unmaintained on hiot:patchResponsibility, which states that no fix is being issued rather than that none could be delivered." .
 
 # --- criterion 3 values --------------------------------------------------------
-hiot:Residential a hiot:DeploymentContext . hiot:Prosumer a hiot:DeploymentContext .
-hiot:Commercial a hiot:DeploymentContext . hiot:Industrial a hiot:DeploymentContext .
+# These four serve TWO properties: the descriptive hiot:alsoDeployedIn and the axiom-bearing
+# hiot:hasDeployment (criterion 3). The definitions are written to hold for both uses.
+hiot:Residential a hiot:DeploymentContext ; rdfs:label "residential" ;
+  rdfs:comment "A private dwelling: a house, an apartment, or the domestic parts of a multi-occupancy building." .
+hiot:Prosumer a hiot:DeploymentContext ; rdfs:label "prosumer" ;
+  rdfs:comment "A small office, home office, or owner-run small business, administered by its owner rather than by dedicated IT staff." .
+hiot:Commercial a hiot:DeploymentContext ; rdfs:label "commercial" ;
+  rdfs:comment "A business, institutional, or public-facing premises with facilities or IT staff responsible for the installed equipment." .
+hiot:Industrial a hiot:DeploymentContext ; rdfs:label "industrial" ;
+  rdfs:comment "A plant, utility, or process-control environment, where equipment is engineered and commissioned rather than bought and installed." .
 
 hiot:RetailConsumer a hiot:ConsumerAvailability ; rdfs:label "retail consumer" ;
   rdfs:comment "Bought off the shelf and self-installed by a non-expert." .
 hiot:MixedChannel a hiot:ConsumerAvailability ; rdfs:label "mixed channel" ;
-  rdfs:comment "Sold both retail and through installers — the ambiguous case that generates most reviewer disagreement (e.g. Hikvision/Dahua camera lines)." .
+  rdfs:comment "Sold both at retail and through trade installers, with the same or near-identical product lines available in each channel." .
 hiot:InstallerChannel a hiot:ConsumerAvailability ; rdfs:label "installer channel" ;
   rdfs:comment "Normally specified and commissioned by a trade installer, even when technically purchasable." .
 
@@ -363,55 +390,78 @@ hiot:ControllerRole a hiot:Role ; rdfs:label "IoT controller / border router" ;
 hiot:AssistantRole a hiot:Role ; rdfs:label "voice assistant surface" ;
   rdfs:comment "Runs an assistant that actuates other home IoT devices by voice." .
 hiot:FeedSurfaceRole a hiot:Role ; rdfs:label "feed / state surface" ;
-  rdfs:comment "Displays another device's camera feed or sensor state (a TV showing the doorbell)." .
+  rdfs:comment "Displays another home IoT device's camera feed or sensor state." .
 hiot:AutomationEngineRole a hiot:Role ; rdfs:label "automation engine" ;
   rdfs:comment "Evaluates user-authored rules across devices. Distinct from ControllerRole: a Hue Bridge controls without an engine; Home Assistant does both." .
 
-hiot:NoActuation a hiot:ActuationConsequence ; rdfs:label "no physical actuation" .
+hiot:NoActuation a hiot:ActuationConsequence ; rdfs:label "no physical actuation" ;
+  rdfs:comment "The device has no physical actuator: compromise can expose or falsify data but cannot change anything in the physical world. The zero point of the scale — hiot:actuatesPhysical is false exactly when this value holds, so the two are one judgment and not independent evidence." .
 hiot:ComfortActuation a hiot:ActuationConsequence ; rdfs:label "comfort" ;
-  rdfs:comment "Reversible, non-damaging: a light, a fan, a blind." .
+  rdfs:comment "Reversible and non-damaging: compromise changes the occupants' comfort or convenience and leaves no lasting physical effect once reverted." .
 hiot:PropertyActuation a hiot:ActuationConsequence ; rdfs:label "property / access" ;
-  rdfs:comment "Bears on physical security or property: a lock, a garage door, a valve." .
+  rdfs:comment "Compromise can breach the physical security of the home or damage property, without putting a person at risk of injury — it can grant physical entry, or start or stop the flow of something costly." .
 hiot:SafetyActuation a hiot:ActuationConsequence ; rdfs:label "safety" ;
-  rdfs:comment "Can injure or start a fire: a heating element, an oven, a breaker, a high-current EVSE." .
+  rdfs:comment "Compromise can injure a person or start a fire: the device commands enough heat, current, or mechanical force to harm an occupant or the building itself." .
 
-hiot:NoData a hiot:DataSensitivity ; rdfs:label "no sensitive data" .
+hiot:NoData a hiot:DataSensitivity ; rdfs:label "no sensitive data" ;
+  rdfs:comment "Handles nothing about the occupants — only its own operational state, from which no inference about the household can be drawn. Strictly the complement of hiot:TelemetryData: if state or usage traces would support occupancy inference, the value is TelemetryData, not NoData." .
 hiot:TelemetryData a hiot:DataSensitivity ; rdfs:label "telemetry" ;
   rdfs:comment "State and usage traces. Occupancy inference is the privacy risk, not content." .
-hiot:AvStreamData a hiot:DataSensitivity ; rdfs:label "audio/video stream" .
+hiot:AvStreamData a hiot:DataSensitivity ; rdfs:label "audio/video stream" ;
+  rdfs:comment "Captures or relays live or recorded audio or video of the home's interior or its surroundings." .
 hiot:BiometricData a hiot:DataSensitivity ; rdfs:label "biometric" ;
   rdfs:comment "Fingerprint/face templates or physiological signals." .
 
 # --- criterion 5 values --------------------------------------------------------
 hiot:ConsumerManaged a hiot:SecurityContext . hiot:ProfessionallyAdministered a hiot:SecurityContext .
 
-hiot:NoAdminInterface a hiot:AdminModel ; rdfs:label "no admin interface" .
-hiot:AppOnlyAdmin a hiot:AdminModel ; rdfs:label "app-only" .
+hiot:NoAdminInterface a hiot:AdminModel ; rdfs:label "no admin interface" ;
+  rdfs:comment "The device exposes no administrative surface of its own; whatever configuration exists is applied through another device, or the device is not configurable at all. EXCLUSIVE: although hiot:adminModel is multi-valued, this value may not be combined with any other — a device either has an admin surface or it has none." .
+hiot:AppOnlyAdmin a hiot:AdminModel ; rdfs:label "app-only" ;
+  rdfs:comment "Administration happens solely through a vendor mobile app; there is no browser-reachable admin surface on the device or in a portal." .
 hiot:LocalWebAdmin a hiot:AdminModel ; rdfs:label "local web admin" ;
   rdfs:comment "An HTTP admin surface on the LAN — the classic consumer-IoT exposure." .
-hiot:CloudPortalAdmin a hiot:AdminModel ; rdfs:label "cloud portal" .
+hiot:CloudPortalAdmin a hiot:AdminModel ; rdfs:label "cloud portal" ;
+  rdfs:comment "Administration happens through a vendor-hosted web portal. The owner authenticates to the vendor's service rather than to the device, so the credential and the device sit on opposite sides of the internet." .
 
 hiot:DefaultPassword a hiot:CredentialModel ; rdfs:label "shipped default password" ;
   rdfs:comment "The CWE-798 case: a documented or hardcoded credential present until the owner changes it, which most never do." .
 hiot:ForcedCredentialSetup a hiot:CredentialModel ; rdfs:label "forced setup credential" ;
   rdfs:comment "Setup refuses to complete until a unique credential is chosen." .
-hiot:AccountBound a hiot:CredentialModel ; rdfs:label "cloud-account bound" .
+hiot:AccountBound a hiot:CredentialModel ; rdfs:label "cloud-account bound" ;
+  rdfs:comment "The device holds no independent credential of its own; access is authorised by the owner's vendor-cloud account, so the account's authentication is effectively the device's authentication." .
 hiot:CertificateBound a hiot:CredentialModel ; rdfs:label "certificate / attestation bound" ;
   rdfs:comment "Per-device attestation, as Matter requires." .
 hiot:NoCredential a hiot:CredentialModel ; rdfs:label "no credential" ;
   rdfs:comment "Possession of the radio link is the only authentication — common on cheap mesh leaves." .
 
-hiot:VendorPatched a hiot:PatchResponsibility ; rdfs:label "vendor-pushed" .
-hiot:UserPatched a hiot:PatchResponsibility ; rdfs:label "user-initiated" .
-hiot:InstallerPatched a hiot:PatchResponsibility ; rdfs:label "installer-serviced" .
-hiot:Unmaintained a hiot:PatchResponsibility ; rdfs:label "unmaintained" .
+hiot:VendorPatched a hiot:PatchResponsibility ; rdfs:label "vendor-pushed" ;
+  rdfs:comment "The vendor delivers the fix and the device applies it without the owner doing anything." .
+hiot:UserPatched a hiot:PatchResponsibility ; rdfs:label "user-initiated" ;
+  rdfs:comment "A fix exists but reaches the device only when the owner acts: accepts a prompt, presses update in an app, or downloads and applies an image." .
+hiot:InstallerPatched a hiot:PatchResponsibility ; rdfs:label "installer-serviced" ;
+  rdfs:comment "Updating is normally done by the trade installer who commissioned the device, not by the resident." .
+hiot:Unmaintained a hiot:PatchResponsibility ; rdfs:label "unmaintained" ;
+  rdfs:comment "No one is issuing fixes: the vendor has exited the market or the model is past support. Orthogonal to hiot:firmwareUpdateModel — this states that no fix is forthcoming, not that the device lacks a mechanism to receive one, so an unmaintained device may still have working OTA." .
 
-hiot:DeclaredLifetime a hiot:SupportLifetime ; rdfs:label "declared end-of-support" .
+hiot:DeclaredLifetime a hiot:SupportLifetime ; rdfs:label "declared end-of-support" ;
+  rdfs:comment "The vendor publishes a date, or a minimum duration from purchase, through which the product will receive security updates. Assessed as of the study's pinned 2026-08-05 snapshot vintage: regulation (UK PSTI, EU CRA) is changing declaration practice quickly, so this value is a statement about that date and not a timeless property of the category." .
 hiot:UndeclaredLifetime a hiot:SupportLifetime ; rdfs:label "undeclared" ;
-  rdfs:comment "The consumer-IoT norm: no published support window, so a disclosed CVE can stay live indefinitely." .
+  rdfs:comment "The consumer-IoT norm: no published support window, so a disclosed CVE can stay live indefinitely. Assessed as of the study's pinned 2026-08-05 snapshot vintage, for the reason given on hiot:DeclaredLifetime." .
 
-hiot:Fixed a hiot:FormFactor . hiot:Portable a hiot:FormFactor . hiot:Worn a hiot:FormFactor .
-hiot:Indoor a hiot:Placement . hiot:Outdoor a hiot:Placement . hiot:Either a hiot:Placement .
+hiot:Fixed a hiot:FormFactor ; rdfs:label "fixed" ;
+  rdfs:comment "Installed in one place and not normally moved once mounted or sited." .
+hiot:Portable a hiot:FormFactor ; rdfs:label "portable" ;
+  rdfs:comment "Moved freely around the home during normal use, but not carried on the body." .
+hiot:Worn a hiot:FormFactor ; rdfs:label "worn" ;
+  rdfs:comment "Carried on the body during normal use." .
+
+hiot:Indoor a hiot:Placement ; rdfs:label "indoor" ;
+  rdfs:comment "Sited inside the dwelling." .
+hiot:Outdoor a hiot:Placement ; rdfs:label "outdoor" ;
+  rdfs:comment "Sited outside the weather envelope, which also implies physical accessibility to anyone who can reach the property." .
+hiot:Either a hiot:Placement ; rdfs:label "either" ;
+  rdfs:comment "Product lines exist for both indoor and outdoor siting, and the category contains both. Note this is a MIXED value on a single-valued facet — the one place the existing vocabulary already admits within-category heterogeneity rather than forcing a summary." .
 
 ################################################################################
 # The five criteria as an OWL equivalence axiom
