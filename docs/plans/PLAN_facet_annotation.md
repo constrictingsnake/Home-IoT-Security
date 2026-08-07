@@ -110,15 +110,18 @@ category — it is a fiction stamped onto every CVE in it. No amount of annotato
 this: three annotators can agree perfectly on a value that is wrong for half the rows it lands on.
 κ measures reliability; this is validity, and it is upstream.
 
-**Measured, and the answer is not reassuring.** Over the 1,733 confirmed-Yes CVEs there are **4,624
-distinct `vendor:product` pairs** at device-CPE granularity (`part ∈ {o,h}`). `cameras` alone
-contains **3,161** — and cameras is 51% of the confirmed population. A single `computeTier` for that
-category is not a summary. The tail is also flat: the top 500 products carry **38%** of product-CVE
-links where uniform sampling predicts 11%, a ~3.5× skew that makes the weighting choice below
-consequential rather than academic.
+**Measured by `scripts/facet_sample.py --frame`, and the answer is not reassuring.** Over the 1,738
+confirmed-Yes CVEs there are **2,539 distinct devices** under the same guardrails Stage 5 uses
+(`part ∈ {o,h}`, `vendor:product` only, `GENERIC_PLATFORM_CPES` denied, `Excluded` rows dropped,
+firmware/hardware twins collapsed). `cameras` alone contains **1,690** — and cameras is 51% of the
+confirmed population. A single `computeTier` for that category is not a summary.
 
-**Why full product-level annotation is not the answer.** 4,624 products × 19 facets ≈ 88k items per
-annotator, ~264k AI judgments — roughly 90× the category-level plan. That is a different project,
+*(An earlier draft of this section said 4,624 devices and 3,161 for cameras. Those were measured off
+`final_resolved.csv` without the guardrails and are inflated ~1.8×. The conclusion is unchanged —
+1,690 distinct devices in one category is ample — but the figures above are the correct ones.)*
+
+**Why full product-level annotation is not the answer.** 2,539 devices × 19 facets ≈ 48k items per
+annotator, ~145k AI judgments — roughly 50× the category-level plan. That is a different project,
 not a swap. **Sample instead.**
 
 ### Design
@@ -174,10 +177,52 @@ facet values still come from an annotator, not from measurement — so the resul
 with a *measured distribution behind it*, which is stronger than category-level `Annotated` and
 still short of `Derived`. Only Route 2 (Shodan/Censys banner grounding) reaches `Derived`.
 
-**Coverage limit to state.** 18.8% of confirmed-Yes rows carry no device CPE at all and cannot be
-product-sampled at any budget. Those keep a category-level facet by necessity, and their share must
-be reported next to any facet result. (This is stricter than the 11.5% "no CPE" figure in
-`CLAUDE.md`, which counts rows carrying only `part=a` CPEs as covered.)
+**Coverage limit to state.** **21.6%** of confirmed-Yes rows (376 of 1,738) carry no device CPE at
+all and cannot be product-sampled at any budget. Those keep a category-level facet by necessity, and
+their share must be reported next to any facet result. (This is stricter than the 11.5% "no CPE"
+figure in `CLAUDE.md`, which counts rows carrying only `part=a` CPEs as covered.)
+
+### Sampling regimes — device count and CVE count are decoupled, and not randomly
+
+The frame exposed a failure mode the design above did not anticipate. NVD routinely lists **one**
+vulnerability against a whole product catalogue, so a category's device count can be an artifact of
+a couple of CVEs. `airpurifier` has **2** confirmed CVEs whose CPE lists name **178** and **119**
+devices; `fridge` (3 CVEs) and `airconditioner` (5) inherit the same two. Drawing 40 devices there
+would produce 40 annotation rows describing **two CVEs** — a sample of n=2 in costume, which would
+then appear downstream as a confident modal share. **A CVE listing 178 devices is one piece of
+evidence, not 178.**
+
+`facet_sample.py` therefore labels every category with a `regime` and — per the discovery miners'
+convention, flags triage and never filter — drops none from the report:
+
+| regime | categories | meaning |
+|---|---|---|
+| `samplable` | 11 | enough CVEs, enough devices, no single CVE dominating |
+| `mega-cpe-bound` | 1 (`home-power`) | enough CVEs, but one CVE names ≥50% of the devices |
+| `too-few-cves` | 9 | below 20 confirmed CVEs — cannot support a distribution estimate |
+| `take-whole` | 1 (`pet`) | too few devices to sample; population is the sample |
+| `empty` | 2 (`sleeptracker`, `shades`) | no confirmed-Yes CVEs at all |
+
+**Decision (12A): draw the 11 `samplable` categories only.** They carry **1,585 of 1,738
+confirmed-Yes rows (91.2%)**. The other 13 keep their category-level facet and are reported as
+**UNMEASURED** — not sampled-and-caveated, because a caveat attached to a number does not survive
+being quoted second-hand. The excluded categories are the thin ones the folding categories already
+exist to handle, so little is lost.
+
+### Running it
+
+```
+python3 scripts/facet_sample.py --frame       # regimes + coverage, no draw
+python3 scripts/facet_sample.py --draw        # -> product_frame.csv + product_sample.csv
+python3 scripts/facet_sample.py --aggregate   # filled sheet -> facet_distribution.csv
+```
+
+The draw is seeded (`--seed`, default 20260807) and reproducible. Current draw: **364 devices,
+4,368 annotation rows** (12 facets × 364), against ~145k for full product annotation.
+
+`--aggregate` emits per *(category, facet)*: modal value and share under both weightings, a
+`weighting_divergence` marker when the two disagree, `n_unsure`, and the `verdict` from the
+threshold rule above.
 
 ---
 
