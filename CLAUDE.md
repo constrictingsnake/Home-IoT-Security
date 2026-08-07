@@ -202,6 +202,26 @@ below 24 buckets, so the majority cell of nearly every facet inherits cameras' m
 **minority** cells, report at `--group family` where n allows, and treat a dominated cell as a
 hypothesis needing product-level facets, not as a result.
 
+**Facet provenance — every facet is `hiot:Estimated`, and that is a hard constraint on use.** All
+**496** facet assertions were hand-assigned from domain knowledge with no source. `hiot:evidenceTier`
+records this per property (`Documented` / `Derived` / `Estimated`), and `--check` prints the mix on
+every run so it can't fade from view. Estimated facets are legitimate for **organising** the analysis
+— grouping categories, forming hypotheses, structuring the report — and are **not** evidence. Never
+cite one as a finding, and never present a contrast whose grouping variable is Estimated without
+saying so.
+
+`facet_derive.py` tried to promote `hasWebAdminUI` and `computeTier` to `Derived` by measuring them
+from CVE text. **Both failed, and the script reports the failure as a verdict rather than a
+footnote.** `hasWebAdminUI` is pattern-fragile: a narrow word list puts cameras at 23% and hub at 5%,
+a looser one puts them at 65% and 81%, with **19 of 22 categories swinging by >25 points** — the
+number measures the author's keyword choice, not the device. `computeTier` leaves almost no textual
+trace (evidence sufficed for 1 of 22). It also found the hand assignment is **wrong for 7 of 22
+categories** on `hasWebAdminUI`, all in the same direction (asserted `true`, evidence says `false`).
+**Retracted accordingly: the "web-admin categories show 25% Tainted Input vs 13%" and "AV:Network 77%
+vs 52%" contrasts must not be reported** — they appear in commit `6e9617d`'s message and are
+superseded; the grouping behind them is unevidenced and largely a proxy for `cameras`. A failed
+derivation is a real result, which is why the tier exists rather than being assumed.
+
 **Literature provenance.** `ontology/homeiot-sources.ttl` records why each category exists, split
 into `dcterms:source` (the study evaluates this device type by name) and `hiot:methodologicalSource`
 (its method covers the device but never names it) — collapsing the two would overstate the

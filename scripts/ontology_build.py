@@ -869,6 +869,22 @@ def cmd_check(g):
             print(f"  {sbj} {pred} {obj}")
         failures.append("alignment")
 
+    # Facet provenance. Not a failure condition — Estimated facets are legitimate for
+    # organising the analysis. It is printed on every --check so that the share of
+    # unevidenced facets stays visible instead of becoming invisible through habit.
+    tiers = Counter()
+    assertions = Counter()
+    slugs = {uri for *_r, uri in cats}
+    for prop, tier in g.subject_objects(HIOT.evidenceTier):
+        name = str(tier).split("#")[-1]
+        tiers[name] += 1
+        assertions[name] += sum(1 for s, _o in g.subject_objects(prop) if s in slugs)
+    if tiers:
+        summary = ", ".join(f"{n} {k.lower()}" for k, n in sorted(tiers.items()))
+        print(f"facet provenance: {summary} "
+              f"({assertions['Estimated']} of {sum(assertions.values())} assertions "
+              f"unevidenced — organising structure, not citable)")
+
     ok_src, bad_src, _info = check_sources(verbose=False)
     if ok_src is None:
         print(f"sources: NOT RUN — {bad_src}")

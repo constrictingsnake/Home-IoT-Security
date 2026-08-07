@@ -395,6 +395,7 @@ One line per script — full flag tables in `docs/SCRIPTS_REFERENCE.md`.
 | `cvss_analysis.py` | 8 (analysis) | CVSS score distribution + Kruskal-Wallis/Dunn's test (RQ2) and vector-component distributions (RQ3) |
 | `cvss_vector.py` | 8 (shared lib) | CVSS vector parsing normalised to 3.x (4.0 back-conversion); shared by `cvss_analysis.py` and `ontology_build.py` |
 | `ontology_build.py` | ontology | `--check` / `--write` / `--reason` / `--align` / `--sources` / `--self-test` / `--export-kg` / `--verify-kg` |
+| `facet_derive.py` | ontology (provenance) | Derives `hasWebAdminUI` / `computeTier` from the snapshot and compares to the asserted values; reports pattern-fragility. Writes `data/ontology/facet_evidence.csv`, never edits the ontology |
 | `facet_analysis.py` | ontology → analysis | Slices the confirmed-Yes population by ontology facet, with a dominance column and `--cross cwe888` / `--cross attack_vector` |
 
 Retired scripts live in `scripts/_legacy/` (superseded-by table in `docs/SCRIPTS_REFERENCE.md`).
