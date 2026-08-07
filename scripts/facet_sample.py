@@ -235,6 +235,51 @@ def regime(s):
     return "samplable"
 
 
+def drop_shared_devices(frame, stats):
+    """Keep only devices unique to ONE category's frame (plan decision 13B).
+
+    A device's category is inherited from the CVE, not from the device: when a CVE judged
+    Yes for `hub` lists a dozen CPEs, every one of them enters hub's frame, accessories
+    included. That is how `nanoleaf:lightstrip` reached `hub` and `google:chromecast`
+    reached `smartspeakers`. Measured before this filter, 249 of 2,539 devices sat in more
+    than one category, concentrated exactly where it hurts — robotvacuum 72.5%, smartplugs
+    53.3%, hub 51.4%, lighting 48.1%.
+
+    Phase A's output is a PER-CATEGORY distribution, so contamination of this size would be
+    read as within-category heterogeneity and could push a facet below the 0.60 threshold
+    for entirely the wrong reason — making a clean category look mixed.
+
+    The cost is real and one-directional: this shrinks exactly the categories it cleans, so
+    the survivors are smaller and, because ambiguous devices are removed rather than
+    resolved, possibly less representative of the category than the full frame was. A
+    device shared between `lighting` and `hub` is not necessarily miscategorised — a smart
+    bulb genuinely is both lighting and a mesh endpoint. Report the drop rate per category
+    alongside any result so a reader can see which categories were thinned and by how much.
+    """
+    owners = defaultdict(set)
+    for slug, ctr in frame.items():
+        for dev in ctr:
+            owners[dev].add(slug)
+    dropped = {}
+    for slug in list(frame):
+        before = len(frame[slug])
+        for dev in [d for d in frame[slug] if len(owners[d]) > 1]:
+            del frame[slug][dev]
+        dropped[slug] = before - len(frame[slug])
+        stats[slug]["devices"] = len(frame[slug])
+        stats[slug]["dropped_shared"] = dropped[slug]
+        # widest_cve is now stale: recompute against the surviving devices only, or the
+        # mega-cpe-bound test would still be judging the pre-filter frame.
+        kept = set(frame[slug])
+        per_cve = Counter()
+        for dev, cs in stats[slug].get("dev_cves", {}).items():
+            if dev in kept:
+                for c in cs:
+                    per_cve[c] += 1
+        stats[slug]["widest_cve"] = per_cve.most_common(1)[0][1] if per_cve else 0
+    return dropped
+
+
 def report_frame(frame, stats, labels):
     tot_yes = sum(s["yes"] for s in stats.values())
     tot_nocpe = sum(s["no_device_cpe"] for s in stats.values())
@@ -242,12 +287,13 @@ def report_frame(frame, stats, labels):
     for slug, ctr in frame.items():
         all_devices |= set(ctr)
 
-    print(f"{'category':18s} {'yes':>6s} {'devices':>8s} {'no-CPE':>7s} {'widest CVE':>11s} {'regime':>12s}")
-    print("-" * 72)
+    print(f"{'category':18s} {'yes':>6s} {'devices':>8s} {'shared-':>8s} {'no-CPE':>7s} "
+          f"{'widest CVE':>11s} {'regime':>12s}")
+    print("-" * 82)
     for slug in sorted(stats, key=lambda s: -stats[s]["devices"]):
         s = stats[slug]
-        print(f"{slug:18s} {s['yes']:6d} {s['devices']:8d} {s['no_device_cpe']:7d} "
-              f"{s.get('widest_cve', 0):11d} {regime(s):>12s}")
+        print(f"{slug:18s} {s['yes']:6d} {s['devices']:8d} {s.get('dropped_shared', 0):8d} "
+              f"{s['no_device_cpe']:7d} {s.get('widest_cve', 0):11d} {regime(s):>12s}")
     print("-" * 72)
     print(f"{'TOTAL':18s} {tot_yes:6d} {len(all_devices):8d} {tot_nocpe:7d}")
     if tot_yes:
@@ -399,6 +445,8 @@ def main():
     ap.add_argument("--aggregate", action="store_true", help="filled sheet -> distribution")
     ap.add_argument("-n", type=int, default=DEFAULT_N, help=f"devices per category (default {DEFAULT_N})")
     ap.add_argument("--seed", type=int, default=DEFAULT_SEED, help="RNG seed (draw is reproducible)")
+    ap.add_argument("--keep-shared", action="store_true",
+                    help="keep devices that sit in >1 category's frame (A/B the 13B filter)")
     args = ap.parse_args()
 
     if not (args.frame or args.draw or args.aggregate):
@@ -417,6 +465,10 @@ def main():
     print()
 
     frame, stats = build_frame(list(labels))
+    if not args.keep_shared:
+        dropped = drop_shared_devices(frame, stats)
+        print(f"13B filter: dropped {sum(dropped.values())} category-device pairs "
+              f"whose device sits in >1 category's frame\n")
     report_frame(frame, stats, labels)
 
     if args.draw:

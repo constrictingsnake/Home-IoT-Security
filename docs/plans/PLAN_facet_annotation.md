@@ -203,11 +203,43 @@ convention, flags triage and never filter — drops none from the report:
 | `take-whole` | 1 (`pet`) | too few devices to sample; population is the sample |
 | `empty` | 2 (`sleeptracker`, `shades`) | no confirmed-Yes CVEs at all |
 
-**Decision (12A): draw the 11 `samplable` categories only.** They carry **1,585 of 1,738
-confirmed-Yes rows (91.2%)**. The other 13 keep their category-level facet and are reported as
-**UNMEASURED** — not sampled-and-caveated, because a caveat attached to a number does not survive
-being quoted second-hand. The excluded categories are the thin ones the folding categories already
-exist to handle, so little is lost.
+**Decision (12A): draw `samplable` categories only.** The other regimes keep their category-level
+facet and are reported as **UNMEASURED** — not sampled-and-caveated, because a caveat attached to a
+number does not survive being quoted second-hand.
+
+### Cross-category contamination — the frame inherits a device's category from the CVE
+
+A device's category comes from the **CVE**, not from the device. A CVE judged Yes for `hub` that
+lists a dozen CPEs puts all twelve into `hub`'s frame, accessories included — which is how
+`nanoleaf:lightstrip` reached `hub` and `google:chromecast` reached `smartspeakers`. Measured on the
+unfiltered frame, **249 of 2,539 devices (9.8%) sat in more than one category**, concentrated
+precisely in the categories being sampled: `robotvacuum` 72.5%, `smartplugs` 53.3%, `hub` 51.4%,
+`lighting` 48.1%, against ≤0.9% for `cameras`, `streaming`, `ev-charging`, `smartspeakers`,
+`doorlock`.
+
+Since Phase A's output is a *per-category* distribution, contamination at that level would be read
+as within-category heterogeneity and could push a facet below the 0.60 threshold for the wrong
+reason — making a clean category look mixed.
+
+**Decision (13B): restrict the frame to devices unique to one category.** `--keep-shared` A/Bs the
+filter, the same way `cpe_expansion.py --no-part-filter` A/Bs its guardrail. `widest_cve` is
+recomputed after the drop, or the regime test would still be judging the pre-filter frame.
+
+**What it cost, stated plainly.** The filter shrinks exactly the categories it cleans, and it
+*removes* ambiguous devices rather than resolving them — a device shared between `lighting` and
+`hub` may be genuinely both (a smart bulb is a light and a mesh endpoint), not miscategorised. So
+the survivors are cleaner but smaller and possibly less representative. Report the per-category drop
+rate alongside any result.
+
+- 864 category-device pairs dropped; frame 2,539 → **2,290** devices.
+- `robotvacuum` fell from 51 devices to 14 and out of `samplable` into `mega-cpe-bound` — it sits
+  exactly on the threshold (widest CVE 7 of 14 devices), so it is a boundary case, not a clear call.
+- **`fridge` and `airpurifier` dropped to ZERO devices.** Their entire NVD device footprint was
+  shared with other categories — they have no device population of their own in the snapshot at all.
+  That is a finding about those categories worth reporting in its own right, not just a sampling
+  side effect.
+- Sampled categories 11 → **10**; devices 364 → **272**; sheet 4,368 → **3,264** rows.
+- CVE coverage barely moved: 91.2% → **89.6%**, because the categories lost were CVE-light.
 
 ### Running it
 
@@ -217,8 +249,9 @@ python3 scripts/facet_sample.py --draw        # -> product_frame.csv + product_s
 python3 scripts/facet_sample.py --aggregate   # filled sheet -> facet_distribution.csv
 ```
 
-The draw is seeded (`--seed`, default 20260807) and reproducible. Current draw: **364 devices,
-4,368 annotation rows** (12 facets × 364), against ~145k for full product annotation.
+The draw is seeded (`--seed`, default 20260807) and reproducible. Current draw: **272 devices,
+3,264 annotation rows** (12 facets × 272), against ~145k for full product annotation.
+`--keep-shared` reverts the 13B filter for comparison.
 
 `--aggregate` emits per *(category, facet)*: modal value and share under both weightings, a
 `weighting_divergence` marker when the two disagree, `n_unsure`, and the `verdict` from the
