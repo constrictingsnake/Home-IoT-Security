@@ -1,0 +1,13 @@
+facet,n_items,fleiss_kappa,ci_low,ci_high,raw_agreement,pabak,unsure_rate,top_label_share,skewed,band
+actuatesPhysical,40,0.9497,0.8420,1.0000,0.9750,0.9500,0.0000,0.5375,,CITABLE
+actuationConsequence,40,0.8413,0.6808,0.9626,0.9000,0.8667,0.0000,0.5250,,CITABLE
+capturesAV,40,0.3581,0.0238,0.6323,0.7250,0.5875,0.0375,0.7125,,stays-Estimated
+cloudDependence,37,0.5664,0.2869,0.7960,0.7568,0.6757,0.0270,0.5405,,grouping-only
+computeTier,40,0.1309,-0.0473,0.3001,0.5250,0.4062,0.0875,0.6500,,stays-Estimated
+consumerAvailability,40,0.7831,0.5759,0.9491,0.9000,0.8500,0.0000,0.6875,,CITABLE
+dataSensitivity,40,0.7961,0.5360,1.0000,0.9250,0.8875,0.0000,0.7625,,CITABLE
+firmwareUpdateModel,39,0.3276,0.0602,0.5735,0.5897,0.4872,0.0128,0.4744,,stays-Estimated
+formFactor,35,1.0000,1.0000,1.0000,1.0000,1.0000,0.0000,0.9143,yes,CITABLE
+hasWebAdminUI,40,0.2832,-0.0959,0.6000,0.7500,0.5000,0.0000,0.7750,,stays-Estimated
+placement,40,0.6871,0.4861,0.8765,0.8500,0.8000,0.0125,0.6875,,CITABLE
+supportLifetime,40,-0.0811,-0.1594,-0.0256,0.8500,0.7000,0.0000,0.9250,yes,stays-Estimated
