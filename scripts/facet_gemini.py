@@ -143,7 +143,7 @@ def build_batch_prompt(rubric, definitions, facet, allowed, rows):
     )
 
 
-def call_with_retry(session, api_key, model, prompt, max_retries=5):
+def call_with_retry(session, api_key, model, prompt, max_retries=5, n_rows=10):
     payload = {
         "contents": [{"parts": [{"text": prompt}]}],
         "generationConfig": {
@@ -152,10 +152,14 @@ def call_with_retry(session, api_key, model, prompt, max_retries=5):
             "temperature": 0,
         },
     }
+    # Scale the deadline with the batch: a 10-device request asks for ~10x the output of
+    # a 1-device request, and a fixed 120s cap silently cost 99 rows to ReadTimeout on
+    # the first full run. Floor of 120s so a small batch is not made flakier.
+    timeout = max(120, 30 * n_rows)
     for attempt in range(max_retries):
         try:
             resp = session.post(API_URL.format(model=model), params={"key": api_key},
-                                json=payload, timeout=120)
+                                json=payload, timeout=timeout)
             resp.raise_for_status()
             text = resp.json()["candidates"][0]["content"]["parts"][0]["text"]
             items, _ = json.JSONDecoder().raw_decode(text.strip())
@@ -176,6 +180,16 @@ def call_with_retry(session, api_key, model, prompt, max_retries=5):
             if code in (500, 502, 503, 504) and attempt < max_retries - 1:
                 wait = 2.0 ** attempt
                 print(f"    HTTP {code} — retrying in {wait:.0f}s")
+                time.sleep(wait)
+                continue
+            raise
+        except (requests.Timeout, requests.ConnectionError) as e:
+            # Transport failures are retryable and cost no quota, unlike a 429. Left
+            # unhandled these fell through to the caller's generic handler, which skipped
+            # the whole batch — 99 rows lost that way on one run.
+            if attempt < max_retries - 1:
+                wait = 2.0 ** attempt
+                print(f"    {type(e).__name__} — retrying in {wait:.0f}s")
                 time.sleep(wait)
                 continue
             raise
@@ -235,7 +249,7 @@ def annotate_file(csv_path, *, model=DEFAULT_MODEL, rubric_path=RUBRIC_DEFAULT,
             allowed = df.at[chunk[0], "allowed_values"]
             prompt = build_batch_prompt(rubric, definitions[facet], facet, allowed, rows)
             try:
-                got = call_with_retry(session, api_key, model, prompt)
+                got = call_with_retry(session, api_key, model, prompt, n_rows=len(chunk))
             except requests.HTTPError as e:
                 code = e.response.status_code if e.response is not None else "?"
                 print(f"  {facet}: HTTP {code} — stopping; re-run to resume")
