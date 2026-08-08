@@ -56,17 +56,21 @@ hiot:hasSecurityContext a owl:ObjectProperty ;
 hiot:formFactor a owl:ObjectProperty ; rdfs:label "form factor" ;
   rdfs:comment "Whether the device is fixed in place, moved around the home, or carried on the body. Bears on who can physically reach it and on which deployment context applies." ;
   rdfs:domain hiot:DeviceType ; rdfs:range hiot:FormFactor ;
+  hiot:annotatorGloss "Whether the device is fixed in place, moved around the home, or carried on the body." ;
   hiot:evidenceTier hiot:Estimated .
 hiot:placement a owl:ObjectProperty ; rdfs:label "placement" ;
   rdfs:domain hiot:DeviceType ; rdfs:range hiot:Placement ;
+  hiot:annotatorGloss "Where the device is sited." ;
   hiot:evidenceTier hiot:Estimated .
 hiot:actuatesPhysical a owl:DatatypeProperty ; rdfs:label "actuates physical" ;
   rdfs:comment "True when compromise can produce a physical-world consequence (unlock a door, energize a circuit, heat an element). CVSS impact metrics do not capture this; RQ2 uses it." ;
   rdfs:domain hiot:DeviceType ; rdfs:range xsd:boolean ;
+  hiot:annotatorGloss "Whether the device can cause a physical change in the home, as opposed to only sensing or reporting." ;
   hiot:evidenceTier hiot:Estimated .
 hiot:capturesAV a owl:DatatypeProperty ; rdfs:label "captures audio/video" ;
   rdfs:comment "True when the device has a camera or always-listening microphone. Privacy-relevant grouping for RQ1 Information Leak." ;
   rdfs:domain hiot:DeviceType ; rdfs:range xsd:boolean ;
+  hiot:annotatorGloss "Whether the device has a camera or an always-listening microphone." ;
   hiot:evidenceTier hiot:Estimated .
 
 ################################################################################
@@ -111,6 +115,25 @@ hiot:evidenceTier a owl:AnnotationProperty ; rdfs:label "evidence tier" ;
   rdfs:comment "How this facet's values were arrived at. Declared per property; see the block above for why not per assertion." ;
   rdfs:range hiot:EvidenceTier .
 
+# A NEUTRAL definition of the facet, for blind annotators — and the reason it exists rather
+# than reusing rdfs:comment. The rdfs:comment on each facet property is written for readers
+# of the ontology: it says why the facet exists, which research question it serves, and what
+# it is expected to predict. Handing that to an annotator is not a small leak. cloudDependence's
+# comment states the RQ3 hypothesis outright ("cloud-required should predict AV:N"), computeTier's
+# names the CWE classes each tier is expected to carry, and supportLifetime's states its own modal
+# answer ("undeclared is the norm"). An annotator primed with the hypothesis produces facets that
+# confirm it, identically across all three annotators, so inter-annotator agreement cannot detect
+# the problem.
+#
+# Splitting definition from rationale mechanically was tried and does not work — they are
+# interleaved in the same sentences. So the two audiences get two properties: rdfs:comment keeps
+# the rationale for ontology readers, annotatorGloss carries a plain statement of what the facet
+# means for the annotation kit. make_facet_copies.py emits ONLY the gloss and fails loudly if a
+# facet it needs is missing one.
+hiot:annotatorGloss a owl:AnnotationProperty ; rdfs:label "annotator gloss" ;
+  rdfs:comment "Neutral, definitional statement of what this facet means, for blind annotators. Must state WHAT is being asked and nothing about why the facet exists, which research question it serves, what it is expected to predict, which categories motivated it, or which value is common." ;
+  rdfs:range xsd:string .
+
 ################################################################################
 # Descriptive sub-facets (the criterion refinement)
 #
@@ -149,6 +172,7 @@ hiot:evidenceTier a owl:AnnotationProperty ; rdfs:label "evidence tier" ;
 hiot:cloudDependence a owl:ObjectProperty ; rdfs:label "cloud dependence" ;
   rdfs:comment """Whether the device's primary control path requires vendor cloud. The RQ3 hypothesis this exists to test: a device's connectivity profile should PREDICT its CVSS Attack Vector distribution (AV:N for cloud-required, AV:A for local-mesh). The flat protocol bag could not express that hypothesis, let alone test it.""" ;
   rdfs:domain hiot:DeviceType ; rdfs:range hiot:CloudDependence ;
+  hiot:annotatorGloss "Whether the device's primary control path requires the vendor's cloud service." ;
   hiot:evidenceTier hiot:Estimated .
 hiot:topology a owl:ObjectProperty ; rdfs:label "network topology" ;
   rdfs:comment "How the device is reached. Multi-valued: a hub is both directly addressable and the mediator for others." ;
@@ -164,14 +188,17 @@ hiot:pairingModel a owl:ObjectProperty ; rdfs:label "pairing model" ;
 hiot:computeTier a owl:ObjectProperty ; rdfs:label "compute tier" ;
   rdfs:comment """Software substrate, which is what actually predicts weakness class: embedded-Linux devices carry the web/network stack CWEs (command injection, path traversal), MCU-class devices carry memory-safety ones. Cross-cuts the 24 categories and subdivides cameras, which hiot:hasDeviceClass does not.""" ;
   rdfs:domain hiot:DeviceType ; rdfs:range hiot:ComputeTier ;
+  hiot:annotatorGloss "The software substrate the device runs on." ;
   hiot:evidenceTier hiot:Estimated .
 hiot:hasWebAdminUI a owl:DatatypeProperty ; rdfs:label "has web admin UI" ;
   rdfs:comment "True when the device typically exposes an HTTP(S) administrative interface on the LAN. This is the precondition for CWE-79 / CWE-22 / CWE-352 existing on the device at all, so it is the single highest-value discriminator added here." ;
   rdfs:domain hiot:DeviceType ; rdfs:range xsd:boolean ;
+  hiot:annotatorGloss "Whether the device typically exposes an HTTP(S) administrative interface on the local network." ;
   hiot:evidenceTier hiot:Estimated .
 hiot:firmwareUpdateModel a owl:ObjectProperty ; rdfs:label "firmware update model" ;
   rdfs:comment "How patches reach the device. Bears directly on whether a disclosed CVE is realistically remediated in the field — the 'without dedicated IT security oversight' clause in operational form." ;
   rdfs:domain hiot:DeviceType ; rdfs:range hiot:FirmwareUpdateModel ;
+  hiot:annotatorGloss "The mechanism by which new firmware reaches the device." ;
   hiot:evidenceTier hiot:Estimated .
 
 # --- criterion 3 refinement: deployment context ------------------------------
@@ -185,6 +212,7 @@ hiot:alsoDeployedIn a owl:ObjectProperty ; rdfs:label "also deployed in" ;
 hiot:consumerAvailability a owl:ObjectProperty ; rdfs:label "consumer availability" ;
   rdfs:comment """Sales channel: can a non-expert consumer buy and self-install it? This encodes the rule the human reviewers ALREADY used to settle the pro-camera Yes/No disagreements (see the human-review reconciliation record) — moving it from an undocumented heuristic into a machine-checkable facet, the same win as the reasoner reproducing the published rulings.""" ;
   rdfs:domain hiot:DeviceType ; rdfs:range hiot:ConsumerAvailability ;
+  hiot:annotatorGloss "Whether a non-expert consumer can buy and install the device themselves." ;
   hiot:evidenceTier hiot:Estimated .
 
 # --- criterion 4 refinement: function / role ---------------------------------
@@ -192,10 +220,12 @@ hiot:consumerAvailability a owl:ObjectProperty ; rdfs:label "consumer availabili
 hiot:actuationConsequence a owl:ObjectProperty ; rdfs:label "actuation consequence" ;
   rdfs:comment """Graded refinement of hiot:actuatesPhysical: what a successful compromise can do in the physical world. The boolean states THAT there is a consequence; this states how bad. RQ2 turns on exactly this gap — CVSS impact metrics model confidentiality/integrity/availability of data and have no term for 'unlocks the front door' or 'energizes a heating element'. With only 388 actuating rows, report this at family level.""" ;
   rdfs:domain hiot:DeviceType ; rdfs:range hiot:ActuationConsequence ;
+  hiot:annotatorGloss "How severe the physical consequence is when the device acts." ;
   hiot:evidenceTier hiot:Estimated .
 hiot:dataSensitivity a owl:ObjectProperty ; rdfs:label "data sensitivity" ;
   rdfs:comment "Graded refinement of hiot:capturesAV, which currently does double duty for 'has a camera' and 'handles sensitive data'. Separating them is what stops the AV facet from being read as a privacy claim when it is really a hardware claim." ;
   rdfs:domain hiot:DeviceType ; rdfs:range hiot:DataSensitivity ;
+  hiot:annotatorGloss "The most sensitive kind of data the device handles." ;
   hiot:evidenceTier hiot:Estimated .
 
 # --- criterion 5 refinement: security context --------------------------------
@@ -217,6 +247,7 @@ hiot:patchResponsibility a owl:ObjectProperty ; rdfs:label "patch responsibility
 hiot:supportLifetime a owl:ObjectProperty ; rdfs:label "support lifetime" ;
   rdfs:comment "Whether the vendor publishes an end-of-support date. Undeclared lifetime is the norm in consumer IoT and is why a disclosed CVE can remain live indefinitely." ;
   rdfs:domain hiot:DeviceType ; rdfs:range hiot:SupportLifetime ;
+  hiot:annotatorGloss "Whether the vendor publishes an end-of-support date or minimum support duration." ;
   hiot:evidenceTier hiot:Estimated .
 
 hiot:slug a owl:DatatypeProperty ; rdfs:label "slug" ;
