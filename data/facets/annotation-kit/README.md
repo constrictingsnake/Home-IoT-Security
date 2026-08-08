@@ -11,6 +11,43 @@ conclusions this exercise exists to test independently.
 2. Read `VALUE_DEFINITIONS.md` for each facet before answering it the first time.
 3. Fill `Value`, `Confidence`, and `Reasoning` in your own CSV. Touch no other file.
 
+## Exact commands
+
+**Codex** — `AGENTS.md` in this directory carries the instructions and Codex
+auto-loads it, so no prompt needs pasting:
+
+```bash
+cd "data/facets/annotation-kit"     # from the repo root — the cd IS the blindness control
+codex                               # then: "Annotate codex.csv per AGENTS.md."
+```
+
+Work in chunks of ~10 devices (120 rows); partial progress is fine and resumable,
+since only filled rows are read back. Check progress from the repo root at any time
+with `python3 scripts/facet_agreement.py`.
+
+**Gemini** — automated, resumable, safe to re-run (it only touches blank rows):
+
+```bash
+python3 scripts/facet_gemini.py data/facets/annotation-kit/gemini.csv
+```
+
+**Claude** — start a FRESH session with this directory as the working directory:
+
+```bash
+cd "data/facets/annotation-kit" && claude
+```
+
+## When all three columns are in
+
+```bash
+python3 scripts/facet_agreement.py --self-test      # validate the statistics first
+python3 scripts/facet_agreement.py --csv data/facets/facet_agreement.csv
+python3 scripts/facet_sample.py --aggregate         # refresh the distribution
+```
+
+Nothing from this study is citable until the panel is complete — a two-annotator
+run reports Scott's pi and is labelled a provisional signal, not the promotion input.
+
 ## Files
 
 - `claude.csv` — FULL sample, 3264 rows

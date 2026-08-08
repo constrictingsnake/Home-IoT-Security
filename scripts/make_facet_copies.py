@@ -139,6 +139,43 @@ def kit_readme(primary, kappa_devices, counts):
         "2. Read `VALUE_DEFINITIONS.md` for each facet before answering it the first time.",
         "3. Fill `Value`, `Confidence`, and `Reasoning` in your own CSV. Touch no other file.",
         "",
+        "## Exact commands",
+        "",
+        "**Codex** — `AGENTS.md` in this directory carries the instructions and Codex",
+        "auto-loads it, so no prompt needs pasting:",
+        "",
+        "```bash",
+        'cd "data/facets/annotation-kit"     # from the repo root — the cd IS the blindness control',
+        'codex                               # then: "Annotate codex.csv per AGENTS.md."',
+        "```",
+        "",
+        "Work in chunks of ~10 devices (120 rows); partial progress is fine and resumable,",
+        "since only filled rows are read back. Check progress from the repo root at any time",
+        "with `python3 scripts/facet_agreement.py`.",
+        "",
+        "**Gemini** — automated, resumable, safe to re-run (it only touches blank rows):",
+        "",
+        "```bash",
+        "python3 scripts/facet_gemini.py data/facets/annotation-kit/gemini.csv",
+        "```",
+        "",
+        "**Claude** — start a FRESH session with this directory as the working directory:",
+        "",
+        "```bash",
+        'cd "data/facets/annotation-kit" && claude',
+        "```",
+        "",
+        "## When all three columns are in",
+        "",
+        "```bash",
+        "python3 scripts/facet_agreement.py --self-test      # validate the statistics first",
+        "python3 scripts/facet_agreement.py --csv data/facets/facet_agreement.csv",
+        "python3 scripts/facet_sample.py --aggregate         # refresh the distribution",
+        "```",
+        "",
+        "Nothing from this study is citable until the panel is complete — a two-annotator",
+        "run reports Scott's pi and is labelled a provisional signal, not the promotion input.",
+        "",
         "## Files",
         "",
     ]
@@ -184,6 +221,77 @@ def kit_readme(primary, kappa_devices, counts):
             "   which is a reason to weigh its dissent more here than on CVE review.",
         ]
     return "\n".join(lines) + "\n"
+
+
+def kit_agents(counts):
+    """Codex's auto-loaded instruction file.
+
+    Codex reads AGENTS.md from its working directory, so emitting one into the kit is
+    what makes the rules arrive without a human pasting a prompt — structural delivery,
+    the same principle as the blind copies. It states the TASK only: naming a result here
+    would reopen exactly the leak the kit exists to close.
+    """
+    n = counts.get("codex", "the")
+    return f"""# Codex instructions — facet annotation
+
+You are acting as **one of three blind annotators** describing home IoT devices. Read this
+file, then `FACET_ANNOTATION_PROMPT.md` (the rubric), then `VALUE_DEFINITIONS.md`.
+
+## Your job
+
+Fill the `Value`, `Confidence`, and `Reasoning` columns of **`codex.csv`** ({n} rows).
+Touch no other file.
+
+- **`Value`** — exactly one entry from that row's `allowed_values` column (pipe-separated),
+  or `unsure`. Copy the string exactly; a value outside the list is discarded, not corrected.
+- **`Confidence`** — `High` or `Low`.
+- **`Reasoning`** — one short sentence saying what about the product drove the answer.
+
+## The hard constraint
+
+**Judge the device from its vendor and product name only.** Do not look up, infer from, or
+reason about CVE descriptions, CWE IDs, or CVSS scores for these devices — not in this repo,
+not on the web. The facets are later crossed against weakness data, and a facet assigned
+from CVE text would correlate that data with itself.
+
+`cve_count` is a statistical **weight** for aggregation, not evidence. A device with 40 CVEs
+is not thereby more cloud-dependent. Ignore it when choosing a value.
+
+## Blindness
+
+Do not open the ontology (`ontology/homeiot.ttl`), the project guide (`CLAUDE.md`), the
+plans in `docs/plans/`, or the other annotators' sheets (`claude.csv`, `gemini.csv`).
+Each of those states either the current facet assignment or the results this exercise
+exists to test independently. Your sheet physically lacks the other columns; keep it that
+way by not going looking.
+
+**Stay in this directory.** Everything you need is here.
+
+## `unsure` is a real answer
+
+If the product name does not identify the device well enough to judge, answer `unsure` at
+`Low` confidence. Forcing a guess manufactures fake agreement, which is worse than an
+honest abstention — the abstention rate is itself a reported result. Do not use `unsure`
+to avoid thinking, but do not avoid it either.
+
+## Working through the file
+
+Rows are **device-major**: 12 consecutive rows are the same device, one per facet. Re-read
+a facet's entry in `VALUE_DEFINITIONS.md` when you reach an unfamiliar one — the definitions
+are narrow and several are easy to answer from the everyday sense of the word instead of the
+defined one.
+
+That is more than one comfortable pass. Work in chunks of ~10 devices, saving as you go.
+Partial progress is fine and expected — the merge only uses rows that are filled, and an
+unfilled row is visibly missing rather than silently wrong.
+
+## Do not
+
+- Do not adjust an answer toward what a category's answer "should" be. You are describing
+  **this device**, not its category. Devices that sit oddly in their category are exactly
+  what this measurement is for, and smoothing them away destroys the signal.
+- Do not fill a value you would not defend. Low confidence is free; a wrong High is not.
+"""
 
 
 def build(primary, kappa_devices, seed, overwrite):
@@ -233,9 +341,15 @@ def build(primary, kappa_devices, seed, overwrite):
                 os.path.join(KIT, "FACET_ANNOTATION_PROMPT.md"))
     with open(os.path.join(KIT, "README.md"), "w") as f:
         f.write(kit_readme(primary, k, counts))
+    # Codex auto-loads AGENTS.md from its working directory, so emitting one here is what
+    # delivers the rules without a human pasting a prompt — the same structural-rather-
+    # than-procedural principle as the blind copies themselves. It carries instructions
+    # only; stating a result here would reopen the leak the kit exists to close.
+    with open(os.path.join(KIT, "AGENTS.md"), "w") as f:
+        f.write(kit_agents(counts))
 
     stray = set(os.listdir(KIT)) - {f"{n}.csv" for n in ANNOTATORS} - {
-        "VALUE_DEFINITIONS.md", "FACET_ANNOTATION_PROMPT.md", "README.md"}
+        "VALUE_DEFINITIONS.md", "FACET_ANNOTATION_PROMPT.md", "README.md", "AGENTS.md"}
     if stray:
         print(f"\n  WARNING: kit contains unexpected files {sorted(stray)} — the kit must stay")
         print("  self-contained, or the auto-load leak it exists to close reopens.")
@@ -244,7 +358,9 @@ def build(primary, kappa_devices, seed, overwrite):
     print(f"  primary (full sample): {primary}")
     print(f"  kappa subsample: {k} devices x {len(spec)} facets = {k * len(spec)} rows each")
     print("\nRun each annotator with the kit as its working directory:")
-    print(f"  cd {os.path.relpath(KIT, ROOT)}")
+    print(f'  cd "{os.path.relpath(KIT, ROOT)}" && codex     # AGENTS.md is auto-loaded')
+    print(f'  cd "{os.path.relpath(KIT, ROOT)}" && claude    # fresh session')
+    print("  python3 scripts/facet_gemini.py data/facets/annotation-kit/gemini.csv")
 
 
 def main():

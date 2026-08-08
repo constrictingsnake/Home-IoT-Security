@@ -13,6 +13,33 @@ the truth about the current state.
 
 ---
 
+## STATUS — 2026-08-08
+
+| Phase | State |
+|---|---|
+| **F1** docs truth pass | **DONE** — `6619d86` |
+| **F3** verdict enforcement | **DONE** — `6619d86` |
+| **F2** κ loop | **BLOCKED ON CODEX.** Tooling done (`1ce16fb`); Gemini column filling; `facet_agreement.py` runs on a partial panel and already reports provisional Scott's π |
+| **F4** cameras subtype | **PILOT DONE** — `b4727de`, 70% judgeable → proceed with caveat. Full pass not started |
+| **F5** category study + writeback | not started (gated on F2) |
+| **F6** shades / KG vectors / push | not started |
+
+**The one human step in the whole plan is running Codex on
+`data/facets/annotation-kit/codex.csv`** (480 rows), from the kit directory so the repo's
+`CLAUDE.md` and memory index stay out of context. Everything downstream of "is this facet
+citable" waits on it, and nothing else does.
+
+**What the work so far already established** (all three independent of Codex):
+1. Enforcement is live — `capturesAV=true` falls from 1,124 rows to 239 once the
+   NOT-USABLE cameras cell is withheld, and `--ignore-phase-a` reproduces the old number.
+2. The cameras-recorders finding survived an independent replication (38% vs 42.5% on
+   samples sharing 3 of 100 devices) and an annotator-independent token check (8/8 where
+   the product name carries a token).
+3. `capturesAV` is also the *least reliable* facet on the provisional panel (π=0.065),
+   so the facet at the centre of the correction fails validity and reliability both.
+
+---
+
 ## Audit — every issue found, with evidence
 
 ### A. The tagging pipeline is half-built (blocking)

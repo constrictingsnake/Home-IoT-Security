@@ -15,6 +15,7 @@ examples, see `docs/RESULTS.md`. For the full per-script flag reference, see
 - [One-Time Setup: Build the NVD Snapshot](#one-time-setup-build-the-nvd-snapshot)
 - [Quick Start (orchestrator)](#quick-start-orchestrator)
 - [Manual Stage-by-Stage Commands](#manual-stage-by-stage-commands)
+- [Facet Annotation (ontology tagging)](#facet-annotation-ontology-tagging)
 - [Device Categories](#device-categories)
 - [Scripts](#scripts)
 - [Data Schemas](#data-schemas)
@@ -341,6 +342,54 @@ See `CLAUDE.md` for why this preserves prior work and `docs/RESULTS.md` for a wo
 
 ---
 
+## Facet Annotation (ontology tagging)
+
+Facets describe device *types*; these scripts measure whether a category-level facet value
+is true of the devices it lands on (**validity**, Phase A) and whether independent
+annotators assign it the same way (**reliability**, κ). Full rationale in
+`docs/plans/PLAN_facet_annotation.md`; open items in `docs/plans/PLAN_facet_system_fixes.md`.
+
+```bash
+# 1. Measure heterogeneity: which category-level facet values are defensible at all
+python3 scripts/facet_sample.py --frame            # regimes + coverage, no draw
+python3 scripts/facet_sample.py --draw             # -> product_frame.csv, product_sample.csv
+python3 scripts/facet_sample.py --aggregate        # filled sheet -> facet_distribution.csv
+
+# 2. Build the blind annotation kit
+python3 scripts/make_facet_copies.py               # -> data/facets/annotation-kit/
+```
+
+**Run each annotator with the kit as its working directory.** That `cd` is the blindness
+control, not a formality: from the repo root, `CLAUDE.md` and the memory index state the
+prior facet results, and an annotator that reads them before answering is not blind.
+
+```bash
+cd "data/facets/annotation-kit" && codex           # AGENTS.md there is auto-loaded
+cd "data/facets/annotation-kit" && claude          # use a FRESH session
+
+# Gemini is automated, resumable, and only touches blank rows
+python3 scripts/facet_gemini.py data/facets/annotation-kit/gemini.csv
+```
+
+```bash
+# 3. Agreement — runs on whatever is filled, and labels a partial panel provisional
+python3 scripts/facet_agreement.py --self-test     # validate the statistics first
+python3 scripts/facet_agreement.py --csv data/facets/facet_agreement.csv
+```
+
+Phase A verdicts are **enforced**: `facet_analysis.py` withholds any *(category, facet)*
+whose modal share fell below 0.60 and prints why, and `ontology_build.py --check` prints
+the mix on every run. Use `--ignore-phase-a` only to reproduce the pre-enforcement numbers.
+
+```bash
+# The cameras camera-vs-recorder question (F4)
+python3 scripts/camera_subtype.py --frame
+python3 scripts/camera_subtype.py --draw
+python3 scripts/camera_subtype.py --aggregate
+```
+
+---
+
 ## Device Categories
 
 The frozen analysis scope has 24 categories defined in `data/categories.csv` (`slug, label, scope_note`). Vendor search files are at `data/vendor-search/results_all_<slug>.csv`. Run `python3 scripts/pipeline.py status` for live per-category term coverage.
@@ -396,7 +445,12 @@ One line per script — full flag tables in `docs/SCRIPTS_REFERENCE.md`.
 | `cvss_vector.py` | 8 (shared lib) | CVSS vector parsing normalised to 3.x (4.0 back-conversion); shared by `cvss_analysis.py` and `ontology_build.py` |
 | `ontology_build.py` | ontology | `--check` / `--write` / `--reason` / `--align` / `--sources` / `--self-test` / `--export-kg` / `--verify-kg` |
 | `facet_derive.py` | ontology (provenance) | Derives `hasWebAdminUI` / `computeTier` from the snapshot and compares to the asserted values; reports pattern-fragility. Writes `data/ontology/facet_evidence.csv`, never edits the ontology |
-| `facet_analysis.py` | ontology → analysis | Slices the confirmed-Yes population by ontology facet, with a dominance column and `--cross cwe888` / `--cross attack_vector` |
+| `facet_analysis.py` | ontology → analysis | Slices the confirmed-Yes population by ontology facet, with a dominance column and `--cross cwe888` / `--cross attack_vector`. **Withholds cells Phase A measured as NOT-USABLE**; `--ignore-phase-a` to A/B |
+| `facet_sample.py` | facets (Phase A) | Draws a device sample per category and measures within-category facet heterogeneity → `facet_distribution.csv` |
+| `make_facet_copies.py` | facets (Phase A/2) | Builds the blind annotation kit (`data/facets/annotation-kit/`), incl. an auto-loaded `AGENTS.md` for Codex |
+| `facet_gemini.py` | facets (Phase A/2) | Fills the kit's `gemini.csv` from product identity only; refuses to run on a sheet carrying CVE text |
+| `facet_agreement.py` | facets (Phase 3) | Fleiss' κ / Scott's π, bootstrap CIs, PABAK, `unsure` rates; `--self-test` validates the statistics |
+| `camera_subtype.py` | facets (F4) | Measures the camera-vs-recorder split inside `cameras`, with a judgeability gate and a token check |
 
 Retired scripts live in `scripts/_legacy/` (superseded-by table in `docs/SCRIPTS_REFERENCE.md`).
 

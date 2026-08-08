@@ -376,11 +376,62 @@ argument.
 product name. The 17 found here were unambiguous; `panasonic:bb_hcm511` is the hard case and
 58% of the set looks like that. **Pilot 100 devices before committing to the full pass.**
 
-### Next
+### Next — updated 2026-08-08 (see `PLAN_facet_system_fixes.md` for the full fix plan)
 
-1. Run Codex and Gemini on the 480-row κ subsample. Nothing above is citable without it.
-2. Build `scripts/facet_agreement.py` — κ, PABAK, bootstrap CIs (does not exist yet).
-3. Pilot the cameras device-subtype pass on 100 devices.
+1. ~~Build `scripts/facet_agreement.py`~~ **DONE.** κ, bootstrap CIs, PABAK, raw
+   agreement, per-facet `unsure` rate, the Phase A validity cross-tab, and a
+   `--self-test` validating the statistics against the canonical 14-rater worked
+   example (0.2099 vs 0.2101 published).
+2. ~~Automate the Gemini column~~ **DONE.** `scripts/facet_gemini.py`, mirroring
+   `gemini_classify.py`. One fix worth knowing: keying batch results by asking the model
+   to echo the device string lost **193 of 480 rows silently** (39 of 40 on
+   `cloudDependence`) because these keys are CPE-derived and full of backslashes and
+   parentheses. Now keyed by integer index.
+3. **Run Codex on the 480-row subsample — THE ONE REMAINING BLOCKER.** Human-run from
+   the kit directory. Nothing here is citable until the panel is complete.
+4. ~~Pilot the cameras device-subtype pass~~ **DONE — see below.**
+
+### Phase A — the cameras subtype pilot (2026-08-08)
+
+`scripts/camera_subtype.py`. 100 devices drawn from cameras' 1,674, classified
+camera/recorder/other from product identity alone.
+
+| | camera | recorder | other |
+|---|---|---|---|
+| product-weighted | 56% | **38%** | 6% |
+| CVE-weighted | 62% | **34%** | 4% |
+
+**Judgeability 70/100**, which lands in the middle band: *proceed with the full pass, but
+report the unjudgeable share as its own class and never impute it.*
+
+**This is independent corroboration, not a repeat.** The pilot shares only **3 of 100**
+devices with the 40-device Phase A cameras sample, and lands at 38% against that sample's
+42.5%. Two disjoint draws, two passes, same conclusion — `cameras` is roughly a third
+recorders.
+
+**The token baseline is the part to trust most, and it is also the warning.** A mechanical
+rule (does the product name split to `nvr`/`dvr`/`xvr`/`recorder`?) is annotator-independent
+and is deliberately kept **out of the sheet** so the annotator cannot anchor on it. Where it
+fires, the annotation agreed **8/8**. But it fires on only **8.1%** of the frame: **91.9%**
+of camera devices carry neither a camera-ish nor a recorder-ish token, and those
+token-silent devices hold **92.9% of the CVE weight**. (The plan's earlier estimate was 58%
+tokenless; the real figure is far worse.) So the full pass rests almost entirely on
+product-line knowledge with no external check — which is precisely why a pilot was demanded.
+
+### First agreement numbers — PROVISIONAL, panel incomplete
+
+Claude vs Gemini only; Codex outstanding, so the statistic is **Scott's π** (Fleiss at 2
+raters), not κ, and these are a signal rather than the Phase 5 promotion input.
+
+- **`capturesAV` is the least reliable facet measured** — π = 0.065, raw agreement 67%.
+  The facet at the centre of the correction fails on reliability as well as validity,
+  which is a third independent direction pointing the same way.
+- **Cells Phase A called NOT-USABLE draw more annotator disagreement** than usable ones
+  (54% vs 67% unanimity). Validity and reliability track together here — but they remain
+  separate gates, and a NOT-USABLE cell is not rescued by a good π.
+- **Gemini's documented bias does not transfer.** On CVE review it skews Low-confidence;
+  on facets it is High-confidence **92.7%** against Claude's 74.5%. The bias profile in
+  `CLAUDE.md` is about CVE review and must not be assumed to hold on this unit.
 
 ---
 

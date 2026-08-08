@@ -12,11 +12,11 @@ alarms,abus:secvest_wireless_remote_control_fube50015,abus,secvest_wireless_remo
 alarms,abus:secvest_wireless_remote_control_fube50015,abus,secvest_wireless_remote_control_fube50015,3,placement,Either|Indoor|Outdoor|unsure,Indoor,High,"Remote control is a handheld device used indoors or outdoors, but typically associated with indoor use for the same environment as the alarm system."
 alarms,abus:secvest_wireless_remote_control_fube50015,abus,secvest_wireless_remote_control_fube50015,3,supportLifetime,DeclaredLifetime|UndeclaredLifetime|unsure,UndeclaredLifetime,High,Consumer alarm remote; typical of the category to have no published support window.
 alarms,chuango:g3_gsm\/sms_alarm_system,chuango,g3_gsm\/sms_alarm_system,1,actuatesPhysical,true|false|unsure,true,High,Alarm systems typically actuate physical sirens sirens or strobe lights.
-alarms,chuango:g3_gsm\/sms_alarm_system,chuango,g3_gsm\/sms_alarm_system,1,actuationConsequence,ComfortActuation|NoActuation|PropertyActuation|SafetyActuation|unsure,,,
-alarms,chuango:g3_gsm\/sms_alarm_system,chuango,g3_gsm\/sms_alarm_system,1,capturesAV,true|false|unsure,,,
+alarms,chuango:g3_gsm\/sms_alarm_system,chuango,g3_gsm\/sms_alarm_system,1,actuationConsequence,ComfortActuation|NoActuation|PropertyActuation|SafetyActuation|unsure,PropertyActuation,High,GSM/SMS alarm system; compromise can disable security monitoring and breach physical security.
+alarms,chuango:g3_gsm\/sms_alarm_system,chuango,g3_gsm\/sms_alarm_system,1,capturesAV,true|false|unsure,unsure,Low,"GSM/SMS alarm system; may have a siren or sensors, but not necessarily a camera or microphone."
 alarms,chuango:g3_gsm\/sms_alarm_system,chuango,g3_gsm\/sms_alarm_system,1,cloudDependence,CloudOptional|CloudRequired|LocalOnly|unsure,,,
 alarms,chuango:g3_gsm\/sms_alarm_system,chuango,g3_gsm\/sms_alarm_system,1,computeTier,AndroidDerived|EmbeddedLinux|McuClass|Rtos|unsure,,,
-alarms,chuango:g3_gsm\/sms_alarm_system,chuango,g3_gsm\/sms_alarm_system,1,consumerAvailability,InstallerChannel|MixedChannel|RetailConsumer|unsure,,,
+alarms,chuango:g3_gsm\/sms_alarm_system,chuango,g3_gsm\/sms_alarm_system,1,consumerAvailability,InstallerChannel|MixedChannel|RetailConsumer|unsure,RetailConsumer,High,GSM/SMS alarm systems of this type are typically sold as DIY kits for retail consumers.
 alarms,chuango:g3_gsm\/sms_alarm_system,chuango,g3_gsm\/sms_alarm_system,1,dataSensitivity,AvStreamData|BiometricData|NoData|TelemetryData|unsure,,,
 alarms,chuango:g3_gsm\/sms_alarm_system,chuango,g3_gsm\/sms_alarm_system,1,firmwareUpdateModel,ManualFlash|NoUpdatePath|OtaAutomatic|OtaUserInitiated|unsure,,,
 alarms,chuango:g3_gsm\/sms_alarm_system,chuango,g3_gsm\/sms_alarm_system,1,formFactor,Fixed|Portable|Worn|unsure,,,
@@ -24,7 +24,7 @@ alarms,chuango:g3_gsm\/sms_alarm_system,chuango,g3_gsm\/sms_alarm_system,1,hasWe
 alarms,chuango:g3_gsm\/sms_alarm_system,chuango,g3_gsm\/sms_alarm_system,1,placement,Either|Indoor|Outdoor|unsure,,,
 alarms,chuango:g3_gsm\/sms_alarm_system,chuango,g3_gsm\/sms_alarm_system,1,supportLifetime,DeclaredLifetime|UndeclaredLifetime|unsure,,,
 alarms,chuango:g5w,chuango,g5w,1,actuatesPhysical,true|false|unsure,true,High,Part of the Chuango alarm system line; typically actuate sirens.
-alarms,chuango:g5w,chuango,g5w,1,actuationConsequence,ComfortActuation|NoActuation|PropertyActuation|SafetyActuation|unsure,,,
+alarms,chuango:g5w,chuango,g5w,1,actuationConsequence,ComfortActuation|NoActuation|PropertyActuation|SafetyActuation|unsure,PropertyActuation,High,Alarm system; compromise can disable security monitoring and breach physical security.
 alarms,chuango:g5w,chuango,g5w,1,capturesAV,true|false|unsure,unsure,Low,Model name 'g5w' is too generic to determine AV capabilities.
 alarms,chuango:g5w,chuango,g5w,1,cloudDependence,CloudOptional|CloudRequired|LocalOnly|unsure,,,
 alarms,chuango:g5w,chuango,g5w,1,computeTier,AndroidDerived|EmbeddedLinux|McuClass|Rtos|unsure,Rtos,Low,"Similar to the G3, the G5W is a low-power alarm system likely running an RTOS."
@@ -36,7 +36,7 @@ alarms,chuango:g5w,chuango,g5w,1,hasWebAdminUI,true|false|unsure,false,High,"Sim
 alarms,chuango:g5w,chuango,g5w,1,placement,Either|Indoor|Outdoor|unsure,Indoor,High,Chuango G5W is an indoor alarm system.
 alarms,chuango:g5w,chuango,g5w,1,supportLifetime,DeclaredLifetime|UndeclaredLifetime|unsure,UndeclaredLifetime,High,GSM alarm system; no known public declaration of support lifetime.
 alarms,mydigoo:dg-hamb_smart_home_security_system,mydigoo,dg-hamb_smart_home_security_system,1,actuatesPhysical,true|false|unsure,true,High,Security systems typically actuate sirens.
-alarms,mydigoo:dg-hamb_smart_home_security_system,mydigoo,dg-hamb_smart_home_security_system,1,actuationConsequence,ComfortActuation|NoActuation|PropertyActuation|SafetyActuation|unsure,,,
+alarms,mydigoo:dg-hamb_smart_home_security_system,mydigoo,dg-hamb_smart_home_security_system,1,actuationConsequence,ComfortActuation|NoActuation|PropertyActuation|SafetyActuation|unsure,PropertyActuation,High,Security system; compromise can disable security monitoring and breach physical security.
 alarms,mydigoo:dg-hamb_smart_home_security_system,mydigoo,dg-hamb_smart_home_security_system,1,capturesAV,true|false|unsure,true,High,Smart home security systems typically include cameras or microphones for monitoring.
 alarms,mydigoo:dg-hamb_smart_home_security_system,mydigoo,dg-hamb_smart_home_security_system,1,cloudDependence,CloudOptional|CloudRequired|LocalOnly|unsure,,,
 alarms,mydigoo:dg-hamb_smart_home_security_system,mydigoo,dg-hamb_smart_home_security_system,1,computeTier,AndroidDerived|EmbeddedLinux|McuClass|Rtos|unsure,EmbeddedLinux,Low,Smart home security systems with integrated hubs often run Embedded Linux to manage multiple sensors and complex networking.
@@ -48,7 +48,7 @@ alarms,mydigoo:dg-hamb_smart_home_security_system,mydigoo,dg-hamb_smart_home_sec
 alarms,mydigoo:dg-hamb_smart_home_security_system,mydigoo,dg-hamb_smart_home_security_system,1,placement,Either|Indoor|Outdoor|unsure,Indoor,High,Smart home security systems are typically installed indoors.
 alarms,mydigoo:dg-hamb_smart_home_security_system,mydigoo,dg-hamb_smart_home_security_system,1,supportLifetime,DeclaredLifetime|UndeclaredLifetime|unsure,UndeclaredLifetime,High,Generic smart home security system; typical of consumer IoT to have no declared support window.
 alarms,vivint:sky_control_panel,vivint,sky_control_panel,1,actuatesPhysical,true|false|unsure,true,High,Control panels for security systems actuate sirens and other integrated security components.
-alarms,vivint:sky_control_panel,vivint,sky_control_panel,1,actuationConsequence,ComfortActuation|NoActuation|PropertyActuation|SafetyActuation|unsure,,,
+alarms,vivint:sky_control_panel,vivint,sky_control_panel,1,actuationConsequence,ComfortActuation|NoActuation|PropertyActuation|SafetyActuation|unsure,PropertyActuation,High,Control panel for security system; compromise can disable security지 a breach of physical security.
 alarms,vivint:sky_control_panel,vivint,sky_control_panel,1,capturesAV,true|false|unsure,false,High,Control panel for an alarm system; typically does not capture AV.
 alarms,vivint:sky_control_panel,vivint,sky_control_panel,1,cloudDependence,CloudOptional|CloudRequired|LocalOnly|unsure,,,
 alarms,vivint:sky_control_panel,vivint,sky_control_panel,1,computeTier,AndroidDerived|EmbeddedLinux|McuClass|Rtos|unsure,,,
@@ -60,7 +60,7 @@ alarms,vivint:sky_control_panel,vivint,sky_control_panel,1,hasWebAdminUI,true|fa
 alarms,vivint:sky_control_panel,vivint,sky_control_panel,1,placement,Either|Indoor|Outdoor|unsure,Indoor,High,Control panels for security systems are typically installed indoors.
 alarms,vivint:sky_control_panel,vivint,sky_control_panel,1,supportLifetime,DeclaredLifetime|UndeclaredLifetime|unsure,UndeclaredLifetime,High,Professional installation security panel; no known public declaration of support lifetime.
 cameras,c-first:cfr-4eha,c-first,cfr-4eha,2,actuatesPhysical,true|false|unsure,false,Low,"Likely a camera, which is primarily a sensing device."
-cameras,c-first:cfr-4eha,c-first,cfr-4eha,2,actuationConsequence,ComfortActuation|NoActuation|PropertyActuation|SafetyActuation|unsure,,,
+cameras,c-first:cfr-4eha,c-first,cfr-4eha,2,actuationConsequence,ComfortActuation|NoActuation|PropertyActuation|SafetyActuation|unsure,NoActuation,High,"Camera; primary function is monitoring, no physical actuators to change the physical world."
 cameras,c-first:cfr-4eha,c-first,cfr-4eha,2,capturesAV,true|false|unsure,true,High,"Categorized as a camera, which by definition captures AV."
 cameras,c-first:cfr-4eha,c-first,cfr-4eha,2,cloudDependence,CloudOptional|CloudRequired|LocalOnly|unsure,,,
 cameras,c-first:cfr-4eha,c-first,cfr-4eha,2,computeTier,AndroidDerived|EmbeddedLinux|McuClass|Rtos|unsure,,,
@@ -72,7 +72,7 @@ cameras,c-first:cfr-4eha,c-first,cfr-4eha,2,hasWebAdminUI,true|false|unsure,fals
 cameras,c-first:cfr-4eha,c-first,cfr-4eha,2,placement,Either|Indoor|Outdoor|unsure,Indoor,High,"C-First CFR-4EHA is a smoke detector/alarm, typically installed indoors."
 cameras,c-first:cfr-4eha,c-first,cfr-4eha,2,supportLifetime,DeclaredLifetime|UndeclaredLifetime|unsure,UndeclaredLifetime,High,Consumer camera; typical of the consumer IoT category to have no declared support window.
 cameras,dahuasecurity:dvr2116he,dahuasecurity,dvr2116he,5,actuatesPhysical,true|false|unsure,false,High,A DVR is a recording device for video feeds; it does not actuate physical changes.
-cameras,dahuasecurity:dvr2116he,dahuasecurity,dvr2116he,5,actuationConsequence,ComfortActuation|NoActuation|PropertyActuation|SafetyActuation|unsure,,,
+cameras,dahuasecurity:dvr2116he,dahuasecurity,dvr2116he,5,actuationConsequence,ComfortActuation|NoActuation|PropertyActuation|SafetyActuation|unsure,NoActuation,High,"DVR for cameras; records data, no physical actuators."
 cameras,dahuasecurity:dvr2116he,dahuasecurity,dvr2116he,5,capturesAV,true|false|unsure,true,High,DVR (Digital Video Recorder) is designed to capture and store video from cameras.
 cameras,dahuasecurity:dvr2116he,dahuasecurity,dvr2116he,5,cloudDependence,CloudOptional|CloudRequired|LocalOnly|unsure,,,
 cameras,dahuasecurity:dvr2116he,dahuasecurity,dvr2116he,5,computeTier,AndroidDerived|EmbeddedLinux|McuClass|Rtos|unsure,,,
@@ -96,11 +96,11 @@ cameras,xiongmaitech:ipg-53h10pe-s,xiongmaitech,ipg-53h10pe-s,1,hasWebAdminUI,tr
 cameras,xiongmaitech:ipg-53h10pe-s,xiongmaitech,ipg-53h10pe-s,1,placement,Either|Indoor|Outdoor|unsure,,,
 cameras,xiongmaitech:ipg-53h10pe-s,xiongmaitech,ipg-53h10pe-s,1,supportLifetime,DeclaredLifetime|UndeclaredLifetime|unsure,UndeclaredLifetime,High,IP camera; typical of consumer/SMB camera systems to have no declared support window.
 doorbell,reolink:smart_2k\+_plug-in_wi-fi_video_doorbell_with_chime,reolink,smart_2k\+_plug-in_wi-fi_video_doorbell_with_chime,3,actuatesPhysical,true|false|unsure,true,High,The chime is a physical actuator (speaker/buzzer) that sounds an alert.
-doorbell,reolink:smart_2k\+_plug-in_wi-fi_video_doorbell_with_chime,reolink,smart_2k\+_plug-in_wi-fi_video_doorbell_with_chime,3,actuationConsequence,ComfortActuation|NoActuation|PropertyActuation|SafetyActuation|unsure,,,
-doorbell,reolink:smart_2k\+_plug-in_wi-fi_video_doorbell_with_chime,reolink,smart_2k\+_plug-in_wi-fi_video_doorbell_with_chime,3,capturesAV,true|false|unsure,,,
+doorbell,reolink:smart_2k\+_plug-in_wi-fi_video_doorbell_with_chime,reolink,smart_2k\+_plug-in_wi-fi_video_doorbell_with_chime,3,actuationConsequence,ComfortActuation|NoActuation|PropertyActuation|SafetyActuation|unsure,NoActuation,High,"Video doorbell; primary function is monitoring and notification, no physical actuators."
+doorbell,reolink:smart_2k\+_plug-in_wi-fi_video_doorbell_with_chime,reolink,smart_2k\+_plug-in_wi-fi_video_doorbell_with_chime,3,capturesAV,true|false|unsure,true,High,Video doorbell includes a camera for capturing video.
 doorbell,reolink:smart_2k\+_plug-in_wi-fi_video_doorbell_with_chime,reolink,smart_2k\+_plug-in_wi-fi_video_doorbell_with_chime,3,cloudDependence,CloudOptional|CloudRequired|LocalOnly|unsure,,,
 doorbell,reolink:smart_2k\+_plug-in_wi-fi_video_doorbell_with_chime,reolink,smart_2k\+_plug-in_wi-fi_video_doorbell_with_chime,3,computeTier,AndroidDerived|EmbeddedLinux|McuClass|Rtos|unsure,,,
-doorbell,reolink:smart_2k\+_plug-in_wi-fi_video_doorbell_with_chime,reolink,smart_2k\+_plug-in_wi-fi_video_doorbell_with_chime,3,consumerAvailability,InstallerChannel|MixedChannel|RetailConsumer|unsure,,,
+doorbell,reolink:smart_2k\+_plug-in_wi-fi_video_doorbell_with_chime,reolink,smart_2k\+_plug-in_wi-fi_video_doorbell_with_chime,3,consumerAvailability,InstallerChannel|MixedChannel|RetailConsumer|unsure,RetailConsumer,High,Wi-Fi video doorbells with chimes are standard retail consumer electronics.
 doorbell,reolink:smart_2k\+_plug-in_wi-fi_video_doorbell_with_chime,reolink,smart_2k\+_plug-in_wi-fi_video_doorbell_with_chime,3,dataSensitivity,AvStreamData|BiometricData|NoData|TelemetryData|unsure,,,
 doorbell,reolink:smart_2k\+_plug-in_wi-fi_video_doorbell_with_chime,reolink,smart_2k\+_plug-in_wi-fi_video_doorbell_with_chime,3,firmwareUpdateModel,ManualFlash|NoUpdatePath|OtaAutomatic|OtaUserInitiated|unsure,,,
 doorbell,reolink:smart_2k\+_plug-in_wi-fi_video_doorbell_with_chime,reolink,smart_2k\+_plug-in_wi-fi_video_doorbell_with_chime,3,formFactor,Fixed|Portable|Worn|unsure,,,
@@ -108,7 +108,7 @@ doorbell,reolink:smart_2k\+_plug-in_wi-fi_video_doorbell_with_chime,reolink,smar
 doorbell,reolink:smart_2k\+_plug-in_wi-fi_video_doorbell_with_chime,reolink,smart_2k\+_plug-in_wi-fi_video_doorbell_with_chime,3,placement,Either|Indoor|Outdoor|unsure,,,
 doorbell,reolink:smart_2k\+_plug-in_wi-fi_video_doorbell_with_chime,reolink,smart_2k\+_plug-in_wi-fi_video_doorbell_with_chime,3,supportLifetime,DeclaredLifetime|UndeclaredLifetime|unsure,,,
 doorlock,assaabloy:yale_keyless_smart_lock,assaabloy,yale_keyless_smart_lock,1,actuatesPhysical,true|false|unsure,true,High,A smart lock physically moves the bolt/latch.
-doorlock,assaabloy:yale_keyless_smart_lock,assaabloy,yale_keyless_smart_lock,1,actuationConsequence,ComfortActuation|NoActuation|PropertyActuation|SafetyActuation|unsure,,,
+doorlock,assaabloy:yale_keyless_smart_lock,assaabloy,yale_keyless_smart_lock,1,actuationConsequence,ComfortActuation|NoActuation|PropertyActuation|SafetyActuation|unsure,PropertyActuation,High,Smart lock; compromise can grant physical entry to the property.
 doorlock,assaabloy:yale_keyless_smart_lock,assaabloy,yale_keyless_smart_lock,1,capturesAV,true|false|unsure,false,High,Smart lock does not capture audio or video.
 doorlock,assaabloy:yale_keyless_smart_lock,assaabloy,yale_keyless_smart_lock,1,cloudDependence,CloudOptional|CloudRequired|LocalOnly|unsure,,,
 doorlock,assaabloy:yale_keyless_smart_lock,assaabloy,yale_keyless_smart_lock,1,computeTier,AndroidDerived|EmbeddedLinux|McuClass|Rtos|unsure,,,
@@ -120,7 +120,7 @@ doorlock,assaabloy:yale_keyless_smart_lock,assaabloy,yale_keyless_smart_lock,1,h
 doorlock,assaabloy:yale_keyless_smart_lock,assaabloy,yale_keyless_smart_lock,1,placement,Either|Indoor|Outdoor|unsure,Outdoor,High,"Smart locks are installed on exterior doors, placing them outside the weather envelope."
 doorlock,assaabloy:yale_keyless_smart_lock,assaabloy,yale_keyless_smart_lock,1,supportLifetime,DeclaredLifetime|UndeclaredLifetime|unsure,UndeclaredLifetime,High,Consumer smart lock; typical of consumer IoT to have no declared support window.
 doorlock,august:connect_wi-fi_bridge,august,connect_wi-fi_bridge,1,actuatesPhysical,true|false|unsure,false,High,A bridge is a communication device; it does not actuate physical hardware.
-doorlock,august:connect_wi-fi_bridge,august,connect_wi-fi_bridge,1,actuationConsequence,ComfortActuation|NoActuation|PropertyActuation|SafetyActuation|unsure,,,
+doorlock,august:connect_wi-fi_bridge,august,connect_wi-fi_bridge,1,actuationConsequence,ComfortActuation|NoActuation|PropertyActuation|SafetyActuation|unsure,PropertyActuation,High,Wi-Fi bridge for a smart lock; compromise can allow remote unlocking of the door.
 doorlock,august:connect_wi-fi_bridge,august,connect_wi-fi_bridge,1,capturesAV,true|false|unsure,false,High,Wi-Fi bridge for a lock; no AV capture capabilities.
 doorlock,august:connect_wi-fi_bridge,august,connect_wi-fi_bridge,1,cloudDependence,CloudOptional|CloudRequired|LocalOnly|unsure,,,
 doorlock,august:connect_wi-fi_bridge,august,connect_wi-fi_bridge,1,computeTier,AndroidDerived|EmbeddedLinux|McuClass|Rtos|unsure,,,
@@ -134,7 +134,7 @@ doorlock,august:connect_wi-fi_bridge,august,connect_wi-fi_bridge,1,supportLifeti
 doorlock,geniecompany:aladdin_connect_garage_door_opener,geniecompany,aladdin_connect_garage_door_opener,2,actuatesPhysical,true|false|unsure,true,High,Physically opens and closes the garage door.
 doorlock,geniecompany:aladdin_connect_garage_door_opener,geniecompany,aladdin_connect_garage_door_opener,2,actuationConsequence,ComfortActuation|NoActuation|PropertyActuation|SafetyActuation|unsure,,,
 doorlock,geniecompany:aladdin_connect_garage_door_opener,geniecompany,aladdin_connect_garage_door_opener,2,capturesAV,true|false|unsure,false,High,Garage door opener does not capture audio or video.
-doorlock,geniecompany:aladdin_connect_garage_door_opener,geniecompany,aladdin_connect_garage_door_opener,2,cloudDependence,CloudOptional|CloudRequired|LocalOnly|unsure,,,
+doorlock,geniecompany:aladdin_connect_garage_door_opener,geniecompany,aladdin_connect_garage_door_opener,2,cloudDependence,CloudOptional|CloudRequired|LocalOnly|unsure,CloudRequired,High,Aladdin Connect is a cloud-based smart garage door opener system.
 doorlock,geniecompany:aladdin_connect_garage_door_opener,geniecompany,aladdin_connect_garage_door_opener,2,computeTier,AndroidDerived|EmbeddedLinux|McuClass|Rtos|unsure,,,
 doorlock,geniecompany:aladdin_connect_garage_door_opener,geniecompany,aladdin_connect_garage_door_opener,2,consumerAvailability,InstallerChannel|MixedChannel|RetailConsumer|unsure,RetailConsumer,High,"Genie garage door openers are sold at retail stores (e.g., Home Depot) for DIY installation."
 doorlock,geniecompany:aladdin_connect_garage_door_opener,geniecompany,aladdin_connect_garage_door_opener,2,dataSensitivity,AvStreamData|BiometricData|NoData|TelemetryData|unsure,TelemetryData,High,Garage door opener; tracks open/close state and usage traces.
@@ -146,7 +146,7 @@ doorlock,geniecompany:aladdin_connect_garage_door_opener,geniecompany,aladdin_co
 ev-charging,abb:terra_ac_wallbox_80a,abb,terra_ac_wallbox_80a,2,actuatesPhysical,true|false|unsure,true,High,EV chargers actuate physical relays to control the flow of electricity.
 ev-charging,abb:terra_ac_wallbox_80a,abb,terra_ac_wallbox_80a,2,actuationConsequence,ComfortActuation|NoActuation|PropertyActuation|SafetyActuation|unsure,,,
 ev-charging,abb:terra_ac_wallbox_80a,abb,terra_ac_wallbox_80a,2,capturesAV,true|false|unsure,false,High,EV charging station; no AV capture capabilities.
-ev-charging,abb:terra_ac_wallbox_80a,abb,terra_ac_wallbox_80a,2,cloudDependence,CloudOptional|CloudRequired|LocalOnly|unsure,,,
+ev-charging,abb:terra_ac_wallbox_80a,abb,terra_ac_wallbox_80a,2,cloudDependence,CloudOptional|CloudRequired|LocalOnly|unsure,CloudOptional,High,"Industrial EV chargers typically support local control/configuration via Modbus or OCPP, with cloud connectivity as an optional layer."
 ev-charging,abb:terra_ac_wallbox_80a,abb,terra_ac_wallbox_80a,2,computeTier,AndroidDerived|EmbeddedLinux|McuClass|Rtos|unsure,,,
 ev-charging,abb:terra_ac_wallbox_80a,abb,terra_ac_wallbox_80a,2,consumerAvailability,InstallerChannel|MixedChannel|RetailConsumer|unsure,InstallerChannel,High,An 80A wallbox requires professional electrical installation and commissioning.
 ev-charging,abb:terra_ac_wallbox_80a,abb,terra_ac_wallbox_80a,2,dataSensitivity,AvStreamData|BiometricData|NoData|TelemetryData|unsure,TelemetryData,High,EV charger; tracks charging sessions and energy usage.
@@ -158,8 +158,8 @@ ev-charging,abb:terra_ac_wallbox_80a,abb,terra_ac_wallbox_80a,2,supportLifetime,
 ev-charging,abb:terra_ac_wallbox_ul32a,abb,terra_ac_wallbox_ul32a,2,actuatesPhysical,true|false|unsure,true,High,EV charging stations actuate physical relays to deliver power to the vehicle.
 ev-charging,abb:terra_ac_wallbox_ul32a,abb,terra_ac_wallbox_ul32a,2,actuationConsequence,ComfortActuation|NoActuation|PropertyActuation|SafetyActuation|unsure,,,
 ev-charging,abb:terra_ac_wallbox_ul32a,abb,terra_ac_wallbox_ul32a,2,capturesAV,true|false|unsure,false,High,EV charging station; no AV capture capabilities.
-ev-charging,abb:terra_ac_wallbox_ul32a,abb,terra_ac_wallbox_ul32a,2,cloudDependence,CloudOptional|CloudRequired|LocalOnly|unsure,,,
-ev-charging,abb:terra_ac_wallbox_ul32a,abb,terra_ac_wallbox_ul32a,2,computeTier,AndroidDerived|EmbeddedLinux|McuClass|Rtos|unsure,,,
+ev-charging,abb:terra_ac_wallbox_ul32a,abb,terra_ac_wallbox_ul32a,2,cloudDependence,CloudOptional|CloudRequired|LocalOnly|unsure,CloudOptional,High,Industrial EV chargers typically support local control/configuration via Modbus orfangs own cloud connectivity as an idée own cloud connectivity as an optional layer.
+ev-charging,abb:terra_ac_wallbox_ul32a,abb,terra_ac_wallbox_ul32a,2,computeTier,AndroidDerived|EmbeddedLinux|McuClass|Rtos|unsure,EmbeddedLinux,Low,EV charging stations typically use Embedded Linux for network connectivity and payment processing.
 ev-charging,abb:terra_ac_wallbox_ul32a,abb,terra_ac_wallbox_ul32a,2,consumerAvailability,InstallerChannel|MixedChannel|RetailConsumer|unsure,InstallerChannel,High,High-power AC wallboxes are typically commissioned by trade installers.
 ev-charging,abb:terra_ac_wallbox_ul32a,abb,terra_ac_wallbox_ul32a,2,dataSensitivity,AvStreamData|BiometricData|NoData|TelemetryData|unsure,TelemetryData,High,reasoning: EV charger; tracks charging sessions and energy usage.
 ev-charging,abb:terra_ac_wallbox_ul32a,abb,terra_ac_wallbox_ul32a,2,firmwareUpdateModel,ManualFlash|NoUpdatePath|OtaAutomatic|OtaUserInitiated|unsure,,,
@@ -170,8 +170,8 @@ ev-charging,abb:terra_ac_wallbox_ul32a,abb,terra_ac_wallbox_ul32a,2,supportLifet
 ev-charging,chargepoint:home_flex_hardwired,chargepoint,home_flex_hardwired,6,actuatesPhysical,true|false|unsure,true,High,EV charging stations actuate physical relays to deliver power to the vehicle.
 ev-charging,chargepoint:home_flex_hardwired,chargepoint,home_flex_hardwired,6,actuationConsequence,ComfortActuation|NoActuation|PropertyActuation|SafetyActuation|unsure,,,
 ev-charging,chargepoint:home_flex_hardwired,chargepoint,home_flex_hardwired,6,capturesAV,true|false|unsure,false,High,EV charging station; no AV capture capabilities.
-ev-charging,chargepoint:home_flex_hardwired,chargepoint,home_flex_hardwired,6,cloudDependence,CloudOptional|CloudRequired|LocalOnly|unsure,,,
-ev-charging,chargepoint:home_flex_hardwired,chargepoint,home_flex_hardwired,6,computeTier,AndroidDerived|EmbeddedLinux|McuClass|Rtos|unsure,,,
+ev-charging,chargepoint:home_flex_hardwired,chargepoint,home_flex_hardwired,6,cloudDependence,CloudOptional|CloudRequired|LocalOnly|unsure,CloudRequired,High,ChargePoint Home Flex is designed as a cloud-connected smart charger for residential use.
+ev-charging,chargepoint:home_flex_hardwired,chargepoint,home_flex_hardwired,6,computeTier,AndroidDerived|EmbeddedLinux|McuClass|Rtos|unsure,EmbeddedLinux,Low,"ChargePoint Home Flex is a network-connected EV charger, typically requiring a full network stack."
 ev-charging,chargepoint:home_flex_hardwired,chargepoint,home_flex_hardwired,6,consumerAvailability,InstallerChannel|MixedChannel|RetailConsumer|unsure,InstallerChannel,High,Hardwired EV chargers require a professional electrician for installation.
 ev-charging,chargepoint:home_flex_hardwired,chargepoint,home_flex_hardwired,6,dataSensitivity,AvStreamData|BiometricData|NoData|TelemetryData|unsure,TelemetryData,High,EV charger; tracks charging sessions and energy usage.
 ev-charging,chargepoint:home_flex_hardwired,chargepoint,home_flex_hardwired,6,firmwareUpdateModel,ManualFlash|NoUpdatePath|OtaAutomatic|OtaUserInitiated|unsure,,,
@@ -183,7 +183,7 @@ ev-charging,chargepoint:home_flex_nema_14-50_plug,chargepoint,home_flex_nema_14-
 ev-charging,chargepoint:home_flex_nema_14-50_plug,chargepoint,home_flex_nema_14-50_plug,6,actuationConsequence,ComfortActuation|NoActuation|PropertyActuation|SafetyActuation|unsure,,,
 ev-charging,chargepoint:home_flex_nema_14-50_plug,chargepoint,home_flex_nema_14-50_plug,6,capturesAV,true|false|unsure,false,High,false own EV charging station; no AV capture capabilities.
 ev-charging,chargepoint:home_flex_nema_14-50_plug,chargepoint,home_flex_nema_14-50_plug,6,cloudDependence,CloudOptional|CloudRequired|LocalOnly|unsure,,,
-ev-charging,chargepoint:home_flex_nema_14-50_plug,chargepoint,home_flex_nema_14-50_plug,6,computeTier,AndroidDerived|EmbeddedLinux|McuClass|Rtos|unsure,,,
+ev-charging,chargepoint:home_flex_nema_14-50_plug,chargepoint,home_flex_nema_14-50_plug,6,computeTier,AndroidDerived|EmbeddedLinux|McuClass|Rtos|unsure,EmbeddedLinux,Low,"Same as index 1, different power connection type."
 ev-charging,chargepoint:home_flex_nema_14-50_plug,chargepoint,home_flex_nema_14-50_plug,6,consumerAvailability,InstallerChannel|MixedChannel|RetailConsumer|unsure,RetailConsumer,High,A plug-in EV charger (NEMA 14-50) is designed for DIY use if the outlet is already present.
 ev-charging,chargepoint:home_flex_nema_14-50_plug,chargepoint,home_flex_nema_14-50_plug,6,dataSensitivity,AvStreamData|BiometricData|NoData|TelemetryData|unsure,TelemetryData,High,EV charger; tracks charging sessions and energy usage.
 ev-charging,chargepoint:home_flex_nema_14-50_plug,chargepoint,home_flex_nema_14-50_plug,6,firmwareUpdateModel,ManualFlash|NoUpdatePath|OtaAutomatic|OtaUserInitiated|unsure,,,
@@ -193,10 +193,10 @@ ev-charging,chargepoint:home_flex_nema_14-50_plug,chargepoint,home_flex_nema_14-
 ev-charging,chargepoint:home_flex_nema_14-50_plug,chargepoint,home_flex_nema_14-50_plug,6,supportLifetime,DeclaredLifetime|UndeclaredLifetime|unsure,,,
 ev-charging,garo:wallbox_glb\+_t2ev7,garo,wallbox_glb\+_t2ev7,1,actuatesPhysical,true|false|unsure,true,High,EV charging stations actuate physical relays to deliver power to thevehicle
 ev-charging,garo:wallbox_glb\+_t2ev7,garo,wallbox_glb\+_t2ev7,1,actuationConsequence,ComfortActuation|NoActuation|PropertyActuation|SafetyActuation|unsure,,,
-ev-charging,garo:wallbox_glb\+_t2ev7,garo,wallbox_glb\+_t2ev7,1,capturesAV,true|false|unsure,,,
-ev-charging,garo:wallbox_glb\+_t2ev7,garo,wallbox_glb\+_t2ev7,1,cloudDependence,CloudOptional|CloudRequired|LocalOnly|unsure,,,
-ev-charging,garo:wallbox_glb\+_t2ev7,garo,wallbox_glb\+_t2ev7,1,computeTier,AndroidDerived|EmbeddedLinux|McuClass|Rtos|unsure,,,
-ev-charging,garo:wallbox_glb\+_t2ev7,garo,wallbox_glb\+_t2ev7,1,consumerAvailability,InstallerChannel|MixedChannel|RetailConsumer|unsure,,,
+ev-charging,garo:wallbox_glb\+_t2ev7,garo,wallbox_glb\+_t2ev7,1,capturesAV,true|false|unsure,false,High,EV charging wallbox; no reason to have a camera or microphone.
+ev-charging,garo:wallbox_glb\+_t2ev7,garo,wallbox_glb\+_t2ev7,1,cloudDependence,CloudOptional|CloudRequired|LocalOnly|unsure,CloudOptional,High,GARO Wallbox is an industrial/commercial grade charger that typically supports local OCPP protocols.
+ev-charging,garo:wallbox_glb\+_t2ev7,garo,wallbox_glb\+_t2ev7,1,computeTier,AndroidDerived|EmbeddedLinux|McuClass|Rtos|unsure,EmbeddedLinux,Low,Wallbox chargers of this class typically run Embedded Linux for cloud connectivity.
+ev-charging,garo:wallbox_glb\+_t2ev7,garo,wallbox_glb\+_t2ev7,1,consumerAvailability,InstallerChannel|MixedChannel|RetailConsumer|unsure,InstallerChannel,High,EV wallboxes are typically hardwired and require professional installation by a certified electrician.
 ev-charging,garo:wallbox_glb\+_t2ev7,garo,wallbox_glb\+_t2ev7,1,dataSensitivity,AvStreamData|BiometricData|NoData|TelemetryData|unsure,,,
 ev-charging,garo:wallbox_glb\+_t2ev7,garo,wallbox_glb\+_t2ev7,1,firmwareUpdateModel,ManualFlash|NoUpdatePath|OtaAutomatic|OtaUserInitiated|unsure,,,
 ev-charging,garo:wallbox_glb\+_t2ev7,garo,wallbox_glb\+_t2ev7,1,formFactor,Fixed|Portable|Worn|unsure,,,
@@ -206,8 +206,8 @@ ev-charging,garo:wallbox_glb\+_t2ev7,garo,wallbox_glb\+_t2ev7,1,supportLifetime,
 ev-charging,schneider-electric:evc1s22p4,schneider-electric,evc1s22p4,2,actuatesPhysical,true|false|unsure,true,High,EV charging stations actuate physical relays to deliver power to the vehicle.
 ev-charging,schneider-electric:evc1s22p4,schneider-electric,evc1s22p4,2,actuationConsequence,ComfortActuation|NoActuation|PropertyActuation|SafetyActuation|unsure,,,
 ev-charging,schneider-electric:evc1s22p4,schneider-electric,evc1s22p4,2,capturesAV,true|false|unsure,false,High,EV charging station; no AV capture capabilities.
-ev-charging,schneider-electric:evc1s22p4,schneider-electric,evc1s22p4,2,cloudDependence,CloudOptional|CloudRequired|LocalOnly|unsure,,,
-ev-charging,schneider-electric:evc1s22p4,schneider-electric,evc1s22p4,2,computeTier,AndroidDerived|EmbeddedLinux|McuClass|Rtos|unsure,,,
+ev-charging,schneider-electric:evc1s22p4,schneider-electric,evc1s22p4,2,cloudDependence,CloudOptional|CloudRequired|LocalOnly|unsure,CloudOptional,High,Schneider Electric EV chargers typically support local management and local control paths.
+ev-charging,schneider-electric:evc1s22p4,schneider-electric,evc1s22p4,2,computeTier,AndroidDerived|EmbeddedLinux|McuClass|Rtos|unsure,EmbeddedLinux,Low,Schneider Electric EV chargers typically use Embedded Linux for network management.
 ev-charging,schneider-electric:evc1s22p4,schneider-electric,evc1s22p4,2,consumerAvailability,InstallerChannel|MixedChannel|RetailConsumer|unsure,InstallerChannel,High,Schneider Electric EV chargers are typically sold through electrical wholesalers and installed by professionals.
 ev-charging,schneider-electric:evc1s22p4,schneider-electric,evc1s22p4,2,dataSensitivity,AvStreamData|BiometricData|NoData|TelemetryData|unsure,TelemetryData,High,EV charger; tracks charging sessions and energy usage.
 ev-charging,schneider-electric:evc1s22p4,schneider-electric,evc1s22p4,2,firmwareUpdateModel,ManualFlash|NoUpdatePath|OtaAutomatic|OtaUserInitiated|unsure,,,
@@ -219,7 +219,7 @@ ev-charging,schneider-electric:evc1s7p4,schneider-electric,evc1s7p4,2,actuatesPh
 ev-charging,schneider-electric:evc1s7p4,schneider-electric,evc1s7p4,2,actuationConsequence,ComfortActuation|NoActuation|PropertyActuation|SafetyActuation|unsure,,,
 ev-charging,schneider-electric:evc1s7p4,schneider-electric,evc1s7p4,2,capturesAV,true|false|unsure,false,High,EV charging station; no AV capture capabilities.
 ev-charging,schneider-electric:evc1s7p4,schneider-electric,evc1s7p4,2,cloudDependence,CloudOptional|CloudRequired|LocalOnly|unsure,,,
-ev-charging,schneider-electric:evc1s7p4,schneider-electric,evc1s7p4,2,computeTier,AndroidDerived|EmbeddedLinux|McuClass|Rtos|unsure,,,
+ev-charging,schneider-electric:evc1s7p4,schneider-electric,evc1s7p4,2,computeTier,AndroidDerived|EmbeddedLinux|McuClass|Rtos|unsure,EmbeddedLinux,Low,"Same as index 4, different power rating."
 ev-charging,schneider-electric:evc1s7p4,schneider-electric,evc1s7p4,2,consumerAvailability,InstallerChannel|MixedChannel|RetailConsumer|unsure,InstallerChannel,High,InstallerChannel
 ev-charging,schneider-electric:evc1s7p4,schneider-electric,evc1s7p4,2,dataSensitivity,AvStreamData|BiometricData|NoData|TelemetryData|unsure,TelemetryData,High,TelemetryData: EV charger; tracks charging sessions and energy usage.
 ev-charging,schneider-electric:evc1s7p4,schneider-electric,evc1s7p4,2,firmwareUpdateModel,ManualFlash|NoUpdatePath|OtaAutomatic|OtaUserInitiated|unsure,,,
@@ -231,7 +231,7 @@ ev-charging,tesla:wall_connector,tesla,wall_connector,2,actuatesPhysical,true|fa
 ev-charging,tesla:wall_connector,tesla,wall_connector,2,actuationConsequence,ComfortActuation|NoActuation|PropertyActuation|SafetyActuation|unsure,,,
 ev-charging,tesla:wall_connector,tesla,wall_connector,2,capturesAV,true|false|unsure,false,High,EV charging station; no AV capture capabilities.
 ev-charging,tesla:wall_connector,tesla,wall_connector,2,cloudDependence,CloudOptional|CloudRequired|LocalOnly|unsure,,,
-ev-charging,tesla:wall_connector,tesla,wall_connector,2,computeTier,AndroidDerived|EmbeddedLinux|McuClass|Rtos|unsure,,,
+ev-charging,tesla:wall_connector,tesla,wall_connector,2,computeTier,AndroidDerived|EmbeddedLinux|McuClass|Rtos|unsure,EmbeddedLinux,Low,Tesla Wall Connector is a network-connected device with complex connectivity features.
 ev-charging,tesla:wall_connector,tesla,wall_connector,2,consumerAvailability,InstallerChannel|MixedChannel|RetailConsumer|unsure,InstallerChannel,High,The Tesla Wall Connector is a hardwired device that requires professional installation.
 ev-charging,tesla:wall_connector,tesla,wall_connector,2,dataSensitivity,AvStreamData|BiometricData|NoData|TelemetryData|unsure,TelemetryData,High,EV charger; tracks charging sessions and energy usage.
 ev-charging,tesla:wall_connector,tesla,wall_connector,2,firmwareUpdateModel,ManualFlash|NoUpdatePath|OtaAutomatic|OtaUserInitiated|unsure,,,
@@ -253,7 +253,7 @@ ev-charging,vw:id.charger_connect,vw,id.charger_connect,1,placement,Either|Indoo
 ev-charging,vw:id.charger_connect,vw,id.charger_connect,1,supportLifetime,DeclaredLifetime|UndeclaredLifetime|unsure,UndeclaredLifetime,Low,"Automotive charging hardware typically lacks a published, specific end-of-support date for the connectivity module."
 hub,homey:homey,homey,homey,2,actuatesPhysical,true|false|unsure,false,High,Homey is a smart home hub that coordinates other devices; it does not actuate physical changes itself.
 hub,homey:homey,homey,homey,2,actuationConsequence,ComfortActuation|NoActuation|PropertyActuation|SafetyActuation|unsure,NoActuation,High,Homey is a smart home hub; it coordinates other devices but does not have its own physical actuators.
-hub,homey:homey,homey,homey,2,capturesAV,true|false|unsure,,,
+hub,homey:homey,homey,homey,2,capturesAV,true|false|unsure,unsure,Low,"Homey hub; typically acts as a controller for other devices, but some versions may have microphones for voice assistants."
 hub,homey:homey,homey,homey,2,cloudDependence,CloudOptional|CloudRequired|LocalOnly|unsure,,,
 hub,homey:homey,homey,homey,2,computeTier,AndroidDerived|EmbeddedLinux|McuClass|Rtos|unsure,EmbeddedLinux,High,"Homey hub is a complex smart home hub with a complex userland and app ecosystem, typically running Linux."
 hub,homey:homey,homey,homey,2,consumerAvailability,InstallerChannel|MixedChannel|RetailConsumer|unsure,RetailConsumer,High,Homey is a consumer-facing smart home hub sold at retail.
@@ -265,7 +265,7 @@ hub,homey:homey,homey,homey,2,placement,Either|Indoor|Outdoor|unsure,Indoor,High
 hub,homey:homey,homey,homey,2,supportLifetime,DeclaredLifetime|UndeclaredLifetime|unsure,UndeclaredLifetime,Low,Home automation hubs generally do not publish a specific end-of-support date for their hardware versions.
 lighting,mystrom:wifi_button,mystrom,wifi_button,4,actuatesPhysical,true|false|unsure,false,High,"A WiFi button is an input device (sensor/trigger) that sends signals, it does not actuate physical changes."
 lighting,mystrom:wifi_button,mystrom,wifi_button,4,actuationConsequence,ComfortActuation|NoActuation|PropertyActuation|SafetyActuation|unsure,NoActuation,High,"A WiFi button is an input device (sensor/trigger), not an actuator."
-lighting,mystrom:wifi_button,mystrom,wifi_button,4,capturesAV,true|false|unsure,,,
+lighting,mystrom:wifi_button,mystrom,wifi_button,4,capturesAV,true|false|unsure,false,High,"WiFi button; simple input device, no AV capture capabilities."
 lighting,mystrom:wifi_button,mystrom,wifi_button,4,cloudDependence,CloudOptional|CloudRequired|LocalOnly|unsure,,,
 lighting,mystrom:wifi_button,mystrom,wifi_button,4,computeTier,AndroidDerived|EmbeddedLinux|McuClass|Rtos|unsure,Rtos,Low,"Simple WiFi button; likely runs an RTOS or bare-metal, but the 'wifi' aspect suggests a network stack provided by an RT existência own OS kernel."
 lighting,mystrom:wifi_button,mystrom,wifi_button,4,consumerAvailability,InstallerChannel|MixedChannel|RetailConsumer|unsure,RetailConsumer,High,"Simple WiFi button for consumer lighting control, sold at retail."
@@ -289,7 +289,7 @@ lighting,mystrom:wifi_button_plus,mystrom,wifi_button_plus,4,placement,Either|In
 lighting,mystrom:wifi_button_plus,mystrom,wifi_button_plus,4,supportLifetime,DeclaredLifetime|UndeclaredLifetime|unsure,UndeclaredLifetime,High,Low-cost consumer WiFi buttons are typically not associated with a published published support lifetime.
 lighting,mystrom:wifi_led_strip,mystrom,wifi_led_strip,4,actuatesPhysical,true|false|unsure,true,High,"An LED strip changes physical state (emits light), which is considered a physical change in the home."
 lighting,mystrom:wifi_led_strip,mystrom,wifi_led_strip,4,actuationConsequence,ComfortActuation|NoActuation|PropertyActuation|SafetyActuation|unsure,ComfortActuation,High,"LED strips provide lighting, which is a comfort/convenience feature with no lasting physical effect."
-lighting,mystrom:wifi_led_strip,mystrom,wifi_led_strip,4,capturesAV,true|false|unsure,,,
+lighting,mystrom:wifi_led_strip,mystrom,wifi_led_strip,4,capturesAV,true|false|unsure,false,High,"LED strip; output device for lighting, no AV capture."
 lighting,mystrom:wifi_led_strip,mystrom,wifi_led_strip,4,cloudDependence,CloudOptional|CloudRequired|LocalOnly|unsure,,,
 lighting,mystrom:wifi_led_strip,mystrom,wifi_led_strip,4,computeTier,AndroidDerived|EmbeddedLinux|McuClass|Rtos|unsure,Rtos,High,WiFi LED strips typically use MCU-class devices with an RTOS for network connectivity.
 lighting,mystrom:wifi_led_strip,mystrom,wifi_led_strip,4,consumerAvailability,InstallerChannel|MixedChannel|RetailConsumer|unsure,RetailConsumer,High,"Consumer LED strip, sold at retail."
@@ -301,7 +301,7 @@ lighting,mystrom:wifi_led_strip,mystrom,wifi_led_strip,4,placement,Either|Indoor
 lighting,mystrom:wifi_led_strip,mystrom,wifi_led_strip,4,supportLifetime,DeclaredLifetime|UndeclaredLifetime|unsure,UndeclaredLifetime,High,Low-cost consumer WiFi LED strips are typically not associated with a published support lifetime.
 smartplugs,belkin:wemo_insight_smart_plug,belkin,wemo_insight_smart_plug,1,actuatesPhysical,true|false|unsure,true,High,A smart plug actuate physical changes by switching power to connected devices.
 smartplugs,belkin:wemo_insight_smart_plug,belkin,wemo_insight_smart_plug,1,actuationConsequence,ComfortActuation|NoActuation|PropertyActuation|SafetyActuation|unsure,PropertyActuation,High,"Smart plugs can control power to connected devices, which could potentially damage property or cause a fire hazard if the same device is connected to the plug."
-smartplugs,belkin:wemo_insight_smart_plug,belkin,wemo_insight_smart_plug,1,capturesAV,true|false|unsure,,,
+smartplugs,belkin:wemo_insight_smart_plug,belkin,wemo_insight_smart_plug,1,capturesAV,true|false|unsure,false,High,Smart plug; no AV capture capabilities.
 smartplugs,belkin:wemo_insight_smart_plug,belkin,wemo_insight_smart_plug,1,cloudDependence,CloudOptional|CloudRequired|LocalOnly|unsure,,,
 smartplugs,belkin:wemo_insight_smart_plug,belkin,wemo_insight_smart_plug,1,computeTier,AndroidDerived|EmbeddedLinux|McuClass|Rtos|unsure,EmbeddedLinux,Low,"Wemo Insight plugs often have more complex software stacks than basic plugs, java-based management, etc., which often points to Embedded Linux."
 smartplugs,belkin:wemo_insight_smart_plug,belkin,wemo_insight_smart_plug,1,consumerAvailability,InstallerChannel|MixedChannel|RetailConsumer|unsure,RetailConsumer,High,Consumer smart plug sold at retail.
@@ -312,8 +312,8 @@ smartplugs,belkin:wemo_insight_smart_plug,belkin,wemo_insight_smart_plug,1,hasWe
 smartplugs,belkin:wemo_insight_smart_plug,belkin,wemo_insight_smart_plug,1,placement,Either|Indoor|Outdoor|unsure,Indoor,High,Smart plugs are designed for indoor wall outlets.
 smartplugs,belkin:wemo_insight_smart_plug,belkin,wemo_insight_smart_plug,1,supportLifetime,DeclaredLifetime|UndeclaredLifetime|unsure,UndeclaredLifetime,High,Consumer smart plugs typically do not have a declared support lifetime.
 smartplugs,meross:mss550x,meross,mss550x,1,actuatesPhysical,true|false|unsure,true,High,The MSS550X is a smart plug that switches power to connected devices.
-smartplugs,meross:mss550x,meross,mss550x,1,actuationConsequence,ComfortActuation|NoActuation|PropertyActuation|SafetyActuation|unsure,,,
-smartplugs,meross:mss550x,meross,mss550x,1,capturesAV,true|false|unsure,,,
+smartplugs,meross:mss550x,meross,mss550x,1,actuationConsequence,ComfortActuation|NoActuation|PropertyActuation|SafetyActuation|unsure,SafetyActuation,High,"Smart plugs can power high-wattage appliances that, if toggled or cycled, could lead to fire or safety hazards."
+smartplugs,meross:mss550x,meross,mss550x,1,capturesAV,true|false|unsure,false,High,Smart plug; no AV capture capabilities.
 smartplugs,meross:mss550x,meross,mss550x,1,cloudDependence,CloudOptional|CloudRequired|LocalOnly|unsure,,,
 smartplugs,meross:mss550x,meross,mss550x,1,computeTier,AndroidDerived|EmbeddedLinux|McuClass|Rtos|unsure,Rtos,High,Standard smart plug based on typical MCU/RTOS architectures for this product class.
 smartplugs,meross:mss550x,meross,mss550x,1,consumerAvailability,InstallerChannel|MixedChannel|RetailConsumer|unsure,RetailConsumer,High,Consumer smart plug sold at retail.
@@ -325,9 +325,9 @@ smartplugs,meross:mss550x,meross,mss550x,1,placement,Either|Indoor|Outdoor|unsur
 smartplugs,meross:mss550x,meross,mss550x,1,supportLifetime,DeclaredLifetime|UndeclaredLifetime|unsure,UndeclaredLifetime,High,Consumer smart plugs typically do not have a declared support lifetime.
 smartspeakers,google:home,google,home,2,actuatesPhysical,true|false|unsure,false,High,A smart speaker is primarily a speaker/microphone array; it does not actuate physical changes in the home.
 smartspeakers,google:home,google,home,2,actuationConsequence,ComfortActuation|NoActuation|PropertyActuation|SafetyActuation|unsure,NoActuation,High,Smart speaker; primarily an audio output device with no physical actuators.
-smartspeakers,google:home,google,home,2,capturesAV,true|false|unsure,,,
+smartspeakers,google:home,google,home,2,capturesAV,true|false|unsure,true,High,Google Home smart speaker includes a microphone for voice commands.
 smartspeakers,google:home,google,home,2,cloudDependence,CloudOptional|CloudRequired|LocalOnly|unsure,,,
-smartspeakers,google:home,google,home,2,computeTier,AndroidDerived|EmbeddedLinux|McuClass|Rtos|unsure,,,
+smartspeakers,google:home,google,home,2,computeTier,AndroidDerived|EmbeddedLinux|McuClass|Rtos|unsure,EmbeddedLinux,Low,Google Home devices are complex smart speakers with complex network stacks and userlands.
 smartspeakers,google:home,google,home,2,consumerAvailability,InstallerChannel|MixedChannel|RetailConsumer|unsure,RetailConsumer,High,Mass-market consumer smart speaker.
 smartspeakers,google:home,google,home,2,dataSensitivity,AvStreamData|BiometricData|NoData|TelemetryData|unsure,AvStreamData,High,Smart speaker with microphone for voice commands; handles audio streams.
 smartspeakers,google:home,google,home,2,firmwareUpdateModel,ManualFlash|NoUpdatePath|OtaAutomatic|OtaUserInitiated|unsure,,,
@@ -337,9 +337,9 @@ smartspeakers,google:home,google,home,2,placement,Either|Indoor|Outdoor|unsure,I
 smartspeakers,google:home,google,home,2,supportLifetime,DeclaredLifetime|UndeclaredLifetime|unsure,UndeclaredLifetime,High,Google Home devices typically do not provide a specific end-of-support date for the product line.
 smartspeakers,google:nest_mini,google,nest_mini,2,actuatesPhysical,true|false|unsure,false,High,A smart speaker is primarily a sensor/output device for audio and does not actuate physical changes in the home environment.
 smartspeakers,google:nest_mini,google,nest_mini,2,actuationConsequence,ComfortActuation|NoActuation|PropertyActuation|SafetyActuation|unsure,NoActuation,High,Smart speaker; primarily an audio output device with no physical actuators.
-smartspeakers,google:nest_mini,google,nest_mini,2,capturesAV,true|false|unsure,,,
+smartspeakers,google:nest_mini,google,nest_mini,2,capturesAV,true|false|unsure,true,High,Google Nest Mini is a smart speaker with a built-in microphone for voice commands.
 smartspeakers,google:nest_mini,google,nest_mini,2,cloudDependence,CloudOptional|CloudRequired|LocalOnly|unsure,,,
-smartspeakers,google:nest_mini,google,nest_mini,2,computeTier,AndroidDerived|EmbeddedLinux|McuClass|Rtos|unsure,,,
+smartspeakers,google:nest_mini,google,nest_mini,2,computeTier,AndroidDerived|EmbeddedLinux|McuClass|Rtos|unsure,EmbeddedLinux,Low,"Google Nest Mini is a complex network-connected smart speaker, Embedded Linux variant."
 smartspeakers,google:nest_mini,google,nest_mini,2,consumerAvailability,InstallerChannel|MixedChannel|RetailConsumer|unsure,RetailConsumer,High,Mass-market consumer smart speaker.
 smartspeakers,google:nest_mini,google,nest_mini,2,dataSensitivity,AvStreamData|BiometricData|NoData|TelemetryData|unsure,AvStreamData,High,Smart speaker with microphone; handles audio streams.
 smartspeakers,google:nest_mini,google,nest_mini,2,firmwareUpdateModel,ManualFlash|NoUpdatePath|OtaAutomatic|OtaUserInitiated|unsure,,,
@@ -349,7 +349,7 @@ smartspeakers,google:nest_mini,google,nest_mini,2,placement,Either|Indoor|Outdoo
 smartspeakers,google:nest_mini,google,nest_mini,2,supportLifetime,DeclaredLifetime|UndeclaredLifetime|unsure,,,
 smartspeakers,lenovo:smart_clock_essential_with_alexa_built_in,lenovo,smart_clock_essential_with_alexa_built_in,1,actuatesPhysical,true|false|unsure,false,High,A smart clock/speaker is primarily an output device for audio/visuals; it does not actuate physical changes.
 smartspeakers,lenovo:smart_clock_essential_with_alexa_built_in,lenovo,smart_clock_essential_with_alexa_built_in,1,actuationConsequence,ComfortActuation|NoActuation|PropertyActuation|SafetyActuation|unsure,NoActuation,High,Smart clock/speaker; no physical actuators.
-smartspeakers,lenovo:smart_clock_essential_with_alexa_built_in,lenovo,smart_clock_essential_with_alexa_built_in,1,capturesAV,true|false|unsure,,,
+smartspeakers,lenovo:smart_clock_essential_with_alexa_built_in,lenovo,smart_clock_essential_with_alexa_built_in,1,capturesAV,true|false|unsure,true,High,Lenovo Smart Clock Essential is a smart speaker/clock with a built-in microphone.
 smartspeakers,lenovo:smart_clock_essential_with_alexa_built_in,lenovo,smart_clock_essential_with_alexa_built_in,1,cloudDependence,CloudOptional|CloudRequired|LocalOnly|unsure,,,
 smartspeakers,lenovo:smart_clock_essential_with_alexa_built_in,lenovo,smart_clock_essential_with_alexa_built_in,1,computeTier,AndroidDerived|EmbeddedLinux|McuClass|Rtos|unsure,,,
 smartspeakers,lenovo:smart_clock_essential_with_alexa_built_in,lenovo,smart_clock_essential_with_alexa_built_in,1,consumerAvailability,InstallerChannel|MixedChannel|RetailConsumer|unsure,RetailConsumer,High,Consumer smart clock sold at retail.
@@ -360,8 +360,8 @@ smartspeakers,lenovo:smart_clock_essential_with_alexa_built_in,lenovo,smart_cloc
 smartspeakers,lenovo:smart_clock_essential_with_alexa_built_in,lenovo,smart_clock_essential_with_alexa_built_in,1,placement,Either|Indoor|Outdoor|unsure,Indoor,High,Smart clock is designed for indoor use.
 smartspeakers,lenovo:smart_clock_essential_with_alexa_built_in,lenovo,smart_clock_essential_with_alexa_built_in,1,supportLifetime,DeclaredLifetime|UndeclaredLifetime|unsure,UndeclaredLifetime,High,Consumer smart clocks with Alexa are typically not associated with a published support lifetime.
 smartspeakers,sonos:era_100,sonos,era_100,4,actuatesPhysical,true|false|unsure,false,High,A smart speaker does not actuate physical changes in the home.
-smartspeakers,sonos:era_100,sonos,era_100,4,actuationConsequence,ComfortActuation|NoActuation|PropertyActuation|SafetyActuation|unsure,,,
-smartspeakers,sonos:era_100,sonos,era_100,4,capturesAV,true|false|unsure,,,
+smartspeakers,sonos:era_100,sonos,era_100,4,actuationConsequence,ComfortActuation|NoActuation|PropertyActuation|SafetyActuation|unsure,NoActuation,High,A smart speaker is primarily an audio output device with no physical actuators to change the physical environment.
+smartspeakers,sonos:era_100,sonos,era_100,4,capturesAV,true|false|unsure,true,High,Sonos Era 100 is a smart speaker with built-in microphones for voice assistants.
 smartspeakers,sonos:era_100,sonos,era_100,4,cloudDependence,CloudOptional|CloudRequired|LocalOnly|unsure,,,
 smartspeakers,sonos:era_100,sonos,era_100,4,computeTier,AndroidDerived|EmbeddedLinux|McuClass|Rtos|unsure,,,
 smartspeakers,sonos:era_100,sonos,era_100,4,consumerAvailability,InstallerChannel|MixedChannel|RetailConsumer|unsure,RetailConsumer,High,Consumer smart speaker sold at retail.
@@ -373,8 +373,8 @@ smartspeakers,sonos:era_100,sonos,era_100,4,placement,Either|Indoor|Outdoor|unsu
 smartspeakers,sonos:era_100,sonos,era_100,4,supportLifetime,DeclaredLifetime|UndeclaredLifetime|unsure,UndeclaredLifetime,Low,Sonos typically does not publish a specific end-of-support date for the product line.
 streaming,roku:streaming_stick_4k,roku,streaming_stick_4k,1,actuatesPhysical,true|false|unsure,false,High,A streaming stick is a digital output device for a HDMI port; it does not actuate physical changes.
 streaming,roku:streaming_stick_4k,roku,streaming_stick_4k,1,actuationConsequence,ComfortActuation|NoActuation|PropertyActuation|SafetyActuation|unsure,NoActuation,High,Streaming stick; no physical actuators.
-streaming,roku:streaming_stick_4k,roku,streaming_stick_4k,1,capturesAV,true|false|unsure,,,
-streaming,roku:streaming_stick_4k,roku,streaming_stick_4k,1,cloudDependence,CloudOptional|CloudRequired|LocalOnly|unsure,,,
+streaming,roku:streaming_stick_4k,roku,streaming_stick_4k,1,capturesAV,true|false|unsure,true,High,Roku Streaming Stick 4K has a built-in microphone for voice search/commands.
+streaming,roku:streaming_stick_4k,roku,streaming_stick_4k,1,cloudDependence,CloudOptional|CloudRequired|LocalOnly|unsure,CloudRequired,High,Roku streaming sticks require a vendor cloud account for activation and primary content delivery.
 streaming,roku:streaming_stick_4k,roku,streaming_stick_4k,1,computeTier,AndroidDerived|EmbeddedLinux|McuClass|Rtos|unsure,,,
 streaming,roku:streaming_stick_4k,roku,streaming_stick_4k,1,consumerAvailability,InstallerChannel|MixedChannel|RetailConsumer|unsure,RetailConsumer,High,Consumer streaming device sold at retail.
 streaming,roku:streaming_stick_4k,roku,streaming_stick_4k,1,dataSensitivity,AvStreamData|BiometricData|NoData|TelemetryData|unsure,TelemetryData,High,Streaming stick; tracks viewing habits and usage patterns.
@@ -385,8 +385,8 @@ streaming,roku:streaming_stick_4k,roku,streaming_stick_4k,1,placement,Either|Ind
 streaming,roku:streaming_stick_4k,roku,streaming_stick_4k,1,supportLifetime,DeclaredLifetime|UndeclaredLifetime|unsure,UndeclaredLifetime,High,Consumer streaming sticks typically do not have a declared support lifetime.
 streaming,samsung:x14h,samsung,x14h,1,actuatesPhysical,true|false|unsure,false,High,A streaming device/TV is a digital output device; it does not actuate physical changes.
 streaming,samsung:x14h,samsung,x14h,1,actuationConsequence,ComfortActuation|NoActuation|PropertyActuation|SafetyActuation|unsure,NoActuation,High,Streaming device/TV; no physical actuators.
-streaming,samsung:x14h,samsung,x14h,1,capturesAV,true|false|unsure,,,
-streaming,samsung:x14h,samsung,x14h,1,cloudDependence,CloudOptional|CloudRequired|LocalOnly|unsure,,,
+streaming,samsung:x14h,samsung,x14h,1,capturesAV,true|false|unsure,false,Low,Samsung X14H is a TV/streaming device; typically lacks a built-in microphone for voice control.
+streaming,samsung:x14h,samsung,x14h,1,cloudDependence,CloudOptional|CloudRequired|LocalOnly|unsure,CloudRequired,High,Samsung smart TVs are cloud-dependent for their app store and primary streaming services.
 streaming,samsung:x14h,samsung,x14h,1,computeTier,AndroidDerived|EmbeddedLinux|McuClass|Rtos|unsure,,,
 streaming,samsung:x14h,samsung,x14h,1,consumerAvailability,InstallerChannel|MixedChannel|RetailConsumer|unsure,RetailConsumer,High,"Samsung consumer electronics (streaming/TV), sold at retail."
 streaming,samsung:x14h,samsung,x14h,1,dataSensitivity,AvStreamData|BiometricData|NoData|TelemetryData|unsure,TelemetryData,High,Streaming device/TV; tracks viewing habits and usage patterns.
@@ -397,10 +397,10 @@ streaming,samsung:x14h,samsung,x14h,1,placement,Either|Indoor|Outdoor|unsure,Ind
 streaming,samsung:x14h,samsung,x14h,1,supportLifetime,DeclaredLifetime|UndeclaredLifetime|unsure,UndeclaredLifetime,High,Consumer streaming/TV hardware typically does not have a declared support lifetime.
 streaming,sony:kd-43xe7000,sony,kd-43xe7000,3,actuatesPhysical,true|false|unsure,false,High,A television is a digital output device; it does not actuate physical changes.
 streaming,sony:kd-43xe7000,sony,kd-43xe7000,3,actuationConsequence,ComfortActuation|NoActuation|PropertyActuation|SafetyActuation|unsure,NoActuation,High,Streaming device/TV; no physical actuators.
-streaming,sony:kd-43xe7000,sony,kd-43xe7000,3,capturesAV,true|false|unsure,,,
-streaming,sony:kd-43xe7000,sony,kd-43xe7000,3,cloudDependence,CloudOptional|CloudRequired|LocalOnly|unsure,,,
+streaming,sony:kd-43xe7000,sony,kd-43xe7000,3,capturesAV,true|false|unsure,false,Low,Sony KD-43XE7000 is a television; typically lacks a built-in microphone on the set itself.
+streaming,sony:kd-43xe7000,sony,kd-43xe7000,3,cloudDependence,CloudOptional|CloudRequired|LocalOnly|unsure,CloudRequired,High,Sony Bravia TVs are cloud-dependent for their smart features and content delivery.
 streaming,sony:kd-43xe7000,sony,kd-43xe7000,3,computeTier,AndroidDerived|EmbeddedLinux|McuClass|Rtos|unsure,,,
-streaming,sony:kd-43xe7000,sony,kd-43xe7000,3,consumerAvailability,InstallerChannel|MixedChannel|RetailConsumer|unsure,,,
+streaming,sony:kd-43xe7000,sony,kd-43xe7000,3,consumerAvailability,InstallerChannel|MixedChannel|RetailConsumer|unsure,RetailConsumer,High,Sony Bravia TVs are mass-market retail consumer electronics.
 streaming,sony:kd-43xe7000,sony,kd-43xe7000,3,dataSensitivity,AvStreamData|BiometricData|NoData|TelemetryData|unsure,TelemetryData,High,Smart TV; tracks viewing habits and usage patterns.
 streaming,sony:kd-43xe7000,sony,kd-43xe7000,3,firmwareUpdateModel,ManualFlash|NoUpdatePath|OtaAutomatic|OtaUserInitiated|unsure,,,
 streaming,sony:kd-43xe7000,sony,kd-43xe7000,3,formFactor,Fixed|Portable|Worn|unsure,Fixed,High,Sony TV; fixed in place.
@@ -409,7 +409,7 @@ streaming,sony:kd-43xe7000,sony,kd-43xe7000,3,placement,Either|Indoor|Outdoor|un
 streaming,sony:kd-43xe7000,sony,kd-43xe7000,3,supportLifetime,DeclaredLifetime|UndeclaredLifetime|unsure,UndeclaredLifetime,High,Consumer TVs typically do not have a declared support lifetime.
 streaming,sony:kd-43xe7093,sony,kd-43xe7093,3,actuatesPhysical,true|false|unsure,false,High,false own a digital output device; it does not actuate physical changes.
 streaming,sony:kd-43xe7093,sony,kd-43xe7093,3,actuationConsequence,ComfortActuation|NoActuation|PropertyActuation|SafetyActuation|unsure,NoActuation,High,No physical actuators.
-streaming,sony:kd-43xe7093,sony,kd-43xe7093,3,capturesAV,true|false|unsure,,,
+streaming,sony:kd-43xe7093,sony,kd-43xe7093,3,capturesAV,true|false|unsure,false,Low,Sony KD-43XE7093 is a television; typically lacks a built-in microphone on the set itself.
 streaming,sony:kd-43xe7093,sony,kd-43xe7093,3,cloudDependence,CloudOptional|CloudRequired|LocalOnly|unsure,,,
 streaming,sony:kd-43xe7093,sony,kd-43xe7093,3,computeTier,AndroidDerived|EmbeddedLinux|McuClass|Rtos|unsure,,,
 streaming,sony:kd-43xe7093,sony,kd-43xe7093,3,consumerAvailability,InstallerChannel|MixedChannel|RetailConsumer|unsure,RetailConsumer,High,"Sony consumer TV/streaming device, sold at retail."
@@ -421,8 +421,8 @@ streaming,sony:kd-43xe7093,sony,kd-43xe7093,3,placement,Either|Indoor|Outdoor|un
 streaming,sony:kd-43xe7093,sony,kd-43xe7093,3,supportLifetime,DeclaredLifetime|UndeclaredLifetime|unsure,UndeclaredLifetime,High,High-end consumer TVs typically do not have a declared supportlifetime.
 streaming,sony:kd-49xe7005,sony,kd-49xe7005,3,actuatesPhysical,true|false|unsure,false,High,A television is a digital output device; it does not actuate physical changes.
 streaming,sony:kd-49xe7005,sony,kd-49xe7005,3,actuationConsequence,ComfortActuation|NoActuation|PropertyActuation|SafetyActuation|unsure,NoActuation,High,No physical actuators.
-streaming,sony:kd-49xe7005,sony,kd-49xe7005,3,capturesAV,true|false|unsure,,,
-streaming,sony:kd-49xe7005,sony,kd-49xe7005,3,cloudDependence,CloudOptional|CloudRequired|LocalOnly|unsure,,,
+streaming,sony:kd-49xe7005,sony,kd-49xe7005,3,capturesAV,true|false|unsure,false,High,H-series Sony TVs typically do not have built-in microphones in the chassis.
+streaming,sony:kd-49xe7005,sony,kd-49xe7005,3,cloudDependence,CloudOptional|CloudRequired|LocalOnly|unsure,CloudRequired,High,
 streaming,sony:kd-49xe7005,sony,kd-49xe7005,3,computeTier,AndroidDerived|EmbeddedLinux|McuClass|Rtos|unsure,,,
 streaming,sony:kd-49xe7005,sony,kd-49xe7005,3,consumerAvailability,InstallerChannel|MixedChannel|RetailConsumer|unsure,RetailConsumer,High,"High-end consumer TV/streaming device, sold at retail."
 streaming,sony:kd-49xe7005,sony,kd-49xe7005,3,dataSensitivity,AvStreamData|BiometricData|NoData|TelemetryData|unsure,TelemetryData,High,High
@@ -433,8 +433,8 @@ streaming,sony:kd-49xe7005,sony,kd-49xe7005,3,placement,Either|Indoor|Outdoor|un
 streaming,sony:kd-49xe7005,sony,kd-49xe7005,3,supportLifetime,DeclaredLifetime|UndeclaredLifetime|unsure,UndeclaredLifetime,High,Undeclared support lifetime is the norm for consumer electronics like TVs.
 streaming,sony:kdl-65w850c,sony,kdl-65w850c,2,actuatesPhysical,true|false|unsure,false,High,A television is a digital output device; it does not actuate physical changes.
 streaming,sony:kdl-65w850c,sony,kdl-65w850c,2,actuationConsequence,ComfortActuation|NoActuation|PropertyActuation|SafetyActuation|unsure,NoActuation,High,No physical actuators.
-streaming,sony:kdl-65w850c,sony,kdl-65w850c,2,capturesAV,true|false|unsure,,,
-streaming,sony:kdl-65w850c,sony,kdl-65w850c,2,cloudDependence,CloudOptional|CloudRequired|LocalOnly|unsure,,,
+streaming,sony:kdl-65w850c,sony,kdl-65w850c,2,capturesAV,true|false|unsure,false,Low,Sony KDL-65W850C is a television; typically lacks a built-in microphone on the set itself.
+streaming,sony:kdl-65w850c,sony,kdl-65w850c,2,cloudDependence,CloudOptional|CloudRequired|LocalOnly|unsure,CloudRequired,High,
 streaming,sony:kdl-65w850c,sony,kdl-65w850c,2,computeTier,AndroidDerived|EmbeddedLinux|McuClass|Rtos|unsure,,,
 streaming,sony:kdl-65w850c,sony,kdl-65w850c,2,consumerAvailability,InstallerChannel|MixedChannel|RetailConsumer|unsure,RetailConsumer,High,"Sony consumer TV/streaming device, sold at retail."
 streaming,sony:kdl-65w850c,sony,kdl-65w850c,2,dataSensitivity,AvStreamData|BiometricData|NoData|TelemetryData|unsure,,,
@@ -445,7 +445,7 @@ streaming,sony:kdl-65w850c,sony,kdl-65w850c,2,placement,Either|Indoor|Outdoor|un
 streaming,sony:kdl-65w850c,sony,kdl-65w850c,2,supportLifetime,DeclaredLifetime|UndeclaredLifetime|unsure,UndeclaredLifetime,High,Consumer TVs typically do not have a declared support lifetime.
 streaming,sony:xbr-55x809c,sony,xbr-55x809c,2,actuatesPhysical,true|false|unsure,false,High,
 streaming,sony:xbr-55x809c,sony,xbr-55x809c,2,actuationConsequence,ComfortActuation|NoActuation|PropertyActuation|SafetyActuation|unsure,NoActuation,High,No physical actuators.
-streaming,sony:xbr-55x809c,sony,xbr-55x809c,2,capturesAV,true|false|unsure,,,
+streaming,sony:xbr-55x809c,sony,xbr-55x809c,2,capturesAV,true|false|unsure,false,Low,Sony XBR-55X809C is a television; likely lacks a built-in microphone on the set itself.
 streaming,sony:xbr-55x809c,sony,xbr-55x809c,2,cloudDependence,CloudOptional|CloudRequired|LocalOnly|unsure,,,
 streaming,sony:xbr-55x809c,sony,xbr-55x809c,2,computeTier,AndroidDerived|EmbeddedLinux|McuClass|Rtos|unsure,,,
 streaming,sony:xbr-55x809c,sony,xbr-55x809c,2,consumerAvailability,InstallerChannel|MixedChannel|RetailConsumer|unsure,RetailConsumer,High,"High-end consumer TV/streaming device, sold at retail."
@@ -471,7 +471,7 @@ streaming,sony:xbr-75x850d,sony,xbr-75x850d,2,actuatesPhysical,true|false|unsure
 streaming,sony:xbr-75x850d,sony,xbr-75x850d,2,actuationConsequence,ComfortActuation|NoActuation|PropertyActuation|SafetyActuation|unsure,NoActuation,High,No physical actuators.
 streaming,sony:xbr-75x850d,sony,xbr-75x850d,2,capturesAV,true|false|unsure,,,
 streaming,sony:xbr-75x850d,sony,xbr-75x850d,2,cloudDependence,CloudOptional|CloudRequired|LocalOnly|unsure,,,
-streaming,sony:xbr-75x850d,sony,xbr-75x850d,2,computeTier,AndroidDerived|EmbeddedLinux|McuClass|Rtos|unsure,,,
+streaming,sony:xbr-75x850d,sony,xbr-75x850d,2,computeTier,AndroidDerived|EmbeddedLinux|McuClass|Rtos|unsure,EmbeddedLinux,High,Sony Bravia XBR series TVs are smart TVs running a customized Linux-based OS.
 streaming,sony:xbr-75x850d,sony,xbr-75x850d,2,consumerAvailability,InstallerChannel|MixedChannel|RetailConsumer|unsure,RetailConsumer,High,Retail consumer TV/streaming device.
 streaming,sony:xbr-75x850d,sony,xbr-75x850d,2,dataSensitivity,AvStreamData|BiometricData|NoData|TelemetryData|unsure,,,
 streaming,sony:xbr-75x850d,sony,xbr-75x850d,2,firmwareUpdateModel,ManualFlash|NoUpdatePath|OtaAutomatic|OtaUserInitiated|unsure,,,

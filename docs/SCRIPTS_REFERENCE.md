@@ -301,6 +301,73 @@ for RQ3.
 
 ---
 
+### `facet_sample.py` — Phase A (facet validity)
+Builds a sampling frame of distinct devices from confirmed-Yes CVEs and draws a per-category sample, so the **within-category heterogeneity** of a facet can be measured. Facets are asserted per category but joined onto CVE rows, so a category holding two device types has a facet value that is false for half its rows — validity, which sits upstream of annotator agreement. Emits the annotation sheet carrying **product identity only** (no CVE description, CWE, or CVSS — enforced in code). `--aggregate` reads the filled sheet back and reports each *(category, facet)* modal value and share under both product- and CVE-weighting.
+
+| Flag | Description |
+|------|-------------|
+| `--frame` | Frame stats and per-category sampling regime, no draw |
+| `--draw` | Draw the sample → `product_frame.csv`, `product_sample.csv` |
+| `--aggregate` | Filled sheet → `facet_distribution.csv` (modal share + verdict per cell) |
+| `-n N` | Devices per category (default `40`) |
+| `--seed N` | Draw seed (default `20260807`) |
+| `--keep-shared` | A/B the 13B filter: keep devices shared across categories |
+
+---
+
+### `make_facet_copies.py` — Phase A/2 (blind annotation kit)
+Mirrors `make_review_copies.py` for facets. Emits `data/facets/annotation-kit/` holding the rubric, the value definitions (generated from `homeiot.ttl`, never hand-copied), an auto-loaded `AGENTS.md` for Codex, and one CSV per annotator carrying only raw data and its **own** empty columns. **Run each annotator with the kit as its working directory** — that `cd` is what drops `CLAUDE.md` and the memory index, which state the prior facet results.
+
+| Flag | Description |
+|------|-------------|
+| `--primary {claude,codex,gemini}` | Annotator taking the FULL sample (default `claude`) |
+| `--kappa-devices N` | Devices annotated by all three (default `40`) |
+| `--seed N` | Subsample seed |
+| `--overwrite` | Rebuild existing copies (**discards annotations**) |
+
+---
+
+### `facet_gemini.py` — Phase A/2 (automated third annotator)
+Sibling of `gemini_classify.py` for facets: fills the `Value`/`Confidence`/`Reasoning` columns of the kit's `gemini.csv` from **product identity plus the facet's value definitions only**. Refuses to run if the sheet carries a CVE-derived column. Resumable (blank rows only), batched by facet, keyed back by integer index rather than by echoing the device string. Keep one model across the whole column.
+
+| Flag | Description |
+|------|-------------|
+| `csv_path` | Copy to fill (default: the kit's `gemini.csv`) |
+| `--model M` | One model for the WHOLE column (default `gemma-4-31b-it`) |
+| `--batch-size N` | Devices per request (default `20`) |
+| `--rps R` | Requests per second (default `1.0`) |
+| `--limit N` | Stop after N rows |
+| `--redo` | Re-annotate filled rows (back the column up first) |
+
+---
+
+### `facet_agreement.py` — Phase 3 (inter-annotator agreement)
+Reads the three blind copies and reports, per facet: Fleiss' κ (Scott's π at 2 raters), bootstrap 95% CI, raw agreement, PABAK, and the `unsure` rate. Runs on a partial panel and labels it provisional. Marks skewed facets where κ reports prevalence rather than disagreement. Cross-tabulates agreement against Phase A's validity verdict — reliability and validity are separate gates and a cell can be unanimously agreed and still be a fiction.
+
+| Flag | Description |
+|------|-------------|
+| `--self-test` | Validate the statistics against the canonical worked example and exit |
+| `--skew-threshold S` | Mark a facet `skewed` above this single-label share (default `0.85`) |
+| `--reps N` | Bootstrap replicates (default `2000`) |
+| `--verbose` | List every item the annotators split on |
+| `--csv PATH` | Write the per-facet table |
+
+---
+
+### `camera_subtype.py` — F4 (cameras device-subtype pass)
+Measures whether `cameras` is really two device types (cameras and DVR/NVR recorders) and whether they can be told apart from a product name. Draws a pilot from the cameras frame and classifies camera/recorder/other from product identity alone. `--aggregate` reports the split under both weightings, a **judgeability** rate against a pre-registered decision rule, and an annotator-independent **token check** (the mechanical `nvr`/`dvr`/`xvr` rule, deliberately kept out of the sheet so the annotator cannot anchor on it).
+
+| Flag | Description |
+|------|-------------|
+| `--frame` | Token-baseline stats over the whole cameras frame, no draw |
+| `--draw` | Draw the pilot → `camera_subtype_pilot.csv` |
+| `--aggregate` | Filled sheet → distribution, judgeability verdict, token check |
+| `-n N` | Pilot size (default `100`) |
+| `--seed N` | Draw seed |
+| `--overwrite` | Redraw over an existing sheet (**discards annotation**) |
+
+---
+
 ### Retired scripts — `scripts/_legacy/`
 Superseded by the current pipeline; kept on disk for reference only, not part of any live workflow.
 
