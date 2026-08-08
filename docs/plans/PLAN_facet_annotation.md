@@ -259,6 +259,120 @@ threshold rule above.
 
 ---
 
+## Phase A — RESULTS (first pass, 2026-08-07)
+
+**Status: one annotator complete, κ not yet measured. Nothing here is citable until the
+Codex and Gemini subsample runs come back.** The `cameras` finding below is the one that
+most needs a second reader, because it is the one that would change a published number.
+
+### The run
+
+Claude annotated the full sample — **3,264 rows, 272 devices × 12 facets, 100% filled** with
+value, confidence and reasoning — from a fresh session in `data/facets/annotation-kit/`.
+Codex and Gemini hold the 480-row κ subsample and have not run.
+
+Claude is primary rather than Gemini because Gemini is the documented weakest annotator and
+over-includes, and there is no Claude API path, so the alternative was resting the entire
+distribution estimate on the model the project trusts least. **The cost is disclosed, not
+argued away: Claude also authored the prior assignment and the value definitions.** The kit
+directory closed the context channel (no `CLAUDE.md`, no memory index); the weights channel
+is open and stays open. Claude's column is a re-reading by the same model under a rubric,
+not an independent reading of the prior.
+
+### Instrument checks (these passed)
+
+- **0 of 3,264 values outside the allowed list.**
+- Confidence split 2,244 High / 1,020 Low — not uniformly confident, which a rubber-stamp
+  pass would be.
+- **Low-confidence rate tracks the difficulty ordering the plan predicted a priori**:
+  `supportLifetime` 68%, `firmwareUpdateModel` 68%, `computeTier` 57% — the vendor-policy
+  facets Phase 0 named as the hard cases — against `dataSensitivity` 7% and `placement` 14%.
+  The instrument being hardest exactly where the design expected is the best evidence
+  available that the annotation is real rather than confabulated.
+- `unsure` used sparingly but not never: 12.5% on `computeTier`, 0% on `hasWebAdminUI`.
+
+### Headline: the category-level design mostly holds
+
+Over 120 *(category, facet)* cells, CVE-weighted modal share:
+
+| verdict | cells | share |
+|---|---|---|
+| `summary-defensible` (≥0.80) | 86 | **71.7%** |
+| `grouping-only` (0.60–0.80) | 22 | 18.3% |
+| `NOT-USABLE` (<0.60) | 12 | 10.0% |
+
+So a category-level facet value is a defensible summary about **72%** of the time — the
+reassuring half of the answer, and now evidence rather than hope. **8 cells** had the
+product-weighted and CVE-weighted modal values disagree outright, which is decision 9B
+earning its keep.
+
+**Weakest facets** (mean CVE-weighted share, cells defensible):
+`cloudDependence` 0.704 (3/10) · `firmwareUpdateModel` 0.759 (5/10) · `hasWebAdminUI`
+0.841 (6/10). **Strongest:** `formFactor` 0.958 · `supportLifetime` 0.930 ·
+`actuatesPhysical` 0.913.
+
+**Cleanest categories:** `streaming` 0.945, `hub` 0.939, `ev-charging` 0.900.
+**Messiest:** `alarms` 0.768, `doorlock` 0.797 — `doorlock`'s `cloudDependence` at 0.389 is
+a real three-way split, not a near miss.
+
+### The finding that matters: `cameras` is ~43% recorders
+
+`cameras`/`capturesAV` came back at **0.591** — 17 of 40 sampled devices annotated
+`capturesAV=false`. Every one of the 17 is a DVR, NVR or XVR, each with the same
+High-confidence rationale: *a recorder has no lens or microphone of its own.* This is not
+annotation error. Per the human-review reconciliation record, recorders were **deliberately**
+ruled in scope (Frigate NVR = In), so `cameras` legitimately contains two device types and
+one `capturesAV` value cannot be true for both.
+
+**This invalidates a published number.** `CLAUDE.md` states `capturesAV=true` is 1,120 rows
+of which cameras is 881 (79%) — the figure the entire dominance rule rests on. If only 59%
+of camera CVE mass sits on devices that actually capture AV, that becomes roughly 520 from
+cameras out of ~760 total, and cameras' share of the positive cell falls from 79% to ~68%.
+
+Note the direction: **this makes the dominance problem worse, not better.** The concern was
+that `capturesAV` is a rename of `cameras`. It is not even reliably cameras — it is a facet
+asserted true across a category that is two-fifths recorders. `alarms`/`capturesAV` at 0.574
+is very likely the same pattern (panels with and without cameras).
+
+**Do not update the dominance figures from this pass alone** — n=40, one contaminated
+annotator, no κ. The κ subsample is what licenses the correction.
+
+### Should `cameras` be split? Measured: no
+
+A `recorders` category was costed and rejected. Two blockers:
+
+1. **The search stage cannot separate them.** `cameras` keyword terms already include `nvr`,
+   `dvr`, `network video recorder`, so recorders were searched deliberately as part of
+   cameras — that part is splittable. But the vendor terms are bare brands (`hikvision`,
+   `dahua`, `xiongmaitech`, `cp plus`) that make **both**, so a `recorders` vendor search
+   returns the same V set. That breaks Stage 6: capture–recapture needs V and K to be two
+   independent captures of *that category's* population, and post-hoc partitioning of one V
+   is not that. The split would cost a measurement currently held.
+2. **The judgments do not migrate.** The store is keyed `(category, cve_id)`, so a re-slugged
+   CVE loses its judgment. A product-token rule re-keys only **20.5%** of the 885 confirmed
+   Yes rows — 58.0% carry device CPEs whose product names hold no camera/recorder token
+   (`panasonic:bb_hcm511`), and 21.0% carry no device CPE at all.
+
+**Decision: do not split. Run a device-subtype pass on `cameras` instead** — classify its
+1,674 distinct devices as camera / recorder / other, one judgment each (~half the annotation
+already completed), and compute the affected facets at device level for that category alone.
+This fixes the number that is actually wrong while leaving the frozen 24, the searches, the
+store, and recall estimation untouched. Revisit splitting only if recorders and cameras
+diverge on **scope-relevant** grounds rather than facet grounds, which is a different
+argument.
+
+**Caveat on that estimate:** it assumes recorder-vs-camera is reliably judgeable from a
+product name. The 17 found here were unambiguous; `panasonic:bb_hcm511` is the hard case and
+58% of the set looks like that. **Pilot 100 devices before committing to the full pass.**
+
+### Next
+
+1. Run Codex and Gemini on the 480-row κ subsample. Nothing above is citable without it.
+2. Build `scripts/facet_agreement.py` — κ, PABAK, bootstrap CIs (does not exist yet).
+3. Pilot the cameras device-subtype pass on 100 devices.
+
+---
+
 ## Phase 0 — Pilot first (do not skip)
 
 > **Superseded as the first move by Phase A (2026-08-07).** Run this only on facets that clear
