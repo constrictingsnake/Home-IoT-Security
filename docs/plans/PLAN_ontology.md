@@ -15,21 +15,42 @@ framing; the family rollup changes a result.
 
 ---
 
-## STATUS — 2026-08-05, branch `ontology`
+## STATUS — 2026-08-07, branch `ontology`
 
 **Phases 1–5 complete.** The one open item is `shades` (below); everything else in this plan
-has landed.
+has landed. Facet *provenance* work continues in `PLAN_facet_annotation.md` and its fix plan
+`PLAN_facet_system_fixes.md` — neither can move a scope ruling, since every descriptive
+sub-facet sits outside the membership axiom by construction.
 
-Two gates, both currently green. `--check` covers the schema side:
+**Four gates, all currently green** (the plan originally described two; `--self-test` and
+`--sources` landed later). `--check` covers the schema side:
 
 ```
 SHACL: clean
-parsed: 24 analysis categories, 3 excluded, 13 families
+parsed: 24 analysis categories, 7 excluded, 13 families
 categories.csv: byte-identical ✓
 families.csv:   byte-identical ✓
 alignment: all external IRIs verified against manifest ✓
-reasoner: 27/27 rulings reproduced
+facet provenance: 18 estimated (496 of 496 assertions unevidenced)
+sources: all cited studies verified against manifest ✓
+reasoner: 31/31 rulings reproduced
 ```
+
+`--self-test` covers the axiom side — deleting each criterion in turn and requiring the
+reasoner to object. **This, not the ruling count, is the claim that survives scrutiny:**
+
+```
+1 connectivity                   non-networked-detector   ok
+2 device class                     tablet-control-panel   ok
+3 deployment                 commercial-hvac-controller   ok
+4 function/role                    transport-networking   ok
+5 security ctx                  monitored-alarm-service   ok
+self-test: PASS — all 5 criteria are load-bearing
+```
+
+The excluded count moved 3 → 7 and the ruling count 27 → 31 because the four boundary
+cases above (plus `non-networked-detector`) were added as defined-but-excluded types, each
+failing **exactly one** criterion. `--sources` covers literature provenance.
 
 `--verify-kg` covers the instance side (see *Phase 4* below):
 
@@ -420,8 +441,18 @@ unchanged inputs produces an identical diff except the one `dcterms:created` lin
 
 **What is deliberately absent.** No inferred edges, no similarity links, no attack paths, and no
 property that could feed a classifier (PLAN § *Circularity boundary*). The graph records settled
-judgments; it never produces one. CVSS is base-score-only because `download_nvd.py:116-124`
-discards `vectorString` — so AV/PR/UI/S are not representable here without a snapshot change.
+judgments; it never produces one.
+
+**CVSS vectors — the old reason no longer applies (corrected 2026-08-07).** This section
+previously said CVSS is base-score-only because `download_nvd.py` discards `vectorString`, so
+AV/PR/UI/S "are not representable here without a snapshot change". **That snapshot change has
+happened:** the 2026-08-05 cutover added `vector_string` at 100% coverage (it is what unblocked
+RQ3), and `cvss_vector.parse_vector` already reads it for `cvss_analysis.py` and
+`facet_analysis.py --cross attack_vector`. So the vectors *are* representable; they are simply
+not exported yet. Attaching AV/PR/UI/S to `Vulnerability` instances is cheap, touches the
+instance file only, and cannot perturb the byte-identical-`categories.csv` invariant. Tracked as
+optional work in `PLAN_facet_system_fixes.md` § F6 — do it or defer it explicitly, but do not
+keep citing the parser as the reason.
 
 ---
 

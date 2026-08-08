@@ -202,6 +202,18 @@ below 24 buckets, so the majority cell of nearly every facet inherits cameras' m
 **minority** cells, report at `--group family` where n allows, and treat a dominated cell as a
 hypothesis needing product-level facets, not as a result.
 
+> **The 79% figure is under correction — do not cite it unqualified.** Phase A
+> (`PLAN_facet_annotation.md`) sampled devices inside each category and measured
+> `capturesAV` **NOT-USABLE for `cameras`** (modal share 0.591 — ~43% of sampled camera
+> devices are DVRs/NVRs/XVRs, which have no lens or microphone of their own) and for
+> `alarms` (0.574). Both were deliberately ruled in scope, so the categories genuinely hold
+> two device types and one `capturesAV` value cannot be true for both. Note the direction:
+> this makes the dominance problem **worse**, not better — `capturesAV` is not even reliably
+> `cameras`. The corrected figure waits on the κ subsample plus the cameras device-subtype
+> pass (`PLAN_facet_system_fixes.md` § F2, F4); one contaminated annotator at n=40 does not
+> license changing a published number. **Phase A verdicts are enforced in code** — see
+> *Phase A heterogeneity* below.
+
 **Facet provenance — every facet is `hiot:Estimated`, and that is a hard constraint on use.** All
 **496** facet assertions were hand-assigned from domain knowledge with no source. `hiot:evidenceTier`
 records this per property (`Documented` / `Derived` / `Estimated`), and `--check` prints the mix on
@@ -221,6 +233,33 @@ categories** on `hasWebAdminUI`, all in the same direction (asserted `true`, evi
 vs 52%" contrasts must not be reported** — they appear in commit `6e9617d`'s message and are
 superseded; the grouping behind them is unevidenced and largely a proxy for `cameras`. A failed
 derivation is a real result, which is why the tier exists rather than being assumed.
+
+**Phase A heterogeneity — validity sits upstream of reliability, and it is enforced in code.**
+Provenance above asks *where a facet value came from*; this asks the prior question — **is one value
+even true of the devices it is stamped onto?** Facets are asserted per *category* but every analysis
+joins them onto *CVE rows*, so a category holding two device types has a facet that is a fiction on
+half its rows. No amount of annotator agreement repairs that: three annotators can agree perfectly on
+a value that is wrong. `facet_sample.py` measured it by sampling **272 devices across 10 categories**
+(the frame is 2,290 devices, 1,674 of them `cameras`) and reporting each cell's modal share, both
+product- and CVE-weighted. **The category-level design mostly holds: 86 of 120 measured cells (72%)
+clear 0.80.** The threshold rule — ≥0.80 defensible / 0.60–0.80 grouping-only / <0.60 not usable —
+mirrors the κ promotion rule deliberately.
+
+**`facet_analysis.py` enforces the verdict rather than trusting the reader**: a NOT-USABLE
+*(category, facet)* is **withheld** from that facet's value cells and printed as an explicit
+`WITHHELD` line with its modal share, unmeasured categories are labelled `[unmeasured]` (never
+silently promoted to sound), and `--ignore-phase-a` reproduces the old unguarded output for A/B —
+the same convention as `cpe_expansion.py --no-part-filter`. `ontology_build.py --check` prints the
+mix on every run. Note the asymmetry: a withheld category still contributes its CVEs to the
+population total, because those CVEs are real and confirmed; what is unsafe is attributing them to
+one facet *value*. **Nothing is written into the TTL** — 120 measured numbers hand-copied into a
+hand-authored file is precisely the drift the byte-identical-CSV design prevents, so
+`facet_distribution.csv` stays the machine-readable source.
+
+Two caveats that bound all of it: only **10 of 24** categories were samplable (the rest are
+`too-few-cves`, `mega-cpe-bound` or `empty` and stay UNMEASURED, per decision 12A), and **21.6% of
+confirmed-Yes rows carry no device CPE at all** and cannot be product-sampled at any budget. The
+whole pass is one annotator with κ not yet measured — see `docs/plans/PLAN_facet_system_fixes.md`.
 
 **Literature provenance.** `ontology/homeiot-sources.ttl` records why each category exists, split
 into `dcterms:source` (the study evaluates this device type by name) and `hiot:methodologicalSource`

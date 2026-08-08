@@ -53,6 +53,8 @@ STUDY_MANIFEST = os.path.join(ROOT, "ontology", "study_sources.tsv")
 CATEGORIES = os.path.join(ROOT, "data", "categories.csv")
 FAMILIES = os.path.join(ROOT, "data", "ontology", "families.csv")
 
+FACET_DISTRIBUTION = os.path.join(ROOT, "data", "facets", "facet_distribution.csv")
+
 KG_SCHEMA = os.path.join(ROOT, "ontology", "homeiot-kg.ttl")
 KG_OUT = os.path.join(ROOT, "data", "ontology", "homeiot-kg.ttl")
 STORE = os.path.join(ROOT, "data", "difference", "judgment_store.csv")
@@ -192,6 +194,40 @@ def criteria_report(g, uri):
 
 
 ALIGN_PREDS = (RDFS.subClassOf, SKOS.closeMatch, SKOS.broadMatch, SKOS.relatedMatch)
+
+
+def phase_a_line(path=FACET_DISTRIBUTION):
+    """One-line Phase A heterogeneity summary for --check.
+
+    Reports how many measured (category, facet) cells support a single value. The
+    numbers come from facet_sample.py --aggregate and are NOT written into the
+    ontology: 120 measured values hand-copied into a hand-authored TTL is exactly the
+    drift the byte-identical-CSV design exists to prevent, so the CSV stays the source
+    and this is the visibility surface.
+    """
+    if not os.path.exists(path):
+        return ("facet heterogeneity: NOT MEASURED — no data/facets/"
+                "facet_distribution.csv (run facet_sample.py; until then every "
+                "category-level value is unvalidated)")
+    counts = Counter()
+    worst = None
+    with open(path, newline="", encoding="utf-8") as fh:
+        for r in csv.DictReader(fh):
+            counts[r.get("verdict", "").strip()] += 1
+            share = r.get("modal_share_cve", "").strip()
+            if share and (worst is None or float(share) < worst[0]):
+                worst = (float(share), r["category"], r["facet"])
+    total = sum(counts.values())
+    bad = counts.get("NOT-USABLE-report-distribution", 0)
+    line = (f"facet heterogeneity (Phase A): "
+            f"{counts.get('summary-defensible', 0)} defensible / "
+            f"{counts.get('grouping-only', 0)} grouping-only / {bad} NOT-USABLE "
+            f"of {total} measured cells")
+    if worst:
+        line += f"; worst {worst[1]}/{worst[2]} at {worst[0]:.3f}"
+    if bad:
+        line += " — facet_analysis.py withholds those cells"
+    return line
 
 
 def check_alignment(verbose=True):
@@ -884,6 +920,14 @@ def cmd_check(g):
         print(f"facet provenance: {summary} "
               f"({assertions['Estimated']} of {sum(assertions.values())} assertions "
               f"unevidenced — organising structure, not citable)")
+
+    # Phase A heterogeneity, printed for the same reason as provenance above: a
+    # category-level value that is false for most of the devices it lands on is a
+    # validity problem, and validity problems fade from view faster than schema ones.
+    # Also not a failure condition — the CSV is the machine-readable source and
+    # facet_analysis.py is what enforces it; this is the visibility surface, so the
+    # hand-authored TTL never has to carry 120 measured numbers it would drift from.
+    print(phase_a_line())
 
     ok_src, bad_src, _info = check_sources(verbose=False)
     if ok_src is None:

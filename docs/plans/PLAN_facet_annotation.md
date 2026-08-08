@@ -120,6 +120,17 @@ confirmed population. A single `computeTier` for that category is not a summary.
 `final_resolved.csv` without the guardrails and are inflated ~1.8×. The conclusion is unchanged —
 1,690 distinct devices in one category is ample — but the figures above are the correct ones.)*
 
+> **FRAME CONVENTION — quote the right number.** Three device counts circulate in this
+> document and they are not interchangeable. State which frame any figure comes from.
+>
+> | Frame | Total devices | `cameras` | What it is |
+> |---|---|---|---|
+> | unguarded (retired) | 4,624 | 3,161 | measured off `final_resolved.csv` with no CPE guardrails — **inflated ~1.8×, never cite** |
+> | guarded | 2,539 | 1,690 | Stage-5 guardrails applied; the figure that motivates this phase |
+> | guarded + unique-to-one-category (**13B**, the drawn frame) | **2,290** | **1,674** | what `product_frame.csv` actually holds and what every sample and subtype pass draws from |
+>
+> Verified against `data/facets/product_frame.csv` (2,290 rows, 1,674 cameras) on 2026-08-07.
+
 **Why full product-level annotation is not the answer.** 2,539 devices × 19 facets ≈ 48k items per
 annotator, ~145k AI judgments — roughly 50× the category-level plan. That is a different project,
 not a swap. **Sample instead.**
@@ -653,8 +664,8 @@ extract.
    panel can agree because they were pointed at the same reading, and κ cannot detect that.
 6. **Facets remain category-level, not device-level** — and Phase A is what turns this from a
    caveat into a measured quantity. High κ would mean annotators agree on how to characterise a
-   *category*; it says nothing about any individual device, and with 3,161 distinct products inside
-   `cameras` alone the gap is not small. State the modal share next to any category-level facet
+   *category*; it says nothing about any individual device, and with **1,674** distinct products
+   inside `cameras` alone (frame convention below) the gap is not small. State the modal share next to any category-level facet
    value, and never present one whose share Phase A put below 0.60. The cameras-dominance confound
    ([[facet-dominance-rule]], `facet_analysis.py`) compounds this rather than being separate from
    it: the categories with the most products are also the ones carrying the most CVEs, so

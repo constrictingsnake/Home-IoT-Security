@@ -30,6 +30,29 @@ the majority cell of almost every facet inherits cameras' mass no matter how the
 vocabulary is designed. Contrast the MINORITY cells, report at --group family where
 n allows, and treat a dominated cell as a hypothesis needing a product-level facet
 rather than as a result.
+
+PHASE A VERDICTS ARE ENFORCED HERE, NOT REMEMBERED. Dominance asks whether a facet
+cell is really one category in disguise. Phase A (facet_sample.py) asks something
+upstream of that: whether the category-level value is even TRUE of the devices it is
+stamped onto. It sampled devices per category and measured the modal value's share,
+and 12 of 120 measured cells came back below 0.60 — cameras/capturesAV at 0.591
+(~43% of sampled camera devices are recorders, which have no lens), doorlock/
+cloudDependence at 0.389. For those cells a single value is a fiction, and no
+amount of annotator agreement repairs it.
+
+So this script REFUSES to print one. Every category carries its Phase A verdict and
+modal share into the output; a NOT-USABLE category is withheld from the value's
+category breakdown and reported as a distribution instead, and an UNMEASURED one
+(Phase A could not sample it — too few CVEs, mega-CPE-bound, or empty) is labelled
+as such rather than silently counted as fine. --ignore-phase-a reproduces the old
+unguarded behaviour for A/B, the same convention every other guardrail here follows
+(cpe_expansion.py --no-part-filter, facet_sample.py --keep-shared).
+
+Note the asymmetry that makes this worth doing in code: a NOT-USABLE cell still
+contributes its CVEs to the population total, because those CVEs are real and
+confirmed. What is unsafe is attributing them to a single facet VALUE. Withholding
+the attribution while keeping the count is exactly the distinction a human reading a
+policy note forgets, and the reason this is a join rather than a docstring.
 """
 import argparse
 import collections
@@ -46,6 +69,15 @@ FAMILIES = os.path.join(ROOT, "data", "ontology", "families.csv")
 STORE = os.path.join(ROOT, "data", "difference", "judgment_store.csv")
 SNAPSHOT = os.path.join(ROOT, "data", "nvd-snapshot", "nvd_all.csv")
 CWE888_MAP = os.path.join(ROOT, "data", "difference", "cwe888_cve_map.csv")
+DISTRIBUTION = os.path.join(ROOT, "data", "facets", "facet_distribution.csv")
+
+# Phase A verdict -> how a (category, facet) may be used. The thresholds are
+# facet_sample.py's, restated here only as labels; the numbers live in that script so
+# the two cannot drift.
+USABLE = "summary-defensible"      # >= 0.80 — a value is a defensible summary
+GROUPING = "grouping-only"         # 0.60-0.80 — group by it, do not report it
+NOT_USABLE = "NOT-USABLE-report-distribution"   # < 0.60 — no single value is true
+UNMEASURED = "UNMEASURED"          # Phase A could not sample this category at all
 
 # Every descriptive sub-facet, in criterion order. hiot:hasConnectivity and the four
 # axiom-bearing properties are deliberately absent: they are membership tests, and
@@ -95,6 +127,40 @@ def load_families(path=FAMILIES):
         return {r["slug"]: r["family_label"] for r in csv.DictReader(fh)}
 
 
+def load_phase_a(path=DISTRIBUTION):
+    """{(category, facet): {verdict, share, modal, n}} from facet_sample.py --aggregate.
+
+    Absent file is not an error — Phase A is a separate study and this script predates
+    it — but it IS reported, because silently treating unmeasured cells as sound is the
+    failure mode the whole join exists to prevent.
+    """
+    if not os.path.exists(path):
+        return None
+    out = {}
+    with open(path, newline="", encoding="utf-8") as fh:
+        for r in csv.DictReader(fh):
+            share = r.get("modal_share_cve", "").strip()
+            out[(r["category"], r["facet"])] = {
+                "verdict": r.get("verdict", "").strip() or UNMEASURED,
+                # CVE-weighted is the right weighting here: this script counts CVE rows,
+                # so the question is what the CVE population looks like, not what the
+                # typical product looks like (plan decision 9B).
+                "share": float(share) if share else None,
+                "modal": r.get("modal_value_cve", "").strip(),
+                "n": r.get("n_devices", "").strip(),
+                "divergent": bool(r.get("weighting_divergence", "").strip()),
+            }
+    return out
+
+
+def verdict_for(phase_a, cat, facet):
+    """Phase A's ruling on one (category, facet), or UNMEASURED."""
+    if phase_a is None:
+        return None
+    return phase_a.get((cat, facet), {"verdict": UNMEASURED, "share": None,
+                                      "modal": "", "n": "", "divergent": False})
+
+
 def load_cross(kind):
     """{cve_id: {value, ...}} for a cross-tabulation axis."""
     if kind == "cwe888":
@@ -138,12 +204,19 @@ def main():
                     help="flag cells where one group exceeds this share (default 0.55)")
     ap.add_argument("--min-n", type=int, default=0,
                     help="hide cells below this CVE count")
+    ap.add_argument("--ignore-phase-a", action="store_true",
+                    help="report every category-level value regardless of its Phase A "
+                         "heterogeneity verdict — the pre-enforcement behaviour, kept "
+                         "for A/B only. A cell Phase A marked NOT-USABLE has a modal "
+                         "value that is false for >40%% of the devices it lands on")
     args = ap.parse_args()
 
     facets = load_facets()
     pop = load_population()
     fam = load_families()
     wanted = args.facet or FACETS
+
+    phase_a = None if args.ignore_phase_a else load_phase_a()
 
     per_cat = collections.Counter(c for c, _v in pop)
     total = len(pop)
@@ -154,14 +227,47 @@ def main():
     print(f"confirmed-Yes population: {total} CVE-category pairs over "
           f"{len(per_cat)} categories")
     print(f"dominance attributed by {args.group}; flagged above "
-          f"{args.dominance_threshold:.0%}\n")
+          f"{args.dominance_threshold:.0%}")
+    if args.ignore_phase_a:
+        print("Phase A: DISABLED (--ignore-phase-a) — values below the 0.60 modal-share "
+              "gate are being reported as if sound")
+    elif phase_a is None:
+        print(f"Phase A: no {os.path.relpath(DISTRIBUTION, ROOT)} — heterogeneity "
+              "UNMEASURED for every cell; treat every value as unvalidated")
+    else:
+        vc = collections.Counter(v["verdict"] for v in phase_a.values())
+        print(f"Phase A: {vc[USABLE]} defensible / {vc[GROUPING]} grouping-only / "
+              f"{vc[NOT_USABLE]} NOT-USABLE over {len(phase_a)} measured cells; "
+              "unmeasured categories are marked [unmeasured]")
+    print()
 
     for f in wanted:
+        # Partition the contributing categories by Phase A verdict BEFORE counting.
+        # NOT-USABLE categories are withheld from every value cell of this facet: their
+        # CVEs are real, but attributing them to one facet value is what Phase A
+        # measured to be false. Unmeasured categories are counted and labelled, never
+        # silently promoted to sound (plan decision 12A).
+        withheld, unmeasured = {}, []
+        for cat in {c for c, _v in pop}:
+            if not facets.get(cat, {}).get(f):
+                continue
+            va = verdict_for(phase_a, cat, f)
+            if va is None:
+                continue
+            if va["verdict"] == NOT_USABLE:
+                withheld[cat] = va
+            elif va["verdict"] == UNMEASURED:
+                unmeasured.append(cat)
+
         cells = collections.defaultdict(collections.Counter)
+        withheld_n = collections.Counter()
         for cat, cve in pop:
             for v in facets.get(cat, {}).get(f, ()):
+                if cat in withheld:
+                    withheld_n[cat] += 1
+                    continue
                 cells[v][key(cat)] += 1
-        if not cells:
+        if not cells and not withheld_n:
             continue
         print(f"### {f}")
         if cross:
@@ -187,6 +293,22 @@ def main():
                 print(f"{head} {top[:20]:>22} {share:5.0%}{flag}   {brk}")
             else:
                 print(f"{head} {100*n/total:6.1f}%  {top[:20]:>22} {share:5.0%}{flag}")
+
+        # The withheld block is the enforcement made visible. A reader who wants the
+        # old number has to see why it is not being printed, which is the whole point
+        # of doing this in code rather than in a policy note.
+        for cat, va in sorted(withheld.items(), key=lambda kv: -withheld_n[kv[0]]):
+            asserted = "/".join(sorted(facets.get(cat, {}).get(f, ())))
+            share = va["share"]
+            print(f"  WITHHELD {cat}: {withheld_n[cat]} CVEs, asserted {asserted} — "
+                  f"Phase A modal share {share:.3f} (n={va['n']} devices) is below the "
+                  f"0.60 gate, so no single value is reportable for this category")
+        if unmeasured:
+            un_n = sum(1 for c, _v in pop
+                       if c in set(unmeasured) and facets.get(c, {}).get(f))
+            print(f"  [unmeasured] {len(unmeasured)} categories / {un_n} CVEs not "
+                  f"sampled by Phase A: {', '.join(sorted(unmeasured)[:6])}"
+                  + (" …" if len(unmeasured) > 6 else ""))
         print()
     return 0
 
