@@ -35,8 +35,18 @@ citable" waits on it, and nothing else does.
 2. The cameras-recorders finding survived an independent replication (38% vs 42.5% on
    samples sharing 3 of 100 devices) and an annotator-independent token check (8/8 where
    the product name carries a token).
-3. `capturesAV` is also the *least reliable* facet on the provisional panel (π=0.065),
-   so the facet at the centre of the correction fails validity and reliability both.
+3. `capturesAV` **fails reliability as well as validity** — π = 0.358 on the provisional
+   Claude/Gemini panel (471 shared rows), below the 0.40 bar. *(An earlier note here said
+   0.065 and called it the least reliable facet; that was measured on 18 rows before the
+   Gemini column filled. It rose to 0.358 and `computeTier` at 0.131 is now the lowest.
+   The conclusion is unchanged — the facet at the centre of the cameras correction is
+   both invalid and unreliable — but quote 0.358.)*
+4. **Two independent methods agree on which facets are unassignable.** `hasWebAdminUI`
+   (0.283) and `computeTier` (0.131) are the two lowest-scoring facets under blind
+   annotation, and they are precisely the two `facet_derive.py` already failed to derive
+   from CVE text. Text derivation and independent annotation share no mechanism, so the
+   agreement is much stronger evidence than either result alone — and it points the same
+   way as the retraction already recorded in `CLAUDE.md`.
 
 ---
 
