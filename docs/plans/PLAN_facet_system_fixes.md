@@ -22,7 +22,7 @@ the truth about the current state.
 | **F2** κ loop | **BLOCKED ON CODEX.** Tooling done (`1ce16fb`); Gemini column filling; `facet_agreement.py` runs on a partial panel and already reports provisional Scott's π |
 | **F4** cameras subtype | **PILOT DONE** — `b4727de`, 70% judgeable → proceed with caveat. Full pass not started |
 | **F5** category study + writeback | not started (gated on F2) |
-| **F6** shades / KG vectors / push | not started |
+| **F6** shades / KG vectors / push | **shades RESOLVED** (no NVD footprint, marker set, gates green); **branch pushed**; KG vectors still optional |
 
 **The one human step in the whole plan is running Codex on
 `data/facets/annotation-kit/codex.csv`** (480 rows), from the kit directory so the repo's

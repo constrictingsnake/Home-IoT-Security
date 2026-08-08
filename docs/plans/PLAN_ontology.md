@@ -114,7 +114,26 @@ coarse categories carry **91.5%** of confirmed CVEs / 92.3% of attributions.
 **Not done (was marked optional in Phase 5):** the facet-level triage of reviewer disagreement
 in §`sec:threats-reliability`.
 
-### The one thing still open: `shades`
+### ~~The one thing still open: `shades`~~ — RESOLVED 2026-08-08, answer is (a)
+
+`build_search.py --categories shades --overwrite` was run against the 2026-08-05 snapshot,
+rebuilding both outputs from scratch rather than skipping existing ones. **9 keyword terms
+returned 0 CVEs; 40 vendor terms returned 5**, all of them the previously judged
+somfy/powerview rows. The terms are correct and *did* fire against a freshly built output,
+so this is **not** the stale-output failure mode — the absence is in NVD.
+
+`shades` now carries `hiot:noNvdFootprint true` with the evidence comment SHACL requires,
+matching the `sleeptracker` precedent, and its `hiot:openScopeCall` is cleared. All four
+gates green after the edit; `categories.csv` and `families.csv` stayed byte-identical.
+
+Note what this settles and what it does not: the call was recorded as *"is the
+blinds/curtains/shutters merge correct?"*, but **at n=0 that question is moot** — a merge
+rule cannot be validated against an empty population. If `shades` ever acquires a
+footprint, the merge question reopens on its own terms.
+
+The original analysis is kept below for the record.
+
+### (original) The one thing still open: `shades`
 
 `shades` has **0 confirmed-Yes from 5 judged**, and `data/keyword-search/keyword_shades.csv` is
 88 bytes (header only) despite 40 vendor terms and 9 keyword terms existing. Two possible

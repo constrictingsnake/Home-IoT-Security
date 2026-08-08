@@ -1003,7 +1003,14 @@ hiot:shades a owl:Class, hiot:DeviceType ;
   hiot:credentialModel hiot:NoCredential, hiot:AccountBound ;
   hiot:patchResponsibility hiot:UserPatched ;
   hiot:supportLifetime hiot:UndeclaredLifetime ;
-  hiot:openScopeCall """Merge rule applied (blinds/curtains/shutters are one product under different labels) but not finally confirmed.""" ;
+  hiot:noNvdFootprint true ;
+  rdfs:comment """RESOLVED 2026-08-08 — definitionally in scope but operationally invisible to NVD, the same standing as hiot:sleeptracker (see hiot:noNvdFootprint).
+
+Evidence: 0 confirmed-Yes from 5 judged rows. Critically this is NOT the stale-search-output failure mode. `build_search.py --categories shades --overwrite` was re-run against the 2026-08-05 snapshot on 2026-08-08, rebuilding both outputs from scratch rather than skipping existing ones: the 9 keyword terms returned 0 CVEs, and the 40 vendor terms returned 5, all of them the previously judged somfy/powerview rows (term_precision agrees: powerview 4 judged / 0 Yes, somfy 1 / 0). The terms are correct and DID fire against a freshly built output, so the absence is in NVD, not in the search.
+
+Note the framing shift this settles. The open call was recorded as "is the blinds/curtains/shutters merge correct?", but at n=0 that question is moot — a merge rule cannot be validated against an empty population. The answerable question was whether the emptiness came from the data or from a stale build, and it is the data. If shades ever acquires a footprint, the merge question reopens on its own terms.
+
+Precedent and its limit: game consoles are defined-then-excluded too, but they fail definitional criteria 2 and 4, which is why they carry hiot:failsCriteria and this does not. Nothing here is a scope exclusion — shades satisfies all five criteria and fails only the operational study-inclusion criterion.""" ;
   skos:scopeNote """IN: consumer smart blinds, shades, curtains, shutters and their motors/controllers. OUT: commercial/industrial window and facade systems.""" .
 
 hiot:sensors a owl:Class, hiot:DeviceType ;
