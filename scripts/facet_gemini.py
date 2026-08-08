@@ -67,17 +67,22 @@ FORBIDDEN_COLS = {
     "cvss", "base_score", "severity", "cpe_strings", "matched_terms",
 }
 
+# Rows are mapped back by INTEGER INDEX, not by echoing the device string. Device keys
+# here are CPE-derived and routinely contain backslashes and parentheses
+# (hikvision:ds-2cd2583g2-i\(s\)); asking a weak model to reproduce one exactly cost 193
+# of 480 rows to silent map-back failure on the first run, including 39 of 40 on one
+# facet. An index is one token and cannot be mangled.
 BATCH_RESPONSE_SCHEMA = {
     "type": "array",
     "items": {
         "type": "object",
         "properties": {
-            "device": {"type": "string"},
+            "index": {"type": "integer"},
             "value": {"type": "string"},
             "confidence": {"type": "string", "enum": ["High", "Low"]},
             "reasoning": {"type": "string"},
         },
-        "required": ["device", "value", "confidence", "reasoning"],
+        "required": ["index", "value", "confidence", "reasoning"],
     },
 }
 
@@ -118,23 +123,23 @@ def load_definitions(path=DEFINITIONS_DEFAULT):
 def build_batch_prompt(rubric, definitions, facet, allowed, rows):
     """rows: list of (device, vendor, product, category) tuples, all for ONE facet."""
     entries = [
-        f"--- device: {device} ---\n"
-        f"Vendor: {vendor}\nProduct name: {product}\nCategory: {category}"
-        for device, vendor, product, category in rows
+        f"[{i}] Vendor: {vendor} | Product name: {product} | Category: {category}"
+        for i, (_device, vendor, product, category) in enumerate(rows)
     ]
     return (
         f"{rubric}\n\n"
         f"=== FACET UNDER ANNOTATION ===\n{facet}\n\n"
         f"=== VALUE DEFINITIONS (authoritative — choose from these only) ===\n"
         f"{definitions}\n\n"
-        f"=== ALLOWED VALUES ===\n{allowed}\n\n"
-        f"=== DEVICES TO ANNOTATE ===\n" + "\n\n".join(entries) + "\n\n"
-        "Assign the facet value for EACH device above. Judge ONLY from the vendor and "
-        "product name — you have no CVE text and must not imagine any. If the product "
-        "name does not identify the device well enough to judge, answer `unsure`; that "
-        "is a real answer and forcing a guess is worse. Return a JSON array with one "
-        "object per device, each containing device, value, confidence, and reasoning. "
-        "The `device` field must repeat the device string exactly as given."
+        f"=== ALLOWED VALUES (answer with one of these EXACTLY) ===\n{allowed}\n\n"
+        f"=== DEVICES TO ANNOTATE ({len(rows)} of them) ===\n" + "\n".join(entries) + "\n\n"
+        "Assign the facet value for EACH numbered device above. Judge ONLY from the "
+        "vendor and product name — you have no CVE text and must not imagine any. If the "
+        "product name does not identify the device well enough to judge, answer `unsure`; "
+        "that is a real answer and forcing a guess is worse.\n"
+        f"Return a JSON array of exactly {len(rows)} objects, one per device, each with: "
+        "`index` (the bracketed number above), `value` (copied EXACTLY from the allowed "
+        "values list), `confidence` (High or Low), and `reasoning` (one short sentence)."
     )
 
 
@@ -154,13 +159,14 @@ def call_with_retry(session, api_key, model, prompt, max_retries=5):
             resp.raise_for_status()
             text = resp.json()["candidates"][0]["content"]["parts"][0]["text"]
             items, _ = json.JSONDecoder().raw_decode(text.strip())
-            # Weaker models echo the key with stray whitespace; strip so the exact-match
-            # map-back does not silently drop rows (same fix as gemini_classify.py).
-            return {
-                it["device"].strip(): (it["value"], it.get("confidence", "Low"),
-                                       it.get("reasoning", ""))
-                for it in items
-            }
+            out = {}
+            for it in items:
+                try:
+                    out[int(it["index"])] = (it["value"], it.get("confidence", "Low"),
+                                             it.get("reasoning", ""))
+                except (KeyError, TypeError, ValueError):
+                    continue    # a malformed entry drops one row, never the batch
+            return out
         except requests.HTTPError as e:
             code = e.response.status_code if e.response is not None else None
             if code == 429:
@@ -241,12 +247,12 @@ def annotate_file(csv_path, *, model=DEFAULT_MODEL, rubric_path=RUBRIC_DEFAULT,
                 continue
 
             allowed_set = {v.strip() for v in allowed.split("|") if v.strip()}
-            for i in chunk:
+            for pos, i in enumerate(chunk):
                 dev = df.at[i, "device"]
-                if dev not in got:
+                if pos not in got:
                     failed += 1
                     continue
-                value, conf, reason = got[dev]
+                value, conf, reason = got[pos]
                 value = (value or "").strip()
                 if value not in allowed_set:
                     # An out-of-vocabulary value is left BLANK, never coerced. A coerced

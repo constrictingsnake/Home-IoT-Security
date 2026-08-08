@@ -1,0 +1,101 @@
+category,device,vendor,product,cve_count,allowed_values,Value,Confidence,Reasoning
+cameras,abus:tvip_10055b,abus,tvip_10055b,5,camera|recorder|other|unsure,camera,High,ABUS TVIP series is the brand's IP camera line.
+cameras,abus:tvip_11000,abus,tvip_11000,5,camera|recorder|other|unsure,camera,High,ABUS TVIP series IP camera.
+cameras,abus:tvip_31050,abus,tvip_31050,5,camera|recorder|other|unsure,camera,High,ABUS TVIP series IP camera.
+cameras,amcrest:amdv10814-h5,amcrest,amdv10814-h5,2,camera|recorder|other|unsure,recorder,High,Amcrest AMDV part code denotes a DVR; 08 is the channel count.
+cameras,axis:cannon_network_camera,axis,cannon_network_camera,2,camera|recorder|other|unsure,camera,High,Named a network camera outright.
+cameras,c-first:cfr-4ehd,c-first,cfr-4ehd,2,camera|recorder|other|unsure,recorder,Low,"Channel-count naming (4E) is a recorder convention, but the brand is unfamiliar."
+cameras,c-first:cfr-8eaa,c-first,cfr-8eaa,2,camera|recorder|other|unsure,recorder,Low,8-channel naming implies a multi-channel recorder; brand unfamiliar.
+cameras,c-first:cfr-8ehd,c-first,cfr-8ehd,2,camera|recorder|other|unsure,recorder,Low,8-channel naming implies a recorder; brand unfamiliar.
+cameras,castel:nextgen_dvr,castel,nextgen_dvr,4,camera|recorder|other|unsure,recorder,High,Product name says DVR.
+cameras,cpplusworld:cp-uvr-1601e1-h,cpplusworld,cp-uvr-1601e1-h,1,camera|recorder|other|unsure,recorder,High,"CP Plus UVR = universal video recorder, 16-channel."
+cameras,cpplusworld:cp-vnr-3104,cpplusworld,cp-vnr-3104,1,camera|recorder|other|unsure,recorder,High,"CP Plus VNR = network video recorder, 4-channel."
+cameras,d-link:dcs-8000lh,d-link,dcs-8000lh,1,camera|recorder|other|unsure,camera,High,D-Link DCS series is its IP camera line (mini HD wifi camera).
+cameras,dahua:dh-ipc-hx883x,dahua,dh-ipc-hx883x,1,camera|recorder|other|unsure,camera,High,Dahua IPC prefix = IP camera.
+cameras,dahua:nvr4xxx-4ks2,dahua,nvr4xxx-4ks2,1,camera|recorder|other|unsure,recorder,High,Dahua NVR series network video recorder.
+cameras,dahuasecurity:dh-hcvr5xxx,dahuasecurity,dh-hcvr5xxx,2,camera|recorder|other|unsure,recorder,High,Dahua HCVR = hybrid composite video recorder.
+cameras,dahuasecurity:dh-ipc-hdbw13a0sn,dahuasecurity,dh-ipc-hdbw13a0sn,2,camera|recorder|other|unsure,camera,High,Dahua IPC-HDBW = IP dome camera.
+cameras,dahuasecurity:dhi-hcvr58a32s-s2,dahuasecurity,dhi-hcvr58a32s-s2,2,camera|recorder|other|unsure,recorder,High,"Dahua HCVR hybrid video recorder, 32-channel."
+cameras,dahuasecurity:dvr2116c,dahuasecurity,dvr2116c,5,camera|recorder|other|unsure,recorder,High,Product name says DVR.
+cameras,dahuasecurity:dvr2404lf-s,dahuasecurity,dvr2404lf-s,5,camera|recorder|other|unsure,recorder,High,Product name says DVR.
+cameras,dahuasecurity:dvr5204a,dahuasecurity,dvr5204a,5,camera|recorder|other|unsure,recorder,High,Product name says DVR.
+cameras,dahuasecurity:ipc-hdbw4x2x,dahuasecurity,ipc-hdbw4x2x,5,camera|recorder|other|unsure,camera,High,Dahua IPC-HDBW = IP dome camera.
+cameras,dahuasecurity:ipc-hf5842f-ze,dahuasecurity,ipc-hf5842f-ze,1,camera|recorder|other|unsure,camera,High,Dahua IPC-HF = IP box camera.
+cameras,dahuasecurity:ipc-hum7xxx,dahuasecurity,ipc-hum7xxx,1,camera|recorder|other|unsure,camera,High,Dahua IPC-HUM = covert IP camera module.
+cameras,dahuasecurity:n42b3p,dahuasecurity,n42b3p,4,camera|recorder|other|unsure,recorder,Low,Dahua N-prefix NVR under its North American naming; less certain than an explicit NVR string.
+cameras,dahuasecurity:n52b3p,dahuasecurity,n52b3p,4,camera|recorder|other|unsure,recorder,Low,Dahua N-prefix NVR (NA naming); inferred from the series letter alone.
+cameras,dahuasecurity:nvr1xxx,dahuasecurity,nvr1xxx,1,camera|recorder|other|unsure,recorder,High,Named NVR.
+cameras,dahuasecurity:nvr4108-8p-4ks2\/l,dahuasecurity,nvr4108-8p-4ks2\/l,7,camera|recorder|other|unsure,recorder,High,"Dahua NVR4108, 8-channel network video recorder."
+cameras,dahuasecurity:nvr4108-8p-4ks3,dahuasecurity,nvr4108-8p-4ks3,7,camera|recorder|other|unsure,recorder,High,"Dahua NVR4108, 8-channel network video recorder."
+cameras,dahuasecurity:nvr4108hs-8p-4ks3,dahuasecurity,nvr4108hs-8p-4ks3,7,camera|recorder|other|unsure,recorder,High,Dahua NVR4108HS network video recorder.
+cameras,dahuasecurity:nvr5832\/5864-i,dahuasecurity,nvr5832\/5864-i,1,camera|recorder|other|unsure,recorder,High,Dahua NVR58 series recorder.
+cameras,dahuasecurity:sd22404t-gn-w,dahuasecurity,sd22404t-gn-w,1,camera|recorder|other|unsure,camera,High,Dahua SD prefix = speed dome PTZ camera.
+cameras,dahuasecurity:sd59430i-hc,dahuasecurity,sd59430i-hc,1,camera|recorder|other|unsure,camera,High,Dahua SD59 speed dome PTZ camera.
+cameras,dahuasecurity:sd5a425xa-hnr,dahuasecurity,sd5a425xa-hnr,1,camera|recorder|other|unsure,camera,High,Dahua SD5A speed dome PTZ camera.
+cameras,dahuasecurity:tpc-sd8x21,dahuasecurity,tpc-sd8x21,2,camera|recorder|other|unsure,camera,High,Dahua TPC = thermal PTZ camera.
+cameras,dahuasecurity:xvr5104he-i2,dahuasecurity,xvr5104he-i2,1,camera|recorder|other|unsure,recorder,High,Dahua XVR = penta-brid video recorder.
+cameras,dahuasecurity:xvr5416l-i2,dahuasecurity,xvr5416l-i2,1,camera|recorder|other|unsure,recorder,High,"Dahua XVR video recorder, 16-channel."
+cameras,dlink:dcs-1100,dlink,dcs-1100,12,camera|recorder|other|unsure,camera,High,D-Link DCS series IP camera.
+cameras,dlink:dcs-1130,dlink,dcs-1130,18,camera|recorder|other|unsure,camera,High,D-Link DCS series IP camera.
+cameras,dlink:dcs-2103,dlink,dcs-2103,1,camera|recorder|other|unsure,camera,High,D-Link DCS series IP camera.
+cameras,dlink:dcs-8000lh,dlink,dcs-8000lh,1,camera|recorder|other|unsure,camera,High,D-Link DCS series IP camera.
+cameras,ezviz:cs-c6cn-a0-3h2wfr,ezviz,cs-c6cn-a0-3h2wfr,1,camera|recorder|other|unsure,camera,High,EZVIZ C6CN indoor pan/tilt camera.
+cameras,ezviz:cs-c6n-a0-1c2wfr-mul,ezviz,cs-c6n-a0-1c2wfr-mul,2,camera|recorder|other|unsure,camera,High,EZVIZ C6N indoor pan/tilt camera.
+cameras,ezviz:cs-c6n-r101-1g2wf,ezviz,cs-c6n-r101-1g2wf,2,camera|recorder|other|unsure,camera,High,EZVIZ C6N indoor pan/tilt camera.
+cameras,foscam:c1_lite,foscam,c1_lite,4,camera|recorder|other|unsure,camera,High,Foscam C1 indoor IP camera.
+cameras,foscam:fi9826w,foscam,fi9826w,3,camera|recorder|other|unsure,camera,High,Foscam FI98 series IP camera.
+cameras,goahead:wireless_ip_camera_wificam,goahead,wireless_ip_camera_wificam,1,camera|recorder|other|unsure,camera,High,Named a wireless IP camera.
+cameras,hikvision:ds-2cd2021g1-i\(w\),hikvision,ds-2cd2021g1-i\(w\),1,camera|recorder|other|unsure,camera,High,Hikvision DS-2CD prefix = IP camera.
+cameras,hikvision:ds-2cd2547g2-ls,hikvision,ds-2cd2547g2-ls,1,camera|recorder|other|unsure,camera,High,Hikvision DS-2CD = IP camera.
+cameras,hikvision:ds-2cd2583g2-i\(s\),hikvision,ds-2cd2583g2-i\(s\),1,camera|recorder|other|unsure,camera,High,Hikvision DS-2CD = IP camera.
+cameras,hikvision:ds-2cd2686g2-izs,hikvision,ds-2cd2686g2-izs,1,camera|recorder|other|unsure,camera,High,Hikvision DS-2CD = IP camera.
+cameras,hikvision:ds-2cd3323g2-iu,hikvision,ds-2cd3323g2-iu,1,camera|recorder|other|unsure,camera,High,Hikvision DS-2CD = IP camera.
+cameras,hikvision:ds-2cd3526g2-is,hikvision,ds-2cd3526g2-is,1,camera|recorder|other|unsure,camera,High,Hikvision DS-2CD = IP camera.
+cameras,hikvision:ds-2df8242ix-aelw\(t3\),hikvision,ds-2df8242ix-aelw\(t3\),1,camera|recorder|other|unsure,camera,High,Hikvision DS-2DF = PTZ dome camera.
+cameras,hikvision:ds-2df8250i8x-ael\(t3\),hikvision,ds-2df8250i8x-ael\(t3\),1,camera|recorder|other|unsure,camera,High,Hikvision DS-2DF = PTZ dome camera.
+cameras,hikvision:ds-2df8425ix-ael\(t5\),hikvision,ds-2df8425ix-ael\(t5\),1,camera|recorder|other|unsure,camera,High,Hikvision DS-2DF = PTZ dome camera.
+cameras,hikvision:ds-2dy9240ix-a\(t5\),hikvision,ds-2dy9240ix-a\(t5\),1,camera|recorder|other|unsure,camera,High,Hikvision DS-2DY = PTZ positioning camera.
+cameras,hikvision:ds-2td1117-3\/pa,hikvision,ds-2td1117-3\/pa,1,camera|recorder|other|unsure,camera,High,Hikvision DS-2TD = thermal imaging camera.
+cameras,hikvision:ds-2td1217b-3\/pa,hikvision,ds-2td1217b-3\/pa,1,camera|recorder|other|unsure,camera,High,Hikvision DS-2TD = thermal camera.
+cameras,hikvision:ds-2td6267-50h4l\/w,hikvision,ds-2td6267-50h4l\/w,1,camera|recorder|other|unsure,camera,High,Hikvision DS-2TD = thermal camera.
+cameras,hikvision:ds-7608ni-k1\/8p,hikvision,ds-7608ni-k1\/8p,1,camera|recorder|other|unsure,recorder,High,"Hikvision DS-76xxNI = network video recorder, 8-channel."
+cameras,hikvision:ds-7616ni-q2\/16p,hikvision,ds-7616ni-q2\/16p,1,camera|recorder|other|unsure,recorder,High,"Hikvision DS-76xxNI = network video recorder, 16-channel."
+cameras,hikvision:ds-k1t320mwx,hikvision,ds-k1t320mwx,2,camera|recorder|other|unsure,other,High,"Hikvision DS-K1T = access control terminal, not a camera or a recorder."
+cameras,hikvision:ds-k1t341c,hikvision,ds-k1t341c,1,camera|recorder|other|unsure,other,High,Hikvision DS-K1T = access control / face terminal.
+cameras,hikvision:ds-kh6320-wtde1,hikvision,ds-kh6320-wtde1,1,camera|recorder|other|unsure,other,Low,Hikvision DS-KH = video intercom indoor station; a display endpoint rather than a camera or recorder.
+cameras,hikvision:nvr-116mh-c\(d\),hikvision,nvr-116mh-c\(d\),1,camera|recorder|other|unsure,recorder,High,Named NVR.
+cameras,hikvision:nvr-208mh-c\/8p\(d\),hikvision,nvr-208mh-c\/8p\(d\),1,camera|recorder|other|unsure,recorder,High,Named NVR.
+cameras,hisilicon:hi3510,hisilicon,hi3510,2,camera|recorder|other|unsure,other,Low,"HiSilicon Hi3510 is a camera SoC, a chipset rather than a finished device."
+cameras,iodata:ts-wlc2_camera,iodata,ts-wlc2_camera,2,camera|recorder|other|unsure,camera,High,I-O Data TS-WLC2 network camera.
+cameras,iodata:ts-wlcam_camera,iodata,ts-wlcam_camera,1,camera|recorder|other|unsure,camera,High,I-O Data network camera.
+cameras,iodata:ts-wrlc_camera,iodata,ts-wrlc_camera,1,camera|recorder|other|unsure,camera,High,I-O Data network camera.
+cameras,lg:lnd7210,lg,lnd7210,1,camera|recorder|other|unsure,camera,Low,LG LND series network dome camera; LG's surveillance line is less familiar than the majors.
+cameras,meritlilin:z2r6452ax,meritlilin,z2r6452ax,3,camera|recorder|other|unsure,camera,Low,Merit LILIN Z series IP camera; part code alone carries little signal.
+cameras,nadatel:at-0413s,nadatel,at-0413s,1,camera|recorder|other|unsure,recorder,Low,Nadatel AT series with a 04 channel count reads as a DVR; niche Korean brand.
+cameras,nadatel:at-0815l,nadatel,at-0815l,1,camera|recorder|other|unsure,recorder,Low,"Nadatel AT series, 08 channels — recorder convention."
+cameras,nadatel:at-1623m,nadatel,at-1623m,1,camera|recorder|other|unsure,recorder,Low,"Nadatel AT series, 16 channels — recorder convention."
+cameras,nadatel:at-1643s,nadatel,at-1643s,1,camera|recorder|other|unsure,recorder,Low,"Nadatel AT series, 16 channels — recorder convention."
+cameras,netgear:vmb30x0,netgear,vmb30x0,2,camera|recorder|other|unsure,other,Low,"Netgear Arlo VMB = base station / hub for the cameras, not itself a camera."
+cameras,netgear:vmc3040,netgear,vmc3040,2,camera|recorder|other|unsure,camera,High,Netgear Arlo VMC = the camera unit itself (Arlo Q).
+cameras,opticam:i5_application,opticam,i5_application,20,camera|recorder|other|unsure,camera,High,Opticam i5 IP camera; the _application suffix is a CPE artifact.
+cameras,qnap:tl-d800c,qnap,tl-d800c,1,camera|recorder|other|unsure,other,High,"QNAP TL-D800C is an 8-bay JBOD storage enclosure, neither camera nor recorder."
+cameras,sricam:sh016,sricam,sh016,1,camera|recorder|other|unsure,camera,Low,"Sricam sells consumer IP cameras only, but the part code carries no signal."
+cameras,sricam:sp017,sricam,sp017,1,camera|recorder|other|unsure,camera,Low,Sricam SP series consumer IP camera; inferred from the brand's catalogue.
+cameras,sunellsecurity:sn-adr3816e1,sunellsecurity,sn-adr3816e1,2,camera|recorder|other|unsure,recorder,Low,"Sunell ADR reads as an analog digital recorder, 16-channel."
+cameras,swann:dvr16b,swann,dvr16b,1,camera|recorder|other|unsure,recorder,High,"Product name says DVR, 16-channel."
+cameras,tp-link:tapo_c200,tp-link,tapo_c200,10,camera|recorder|other|unsure,camera,High,TP-Link Tapo C200 pan/tilt home camera.
+cameras,tp-link:tapo_c260,tp-link,tapo_c260,3,camera|recorder|other|unsure,camera,High,TP-Link Tapo C260 home camera.
+cameras,tp-link:tapo_c520ws,tp-link,tapo_c520ws,10,camera|recorder|other|unsure,camera,High,TP-Link Tapo C520WS outdoor pan/tilt camera.
+cameras,tvt:td-2716td-hc,tvt,td-2716td-hc,1,camera|recorder|other|unsure,recorder,Low,TVT TD-27xx with a 16 channel count reads as a DVR; brand less familiar.
+cameras,xiongmaitech:ahb7808r-mh-v3,xiongmaitech,ahb7808r-mh-v3,1,camera|recorder|other|unsure,recorder,Low,Xiongmai AHB78 series is an 8-channel AHD DVR board.
+cameras,xiongmaitech:ipg-50h10pe-wk-2f,xiongmaitech,ipg-50h10pe-wk-2f,1,camera|recorder|other|unsure,camera,Low,Xiongmai IPG prefix denotes its IP camera modules.
+cameras,xiongmaitech:ipg-53h13pe-s,xiongmaitech,ipg-53h13pe-s,1,camera|recorder|other|unsure,camera,Low,Xiongmai IPG = IP camera module.
+cameras,xiongmaitech:ipg-53h13pls-s,xiongmaitech,ipg-53h13pls-s,1,camera|recorder|other|unsure,camera,Low,Xiongmai IPG = IP camera module.
+cameras,xiongmaitech:ipg-53hv13pa-a,xiongmaitech,ipg-53hv13pa-a,1,camera|recorder|other|unsure,camera,Low,Xiongmai IPG = IP camera module.
+cameras,xiongmaitech:ipg-53hv13pa-s,xiongmaitech,ipg-53hv13pa-s,1,camera|recorder|other|unsure,camera,Low,Xiongmai IPG = IP camera module.
+cameras,xiongmaitech:ipm-50hv20pe-wr,xiongmaitech,ipm-50hv20pe-wr,1,camera|recorder|other|unsure,camera,Low,Xiongmai IPM = IP camera module.
+cameras,xiongmaitech:ipm-53h13pe-wr,xiongmaitech,ipm-53h13pe-wr,1,camera|recorder|other|unsure,camera,Low,Xiongmai IPM = IP camera module.
+cameras,xiongmaitech:nbd8004t-q,xiongmaitech,nbd8004t-q,1,camera|recorder|other|unsure,recorder,Low,Xiongmai NBD series are network video recorder boards.
+cameras,xiongmaitech:nbd8016ra-ulk,xiongmaitech,nbd8016ra-ulk,1,camera|recorder|other|unsure,recorder,Low,"Xiongmai NBD series NVR board, 16-channel."
+cameras,xiongmaitech:nbd80s10s-kl,xiongmaitech,nbd80s10s-kl,1,camera|recorder|other|unsure,recorder,Low,Xiongmai NBD series NVR board.
+cameras,xiongmaitech:nbd8916f4-q,xiongmaitech,nbd8916f4-q,1,camera|recorder|other|unsure,recorder,Low,Xiongmai NBD series NVR board.

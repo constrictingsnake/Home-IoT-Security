@@ -5,13 +5,13 @@ alarms,abus:secvest_wireless_remote_control_fube50015,abus,secvest_wireless_remo
 alarms,abus:secvest_wireless_remote_control_fube50015,abus,secvest_wireless_remote_control_fube50015,3,cloudDependence,CloudOptional|CloudRequired|LocalOnly|unsure,LocalOnly,High,"Wireless remote control for an alarm system; operates via direct RF communication with the receiver, not via a cloud service."
 alarms,abus:secvest_wireless_remote_control_fube50015,abus,secvest_wireless_remote_control_fube50015,3,computeTier,AndroidDerived|EmbeddedLinux|McuClass|Rtos|unsure,McuClass,High,Wireless remote control for an alarm system; typically uses a low-power microcontroller for simple signal transmission.
 alarms,abus:secvest_wireless_remote_control_fube50015,abus,secvest_wireless_remote_control_fube50015,3,consumerAvailability,InstallerChannel|MixedChannel|RetailConsumer|unsure,RetailConsumer,High,Wireless remote control for an alarm system is a typical retail consumer accessory.
-alarms,abus:secvest_wireless_remote_control_fube50015,abus,secvest_wireless_remote_control_fube50015,3,dataSensitivity,AvStreamData|BiometricData|NoData|TelemetryData|unsure,,,
-alarms,abus:secvest_wireless_remote_control_fube50015,abus,secvest_wireless_remote_control_fube50015,3,firmwareUpdateModel,ManualFlash|NoUpdatePath|OtaAutomatic|OtaUserInitiated|unsure,,,
-alarms,abus:secvest_wireless_remote_control_fube50015,abus,secvest_wireless_remote_control_fube50015,3,formFactor,Fixed|Portable|Worn|unsure,,,
-alarms,abus:secvest_wireless_remote_control_fube50015,abus,secvest_wireless_remote_control_fube50015,3,hasWebAdminUI,true|false|unsure,,,
-alarms,abus:secvest_wireless_remote_control_fube50015,abus,secvest_wireless_remote_control_fube50015,3,placement,Either|Indoor|Outdoor|unsure,,,
-alarms,abus:secvest_wireless_remote_control_fube50015,abus,secvest_wireless_remote_control_fube50015,3,supportLifetime,DeclaredLifetime|UndeclaredLifetime|unsure,,,
-alarms,chuango:g3_gsm\/sms_alarm_system,chuango,g3_gsm\/sms_alarm_system,1,actuatesPhysical,true|false|unsure,,,
+alarms,abus:secvest_wireless_remote_control_fube50015,abus,secvest_wireless_remote_control_fube50015,3,dataSensitivity,AvStreamData|BiometricData|NoData|TelemetryData|unsure,NoData,High,Wireless remote control; transmits only simple trigger signals.
+alarms,abus:secvest_wireless_remote_control_fube50015,abus,secvest_wireless_remote_control_fube50015,3,firmwareUpdateModel,ManualFlash|NoUpdatePath|OtaAutomatic|OtaUserInitiated|unsure,NoUpdatePath,High,Simple wireless remote control; typically lacks any firmware update mechanism.
+alarms,abus:secvest_wireless_remote_control_fube50015,abus,secvest_wireless_remote_control_fube50015,3,formFactor,Fixed|Portable|Worn|unsure,Portable,High,Wireless remote control is designed to be carried or moved around.
+alarms,abus:secvest_wireless_remote_control_fube50015,abus,secvest_wireless_remote_control_fube50015,3,hasWebAdminUI,true|false|unsure,false,High,Wireless remote control; typically lacks a network interface and web UI.
+alarms,abus:secvest_wireless_remote_control_fube50015,abus,secvest_wireless_remote_control_fube50015,3,placement,Either|Indoor|Outdoor|unsure,Indoor,High,"Remote control is a handheld device used indoors or outdoors, but typically associated with indoor use for the same environment as the alarm system."
+alarms,abus:secvest_wireless_remote_control_fube50015,abus,secvest_wireless_remote_control_fube50015,3,supportLifetime,DeclaredLifetime|UndeclaredLifetime|unsure,UndeclaredLifetime,High,Consumer alarm remote; typical of the category to have no published support window.
+alarms,chuango:g3_gsm\/sms_alarm_system,chuango,g3_gsm\/sms_alarm_system,1,actuatesPhysical,true|false|unsure,true,High,Alarm systems typically actuate physical sirens sirens or strobe lights.
 alarms,chuango:g3_gsm\/sms_alarm_system,chuango,g3_gsm\/sms_alarm_system,1,actuationConsequence,ComfortActuation|NoActuation|PropertyActuation|SafetyActuation|unsure,,,
 alarms,chuango:g3_gsm\/sms_alarm_system,chuango,g3_gsm\/sms_alarm_system,1,capturesAV,true|false|unsure,,,
 alarms,chuango:g3_gsm\/sms_alarm_system,chuango,g3_gsm\/sms_alarm_system,1,cloudDependence,CloudOptional|CloudRequired|LocalOnly|unsure,,,
@@ -29,73 +29,73 @@ alarms,chuango:g5w,chuango,g5w,1,capturesAV,true|false|unsure,unsure,Low,Model n
 alarms,chuango:g5w,chuango,g5w,1,cloudDependence,CloudOptional|CloudRequired|LocalOnly|unsure,,,
 alarms,chuango:g5w,chuango,g5w,1,computeTier,AndroidDerived|EmbeddedLinux|McuClass|Rtos|unsure,Rtos,Low,"Similar to the G3, the G5W is a low-power alarm system likely running an RTOS."
 alarms,chuango:g5w,chuango,g5w,1,consumerAvailability,InstallerChannel|MixedChannel|RetailConsumer|unsure,RetailConsumer,High,Chuango G5W is a consumer-grade wireless alarm system sold via retail channels.
-alarms,chuango:g5w,chuango,g5w,1,dataSensitivity,AvStreamData|BiometricData|NoData|TelemetryData|unsure,,,
-alarms,chuango:g5w,chuango,g5w,1,firmwareUpdateModel,ManualFlash|NoUpdatePath|OtaAutomatic|OtaUserInitiated|unsure,,,
-alarms,chuango:g5w,chuango,g5w,1,formFactor,Fixed|Portable|Worn|unsure,,,
-alarms,chuango:g5w,chuango,g5w,1,hasWebAdminUI,true|false|unsure,,,
-alarms,chuango:g5w,chuango,g5w,1,placement,Either|Indoor|Outdoor|unsure,,,
-alarms,chuango:g5w,chuango,g5w,1,supportLifetime,DeclaredLifetime|UndeclaredLifetime|unsure,,,
+alarms,chuango:g5w,chuango,g5w,1,dataSensitivity,AvStreamData|BiometricData|NoData|TelemetryData|unsure,TelemetryData,High,Alarm system; tracks state changes and sensor triggers.
+alarms,chuango:g5w,chuango,g5w,1,firmwareUpdateModel,ManualFlash|NoUpdatePath|OtaAutomatic|OtaUserInitiated|unsure,OtaUserInitiated,Low,"Similar to G3, likely supports network-based updates triggered by user or admin."
+alarms,chuango:g5w,chuango,g5w,1,formFactor,Fixed|Portable|Worn|unsure,Fixed,High,Chuango G5W is a fixed alarm system hub.
+alarms,chuango:g5w,chuango,g5w,1,hasWebAdminUI,true|false|unsure,false,High,"Similar to G3, typically GSM/SMS based alarm system without a local web UI."
+alarms,chuango:g5w,chuango,g5w,1,placement,Either|Indoor|Outdoor|unsure,Indoor,High,Chuango G5W is an indoor alarm system.
+alarms,chuango:g5w,chuango,g5w,1,supportLifetime,DeclaredLifetime|UndeclaredLifetime|unsure,UndeclaredLifetime,High,GSM alarm system; no known public declaration of support lifetime.
 alarms,mydigoo:dg-hamb_smart_home_security_system,mydigoo,dg-hamb_smart_home_security_system,1,actuatesPhysical,true|false|unsure,true,High,Security systems typically actuate sirens.
 alarms,mydigoo:dg-hamb_smart_home_security_system,mydigoo,dg-hamb_smart_home_security_system,1,actuationConsequence,ComfortActuation|NoActuation|PropertyActuation|SafetyActuation|unsure,,,
 alarms,mydigoo:dg-hamb_smart_home_security_system,mydigoo,dg-hamb_smart_home_security_system,1,capturesAV,true|false|unsure,true,High,Smart home security systems typically include cameras or microphones for monitoring.
 alarms,mydigoo:dg-hamb_smart_home_security_system,mydigoo,dg-hamb_smart_home_security_system,1,cloudDependence,CloudOptional|CloudRequired|LocalOnly|unsure,,,
 alarms,mydigoo:dg-hamb_smart_home_security_system,mydigoo,dg-hamb_smart_home_security_system,1,computeTier,AndroidDerived|EmbeddedLinux|McuClass|Rtos|unsure,EmbeddedLinux,Low,Smart home security systems with integrated hubs often run Embedded Linux to manage multiple sensors and complex networking.
 alarms,mydigoo:dg-hamb_smart_home_security_system,mydigoo,dg-hamb_smart_home_security_system,1,consumerAvailability,InstallerChannel|MixedChannel|RetailConsumer|unsure,RetailConsumer,High,Smart home security systems from MyDigoo are marketed as DIY retail products.
-alarms,mydigoo:dg-hamb_smart_home_security_system,mydigoo,dg-hamb_smart_home_security_system,1,dataSensitivity,AvStreamData|BiometricData|NoData|TelemetryData|unsure,,,
-alarms,mydigoo:dg-hamb_smart_home_security_system,mydigoo,dg-hamb_smart_home_security_system,1,firmwareUpdateModel,ManualFlash|NoUpdatePath|OtaAutomatic|OtaUserInitiated|unsure,,,
-alarms,mydigoo:dg-hamb_smart_home_security_system,mydigoo,dg-hamb_smart_home_security_system,1,formFactor,Fixed|Portable|Worn|unsure,,,
-alarms,mydigoo:dg-hamb_smart_home_security_system,mydigoo,dg-hamb_smart_home_security_system,1,hasWebAdminUI,true|false|unsure,,,
-alarms,mydigoo:dg-hamb_smart_home_security_system,mydigoo,dg-hamb_smart_home_security_system,1,placement,Either|Indoor|Outdoor|unsure,,,
-alarms,mydigoo:dg-hamb_smart_home_security_system,mydigoo,dg-hamb_smart_home_security_system,1,supportLifetime,DeclaredLifetime|UndeclaredLifetime|unsure,,,
+alarms,mydigoo:dg-hamb_smart_home_security_system,mydigoo,dg-hamb_smart_home_security_system,1,dataSensitivity,AvStreamData|BiometricData|NoData|TelemetryData|unsure,TelemetryData,High,Security system; tracks state changes and sensor triggers.
+alarms,mydigoo:dg-hamb_smart_home_security_system,mydigoo,dg-hamb_smart_home_security_system,1,firmwareUpdateModel,ManualFlash|NoUpdatePath|OtaAutomatic|OtaUserInitiated|unsure,OtaAutomatic,High,Modern smart home security system; typically uses automatic OTA updates via cloud.
+alarms,mydigoo:dg-hamb_smart_home_security_system,mydigoo,dg-hamb_smart_home_security_system,1,formFactor,Fixed|Portable|Worn|unsure,Fixed,High,Home security system is typically fixed in place.
+alarms,mydigoo:dg-hamb_smart_home_security_system,mydigoo,dg-hamb_smart_home_security_system,1,hasWebAdminUI,true|false|unsure,false,High,"Consumer smart home security system; typically managed via cloud app, not local web UI."
+alarms,mydigoo:dg-hamb_smart_home_security_system,mydigoo,dg-hamb_smart_home_security_system,1,placement,Either|Indoor|Outdoor|unsure,Indoor,High,Smart home security systems are typically installed indoors.
+alarms,mydigoo:dg-hamb_smart_home_security_system,mydigoo,dg-hamb_smart_home_security_system,1,supportLifetime,DeclaredLifetime|UndeclaredLifetime|unsure,UndeclaredLifetime,High,Generic smart home security system; typical of consumer IoT to have no declared support window.
 alarms,vivint:sky_control_panel,vivint,sky_control_panel,1,actuatesPhysical,true|false|unsure,true,High,Control panels for security systems actuate sirens and other integrated security components.
 alarms,vivint:sky_control_panel,vivint,sky_control_panel,1,actuationConsequence,ComfortActuation|NoActuation|PropertyActuation|SafetyActuation|unsure,,,
 alarms,vivint:sky_control_panel,vivint,sky_control_panel,1,capturesAV,true|false|unsure,false,High,Control panel for an alarm system; typically does not capture AV.
 alarms,vivint:sky_control_panel,vivint,sky_control_panel,1,cloudDependence,CloudOptional|CloudRequired|LocalOnly|unsure,,,
 alarms,vivint:sky_control_panel,vivint,sky_control_panel,1,computeTier,AndroidDerived|EmbeddedLinux|McuClass|Rtos|unsure,,,
 alarms,vivint:sky_control_panel,vivint,sky_control_panel,1,consumerAvailability,InstallerChannel|MixedChannel|RetailConsumer|unsure,InstallerChannel,High,Vivint is a professional installation service provider; their hardware is not sold separately for DIY installation.
-alarms,vivint:sky_control_panel,vivint,sky_control_panel,1,dataSensitivity,AvStreamData|BiometricData|NoData|TelemetryData|unsure,,,
-alarms,vivint:sky_control_panel,vivint,sky_control_panel,1,firmwareUpdateModel,ManualFlash|NoUpdatePath|OtaAutomatic|OtaUserInitiated|unsure,,,
-alarms,vivint:sky_control_panel,vivint,sky_control_panel,1,formFactor,Fixed|Portable|Worn|unsure,,,
-alarms,vivint:sky_control_panel,vivint,sky_control_panel,1,hasWebAdminUI,true|false|unsure,,,
-alarms,vivint:sky_control_panel,vivint,sky_control_panel,1,placement,Either|Indoor|Outdoor|unsure,,,
-alarms,vivint:sky_control_panel,vivint,sky_control_panel,1,supportLifetime,DeclaredLifetime|UndeclaredLifetime|unsure,,,
+alarms,vivint:sky_control_panel,vivint,sky_control_panel,1,dataSensitivity,AvStreamData|BiometricData|NoData|TelemetryData|unsure,TelemetryData,High,Control panel for security system; manages state and usage traces.
+alarms,vivint:sky_control_panel,vivint,sky_control_panel,1,firmwareUpdateModel,ManualFlash|NoUpdatePath|OtaAutomatic|OtaUserInitiated|unsure,OtaAutomatic,High,Managed service provider panel; typically updated automatically by the central station.
+alarms,vivint:sky_control_panel,vivint,sky_control_panel,1,formFactor,Fixed|Portable|Worn|unsure,Fixed,High,Control panel is typically mounted to a wall.
+alarms,vivint:sky_control_panel,vivint,sky_control_panel,1,hasWebAdminUI,true|false|unsure,false,Low,"Control panel for a security system; typically managed via cloud app or local screen, not a local web UI."
+alarms,vivint:sky_control_panel,vivint,sky_control_panel,1,placement,Either|Indoor|Outdoor|unsure,Indoor,High,Control panels for security systems are typically installed indoors.
+alarms,vivint:sky_control_panel,vivint,sky_control_panel,1,supportLifetime,DeclaredLifetime|UndeclaredLifetime|unsure,UndeclaredLifetime,High,Professional installation security panel; no known public declaration of support lifetime.
 cameras,c-first:cfr-4eha,c-first,cfr-4eha,2,actuatesPhysical,true|false|unsure,false,Low,"Likely a camera, which is primarily a sensing device."
 cameras,c-first:cfr-4eha,c-first,cfr-4eha,2,actuationConsequence,ComfortActuation|NoActuation|PropertyActuation|SafetyActuation|unsure,,,
 cameras,c-first:cfr-4eha,c-first,cfr-4eha,2,capturesAV,true|false|unsure,true,High,"Categorized as a camera, which by definition captures AV."
 cameras,c-first:cfr-4eha,c-first,cfr-4eha,2,cloudDependence,CloudOptional|CloudRequired|LocalOnly|unsure,,,
 cameras,c-first:cfr-4eha,c-first,cfr-4eha,2,computeTier,AndroidDerived|EmbeddedLinux|McuClass|Rtos|unsure,,,
 cameras,c-first:cfr-4eha,c-first,cfr-4eha,2,consumerAvailability,InstallerChannel|MixedChannel|RetailConsumer|unsure,RetailConsumer,High,C-First cameras are typically consumer-grade retail products.
-cameras,c-first:cfr-4eha,c-first,cfr-4eha,2,dataSensitivity,AvStreamData|BiometricData|NoData|TelemetryData|unsure,,,
-cameras,c-first:cfr-4eha,c-first,cfr-4eha,2,firmwareUpdateModel,ManualFlash|NoUpdatePath|OtaAutomatic|OtaUserInitiated|unsure,,,
-cameras,c-first:cfr-4eha,c-first,cfr-4eha,2,formFactor,Fixed|Portable|Worn|unsure,,,
-cameras,c-first:cfr-4eha,c-first,cfr-4eha,2,hasWebAdminUI,true|false|unsure,,,
-cameras,c-first:cfr-4eha,c-first,cfr-4eha,2,placement,Either|Indoor|Outdoor|unsure,,,
-cameras,c-first:cfr-4eha,c-first,cfr-4eha,2,supportLifetime,DeclaredLifetime|UndeclaredLifetime|unsure,,,
+cameras,c-first:cfr-4eha,c-first,cfr-4eha,2,dataSensitivity,AvStreamData|BiometricData|NoData|TelemetryData|unsure,AvStreamData,High,Camera; captures and relays video streams.
+cameras,c-first:cfr-4eha,c-first,cfr-4eha,2,firmwareUpdateModel,ManualFlash|NoUpdatePath|OtaAutomatic|OtaUserInitiated|unsure,OtaAutomatic,High,Smart smoke detector/alarm; typically updated automatically via a hub or gateway.
+cameras,c-first:cfr-4eha,c-first,cfr-4eha,2,formFactor,Fixed|Portable|Worn|unsure,Fixed,High,C-First CFR-4EHA is a fixed smoke/heat detector.
+cameras,c-first:cfr-4eha,c-first,cfr-4eha,2,hasWebAdminUI,true|false|unsure,false,Low,"Smoke/heat detector; typically managed via app, not a local web UI."
+cameras,c-first:cfr-4eha,c-first,cfr-4eha,2,placement,Either|Indoor|Outdoor|unsure,Indoor,High,"C-First CFR-4EHA is a smoke detector/alarm, typically installed indoors."
+cameras,c-first:cfr-4eha,c-first,cfr-4eha,2,supportLifetime,DeclaredLifetime|UndeclaredLifetime|unsure,UndeclaredLifetime,High,Consumer camera; typical of the consumer IoT category to have no declared support window.
 cameras,dahuasecurity:dvr2116he,dahuasecurity,dvr2116he,5,actuatesPhysical,true|false|unsure,false,High,A DVR is a recording device for video feeds; it does not actuate physical changes.
 cameras,dahuasecurity:dvr2116he,dahuasecurity,dvr2116he,5,actuationConsequence,ComfortActuation|NoActuation|PropertyActuation|SafetyActuation|unsure,,,
 cameras,dahuasecurity:dvr2116he,dahuasecurity,dvr2116he,5,capturesAV,true|false|unsure,true,High,DVR (Digital Video Recorder) is designed to capture and store video from cameras.
 cameras,dahuasecurity:dvr2116he,dahuasecurity,dvr2116he,5,cloudDependence,CloudOptional|CloudRequired|LocalOnly|unsure,,,
 cameras,dahuasecurity:dvr2116he,dahuasecurity,dvr2116he,5,computeTier,AndroidDerived|EmbeddedLinux|McuClass|Rtos|unsure,,,
 cameras,dahuasecurity:dvr2116he,dahuasecurity,dvr2116he,5,consumerAvailability,InstallerChannel|MixedChannel|RetailConsumer|unsure,MixedChannel,High,Dahua DVRs are sold both to professional installers (B2B) and via retail channels (Amazon/eBay).
-cameras,dahuasecurity:dvr2116he,dahuasecurity,dvr2116he,5,dataSensitivity,AvStreamData|BiometricData|NoData|TelemetryData|unsure,,,
-cameras,dahuasecurity:dvr2116he,dahuasecurity,dvr2116he,5,firmwareUpdateModel,ManualFlash|NoUpdatePath|OtaAutomatic|OtaUserInitiated|unsure,,,
-cameras,dahuasecurity:dvr2116he,dahuasecurity,dvr2116he,5,formFactor,Fixed|Portable|Worn|unsure,,,
-cameras,dahuasecurity:dvr2116he,dahuasecurity,dvr2116he,5,hasWebAdminUI,true|false|unsure,,,
-cameras,dahuasecurity:dvr2116he,dahuasecurity,dvr2116he,5,placement,Either|Indoor|Outdoor|unsure,,,
-cameras,dahuasecurity:dvr2116he,dahuasecurity,dvr2116he,5,supportLifetime,DeclaredLifetime|UndeclaredLifetime|unsure,,,
-cameras,xiongmaitech:ipg-53h10pe-s,xiongmaitech,ipg-53h10pe-s,1,actuatesPhysical,true|false|unsure,,,
+cameras,dahuasecurity:dvr2116he,dahuasecurity,dvr2116he,5,dataSensitivity,AvStreamData|BiometricData|NoData|TelemetryData|unsure,AvStreamData,High,DVR (Digital Video Recorder); stores and relays video streams.
+cameras,dahuasecurity:dvr2116he,dahuasecurity,dvr2116he,5,firmwareUpdateModel,ManualFlash|NoUpdatePath|OtaAutomatic|OtaUserInitiated|unsure,ManualFlash,High,Traditional DVR; typically updated via local upload page in the web admin UI.
+cameras,dahuasecurity:dvr2116he,dahuasecurity,dvr2116he,5,formFactor,Fixed|Portable|Worn|unsure,Fixed,High,DVR is a fixed piece of hardware installed in a rack or shelf.
+cameras,dahuasecurity:dvr2116he,dahuasecurity,dvr2116he,5,hasWebAdminUI,true|false|unsure,true,High,DVR (Digital Video Recorder) typically has a local web interface for configuration and viewing.
+cameras,dahuasecurity:dvr2116he,dahuasecurity,dvr2116he,5,placement,Either|Indoor|Outdoor|unsure,Indoor,High,DVRs are typically installed indoors in a set-back same environment.
+cameras,dahuasecurity:dvr2116he,dahuasecurity,dvr2116he,5,supportLifetime,DeclaredLifetime|UndeclaredLifetime|unsure,UndeclaredLifetime,High,DVR system; typical of consumer/SMB camera systems to have no declared support window.
+cameras,xiongmaitech:ipg-53h10pe-s,xiongmaitech,ipg-53h10pe-s,1,actuatesPhysical,true|false|unsure,false,High,IP cameras are primarily sensing devices for video capture.
 cameras,xiongmaitech:ipg-53h10pe-s,xiongmaitech,ipg-53h10pe-s,1,actuationConsequence,ComfortActuation|NoActuation|PropertyActuation|SafetyActuation|unsure,,,
 cameras,xiongmaitech:ipg-53h10pe-s,xiongmaitech,ipg-53h10pe-s,1,capturesAV,true|false|unsure,true,High,IP camera (indicated by 'ipg' prefix) captures video.
 cameras,xiongmaitech:ipg-53h10pe-s,xiongmaitech,ipg-53h10pe-s,1,cloudDependence,CloudOptional|CloudRequired|LocalOnly|unsure,,,
 cameras,xiongmaitech:ipg-53h10pe-s,xiongmaitech,ipg-53h10pe-s,1,computeTier,AndroidDerived|EmbeddedLinux|McuClass|Rtos|unsure,,,
 cameras,xiongmaitech:ipg-53h10pe-s,xiongmaitech,ipg-53h10pe-s,1,consumerAvailability,InstallerChannel|MixedChannel|RetailConsumer|unsure,MixedChannel,High,Xiongmai cameras are typical of the same OEM's professional and consumer retail markets.
-cameras,xiongmaitech:ipg-53h10pe-s,xiongmaitech,ipg-53h10pe-s,1,dataSensitivity,AvStreamData|BiometricData|NoData|TelemetryData|unsure,,,
+cameras,xiongmaitech:ipg-53h10pe-s,xiongmaitech,ipg-53h10pe-s,1,dataSensitivity,AvStreamData|BiometricData|NoData|TelemetryData|unsure,AvStreamData,High,IP camera; captures and relays video streams.
 cameras,xiongmaitech:ipg-53h10pe-s,xiongmaitech,ipg-53h10pe-s,1,firmwareUpdateModel,ManualFlash|NoUpdatePath|OtaAutomatic|OtaUserInitiated|unsure,,,
 cameras,xiongmaitech:ipg-53h10pe-s,xiongmaitech,ipg-53h10pe-s,1,formFactor,Fixed|Portable|Worn|unsure,,,
-cameras,xiongmaitech:ipg-53h10pe-s,xiongmaitech,ipg-53h10pe-s,1,hasWebAdminUI,true|false|unsure,,,
+cameras,xiongmaitech:ipg-53h10pe-s,xiongmaitech,ipg-53h10pe-s,1,hasWebAdminUI,true|false|unsure,true,High,IP camera typically has a local web interface for configuration.
 cameras,xiongmaitech:ipg-53h10pe-s,xiongmaitech,ipg-53h10pe-s,1,placement,Either|Indoor|Outdoor|unsure,,,
-cameras,xiongmaitech:ipg-53h10pe-s,xiongmaitech,ipg-53h10pe-s,1,supportLifetime,DeclaredLifetime|UndeclaredLifetime|unsure,,,
-doorbell,reolink:smart_2k\+_plug-in_wi-fi_video_doorbell_with_chime,reolink,smart_2k\+_plug-in_wi-fi_video_doorbell_with_chime,3,actuatesPhysical,true|false|unsure,,,
+cameras,xiongmaitech:ipg-53h10pe-s,xiongmaitech,ipg-53h10pe-s,1,supportLifetime,DeclaredLifetime|UndeclaredLifetime|unsure,UndeclaredLifetime,High,IP camera; typical of consumer/SMB camera systems to have no declared support window.
+doorbell,reolink:smart_2k\+_plug-in_wi-fi_video_doorbell_with_chime,reolink,smart_2k\+_plug-in_wi-fi_video_doorbell_with_chime,3,actuatesPhysical,true|false|unsure,true,High,The chime is a physical actuator (speaker/buzzer) that sounds an alert.
 doorbell,reolink:smart_2k\+_plug-in_wi-fi_video_doorbell_with_chime,reolink,smart_2k\+_plug-in_wi-fi_video_doorbell_with_chime,3,actuationConsequence,ComfortActuation|NoActuation|PropertyActuation|SafetyActuation|unsure,,,
 doorbell,reolink:smart_2k\+_plug-in_wi-fi_video_doorbell_with_chime,reolink,smart_2k\+_plug-in_wi-fi_video_doorbell_with_chime,3,capturesAV,true|false|unsure,,,
 doorbell,reolink:smart_2k\+_plug-in_wi-fi_video_doorbell_with_chime,reolink,smart_2k\+_plug-in_wi-fi_video_doorbell_with_chime,3,cloudDependence,CloudOptional|CloudRequired|LocalOnly|unsure,,,
@@ -113,31 +113,31 @@ doorlock,assaabloy:yale_keyless_smart_lock,assaabloy,yale_keyless_smart_lock,1,c
 doorlock,assaabloy:yale_keyless_smart_lock,assaabloy,yale_keyless_smart_lock,1,cloudDependence,CloudOptional|CloudRequired|LocalOnly|unsure,,,
 doorlock,assaabloy:yale_keyless_smart_lock,assaabloy,yale_keyless_smart_lock,1,computeTier,AndroidDerived|EmbeddedLinux|McuClass|Rtos|unsure,,,
 doorlock,assaabloy:yale_keyless_smart_lock,assaabloy,yale_keyless_smart_lock,1,consumerAvailability,InstallerChannel|MixedChannel|RetailConsumer|unsure,RetailConsumer,High,Yale smart locks are widely available for retail purchase and self-installation.
-doorlock,assaabloy:yale_keyless_smart_lock,assaabloy,yale_keyless_smart_lock,1,dataSensitivity,AvStreamData|BiometricData|NoData|TelemetryData|unsure,,,
+doorlock,assaabloy:yale_keyless_smart_lock,assaabloy,yale_keyless_smart_lock,1,dataSensitivity,AvStreamData|BiometricData|NoData|TelemetryData|unsure,TelemetryData,High,Smart lock; tracks entry/exit events (usage traces).
 doorlock,assaabloy:yale_keyless_smart_lock,assaabloy,yale_keyless_smart_lock,1,firmwareUpdateModel,ManualFlash|NoUpdatePath|OtaAutomatic|OtaUserInitiated|unsure,,,
 doorlock,assaabloy:yale_keyless_smart_lock,assaabloy,yale_keyless_smart_lock,1,formFactor,Fixed|Portable|Worn|unsure,,,
-doorlock,assaabloy:yale_keyless_smart_lock,assaabloy,yale_keyless_smart_lock,1,hasWebAdminUI,true|false|unsure,,,
-doorlock,assaabloy:yale_keyless_smart_lock,assaabloy,yale_keyless_smart_lock,1,placement,Either|Indoor|Outdoor|unsure,,,
-doorlock,assaabloy:yale_keyless_smart_lock,assaabloy,yale_keyless_smart_lock,1,supportLifetime,DeclaredLifetime|UndeclaredLifetime|unsure,,,
+doorlock,assaabloy:yale_keyless_smart_lock,assaabloy,yale_keyless_smart_lock,1,hasWebAdminUI,true|false|unsure,false,High,"Smart lock; typically managed via app or bridge, not local web UI."
+doorlock,assaabloy:yale_keyless_smart_lock,assaabloy,yale_keyless_smart_lock,1,placement,Either|Indoor|Outdoor|unsure,Outdoor,High,"Smart locks are installed on exterior doors, placing them outside the weather envelope."
+doorlock,assaabloy:yale_keyless_smart_lock,assaabloy,yale_keyless_smart_lock,1,supportLifetime,DeclaredLifetime|UndeclaredLifetime|unsure,UndeclaredLifetime,High,Consumer smart lock; typical of consumer IoT to have no declared support window.
 doorlock,august:connect_wi-fi_bridge,august,connect_wi-fi_bridge,1,actuatesPhysical,true|false|unsure,false,High,A bridge is a communication device; it does not actuate physical hardware.
 doorlock,august:connect_wi-fi_bridge,august,connect_wi-fi_bridge,1,actuationConsequence,ComfortActuation|NoActuation|PropertyActuation|SafetyActuation|unsure,,,
 doorlock,august:connect_wi-fi_bridge,august,connect_wi-fi_bridge,1,capturesAV,true|false|unsure,false,High,Wi-Fi bridge for a lock; no AV capture capabilities.
 doorlock,august:connect_wi-fi_bridge,august,connect_wi-fi_bridge,1,cloudDependence,CloudOptional|CloudRequired|LocalOnly|unsure,,,
 doorlock,august:connect_wi-fi_bridge,august,connect_wi-fi_bridge,1,computeTier,AndroidDerived|EmbeddedLinux|McuClass|Rtos|unsure,,,
 doorlock,august:connect_wi-fi_bridge,august,connect_wi-fi_bridge,1,consumerAvailability,InstallerChannel|MixedChannel|RetailConsumer|unsure,RetailConsumer,High,The August Connect bridge is a DIY retail consumer accessory.
-doorlock,august:connect_wi-fi_bridge,august,connect_wi-fi_bridge,1,dataSensitivity,AvStreamData|BiometricData|NoData|TelemetryData|unsure,,,
+doorlock,august:connect_wi-fi_bridge,august,connect_wi-fi_bridge,1,dataSensitivity,AvStreamData|BiometricData|NoData|TelemetryData|unsure,TelemetryData,Low,Wi-Fi bridge for locks; relays state changes and usage traces.
 doorlock,august:connect_wi-fi_bridge,august,connect_wi-fi_bridge,1,firmwareUpdateModel,ManualFlash|NoUpdatePath|OtaAutomatic|OtaUserInitiated|unsure,,,
 doorlock,august:connect_wi-fi_bridge,august,connect_wi-fi_bridge,1,formFactor,Fixed|Portable|Worn|unsure,,,
-doorlock,august:connect_wi-fi_bridge,august,connect_wi-fi_bridge,1,hasWebAdminUI,true|false|unsure,,,
-doorlock,august:connect_wi-fi_bridge,august,connect_wi-fi_bridge,1,placement,Either|Indoor|Outdoor|unsure,,,
-doorlock,august:connect_wi-fi_bridge,august,connect_wi-fi_bridge,1,supportLifetime,DeclaredLifetime|UndeclaredLifetime|unsure,,,
+doorlock,august:connect_wi-fi_bridge,august,connect_wi-fi_bridge,1,hasWebAdminUI,true|false|unsure,false,High,"Wi-Fi bridge for a lock; typically managed via cloud app, not local web UI."
+doorlock,august:connect_wi-fi_bridge,august,connect_wi-fi_bridge,1,placement,Either|Indoor|Outdoor|unsure,Indoor,High,The Connect Wi-Fi bridge is an indoor plug-in device.
+doorlock,august:connect_wi-fi_bridge,august,connect_wi-fi_bridge,1,supportLifetime,DeclaredLifetime|UndeclaredLifetime|unsure,UndeclaredLifetime,High,Consumer Wi-Fi bridge for locks; typical of consumer IoT to have no declared support window.
 doorlock,geniecompany:aladdin_connect_garage_door_opener,geniecompany,aladdin_connect_garage_door_opener,2,actuatesPhysical,true|false|unsure,true,High,Physically opens and closes the garage door.
 doorlock,geniecompany:aladdin_connect_garage_door_opener,geniecompany,aladdin_connect_garage_door_opener,2,actuationConsequence,ComfortActuation|NoActuation|PropertyActuation|SafetyActuation|unsure,,,
 doorlock,geniecompany:aladdin_connect_garage_door_opener,geniecompany,aladdin_connect_garage_door_opener,2,capturesAV,true|false|unsure,false,High,Garage door opener does not capture audio or video.
 doorlock,geniecompany:aladdin_connect_garage_door_opener,geniecompany,aladdin_connect_garage_door_opener,2,cloudDependence,CloudOptional|CloudRequired|LocalOnly|unsure,,,
 doorlock,geniecompany:aladdin_connect_garage_door_opener,geniecompany,aladdin_connect_garage_door_opener,2,computeTier,AndroidDerived|EmbeddedLinux|McuClass|Rtos|unsure,,,
 doorlock,geniecompany:aladdin_connect_garage_door_opener,geniecompany,aladdin_connect_garage_door_opener,2,consumerAvailability,InstallerChannel|MixedChannel|RetailConsumer|unsure,RetailConsumer,High,"Genie garage door openers are sold at retail stores (e.g., Home Depot) for DIY installation."
-doorlock,geniecompany:aladdin_connect_garage_door_opener,geniecompany,aladdin_connect_garage_door_opener,2,dataSensitivity,AvStreamData|BiometricData|NoData|TelemetryData|unsure,,,
+doorlock,geniecompany:aladdin_connect_garage_door_opener,geniecompany,aladdin_connect_garage_door_opener,2,dataSensitivity,AvStreamData|BiometricData|NoData|TelemetryData|unsure,TelemetryData,High,Garage door opener; tracks open/close state and usage traces.
 doorlock,geniecompany:aladdin_connect_garage_door_opener,geniecompany,aladdin_connect_garage_door_opener,2,firmwareUpdateModel,ManualFlash|NoUpdatePath|OtaAutomatic|OtaUserInitiated|unsure,,,
 doorlock,geniecompany:aladdin_connect_garage_door_opener,geniecompany,aladdin_connect_garage_door_opener,2,formFactor,Fixed|Portable|Worn|unsure,,,
 doorlock,geniecompany:aladdin_connect_garage_door_opener,geniecompany,aladdin_connect_garage_door_opener,2,hasWebAdminUI,true|false|unsure,,,
@@ -149,49 +149,49 @@ ev-charging,abb:terra_ac_wallbox_80a,abb,terra_ac_wallbox_80a,2,capturesAV,true|
 ev-charging,abb:terra_ac_wallbox_80a,abb,terra_ac_wallbox_80a,2,cloudDependence,CloudOptional|CloudRequired|LocalOnly|unsure,,,
 ev-charging,abb:terra_ac_wallbox_80a,abb,terra_ac_wallbox_80a,2,computeTier,AndroidDerived|EmbeddedLinux|McuClass|Rtos|unsure,,,
 ev-charging,abb:terra_ac_wallbox_80a,abb,terra_ac_wallbox_80a,2,consumerAvailability,InstallerChannel|MixedChannel|RetailConsumer|unsure,InstallerChannel,High,An 80A wallbox requires professional electrical installation and commissioning.
-ev-charging,abb:terra_ac_wallbox_80a,abb,terra_ac_wallbox_80a,2,dataSensitivity,AvStreamData|BiometricData|NoData|TelemetryData|unsure,,,
+ev-charging,abb:terra_ac_wallbox_80a,abb,terra_ac_wallbox_80a,2,dataSensitivity,AvStreamData|BiometricData|NoData|TelemetryData|unsure,TelemetryData,High,EV charger; tracks charging sessions and energy usage.
 ev-charging,abb:terra_ac_wallbox_80a,abb,terra_ac_wallbox_80a,2,firmwareUpdateModel,ManualFlash|NoUpdatePath|OtaAutomatic|OtaUserInitiated|unsure,,,
 ev-charging,abb:terra_ac_wallbox_80a,abb,terra_ac_wallbox_80a,2,formFactor,Fixed|Portable|Worn|unsure,,,
-ev-charging,abb:terra_ac_wallbox_80a,abb,terra_ac_wallbox_80a,2,hasWebAdminUI,true|false|unsure,,,
-ev-charging,abb:terra_ac_wallbox_80a,abb,terra_ac_wallbox_80a,2,placement,Either|Indoor|Outdoor|unsure,,,
-ev-charging,abb:terra_ac_wallbox_80a,abb,terra_ac_wallbox_80a,2,supportLifetime,DeclaredLifetime|UndeclaredLifetime|unsure,,,
-ev-charging,abb:terra_ac_wallbox_ul32a,abb,terra_ac_wallbox_ul32a,2,actuatesPhysical,true|false|unsure,,,
+ev-charging,abb:terra_ac_wallbox_80a,abb,terra_ac_wallbox_80a,2,hasWebAdminUI,true|false|unsure,true,High,Commercial/Industrial grade EV wallbox; typically has a local web interface for installation and commissioning.
+ev-charging,abb:terra_ac_wallbox_80a,abb,terra_ac_wallbox_80a,2,placement,Either|Indoor|Outdoor|unsure,Either,High,EV wallboxes can be installed either indoors (garage) or outdoors.
+ev-charging,abb:terra_ac_wallbox_80a,abb,terra_ac_wallbox_80a,2,supportLifetime,DeclaredLifetime|UndeclaredLifetime|unsure,UndeclaredLifetime,High,EV charging station; no known public declaration of support lifetime.
+ev-charging,abb:terra_ac_wallbox_ul32a,abb,terra_ac_wallbox_ul32a,2,actuatesPhysical,true|false|unsure,true,High,EV charging stations actuate physical relays to deliver power to the vehicle.
 ev-charging,abb:terra_ac_wallbox_ul32a,abb,terra_ac_wallbox_ul32a,2,actuationConsequence,ComfortActuation|NoActuation|PropertyActuation|SafetyActuation|unsure,,,
 ev-charging,abb:terra_ac_wallbox_ul32a,abb,terra_ac_wallbox_ul32a,2,capturesAV,true|false|unsure,false,High,EV charging station; no AV capture capabilities.
 ev-charging,abb:terra_ac_wallbox_ul32a,abb,terra_ac_wallbox_ul32a,2,cloudDependence,CloudOptional|CloudRequired|LocalOnly|unsure,,,
 ev-charging,abb:terra_ac_wallbox_ul32a,abb,terra_ac_wallbox_ul32a,2,computeTier,AndroidDerived|EmbeddedLinux|McuClass|Rtos|unsure,,,
 ev-charging,abb:terra_ac_wallbox_ul32a,abb,terra_ac_wallbox_ul32a,2,consumerAvailability,InstallerChannel|MixedChannel|RetailConsumer|unsure,InstallerChannel,High,High-power AC wallboxes are typically commissioned by trade installers.
-ev-charging,abb:terra_ac_wallbox_ul32a,abb,terra_ac_wallbox_ul32a,2,dataSensitivity,AvStreamData|BiometricData|NoData|TelemetryData|unsure,,,
+ev-charging,abb:terra_ac_wallbox_ul32a,abb,terra_ac_wallbox_ul32a,2,dataSensitivity,AvStreamData|BiometricData|NoData|TelemetryData|unsure,TelemetryData,High,reasoning: EV charger; tracks charging sessions and energy usage.
 ev-charging,abb:terra_ac_wallbox_ul32a,abb,terra_ac_wallbox_ul32a,2,firmwareUpdateModel,ManualFlash|NoUpdatePath|OtaAutomatic|OtaUserInitiated|unsure,,,
 ev-charging,abb:terra_ac_wallbox_ul32a,abb,terra_ac_wallbox_ul32a,2,formFactor,Fixed|Portable|Worn|unsure,,,
-ev-charging,abb:terra_ac_wallbox_ul32a,abb,terra_ac_wallbox_ul32a,2,hasWebAdminUI,true|false|unsure,,,
-ev-charging,abb:terra_ac_wallbox_ul32a,abb,terra_ac_wallbox_ul32a,2,placement,Either|Indoor|Outdoor|unsure,,,
-ev-charging,abb:terra_ac_wallbox_ul32a,abb,terra_ac_wallbox_ul32a,2,supportLifetime,DeclaredLifetime|UndeclaredLifetime|unsure,,,
-ev-charging,chargepoint:home_flex_hardwired,chargepoint,home_flex_hardwired,6,actuatesPhysical,true|false|unsure,,,
+ev-charging,abb:terra_ac_wallbox_ul32a,abb,terra_ac_wallbox_ul32a,2,hasWebAdminUI,true|false|unsure,true,High,High-power EV wallbox; typically has a    // a local web interface for installation and commissioning.
+ev-charging,abb:terra_ac_wallbox_ul32a,abb,terra_ac_wallbox_ul32a,2,placement,Either|Indoor|Outdoor|unsure,Either,High,EV wallboxes can be installed either indoors and outdoors.
+ev-charging,abb:terra_ac_wallbox_ul32a,abb,terra_ac_wallbox_ul32a,2,supportLifetime,DeclaredLifetime|UndeclaredLifetime|unsure,UndeclaredLifetime,High,L2 own charging station; no known publics declaration of support lifetime.
+ev-charging,chargepoint:home_flex_hardwired,chargepoint,home_flex_hardwired,6,actuatesPhysical,true|false|unsure,true,High,EV charging stations actuate physical relays to deliver power to the vehicle.
 ev-charging,chargepoint:home_flex_hardwired,chargepoint,home_flex_hardwired,6,actuationConsequence,ComfortActuation|NoActuation|PropertyActuation|SafetyActuation|unsure,,,
 ev-charging,chargepoint:home_flex_hardwired,chargepoint,home_flex_hardwired,6,capturesAV,true|false|unsure,false,High,EV charging station; no AV capture capabilities.
 ev-charging,chargepoint:home_flex_hardwired,chargepoint,home_flex_hardwired,6,cloudDependence,CloudOptional|CloudRequired|LocalOnly|unsure,,,
 ev-charging,chargepoint:home_flex_hardwired,chargepoint,home_flex_hardwired,6,computeTier,AndroidDerived|EmbeddedLinux|McuClass|Rtos|unsure,,,
 ev-charging,chargepoint:home_flex_hardwired,chargepoint,home_flex_hardwired,6,consumerAvailability,InstallerChannel|MixedChannel|RetailConsumer|unsure,InstallerChannel,High,Hardwired EV chargers require a professional electrician for installation.
-ev-charging,chargepoint:home_flex_hardwired,chargepoint,home_flex_hardwired,6,dataSensitivity,AvStreamData|BiometricData|NoData|TelemetryData|unsure,,,
+ev-charging,chargepoint:home_flex_hardwired,chargepoint,home_flex_hardwired,6,dataSensitivity,AvStreamData|BiometricData|NoData|TelemetryData|unsure,TelemetryData,High,EV charger; tracks charging sessions and energy usage.
 ev-charging,chargepoint:home_flex_hardwired,chargepoint,home_flex_hardwired,6,firmwareUpdateModel,ManualFlash|NoUpdatePath|OtaAutomatic|OtaUserInitiated|unsure,,,
 ev-charging,chargepoint:home_flex_hardwired,chargepoint,home_flex_hardwired,6,formFactor,Fixed|Portable|Worn|unsure,,,
-ev-charging,chargepoint:home_flex_hardwired,chargepoint,home_flex_hardwired,6,hasWebAdminUI,true|false|unsure,,,
-ev-charging,chargepoint:home_flex_hardwired,chargepoint,home_flex_hardwired,6,placement,Either|Indoor|Outdoor|unsure,,,
-ev-charging,chargepoint:home_flex_hardwired,chargepoint,home_flex_hardwired,6,supportLifetime,DeclaredLifetime|UndeclaredLifetime|unsure,,,
-ev-charging,chargepoint:home_flex_nema_14-50_plug,chargepoint,home_flex_nema_14-50_plug,6,actuatesPhysical,true|false|unsure,,,
+ev-charging,chargepoint:home_flex_hardwired,chargepoint,home_flex_hardwired,6,hasWebAdminUI,true|false|unsure,false,High,"Consumer home EV charger; typically managed via cloud app, not local web UI."
+ev-charging,chargepoint:home_flex_hardwired,chargepoint,home_flex_hardwired,6,placement,Either|Indoor|Outdoor|unsure,Either,High,Home Flex chargers are rated for indoor and outdoor installation.
+ev-charging,chargepoint:home_flex_hardwired,chargepoint,home_flex_hardwired,6,supportLifetime,DeclaredLifetime|UndeclaredLifetime|unsure,UndeclaredLifetime,High,Consumer EV charger; typical of consumer IoT to have no declared support window.
+ev-charging,chargepoint:home_flex_nema_14-50_plug,chargepoint,home_flex_nema_14-50_plug,6,actuatesPhysical,true|false|unsure,true,High,EV charging stations actuate physical relays to deliver power to the vehicle.
 ev-charging,chargepoint:home_flex_nema_14-50_plug,chargepoint,home_flex_nema_14-50_plug,6,actuationConsequence,ComfortActuation|NoActuation|PropertyActuation|SafetyActuation|unsure,,,
 ev-charging,chargepoint:home_flex_nema_14-50_plug,chargepoint,home_flex_nema_14-50_plug,6,capturesAV,true|false|unsure,false,High,false own EV charging station; no AV capture capabilities.
 ev-charging,chargepoint:home_flex_nema_14-50_plug,chargepoint,home_flex_nema_14-50_plug,6,cloudDependence,CloudOptional|CloudRequired|LocalOnly|unsure,,,
 ev-charging,chargepoint:home_flex_nema_14-50_plug,chargepoint,home_flex_nema_14-50_plug,6,computeTier,AndroidDerived|EmbeddedLinux|McuClass|Rtos|unsure,,,
 ev-charging,chargepoint:home_flex_nema_14-50_plug,chargepoint,home_flex_nema_14-50_plug,6,consumerAvailability,InstallerChannel|MixedChannel|RetailConsumer|unsure,RetailConsumer,High,A plug-in EV charger (NEMA 14-50) is designed for DIY use if the outlet is already present.
-ev-charging,chargepoint:home_flex_nema_14-50_plug,chargepoint,home_flex_nema_14-50_plug,6,dataSensitivity,AvStreamData|BiometricData|NoData|TelemetryData|unsure,,,
+ev-charging,chargepoint:home_flex_nema_14-50_plug,chargepoint,home_flex_nema_14-50_plug,6,dataSensitivity,AvStreamData|BiometricData|NoData|TelemetryData|unsure,TelemetryData,High,EV charger; tracks charging sessions and energy usage.
 ev-charging,chargepoint:home_flex_nema_14-50_plug,chargepoint,home_flex_nema_14-50_plug,6,firmwareUpdateModel,ManualFlash|NoUpdatePath|OtaAutomatic|OtaUserInitiated|unsure,,,
 ev-charging,chargepoint:home_flex_nema_14-50_plug,chargepoint,home_flex_nema_14-50_plug,6,formFactor,Fixed|Portable|Worn|unsure,,,
 ev-charging,chargepoint:home_flex_nema_14-50_plug,chargepoint,home_flex_nema_14-50_plug,6,hasWebAdminUI,true|false|unsure,,,
-ev-charging,chargepoint:home_flex_nema_14-50_plug,chargepoint,home_flex_nema_14-50_plug,6,placement,Either|Indoor|Outdoor|unsure,,,
+ev-charging,chargepoint:home_flex_nema_14-50_plug,chargepoint,home_flex_nema_14-50_plug,6,placement,Either|Indoor|Outdoor|unsure,Either,High,Home Flex charger rated for indoor and outdoor installation.
 ev-charging,chargepoint:home_flex_nema_14-50_plug,chargepoint,home_flex_nema_14-50_plug,6,supportLifetime,DeclaredLifetime|UndeclaredLifetime|unsure,,,
-ev-charging,garo:wallbox_glb\+_t2ev7,garo,wallbox_glb\+_t2ev7,1,actuatesPhysical,true|false|unsure,,,
+ev-charging,garo:wallbox_glb\+_t2ev7,garo,wallbox_glb\+_t2ev7,1,actuatesPhysical,true|false|unsure,true,High,EV charging stations actuate physical relays to deliver power to thevehicle
 ev-charging,garo:wallbox_glb\+_t2ev7,garo,wallbox_glb\+_t2ev7,1,actuationConsequence,ComfortActuation|NoActuation|PropertyActuation|SafetyActuation|unsure,,,
 ev-charging,garo:wallbox_glb\+_t2ev7,garo,wallbox_glb\+_t2ev7,1,capturesAV,true|false|unsure,,,
 ev-charging,garo:wallbox_glb\+_t2ev7,garo,wallbox_glb\+_t2ev7,1,cloudDependence,CloudOptional|CloudRequired|LocalOnly|unsure,,,
@@ -203,149 +203,149 @@ ev-charging,garo:wallbox_glb\+_t2ev7,garo,wallbox_glb\+_t2ev7,1,formFactor,Fixed
 ev-charging,garo:wallbox_glb\+_t2ev7,garo,wallbox_glb\+_t2ev7,1,hasWebAdminUI,true|false|unsure,,,
 ev-charging,garo:wallbox_glb\+_t2ev7,garo,wallbox_glb\+_t2ev7,1,placement,Either|Indoor|Outdoor|unsure,,,
 ev-charging,garo:wallbox_glb\+_t2ev7,garo,wallbox_glb\+_t2ev7,1,supportLifetime,DeclaredLifetime|UndeclaredLifetime|unsure,,,
-ev-charging,schneider-electric:evc1s22p4,schneider-electric,evc1s22p4,2,actuatesPhysical,true|false|unsure,,,
+ev-charging,schneider-electric:evc1s22p4,schneider-electric,evc1s22p4,2,actuatesPhysical,true|false|unsure,true,High,EV charging stations actuate physical relays to deliver power to the vehicle.
 ev-charging,schneider-electric:evc1s22p4,schneider-electric,evc1s22p4,2,actuationConsequence,ComfortActuation|NoActuation|PropertyActuation|SafetyActuation|unsure,,,
 ev-charging,schneider-electric:evc1s22p4,schneider-electric,evc1s22p4,2,capturesAV,true|false|unsure,false,High,EV charging station; no AV capture capabilities.
 ev-charging,schneider-electric:evc1s22p4,schneider-electric,evc1s22p4,2,cloudDependence,CloudOptional|CloudRequired|LocalOnly|unsure,,,
 ev-charging,schneider-electric:evc1s22p4,schneider-electric,evc1s22p4,2,computeTier,AndroidDerived|EmbeddedLinux|McuClass|Rtos|unsure,,,
 ev-charging,schneider-electric:evc1s22p4,schneider-electric,evc1s22p4,2,consumerAvailability,InstallerChannel|MixedChannel|RetailConsumer|unsure,InstallerChannel,High,Schneider Electric EV chargers are typically sold through electrical wholesalers and installed by professionals.
-ev-charging,schneider-electric:evc1s22p4,schneider-electric,evc1s22p4,2,dataSensitivity,AvStreamData|BiometricData|NoData|TelemetryData|unsure,,,
+ev-charging,schneider-electric:evc1s22p4,schneider-electric,evc1s22p4,2,dataSensitivity,AvStreamData|BiometricData|NoData|TelemetryData|unsure,TelemetryData,High,EV charger; tracks charging sessions and energy usage.
 ev-charging,schneider-electric:evc1s22p4,schneider-electric,evc1s22p4,2,firmwareUpdateModel,ManualFlash|NoUpdatePath|OtaAutomatic|OtaUserInitiated|unsure,,,
 ev-charging,schneider-electric:evc1s22p4,schneider-electric,evc1s22p4,2,formFactor,Fixed|Portable|Worn|unsure,,,
-ev-charging,schneider-electric:evc1s22p4,schneider-electric,evc1s22p4,2,hasWebAdminUI,true|false|unsure,,,
+ev-charging,schneider-electric:evc1s22p4,schneider-electric,evc1s22p4,2,hasWebAdminUI,true|false|unsure,false,High,"Consumer EV charger; typically managed via cloud app, not local web UI."
 ev-charging,schneider-electric:evc1s22p4,schneider-electric,evc1s22p4,2,placement,Either|Indoor|Outdoor|unsure,,,
-ev-charging,schneider-electric:evc1s22p4,schneider-electric,evc1s22p4,2,supportLifetime,DeclaredLifetime|UndeclaredLifetime|unsure,,,
-ev-charging,schneider-electric:evc1s7p4,schneider-electric,evc1s7p4,2,actuatesPhysical,true|false|unsure,,,
+ev-charging,schneider-electric:evc1s22p4,schneider-electric,evc1s22p4,2,supportLifetime,DeclaredLifetime|UndeclaredLifetime|unsure,UndeclaredLifetime,High,EV charging station; no known public declaration declaration of support lifetime.
+ev-charging,schneider-electric:evc1s7p4,schneider-electric,evc1s7p4,2,actuatesPhysical,true|false|unsure,true,High,EV charging stations actuate physical relays to deliver power to deliver power to the vehicle.
 ev-charging,schneider-electric:evc1s7p4,schneider-electric,evc1s7p4,2,actuationConsequence,ComfortActuation|NoActuation|PropertyActuation|SafetyActuation|unsure,,,
 ev-charging,schneider-electric:evc1s7p4,schneider-electric,evc1s7p4,2,capturesAV,true|false|unsure,false,High,EV charging station; no AV capture capabilities.
 ev-charging,schneider-electric:evc1s7p4,schneider-electric,evc1s7p4,2,cloudDependence,CloudOptional|CloudRequired|LocalOnly|unsure,,,
 ev-charging,schneider-electric:evc1s7p4,schneider-electric,evc1s7p4,2,computeTier,AndroidDerived|EmbeddedLinux|McuClass|Rtos|unsure,,,
 ev-charging,schneider-electric:evc1s7p4,schneider-electric,evc1s7p4,2,consumerAvailability,InstallerChannel|MixedChannel|RetailConsumer|unsure,InstallerChannel,High,InstallerChannel
-ev-charging,schneider-electric:evc1s7p4,schneider-electric,evc1s7p4,2,dataSensitivity,AvStreamData|BiometricData|NoData|TelemetryData|unsure,,,
+ev-charging,schneider-electric:evc1s7p4,schneider-electric,evc1s7p4,2,dataSensitivity,AvStreamData|BiometricData|NoData|TelemetryData|unsure,TelemetryData,High,TelemetryData: EV charger; tracks charging sessions and energy usage.
 ev-charging,schneider-electric:evc1s7p4,schneider-electric,evc1s7p4,2,firmwareUpdateModel,ManualFlash|NoUpdatePath|OtaAutomatic|OtaUserInitiated|unsure,,,
 ev-charging,schneider-electric:evc1s7p4,schneider-electric,evc1s7p4,2,formFactor,Fixed|Portable|Worn|unsure,,,
-ev-charging,schneider-electric:evc1s7p4,schneider-electric,evc1s7p4,2,hasWebAdminUI,true|false|unsure,,,
+ev-charging,schneider-electric:evc1s7p4,schneider-electric,evc1s7p4,2,hasWebAdminUI,true|false|unsure,false,High,"reasoning: Consumer EV charger; typically managed via cloud app, not local web UI."
 ev-charging,schneider-electric:evc1s7p4,schneider-electric,evc1s7p4,2,placement,Either|Indoor|Outdoor|unsure,,,
-ev-charging,schneider-electric:evc1s7p4,schneider-electric,evc1s7p4,2,supportLifetime,DeclaredLifetime|UndeclaredLifetime|unsure,,,
-ev-charging,tesla:wall_connector,tesla,wall_connector,2,actuatesPhysical,true|false|unsure,,,
+ev-charging,schneider-electric:evc1s7p4,schneider-electric,evc1s7p4,2,supportLifetime,DeclaredLifetime|UndeclaredLifetime|unsure,UndeclaredLifetime,High,
+ev-charging,tesla:wall_connector,tesla,wall_connector,2,actuatesPhysical,true|false|unsure,true,High,EV charging stations actuate physical relays to deliver power to the vehicle.
 ev-charging,tesla:wall_connector,tesla,wall_connector,2,actuationConsequence,ComfortActuation|NoActuation|PropertyActuation|SafetyActuation|unsure,,,
 ev-charging,tesla:wall_connector,tesla,wall_connector,2,capturesAV,true|false|unsure,false,High,EV charging station; no AV capture capabilities.
 ev-charging,tesla:wall_connector,tesla,wall_connector,2,cloudDependence,CloudOptional|CloudRequired|LocalOnly|unsure,,,
 ev-charging,tesla:wall_connector,tesla,wall_connector,2,computeTier,AndroidDerived|EmbeddedLinux|McuClass|Rtos|unsure,,,
 ev-charging,tesla:wall_connector,tesla,wall_connector,2,consumerAvailability,InstallerChannel|MixedChannel|RetailConsumer|unsure,InstallerChannel,High,The Tesla Wall Connector is a hardwired device that requires professional installation.
-ev-charging,tesla:wall_connector,tesla,wall_connector,2,dataSensitivity,AvStreamData|BiometricData|NoData|TelemetryData|unsure,,,
+ev-charging,tesla:wall_connector,tesla,wall_connector,2,dataSensitivity,AvStreamData|BiometricData|NoData|TelemetryData|unsure,TelemetryData,High,EV charger; tracks charging sessions and energy usage.
 ev-charging,tesla:wall_connector,tesla,wall_connector,2,firmwareUpdateModel,ManualFlash|NoUpdatePath|OtaAutomatic|OtaUserInitiated|unsure,,,
 ev-charging,tesla:wall_connector,tesla,wall_connector,2,formFactor,Fixed|Portable|Worn|unsure,,,
-ev-charging,tesla:wall_connector,tesla,wall_connector,2,hasWebAdminUI,true|false|unsure,,,
-ev-charging,tesla:wall_connector,tesla,wall_connector,2,placement,Either|Indoor|Outdoor|unsure,,,
-ev-charging,tesla:wall_connector,tesla,wall_connector,2,supportLifetime,DeclaredLifetime|UndeclaredLifetime|unsure,,,
-ev-charging,vw:id.charger_connect,vw,id.charger_connect,1,actuatesPhysical,true|false|unsure,,,
+ev-charging,tesla:wall_connector,tesla,wall_connector,2,hasWebAdminUI,true|false|unsure,false,High,"Tesla Wall Connector; typically managed via Tesla app, not local web UI."
+ev-charging,tesla:wall_connector,tesla,wall_connector,2,placement,Either|Indoor|Outdoor|unsure,Either,Low,Tesla Wall Connector is rated for indoor and outdoor installation.
+ev-charging,tesla:wall_connector,tesla,wall_connector,2,supportLifetime,DeclaredLifetime|UndeclaredLifetime|unsure,UndeclaredLifetime,High,EV charging station; no known public declaration of support lifetime.
+ev-charging,vw:id.charger_connect,vw,id.charger_connect,1,actuatesPhysical,true|false|unsure,true,High,An EV charger connects to the grid and actuates a physical relay to provide power to the vehicle.
 ev-charging,vw:id.charger_connect,vw,id.charger_connect,1,actuationConsequence,ComfortActuation|NoActuation|PropertyActuation|SafetyActuation|unsure,,,
 ev-charging,vw:id.charger_connect,vw,id.charger_connect,1,capturesAV,true|false|unsure,true,Low,"Some modern EV chargers have integrated cameras for security, but it is not standard. Setting to unsure or false is safer."
 ev-charging,vw:id.charger_connect,vw,id.charger_connect,1,cloudDependence,CloudOptional|CloudRequired|LocalOnly|unsure,,,
 ev-charging,vw:id.charger_connect,vw,id.charger_connect,1,computeTier,AndroidDerived|EmbeddedLinux|McuClass|Rtos|unsure,,,
 ev-charging,vw:id.charger_connect,vw,id.charger_connect,1,consumerAvailability,InstallerChannel|MixedChannel|RetailConsumer|unsure,InstallerChannel,High,Automotive OEM wallboxes are typically commissioned by professional installers.
-ev-charging,vw:id.charger_connect,vw,id.charger_connect,1,dataSensitivity,AvStreamData|BiometricData|NoData|TelemetryData|unsure,,,
-ev-charging,vw:id.charger_connect,vw,id.charger_connect,1,firmwareUpdateModel,ManualFlash|NoUpdatePath|OtaAutomatic|OtaUserInitiated|unsure,,,
-ev-charging,vw:id.charger_connect,vw,id.charger_connect,1,formFactor,Fixed|Portable|Worn|unsure,,,
-ev-charging,vw:id.charger_connect,vw,id.charger_connect,1,hasWebAdminUI,true|false|unsure,,,
-ev-charging,vw:id.charger_connect,vw,id.charger_connect,1,placement,Either|Indoor|Outdoor|unsure,,,
-ev-charging,vw:id.charger_connect,vw,id.charger_connect,1,supportLifetime,DeclaredLifetime|UndeclaredLifetime|unsure,,,
+ev-charging,vw:id.charger_connect,vw,id.charger_connect,1,dataSensitivity,AvStreamData|BiometricData|NoData|TelemetryData|unsure,TelemetryData,High,EV charger; tracks charging sessions and energy usage patterns.
+ev-charging,vw:id.charger_connect,vw,id.charger_connect,1,firmwareUpdateModel,ManualFlash|NoUpdatePath|OtaAutomatic|OtaUserInitiated|unsure,OtaUserInitiated,Low,EV chargers typically use app-based user-initiated OTA updates.
+ev-charging,vw:id.charger_connect,vw,id.charger_connect,1,formFactor,Fixed|Portable|Worn|unsure,Fixed,High,EV charger; typically installed in a fixed location.
+ev-charging,vw:id.charger_connect,vw,id.charger_connect,1,hasWebAdminUI,true|false|unsure,false,High,"EV charging station connect module; typically managed via app or vehicle interface, not a local web UI."
+ev-charging,vw:id.charger_connect,vw,id.charger_connect,1,placement,Either|Indoor|Outdoor|unsure,Outdoor,High,"EV chargers are typically installed outdoors or in garages, but the 'connect' version usually refers to the external charging point."
+ev-charging,vw:id.charger_connect,vw,id.charger_connect,1,supportLifetime,DeclaredLifetime|UndeclaredLifetime|unsure,UndeclaredLifetime,Low,"Automotive charging hardware typically lacks a published, specific end-of-support date for the connectivity module."
 hub,homey:homey,homey,homey,2,actuatesPhysical,true|false|unsure,false,High,Homey is a smart home hub that coordinates other devices; it does not actuate physical changes itself.
 hub,homey:homey,homey,homey,2,actuationConsequence,ComfortActuation|NoActuation|PropertyActuation|SafetyActuation|unsure,NoActuation,High,Homey is a smart home hub; it coordinates other devices but does not have its own physical actuators.
 hub,homey:homey,homey,homey,2,capturesAV,true|false|unsure,,,
 hub,homey:homey,homey,homey,2,cloudDependence,CloudOptional|CloudRequired|LocalOnly|unsure,,,
 hub,homey:homey,homey,homey,2,computeTier,AndroidDerived|EmbeddedLinux|McuClass|Rtos|unsure,EmbeddedLinux,High,"Homey hub is a complex smart home hub with a complex userland and app ecosystem, typically running Linux."
 hub,homey:homey,homey,homey,2,consumerAvailability,InstallerChannel|MixedChannel|RetailConsumer|unsure,RetailConsumer,High,Homey is a consumer-facing smart home hub sold at retail.
-hub,homey:homey,homey,homey,2,dataSensitivity,AvStreamData|BiometricData|NoData|TelemetryData|unsure,,,
-hub,homey:homey,homey,homey,2,firmwareUpdateModel,ManualFlash|NoUpdatePath|OtaAutomatic|OtaUserInitiated|unsure,,,
-hub,homey:homey,homey,homey,2,formFactor,Fixed|Portable|Worn|unsure,,,
-hub,homey:homey,homey,homey,2,hasWebAdminUI,true|false|unsure,,,
-hub,homey:homey,homey,homey,2,placement,Either|Indoor|Outdoor|unsure,,,
-hub,homey:homey,homey,homey,2,supportLifetime,DeclaredLifetime|UndeclaredLifetime|unsure,,,
+hub,homey:homey,homey,homey,2,dataSensitivity,AvStreamData|BiometricData|NoData|TelemetryData|unsure,TelemetryData,High,Smart home hub; aggregates state and usage data from various connected devices.
+hub,homey:homey,homey,homey,2,firmwareUpdateModel,ManualFlash|NoUpdatePath|OtaAutomatic|OtaUserInitiated|unsure,OtaAutomatic,High,Homey smart home hubs are designed for automatic background updates.
+hub,homey:homey,homey,homey,2,formFactor,Fixed|Portable|Worn|unsure,Fixed,High,Smart home hub; typically stays in one place.
+hub,homey:homey,homey,homey,2,hasWebAdminUI,true|false|unsure,true,High,Homey smart home hub; provides a local web-based administrative interface for advanced configuration.
+hub,homey:homey,homey,homey,2,placement,Either|Indoor|Outdoor|unsure,Indoor,High,Smart home hub is designed for indoor use.
+hub,homey:homey,homey,homey,2,supportLifetime,DeclaredLifetime|UndeclaredLifetime|unsure,UndeclaredLifetime,Low,Home automation hubs generally do not publish a specific end-of-support date for their hardware versions.
 lighting,mystrom:wifi_button,mystrom,wifi_button,4,actuatesPhysical,true|false|unsure,false,High,"A WiFi button is an input device (sensor/trigger) that sends signals, it does not actuate physical changes."
 lighting,mystrom:wifi_button,mystrom,wifi_button,4,actuationConsequence,ComfortActuation|NoActuation|PropertyActuation|SafetyActuation|unsure,NoActuation,High,"A WiFi button is an input device (sensor/trigger), not an actuator."
 lighting,mystrom:wifi_button,mystrom,wifi_button,4,capturesAV,true|false|unsure,,,
 lighting,mystrom:wifi_button,mystrom,wifi_button,4,cloudDependence,CloudOptional|CloudRequired|LocalOnly|unsure,,,
 lighting,mystrom:wifi_button,mystrom,wifi_button,4,computeTier,AndroidDerived|EmbeddedLinux|McuClass|Rtos|unsure,Rtos,Low,"Simple WiFi button; likely runs an RTOS or bare-metal, but the 'wifi' aspect suggests a network stack provided by an RT existência own OS kernel."
 lighting,mystrom:wifi_button,mystrom,wifi_button,4,consumerAvailability,InstallerChannel|MixedChannel|RetailConsumer|unsure,RetailConsumer,High,"Simple WiFi button for consumer lighting control, sold at retail."
-lighting,mystrom:wifi_button,mystrom,wifi_button,4,dataSensitivity,AvStreamData|BiometricData|NoData|TelemetryData|unsure,,,
-lighting,mystrom:wifi_button,mystrom,wifi_button,4,firmwareUpdateModel,ManualFlash|NoUpdatePath|OtaAutomatic|OtaUserInitiated|unsure,,,
-lighting,mystrom:wifi_button,mystrom,wifi_button,4,formFactor,Fixed|Portable|Worn|unsure,,,
-lighting,mystrom:wifi_button,mystrom,wifi_button,4,hasWebAdminUI,true|false|unsure,,,
-lighting,mystrom:wifi_button,mystrom,wifi_button,4,placement,Either|Indoor|Outdoor|unsure,,,
-lighting,mystrom:wifi_button,mystrom,wifi_button,4,supportLifetime,DeclaredLifetime|UndeclaredLifetime|unsure,,,
+lighting,mystrom:wifi_button,mystrom,wifi_button,4,dataSensitivity,AvStreamData|BiometricData|NoData|TelemetryData|unsure,TelemetryData,High,"WiFi button; records when it is pressed, which indicates occupancy/activity."
+lighting,mystrom:wifi_button,mystrom,wifi_button,4,firmwareUpdateModel,ManualFlash|NoUpdatePath|OtaAutomatic|OtaUserInitiated|unsure,OtaUserInitiated,Low,Typical for small WiFi-enabled IoT devices of this class.
+lighting,mystrom:wifi_button,mystrom,wifi_button,4,formFactor,Fixed|Portable|Worn|unsure,Portable,Low,WiFi button; likely a small portable device that can be moved around the home.
+lighting,mystrom:wifi_button,mystrom,wifi_button,4,hasWebAdminUI,true|false|unsure,false,High,"Simple WiFi button; managed via app, no local web server for administration."
+lighting,mystrom:wifi_button,mystrom,wifi_button,4,placement,Either|Indoor|Outdoor|unsure,Indoor,High,WiFi buttons for lighting control are typically indoor devices.
+lighting,mystrom:wifi_button,mystrom,wifi_button,4,supportLifetime,DeclaredLifetime|UndeclaredLifetime|unsure,UndeclaredLifetime,High,Low-cost consumer WiFi buttons are typically not associated with a published support lifetime.
 lighting,mystrom:wifi_button_plus,mystrom,wifi_button_plus,4,actuatesPhysical,true|false|unsure,false,High,"A WiFi button is an input device (sensor/trigger) that sends signals, it does not actuate physical changes."
 lighting,mystrom:wifi_button_plus,mystrom,wifi_button_plus,4,actuationConsequence,ComfortActuation|NoActuation|PropertyActuation|SafetyActuation|unsure,NoActuation,High,"A WiFi button is an input device (sensor/trigger), not an actuator."
 lighting,mystrom:wifi_button_plus,mystrom,wifi_button_plus,4,capturesAV,true|false|unsure,,,
 lighting,mystrom:wifi_button_plus,mystrom,wifi_button_plus,4,cloudDependence,CloudOptional|CloudRequired|LocalOnly|unsure,,,
 lighting,mystrom:wifi_button_plus,mystrom,wifi_button_plus,4,computeTier,AndroidDerived|EmbeddedLinux|McuClass|Rtos|unsure,Rtos,Low,"Similar to the wifi_button, likely an RTOS-based device."
 lighting,mystrom:wifi_button_plus,mystrom,wifi_button_plus,4,consumerAvailability,InstallerChannel|MixedChannel|RetailConsumer|unsure,RetailConsumer,High,"Consumer-grade WiFi button, sold at retail."
-lighting,mystrom:wifi_button_plus,mystrom,wifi_button_plus,4,dataSensitivity,AvStreamData|BiometricData|NoData|TelemetryData|unsure,,,
+lighting,mystrom:wifi_button_plus,mystrom,wifi_button_plus,4,dataSensitivity,AvStreamData|BiometricData|NoData|TelemetryData|unsure,TelemetryData,Low,"Similar to wifi_button, likely tracks press events."
 lighting,mystrom:wifi_button_plus,mystrom,wifi_button_plus,4,firmwareUpdateModel,ManualFlash|NoUpdatePath|OtaAutomatic|OtaUserInitiated|unsure,,,
-lighting,mystrom:wifi_button_plus,mystrom,wifi_button_plus,4,formFactor,Fixed|Portable|Worn|unsure,,,
-lighting,mystrom:wifi_button_plus,mystrom,wifi_button_plus,4,hasWebAdminUI,true|false|unsure,,,
+lighting,mystrom:wifi_button_plus,mystrom,wifi_button_plus,4,formFactor,Fixed|Portable|Worn|unsure,Portable,Low,WiFi button; likely a small portable device that can be moved {// a small portable device that can be moved around the home.
+lighting,mystrom:wifi_button_plus,mystrom,wifi_button_plus,4,hasWebAdminUI,true|false|unsure,false,High,"Simple WiFi button; managed via app, no local web server for administration."
 lighting,mystrom:wifi_button_plus,mystrom,wifi_button_plus,4,placement,Either|Indoor|Outdoor|unsure,,,
-lighting,mystrom:wifi_button_plus,mystrom,wifi_button_plus,4,supportLifetime,DeclaredLifetime|UndeclaredLifetime|unsure,,,
+lighting,mystrom:wifi_button_plus,mystrom,wifi_button_plus,4,supportLifetime,DeclaredLifetime|UndeclaredLifetime|unsure,UndeclaredLifetime,High,Low-cost consumer WiFi buttons are typically not associated with a published published support lifetime.
 lighting,mystrom:wifi_led_strip,mystrom,wifi_led_strip,4,actuatesPhysical,true|false|unsure,true,High,"An LED strip changes physical state (emits light), which is considered a physical change in the home."
 lighting,mystrom:wifi_led_strip,mystrom,wifi_led_strip,4,actuationConsequence,ComfortActuation|NoActuation|PropertyActuation|SafetyActuation|unsure,ComfortActuation,High,"LED strips provide lighting, which is a comfort/convenience feature with no lasting physical effect."
 lighting,mystrom:wifi_led_strip,mystrom,wifi_led_strip,4,capturesAV,true|false|unsure,,,
 lighting,mystrom:wifi_led_strip,mystrom,wifi_led_strip,4,cloudDependence,CloudOptional|CloudRequired|LocalOnly|unsure,,,
 lighting,mystrom:wifi_led_strip,mystrom,wifi_led_strip,4,computeTier,AndroidDerived|EmbeddedLinux|McuClass|Rtos|unsure,Rtos,High,WiFi LED strips typically use MCU-class devices with an RTOS for network connectivity.
 lighting,mystrom:wifi_led_strip,mystrom,wifi_led_strip,4,consumerAvailability,InstallerChannel|MixedChannel|RetailConsumer|unsure,RetailConsumer,High,"Consumer LED strip, sold at retail."
-lighting,mystrom:wifi_led_strip,mystrom,wifi_led_strip,4,dataSensitivity,AvStreamData|BiometricData|NoData|TelemetryData|unsure,,,
+lighting,mystrom:wifi_led_strip,mystrom,wifi_led_strip,4,dataSensitivity,AvStreamData|BiometricData|NoData|TelemetryData|unsure,TelemetryData,High,WiFi LED strip; tracks on/off state and usage patterns.
 lighting,mystrom:wifi_led_strip,mystrom,wifi_led_strip,4,firmwareUpdateModel,ManualFlash|NoUpdatePath|OtaAutomatic|OtaUserInitiated|unsure,,,
-lighting,mystrom:wifi_led_strip,mystrom,wifi_led_strip,4,formFactor,Fixed|Portable|Worn|unsure,,,
+lighting,mystrom:wifi_led_strip,mystrom,wifi_led_strip,4,formFactor,Fixed|Portable|Worn|unsure,Fixed,High,LED strip; typically installed/mounted in fixed location.
 lighting,mystrom:wifi_led_strip,mystrom,wifi_led_strip,4,hasWebAdminUI,true|false|unsure,,,
-lighting,mystrom:wifi_led_strip,mystrom,wifi_led_strip,4,placement,Either|Indoor|Outdoor|unsure,,,
-lighting,mystrom:wifi_led_strip,mystrom,wifi_led_strip,4,supportLifetime,DeclaredLifetime|UndeclaredLifetime|unsure,,,
+lighting,mystrom:wifi_led_strip,mystrom,wifi_led_strip,4,placement,Either|Indoor|Outdoor|unsure,Indoor,High,LED strips are typically used indoors.
+lighting,mystrom:wifi_led_strip,mystrom,wifi_led_strip,4,supportLifetime,DeclaredLifetime|UndeclaredLifetime|unsure,UndeclaredLifetime,High,Low-cost consumer WiFi LED strips are typically not associated with a published support lifetime.
 smartplugs,belkin:wemo_insight_smart_plug,belkin,wemo_insight_smart_plug,1,actuatesPhysical,true|false|unsure,true,High,A smart plug actuate physical changes by switching power to connected devices.
 smartplugs,belkin:wemo_insight_smart_plug,belkin,wemo_insight_smart_plug,1,actuationConsequence,ComfortActuation|NoActuation|PropertyActuation|SafetyActuation|unsure,PropertyActuation,High,"Smart plugs can control power to connected devices, which could potentially damage property or cause a fire hazard if the same device is connected to the plug."
 smartplugs,belkin:wemo_insight_smart_plug,belkin,wemo_insight_smart_plug,1,capturesAV,true|false|unsure,,,
 smartplugs,belkin:wemo_insight_smart_plug,belkin,wemo_insight_smart_plug,1,cloudDependence,CloudOptional|CloudRequired|LocalOnly|unsure,,,
 smartplugs,belkin:wemo_insight_smart_plug,belkin,wemo_insight_smart_plug,1,computeTier,AndroidDerived|EmbeddedLinux|McuClass|Rtos|unsure,EmbeddedLinux,Low,"Wemo Insight plugs often have more complex software stacks than basic plugs, java-based management, etc., which often points to Embedded Linux."
 smartplugs,belkin:wemo_insight_smart_plug,belkin,wemo_insight_smart_plug,1,consumerAvailability,InstallerChannel|MixedChannel|RetailConsumer|unsure,RetailConsumer,High,Consumer smart plug sold at retail.
-smartplugs,belkin:wemo_insight_smart_plug,belkin,wemo_insight_smart_plug,1,dataSensitivity,AvStreamData|BiometricData|NoData|TelemetryData|unsure,,,
+smartplugs,belkin:wemo_insight_smart_plug,belkin,wemo_insight_smart_plug,1,dataSensitivity,AvStreamData|BiometricData|NoData|TelemetryData|unsure,TelemetryData,High,
 smartplugs,belkin:wemo_insight_smart_plug,belkin,wemo_insight_smart_plug,1,firmwareUpdateModel,ManualFlash|NoUpdatePath|OtaAutomatic|OtaUserInitiated|unsure,,,
-smartplugs,belkin:wemo_insight_smart_plug,belkin,wemo_insight_smart_plug,1,formFactor,Fixed|Portable|Worn|unsure,,,
-smartplugs,belkin:wemo_insight_smart_plug,belkin,wemo_insight_smart_plug,1,hasWebAdminUI,true|false|unsure,,,
-smartplugs,belkin:wemo_insight_smart_plug,belkin,wemo_insight_smart_plug,1,placement,Either|Indoor|Outdoor|unsure,,,
-smartplugs,belkin:wemo_insight_smart_plug,belkin,wemo_insight_smart_plug,1,supportLifetime,DeclaredLifetime|UndeclaredLifetime|unsure,,,
+smartplugs,belkin:wemo_insight_smart_plug,belkin,wemo_insight_smart_plug,1,formFactor,Fixed|Portable|Worn|unsure,Fixed,High,Smart plug; inserted into a wall outlet and remains fixed.
+smartplugs,belkin:wemo_insight_smart_plug,belkin,wemo_insight_smart_plug,1,hasWebAdminUI,true|false|unsure,false,High,"Wemo smart plug; managed via app, no local web server for administration."
+smartplugs,belkin:wemo_insight_smart_plug,belkin,wemo_insight_smart_plug,1,placement,Either|Indoor|Outdoor|unsure,Indoor,High,Smart plugs are designed for indoor wall outlets.
+smartplugs,belkin:wemo_insight_smart_plug,belkin,wemo_insight_smart_plug,1,supportLifetime,DeclaredLifetime|UndeclaredLifetime|unsure,UndeclaredLifetime,High,Consumer smart plugs typically do not have a declared support lifetime.
 smartplugs,meross:mss550x,meross,mss550x,1,actuatesPhysical,true|false|unsure,true,High,The MSS550X is a smart plug that switches power to connected devices.
 smartplugs,meross:mss550x,meross,mss550x,1,actuationConsequence,ComfortActuation|NoActuation|PropertyActuation|SafetyActuation|unsure,,,
 smartplugs,meross:mss550x,meross,mss550x,1,capturesAV,true|false|unsure,,,
 smartplugs,meross:mss550x,meross,mss550x,1,cloudDependence,CloudOptional|CloudRequired|LocalOnly|unsure,,,
 smartplugs,meross:mss550x,meross,mss550x,1,computeTier,AndroidDerived|EmbeddedLinux|McuClass|Rtos|unsure,Rtos,High,Standard smart plug based on typical MCU/RTOS architectures for this product class.
 smartplugs,meross:mss550x,meross,mss550x,1,consumerAvailability,InstallerChannel|MixedChannel|RetailConsumer|unsure,RetailConsumer,High,Consumer smart plug sold at retail.
-smartplugs,meross:mss550x,meross,mss550x,1,dataSensitivity,AvStreamData|BiometricData|NoData|TelemetryData|unsure,,,
+smartplugs,meross:mss550x,meross,mss550x,1,dataSensitivity,AvStreamData|BiometricData|NoData|TelemetryData|unsure,TelemetryData,High,Smart plug; tracks power consumption and and usage patterns.
 smartplugs,meross:mss550x,meross,mss550x,1,firmwareUpdateModel,ManualFlash|NoUpdatePath|OtaAutomatic|OtaUserInitiated|unsure,,,
-smartplugs,meross:mss550x,meross,mss550x,1,formFactor,Fixed|Portable|Worn|unsure,,,
-smartplugs,meross:mss550x,meross,mss550x,1,hasWebAdminUI,true|false|unsure,,,
-smartplugs,meross:mss550x,meross,mss550x,1,placement,Either|Indoor|Outdoor|unsure,,,
-smartplugs,meross:mss550x,meross,mss550x,1,supportLifetime,DeclaredLifetime|UndeclaredLifetime|unsure,,,
+smartplugs,meross:mss550x,meross,mss550x,1,formFactor,Fixed|Portable|Worn|unsure,Fixed,High,Smart plug; inserted into a wall outlet and remains fixed.
+smartplugs,meross:mss550x,meross,mss550x,1,hasWebAdminUI,true|false|unsure,false,High,"Meross smart plug; managed via app, no local web server for administration."
+smartplugs,meross:mss550x,meross,mss550x,1,placement,Either|Indoor|Outdoor|unsure,Indoor,High,Smart plug model mss550x is an indoor smart plug.
+smartplugs,meross:mss550x,meross,mss550x,1,supportLifetime,DeclaredLifetime|UndeclaredLifetime|unsure,UndeclaredLifetime,High,Consumer smart plugs typically do not have a declared support lifetime.
 smartspeakers,google:home,google,home,2,actuatesPhysical,true|false|unsure,false,High,A smart speaker is primarily a speaker/microphone array; it does not actuate physical changes in the home.
 smartspeakers,google:home,google,home,2,actuationConsequence,ComfortActuation|NoActuation|PropertyActuation|SafetyActuation|unsure,NoActuation,High,Smart speaker; primarily an audio output device with no physical actuators.
 smartspeakers,google:home,google,home,2,capturesAV,true|false|unsure,,,
 smartspeakers,google:home,google,home,2,cloudDependence,CloudOptional|CloudRequired|LocalOnly|unsure,,,
 smartspeakers,google:home,google,home,2,computeTier,AndroidDerived|EmbeddedLinux|McuClass|Rtos|unsure,,,
 smartspeakers,google:home,google,home,2,consumerAvailability,InstallerChannel|MixedChannel|RetailConsumer|unsure,RetailConsumer,High,Mass-market consumer smart speaker.
-smartspeakers,google:home,google,home,2,dataSensitivity,AvStreamData|BiometricData|NoData|TelemetryData|unsure,,,
+smartspeakers,google:home,google,home,2,dataSensitivity,AvStreamData|BiometricData|NoData|TelemetryData|unsure,AvStreamData,High,Smart speaker with microphone for voice commands; handles audio streams.
 smartspeakers,google:home,google,home,2,firmwareUpdateModel,ManualFlash|NoUpdatePath|OtaAutomatic|OtaUserInitiated|unsure,,,
-smartspeakers,google:home,google,home,2,formFactor,Fixed|Portable|Worn|unsure,,,
-smartspeakers,google:home,google,home,2,hasWebAdminUI,true|false|unsure,,,
-smartspeakers,google:home,google,home,2,placement,Either|Indoor|Outdoor|unsure,,,
-smartspeakers,google:home,google,home,2,supportLifetime,DeclaredLifetime|UndeclaredLifetime|unsure,,,
-smartspeakers,google:nest_mini,google,nest_mini,2,actuatesPhysical,true|false|unsure,,,
+smartspeakers,google:home,google,home,2,formFactor,Fixed|Portable|Worn|unsure,Fixed,High,Smart speaker; typically placed in one location.
+smartspeakers,google:home,google,home,2,hasWebAdminUI,true|false|unsure,false,High,"Google Home smart speaker; managed via Google Home app, no local web admin UI."
+smartspeakers,google:home,google,home,2,placement,Either|Indoor|Outdoor|unsure,Indoor,High,Smart speaker is designed for indoor use.
+smartspeakers,google:home,google,home,2,supportLifetime,DeclaredLifetime|UndeclaredLifetime|unsure,UndeclaredLifetime,High,Google Home devices typically do not provide a specific end-of-support date for the product line.
+smartspeakers,google:nest_mini,google,nest_mini,2,actuatesPhysical,true|false|unsure,false,High,A smart speaker is primarily a sensor/output device for audio and does not actuate physical changes in the home environment.
 smartspeakers,google:nest_mini,google,nest_mini,2,actuationConsequence,ComfortActuation|NoActuation|PropertyActuation|SafetyActuation|unsure,NoActuation,High,Smart speaker; primarily an audio output device with no physical actuators.
 smartspeakers,google:nest_mini,google,nest_mini,2,capturesAV,true|false|unsure,,,
 smartspeakers,google:nest_mini,google,nest_mini,2,cloudDependence,CloudOptional|CloudRequired|LocalOnly|unsure,,,
 smartspeakers,google:nest_mini,google,nest_mini,2,computeTier,AndroidDerived|EmbeddedLinux|McuClass|Rtos|unsure,,,
 smartspeakers,google:nest_mini,google,nest_mini,2,consumerAvailability,InstallerChannel|MixedChannel|RetailConsumer|unsure,RetailConsumer,High,Mass-market consumer smart speaker.
-smartspeakers,google:nest_mini,google,nest_mini,2,dataSensitivity,AvStreamData|BiometricData|NoData|TelemetryData|unsure,,,
+smartspeakers,google:nest_mini,google,nest_mini,2,dataSensitivity,AvStreamData|BiometricData|NoData|TelemetryData|unsure,AvStreamData,High,Smart speaker with microphone; handles audio streams.
 smartspeakers,google:nest_mini,google,nest_mini,2,firmwareUpdateModel,ManualFlash|NoUpdatePath|OtaAutomatic|OtaUserInitiated|unsure,,,
-smartspeakers,google:nest_mini,google,nest_mini,2,formFactor,Fixed|Portable|Worn|unsure,,,
-smartspeakers,google:nest_mini,google,nest_mini,2,hasWebAdminUI,true|false|unsure,,,
-smartspeakers,google:nest_mini,google,nest_mini,2,placement,Either|Indoor|Outdoor|unsure,,,
+smartspeakers,google:nest_mini,google,nest_mini,2,formFactor,Fixed|Portable|Worn|unsure,Fixed,High,Smart speaker; typically placed in one location.
+smartspeakers,google:nest_mini,google,nest_mini,2,hasWebAdminUI,true|false|unsure,false,High,"Google Nest Mini; managed via Google Home app, no local web admin UI."
+smartspeakers,google:nest_mini,google,nest_mini,2,placement,Either|Indoor|Outdoor|unsure,Indoor,High,Smart speaker is designed for indoor use.
 smartspeakers,google:nest_mini,google,nest_mini,2,supportLifetime,DeclaredLifetime|UndeclaredLifetime|unsure,,,
 smartspeakers,lenovo:smart_clock_essential_with_alexa_built_in,lenovo,smart_clock_essential_with_alexa_built_in,1,actuatesPhysical,true|false|unsure,false,High,A smart clock/speaker is primarily an output device for audio/visuals; it does not actuate physical changes.
 smartspeakers,lenovo:smart_clock_essential_with_alexa_built_in,lenovo,smart_clock_essential_with_alexa_built_in,1,actuationConsequence,ComfortActuation|NoActuation|PropertyActuation|SafetyActuation|unsure,NoActuation,High,Smart clock/speaker; no physical actuators.
@@ -353,12 +353,12 @@ smartspeakers,lenovo:smart_clock_essential_with_alexa_built_in,lenovo,smart_cloc
 smartspeakers,lenovo:smart_clock_essential_with_alexa_built_in,lenovo,smart_clock_essential_with_alexa_built_in,1,cloudDependence,CloudOptional|CloudRequired|LocalOnly|unsure,,,
 smartspeakers,lenovo:smart_clock_essential_with_alexa_built_in,lenovo,smart_clock_essential_with_alexa_built_in,1,computeTier,AndroidDerived|EmbeddedLinux|McuClass|Rtos|unsure,,,
 smartspeakers,lenovo:smart_clock_essential_with_alexa_built_in,lenovo,smart_clock_essential_with_alexa_built_in,1,consumerAvailability,InstallerChannel|MixedChannel|RetailConsumer|unsure,RetailConsumer,High,Consumer smart clock sold at retail.
-smartspeakers,lenovo:smart_clock_essential_with_alexa_built_in,lenovo,smart_clock_essential_with_alexa_built_in,1,dataSensitivity,AvStreamData|BiometricData|NoData|TelemetryData|unsure,,,
+smartspeakers,lenovo:smart_clock_essential_with_alexa_built_in,lenovo,smart_clock_essential_with_alexa_built_in,1,dataSensitivity,AvStreamData|BiometricData|NoData|TelemetryData|unsure,AvStreamData,High,Smart clock with Alexa; handles audio streams.
 smartspeakers,lenovo:smart_clock_essential_with_alexa_built_in,lenovo,smart_clock_essential_with_alexa_built_in,1,firmwareUpdateModel,ManualFlash|NoUpdatePath|OtaAutomatic|OtaUserInitiated|unsure,,,
-smartspeakers,lenovo:smart_clock_essential_with_alexa_built_in,lenovo,smart_clock_essential_with_alexa_built_in,1,formFactor,Fixed|Portable|Worn|unsure,,,
-smartspeakers,lenovo:smart_clock_essential_with_alexa_built_in,lenovo,smart_clock_essential_with_alexa_built_in,1,hasWebAdminUI,true|false|unsure,,,
-smartspeakers,lenovo:smart_clock_essential_with_alexa_built_in,lenovo,smart_clock_essential_with_alexa_built_in,1,placement,Either|Indoor|Outdoor|unsure,,,
-smartspeakers,lenovo:smart_clock_essential_with_alexa_built_in,lenovo,smart_clock_essential_with_alexa_built_in,1,supportLifetime,DeclaredLifetime|UndeclaredLifetime|unsure,,,
+smartspeakers,lenovo:smart_clock_essential_with_alexa_built_in,lenovo,smart_clock_essential_with_alexa_built_in,1,formFactor,Fixed|Portable|Worn|unsure,Fixed,High,Smart clock; typically placed in one location.
+smartspeakers,lenovo:smart_clock_essential_with_alexa_built_in,lenovo,smart_clock_essential_with_alexa_built_in,1,hasWebAdminUI,true|false|unsure,false,High,"Alexa-enabled smart clock; managed via Alexa app, no local web admin UI."
+smartspeakers,lenovo:smart_clock_essential_with_alexa_built_in,lenovo,smart_clock_essential_with_alexa_built_in,1,placement,Either|Indoor|Outdoor|unsure,Indoor,High,Smart clock is designed for indoor use.
+smartspeakers,lenovo:smart_clock_essential_with_alexa_built_in,lenovo,smart_clock_essential_with_alexa_built_in,1,supportLifetime,DeclaredLifetime|UndeclaredLifetime|unsure,UndeclaredLifetime,High,Consumer smart clocks with Alexa are typically not associated with a published support lifetime.
 smartspeakers,sonos:era_100,sonos,era_100,4,actuatesPhysical,true|false|unsure,false,High,A smart speaker does not actuate physical changes in the home.
 smartspeakers,sonos:era_100,sonos,era_100,4,actuationConsequence,ComfortActuation|NoActuation|PropertyActuation|SafetyActuation|unsure,,,
 smartspeakers,sonos:era_100,sonos,era_100,4,capturesAV,true|false|unsure,,,
@@ -367,46 +367,46 @@ smartspeakers,sonos:era_100,sonos,era_100,4,computeTier,AndroidDerived|EmbeddedL
 smartspeakers,sonos:era_100,sonos,era_100,4,consumerAvailability,InstallerChannel|MixedChannel|RetailConsumer|unsure,RetailConsumer,High,Consumer smart speaker sold at retail.
 smartspeakers,sonos:era_100,sonos,era_100,4,dataSensitivity,AvStreamData|BiometricData|NoData|TelemetryData|unsure,,,
 smartspeakers,sonos:era_100,sonos,era_100,4,firmwareUpdateModel,ManualFlash|NoUpdatePath|OtaAutomatic|OtaUserInitiated|unsure,,,
-smartspeakers,sonos:era_100,sonos,era_100,4,formFactor,Fixed|Portable|Worn|unsure,,,
-smartspeakers,sonos:era_100,sonos,era_100,4,hasWebAdminUI,true|false|unsure,,,
-smartspeakers,sonos:era_100,sonos,era_100,4,placement,Either|Indoor|Outdoor|unsure,,,
-smartspeakers,sonos:era_100,sonos,era_100,4,supportLifetime,DeclaredLifetime|UndeclaredLifetime|unsure,,,
+smartspeakers,sonos:era_100,sonos,era_100,4,formFactor,Fixed|Portable|Worn|unsure,Fixed,High,Smart speaker; typically placed in one location.
+smartspeakers,sonos:era_100,sonos,era_100,4,hasWebAdminUI,true|false|unsure,false,High,"Sonos Era 100 speaker; managed via Sonos app, no local web admin UI."
+smartspeakers,sonos:era_100,sonos,era_100,4,placement,Either|Indoor|Outdoor|unsure,Indoor,High,Smart speaker is designed for indoor use.
+smartspeakers,sonos:era_100,sonos,era_100,4,supportLifetime,DeclaredLifetime|UndeclaredLifetime|unsure,UndeclaredLifetime,Low,Sonos typically does not publish a specific end-of-support date for the product line.
 streaming,roku:streaming_stick_4k,roku,streaming_stick_4k,1,actuatesPhysical,true|false|unsure,false,High,A streaming stick is a digital output device for a HDMI port; it does not actuate physical changes.
 streaming,roku:streaming_stick_4k,roku,streaming_stick_4k,1,actuationConsequence,ComfortActuation|NoActuation|PropertyActuation|SafetyActuation|unsure,NoActuation,High,Streaming stick; no physical actuators.
 streaming,roku:streaming_stick_4k,roku,streaming_stick_4k,1,capturesAV,true|false|unsure,,,
 streaming,roku:streaming_stick_4k,roku,streaming_stick_4k,1,cloudDependence,CloudOptional|CloudRequired|LocalOnly|unsure,,,
 streaming,roku:streaming_stick_4k,roku,streaming_stick_4k,1,computeTier,AndroidDerived|EmbeddedLinux|McuClass|Rtos|unsure,,,
 streaming,roku:streaming_stick_4k,roku,streaming_stick_4k,1,consumerAvailability,InstallerChannel|MixedChannel|RetailConsumer|unsure,RetailConsumer,High,Consumer streaming device sold at retail.
-streaming,roku:streaming_stick_4k,roku,streaming_stick_4k,1,dataSensitivity,AvStreamData|BiometricData|NoData|TelemetryData|unsure,,,
+streaming,roku:streaming_stick_4k,roku,streaming_stick_4k,1,dataSensitivity,AvStreamData|BiometricData|NoData|TelemetryData|unsure,TelemetryData,High,Streaming stick; tracks viewing habits and usage patterns.
 streaming,roku:streaming_stick_4k,roku,streaming_stick_4k,1,firmwareUpdateModel,ManualFlash|NoUpdatePath|OtaAutomatic|OtaUserInitiated|unsure,,,
-streaming,roku:streaming_stick_4k,roku,streaming_stick_4k,1,formFactor,Fixed|Portable|Worn|unsure,,,
-streaming,roku:streaming_stick_4k,roku,streaming_stick_4k,1,hasWebAdminUI,true|false|unsure,,,
-streaming,roku:streaming_stick_4k,roku,streaming_stick_4k,1,placement,Either|Indoor|Outdoor|unsure,,,
-streaming,roku:streaming_stick_4k,roku,streaming_stick_4k,1,supportLifetime,DeclaredLifetime|UndeclaredLifetime|unsure,,,
+streaming,roku:streaming_stick_4k,roku,streaming_stick_4k,1,formFactor,Fixed|Portable|Worn|unsure,Fixed,High,"Streaming stick; plugged into a HDMI port of a TV, remains fixed."
+streaming,roku:streaming_stick_4k,roku,streaming_stick_4k,1,hasWebAdminUI,true|false|unsure,false,High,"Roku streaming stick; managed via app or on-screen menu, no local web admin UI."
+streaming,roku:streaming_stick_4k,roku,streaming_stick_4k,1,placement,Either|Indoor|Outdoor|unsure,Indoor,High,"Streaming stick is plugged into a TV, which is indoor."
+streaming,roku:streaming_stick_4k,roku,streaming_stick_4k,1,supportLifetime,DeclaredLifetime|UndeclaredLifetime|unsure,UndeclaredLifetime,High,Consumer streaming sticks typically do not have a declared support lifetime.
 streaming,samsung:x14h,samsung,x14h,1,actuatesPhysical,true|false|unsure,false,High,A streaming device/TV is a digital output device; it does not actuate physical changes.
 streaming,samsung:x14h,samsung,x14h,1,actuationConsequence,ComfortActuation|NoActuation|PropertyActuation|SafetyActuation|unsure,NoActuation,High,Streaming device/TV; no physical actuators.
 streaming,samsung:x14h,samsung,x14h,1,capturesAV,true|false|unsure,,,
 streaming,samsung:x14h,samsung,x14h,1,cloudDependence,CloudOptional|CloudRequired|LocalOnly|unsure,,,
 streaming,samsung:x14h,samsung,x14h,1,computeTier,AndroidDerived|EmbeddedLinux|McuClass|Rtos|unsure,,,
 streaming,samsung:x14h,samsung,x14h,1,consumerAvailability,InstallerChannel|MixedChannel|RetailConsumer|unsure,RetailConsumer,High,"Samsung consumer electronics (streaming/TV), sold at retail."
-streaming,samsung:x14h,samsung,x14h,1,dataSensitivity,AvStreamData|BiometricData|NoData|TelemetryData|unsure,,,
+streaming,samsung:x14h,samsung,x14h,1,dataSensitivity,AvStreamData|BiometricData|NoData|TelemetryData|unsure,TelemetryData,High,Streaming device/TV; tracks viewing habits and usage patterns.
 streaming,samsung:x14h,samsung,x14h,1,firmwareUpdateModel,ManualFlash|NoUpdatePath|OtaAutomatic|OtaUserInitiated|unsure,,,
-streaming,samsung:x14h,samsung,x14h,1,formFactor,Fixed|Portable|Worn|unsure,,,
-streaming,samsung:x14h,samsung,x14h,1,hasWebAdminUI,true|false|unsure,,,
-streaming,samsung:x14h,samsung,x14h,1,placement,Either|Indoor|Outdoor|unsure,,,
-streaming,samsung:x14h,samsung,x14h,1,supportLifetime,DeclaredLifetime|UndeclaredLifetime|unsure,,,
+streaming,samsung:x14h,samsung,x14h,1,formFactor,Fixed|Portable|Worn|unsure,Fixed,High,Samsung streaming device/TV; typically fixed in place.
+streaming,samsung:x14h,samsung,x14h,1,hasWebAdminUI,true|false|unsure,false,High,"Samsung streaming device/TV; managed via on-screen menu, no local web admin UI."
+streaming,samsung:x14h,samsung,x14h,1,placement,Either|Indoor|Outdoor|unsure,Indoor,High,Streaming device/TV is designed for indoor use.
+streaming,samsung:x14h,samsung,x14h,1,supportLifetime,DeclaredLifetime|UndeclaredLifetime|unsure,UndeclaredLifetime,High,Consumer streaming/TV hardware typically does not have a declared support lifetime.
 streaming,sony:kd-43xe7000,sony,kd-43xe7000,3,actuatesPhysical,true|false|unsure,false,High,A television is a digital output device; it does not actuate physical changes.
 streaming,sony:kd-43xe7000,sony,kd-43xe7000,3,actuationConsequence,ComfortActuation|NoActuation|PropertyActuation|SafetyActuation|unsure,NoActuation,High,Streaming device/TV; no physical actuators.
 streaming,sony:kd-43xe7000,sony,kd-43xe7000,3,capturesAV,true|false|unsure,,,
 streaming,sony:kd-43xe7000,sony,kd-43xe7000,3,cloudDependence,CloudOptional|CloudRequired|LocalOnly|unsure,,,
 streaming,sony:kd-43xe7000,sony,kd-43xe7000,3,computeTier,AndroidDerived|EmbeddedLinux|McuClass|Rtos|unsure,,,
 streaming,sony:kd-43xe7000,sony,kd-43xe7000,3,consumerAvailability,InstallerChannel|MixedChannel|RetailConsumer|unsure,,,
-streaming,sony:kd-43xe7000,sony,kd-43xe7000,3,dataSensitivity,AvStreamData|BiometricData|NoData|TelemetryData|unsure,,,
+streaming,sony:kd-43xe7000,sony,kd-43xe7000,3,dataSensitivity,AvStreamData|BiometricData|NoData|TelemetryData|unsure,TelemetryData,High,Smart TV; tracks viewing habits and usage patterns.
 streaming,sony:kd-43xe7000,sony,kd-43xe7000,3,firmwareUpdateModel,ManualFlash|NoUpdatePath|OtaAutomatic|OtaUserInitiated|unsure,,,
-streaming,sony:kd-43xe7000,sony,kd-43xe7000,3,formFactor,Fixed|Portable|Worn|unsure,,,
-streaming,sony:kd-43xe7000,sony,kd-43xe7000,3,hasWebAdminUI,true|false|unsure,,,
-streaming,sony:kd-43xe7000,sony,kd-43xe7000,3,placement,Either|Indoor|Outdoor|unsure,,,
-streaming,sony:kd-43xe7000,sony,kd-43xe7000,3,supportLifetime,DeclaredLifetime|UndeclaredLifetime|unsure,,,
+streaming,sony:kd-43xe7000,sony,kd-43xe7000,3,formFactor,Fixed|Portable|Worn|unsure,Fixed,High,Sony TV; fixed in place.
+streaming,sony:kd-43xe7000,sony,kd-43xe7000,3,hasWebAdminUI,true|false|unsure,false,High,"Sony Bravia TV; managed via on-screen menu, no local web admin UI."
+streaming,sony:kd-43xe7000,sony,kd-43xe7000,3,placement,Either|Indoor|Outdoor|unsure,Indoor,High,Television is designed for indoor use.
+streaming,sony:kd-43xe7000,sony,kd-43xe7000,3,supportLifetime,DeclaredLifetime|UndeclaredLifetime|unsure,UndeclaredLifetime,High,Consumer TVs typically do not have a declared support lifetime.
 streaming,sony:kd-43xe7093,sony,kd-43xe7093,3,actuatesPhysical,true|false|unsure,false,High,false own a digital output device; it does not actuate physical changes.
 streaming,sony:kd-43xe7093,sony,kd-43xe7093,3,actuationConsequence,ComfortActuation|NoActuation|PropertyActuation|SafetyActuation|unsure,NoActuation,High,No physical actuators.
 streaming,sony:kd-43xe7093,sony,kd-43xe7093,3,capturesAV,true|false|unsure,,,
@@ -416,21 +416,21 @@ streaming,sony:kd-43xe7093,sony,kd-43xe7093,3,consumerAvailability,InstallerChan
 streaming,sony:kd-43xe7093,sony,kd-43xe7093,3,dataSensitivity,AvStreamData|BiometricData|NoData|TelemetryData|unsure,,,
 streaming,sony:kd-43xe7093,sony,kd-43xe7093,3,firmwareUpdateModel,ManualFlash|NoUpdatePath|OtaAutomatic|OtaUserInitiated|unsure,,,
 streaming,sony:kd-43xe7093,sony,kd-43xe7093,3,formFactor,Fixed|Portable|Worn|unsure,,,
-streaming,sony:kd-43xe7093,sony,kd-43xe7093,3,hasWebAdminUI,true|false|unsure,,,
-streaming,sony:kd-43xe7093,sony,kd-43xe7093,3,placement,Either|Indoor|Outdoor|unsure,,,
-streaming,sony:kd-43xe7093,sony,kd-43xe7093,3,supportLifetime,DeclaredLifetime|UndeclaredLifetime|unsure,,,
+streaming,sony:kd-43xe7093,sony,kd-43xe7093,3,hasWebAdminUI,true|false|unsure,false,High,"kd-43xe7093 is a Sony Bravia TV; managed via on-screen menu, no local web admin UI."
+streaming,sony:kd-43xe7093,sony,kd-43xe7093,3,placement,Either|Indoor|Outdoor|unsure,Indoor,High,Indoor television.
+streaming,sony:kd-43xe7093,sony,kd-43xe7093,3,supportLifetime,DeclaredLifetime|UndeclaredLifetime|unsure,UndeclaredLifetime,High,High-end consumer TVs typically do not have a declared supportlifetime.
 streaming,sony:kd-49xe7005,sony,kd-49xe7005,3,actuatesPhysical,true|false|unsure,false,High,A television is a digital output device; it does not actuate physical changes.
 streaming,sony:kd-49xe7005,sony,kd-49xe7005,3,actuationConsequence,ComfortActuation|NoActuation|PropertyActuation|SafetyActuation|unsure,NoActuation,High,No physical actuators.
 streaming,sony:kd-49xe7005,sony,kd-49xe7005,3,capturesAV,true|false|unsure,,,
 streaming,sony:kd-49xe7005,sony,kd-49xe7005,3,cloudDependence,CloudOptional|CloudRequired|LocalOnly|unsure,,,
 streaming,sony:kd-49xe7005,sony,kd-49xe7005,3,computeTier,AndroidDerived|EmbeddedLinux|McuClass|Rtos|unsure,,,
 streaming,sony:kd-49xe7005,sony,kd-49xe7005,3,consumerAvailability,InstallerChannel|MixedChannel|RetailConsumer|unsure,RetailConsumer,High,"High-end consumer TV/streaming device, sold at retail."
-streaming,sony:kd-49xe7005,sony,kd-49xe7005,3,dataSensitivity,AvStreamData|BiometricData|NoData|TelemetryData|unsure,,,
+streaming,sony:kd-49xe7005,sony,kd-49xe7005,3,dataSensitivity,AvStreamData|BiometricData|NoData|TelemetryData|unsure,TelemetryData,High,High
 streaming,sony:kd-49xe7005,sony,kd-49xe7005,3,firmwareUpdateModel,ManualFlash|NoUpdatePath|OtaAutomatic|OtaUserInitiated|unsure,,,
-streaming,sony:kd-49xe7005,sony,kd-49xe7005,3,formFactor,Fixed|Portable|Worn|unsure,,,
-streaming,sony:kd-49xe7005,sony,kd-49xe7005,3,hasWebAdminUI,true|false|unsure,,,
-streaming,sony:kd-49xe7005,sony,kd-49xe7005,3,placement,Either|Indoor|Outdoor|unsure,,,
-streaming,sony:kd-49xe7005,sony,kd-49xe7005,3,supportLifetime,DeclaredLifetime|UndeclaredLifetime|unsure,,,
+streaming,sony:kd-49xe7005,sony,kd-49xe7005,3,formFactor,Fixed|Portable|Worn|unsure,Fixed,High,Sony TV; fixed in place.
+streaming,sony:kd-49xe7005,sony,kd-49xe7005,3,hasWebAdminUI,true|false|unsure,false,High,"Sony Bravia TV; managed via on-screen menu, no local web admin UI."
+streaming,sony:kd-49xe7005,sony,kd-49xe7005,3,placement,Either|Indoor|Outdoor|unsure,Indoor,High,Indoor television.
+streaming,sony:kd-49xe7005,sony,kd-49xe7005,3,supportLifetime,DeclaredLifetime|UndeclaredLifetime|unsure,UndeclaredLifetime,High,Undeclared support lifetime is the norm for consumer electronics like TVs.
 streaming,sony:kdl-65w850c,sony,kdl-65w850c,2,actuatesPhysical,true|false|unsure,false,High,A television is a digital output device; it does not actuate physical changes.
 streaming,sony:kdl-65w850c,sony,kdl-65w850c,2,actuationConsequence,ComfortActuation|NoActuation|PropertyActuation|SafetyActuation|unsure,NoActuation,High,No physical actuators.
 streaming,sony:kdl-65w850c,sony,kdl-65w850c,2,capturesAV,true|false|unsure,,,
@@ -440,9 +440,9 @@ streaming,sony:kdl-65w850c,sony,kdl-65w850c,2,consumerAvailability,InstallerChan
 streaming,sony:kdl-65w850c,sony,kdl-65w850c,2,dataSensitivity,AvStreamData|BiometricData|NoData|TelemetryData|unsure,,,
 streaming,sony:kdl-65w850c,sony,kdl-65w850c,2,firmwareUpdateModel,ManualFlash|NoUpdatePath|OtaAutomatic|OtaUserInitiated|unsure,,,
 streaming,sony:kdl-65w850c,sony,kdl-65w850c,2,formFactor,Fixed|Portable|Worn|unsure,,,
-streaming,sony:kdl-65w850c,sony,kdl-65w850c,2,hasWebAdminUI,true|false|unsure,,,
-streaming,sony:kdl-65w850c,sony,kdl-65w850c,2,placement,Either|Indoor|Outdoor|unsure,,,
-streaming,sony:kdl-65w850c,sony,kdl-65w850c,2,supportLifetime,DeclaredLifetime|UndeclaredLifetime|unsure,,,
+streaming,sony:kdl-65w850c,sony,kdl-65w850c,2,hasWebAdminUI,true|false|unsure,false,High,"Sony Bravia TV; managed via on-screen menu and remote, no local web admin UI."
+streaming,sony:kdl-65w850c,sony,kdl-65w850c,2,placement,Either|Indoor|Outdoor|unsure,Indoor,High,Indoor television.
+streaming,sony:kdl-65w850c,sony,kdl-65w850c,2,supportLifetime,DeclaredLifetime|UndeclaredLifetime|unsure,UndeclaredLifetime,High,Consumer TVs typically do not have a declared support lifetime.
 streaming,sony:xbr-55x809c,sony,xbr-55x809c,2,actuatesPhysical,true|false|unsure,false,High,
 streaming,sony:xbr-55x809c,sony,xbr-55x809c,2,actuationConsequence,ComfortActuation|NoActuation|PropertyActuation|SafetyActuation|unsure,NoActuation,High,No physical actuators.
 streaming,sony:xbr-55x809c,sony,xbr-55x809c,2,capturesAV,true|false|unsure,,,
@@ -451,10 +451,10 @@ streaming,sony:xbr-55x809c,sony,xbr-55x809c,2,computeTier,AndroidDerived|Embedde
 streaming,sony:xbr-55x809c,sony,xbr-55x809c,2,consumerAvailability,InstallerChannel|MixedChannel|RetailConsumer|unsure,RetailConsumer,High,"High-end consumer TV/streaming device, sold at retail."
 streaming,sony:xbr-55x809c,sony,xbr-55x809c,2,dataSensitivity,AvStreamData|BiometricData|NoData|TelemetryData|unsure,,,
 streaming,sony:xbr-55x809c,sony,xbr-55x809c,2,firmwareUpdateModel,ManualFlash|NoUpdatePath|OtaAutomatic|OtaUserInitiated|unsure,,,
-streaming,sony:xbr-55x809c,sony,xbr-55x809c,2,formFactor,Fixed|Portable|Worn|unsure,,,
-streaming,sony:xbr-55x809c,sony,xbr-55x809c,2,hasWebAdminUI,true|false|unsure,,,
-streaming,sony:xbr-55x809c,sony,xbr-55x809c,2,placement,Either|Indoor|Outdoor|unsure,,,
-streaming,sony:xbr-55x809c,sony,xbr-55x809c,2,supportLifetime,DeclaredLifetime|UndeclaredLifetime|unsure,,,
+streaming,sony:xbr-55x809c,sony,xbr-55x809c,2,formFactor,Fixed|Portable|Worn|unsure,Fixed,High,es Sony TV; fixed in place.
+streaming,sony:xbr-55x809c,sony,xbr-55x809c,2,hasWebAdminUI,true|false|unsure,false,High,"Sony Bravia TV; managed via on-screen menu, no local web admin UI."
+streaming,sony:xbr-55x809c,sony,xbr-55x809c,2,placement,Either|Indoor|Outdoor|unsure,Indoor,High,reasoning: Indoor television.
+streaming,sony:xbr-55x809c,sony,xbr-55x809c,2,supportLifetime,DeclaredLifetime|UndeclaredLifetime|unsure,UndeclaredLifetime,High,Consumer TVs typically do not have a declared support lifetime.
 streaming,sony:xbr-65x930c,sony,xbr-65x930c,2,actuatesPhysical,true|false|unsure,false,High,A television is a digital output device; it does not actuate physical changes.
 streaming,sony:xbr-65x930c,sony,xbr-65x930c,2,actuationConsequence,ComfortActuation|NoActuation|PropertyActuation|SafetyActuation|unsure,NoActuation,High,No physical actuators.
 streaming,sony:xbr-65x930c,sony,xbr-65x930c,2,capturesAV,true|false|unsure,,,
@@ -463,10 +463,10 @@ streaming,sony:xbr-65x930c,sony,xbr-65x930c,2,computeTier,AndroidDerived|Embedde
 streaming,sony:xbr-65x930c,sony,xbr-65x930c,2,consumerAvailability,InstallerChannel|MixedChannel|RetailConsumer|unsure,RetailConsumer,High,Retail consumer TV/streaming device.
 streaming,sony:xbr-65x930c,sony,xbr-65x930c,2,dataSensitivity,AvStreamData|BiometricData|NoData|TelemetryData|unsure,,,
 streaming,sony:xbr-65x930c,sony,xbr-65x930c,2,firmwareUpdateModel,ManualFlash|NoUpdatePath|OtaAutomatic|OtaUserInitiated|unsure,,,
-streaming,sony:xbr-65x930c,sony,xbr-65x930c,2,formFactor,Fixed|Portable|Worn|unsure,,,
-streaming,sony:xbr-65x930c,sony,xbr-65x930c,2,hasWebAdminUI,true|false|unsure,,,
-streaming,sony:xbr-65x930c,sony,xbr-65x930c,2,placement,Either|Indoor|Outdoor|unsure,,,
-streaming,sony:xbr-65x930c,sony,xbr-65x930c,2,supportLifetime,DeclaredLifetime|UndeclaredLifetime|unsure,,,
+streaming,sony:xbr-65x930c,sony,xbr-65x930c,2,formFactor,Fixed|Portable|Worn|unsure,Fixed,High,Sony TV; fixed in place.
+streaming,sony:xbr-65x930c,sony,xbr-65x930c,2,hasWebAdminUI,true|false|unsure,false,High,"sony:xbr-65x930c is a Sony Bravia TV; managed via on-screen menu, no local web admin UI."
+streaming,sony:xbr-65x930c,sony,xbr-65x930c,2,placement,Either|Indoor|Outdoor|unsure,Indoor,High,reasoning: Indoor television.
+streaming,sony:xbr-65x930c,sony,xbr-65x930c,2,supportLifetime,DeclaredLifetime|UndeclaredLifetime|unsure,UndeclaredLifetime,High,Consumer TVs typically do not have a declared support lifetime.
 streaming,sony:xbr-75x850d,sony,xbr-75x850d,2,actuatesPhysical,true|false|unsure,false,High,false own a digital output device; it does not actuate physical changes.
 streaming,sony:xbr-75x850d,sony,xbr-75x850d,2,actuationConsequence,ComfortActuation|NoActuation|PropertyActuation|SafetyActuation|unsure,NoActuation,High,No physical actuators.
 streaming,sony:xbr-75x850d,sony,xbr-75x850d,2,capturesAV,true|false|unsure,,,
@@ -475,7 +475,7 @@ streaming,sony:xbr-75x850d,sony,xbr-75x850d,2,computeTier,AndroidDerived|Embedde
 streaming,sony:xbr-75x850d,sony,xbr-75x850d,2,consumerAvailability,InstallerChannel|MixedChannel|RetailConsumer|unsure,RetailConsumer,High,Retail consumer TV/streaming device.
 streaming,sony:xbr-75x850d,sony,xbr-75x850d,2,dataSensitivity,AvStreamData|BiometricData|NoData|TelemetryData|unsure,,,
 streaming,sony:xbr-75x850d,sony,xbr-75x850d,2,firmwareUpdateModel,ManualFlash|NoUpdatePath|OtaAutomatic|OtaUserInitiated|unsure,,,
-streaming,sony:xbr-75x850d,sony,xbr-75x850d,2,formFactor,Fixed|Portable|Worn|unsure,,,
-streaming,sony:xbr-75x850d,sony,xbr-75x850d,2,hasWebAdminUI,true|false|unsure,,,
-streaming,sony:xbr-75x850d,sony,xbr-75x850d,2,placement,Either|Indoor|Outdoor|unsure,,,
-streaming,sony:xbr-75x850d,sony,xbr-75x850d,2,supportLifetime,DeclaredLifetime|UndeclaredLifetime|unsure,,,
+streaming,sony:xbr-75x850d,sony,xbr-75x850d,2,formFactor,Fixed|Portable|Worn|unsure,Fixed,High,Sony TV; fixed in place.
+streaming,sony:xbr-75x850d,sony,xbr-75x850d,2,hasWebAdminUI,true|false|unsure,false,High,"Sony Bravia TV; managed via on-screen menu, no local web admin UI."
+streaming,sony:xbr-75x850d,sony,xbr-75x850d,2,placement,Either|Indoor|Outdoor|unsure,Indoor,High,Indoor television.
+streaming,sony:xbr-75x850d,sony,xbr-75x850d,2,supportLifetime,DeclaredLifetime|UndeclaredLifetime|unsure,UndeclaredLifetime,High,Consumer TVs typically do not have a declared support lifetime.

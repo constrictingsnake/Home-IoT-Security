@@ -67,11 +67,20 @@ def band(k):
 
 
 def load_annotations():
-    """{(device, facet): {annotator: value}} over rows all three annotators share.
+    """({(device, facet): {annotator: rec}}, per-annotator raw, active annotator list).
 
     The kappa subsample is the intersection by construction (make_facet_copies.py draws
     it), but it is recomputed here rather than assumed: a partially-filled column would
-    otherwise silently reduce the rater count on some items and inflate agreement.
+    otherwise silently reduce the rater count on some items, and an item scored by two
+    raters sitting in a table labelled three-rater inflates agreement invisibly.
+
+    An annotator with NO filled rows is dropped from the panel rather than blocking the
+    run, so a two-thirds-complete panel still yields a first reliability signal. The
+    rater count is reported with every number, because the statistic changes name with
+    it: Fleiss' kappa at 2 raters is Scott's pi, not Cohen's kappa (Cohen models each
+    rater's own marginals; Fleiss/Scott pool them). Both are chance-corrected agreement
+    and the promotion bands still read the same way, but calling it the wrong thing in a
+    paper is the sort of error a reviewer catches.
     """
     per = {}
     for name in ANNOTATORS:
@@ -90,11 +99,12 @@ def load_annotations():
                     }
         per[name] = rows
 
-    shared = set.intersection(*(set(r) for r in per.values()))
-    out = {}
-    for key in shared:
-        out[key] = {n: per[n][key] for n in ANNOTATORS}
-    return out, per
+    active = [n for n in ANNOTATORS if per[n]]
+    if not active:
+        return {}, per, []
+    shared = set.intersection(*(set(per[n]) for n in active))
+    out = {key: {n: per[n][key] for n in active} for key in shared}
+    return out, per, active
 
 
 def fleiss_kappa(items):
@@ -248,17 +258,23 @@ def main():
     if args.self_test:
         return self_test()
 
-    shared, per = load_annotations()
+    shared, per, active = load_annotations()
     filled = {n: len(r) for n, r in per.items()}
     print("annotation copies (filled rows): "
           + ", ".join(f"{n} {c}" for n, c in filled.items()))
 
     if not shared:
         print("\nNO SHARED ANNOTATED ROWS — agreement cannot be computed.")
-        print("Every annotator must fill the kappa subsample before this reports "
-              "anything. Nothing in Phase A is citable until then.")
+        print("At least two annotators must fill the same kappa-subsample rows before "
+              "this reports anything. Nothing in Phase A is citable until then.")
         return 1
 
+    stat = "Fleiss' kappa" if len(active) > 2 else "Scott's pi (Fleiss at 2 raters)"
+    print(f"panel: {len(active)} annotators ({', '.join(active)}) — statistic is {stat}")
+    if len(active) < len(ANNOTATORS):
+        missing = [n for n in ANNOTATORS if n not in active]
+        print(f"INCOMPLETE PANEL — {', '.join(missing)} unfilled. These numbers are a "
+              f"provisional signal, not the Phase 5 promotion input.")
     print(f"shared fully-annotated items: {len(shared)}\n")
 
     by_facet = defaultdict(list)
@@ -267,19 +283,19 @@ def main():
 
     phase_a = load_phase_a()
     rows = []
-    print(f"{'facet':22} {'n':>4} {'kappa':>7} {'95% CI':>16} {'raw':>6} "
+    print(f"{'facet':22} {'n':>4} {'stat':>7} {'95% CI':>16} {'raw':>6} "
           f"{'PABAK':>7} {'unsure':>7}  band / note")
     print("-" * 104)
 
     for facet in sorted(by_facet):
         entries = by_facet[facet]
-        items = [[got[a]["value"] for a in ANNOTATORS] for _dev, got in entries]
+        items = [[got[a]["value"] for a in active] for _dev, got in entries]
         k, p_obs, _p_exp = fleiss_kappa(items)
         lo, hi = bootstrap_ci(items, reps=args.reps)
         raw = raw_agreement(items)
         n_labels = len({v for i in items for v in i})
         pab = pabak(p_obs, max(n_labels, 2))
-        unsure = sum(1 for i in items for v in i if v == "unsure") / (len(items) * 3)
+        unsure = sum(1 for i in items for v in i if v == "unsure") / (len(items) * len(active))
         sk = skew(items)
 
         note = band(k)
@@ -309,7 +325,7 @@ def main():
     # Gemini over-includes; whether the same directional bias shows up on facets is worth
     # knowing before trusting any merge rule built on that profile.
     print("\nper-annotator profile (does the documented bias reappear on facets?)")
-    for a in ANNOTATORS:
+    for a in active:
         vals = [got[a] for _d, got in shared.items()]
         uns = sum(1 for v in vals if v["value"] == "unsure") / len(vals)
         high = sum(1 for v in vals if v["conf"] == "High") / len(vals)
@@ -319,17 +335,17 @@ def main():
     # one of the things under test. Reported separately, and note the unit mismatch —
     # the prior is category-level, so it is broadcast onto product rows here.
     disputed = [(d, g) for (d, f), g in shared.items()
-                if len({g[a]["value"] for a in ANNOTATORS}) > 1]
+                if len({g[a]["value"] for a in active}) > 1]
     print(f"\nitems with any split: {len(disputed)} of {len(shared)} "
           f"({len(disputed)/len(shared):.0%})")
 
     if phase_a:
         both = Counter()
         for (device, facet), got in shared.items():
-            cat = got[ANNOTATORS[0]]["category"]
+            cat = got[active[0]]["category"]
             v = phase_a.get((cat, facet))
             if v:
-                split = len({got[a]["value"] for a in ANNOTATORS}) > 1
+                split = len({got[a]["value"] for a in active}) > 1
                 both[(v, "split" if split else "unanimous")] += 1
         print("\nkappa vs Phase A validity (reliability and validity are independent —"
               "\na cell can be agreed-on and still be a fiction):")
@@ -342,7 +358,7 @@ def main():
     if args.verbose and disputed:
         print("\nitems the annotators split on:")
         for device, got in sorted(disputed)[:60]:
-            vals = " | ".join(f"{a}={got[a]['value']}" for a in ANNOTATORS)
+            vals = " | ".join(f"{a}={got[a]['value']}" for a in active)
             print(f"  {device[:44]:46} {vals}")
 
     if args.csv:
