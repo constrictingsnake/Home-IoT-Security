@@ -111,8 +111,27 @@ hiot:Derived a hiot:EvidenceTier ; rdfs:label "derived" ;
 hiot:Estimated a hiot:EvidenceTier ; rdfs:label "estimated" ;
   rdfs:comment "Expert characterisation, assigned by hand with no source. Legitimate for ORGANISING the analysis — grouping categories, forming hypotheses, structuring the report — and NOT legitimate as evidence. Never cite an Estimated facet as a finding, and never present a contrast whose grouping variable is Estimated without saying so." .
 
+# The two human tiers, added 2026-08-10 with the F5 redesign (PLAN_facet_system_fixes.md).
+# They exist because the tier they replace could not be earned: hiot:Annotated was defined as
+# "multiple independent annotators under a shared rubric, with measured agreement and human
+# adjudication", and the category-level AI panel that would have earned it was dropped — the
+# product-level kappa panel already measured reliability, and the facets that failed it failed
+# for want of EVIDENCE, which more blind annotation cannot supply. A human consulting a source
+# can. Both tiers sit above Estimated because a human verdict is the project's override tier
+# everywhere else (Final Source = human in judgment_store.csv), and below Derived because
+# neither is computed from the snapshot by a re-runnable script.
+#
+# The distinction between them is the SOURCE, not the human. Note also what separates
+# HumanSourced from Documented: a source is almost always per-PRODUCT ("the Tapo P100 ships
+# OTA updates") while the assertion is per-CATEGORY, so the generalisation step is still the
+# human's. Documented is reserved for sources that are genuinely category-wide.
+hiot:HumanSourced a hiot:EvidenceTier ; rdfs:label "human-sourced" ;
+  rdfs:comment "A human reviewer assigned this value and cited per-product evidence for it (vendor documentation, support/security pages, regulatory declarations, scan banners). Stronger than Estimated because the value was checked against the world rather than recalled; weaker than Documented because the generalisation from the cited products to the category is the reviewer's own. Citable with the source and that limitation stated." .
+hiot:HumanJudged a hiot:EvidenceTier ; rdfs:label "human-judged" ;
+  rdfs:comment "A human reviewer assigned this value from domain knowledge after looking for a source and not finding one. Overrides any AI-assigned value, per the project's human-override convention, but carries no evidence — treat it exactly as Estimated for citation purposes. The failure to find a source is itself recorded, and is a reportable result about the facet." .
+
 hiot:evidenceTier a owl:AnnotationProperty ; rdfs:label "evidence tier" ;
-  rdfs:comment "How this facet's values were arrived at. Declared per property; see the block above for why not per assertion." ;
+  rdfs:comment "How this facet's values were arrived at. Declared per property, and set by the FLOOR rule — a property carries the tier of its weakest cell, so a single unevidenced category cannot be hidden behind evidenced ones. Per-cell tiers live in data/facets/facet_store.csv, which is the machine-readable source; ontology_build.py --check prints the mix. See the block above for why not per assertion." ;
   rdfs:range hiot:EvidenceTier .
 
 # A NEUTRAL definition of the facet, for blind annotators — and the reason it exists rather

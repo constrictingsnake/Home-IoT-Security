@@ -13,40 +13,66 @@ the truth about the current state.
 
 ---
 
-## STATUS — 2026-08-08
+## STATUS — 2026-08-10
 
 | Phase | State |
 |---|---|
 | **F1** docs truth pass | **DONE** — `6619d86` |
 | **F3** verdict enforcement | **DONE** — `6619d86` |
-| **F2** κ loop | **BLOCKED ON CODEX.** Tooling done (`1ce16fb`); Gemini column filling; `facet_agreement.py` runs on a partial panel and already reports provisional Scott's π |
+| **F2** κ loop | **PANEL COMPLETE** — Codex column landed `a51603f` (2026-08-10); 3-rater Fleiss' κ runs on 471 shared items. Closeout items remain (see the phase) |
 | **F4** cameras subtype | **PILOT DONE** — `b4727de`, 70% judgeable → proceed with caveat. Full pass not started |
-| **F5** category study + writeback | not started (gated on F2) |
+| **F5** category study + writeback | **REDESIGNED 2026-08-10** — human-sourced category tagging replaces the second AI panel (see the rewritten phase). Machinery not started |
 | **F6** shades / KG vectors / push | **shades RESOLVED** (no NVD footprint, marker set, gates green); **branch pushed**; KG vectors still optional |
 
-**The one human step in the whole plan is running Codex on
-`data/facets/annotation-kit/codex.csv`** (480 rows), from the kit directory so the repo's
-`CLAUDE.md` and memory index stay out of context. Everything downstream of "is this facet
-citable" waits on it, and nothing else does.
+The Codex run is in. **The one remaining human step is now F5's sourced category pass** —
+288 cells, pre-filled with the panel consensus so the human verifies with sources rather
+than starting cold.
 
-**What the work so far already established** (all three independent of Codex):
+### The panel verdict (3 raters, 471 shared items) — the result F2 existed to produce
+
+| band | facets |
+|---|---|
+| **CITABLE** (κ ≥ 0.60) | `actuationConsequence` 0.755 · `actuatesPhysical` 0.737 · `consumerAvailability` 0.720 · `placement` 0.701 |
+| **grouping-only** (0.40–0.60) | `dataSensitivity` 0.595 · `formFactor` 0.489 *(n=35 — four Gemini blanks sit exactly here; fill before quoting)* · `cloudDependence` 0.445 |
+| **FAILS** (< 0.40) | `firmwareUpdateModel` 0.388 · `capturesAV` 0.386 · `computeTier` 0.384 · `hasWebAdminUI` 0.349 · `supportLifetime` **−0.311** |
+
+**Adding Codex lowered agreement on 7 of 12 facets** — `formFactor` 1.000 → 0.489,
+`actuatesPhysical` 0.950 → 0.737, `dataSensitivity` 0.796 → 0.595 (out of citable). That
+is the panel working, not breaking: the 2-rater π was Claude-vs-Gemini, and Claude
+authored both the prior assignment and the value definitions both were annotating
+against, so the 2-rater figures were flattered. Quote the 3-rater κ everywhere; the π
+values in this doc's history (0.358 / 0.131 / 0.283) are superseded.
+
+**Joint salvage picture** (κ band × Phase A validity, CVE-weighted over the 1,733
+confirmed-Yes rows; the 10 measured categories hold 89.6% of that population):
+`actuatesPhysical` and `actuationConsequence` are defensible in 8/10 cells carrying
+**85.6%** of CVE mass — the two facets that survive both gates outright.
+`consumerAvailability` and `placement` are reliable but their `cameras` cell fails
+validity, so their safe mass is only ~34–37% (cameras is 50.8% of the set) — note the
+inversion: excluding cameras makes them the *least* cameras-confounded facets available.
+The five κ-failed facets have 0% citable mass regardless of validity.
+
+**What the work so far already established:**
 1. Enforcement is live — `capturesAV=true` falls from 1,124 rows to 239 once the
    NOT-USABLE cameras cell is withheld, and `--ignore-phase-a` reproduces the old number.
 2. The cameras-recorders finding survived an independent replication (38% vs 42.5% on
    samples sharing 3 of 100 devices) and an annotator-independent token check (8/8 where
    the product name carries a token).
-3. `capturesAV` **fails reliability as well as validity** — π = 0.358 on the provisional
-   Claude/Gemini panel (471 shared rows), below the 0.40 bar. *(An earlier note here said
-   0.065 and called it the least reliable facet; that was measured on 18 rows before the
-   Gemini column filled. It rose to 0.358 and `computeTier` at 0.131 is now the lowest.
-   The conclusion is unchanged — the facet at the centre of the cameras correction is
-   both invalid and unreliable — but quote 0.358.)*
+3. `capturesAV` **fails reliability as well as validity** — κ = 0.386 on the full
+   3-rater panel, below the 0.40 bar, on top of the NOT-USABLE validity verdicts for
+   `cameras` (0.591) and `alarms` (0.574). The facet at the centre of the cameras
+   correction is both invalid and unreliable.
 4. **Two independent methods agree on which facets are unassignable.** `hasWebAdminUI`
-   (0.283) and `computeTier` (0.131) are the two lowest-scoring facets under blind
-   annotation, and they are precisely the two `facet_derive.py` already failed to derive
-   from CVE text. Text derivation and independent annotation share no mechanism, so the
-   agreement is much stronger evidence than either result alone — and it points the same
-   way as the retraction already recorded in `CLAUDE.md`.
+   (0.349) and `computeTier` (0.384) sit at the bottom of the κ table (with
+   `supportLifetime`, below), and they are precisely the two `facet_derive.py` already
+   failed to derive from CVE text. Text derivation and independent annotation share no
+   mechanism, so the agreement is much stronger evidence than either result alone — and
+   it points the same way as the retraction already recorded in `CLAUDE.md`.
+5. **`supportLifetime` is below chance** — κ = −0.311, 12% raw agreement, 28.3%
+   `unsure`. That is not a hard facet, it is a broken instrument: annotators are reading
+   the value definitions differently, or answering a question the input cannot support
+   (vendor support policy, judged from a product name). A definition fix or a documentary
+   source is the only route back; more annotation is not.
 
 ---
 
@@ -59,7 +85,7 @@ citable" waits on it, and nothing else does.
 | A1 | **κ subsample not run.** `codex.csv` and `gemini.csv` (480 rows each) are 0% filled. By the plan's own rule, *nothing* in Phase A is citable — including the cameras-recorders finding. | `data/facets/annotation-kit/` inspected: Value columns empty in both |
 | A2 | **No Gemini automation path for facets.** `gemini_classify.py` has no facet mode; Phase 2 of the annotation plan requires extending it. Without this, the Gemini column can only be filled by hand. | `grep -i facet scripts/gemini_classify.py` → nothing |
 | A3 | **`facet_agreement.py` does not exist.** κ, PABAK, bootstrap CIs, the collinearity cross-tabs, the author-prior comparison — none of the Phase 3 statistics can be computed. Named as "Next" item 2 in the results section and never started. | not in `scripts/` |
-| A4 | **No merge/flag/store stage for facet annotations.** `merge_facet_annotations.py` and `data/facets/facet_store.csv` (Phase 3/4 of the annotation plan) don't exist, so there is no durable home for adjudicated facet answers and no human queue. | not in `scripts/` or `data/facets/` |
+| A4 | **No merge/flag/store stage for facet annotations.** `merge_facet_annotations.py` and `data/facets/facet_store.csv` (Phase 3/4 of the annotation plan) don't exist, so there is no durable home for adjudicated facet answers and no human queue. *(2026-08-10: the F5 redesign resolves this with the store alone — the AI merge script is no longer needed; see F5 step 5.)* | not in `scripts/` or `data/facets/` |
 | A5 | **Phase A verdicts are enforced by nothing.** `facet_analysis.py` has no awareness of `facet_distribution.csv`. 12 cells are `NOT-USABLE` (incl. `cameras/capturesAV` 0.591, `alarms/capturesAV` 0.574, `doorlock/cloudDependence` 0.389) yet every analysis run still stamps the single category-level value onto every CVE row in those cells. The plan's rule — "never present a value whose share is < 0.60" — is policy, not code. | `grep distribution scripts/facet_analysis.py` → nothing |
 | A6 | **Cameras subtype pass decided, not started.** The agreed fix for the 43%-recorders finding (classify cameras' devices as camera/recorder/other, pilot 100 first) has no script and no sheet. Until it runs, the published `capturesAV` dominance figure (79% cameras) is known-suspect and uncorrected. | no artifact anywhere under `data/facets/` |
 | A7 | **The ontology cannot carry annotation results yet.** No `hiot:Annotated` tier, no `hiot:agreementKappa` / `hiot:annotatorCount`. Expected (Phase 5 hasn't run) — but the writeback machinery doesn't exist either, so when κ lands there is nowhere for it to go. | `grep Annotated ontology/homeiot.ttl` → nothing |
@@ -144,6 +170,24 @@ new numbers do. Phases F1 and F6 are independent of the rest and can run any tim
 citable/not-citable calls are recorded at the bottom of `PLAN_facet_annotation.md`'s
 results section.
 
+**Closeout — 2026-08-10.** Steps 1–2 are done (`facet_gemini.py` ran; Codex landed in
+`a51603f`) and `facet_agreement.py` computes the 3-rater κ. What remains before the gate
+is met:
+
+1. **Fill the 9 blank Gemini cells** (`facet_gemini.py` re-run) — 4 of them are
+   `formFactor`, whose κ is currently on n=35.
+2. **Regenerate `data/facets/facet_agreement.csv`** — the checked-in file is the
+   2-rater vintage (2026-08-08) and still reports π, including `formFactor` at 1.000.
+3. **Add the two never-built statistics to `facet_agreement.py`:** the author-prior
+   agreement (excluded from κ, unit mismatch stated) and the three-way `hasWebAdminUI`
+   comparison against `data/ontology/facet_evidence.csv` — the strongest available
+   result if the panel lands closer to the derivation evidence than the prior did.
+4. **Record the per-facet citable calls** at the bottom of `PLAN_facet_annotation.md`
+   (the gate condition itself).
+5. **The two collinearity cross-tabs CANNOT run on this panel** — `patchResponsibility`
+   and `adminModel` are not in the kit (the product sheet carries only the 12
+   single-valued facets). They move to F5, computed on the adjudicated category values.
+
 ### Phase F3 — Enforce Phase A verdicts in code *(small; before any new analysis runs)*
 
 The rule "report the distribution instead of a value for a NOT-USABLE cell" becomes
@@ -186,6 +230,15 @@ value for the 12 NOT-USABLE cells; `--check` still green.
 3. **Recompute the dominance table at device level for cameras** (and only cameras) —
    `capturesAV`, `dataSensitivity` — then, κ permitting (F2), replace the 79% figure in
    `CLAUDE.md` and both memory files with the corrected one. This supersedes F1's flag.
+   **Amended 2026-08-10 — κ did not permit.** `capturesAV` failed reliability (0.386)
+   as well as validity, so recomputing the figure would imply the facet measures
+   something once recorders are separated out, and the κ says it does not.
+   **Recommendation: retire the 79% worked example rather than correct it** — replace
+   it in the dominance-rule prose with `actuatesPhysical` (0.737, 8/10 cells, 23% top
+   share), which survives both gates. The subtype pass itself still runs: the
+   camera/recorder split is a real finding about the category and feeds
+   `dataSensitivity` at device level. Decision open — settle it before touching
+   `CLAUDE.md`.
 4. **`alarms` gets the hypothesis, not a pass, for now:** record in the results section
    that `alarms/capturesAV` 0.574 is very likely the same panels-with/without-cameras
    pattern; run its own subtype pass only if alarms numbers are actually needed in the
@@ -194,40 +247,120 @@ value for the 12 NOT-USABLE cells; `--check` still green.
 **Gate:** pilot judgeability number recorded before the full pass starts; no dominance
 figure changes anywhere until both F2's κ and the full pass are done.
 
-### Phase F5 — Category-level annotation study (original Phases 0–5), gated on F2+F3
+### Phase F5 — Human-sourced category tagging + writeback (REDESIGNED 2026-08-10), gated on F2+F3
 
-Resolves C1 and C2 explicitly, then builds the remaining machinery.
+**Supersedes the original "category-level annotation study" (a second 3-AI panel of 984
+items each, merged and human-adjudicated).** Three reasons, all measured:
 
-1. **Decision (C1) — the gate is per-cell, the study is per-facet.** A facet enters the
-   κ study if it has ≥1 defensible or grouping-only cell (all 12 currently qualify);
-   but a cell Phase A marked NOT-USABLE is **excluded from writeback regardless of κ**
-   — high agreement on a fiction is still a fiction (the plan's own validity/reliability
-   distinction, applied). UNMEASURED-regime categories keep `Estimated` values.
-2. **Decision (C2) — both units, explicit roles.** Product-level κ (F2) validates the
-   Phase A distributions. The category-level study is still what licenses writeback,
-   because the ontology's assertions are category-level: three annotators on the 24
-   categories per the original plan, restricted per decision 1. State in the paper that
-   the two measure different things.
-3. **`make_facet_copies.py --unit category`** — emit the category-level sheets the
-   original Phase 2 describes (`slug, label, scope_note, facet, allowed_values, …`),
-   same kit, same blindness structure. Product mode stays as-is.
-4. **New `scripts/merge_facet_annotations.py`** (mirror `merge_judgments.py`): existing
-   flag rule transplanted (Claude+Codex both Low, or non-unanimous → human queue; lone
-   Gemini dissent vs High-High → `strong-consensus`), with the caveat already written
-   in the plan — do not cite 99.7% as validating it on this unit.
-5. **New `data/facets/facet_store.csv`** keyed `(slug, facet)`, sticky human verdicts,
-   `finalize`/`extract` pattern reused.
+- **The reliability statistic already exists.** The product panel (F2) is the κ report;
+  a second AI panel would re-measure reliability the project already has, at the cost of
+  another human-run Codex sitting twice the size of the one just completed.
+- **The failed facets fail for want of evidence, not effort.** `supportLifetime` is
+  below chance with 28% abstention; `hasWebAdminUI` and `computeTier` failed blind
+  annotation *and* text derivation — two mechanism-free-of-each-other methods. More
+  blind annotation cannot fix a question the input does not answer. **Only a source
+  can**, and sourcing is also the only route to an evidence tier above `Annotated`.
+- **Human truth is already the top of the hierarchy everywhere else.** `Final Source =
+  human` is sticky and supersedes all AI judgments in `judgment_store.csv`. Extending
+  that to facets is consistency, not a new rule.
+
+**Two boundaries, stated up front because they bound what this phase can deliver:**
+
+- **Human+source rescues reliability failures, never validity failures.** A cell Phase A
+  marked NOT-USABLE stays excluded from writeback *regardless of who tagged it or what
+  source they cite* (decision C1, unchanged). `cameras/capturesAV` is not wrong because
+  nobody checked a source — the category holds two device types and the slot holds one
+  value. A human with perfect sources is still wrong on ~40% of the rows the value lands
+  on. Those cells keep the distribution, or wait on F4.
+- **A source is almost always per-product; the assertion is per-category.** A spec sheet
+  documents the Tapo P100, not "smartplugs". The generalization step is still the
+  human's, and the recorded tier must say so — which is why `Human-sourced` is a
+  distinct tier below `Documented`, not a synonym for it.
+
+The steps:
+
+1. **Sourcing probe first — a gate on the whole phase.** ~20 cells across the κ-failed
+   facets: minutes per cell, and the hit rate. If `supportLifetime` sources exist for 3
+   of 24 categories' vendor bases, the facet gets dropped anyway — better to know after
+   twenty minutes than after a full pass. Candidate source classes: vendor
+   support/security pages and declared support periods (UK PSTI / EU CRA declarations —
+   verify the regulatory detail before citing), Matter/certification requirements,
+   product manuals, Shodan/Censys banners for `hasWebAdminUI` (`CLAUDE.md` § Future
+   dimension; exposure-biased, say so).
+   **The probe is the top of the sheet** — `make_tagging_sheet.py --probe 20` prints it,
+   and it is exactly rows 1–20 of `category_tags.csv` because the sort puts κ-failed
+   facets on high-CVE categories first. Record minutes-per-cell and hit rate here before
+   continuing past row 20.
+2. **`data/facets/facet_store.csv`** keyed `(slug, facet)` — sticky human verdicts,
+   `finalize`/`extract` pattern reused — **plus `Sources` and `Evidence Tier` columns.**
+   **BUILT** — `scripts/facet_store.py` (`--finalize` / `--extract` / `--status` /
+   `--writeback`).
+3. **The human sheet** — 24 categories × 12 single-valued facets = **288 cells**, of
+   which **276 asked** and 12 emitted as `excluded-validity`. **BUILT** —
+   `scripts/make_tagging_sheet.py` → `data/facets/tagging-kit/`.
+4. **Priority order, so partial completion still pays:** the 5 κ-failed facets first
+   (only sourcing saves them), then the 3 grouping-only, then spot-check the 4 CITABLE.
+   Implemented as the sheet's sort order (κ band, then category CVE count), so the
+   schedule is the file rather than a rule someone has to remember. For
+   `supportLifetime`, try a definition fix alongside the sourcing — below-chance κ plus
+   28% abstention reads as annotators parsing the values differently.
+5. **No second AI panel, no `merge_facet_annotations.py`.** Two human columns on one
+   sheet, the existing human-review convention: agreement on a non-`unsure` verdict
+   settles; disagreement is discussed and reconciled (as the H1≠H2 scope rulings were).
+   The AI merge/flag machinery has nothing to merge here.
 6. **`shapes.ttl`: `NoAdminInterface` exclusivity constraint** (A8) — landed *before*
-   writeback so the contradiction cannot reach the ontology.
-7. **Writeback (original Phase 5, unchanged):** `hiot:Annotated` tier,
-   `hiot:agreementKappa` + `hiot:annotatorCount` per property, promotion per facet on
-   its own κ (≥0.60 citable / 0.40–0.60 grouping / <0.40 stays Estimated or dropped),
-   **`hasRole` annotated but never written**, all four gates re-run, `categories.csv`
-   and `families.csv` byte-identical, then regenerate `facet_analysis.py` output and
-   update `CLAUDE.md` + memory files.
+   writeback so the contradiction cannot reach the ontology. **Deferred with the
+   multi-valued facets** — `load_facet_spec()` returns only `sh:maxCount 1` properties,
+   so the 7 multi-valued facets need a second loader path; neither is needed for the
+   288-cell pass.
+7. **Writeback — a REPORT, applied by hand.** Facet values live in hand-authored
+   `homeiot.ttl`, and `ontology_build.py --write` deliberately only ever emits CSVs so
+   rdflib cannot reserialize it. `facet_store.py --writeback` therefore emits
+   `data/facets/facet_writeback_report.md` — every value change with its tier and
+   source, plus the proposed per-property tier — and a person applies it, the same
+   propose/commit split the discovery miners use. The **per-cell tier and source live
+   in the store, never hand-copied into the TTL** (the anti-drift convention).
+   **`hasRole` never written.** All four gates re-run afterwards, `categories.csv` and
+   `families.csv` byte-identical, then regenerate `facet_analysis.py` output and update
+   `CLAUDE.md` + memory files.
+8. **The two collinearity cross-tabs** (`firmwareUpdateModel` × `patchResponsibility`,
+   `hasWebAdminUI` × `adminModel`) run on the human-settled category values from this
+   pass — they could not run on the product panel (F2 closeout item 5). Both need the
+   multi-valued facets, so they follow step 6.
 
-**Gate:** all four ontology gates green after writeback; `--check`'s provenance line
-shows the mixed tier state; no stale facet number survives in `CLAUDE.md` or memory.
+**Tier vocabulary — decided 2026-08-10, `hiot:Annotated` is dropped.** It was defined as
+"multiple independent annotators under a shared rubric, with measured agreement and human
+adjudication", and the category-level AI panel that would have earned it no longer runs —
+so nothing at category level could ever hold it. Replaced by two tiers, now in
+`homeiot.ttl`:
+
+| tier | when | citable? |
+|---|---|---|
+| `hiot:Documented` | source covers the whole category (regulation, certification requirement) | yes, with source |
+| `hiot:HumanSourced` | human verdict + per-product citations — **most cells** | yes, with the generalisation limit stated |
+| `hiot:HumanJudged` | human verdict, source looked for and not found | no — treat as `Estimated` |
+
+The tier is **derived from what the reviewer did**, not self-reported: source blank →
+`HumanJudged`; source present → `HumanSourced`; source present and marked `category-wide`
+→ `Documented`. So "I could not find a source" is recorded rather than papered over, and
+the `HumanJudged` share becomes a reportable result about the facet.
+
+**Per-cell tiers vs the per-property `hiot:evidenceTier`** — resolved by a **floor rule**:
+a property carries the tier of its *weakest* cell, so one unevidenced category cannot hide
+behind evidenced ones. Unsettled cells keep the hand value and count as `Estimated`.
+`facet_store.py --status` and the writeback report both print it.
+
+**Decision (C2), restated for the redesign:** product-level κ (F2) is the reliability
+report and validates the Phase A distributions; the human-sourced category pass is what
+licenses writeback, because the ontology's assertions are category-level and human
+verdicts are the project's override tier. The paper states that the two measure
+different things — and that the human pass is verification-with-sources of a disclosed
+AI consensus, not an independent blind annotation.
+
+**Gate:** probe numbers recorded before the sheet is built; all four ontology gates
+green after writeback; `--check` prints the per-cell tier mix
+(`Documented`/`Human-sourced`/`Human-judged`/`Estimated`); no stale facet number
+survives in `CLAUDE.md` or memory.
 
 ### Phase F6 — Independent housekeeping *(any time)*
 
@@ -250,12 +383,12 @@ shows the mixed tier state; no stale facet number survives in `CLAUDE.md` or mem
 ## Sequencing summary
 
 ```
-F1 (docs truth)            ── independent, do immediately
-F2 (κ: gemini script → codex run → agreement stats)   ← critical path
-F3 (verdict enforcement)   ── after F2 starts, before any new analysis is quoted
-F4 (cameras subtype)       ── pilot after F2 kicks off; full pass + number correction after κ
-F5 (category study + writeback) ── after F2+F3; largest block
-F6 (shades / KG vectors / push) ── independent, any time
+F1 (docs truth)            ── DONE
+F3 (verdict enforcement)   ── DONE
+F2 closeout (gemini blanks → regenerate CSV → prior/three-way stats → record calls)
+F5 (sourcing probe → store + sheet → human pass → writeback)  ← now the critical path
+F4 (cameras full subtype pass) ── parallel to F5; settle retire-vs-recompute first
+F6 (KG vectors) ── independent, any time
 ```
 
 ## What "done" looks like
@@ -264,6 +397,9 @@ F6 (shades / KG vectors / push) ── independent, any time
   and current, or explicitly flagged as pending — nothing silently stale.
 - A facet value cannot reach an analysis table without its Phase A verdict and modal
   share attached, enforced in code.
-- κ, PABAK, and CIs exist for every annotated facet; the cameras dominance figure is
-  corrected at device level; the ontology carries `hiot:Annotated` with per-property
-  reliability; all four gates green.
+- The 3-rater κ table with CIs is the recorded reliability report; every category-level
+  facet assertion carries a per-cell tier in the store
+  (`Documented`/`Human-sourced`/`Human-judged`/`Estimated`), with sources cited where
+  they exist; the cameras dominance example is retired or corrected per the F4
+  decision; the ontology carries `hiot:Annotated` with per-property reliability; all
+  four gates green.
