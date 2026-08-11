@@ -1,481 +1,481 @@
 category,device,vendor,product,cve_count,facet,allowed_values,Value,Confidence,Reasoning
-alarms,abus:secvest_wireless_remote_control_fube50015,abus,secvest_wireless_remote_control_fube50015,3,actuatesPhysical,true|false|unsure,,,
-alarms,abus:secvest_wireless_remote_control_fube50015,abus,secvest_wireless_remote_control_fube50015,3,actuationConsequence,ComfortActuation|NoActuation|PropertyActuation|SafetyActuation|unsure,,,
-alarms,abus:secvest_wireless_remote_control_fube50015,abus,secvest_wireless_remote_control_fube50015,3,capturesAV,true|false|unsure,,,
-alarms,abus:secvest_wireless_remote_control_fube50015,abus,secvest_wireless_remote_control_fube50015,3,cloudDependence,CloudOptional|CloudRequired|LocalOnly|unsure,,,
-alarms,abus:secvest_wireless_remote_control_fube50015,abus,secvest_wireless_remote_control_fube50015,3,computeTier,AndroidDerived|EmbeddedLinux|McuClass|Rtos|unsure,,,
-alarms,abus:secvest_wireless_remote_control_fube50015,abus,secvest_wireless_remote_control_fube50015,3,consumerAvailability,InstallerChannel|MixedChannel|RetailConsumer|unsure,,,
-alarms,abus:secvest_wireless_remote_control_fube50015,abus,secvest_wireless_remote_control_fube50015,3,dataSensitivity,AvStreamData|BiometricData|NoData|TelemetryData|unsure,,,
-alarms,abus:secvest_wireless_remote_control_fube50015,abus,secvest_wireless_remote_control_fube50015,3,firmwareUpdateModel,ManualFlash|NoUpdatePath|OtaAutomatic|OtaUserInitiated|unsure,,,
-alarms,abus:secvest_wireless_remote_control_fube50015,abus,secvest_wireless_remote_control_fube50015,3,formFactor,Fixed|Portable|Worn|unsure,,,
-alarms,abus:secvest_wireless_remote_control_fube50015,abus,secvest_wireless_remote_control_fube50015,3,hasWebAdminUI,true|false|unsure,,,
-alarms,abus:secvest_wireless_remote_control_fube50015,abus,secvest_wireless_remote_control_fube50015,3,placement,Either|Indoor|Outdoor|unsure,,,
-alarms,abus:secvest_wireless_remote_control_fube50015,abus,secvest_wireless_remote_control_fube50015,3,supportLifetime,DeclaredLifetime|UndeclaredLifetime|unsure,,,
-alarms,chuango:g3_gsm\/sms_alarm_system,chuango,g3_gsm\/sms_alarm_system,1,actuatesPhysical,true|false|unsure,,,
-alarms,chuango:g3_gsm\/sms_alarm_system,chuango,g3_gsm\/sms_alarm_system,1,actuationConsequence,ComfortActuation|NoActuation|PropertyActuation|SafetyActuation|unsure,,,
-alarms,chuango:g3_gsm\/sms_alarm_system,chuango,g3_gsm\/sms_alarm_system,1,capturesAV,true|false|unsure,,,
-alarms,chuango:g3_gsm\/sms_alarm_system,chuango,g3_gsm\/sms_alarm_system,1,cloudDependence,CloudOptional|CloudRequired|LocalOnly|unsure,,,
-alarms,chuango:g3_gsm\/sms_alarm_system,chuango,g3_gsm\/sms_alarm_system,1,computeTier,AndroidDerived|EmbeddedLinux|McuClass|Rtos|unsure,,,
-alarms,chuango:g3_gsm\/sms_alarm_system,chuango,g3_gsm\/sms_alarm_system,1,consumerAvailability,InstallerChannel|MixedChannel|RetailConsumer|unsure,,,
-alarms,chuango:g3_gsm\/sms_alarm_system,chuango,g3_gsm\/sms_alarm_system,1,dataSensitivity,AvStreamData|BiometricData|NoData|TelemetryData|unsure,,,
-alarms,chuango:g3_gsm\/sms_alarm_system,chuango,g3_gsm\/sms_alarm_system,1,firmwareUpdateModel,ManualFlash|NoUpdatePath|OtaAutomatic|OtaUserInitiated|unsure,,,
-alarms,chuango:g3_gsm\/sms_alarm_system,chuango,g3_gsm\/sms_alarm_system,1,formFactor,Fixed|Portable|Worn|unsure,,,
-alarms,chuango:g3_gsm\/sms_alarm_system,chuango,g3_gsm\/sms_alarm_system,1,hasWebAdminUI,true|false|unsure,,,
-alarms,chuango:g3_gsm\/sms_alarm_system,chuango,g3_gsm\/sms_alarm_system,1,placement,Either|Indoor|Outdoor|unsure,,,
-alarms,chuango:g3_gsm\/sms_alarm_system,chuango,g3_gsm\/sms_alarm_system,1,supportLifetime,DeclaredLifetime|UndeclaredLifetime|unsure,,,
-alarms,chuango:g5w,chuango,g5w,1,actuatesPhysical,true|false|unsure,,,
-alarms,chuango:g5w,chuango,g5w,1,actuationConsequence,ComfortActuation|NoActuation|PropertyActuation|SafetyActuation|unsure,,,
-alarms,chuango:g5w,chuango,g5w,1,capturesAV,true|false|unsure,,,
-alarms,chuango:g5w,chuango,g5w,1,cloudDependence,CloudOptional|CloudRequired|LocalOnly|unsure,,,
-alarms,chuango:g5w,chuango,g5w,1,computeTier,AndroidDerived|EmbeddedLinux|McuClass|Rtos|unsure,,,
-alarms,chuango:g5w,chuango,g5w,1,consumerAvailability,InstallerChannel|MixedChannel|RetailConsumer|unsure,,,
-alarms,chuango:g5w,chuango,g5w,1,dataSensitivity,AvStreamData|BiometricData|NoData|TelemetryData|unsure,,,
-alarms,chuango:g5w,chuango,g5w,1,firmwareUpdateModel,ManualFlash|NoUpdatePath|OtaAutomatic|OtaUserInitiated|unsure,,,
-alarms,chuango:g5w,chuango,g5w,1,formFactor,Fixed|Portable|Worn|unsure,,,
-alarms,chuango:g5w,chuango,g5w,1,hasWebAdminUI,true|false|unsure,,,
-alarms,chuango:g5w,chuango,g5w,1,placement,Either|Indoor|Outdoor|unsure,,,
-alarms,chuango:g5w,chuango,g5w,1,supportLifetime,DeclaredLifetime|UndeclaredLifetime|unsure,,,
-alarms,mydigoo:dg-hamb_smart_home_security_system,mydigoo,dg-hamb_smart_home_security_system,1,actuatesPhysical,true|false|unsure,,,
-alarms,mydigoo:dg-hamb_smart_home_security_system,mydigoo,dg-hamb_smart_home_security_system,1,actuationConsequence,ComfortActuation|NoActuation|PropertyActuation|SafetyActuation|unsure,,,
-alarms,mydigoo:dg-hamb_smart_home_security_system,mydigoo,dg-hamb_smart_home_security_system,1,capturesAV,true|false|unsure,,,
-alarms,mydigoo:dg-hamb_smart_home_security_system,mydigoo,dg-hamb_smart_home_security_system,1,cloudDependence,CloudOptional|CloudRequired|LocalOnly|unsure,,,
-alarms,mydigoo:dg-hamb_smart_home_security_system,mydigoo,dg-hamb_smart_home_security_system,1,computeTier,AndroidDerived|EmbeddedLinux|McuClass|Rtos|unsure,,,
-alarms,mydigoo:dg-hamb_smart_home_security_system,mydigoo,dg-hamb_smart_home_security_system,1,consumerAvailability,InstallerChannel|MixedChannel|RetailConsumer|unsure,,,
-alarms,mydigoo:dg-hamb_smart_home_security_system,mydigoo,dg-hamb_smart_home_security_system,1,dataSensitivity,AvStreamData|BiometricData|NoData|TelemetryData|unsure,,,
-alarms,mydigoo:dg-hamb_smart_home_security_system,mydigoo,dg-hamb_smart_home_security_system,1,firmwareUpdateModel,ManualFlash|NoUpdatePath|OtaAutomatic|OtaUserInitiated|unsure,,,
-alarms,mydigoo:dg-hamb_smart_home_security_system,mydigoo,dg-hamb_smart_home_security_system,1,formFactor,Fixed|Portable|Worn|unsure,,,
-alarms,mydigoo:dg-hamb_smart_home_security_system,mydigoo,dg-hamb_smart_home_security_system,1,hasWebAdminUI,true|false|unsure,,,
-alarms,mydigoo:dg-hamb_smart_home_security_system,mydigoo,dg-hamb_smart_home_security_system,1,placement,Either|Indoor|Outdoor|unsure,,,
-alarms,mydigoo:dg-hamb_smart_home_security_system,mydigoo,dg-hamb_smart_home_security_system,1,supportLifetime,DeclaredLifetime|UndeclaredLifetime|unsure,,,
-alarms,vivint:sky_control_panel,vivint,sky_control_panel,1,actuatesPhysical,true|false|unsure,,,
-alarms,vivint:sky_control_panel,vivint,sky_control_panel,1,actuationConsequence,ComfortActuation|NoActuation|PropertyActuation|SafetyActuation|unsure,,,
-alarms,vivint:sky_control_panel,vivint,sky_control_panel,1,capturesAV,true|false|unsure,,,
-alarms,vivint:sky_control_panel,vivint,sky_control_panel,1,cloudDependence,CloudOptional|CloudRequired|LocalOnly|unsure,,,
-alarms,vivint:sky_control_panel,vivint,sky_control_panel,1,computeTier,AndroidDerived|EmbeddedLinux|McuClass|Rtos|unsure,,,
-alarms,vivint:sky_control_panel,vivint,sky_control_panel,1,consumerAvailability,InstallerChannel|MixedChannel|RetailConsumer|unsure,,,
-alarms,vivint:sky_control_panel,vivint,sky_control_panel,1,dataSensitivity,AvStreamData|BiometricData|NoData|TelemetryData|unsure,,,
-alarms,vivint:sky_control_panel,vivint,sky_control_panel,1,firmwareUpdateModel,ManualFlash|NoUpdatePath|OtaAutomatic|OtaUserInitiated|unsure,,,
-alarms,vivint:sky_control_panel,vivint,sky_control_panel,1,formFactor,Fixed|Portable|Worn|unsure,,,
-alarms,vivint:sky_control_panel,vivint,sky_control_panel,1,hasWebAdminUI,true|false|unsure,,,
-alarms,vivint:sky_control_panel,vivint,sky_control_panel,1,placement,Either|Indoor|Outdoor|unsure,,,
-alarms,vivint:sky_control_panel,vivint,sky_control_panel,1,supportLifetime,DeclaredLifetime|UndeclaredLifetime|unsure,,,
-cameras,c-first:cfr-4eha,c-first,cfr-4eha,2,actuatesPhysical,true|false|unsure,,,
-cameras,c-first:cfr-4eha,c-first,cfr-4eha,2,actuationConsequence,ComfortActuation|NoActuation|PropertyActuation|SafetyActuation|unsure,,,
-cameras,c-first:cfr-4eha,c-first,cfr-4eha,2,capturesAV,true|false|unsure,,,
-cameras,c-first:cfr-4eha,c-first,cfr-4eha,2,cloudDependence,CloudOptional|CloudRequired|LocalOnly|unsure,,,
-cameras,c-first:cfr-4eha,c-first,cfr-4eha,2,computeTier,AndroidDerived|EmbeddedLinux|McuClass|Rtos|unsure,,,
-cameras,c-first:cfr-4eha,c-first,cfr-4eha,2,consumerAvailability,InstallerChannel|MixedChannel|RetailConsumer|unsure,,,
-cameras,c-first:cfr-4eha,c-first,cfr-4eha,2,dataSensitivity,AvStreamData|BiometricData|NoData|TelemetryData|unsure,,,
-cameras,c-first:cfr-4eha,c-first,cfr-4eha,2,firmwareUpdateModel,ManualFlash|NoUpdatePath|OtaAutomatic|OtaUserInitiated|unsure,,,
-cameras,c-first:cfr-4eha,c-first,cfr-4eha,2,formFactor,Fixed|Portable|Worn|unsure,,,
-cameras,c-first:cfr-4eha,c-first,cfr-4eha,2,hasWebAdminUI,true|false|unsure,,,
-cameras,c-first:cfr-4eha,c-first,cfr-4eha,2,placement,Either|Indoor|Outdoor|unsure,,,
-cameras,c-first:cfr-4eha,c-first,cfr-4eha,2,supportLifetime,DeclaredLifetime|UndeclaredLifetime|unsure,,,
-cameras,dahuasecurity:dvr2116he,dahuasecurity,dvr2116he,5,actuatesPhysical,true|false|unsure,,,
-cameras,dahuasecurity:dvr2116he,dahuasecurity,dvr2116he,5,actuationConsequence,ComfortActuation|NoActuation|PropertyActuation|SafetyActuation|unsure,,,
-cameras,dahuasecurity:dvr2116he,dahuasecurity,dvr2116he,5,capturesAV,true|false|unsure,,,
-cameras,dahuasecurity:dvr2116he,dahuasecurity,dvr2116he,5,cloudDependence,CloudOptional|CloudRequired|LocalOnly|unsure,,,
-cameras,dahuasecurity:dvr2116he,dahuasecurity,dvr2116he,5,computeTier,AndroidDerived|EmbeddedLinux|McuClass|Rtos|unsure,,,
-cameras,dahuasecurity:dvr2116he,dahuasecurity,dvr2116he,5,consumerAvailability,InstallerChannel|MixedChannel|RetailConsumer|unsure,,,
-cameras,dahuasecurity:dvr2116he,dahuasecurity,dvr2116he,5,dataSensitivity,AvStreamData|BiometricData|NoData|TelemetryData|unsure,,,
-cameras,dahuasecurity:dvr2116he,dahuasecurity,dvr2116he,5,firmwareUpdateModel,ManualFlash|NoUpdatePath|OtaAutomatic|OtaUserInitiated|unsure,,,
-cameras,dahuasecurity:dvr2116he,dahuasecurity,dvr2116he,5,formFactor,Fixed|Portable|Worn|unsure,,,
-cameras,dahuasecurity:dvr2116he,dahuasecurity,dvr2116he,5,hasWebAdminUI,true|false|unsure,,,
-cameras,dahuasecurity:dvr2116he,dahuasecurity,dvr2116he,5,placement,Either|Indoor|Outdoor|unsure,,,
-cameras,dahuasecurity:dvr2116he,dahuasecurity,dvr2116he,5,supportLifetime,DeclaredLifetime|UndeclaredLifetime|unsure,,,
-cameras,xiongmaitech:ipg-53h10pe-s,xiongmaitech,ipg-53h10pe-s,1,actuatesPhysical,true|false|unsure,,,
-cameras,xiongmaitech:ipg-53h10pe-s,xiongmaitech,ipg-53h10pe-s,1,actuationConsequence,ComfortActuation|NoActuation|PropertyActuation|SafetyActuation|unsure,,,
-cameras,xiongmaitech:ipg-53h10pe-s,xiongmaitech,ipg-53h10pe-s,1,capturesAV,true|false|unsure,,,
-cameras,xiongmaitech:ipg-53h10pe-s,xiongmaitech,ipg-53h10pe-s,1,cloudDependence,CloudOptional|CloudRequired|LocalOnly|unsure,,,
-cameras,xiongmaitech:ipg-53h10pe-s,xiongmaitech,ipg-53h10pe-s,1,computeTier,AndroidDerived|EmbeddedLinux|McuClass|Rtos|unsure,,,
-cameras,xiongmaitech:ipg-53h10pe-s,xiongmaitech,ipg-53h10pe-s,1,consumerAvailability,InstallerChannel|MixedChannel|RetailConsumer|unsure,,,
-cameras,xiongmaitech:ipg-53h10pe-s,xiongmaitech,ipg-53h10pe-s,1,dataSensitivity,AvStreamData|BiometricData|NoData|TelemetryData|unsure,,,
-cameras,xiongmaitech:ipg-53h10pe-s,xiongmaitech,ipg-53h10pe-s,1,firmwareUpdateModel,ManualFlash|NoUpdatePath|OtaAutomatic|OtaUserInitiated|unsure,,,
-cameras,xiongmaitech:ipg-53h10pe-s,xiongmaitech,ipg-53h10pe-s,1,formFactor,Fixed|Portable|Worn|unsure,,,
-cameras,xiongmaitech:ipg-53h10pe-s,xiongmaitech,ipg-53h10pe-s,1,hasWebAdminUI,true|false|unsure,,,
-cameras,xiongmaitech:ipg-53h10pe-s,xiongmaitech,ipg-53h10pe-s,1,placement,Either|Indoor|Outdoor|unsure,,,
-cameras,xiongmaitech:ipg-53h10pe-s,xiongmaitech,ipg-53h10pe-s,1,supportLifetime,DeclaredLifetime|UndeclaredLifetime|unsure,,,
-doorbell,reolink:smart_2k\+_plug-in_wi-fi_video_doorbell_with_chime,reolink,smart_2k\+_plug-in_wi-fi_video_doorbell_with_chime,3,actuatesPhysical,true|false|unsure,,,
-doorbell,reolink:smart_2k\+_plug-in_wi-fi_video_doorbell_with_chime,reolink,smart_2k\+_plug-in_wi-fi_video_doorbell_with_chime,3,actuationConsequence,ComfortActuation|NoActuation|PropertyActuation|SafetyActuation|unsure,,,
-doorbell,reolink:smart_2k\+_plug-in_wi-fi_video_doorbell_with_chime,reolink,smart_2k\+_plug-in_wi-fi_video_doorbell_with_chime,3,capturesAV,true|false|unsure,,,
-doorbell,reolink:smart_2k\+_plug-in_wi-fi_video_doorbell_with_chime,reolink,smart_2k\+_plug-in_wi-fi_video_doorbell_with_chime,3,cloudDependence,CloudOptional|CloudRequired|LocalOnly|unsure,,,
-doorbell,reolink:smart_2k\+_plug-in_wi-fi_video_doorbell_with_chime,reolink,smart_2k\+_plug-in_wi-fi_video_doorbell_with_chime,3,computeTier,AndroidDerived|EmbeddedLinux|McuClass|Rtos|unsure,,,
-doorbell,reolink:smart_2k\+_plug-in_wi-fi_video_doorbell_with_chime,reolink,smart_2k\+_plug-in_wi-fi_video_doorbell_with_chime,3,consumerAvailability,InstallerChannel|MixedChannel|RetailConsumer|unsure,,,
-doorbell,reolink:smart_2k\+_plug-in_wi-fi_video_doorbell_with_chime,reolink,smart_2k\+_plug-in_wi-fi_video_doorbell_with_chime,3,dataSensitivity,AvStreamData|BiometricData|NoData|TelemetryData|unsure,,,
-doorbell,reolink:smart_2k\+_plug-in_wi-fi_video_doorbell_with_chime,reolink,smart_2k\+_plug-in_wi-fi_video_doorbell_with_chime,3,firmwareUpdateModel,ManualFlash|NoUpdatePath|OtaAutomatic|OtaUserInitiated|unsure,,,
-doorbell,reolink:smart_2k\+_plug-in_wi-fi_video_doorbell_with_chime,reolink,smart_2k\+_plug-in_wi-fi_video_doorbell_with_chime,3,formFactor,Fixed|Portable|Worn|unsure,,,
-doorbell,reolink:smart_2k\+_plug-in_wi-fi_video_doorbell_with_chime,reolink,smart_2k\+_plug-in_wi-fi_video_doorbell_with_chime,3,hasWebAdminUI,true|false|unsure,,,
-doorbell,reolink:smart_2k\+_plug-in_wi-fi_video_doorbell_with_chime,reolink,smart_2k\+_plug-in_wi-fi_video_doorbell_with_chime,3,placement,Either|Indoor|Outdoor|unsure,,,
-doorbell,reolink:smart_2k\+_plug-in_wi-fi_video_doorbell_with_chime,reolink,smart_2k\+_plug-in_wi-fi_video_doorbell_with_chime,3,supportLifetime,DeclaredLifetime|UndeclaredLifetime|unsure,,,
-doorlock,assaabloy:yale_keyless_smart_lock,assaabloy,yale_keyless_smart_lock,1,actuatesPhysical,true|false|unsure,,,
-doorlock,assaabloy:yale_keyless_smart_lock,assaabloy,yale_keyless_smart_lock,1,actuationConsequence,ComfortActuation|NoActuation|PropertyActuation|SafetyActuation|unsure,,,
-doorlock,assaabloy:yale_keyless_smart_lock,assaabloy,yale_keyless_smart_lock,1,capturesAV,true|false|unsure,,,
-doorlock,assaabloy:yale_keyless_smart_lock,assaabloy,yale_keyless_smart_lock,1,cloudDependence,CloudOptional|CloudRequired|LocalOnly|unsure,,,
-doorlock,assaabloy:yale_keyless_smart_lock,assaabloy,yale_keyless_smart_lock,1,computeTier,AndroidDerived|EmbeddedLinux|McuClass|Rtos|unsure,,,
-doorlock,assaabloy:yale_keyless_smart_lock,assaabloy,yale_keyless_smart_lock,1,consumerAvailability,InstallerChannel|MixedChannel|RetailConsumer|unsure,,,
-doorlock,assaabloy:yale_keyless_smart_lock,assaabloy,yale_keyless_smart_lock,1,dataSensitivity,AvStreamData|BiometricData|NoData|TelemetryData|unsure,,,
-doorlock,assaabloy:yale_keyless_smart_lock,assaabloy,yale_keyless_smart_lock,1,firmwareUpdateModel,ManualFlash|NoUpdatePath|OtaAutomatic|OtaUserInitiated|unsure,,,
-doorlock,assaabloy:yale_keyless_smart_lock,assaabloy,yale_keyless_smart_lock,1,formFactor,Fixed|Portable|Worn|unsure,,,
-doorlock,assaabloy:yale_keyless_smart_lock,assaabloy,yale_keyless_smart_lock,1,hasWebAdminUI,true|false|unsure,,,
-doorlock,assaabloy:yale_keyless_smart_lock,assaabloy,yale_keyless_smart_lock,1,placement,Either|Indoor|Outdoor|unsure,,,
-doorlock,assaabloy:yale_keyless_smart_lock,assaabloy,yale_keyless_smart_lock,1,supportLifetime,DeclaredLifetime|UndeclaredLifetime|unsure,,,
-doorlock,august:connect_wi-fi_bridge,august,connect_wi-fi_bridge,1,actuatesPhysical,true|false|unsure,,,
-doorlock,august:connect_wi-fi_bridge,august,connect_wi-fi_bridge,1,actuationConsequence,ComfortActuation|NoActuation|PropertyActuation|SafetyActuation|unsure,,,
-doorlock,august:connect_wi-fi_bridge,august,connect_wi-fi_bridge,1,capturesAV,true|false|unsure,,,
-doorlock,august:connect_wi-fi_bridge,august,connect_wi-fi_bridge,1,cloudDependence,CloudOptional|CloudRequired|LocalOnly|unsure,,,
-doorlock,august:connect_wi-fi_bridge,august,connect_wi-fi_bridge,1,computeTier,AndroidDerived|EmbeddedLinux|McuClass|Rtos|unsure,,,
-doorlock,august:connect_wi-fi_bridge,august,connect_wi-fi_bridge,1,consumerAvailability,InstallerChannel|MixedChannel|RetailConsumer|unsure,,,
-doorlock,august:connect_wi-fi_bridge,august,connect_wi-fi_bridge,1,dataSensitivity,AvStreamData|BiometricData|NoData|TelemetryData|unsure,,,
-doorlock,august:connect_wi-fi_bridge,august,connect_wi-fi_bridge,1,firmwareUpdateModel,ManualFlash|NoUpdatePath|OtaAutomatic|OtaUserInitiated|unsure,,,
-doorlock,august:connect_wi-fi_bridge,august,connect_wi-fi_bridge,1,formFactor,Fixed|Portable|Worn|unsure,,,
-doorlock,august:connect_wi-fi_bridge,august,connect_wi-fi_bridge,1,hasWebAdminUI,true|false|unsure,,,
-doorlock,august:connect_wi-fi_bridge,august,connect_wi-fi_bridge,1,placement,Either|Indoor|Outdoor|unsure,,,
-doorlock,august:connect_wi-fi_bridge,august,connect_wi-fi_bridge,1,supportLifetime,DeclaredLifetime|UndeclaredLifetime|unsure,,,
-doorlock,geniecompany:aladdin_connect_garage_door_opener,geniecompany,aladdin_connect_garage_door_opener,2,actuatesPhysical,true|false|unsure,,,
-doorlock,geniecompany:aladdin_connect_garage_door_opener,geniecompany,aladdin_connect_garage_door_opener,2,actuationConsequence,ComfortActuation|NoActuation|PropertyActuation|SafetyActuation|unsure,,,
-doorlock,geniecompany:aladdin_connect_garage_door_opener,geniecompany,aladdin_connect_garage_door_opener,2,capturesAV,true|false|unsure,,,
-doorlock,geniecompany:aladdin_connect_garage_door_opener,geniecompany,aladdin_connect_garage_door_opener,2,cloudDependence,CloudOptional|CloudRequired|LocalOnly|unsure,,,
-doorlock,geniecompany:aladdin_connect_garage_door_opener,geniecompany,aladdin_connect_garage_door_opener,2,computeTier,AndroidDerived|EmbeddedLinux|McuClass|Rtos|unsure,,,
-doorlock,geniecompany:aladdin_connect_garage_door_opener,geniecompany,aladdin_connect_garage_door_opener,2,consumerAvailability,InstallerChannel|MixedChannel|RetailConsumer|unsure,,,
-doorlock,geniecompany:aladdin_connect_garage_door_opener,geniecompany,aladdin_connect_garage_door_opener,2,dataSensitivity,AvStreamData|BiometricData|NoData|TelemetryData|unsure,,,
-doorlock,geniecompany:aladdin_connect_garage_door_opener,geniecompany,aladdin_connect_garage_door_opener,2,firmwareUpdateModel,ManualFlash|NoUpdatePath|OtaAutomatic|OtaUserInitiated|unsure,,,
-doorlock,geniecompany:aladdin_connect_garage_door_opener,geniecompany,aladdin_connect_garage_door_opener,2,formFactor,Fixed|Portable|Worn|unsure,,,
-doorlock,geniecompany:aladdin_connect_garage_door_opener,geniecompany,aladdin_connect_garage_door_opener,2,hasWebAdminUI,true|false|unsure,,,
-doorlock,geniecompany:aladdin_connect_garage_door_opener,geniecompany,aladdin_connect_garage_door_opener,2,placement,Either|Indoor|Outdoor|unsure,,,
-doorlock,geniecompany:aladdin_connect_garage_door_opener,geniecompany,aladdin_connect_garage_door_opener,2,supportLifetime,DeclaredLifetime|UndeclaredLifetime|unsure,,,
-ev-charging,abb:terra_ac_wallbox_80a,abb,terra_ac_wallbox_80a,2,actuatesPhysical,true|false|unsure,,,
-ev-charging,abb:terra_ac_wallbox_80a,abb,terra_ac_wallbox_80a,2,actuationConsequence,ComfortActuation|NoActuation|PropertyActuation|SafetyActuation|unsure,,,
-ev-charging,abb:terra_ac_wallbox_80a,abb,terra_ac_wallbox_80a,2,capturesAV,true|false|unsure,,,
-ev-charging,abb:terra_ac_wallbox_80a,abb,terra_ac_wallbox_80a,2,cloudDependence,CloudOptional|CloudRequired|LocalOnly|unsure,,,
-ev-charging,abb:terra_ac_wallbox_80a,abb,terra_ac_wallbox_80a,2,computeTier,AndroidDerived|EmbeddedLinux|McuClass|Rtos|unsure,,,
-ev-charging,abb:terra_ac_wallbox_80a,abb,terra_ac_wallbox_80a,2,consumerAvailability,InstallerChannel|MixedChannel|RetailConsumer|unsure,,,
-ev-charging,abb:terra_ac_wallbox_80a,abb,terra_ac_wallbox_80a,2,dataSensitivity,AvStreamData|BiometricData|NoData|TelemetryData|unsure,,,
-ev-charging,abb:terra_ac_wallbox_80a,abb,terra_ac_wallbox_80a,2,firmwareUpdateModel,ManualFlash|NoUpdatePath|OtaAutomatic|OtaUserInitiated|unsure,,,
-ev-charging,abb:terra_ac_wallbox_80a,abb,terra_ac_wallbox_80a,2,formFactor,Fixed|Portable|Worn|unsure,,,
-ev-charging,abb:terra_ac_wallbox_80a,abb,terra_ac_wallbox_80a,2,hasWebAdminUI,true|false|unsure,,,
-ev-charging,abb:terra_ac_wallbox_80a,abb,terra_ac_wallbox_80a,2,placement,Either|Indoor|Outdoor|unsure,,,
-ev-charging,abb:terra_ac_wallbox_80a,abb,terra_ac_wallbox_80a,2,supportLifetime,DeclaredLifetime|UndeclaredLifetime|unsure,,,
-ev-charging,abb:terra_ac_wallbox_ul32a,abb,terra_ac_wallbox_ul32a,2,actuatesPhysical,true|false|unsure,,,
-ev-charging,abb:terra_ac_wallbox_ul32a,abb,terra_ac_wallbox_ul32a,2,actuationConsequence,ComfortActuation|NoActuation|PropertyActuation|SafetyActuation|unsure,,,
-ev-charging,abb:terra_ac_wallbox_ul32a,abb,terra_ac_wallbox_ul32a,2,capturesAV,true|false|unsure,,,
-ev-charging,abb:terra_ac_wallbox_ul32a,abb,terra_ac_wallbox_ul32a,2,cloudDependence,CloudOptional|CloudRequired|LocalOnly|unsure,,,
-ev-charging,abb:terra_ac_wallbox_ul32a,abb,terra_ac_wallbox_ul32a,2,computeTier,AndroidDerived|EmbeddedLinux|McuClass|Rtos|unsure,,,
-ev-charging,abb:terra_ac_wallbox_ul32a,abb,terra_ac_wallbox_ul32a,2,consumerAvailability,InstallerChannel|MixedChannel|RetailConsumer|unsure,,,
-ev-charging,abb:terra_ac_wallbox_ul32a,abb,terra_ac_wallbox_ul32a,2,dataSensitivity,AvStreamData|BiometricData|NoData|TelemetryData|unsure,,,
-ev-charging,abb:terra_ac_wallbox_ul32a,abb,terra_ac_wallbox_ul32a,2,firmwareUpdateModel,ManualFlash|NoUpdatePath|OtaAutomatic|OtaUserInitiated|unsure,,,
-ev-charging,abb:terra_ac_wallbox_ul32a,abb,terra_ac_wallbox_ul32a,2,formFactor,Fixed|Portable|Worn|unsure,,,
-ev-charging,abb:terra_ac_wallbox_ul32a,abb,terra_ac_wallbox_ul32a,2,hasWebAdminUI,true|false|unsure,,,
-ev-charging,abb:terra_ac_wallbox_ul32a,abb,terra_ac_wallbox_ul32a,2,placement,Either|Indoor|Outdoor|unsure,,,
-ev-charging,abb:terra_ac_wallbox_ul32a,abb,terra_ac_wallbox_ul32a,2,supportLifetime,DeclaredLifetime|UndeclaredLifetime|unsure,,,
-ev-charging,chargepoint:home_flex_hardwired,chargepoint,home_flex_hardwired,6,actuatesPhysical,true|false|unsure,,,
-ev-charging,chargepoint:home_flex_hardwired,chargepoint,home_flex_hardwired,6,actuationConsequence,ComfortActuation|NoActuation|PropertyActuation|SafetyActuation|unsure,,,
-ev-charging,chargepoint:home_flex_hardwired,chargepoint,home_flex_hardwired,6,capturesAV,true|false|unsure,,,
-ev-charging,chargepoint:home_flex_hardwired,chargepoint,home_flex_hardwired,6,cloudDependence,CloudOptional|CloudRequired|LocalOnly|unsure,,,
-ev-charging,chargepoint:home_flex_hardwired,chargepoint,home_flex_hardwired,6,computeTier,AndroidDerived|EmbeddedLinux|McuClass|Rtos|unsure,,,
-ev-charging,chargepoint:home_flex_hardwired,chargepoint,home_flex_hardwired,6,consumerAvailability,InstallerChannel|MixedChannel|RetailConsumer|unsure,,,
-ev-charging,chargepoint:home_flex_hardwired,chargepoint,home_flex_hardwired,6,dataSensitivity,AvStreamData|BiometricData|NoData|TelemetryData|unsure,,,
-ev-charging,chargepoint:home_flex_hardwired,chargepoint,home_flex_hardwired,6,firmwareUpdateModel,ManualFlash|NoUpdatePath|OtaAutomatic|OtaUserInitiated|unsure,,,
-ev-charging,chargepoint:home_flex_hardwired,chargepoint,home_flex_hardwired,6,formFactor,Fixed|Portable|Worn|unsure,,,
-ev-charging,chargepoint:home_flex_hardwired,chargepoint,home_flex_hardwired,6,hasWebAdminUI,true|false|unsure,,,
-ev-charging,chargepoint:home_flex_hardwired,chargepoint,home_flex_hardwired,6,placement,Either|Indoor|Outdoor|unsure,,,
-ev-charging,chargepoint:home_flex_hardwired,chargepoint,home_flex_hardwired,6,supportLifetime,DeclaredLifetime|UndeclaredLifetime|unsure,,,
-ev-charging,chargepoint:home_flex_nema_14-50_plug,chargepoint,home_flex_nema_14-50_plug,6,actuatesPhysical,true|false|unsure,,,
-ev-charging,chargepoint:home_flex_nema_14-50_plug,chargepoint,home_flex_nema_14-50_plug,6,actuationConsequence,ComfortActuation|NoActuation|PropertyActuation|SafetyActuation|unsure,,,
-ev-charging,chargepoint:home_flex_nema_14-50_plug,chargepoint,home_flex_nema_14-50_plug,6,capturesAV,true|false|unsure,,,
-ev-charging,chargepoint:home_flex_nema_14-50_plug,chargepoint,home_flex_nema_14-50_plug,6,cloudDependence,CloudOptional|CloudRequired|LocalOnly|unsure,,,
-ev-charging,chargepoint:home_flex_nema_14-50_plug,chargepoint,home_flex_nema_14-50_plug,6,computeTier,AndroidDerived|EmbeddedLinux|McuClass|Rtos|unsure,,,
-ev-charging,chargepoint:home_flex_nema_14-50_plug,chargepoint,home_flex_nema_14-50_plug,6,consumerAvailability,InstallerChannel|MixedChannel|RetailConsumer|unsure,,,
-ev-charging,chargepoint:home_flex_nema_14-50_plug,chargepoint,home_flex_nema_14-50_plug,6,dataSensitivity,AvStreamData|BiometricData|NoData|TelemetryData|unsure,,,
-ev-charging,chargepoint:home_flex_nema_14-50_plug,chargepoint,home_flex_nema_14-50_plug,6,firmwareUpdateModel,ManualFlash|NoUpdatePath|OtaAutomatic|OtaUserInitiated|unsure,,,
-ev-charging,chargepoint:home_flex_nema_14-50_plug,chargepoint,home_flex_nema_14-50_plug,6,formFactor,Fixed|Portable|Worn|unsure,,,
-ev-charging,chargepoint:home_flex_nema_14-50_plug,chargepoint,home_flex_nema_14-50_plug,6,hasWebAdminUI,true|false|unsure,,,
-ev-charging,chargepoint:home_flex_nema_14-50_plug,chargepoint,home_flex_nema_14-50_plug,6,placement,Either|Indoor|Outdoor|unsure,,,
-ev-charging,chargepoint:home_flex_nema_14-50_plug,chargepoint,home_flex_nema_14-50_plug,6,supportLifetime,DeclaredLifetime|UndeclaredLifetime|unsure,,,
-ev-charging,garo:wallbox_glb\+_t2ev7,garo,wallbox_glb\+_t2ev7,1,actuatesPhysical,true|false|unsure,,,
-ev-charging,garo:wallbox_glb\+_t2ev7,garo,wallbox_glb\+_t2ev7,1,actuationConsequence,ComfortActuation|NoActuation|PropertyActuation|SafetyActuation|unsure,,,
-ev-charging,garo:wallbox_glb\+_t2ev7,garo,wallbox_glb\+_t2ev7,1,capturesAV,true|false|unsure,,,
-ev-charging,garo:wallbox_glb\+_t2ev7,garo,wallbox_glb\+_t2ev7,1,cloudDependence,CloudOptional|CloudRequired|LocalOnly|unsure,,,
-ev-charging,garo:wallbox_glb\+_t2ev7,garo,wallbox_glb\+_t2ev7,1,computeTier,AndroidDerived|EmbeddedLinux|McuClass|Rtos|unsure,,,
-ev-charging,garo:wallbox_glb\+_t2ev7,garo,wallbox_glb\+_t2ev7,1,consumerAvailability,InstallerChannel|MixedChannel|RetailConsumer|unsure,,,
-ev-charging,garo:wallbox_glb\+_t2ev7,garo,wallbox_glb\+_t2ev7,1,dataSensitivity,AvStreamData|BiometricData|NoData|TelemetryData|unsure,,,
-ev-charging,garo:wallbox_glb\+_t2ev7,garo,wallbox_glb\+_t2ev7,1,firmwareUpdateModel,ManualFlash|NoUpdatePath|OtaAutomatic|OtaUserInitiated|unsure,,,
-ev-charging,garo:wallbox_glb\+_t2ev7,garo,wallbox_glb\+_t2ev7,1,formFactor,Fixed|Portable|Worn|unsure,,,
-ev-charging,garo:wallbox_glb\+_t2ev7,garo,wallbox_glb\+_t2ev7,1,hasWebAdminUI,true|false|unsure,,,
-ev-charging,garo:wallbox_glb\+_t2ev7,garo,wallbox_glb\+_t2ev7,1,placement,Either|Indoor|Outdoor|unsure,,,
-ev-charging,garo:wallbox_glb\+_t2ev7,garo,wallbox_glb\+_t2ev7,1,supportLifetime,DeclaredLifetime|UndeclaredLifetime|unsure,,,
-ev-charging,schneider-electric:evc1s22p4,schneider-electric,evc1s22p4,2,actuatesPhysical,true|false|unsure,,,
-ev-charging,schneider-electric:evc1s22p4,schneider-electric,evc1s22p4,2,actuationConsequence,ComfortActuation|NoActuation|PropertyActuation|SafetyActuation|unsure,,,
-ev-charging,schneider-electric:evc1s22p4,schneider-electric,evc1s22p4,2,capturesAV,true|false|unsure,,,
-ev-charging,schneider-electric:evc1s22p4,schneider-electric,evc1s22p4,2,cloudDependence,CloudOptional|CloudRequired|LocalOnly|unsure,,,
-ev-charging,schneider-electric:evc1s22p4,schneider-electric,evc1s22p4,2,computeTier,AndroidDerived|EmbeddedLinux|McuClass|Rtos|unsure,,,
-ev-charging,schneider-electric:evc1s22p4,schneider-electric,evc1s22p4,2,consumerAvailability,InstallerChannel|MixedChannel|RetailConsumer|unsure,,,
-ev-charging,schneider-electric:evc1s22p4,schneider-electric,evc1s22p4,2,dataSensitivity,AvStreamData|BiometricData|NoData|TelemetryData|unsure,,,
-ev-charging,schneider-electric:evc1s22p4,schneider-electric,evc1s22p4,2,firmwareUpdateModel,ManualFlash|NoUpdatePath|OtaAutomatic|OtaUserInitiated|unsure,,,
-ev-charging,schneider-electric:evc1s22p4,schneider-electric,evc1s22p4,2,formFactor,Fixed|Portable|Worn|unsure,,,
-ev-charging,schneider-electric:evc1s22p4,schneider-electric,evc1s22p4,2,hasWebAdminUI,true|false|unsure,,,
-ev-charging,schneider-electric:evc1s22p4,schneider-electric,evc1s22p4,2,placement,Either|Indoor|Outdoor|unsure,,,
-ev-charging,schneider-electric:evc1s22p4,schneider-electric,evc1s22p4,2,supportLifetime,DeclaredLifetime|UndeclaredLifetime|unsure,,,
-ev-charging,schneider-electric:evc1s7p4,schneider-electric,evc1s7p4,2,actuatesPhysical,true|false|unsure,,,
-ev-charging,schneider-electric:evc1s7p4,schneider-electric,evc1s7p4,2,actuationConsequence,ComfortActuation|NoActuation|PropertyActuation|SafetyActuation|unsure,,,
-ev-charging,schneider-electric:evc1s7p4,schneider-electric,evc1s7p4,2,capturesAV,true|false|unsure,,,
-ev-charging,schneider-electric:evc1s7p4,schneider-electric,evc1s7p4,2,cloudDependence,CloudOptional|CloudRequired|LocalOnly|unsure,,,
-ev-charging,schneider-electric:evc1s7p4,schneider-electric,evc1s7p4,2,computeTier,AndroidDerived|EmbeddedLinux|McuClass|Rtos|unsure,,,
-ev-charging,schneider-electric:evc1s7p4,schneider-electric,evc1s7p4,2,consumerAvailability,InstallerChannel|MixedChannel|RetailConsumer|unsure,,,
-ev-charging,schneider-electric:evc1s7p4,schneider-electric,evc1s7p4,2,dataSensitivity,AvStreamData|BiometricData|NoData|TelemetryData|unsure,,,
-ev-charging,schneider-electric:evc1s7p4,schneider-electric,evc1s7p4,2,firmwareUpdateModel,ManualFlash|NoUpdatePath|OtaAutomatic|OtaUserInitiated|unsure,,,
-ev-charging,schneider-electric:evc1s7p4,schneider-electric,evc1s7p4,2,formFactor,Fixed|Portable|Worn|unsure,,,
-ev-charging,schneider-electric:evc1s7p4,schneider-electric,evc1s7p4,2,hasWebAdminUI,true|false|unsure,,,
-ev-charging,schneider-electric:evc1s7p4,schneider-electric,evc1s7p4,2,placement,Either|Indoor|Outdoor|unsure,,,
-ev-charging,schneider-electric:evc1s7p4,schneider-electric,evc1s7p4,2,supportLifetime,DeclaredLifetime|UndeclaredLifetime|unsure,,,
-ev-charging,tesla:wall_connector,tesla,wall_connector,2,actuatesPhysical,true|false|unsure,,,
-ev-charging,tesla:wall_connector,tesla,wall_connector,2,actuationConsequence,ComfortActuation|NoActuation|PropertyActuation|SafetyActuation|unsure,,,
-ev-charging,tesla:wall_connector,tesla,wall_connector,2,capturesAV,true|false|unsure,,,
-ev-charging,tesla:wall_connector,tesla,wall_connector,2,cloudDependence,CloudOptional|CloudRequired|LocalOnly|unsure,,,
-ev-charging,tesla:wall_connector,tesla,wall_connector,2,computeTier,AndroidDerived|EmbeddedLinux|McuClass|Rtos|unsure,,,
-ev-charging,tesla:wall_connector,tesla,wall_connector,2,consumerAvailability,InstallerChannel|MixedChannel|RetailConsumer|unsure,,,
-ev-charging,tesla:wall_connector,tesla,wall_connector,2,dataSensitivity,AvStreamData|BiometricData|NoData|TelemetryData|unsure,,,
-ev-charging,tesla:wall_connector,tesla,wall_connector,2,firmwareUpdateModel,ManualFlash|NoUpdatePath|OtaAutomatic|OtaUserInitiated|unsure,,,
-ev-charging,tesla:wall_connector,tesla,wall_connector,2,formFactor,Fixed|Portable|Worn|unsure,,,
-ev-charging,tesla:wall_connector,tesla,wall_connector,2,hasWebAdminUI,true|false|unsure,,,
-ev-charging,tesla:wall_connector,tesla,wall_connector,2,placement,Either|Indoor|Outdoor|unsure,,,
-ev-charging,tesla:wall_connector,tesla,wall_connector,2,supportLifetime,DeclaredLifetime|UndeclaredLifetime|unsure,,,
-ev-charging,vw:id.charger_connect,vw,id.charger_connect,1,actuatesPhysical,true|false|unsure,,,
-ev-charging,vw:id.charger_connect,vw,id.charger_connect,1,actuationConsequence,ComfortActuation|NoActuation|PropertyActuation|SafetyActuation|unsure,,,
-ev-charging,vw:id.charger_connect,vw,id.charger_connect,1,capturesAV,true|false|unsure,,,
-ev-charging,vw:id.charger_connect,vw,id.charger_connect,1,cloudDependence,CloudOptional|CloudRequired|LocalOnly|unsure,,,
-ev-charging,vw:id.charger_connect,vw,id.charger_connect,1,computeTier,AndroidDerived|EmbeddedLinux|McuClass|Rtos|unsure,,,
-ev-charging,vw:id.charger_connect,vw,id.charger_connect,1,consumerAvailability,InstallerChannel|MixedChannel|RetailConsumer|unsure,,,
-ev-charging,vw:id.charger_connect,vw,id.charger_connect,1,dataSensitivity,AvStreamData|BiometricData|NoData|TelemetryData|unsure,,,
-ev-charging,vw:id.charger_connect,vw,id.charger_connect,1,firmwareUpdateModel,ManualFlash|NoUpdatePath|OtaAutomatic|OtaUserInitiated|unsure,,,
-ev-charging,vw:id.charger_connect,vw,id.charger_connect,1,formFactor,Fixed|Portable|Worn|unsure,,,
-ev-charging,vw:id.charger_connect,vw,id.charger_connect,1,hasWebAdminUI,true|false|unsure,,,
-ev-charging,vw:id.charger_connect,vw,id.charger_connect,1,placement,Either|Indoor|Outdoor|unsure,,,
-ev-charging,vw:id.charger_connect,vw,id.charger_connect,1,supportLifetime,DeclaredLifetime|UndeclaredLifetime|unsure,,,
-hub,homey:homey,homey,homey,2,actuatesPhysical,true|false|unsure,,,
-hub,homey:homey,homey,homey,2,actuationConsequence,ComfortActuation|NoActuation|PropertyActuation|SafetyActuation|unsure,,,
-hub,homey:homey,homey,homey,2,capturesAV,true|false|unsure,,,
-hub,homey:homey,homey,homey,2,cloudDependence,CloudOptional|CloudRequired|LocalOnly|unsure,,,
-hub,homey:homey,homey,homey,2,computeTier,AndroidDerived|EmbeddedLinux|McuClass|Rtos|unsure,,,
-hub,homey:homey,homey,homey,2,consumerAvailability,InstallerChannel|MixedChannel|RetailConsumer|unsure,,,
-hub,homey:homey,homey,homey,2,dataSensitivity,AvStreamData|BiometricData|NoData|TelemetryData|unsure,,,
-hub,homey:homey,homey,homey,2,firmwareUpdateModel,ManualFlash|NoUpdatePath|OtaAutomatic|OtaUserInitiated|unsure,,,
-hub,homey:homey,homey,homey,2,formFactor,Fixed|Portable|Worn|unsure,,,
-hub,homey:homey,homey,homey,2,hasWebAdminUI,true|false|unsure,,,
-hub,homey:homey,homey,homey,2,placement,Either|Indoor|Outdoor|unsure,,,
-hub,homey:homey,homey,homey,2,supportLifetime,DeclaredLifetime|UndeclaredLifetime|unsure,,,
-lighting,mystrom:wifi_button,mystrom,wifi_button,4,actuatesPhysical,true|false|unsure,,,
-lighting,mystrom:wifi_button,mystrom,wifi_button,4,actuationConsequence,ComfortActuation|NoActuation|PropertyActuation|SafetyActuation|unsure,,,
-lighting,mystrom:wifi_button,mystrom,wifi_button,4,capturesAV,true|false|unsure,,,
-lighting,mystrom:wifi_button,mystrom,wifi_button,4,cloudDependence,CloudOptional|CloudRequired|LocalOnly|unsure,,,
-lighting,mystrom:wifi_button,mystrom,wifi_button,4,computeTier,AndroidDerived|EmbeddedLinux|McuClass|Rtos|unsure,,,
-lighting,mystrom:wifi_button,mystrom,wifi_button,4,consumerAvailability,InstallerChannel|MixedChannel|RetailConsumer|unsure,,,
-lighting,mystrom:wifi_button,mystrom,wifi_button,4,dataSensitivity,AvStreamData|BiometricData|NoData|TelemetryData|unsure,,,
-lighting,mystrom:wifi_button,mystrom,wifi_button,4,firmwareUpdateModel,ManualFlash|NoUpdatePath|OtaAutomatic|OtaUserInitiated|unsure,,,
-lighting,mystrom:wifi_button,mystrom,wifi_button,4,formFactor,Fixed|Portable|Worn|unsure,,,
-lighting,mystrom:wifi_button,mystrom,wifi_button,4,hasWebAdminUI,true|false|unsure,,,
-lighting,mystrom:wifi_button,mystrom,wifi_button,4,placement,Either|Indoor|Outdoor|unsure,,,
-lighting,mystrom:wifi_button,mystrom,wifi_button,4,supportLifetime,DeclaredLifetime|UndeclaredLifetime|unsure,,,
-lighting,mystrom:wifi_button_plus,mystrom,wifi_button_plus,4,actuatesPhysical,true|false|unsure,,,
-lighting,mystrom:wifi_button_plus,mystrom,wifi_button_plus,4,actuationConsequence,ComfortActuation|NoActuation|PropertyActuation|SafetyActuation|unsure,,,
-lighting,mystrom:wifi_button_plus,mystrom,wifi_button_plus,4,capturesAV,true|false|unsure,,,
-lighting,mystrom:wifi_button_plus,mystrom,wifi_button_plus,4,cloudDependence,CloudOptional|CloudRequired|LocalOnly|unsure,,,
-lighting,mystrom:wifi_button_plus,mystrom,wifi_button_plus,4,computeTier,AndroidDerived|EmbeddedLinux|McuClass|Rtos|unsure,,,
-lighting,mystrom:wifi_button_plus,mystrom,wifi_button_plus,4,consumerAvailability,InstallerChannel|MixedChannel|RetailConsumer|unsure,,,
-lighting,mystrom:wifi_button_plus,mystrom,wifi_button_plus,4,dataSensitivity,AvStreamData|BiometricData|NoData|TelemetryData|unsure,,,
-lighting,mystrom:wifi_button_plus,mystrom,wifi_button_plus,4,firmwareUpdateModel,ManualFlash|NoUpdatePath|OtaAutomatic|OtaUserInitiated|unsure,,,
-lighting,mystrom:wifi_button_plus,mystrom,wifi_button_plus,4,formFactor,Fixed|Portable|Worn|unsure,,,
-lighting,mystrom:wifi_button_plus,mystrom,wifi_button_plus,4,hasWebAdminUI,true|false|unsure,,,
-lighting,mystrom:wifi_button_plus,mystrom,wifi_button_plus,4,placement,Either|Indoor|Outdoor|unsure,,,
-lighting,mystrom:wifi_button_plus,mystrom,wifi_button_plus,4,supportLifetime,DeclaredLifetime|UndeclaredLifetime|unsure,,,
-lighting,mystrom:wifi_led_strip,mystrom,wifi_led_strip,4,actuatesPhysical,true|false|unsure,,,
-lighting,mystrom:wifi_led_strip,mystrom,wifi_led_strip,4,actuationConsequence,ComfortActuation|NoActuation|PropertyActuation|SafetyActuation|unsure,,,
-lighting,mystrom:wifi_led_strip,mystrom,wifi_led_strip,4,capturesAV,true|false|unsure,,,
-lighting,mystrom:wifi_led_strip,mystrom,wifi_led_strip,4,cloudDependence,CloudOptional|CloudRequired|LocalOnly|unsure,,,
-lighting,mystrom:wifi_led_strip,mystrom,wifi_led_strip,4,computeTier,AndroidDerived|EmbeddedLinux|McuClass|Rtos|unsure,,,
-lighting,mystrom:wifi_led_strip,mystrom,wifi_led_strip,4,consumerAvailability,InstallerChannel|MixedChannel|RetailConsumer|unsure,,,
-lighting,mystrom:wifi_led_strip,mystrom,wifi_led_strip,4,dataSensitivity,AvStreamData|BiometricData|NoData|TelemetryData|unsure,,,
-lighting,mystrom:wifi_led_strip,mystrom,wifi_led_strip,4,firmwareUpdateModel,ManualFlash|NoUpdatePath|OtaAutomatic|OtaUserInitiated|unsure,,,
-lighting,mystrom:wifi_led_strip,mystrom,wifi_led_strip,4,formFactor,Fixed|Portable|Worn|unsure,,,
-lighting,mystrom:wifi_led_strip,mystrom,wifi_led_strip,4,hasWebAdminUI,true|false|unsure,,,
-lighting,mystrom:wifi_led_strip,mystrom,wifi_led_strip,4,placement,Either|Indoor|Outdoor|unsure,,,
-lighting,mystrom:wifi_led_strip,mystrom,wifi_led_strip,4,supportLifetime,DeclaredLifetime|UndeclaredLifetime|unsure,,,
-smartplugs,belkin:wemo_insight_smart_plug,belkin,wemo_insight_smart_plug,1,actuatesPhysical,true|false|unsure,,,
-smartplugs,belkin:wemo_insight_smart_plug,belkin,wemo_insight_smart_plug,1,actuationConsequence,ComfortActuation|NoActuation|PropertyActuation|SafetyActuation|unsure,,,
-smartplugs,belkin:wemo_insight_smart_plug,belkin,wemo_insight_smart_plug,1,capturesAV,true|false|unsure,,,
-smartplugs,belkin:wemo_insight_smart_plug,belkin,wemo_insight_smart_plug,1,cloudDependence,CloudOptional|CloudRequired|LocalOnly|unsure,,,
-smartplugs,belkin:wemo_insight_smart_plug,belkin,wemo_insight_smart_plug,1,computeTier,AndroidDerived|EmbeddedLinux|McuClass|Rtos|unsure,,,
-smartplugs,belkin:wemo_insight_smart_plug,belkin,wemo_insight_smart_plug,1,consumerAvailability,InstallerChannel|MixedChannel|RetailConsumer|unsure,,,
-smartplugs,belkin:wemo_insight_smart_plug,belkin,wemo_insight_smart_plug,1,dataSensitivity,AvStreamData|BiometricData|NoData|TelemetryData|unsure,,,
-smartplugs,belkin:wemo_insight_smart_plug,belkin,wemo_insight_smart_plug,1,firmwareUpdateModel,ManualFlash|NoUpdatePath|OtaAutomatic|OtaUserInitiated|unsure,,,
-smartplugs,belkin:wemo_insight_smart_plug,belkin,wemo_insight_smart_plug,1,formFactor,Fixed|Portable|Worn|unsure,,,
-smartplugs,belkin:wemo_insight_smart_plug,belkin,wemo_insight_smart_plug,1,hasWebAdminUI,true|false|unsure,,,
-smartplugs,belkin:wemo_insight_smart_plug,belkin,wemo_insight_smart_plug,1,placement,Either|Indoor|Outdoor|unsure,,,
-smartplugs,belkin:wemo_insight_smart_plug,belkin,wemo_insight_smart_plug,1,supportLifetime,DeclaredLifetime|UndeclaredLifetime|unsure,,,
-smartplugs,meross:mss550x,meross,mss550x,1,actuatesPhysical,true|false|unsure,,,
-smartplugs,meross:mss550x,meross,mss550x,1,actuationConsequence,ComfortActuation|NoActuation|PropertyActuation|SafetyActuation|unsure,,,
-smartplugs,meross:mss550x,meross,mss550x,1,capturesAV,true|false|unsure,,,
-smartplugs,meross:mss550x,meross,mss550x,1,cloudDependence,CloudOptional|CloudRequired|LocalOnly|unsure,,,
-smartplugs,meross:mss550x,meross,mss550x,1,computeTier,AndroidDerived|EmbeddedLinux|McuClass|Rtos|unsure,,,
-smartplugs,meross:mss550x,meross,mss550x,1,consumerAvailability,InstallerChannel|MixedChannel|RetailConsumer|unsure,,,
-smartplugs,meross:mss550x,meross,mss550x,1,dataSensitivity,AvStreamData|BiometricData|NoData|TelemetryData|unsure,,,
-smartplugs,meross:mss550x,meross,mss550x,1,firmwareUpdateModel,ManualFlash|NoUpdatePath|OtaAutomatic|OtaUserInitiated|unsure,,,
-smartplugs,meross:mss550x,meross,mss550x,1,formFactor,Fixed|Portable|Worn|unsure,,,
-smartplugs,meross:mss550x,meross,mss550x,1,hasWebAdminUI,true|false|unsure,,,
-smartplugs,meross:mss550x,meross,mss550x,1,placement,Either|Indoor|Outdoor|unsure,,,
-smartplugs,meross:mss550x,meross,mss550x,1,supportLifetime,DeclaredLifetime|UndeclaredLifetime|unsure,,,
-smartspeakers,google:home,google,home,2,actuatesPhysical,true|false|unsure,,,
-smartspeakers,google:home,google,home,2,actuationConsequence,ComfortActuation|NoActuation|PropertyActuation|SafetyActuation|unsure,,,
-smartspeakers,google:home,google,home,2,capturesAV,true|false|unsure,,,
-smartspeakers,google:home,google,home,2,cloudDependence,CloudOptional|CloudRequired|LocalOnly|unsure,,,
-smartspeakers,google:home,google,home,2,computeTier,AndroidDerived|EmbeddedLinux|McuClass|Rtos|unsure,,,
-smartspeakers,google:home,google,home,2,consumerAvailability,InstallerChannel|MixedChannel|RetailConsumer|unsure,,,
-smartspeakers,google:home,google,home,2,dataSensitivity,AvStreamData|BiometricData|NoData|TelemetryData|unsure,,,
-smartspeakers,google:home,google,home,2,firmwareUpdateModel,ManualFlash|NoUpdatePath|OtaAutomatic|OtaUserInitiated|unsure,,,
-smartspeakers,google:home,google,home,2,formFactor,Fixed|Portable|Worn|unsure,,,
-smartspeakers,google:home,google,home,2,hasWebAdminUI,true|false|unsure,,,
-smartspeakers,google:home,google,home,2,placement,Either|Indoor|Outdoor|unsure,,,
-smartspeakers,google:home,google,home,2,supportLifetime,DeclaredLifetime|UndeclaredLifetime|unsure,,,
-smartspeakers,google:nest_mini,google,nest_mini,2,actuatesPhysical,true|false|unsure,,,
-smartspeakers,google:nest_mini,google,nest_mini,2,actuationConsequence,ComfortActuation|NoActuation|PropertyActuation|SafetyActuation|unsure,,,
-smartspeakers,google:nest_mini,google,nest_mini,2,capturesAV,true|false|unsure,,,
-smartspeakers,google:nest_mini,google,nest_mini,2,cloudDependence,CloudOptional|CloudRequired|LocalOnly|unsure,,,
-smartspeakers,google:nest_mini,google,nest_mini,2,computeTier,AndroidDerived|EmbeddedLinux|McuClass|Rtos|unsure,,,
-smartspeakers,google:nest_mini,google,nest_mini,2,consumerAvailability,InstallerChannel|MixedChannel|RetailConsumer|unsure,,,
-smartspeakers,google:nest_mini,google,nest_mini,2,dataSensitivity,AvStreamData|BiometricData|NoData|TelemetryData|unsure,,,
-smartspeakers,google:nest_mini,google,nest_mini,2,firmwareUpdateModel,ManualFlash|NoUpdatePath|OtaAutomatic|OtaUserInitiated|unsure,,,
-smartspeakers,google:nest_mini,google,nest_mini,2,formFactor,Fixed|Portable|Worn|unsure,,,
-smartspeakers,google:nest_mini,google,nest_mini,2,hasWebAdminUI,true|false|unsure,,,
-smartspeakers,google:nest_mini,google,nest_mini,2,placement,Either|Indoor|Outdoor|unsure,,,
-smartspeakers,google:nest_mini,google,nest_mini,2,supportLifetime,DeclaredLifetime|UndeclaredLifetime|unsure,,,
-smartspeakers,lenovo:smart_clock_essential_with_alexa_built_in,lenovo,smart_clock_essential_with_alexa_built_in,1,actuatesPhysical,true|false|unsure,,,
-smartspeakers,lenovo:smart_clock_essential_with_alexa_built_in,lenovo,smart_clock_essential_with_alexa_built_in,1,actuationConsequence,ComfortActuation|NoActuation|PropertyActuation|SafetyActuation|unsure,,,
-smartspeakers,lenovo:smart_clock_essential_with_alexa_built_in,lenovo,smart_clock_essential_with_alexa_built_in,1,capturesAV,true|false|unsure,,,
-smartspeakers,lenovo:smart_clock_essential_with_alexa_built_in,lenovo,smart_clock_essential_with_alexa_built_in,1,cloudDependence,CloudOptional|CloudRequired|LocalOnly|unsure,,,
-smartspeakers,lenovo:smart_clock_essential_with_alexa_built_in,lenovo,smart_clock_essential_with_alexa_built_in,1,computeTier,AndroidDerived|EmbeddedLinux|McuClass|Rtos|unsure,,,
-smartspeakers,lenovo:smart_clock_essential_with_alexa_built_in,lenovo,smart_clock_essential_with_alexa_built_in,1,consumerAvailability,InstallerChannel|MixedChannel|RetailConsumer|unsure,,,
-smartspeakers,lenovo:smart_clock_essential_with_alexa_built_in,lenovo,smart_clock_essential_with_alexa_built_in,1,dataSensitivity,AvStreamData|BiometricData|NoData|TelemetryData|unsure,,,
-smartspeakers,lenovo:smart_clock_essential_with_alexa_built_in,lenovo,smart_clock_essential_with_alexa_built_in,1,firmwareUpdateModel,ManualFlash|NoUpdatePath|OtaAutomatic|OtaUserInitiated|unsure,,,
-smartspeakers,lenovo:smart_clock_essential_with_alexa_built_in,lenovo,smart_clock_essential_with_alexa_built_in,1,formFactor,Fixed|Portable|Worn|unsure,,,
-smartspeakers,lenovo:smart_clock_essential_with_alexa_built_in,lenovo,smart_clock_essential_with_alexa_built_in,1,hasWebAdminUI,true|false|unsure,,,
-smartspeakers,lenovo:smart_clock_essential_with_alexa_built_in,lenovo,smart_clock_essential_with_alexa_built_in,1,placement,Either|Indoor|Outdoor|unsure,,,
-smartspeakers,lenovo:smart_clock_essential_with_alexa_built_in,lenovo,smart_clock_essential_with_alexa_built_in,1,supportLifetime,DeclaredLifetime|UndeclaredLifetime|unsure,,,
-smartspeakers,sonos:era_100,sonos,era_100,4,actuatesPhysical,true|false|unsure,,,
-smartspeakers,sonos:era_100,sonos,era_100,4,actuationConsequence,ComfortActuation|NoActuation|PropertyActuation|SafetyActuation|unsure,,,
-smartspeakers,sonos:era_100,sonos,era_100,4,capturesAV,true|false|unsure,,,
-smartspeakers,sonos:era_100,sonos,era_100,4,cloudDependence,CloudOptional|CloudRequired|LocalOnly|unsure,,,
-smartspeakers,sonos:era_100,sonos,era_100,4,computeTier,AndroidDerived|EmbeddedLinux|McuClass|Rtos|unsure,,,
-smartspeakers,sonos:era_100,sonos,era_100,4,consumerAvailability,InstallerChannel|MixedChannel|RetailConsumer|unsure,,,
-smartspeakers,sonos:era_100,sonos,era_100,4,dataSensitivity,AvStreamData|BiometricData|NoData|TelemetryData|unsure,,,
-smartspeakers,sonos:era_100,sonos,era_100,4,firmwareUpdateModel,ManualFlash|NoUpdatePath|OtaAutomatic|OtaUserInitiated|unsure,,,
-smartspeakers,sonos:era_100,sonos,era_100,4,formFactor,Fixed|Portable|Worn|unsure,,,
-smartspeakers,sonos:era_100,sonos,era_100,4,hasWebAdminUI,true|false|unsure,,,
-smartspeakers,sonos:era_100,sonos,era_100,4,placement,Either|Indoor|Outdoor|unsure,,,
-smartspeakers,sonos:era_100,sonos,era_100,4,supportLifetime,DeclaredLifetime|UndeclaredLifetime|unsure,,,
-streaming,roku:streaming_stick_4k,roku,streaming_stick_4k,1,actuatesPhysical,true|false|unsure,,,
-streaming,roku:streaming_stick_4k,roku,streaming_stick_4k,1,actuationConsequence,ComfortActuation|NoActuation|PropertyActuation|SafetyActuation|unsure,,,
-streaming,roku:streaming_stick_4k,roku,streaming_stick_4k,1,capturesAV,true|false|unsure,,,
-streaming,roku:streaming_stick_4k,roku,streaming_stick_4k,1,cloudDependence,CloudOptional|CloudRequired|LocalOnly|unsure,,,
-streaming,roku:streaming_stick_4k,roku,streaming_stick_4k,1,computeTier,AndroidDerived|EmbeddedLinux|McuClass|Rtos|unsure,,,
-streaming,roku:streaming_stick_4k,roku,streaming_stick_4k,1,consumerAvailability,InstallerChannel|MixedChannel|RetailConsumer|unsure,,,
-streaming,roku:streaming_stick_4k,roku,streaming_stick_4k,1,dataSensitivity,AvStreamData|BiometricData|NoData|TelemetryData|unsure,,,
-streaming,roku:streaming_stick_4k,roku,streaming_stick_4k,1,firmwareUpdateModel,ManualFlash|NoUpdatePath|OtaAutomatic|OtaUserInitiated|unsure,,,
-streaming,roku:streaming_stick_4k,roku,streaming_stick_4k,1,formFactor,Fixed|Portable|Worn|unsure,,,
-streaming,roku:streaming_stick_4k,roku,streaming_stick_4k,1,hasWebAdminUI,true|false|unsure,,,
-streaming,roku:streaming_stick_4k,roku,streaming_stick_4k,1,placement,Either|Indoor|Outdoor|unsure,,,
-streaming,roku:streaming_stick_4k,roku,streaming_stick_4k,1,supportLifetime,DeclaredLifetime|UndeclaredLifetime|unsure,,,
-streaming,samsung:x14h,samsung,x14h,1,actuatesPhysical,true|false|unsure,,,
-streaming,samsung:x14h,samsung,x14h,1,actuationConsequence,ComfortActuation|NoActuation|PropertyActuation|SafetyActuation|unsure,,,
-streaming,samsung:x14h,samsung,x14h,1,capturesAV,true|false|unsure,,,
-streaming,samsung:x14h,samsung,x14h,1,cloudDependence,CloudOptional|CloudRequired|LocalOnly|unsure,,,
-streaming,samsung:x14h,samsung,x14h,1,computeTier,AndroidDerived|EmbeddedLinux|McuClass|Rtos|unsure,,,
-streaming,samsung:x14h,samsung,x14h,1,consumerAvailability,InstallerChannel|MixedChannel|RetailConsumer|unsure,,,
-streaming,samsung:x14h,samsung,x14h,1,dataSensitivity,AvStreamData|BiometricData|NoData|TelemetryData|unsure,,,
-streaming,samsung:x14h,samsung,x14h,1,firmwareUpdateModel,ManualFlash|NoUpdatePath|OtaAutomatic|OtaUserInitiated|unsure,,,
-streaming,samsung:x14h,samsung,x14h,1,formFactor,Fixed|Portable|Worn|unsure,,,
-streaming,samsung:x14h,samsung,x14h,1,hasWebAdminUI,true|false|unsure,,,
-streaming,samsung:x14h,samsung,x14h,1,placement,Either|Indoor|Outdoor|unsure,,,
-streaming,samsung:x14h,samsung,x14h,1,supportLifetime,DeclaredLifetime|UndeclaredLifetime|unsure,,,
-streaming,sony:kd-43xe7000,sony,kd-43xe7000,3,actuatesPhysical,true|false|unsure,,,
-streaming,sony:kd-43xe7000,sony,kd-43xe7000,3,actuationConsequence,ComfortActuation|NoActuation|PropertyActuation|SafetyActuation|unsure,,,
-streaming,sony:kd-43xe7000,sony,kd-43xe7000,3,capturesAV,true|false|unsure,,,
-streaming,sony:kd-43xe7000,sony,kd-43xe7000,3,cloudDependence,CloudOptional|CloudRequired|LocalOnly|unsure,,,
-streaming,sony:kd-43xe7000,sony,kd-43xe7000,3,computeTier,AndroidDerived|EmbeddedLinux|McuClass|Rtos|unsure,,,
-streaming,sony:kd-43xe7000,sony,kd-43xe7000,3,consumerAvailability,InstallerChannel|MixedChannel|RetailConsumer|unsure,,,
-streaming,sony:kd-43xe7000,sony,kd-43xe7000,3,dataSensitivity,AvStreamData|BiometricData|NoData|TelemetryData|unsure,,,
-streaming,sony:kd-43xe7000,sony,kd-43xe7000,3,firmwareUpdateModel,ManualFlash|NoUpdatePath|OtaAutomatic|OtaUserInitiated|unsure,,,
-streaming,sony:kd-43xe7000,sony,kd-43xe7000,3,formFactor,Fixed|Portable|Worn|unsure,,,
-streaming,sony:kd-43xe7000,sony,kd-43xe7000,3,hasWebAdminUI,true|false|unsure,,,
-streaming,sony:kd-43xe7000,sony,kd-43xe7000,3,placement,Either|Indoor|Outdoor|unsure,,,
-streaming,sony:kd-43xe7000,sony,kd-43xe7000,3,supportLifetime,DeclaredLifetime|UndeclaredLifetime|unsure,,,
-streaming,sony:kd-43xe7093,sony,kd-43xe7093,3,actuatesPhysical,true|false|unsure,,,
-streaming,sony:kd-43xe7093,sony,kd-43xe7093,3,actuationConsequence,ComfortActuation|NoActuation|PropertyActuation|SafetyActuation|unsure,,,
-streaming,sony:kd-43xe7093,sony,kd-43xe7093,3,capturesAV,true|false|unsure,,,
-streaming,sony:kd-43xe7093,sony,kd-43xe7093,3,cloudDependence,CloudOptional|CloudRequired|LocalOnly|unsure,,,
-streaming,sony:kd-43xe7093,sony,kd-43xe7093,3,computeTier,AndroidDerived|EmbeddedLinux|McuClass|Rtos|unsure,,,
-streaming,sony:kd-43xe7093,sony,kd-43xe7093,3,consumerAvailability,InstallerChannel|MixedChannel|RetailConsumer|unsure,,,
-streaming,sony:kd-43xe7093,sony,kd-43xe7093,3,dataSensitivity,AvStreamData|BiometricData|NoData|TelemetryData|unsure,,,
-streaming,sony:kd-43xe7093,sony,kd-43xe7093,3,firmwareUpdateModel,ManualFlash|NoUpdatePath|OtaAutomatic|OtaUserInitiated|unsure,,,
-streaming,sony:kd-43xe7093,sony,kd-43xe7093,3,formFactor,Fixed|Portable|Worn|unsure,,,
-streaming,sony:kd-43xe7093,sony,kd-43xe7093,3,hasWebAdminUI,true|false|unsure,,,
-streaming,sony:kd-43xe7093,sony,kd-43xe7093,3,placement,Either|Indoor|Outdoor|unsure,,,
-streaming,sony:kd-43xe7093,sony,kd-43xe7093,3,supportLifetime,DeclaredLifetime|UndeclaredLifetime|unsure,,,
-streaming,sony:kd-49xe7005,sony,kd-49xe7005,3,actuatesPhysical,true|false|unsure,,,
-streaming,sony:kd-49xe7005,sony,kd-49xe7005,3,actuationConsequence,ComfortActuation|NoActuation|PropertyActuation|SafetyActuation|unsure,,,
-streaming,sony:kd-49xe7005,sony,kd-49xe7005,3,capturesAV,true|false|unsure,,,
-streaming,sony:kd-49xe7005,sony,kd-49xe7005,3,cloudDependence,CloudOptional|CloudRequired|LocalOnly|unsure,,,
-streaming,sony:kd-49xe7005,sony,kd-49xe7005,3,computeTier,AndroidDerived|EmbeddedLinux|McuClass|Rtos|unsure,,,
-streaming,sony:kd-49xe7005,sony,kd-49xe7005,3,consumerAvailability,InstallerChannel|MixedChannel|RetailConsumer|unsure,,,
-streaming,sony:kd-49xe7005,sony,kd-49xe7005,3,dataSensitivity,AvStreamData|BiometricData|NoData|TelemetryData|unsure,,,
-streaming,sony:kd-49xe7005,sony,kd-49xe7005,3,firmwareUpdateModel,ManualFlash|NoUpdatePath|OtaAutomatic|OtaUserInitiated|unsure,,,
-streaming,sony:kd-49xe7005,sony,kd-49xe7005,3,formFactor,Fixed|Portable|Worn|unsure,,,
-streaming,sony:kd-49xe7005,sony,kd-49xe7005,3,hasWebAdminUI,true|false|unsure,,,
-streaming,sony:kd-49xe7005,sony,kd-49xe7005,3,placement,Either|Indoor|Outdoor|unsure,,,
-streaming,sony:kd-49xe7005,sony,kd-49xe7005,3,supportLifetime,DeclaredLifetime|UndeclaredLifetime|unsure,,,
-streaming,sony:kdl-65w850c,sony,kdl-65w850c,2,actuatesPhysical,true|false|unsure,,,
-streaming,sony:kdl-65w850c,sony,kdl-65w850c,2,actuationConsequence,ComfortActuation|NoActuation|PropertyActuation|SafetyActuation|unsure,,,
-streaming,sony:kdl-65w850c,sony,kdl-65w850c,2,capturesAV,true|false|unsure,,,
-streaming,sony:kdl-65w850c,sony,kdl-65w850c,2,cloudDependence,CloudOptional|CloudRequired|LocalOnly|unsure,,,
-streaming,sony:kdl-65w850c,sony,kdl-65w850c,2,computeTier,AndroidDerived|EmbeddedLinux|McuClass|Rtos|unsure,,,
-streaming,sony:kdl-65w850c,sony,kdl-65w850c,2,consumerAvailability,InstallerChannel|MixedChannel|RetailConsumer|unsure,,,
-streaming,sony:kdl-65w850c,sony,kdl-65w850c,2,dataSensitivity,AvStreamData|BiometricData|NoData|TelemetryData|unsure,,,
-streaming,sony:kdl-65w850c,sony,kdl-65w850c,2,firmwareUpdateModel,ManualFlash|NoUpdatePath|OtaAutomatic|OtaUserInitiated|unsure,,,
-streaming,sony:kdl-65w850c,sony,kdl-65w850c,2,formFactor,Fixed|Portable|Worn|unsure,,,
-streaming,sony:kdl-65w850c,sony,kdl-65w850c,2,hasWebAdminUI,true|false|unsure,,,
-streaming,sony:kdl-65w850c,sony,kdl-65w850c,2,placement,Either|Indoor|Outdoor|unsure,,,
-streaming,sony:kdl-65w850c,sony,kdl-65w850c,2,supportLifetime,DeclaredLifetime|UndeclaredLifetime|unsure,,,
-streaming,sony:xbr-55x809c,sony,xbr-55x809c,2,actuatesPhysical,true|false|unsure,,,
-streaming,sony:xbr-55x809c,sony,xbr-55x809c,2,actuationConsequence,ComfortActuation|NoActuation|PropertyActuation|SafetyActuation|unsure,,,
-streaming,sony:xbr-55x809c,sony,xbr-55x809c,2,capturesAV,true|false|unsure,,,
-streaming,sony:xbr-55x809c,sony,xbr-55x809c,2,cloudDependence,CloudOptional|CloudRequired|LocalOnly|unsure,,,
-streaming,sony:xbr-55x809c,sony,xbr-55x809c,2,computeTier,AndroidDerived|EmbeddedLinux|McuClass|Rtos|unsure,,,
-streaming,sony:xbr-55x809c,sony,xbr-55x809c,2,consumerAvailability,InstallerChannel|MixedChannel|RetailConsumer|unsure,,,
-streaming,sony:xbr-55x809c,sony,xbr-55x809c,2,dataSensitivity,AvStreamData|BiometricData|NoData|TelemetryData|unsure,,,
-streaming,sony:xbr-55x809c,sony,xbr-55x809c,2,firmwareUpdateModel,ManualFlash|NoUpdatePath|OtaAutomatic|OtaUserInitiated|unsure,,,
-streaming,sony:xbr-55x809c,sony,xbr-55x809c,2,formFactor,Fixed|Portable|Worn|unsure,,,
-streaming,sony:xbr-55x809c,sony,xbr-55x809c,2,hasWebAdminUI,true|false|unsure,,,
-streaming,sony:xbr-55x809c,sony,xbr-55x809c,2,placement,Either|Indoor|Outdoor|unsure,,,
-streaming,sony:xbr-55x809c,sony,xbr-55x809c,2,supportLifetime,DeclaredLifetime|UndeclaredLifetime|unsure,,,
-streaming,sony:xbr-65x930c,sony,xbr-65x930c,2,actuatesPhysical,true|false|unsure,,,
-streaming,sony:xbr-65x930c,sony,xbr-65x930c,2,actuationConsequence,ComfortActuation|NoActuation|PropertyActuation|SafetyActuation|unsure,,,
-streaming,sony:xbr-65x930c,sony,xbr-65x930c,2,capturesAV,true|false|unsure,,,
-streaming,sony:xbr-65x930c,sony,xbr-65x930c,2,cloudDependence,CloudOptional|CloudRequired|LocalOnly|unsure,,,
-streaming,sony:xbr-65x930c,sony,xbr-65x930c,2,computeTier,AndroidDerived|EmbeddedLinux|McuClass|Rtos|unsure,,,
-streaming,sony:xbr-65x930c,sony,xbr-65x930c,2,consumerAvailability,InstallerChannel|MixedChannel|RetailConsumer|unsure,,,
-streaming,sony:xbr-65x930c,sony,xbr-65x930c,2,dataSensitivity,AvStreamData|BiometricData|NoData|TelemetryData|unsure,,,
-streaming,sony:xbr-65x930c,sony,xbr-65x930c,2,firmwareUpdateModel,ManualFlash|NoUpdatePath|OtaAutomatic|OtaUserInitiated|unsure,,,
-streaming,sony:xbr-65x930c,sony,xbr-65x930c,2,formFactor,Fixed|Portable|Worn|unsure,,,
-streaming,sony:xbr-65x930c,sony,xbr-65x930c,2,hasWebAdminUI,true|false|unsure,,,
-streaming,sony:xbr-65x930c,sony,xbr-65x930c,2,placement,Either|Indoor|Outdoor|unsure,,,
-streaming,sony:xbr-65x930c,sony,xbr-65x930c,2,supportLifetime,DeclaredLifetime|UndeclaredLifetime|unsure,,,
-streaming,sony:xbr-75x850d,sony,xbr-75x850d,2,actuatesPhysical,true|false|unsure,,,
-streaming,sony:xbr-75x850d,sony,xbr-75x850d,2,actuationConsequence,ComfortActuation|NoActuation|PropertyActuation|SafetyActuation|unsure,,,
-streaming,sony:xbr-75x850d,sony,xbr-75x850d,2,capturesAV,true|false|unsure,,,
-streaming,sony:xbr-75x850d,sony,xbr-75x850d,2,cloudDependence,CloudOptional|CloudRequired|LocalOnly|unsure,,,
-streaming,sony:xbr-75x850d,sony,xbr-75x850d,2,computeTier,AndroidDerived|EmbeddedLinux|McuClass|Rtos|unsure,,,
-streaming,sony:xbr-75x850d,sony,xbr-75x850d,2,consumerAvailability,InstallerChannel|MixedChannel|RetailConsumer|unsure,,,
-streaming,sony:xbr-75x850d,sony,xbr-75x850d,2,dataSensitivity,AvStreamData|BiometricData|NoData|TelemetryData|unsure,,,
-streaming,sony:xbr-75x850d,sony,xbr-75x850d,2,firmwareUpdateModel,ManualFlash|NoUpdatePath|OtaAutomatic|OtaUserInitiated|unsure,,,
-streaming,sony:xbr-75x850d,sony,xbr-75x850d,2,formFactor,Fixed|Portable|Worn|unsure,,,
-streaming,sony:xbr-75x850d,sony,xbr-75x850d,2,hasWebAdminUI,true|false|unsure,,,
-streaming,sony:xbr-75x850d,sony,xbr-75x850d,2,placement,Either|Indoor|Outdoor|unsure,,,
-streaming,sony:xbr-75x850d,sony,xbr-75x850d,2,supportLifetime,DeclaredLifetime|UndeclaredLifetime|unsure,,,
+alarms,abus:secvest_wireless_remote_control_fube50015,abus,secvest_wireless_remote_control_fube50015,3,actuatesPhysical,true|false|unsure,true,High,Alarm keyfob can arm/disarm and trigger system actions.
+alarms,abus:secvest_wireless_remote_control_fube50015,abus,secvest_wireless_remote_control_fube50015,3,actuationConsequence,ComfortActuation|NoActuation|PropertyActuation|SafetyActuation|unsure,PropertyActuation,High,"Compromise enables unauthorized disarm / entry path, not injury."
+alarms,abus:secvest_wireless_remote_control_fube50015,abus,secvest_wireless_remote_control_fube50015,3,capturesAV,true|false|unsure,false,High,Handheld RF remote; no camera or always-on mic.
+alarms,abus:secvest_wireless_remote_control_fube50015,abus,secvest_wireless_remote_control_fube50015,3,cloudDependence,CloudOptional|CloudRequired|LocalOnly|unsure,LocalOnly,High,"Secvest remotes talk RF to the local panel, not a vendor cloud."
+alarms,abus:secvest_wireless_remote_control_fube50015,abus,secvest_wireless_remote_control_fube50015,3,computeTier,AndroidDerived|EmbeddedLinux|McuClass|Rtos|unsure,McuClass,High,Battery keyfob is bare-metal MCU class.
+alarms,abus:secvest_wireless_remote_control_fube50015,abus,secvest_wireless_remote_control_fube50015,3,consumerAvailability,InstallerChannel|MixedChannel|RetailConsumer|unsure,MixedChannel,Low,ABUS Secvest sold DIY and via security installers.
+alarms,abus:secvest_wireless_remote_control_fube50015,abus,secvest_wireless_remote_control_fube50015,3,dataSensitivity,AvStreamData|BiometricData|NoData|TelemetryData|unsure,NoData,High,Only button codes; no household state beyond momentary commands.
+alarms,abus:secvest_wireless_remote_control_fube50015,abus,secvest_wireless_remote_control_fube50015,3,firmwareUpdateModel,ManualFlash|NoUpdatePath|OtaAutomatic|OtaUserInitiated|unsure,NoUpdatePath,Low,Consumer keyfobs typically ship sealed with no update path.
+alarms,abus:secvest_wireless_remote_control_fube50015,abus,secvest_wireless_remote_control_fube50015,3,formFactor,Fixed|Portable|Worn|unsure,Portable,High,Carried and used as a handheld remote.
+alarms,abus:secvest_wireless_remote_control_fube50015,abus,secvest_wireless_remote_control_fube50015,3,hasWebAdminUI,true|false|unsure,false,High,No LAN interface on a battery RF fob.
+alarms,abus:secvest_wireless_remote_control_fube50015,abus,secvest_wireless_remote_control_fube50015,3,placement,Either|Indoor|Outdoor|unsure,Indoor,High,Used inside with the home alarm system.
+alarms,abus:secvest_wireless_remote_control_fube50015,abus,secvest_wireless_remote_control_fube50015,3,supportLifetime,DeclaredLifetime|UndeclaredLifetime|unsure,unsure,Low,No support window knowable from the product name alone.
+alarms,chuango:g3_gsm\/sms_alarm_system,chuango,g3_gsm\/sms_alarm_system,1,actuatesPhysical,true|false|unsure,true,High,GSM alarm panel drives siren/relays.
+alarms,chuango:g3_gsm\/sms_alarm_system,chuango,g3_gsm\/sms_alarm_system,1,actuationConsequence,ComfortActuation|NoActuation|PropertyActuation|SafetyActuation|unsure,PropertyActuation,High,Security arming/siren; not heat/current injury class.
+alarms,chuango:g3_gsm\/sms_alarm_system,chuango,g3_gsm\/sms_alarm_system,1,capturesAV,true|false|unsure,false,Low,"G3-class kits are sensor/GSM panels, not camera hubs."
+alarms,chuango:g3_gsm\/sms_alarm_system,chuango,g3_gsm\/sms_alarm_system,1,cloudDependence,CloudOptional|CloudRequired|LocalOnly|unsure,CloudOptional,Low,SMS/GSM local alerting; apps often optional add-on.
+alarms,chuango:g3_gsm\/sms_alarm_system,chuango,g3_gsm\/sms_alarm_system,1,computeTier,AndroidDerived|EmbeddedLinux|McuClass|Rtos|unsure,McuClass,Low,"DIY GSM panels are typically MCU, not full Linux."
+alarms,chuango:g3_gsm\/sms_alarm_system,chuango,g3_gsm\/sms_alarm_system,1,consumerAvailability,InstallerChannel|MixedChannel|RetailConsumer|unsure,RetailConsumer,High,Chuango sold as self-install retail alarm kits.
+alarms,chuango:g3_gsm\/sms_alarm_system,chuango,g3_gsm\/sms_alarm_system,1,dataSensitivity,AvStreamData|BiometricData|NoData|TelemetryData|unsure,TelemetryData,High,"Arm state, sensor trips, and SMS alerts about occupancy."
+alarms,chuango:g3_gsm\/sms_alarm_system,chuango,g3_gsm\/sms_alarm_system,1,firmwareUpdateModel,ManualFlash|NoUpdatePath|OtaAutomatic|OtaUserInitiated|unsure,unsure,Low,Update path not visible from the model name.
+alarms,chuango:g3_gsm\/sms_alarm_system,chuango,g3_gsm\/sms_alarm_system,1,formFactor,Fixed|Portable|Worn|unsure,Fixed,High,Wall/desk alarm control panel.
+alarms,chuango:g3_gsm\/sms_alarm_system,chuango,g3_gsm\/sms_alarm_system,1,hasWebAdminUI,true|false|unsure,false,Low,"Configured via keypad/SMS/app, not a LAN web UI."
+alarms,chuango:g3_gsm\/sms_alarm_system,chuango,g3_gsm\/sms_alarm_system,1,placement,Either|Indoor|Outdoor|unsure,Indoor,High,Indoor alarm control panel.
+alarms,chuango:g3_gsm\/sms_alarm_system,chuango,g3_gsm\/sms_alarm_system,1,supportLifetime,DeclaredLifetime|UndeclaredLifetime|unsure,UndeclaredLifetime,Low,Budget DIY brand class normally undeclared support.
+alarms,chuango:g5w,chuango,g5w,1,actuatesPhysical,true|false|unsure,true,High,Wireless alarm hub with siren/arm control.
+alarms,chuango:g5w,chuango,g5w,1,actuationConsequence,ComfortActuation|NoActuation|PropertyActuation|SafetyActuation|unsure,PropertyActuation,High,"Security actuation / entry risk, not safety-heat class."
+alarms,chuango:g5w,chuango,g5w,1,capturesAV,true|false|unsure,false,Low,"G5W naming is alarm kit, not a camera product."
+alarms,chuango:g5w,chuango,g5w,1,cloudDependence,CloudOptional|CloudRequired|LocalOnly|unsure,CloudOptional,Low,Works as local wireless alarm; cloud/app often optional.
+alarms,chuango:g5w,chuango,g5w,1,computeTier,AndroidDerived|EmbeddedLinux|McuClass|Rtos|unsure,McuClass,Low,Same DIY alarm MCU class as other Chuango hubs.
+alarms,chuango:g5w,chuango,g5w,1,consumerAvailability,InstallerChannel|MixedChannel|RetailConsumer|unsure,RetailConsumer,High,Self-install retail security kit.
+alarms,chuango:g5w,chuango,g5w,1,dataSensitivity,AvStreamData|BiometricData|NoData|TelemetryData|unsure,TelemetryData,High,Sensor and arming telemetry about the home.
+alarms,chuango:g5w,chuango,g5w,1,firmwareUpdateModel,ManualFlash|NoUpdatePath|OtaAutomatic|OtaUserInitiated|unsure,unsure,Low,Cannot tell update mechanism from model alone.
+alarms,chuango:g5w,chuango,g5w,1,formFactor,Fixed|Portable|Worn|unsure,Fixed,High,Stationary alarm hub/panel.
+alarms,chuango:g5w,chuango,g5w,1,hasWebAdminUI,true|false|unsure,false,Low,"Typical keypad/app admin, not embedded web UI."
+alarms,chuango:g5w,chuango,g5w,1,placement,Either|Indoor|Outdoor|unsure,Indoor,High,Indoor security hub.
+alarms,chuango:g5w,chuango,g5w,1,supportLifetime,DeclaredLifetime|UndeclaredLifetime|unsure,UndeclaredLifetime,Low,Budget DIY alarm brand; support window undeclared as a class.
+alarms,mydigoo:dg-hamb_smart_home_security_system,mydigoo,dg-hamb_smart_home_security_system,1,actuatesPhysical,true|false|unsure,true,Low,Named as a security system; expect siren/arm actuation.
+alarms,mydigoo:dg-hamb_smart_home_security_system,mydigoo,dg-hamb_smart_home_security_system,1,actuationConsequence,ComfortActuation|NoActuation|PropertyActuation|SafetyActuation|unsure,PropertyActuation,Low,Security-system consequence class if it is an alarm kit.
+alarms,mydigoo:dg-hamb_smart_home_security_system,mydigoo,dg-hamb_smart_home_security_system,1,capturesAV,true|false|unsure,unsure,Low,Generic security-system name; kits may or may not include cameras.
+alarms,mydigoo:dg-hamb_smart_home_security_system,mydigoo,dg-hamb_smart_home_security_system,1,cloudDependence,CloudOptional|CloudRequired|LocalOnly|unsure,unsure,Low,Cloud vs local path not knowable from this branding.
+alarms,mydigoo:dg-hamb_smart_home_security_system,mydigoo,dg-hamb_smart_home_security_system,1,computeTier,AndroidDerived|EmbeddedLinux|McuClass|Rtos|unsure,unsure,Low,No OS/substrate cue in the product string.
+alarms,mydigoo:dg-hamb_smart_home_security_system,mydigoo,dg-hamb_smart_home_security_system,1,consumerAvailability,InstallerChannel|MixedChannel|RetailConsumer|unsure,RetailConsumer,High,myDigoo-style kits sold retail for DIY install.
+alarms,mydigoo:dg-hamb_smart_home_security_system,mydigoo,dg-hamb_smart_home_security_system,1,dataSensitivity,AvStreamData|BiometricData|NoData|TelemetryData|unsure,unsure,Low,Sensitivity depends on whether the kit includes AV sensors.
+alarms,mydigoo:dg-hamb_smart_home_security_system,mydigoo,dg-hamb_smart_home_security_system,1,firmwareUpdateModel,ManualFlash|NoUpdatePath|OtaAutomatic|OtaUserInitiated|unsure,unsure,Low,Update model not identifiable from the name.
+alarms,mydigoo:dg-hamb_smart_home_security_system,mydigoo,dg-hamb_smart_home_security_system,1,formFactor,Fixed|Portable|Worn|unsure,Fixed,Low,Security systems of this type are fixed panels/hubs.
+alarms,mydigoo:dg-hamb_smart_home_security_system,mydigoo,dg-hamb_smart_home_security_system,1,hasWebAdminUI,true|false|unsure,unsure,Low,Admin surface unknown from product name.
+alarms,mydigoo:dg-hamb_smart_home_security_system,mydigoo,dg-hamb_smart_home_security_system,1,placement,Either|Indoor|Outdoor|unsure,Indoor,High,Home security system sited indoors.
+alarms,mydigoo:dg-hamb_smart_home_security_system,mydigoo,dg-hamb_smart_home_security_system,1,supportLifetime,DeclaredLifetime|UndeclaredLifetime|unsure,UndeclaredLifetime,Low,Obscure retail IoT brand; undeclared support is the norm.
+alarms,vivint:sky_control_panel,vivint,sky_control_panel,1,actuatesPhysical,true|false|unsure,true,High,Alarm panel arms system and controls security devices.
+alarms,vivint:sky_control_panel,vivint,sky_control_panel,1,actuationConsequence,ComfortActuation|NoActuation|PropertyActuation|SafetyActuation|unsure,PropertyActuation,High,Disarm/entry and security control; not direct injury actuation.
+alarms,vivint:sky_control_panel,vivint,sky_control_panel,1,capturesAV,true|false|unsure,true,Low,Sky panel class supports mic/intercom and camera viewing.
+alarms,vivint:sky_control_panel,vivint,sky_control_panel,1,cloudDependence,CloudOptional|CloudRequired|LocalOnly|unsure,CloudRequired,High,Vivint panels are operated through Vivint monitoring/cloud service.
+alarms,vivint:sky_control_panel,vivint,sky_control_panel,1,computeTier,AndroidDerived|EmbeddedLinux|McuClass|Rtos|unsure,AndroidDerived,High,Vivint Sky control panels run an Android-derived UI stack.
+alarms,vivint:sky_control_panel,vivint,sky_control_panel,1,consumerAvailability,InstallerChannel|MixedChannel|RetailConsumer|unsure,InstallerChannel,High,Vivint is professionally sold and commissioned.
+alarms,vivint:sky_control_panel,vivint,sky_control_panel,1,dataSensitivity,AvStreamData|BiometricData|NoData|TelemetryData|unsure,AvStreamData,Low,Handles camera streams/intercom audio at the panel.
+alarms,vivint:sky_control_panel,vivint,sky_control_panel,1,firmwareUpdateModel,ManualFlash|NoUpdatePath|OtaAutomatic|OtaUserInitiated|unsure,OtaAutomatic,High,Managed service panels receive vendor-pushed firmware.
+alarms,vivint:sky_control_panel,vivint,sky_control_panel,1,formFactor,Fixed|Portable|Worn|unsure,Fixed,High,Wall-mounted control panel.
+alarms,vivint:sky_control_panel,vivint,sky_control_panel,1,hasWebAdminUI,true|false|unsure,false,High,"Administered via panel/app/dealer tools, not LAN HTTP admin."
+alarms,vivint:sky_control_panel,vivint,sky_control_panel,1,placement,Either|Indoor|Outdoor|unsure,Indoor,High,Indoor wall panel.
+alarms,vivint:sky_control_panel,vivint,sky_control_panel,1,supportLifetime,DeclaredLifetime|UndeclaredLifetime|unsure,unsure,Low,Support window not inferable from the product name alone.
+cameras,c-first:cfr-4eha,c-first,cfr-4eha,2,actuatesPhysical,true|false|unsure,false,Low,"Model reads as a camera SKU, not an actuator."
+cameras,c-first:cfr-4eha,c-first,cfr-4eha,2,actuationConsequence,ComfortActuation|NoActuation|PropertyActuation|SafetyActuation|unsure,NoActuation,Low,No physical actuator expected for this camera-like SKU.
+cameras,c-first:cfr-4eha,c-first,cfr-4eha,2,capturesAV,true|false|unsure,true,Low,Camera-category SKU naming implies AV capture.
+cameras,c-first:cfr-4eha,c-first,cfr-4eha,2,cloudDependence,CloudOptional|CloudRequired|LocalOnly|unsure,unsure,Low,Cloud path unknown for this obscure model.
+cameras,c-first:cfr-4eha,c-first,cfr-4eha,2,computeTier,AndroidDerived|EmbeddedLinux|McuClass|Rtos|unsure,EmbeddedLinux,Low,IP-camera class commonly runs embedded Linux.
+cameras,c-first:cfr-4eha,c-first,cfr-4eha,2,consumerAvailability,InstallerChannel|MixedChannel|RetailConsumer|unsure,unsure,Low,Channel not clear from the brand/model string.
+cameras,c-first:cfr-4eha,c-first,cfr-4eha,2,dataSensitivity,AvStreamData|BiometricData|NoData|TelemetryData|unsure,AvStreamData,Low,"If it is a camera, primary data is AV."
+cameras,c-first:cfr-4eha,c-first,cfr-4eha,2,firmwareUpdateModel,ManualFlash|NoUpdatePath|OtaAutomatic|OtaUserInitiated|unsure,unsure,Low,Update mechanism unknown from the name.
+cameras,c-first:cfr-4eha,c-first,cfr-4eha,2,formFactor,Fixed|Portable|Worn|unsure,Fixed,Low,Cameras of this naming pattern are fixed mounts.
+cameras,c-first:cfr-4eha,c-first,cfr-4eha,2,hasWebAdminUI,true|false|unsure,true,Low,IP cameras typically expose a local web admin.
+cameras,c-first:cfr-4eha,c-first,cfr-4eha,2,placement,Either|Indoor|Outdoor|unsure,unsure,Low,Indoor vs outdoor not indicated by the model.
+cameras,c-first:cfr-4eha,c-first,cfr-4eha,2,supportLifetime,DeclaredLifetime|UndeclaredLifetime|unsure,unsure,Low,No support declaration knowable from the name.
+cameras,dahuasecurity:dvr2116he,dahuasecurity,dvr2116he,5,actuatesPhysical,true|false|unsure,false,High,DVR recorder stores/relays video; no home actuator.
+cameras,dahuasecurity:dvr2116he,dahuasecurity,dvr2116he,5,actuationConsequence,ComfortActuation|NoActuation|PropertyActuation|SafetyActuation|unsure,NoActuation,High,No physical actuation on a DVR appliance.
+cameras,dahuasecurity:dvr2116he,dahuasecurity,dvr2116he,5,capturesAV,true|false|unsure,true,High,Multi-channel DVR records and relays AV.
+cameras,dahuasecurity:dvr2116he,dahuasecurity,dvr2116he,5,cloudDependence,CloudOptional|CloudRequired|LocalOnly|unsure,CloudOptional,High,Local recording primary; vendor P2P/cloud optional.
+cameras,dahuasecurity:dvr2116he,dahuasecurity,dvr2116he,5,computeTier,AndroidDerived|EmbeddedLinux|McuClass|Rtos|unsure,EmbeddedLinux,High,Dahua DVRs run embedded Linux stacks.
+cameras,dahuasecurity:dvr2116he,dahuasecurity,dvr2116he,5,consumerAvailability,InstallerChannel|MixedChannel|RetailConsumer|unsure,MixedChannel,High,Sold through retail DIY and installer channels.
+cameras,dahuasecurity:dvr2116he,dahuasecurity,dvr2116he,5,dataSensitivity,AvStreamData|BiometricData|NoData|TelemetryData|unsure,AvStreamData,High,Core function is video recording.
+cameras,dahuasecurity:dvr2116he,dahuasecurity,dvr2116he,5,firmwareUpdateModel,ManualFlash|NoUpdatePath|OtaAutomatic|OtaUserInitiated|unsure,ManualFlash,Low,Commonly updated via local web/USB image upload.
+cameras,dahuasecurity:dvr2116he,dahuasecurity,dvr2116he,5,formFactor,Fixed|Portable|Worn|unsure,Fixed,High,Rack/shelf fixed recorder.
+cameras,dahuasecurity:dvr2116he,dahuasecurity,dvr2116he,5,hasWebAdminUI,true|false|unsure,true,High,Dahua DVRs expose local HTTP admin.
+cameras,dahuasecurity:dvr2116he,dahuasecurity,dvr2116he,5,placement,Either|Indoor|Outdoor|unsure,Indoor,High,Indoor recorder appliance.
+cameras,dahuasecurity:dvr2116he,dahuasecurity,dvr2116he,5,supportLifetime,DeclaredLifetime|UndeclaredLifetime|unsure,unsure,Low,EOS policy not readable from the SKU alone.
+cameras,xiongmaitech:ipg-53h10pe-s,xiongmaitech,ipg-53h10pe-s,1,actuatesPhysical,true|false|unsure,false,High,IP camera product naming; sensing only.
+cameras,xiongmaitech:ipg-53h10pe-s,xiongmaitech,ipg-53h10pe-s,1,actuationConsequence,ComfortActuation|NoActuation|PropertyActuation|SafetyActuation|unsure,NoActuation,High,No physical actuator on an IP camera.
+cameras,xiongmaitech:ipg-53h10pe-s,xiongmaitech,ipg-53h10pe-s,1,capturesAV,true|false|unsure,true,High,IP camera captures video/audio.
+cameras,xiongmaitech:ipg-53h10pe-s,xiongmaitech,ipg-53h10pe-s,1,cloudDependence,CloudOptional|CloudRequired|LocalOnly|unsure,CloudOptional,Low,Xiongmai cams often local with optional P2P cloud.
+cameras,xiongmaitech:ipg-53h10pe-s,xiongmaitech,ipg-53h10pe-s,1,computeTier,AndroidDerived|EmbeddedLinux|McuClass|Rtos|unsure,EmbeddedLinux,High,Xiongmai IP cameras are embedded-Linux class.
+cameras,xiongmaitech:ipg-53h10pe-s,xiongmaitech,ipg-53h10pe-s,1,consumerAvailability,InstallerChannel|MixedChannel|RetailConsumer|unsure,RetailConsumer,Low,OEM/white-label cameras sold into consumer kits.
+cameras,xiongmaitech:ipg-53h10pe-s,xiongmaitech,ipg-53h10pe-s,1,dataSensitivity,AvStreamData|BiometricData|NoData|TelemetryData|unsure,AvStreamData,High,Live/recorded camera AV.
+cameras,xiongmaitech:ipg-53h10pe-s,xiongmaitech,ipg-53h10pe-s,1,firmwareUpdateModel,ManualFlash|NoUpdatePath|OtaAutomatic|OtaUserInitiated|unsure,unsure,Low,Update path not fixed by the model string.
+cameras,xiongmaitech:ipg-53h10pe-s,xiongmaitech,ipg-53h10pe-s,1,formFactor,Fixed|Portable|Worn|unsure,Fixed,High,Mounted IP camera.
+cameras,xiongmaitech:ipg-53h10pe-s,xiongmaitech,ipg-53h10pe-s,1,hasWebAdminUI,true|false|unsure,true,High,Classically exposes a local web/CGI admin UI.
+cameras,xiongmaitech:ipg-53h10pe-s,xiongmaitech,ipg-53h10pe-s,1,placement,Either|Indoor|Outdoor|unsure,unsure,Low,Indoor/outdoor variant not specified by SKU.
+cameras,xiongmaitech:ipg-53h10pe-s,xiongmaitech,ipg-53h10pe-s,1,supportLifetime,DeclaredLifetime|UndeclaredLifetime|unsure,UndeclaredLifetime,Low,OEM camera maker class typically undeclared lifetime.
+doorbell,reolink:smart_2k\+_plug-in_wi-fi_video_doorbell_with_chime,reolink,smart_2k\+_plug-in_wi-fi_video_doorbell_with_chime,3,actuatesPhysical,true|false|unsure,true,High,Includes a chime actuator and doorbell signaling.
+doorbell,reolink:smart_2k\+_plug-in_wi-fi_video_doorbell_with_chime,reolink,smart_2k\+_plug-in_wi-fi_video_doorbell_with_chime,3,actuationConsequence,ComfortActuation|NoActuation|PropertyActuation|SafetyActuation|unsure,ComfortActuation,High,"Chime/notification comfort actuation, not entry or injury."
+doorbell,reolink:smart_2k\+_plug-in_wi-fi_video_doorbell_with_chime,reolink,smart_2k\+_plug-in_wi-fi_video_doorbell_with_chime,3,capturesAV,true|false|unsure,true,High,Video doorbell with camera/mic.
+doorbell,reolink:smart_2k\+_plug-in_wi-fi_video_doorbell_with_chime,reolink,smart_2k\+_plug-in_wi-fi_video_doorbell_with_chime,3,cloudDependence,CloudOptional|CloudRequired|LocalOnly|unsure,CloudOptional,High,Reolink supports local use; cloud is optional.
+doorbell,reolink:smart_2k\+_plug-in_wi-fi_video_doorbell_with_chime,reolink,smart_2k\+_plug-in_wi-fi_video_doorbell_with_chime,3,computeTier,AndroidDerived|EmbeddedLinux|McuClass|Rtos|unsure,EmbeddedLinux,High,Wi-Fi video doorbell class runs embedded Linux.
+doorbell,reolink:smart_2k\+_plug-in_wi-fi_video_doorbell_with_chime,reolink,smart_2k\+_plug-in_wi-fi_video_doorbell_with_chime,3,consumerAvailability,InstallerChannel|MixedChannel|RetailConsumer|unsure,RetailConsumer,High,Plug-in Wi-Fi doorbell sold for self-install.
+doorbell,reolink:smart_2k\+_plug-in_wi-fi_video_doorbell_with_chime,reolink,smart_2k\+_plug-in_wi-fi_video_doorbell_with_chime,3,dataSensitivity,AvStreamData|BiometricData|NoData|TelemetryData|unsure,AvStreamData,High,Doorstep video/audio stream.
+doorbell,reolink:smart_2k\+_plug-in_wi-fi_video_doorbell_with_chime,reolink,smart_2k\+_plug-in_wi-fi_video_doorbell_with_chime,3,firmwareUpdateModel,ManualFlash|NoUpdatePath|OtaAutomatic|OtaUserInitiated|unsure,OtaUserInitiated,High,Reolink firmware updates are triggered in the app/client.
+doorbell,reolink:smart_2k\+_plug-in_wi-fi_video_doorbell_with_chime,reolink,smart_2k\+_plug-in_wi-fi_video_doorbell_with_chime,3,formFactor,Fixed|Portable|Worn|unsure,Fixed,High,Mounted at the door.
+doorbell,reolink:smart_2k\+_plug-in_wi-fi_video_doorbell_with_chime,reolink,smart_2k\+_plug-in_wi-fi_video_doorbell_with_chime,3,hasWebAdminUI,true|false|unsure,true,High,Reolink devices commonly have local client/web admin.
+doorbell,reolink:smart_2k\+_plug-in_wi-fi_video_doorbell_with_chime,reolink,smart_2k\+_plug-in_wi-fi_video_doorbell_with_chime,3,placement,Either|Indoor|Outdoor|unsure,Outdoor,High,Doorbell is outdoor entry-mounted.
+doorbell,reolink:smart_2k\+_plug-in_wi-fi_video_doorbell_with_chime,reolink,smart_2k\+_plug-in_wi-fi_video_doorbell_with_chime,3,supportLifetime,DeclaredLifetime|UndeclaredLifetime|unsure,unsure,Low,Published support window not knowable from the name.
+doorlock,assaabloy:yale_keyless_smart_lock,assaabloy,yale_keyless_smart_lock,1,actuatesPhysical,true|false|unsure,true,High,Electromechanical door lock.
+doorlock,assaabloy:yale_keyless_smart_lock,assaabloy,yale_keyless_smart_lock,1,actuationConsequence,ComfortActuation|NoActuation|PropertyActuation|SafetyActuation|unsure,PropertyActuation,High,Unlock grants physical entry to the home.
+doorlock,assaabloy:yale_keyless_smart_lock,assaabloy,yale_keyless_smart_lock,1,capturesAV,true|false|unsure,false,High,Lock product; no camera/mic in the name.
+doorlock,assaabloy:yale_keyless_smart_lock,assaabloy,yale_keyless_smart_lock,1,cloudDependence,CloudOptional|CloudRequired|LocalOnly|unsure,CloudOptional,Low,Yale locks often local/bridge with optional cloud.
+doorlock,assaabloy:yale_keyless_smart_lock,assaabloy,yale_keyless_smart_lock,1,computeTier,AndroidDerived|EmbeddedLinux|McuClass|Rtos|unsure,McuClass,High,Smart lock hardware is MCU-class.
+doorlock,assaabloy:yale_keyless_smart_lock,assaabloy,yale_keyless_smart_lock,1,consumerAvailability,InstallerChannel|MixedChannel|RetailConsumer|unsure,RetailConsumer,High,Yale keyless locks sold retail for DIY install.
+doorlock,assaabloy:yale_keyless_smart_lock,assaabloy,yale_keyless_smart_lock,1,dataSensitivity,AvStreamData|BiometricData|NoData|TelemetryData|unsure,TelemetryData,High,Lock events/PINs enable occupancy/access inference.
+doorlock,assaabloy:yale_keyless_smart_lock,assaabloy,yale_keyless_smart_lock,1,firmwareUpdateModel,ManualFlash|NoUpdatePath|OtaAutomatic|OtaUserInitiated|unsure,OtaUserInitiated,Low,Typically updated via app when a bridge/phone path exists.
+doorlock,assaabloy:yale_keyless_smart_lock,assaabloy,yale_keyless_smart_lock,1,formFactor,Fixed|Portable|Worn|unsure,Fixed,High,Installed in the door.
+doorlock,assaabloy:yale_keyless_smart_lock,assaabloy,yale_keyless_smart_lock,1,hasWebAdminUI,true|false|unsure,false,High,No LAN web admin on the lock body.
+doorlock,assaabloy:yale_keyless_smart_lock,assaabloy,yale_keyless_smart_lock,1,placement,Either|Indoor|Outdoor|unsure,Indoor,High,Lockset on the dwelling door.
+doorlock,assaabloy:yale_keyless_smart_lock,assaabloy,yale_keyless_smart_lock,1,supportLifetime,DeclaredLifetime|UndeclaredLifetime|unsure,unsure,Low,Support declaration not visible from the product string.
+doorlock,august:connect_wi-fi_bridge,august,connect_wi-fi_bridge,1,actuatesPhysical,true|false|unsure,true,Low,Bridge remotely commands the paired lock to lock/unlock.
+doorlock,august:connect_wi-fi_bridge,august,connect_wi-fi_bridge,1,actuationConsequence,ComfortActuation|NoActuation|PropertyActuation|SafetyActuation|unsure,PropertyActuation,Low,Via the lock it can grant or deny physical entry.
+doorlock,august:connect_wi-fi_bridge,august,connect_wi-fi_bridge,1,capturesAV,true|false|unsure,false,High,Wi-Fi bridge accessory; no camera/mic.
+doorlock,august:connect_wi-fi_bridge,august,connect_wi-fi_bridge,1,cloudDependence,CloudOptional|CloudRequired|LocalOnly|unsure,CloudRequired,High,August Connect exists to put the lock on August cloud/Wi-Fi.
+doorlock,august:connect_wi-fi_bridge,august,connect_wi-fi_bridge,1,computeTier,AndroidDerived|EmbeddedLinux|McuClass|Rtos|unsure,EmbeddedLinux,Low,Wi-Fi bridge appliances are typically embedded Linux.
+doorlock,august:connect_wi-fi_bridge,august,connect_wi-fi_bridge,1,consumerAvailability,InstallerChannel|MixedChannel|RetailConsumer|unsure,RetailConsumer,High,Sold retail as a consumer lock accessory.
+doorlock,august:connect_wi-fi_bridge,august,connect_wi-fi_bridge,1,dataSensitivity,AvStreamData|BiometricData|NoData|TelemetryData|unsure,TelemetryData,High,Relays lock/unlock and access events.
+doorlock,august:connect_wi-fi_bridge,august,connect_wi-fi_bridge,1,firmwareUpdateModel,ManualFlash|NoUpdatePath|OtaAutomatic|OtaUserInitiated|unsure,OtaUserInitiated,Low,Updated through the August app/cloud path.
+doorlock,august:connect_wi-fi_bridge,august,connect_wi-fi_bridge,1,formFactor,Fixed|Portable|Worn|unsure,Fixed,High,Plugs in and stays at a power outlet.
+doorlock,august:connect_wi-fi_bridge,august,connect_wi-fi_bridge,1,hasWebAdminUI,true|false|unsure,false,High,App-managed bridge; no consumer web admin.
+doorlock,august:connect_wi-fi_bridge,august,connect_wi-fi_bridge,1,placement,Either|Indoor|Outdoor|unsure,Indoor,High,Indoor plug-in bridge near the lock.
+doorlock,august:connect_wi-fi_bridge,august,connect_wi-fi_bridge,1,supportLifetime,DeclaredLifetime|UndeclaredLifetime|unsure,unsure,Low,Support window not knowable from the name.
+doorlock,geniecompany:aladdin_connect_garage_door_opener,geniecompany,aladdin_connect_garage_door_opener,2,actuatesPhysical,true|false|unsure,true,High,Garage door opener moves the door.
+doorlock,geniecompany:aladdin_connect_garage_door_opener,geniecompany,aladdin_connect_garage_door_opener,2,actuationConsequence,ComfortActuation|NoActuation|PropertyActuation|SafetyActuation|unsure,PropertyActuation,High,Opens a physical entry path into the garage/home.
+doorlock,geniecompany:aladdin_connect_garage_door_opener,geniecompany,aladdin_connect_garage_door_opener,2,capturesAV,true|false|unsure,false,High,Opener product name has no camera/mic.
+doorlock,geniecompany:aladdin_connect_garage_door_opener,geniecompany,aladdin_connect_garage_door_opener,2,cloudDependence,CloudOptional|CloudRequired|LocalOnly|unsure,CloudRequired,High,Aladdin Connect path is cloud/app remote control.
+doorlock,geniecompany:aladdin_connect_garage_door_opener,geniecompany,aladdin_connect_garage_door_opener,2,computeTier,AndroidDerived|EmbeddedLinux|McuClass|Rtos|unsure,unsure,Low,Controller substrate not visible from the product name.
+doorlock,geniecompany:aladdin_connect_garage_door_opener,geniecompany,aladdin_connect_garage_door_opener,2,consumerAvailability,InstallerChannel|MixedChannel|RetailConsumer|unsure,RetailConsumer,High,Genie consumer garage openers sold retail.
+doorlock,geniecompany:aladdin_connect_garage_door_opener,geniecompany,aladdin_connect_garage_door_opener,2,dataSensitivity,AvStreamData|BiometricData|NoData|TelemetryData|unsure,TelemetryData,High,Open/close events support occupancy inference.
+doorlock,geniecompany:aladdin_connect_garage_door_opener,geniecompany,aladdin_connect_garage_door_opener,2,firmwareUpdateModel,ManualFlash|NoUpdatePath|OtaAutomatic|OtaUserInitiated|unsure,OtaUserInitiated,Low,Connected openers typically update via the app.
+doorlock,geniecompany:aladdin_connect_garage_door_opener,geniecompany,aladdin_connect_garage_door_opener,2,formFactor,Fixed|Portable|Worn|unsure,Fixed,High,Ceiling-mounted opener.
+doorlock,geniecompany:aladdin_connect_garage_door_opener,geniecompany,aladdin_connect_garage_door_opener,2,hasWebAdminUI,true|false|unsure,false,High,App/cloud controlled; not a LAN web appliance.
+doorlock,geniecompany:aladdin_connect_garage_door_opener,geniecompany,aladdin_connect_garage_door_opener,2,placement,Either|Indoor|Outdoor|unsure,Indoor,High,Mounted inside the garage.
+doorlock,geniecompany:aladdin_connect_garage_door_opener,geniecompany,aladdin_connect_garage_door_opener,2,supportLifetime,DeclaredLifetime|UndeclaredLifetime|unsure,unsure,Low,Support declaration not knowable from the name.
+ev-charging,abb:terra_ac_wallbox_80a,abb,terra_ac_wallbox_80a,2,actuatesPhysical,true|false|unsure,true,High,EVSE switches high-current charging power.
+ev-charging,abb:terra_ac_wallbox_80a,abb,terra_ac_wallbox_80a,2,actuationConsequence,ComfortActuation|NoActuation|PropertyActuation|SafetyActuation|unsure,SafetyActuation,High,High-current EV charging can cause fire/electrical injury if mis-commanded.
+ev-charging,abb:terra_ac_wallbox_80a,abb,terra_ac_wallbox_80a,2,capturesAV,true|false|unsure,false,High,Wallbox has no camera or always-on mic.
+ev-charging,abb:terra_ac_wallbox_80a,abb,terra_ac_wallbox_80a,2,cloudDependence,CloudOptional|CloudRequired|LocalOnly|unsure,CloudOptional,High,App/cloud remote is common; local charging still works.
+ev-charging,abb:terra_ac_wallbox_80a,abb,terra_ac_wallbox_80a,2,computeTier,AndroidDerived|EmbeddedLinux|McuClass|Rtos|unsure,EmbeddedLinux,Low,Connected wallboxes commonly run embedded Linux controllers.
+ev-charging,abb:terra_ac_wallbox_80a,abb,terra_ac_wallbox_80a,2,consumerAvailability,InstallerChannel|MixedChannel|RetailConsumer|unsure,InstallerChannel,High,Hardwired wallbox normally commissioned by an electrician/installer.
+ev-charging,abb:terra_ac_wallbox_80a,abb,terra_ac_wallbox_80a,2,dataSensitivity,AvStreamData|BiometricData|NoData|TelemetryData|unsure,TelemetryData,High,Session energy/status telemetry supports occupancy inference.
+ev-charging,abb:terra_ac_wallbox_80a,abb,terra_ac_wallbox_80a,2,firmwareUpdateModel,ManualFlash|NoUpdatePath|OtaAutomatic|OtaUserInitiated|unsure,OtaUserInitiated,Low,App-triggered OTA is the usual path for connected wallboxes.
+ev-charging,abb:terra_ac_wallbox_80a,abb,terra_ac_wallbox_80a,2,formFactor,Fixed|Portable|Worn|unsure,Fixed,High,Wall-mounted charging unit.
+ev-charging,abb:terra_ac_wallbox_80a,abb,terra_ac_wallbox_80a,2,hasWebAdminUI,true|false|unsure,unsure,Low,Local web admin not knowable from the model name.
+ev-charging,abb:terra_ac_wallbox_80a,abb,terra_ac_wallbox_80a,2,placement,Either|Indoor|Outdoor|unsure,Either,High,Product line covers garage and exterior mounts.
+ev-charging,abb:terra_ac_wallbox_80a,abb,terra_ac_wallbox_80a,2,supportLifetime,DeclaredLifetime|UndeclaredLifetime|unsure,unsure,Low,Support window not knowable from the product name alone.
+ev-charging,abb:terra_ac_wallbox_ul32a,abb,terra_ac_wallbox_ul32a,2,actuatesPhysical,true|false|unsure,true,High,EVSE switches high-current charging power.
+ev-charging,abb:terra_ac_wallbox_ul32a,abb,terra_ac_wallbox_ul32a,2,actuationConsequence,ComfortActuation|NoActuation|PropertyActuation|SafetyActuation|unsure,SafetyActuation,High,High-current EV charging can cause fire/electrical injury if mis-commanded.
+ev-charging,abb:terra_ac_wallbox_ul32a,abb,terra_ac_wallbox_ul32a,2,capturesAV,true|false|unsure,false,High,Wallbox has no camera or always-on mic.
+ev-charging,abb:terra_ac_wallbox_ul32a,abb,terra_ac_wallbox_ul32a,2,cloudDependence,CloudOptional|CloudRequired|LocalOnly|unsure,CloudOptional,High,App/cloud remote is common; local charging still works.
+ev-charging,abb:terra_ac_wallbox_ul32a,abb,terra_ac_wallbox_ul32a,2,computeTier,AndroidDerived|EmbeddedLinux|McuClass|Rtos|unsure,EmbeddedLinux,Low,Connected wallboxes commonly run embedded Linux controllers.
+ev-charging,abb:terra_ac_wallbox_ul32a,abb,terra_ac_wallbox_ul32a,2,consumerAvailability,InstallerChannel|MixedChannel|RetailConsumer|unsure,InstallerChannel,High,Hardwired wallbox normally commissioned by an electrician/installer.
+ev-charging,abb:terra_ac_wallbox_ul32a,abb,terra_ac_wallbox_ul32a,2,dataSensitivity,AvStreamData|BiometricData|NoData|TelemetryData|unsure,TelemetryData,High,Session energy/status telemetry supports occupancy inference.
+ev-charging,abb:terra_ac_wallbox_ul32a,abb,terra_ac_wallbox_ul32a,2,firmwareUpdateModel,ManualFlash|NoUpdatePath|OtaAutomatic|OtaUserInitiated|unsure,OtaUserInitiated,Low,App-triggered OTA is the usual path for connected wallboxes.
+ev-charging,abb:terra_ac_wallbox_ul32a,abb,terra_ac_wallbox_ul32a,2,formFactor,Fixed|Portable|Worn|unsure,Fixed,High,Wall-mounted charging unit.
+ev-charging,abb:terra_ac_wallbox_ul32a,abb,terra_ac_wallbox_ul32a,2,hasWebAdminUI,true|false|unsure,unsure,Low,Local web admin not knowable from the model name.
+ev-charging,abb:terra_ac_wallbox_ul32a,abb,terra_ac_wallbox_ul32a,2,placement,Either|Indoor|Outdoor|unsure,Either,High,Product line covers garage and exterior mounts.
+ev-charging,abb:terra_ac_wallbox_ul32a,abb,terra_ac_wallbox_ul32a,2,supportLifetime,DeclaredLifetime|UndeclaredLifetime|unsure,unsure,Low,Support window not knowable from the product name alone.
+ev-charging,chargepoint:home_flex_hardwired,chargepoint,home_flex_hardwired,6,actuatesPhysical,true|false|unsure,true,High,EVSE switches high-current charging power.
+ev-charging,chargepoint:home_flex_hardwired,chargepoint,home_flex_hardwired,6,actuationConsequence,ComfortActuation|NoActuation|PropertyActuation|SafetyActuation|unsure,SafetyActuation,High,High-current EV charging can cause fire/electrical injury if mis-commanded.
+ev-charging,chargepoint:home_flex_hardwired,chargepoint,home_flex_hardwired,6,capturesAV,true|false|unsure,false,High,Wallbox has no camera or always-on mic.
+ev-charging,chargepoint:home_flex_hardwired,chargepoint,home_flex_hardwired,6,cloudDependence,CloudOptional|CloudRequired|LocalOnly|unsure,CloudOptional,High,Charges locally; ChargePoint app/cloud adds remote features.
+ev-charging,chargepoint:home_flex_hardwired,chargepoint,home_flex_hardwired,6,computeTier,AndroidDerived|EmbeddedLinux|McuClass|Rtos|unsure,EmbeddedLinux,Low,Connected wallboxes commonly run embedded Linux controllers.
+ev-charging,chargepoint:home_flex_hardwired,chargepoint,home_flex_hardwired,6,consumerAvailability,InstallerChannel|MixedChannel|RetailConsumer|unsure,MixedChannel,High,Hardwired Home Flex sold to DIYers and installers.
+ev-charging,chargepoint:home_flex_hardwired,chargepoint,home_flex_hardwired,6,dataSensitivity,AvStreamData|BiometricData|NoData|TelemetryData|unsure,TelemetryData,High,Session energy/status telemetry supports occupancy inference.
+ev-charging,chargepoint:home_flex_hardwired,chargepoint,home_flex_hardwired,6,firmwareUpdateModel,ManualFlash|NoUpdatePath|OtaAutomatic|OtaUserInitiated|unsure,OtaUserInitiated,Low,App-triggered OTA is the usual path for connected wallboxes.
+ev-charging,chargepoint:home_flex_hardwired,chargepoint,home_flex_hardwired,6,formFactor,Fixed|Portable|Worn|unsure,Fixed,High,Wall-mounted charging unit.
+ev-charging,chargepoint:home_flex_hardwired,chargepoint,home_flex_hardwired,6,hasWebAdminUI,true|false|unsure,false,High,"ChargePoint Home Flex is app-managed, not a LAN web UI device."
+ev-charging,chargepoint:home_flex_hardwired,chargepoint,home_flex_hardwired,6,placement,Either|Indoor|Outdoor|unsure,Either,High,Product line covers garage and exterior mounts.
+ev-charging,chargepoint:home_flex_hardwired,chargepoint,home_flex_hardwired,6,supportLifetime,DeclaredLifetime|UndeclaredLifetime|unsure,unsure,Low,Support window not knowable from the product name alone.
+ev-charging,chargepoint:home_flex_nema_14-50_plug,chargepoint,home_flex_nema_14-50_plug,6,actuatesPhysical,true|false|unsure,true,High,EVSE switches high-current charging power.
+ev-charging,chargepoint:home_flex_nema_14-50_plug,chargepoint,home_flex_nema_14-50_plug,6,actuationConsequence,ComfortActuation|NoActuation|PropertyActuation|SafetyActuation|unsure,SafetyActuation,High,High-current EV charging can cause fire/electrical injury if mis-commanded.
+ev-charging,chargepoint:home_flex_nema_14-50_plug,chargepoint,home_flex_nema_14-50_plug,6,capturesAV,true|false|unsure,false,High,Wallbox has no camera or always-on mic.
+ev-charging,chargepoint:home_flex_nema_14-50_plug,chargepoint,home_flex_nema_14-50_plug,6,cloudDependence,CloudOptional|CloudRequired|LocalOnly|unsure,CloudOptional,High,Local charging works; cloud/app optional for remote.
+ev-charging,chargepoint:home_flex_nema_14-50_plug,chargepoint,home_flex_nema_14-50_plug,6,computeTier,AndroidDerived|EmbeddedLinux|McuClass|Rtos|unsure,EmbeddedLinux,Low,Connected wallboxes commonly run embedded Linux controllers.
+ev-charging,chargepoint:home_flex_nema_14-50_plug,chargepoint,home_flex_nema_14-50_plug,6,consumerAvailability,InstallerChannel|MixedChannel|RetailConsumer|unsure,RetailConsumer,High,NEMA plug-in model marketed for consumer self-install.
+ev-charging,chargepoint:home_flex_nema_14-50_plug,chargepoint,home_flex_nema_14-50_plug,6,dataSensitivity,AvStreamData|BiometricData|NoData|TelemetryData|unsure,TelemetryData,High,Session energy/status telemetry supports occupancy inference.
+ev-charging,chargepoint:home_flex_nema_14-50_plug,chargepoint,home_flex_nema_14-50_plug,6,firmwareUpdateModel,ManualFlash|NoUpdatePath|OtaAutomatic|OtaUserInitiated|unsure,OtaUserInitiated,Low,App-triggered OTA is the usual path for connected wallboxes.
+ev-charging,chargepoint:home_flex_nema_14-50_plug,chargepoint,home_flex_nema_14-50_plug,6,formFactor,Fixed|Portable|Worn|unsure,Fixed,High,Wall-mounted charging unit.
+ev-charging,chargepoint:home_flex_nema_14-50_plug,chargepoint,home_flex_nema_14-50_plug,6,hasWebAdminUI,true|false|unsure,false,High,App-managed plug-in Home Flex; no LAN web admin.
+ev-charging,chargepoint:home_flex_nema_14-50_plug,chargepoint,home_flex_nema_14-50_plug,6,placement,Either|Indoor|Outdoor|unsure,Either,High,Product line covers garage and exterior mounts.
+ev-charging,chargepoint:home_flex_nema_14-50_plug,chargepoint,home_flex_nema_14-50_plug,6,supportLifetime,DeclaredLifetime|UndeclaredLifetime|unsure,unsure,Low,Support window not knowable from the product name alone.
+ev-charging,garo:wallbox_glb\+_t2ev7,garo,wallbox_glb\+_t2ev7,1,actuatesPhysical,true|false|unsure,true,High,EVSE switches high-current charging power.
+ev-charging,garo:wallbox_glb\+_t2ev7,garo,wallbox_glb\+_t2ev7,1,actuationConsequence,ComfortActuation|NoActuation|PropertyActuation|SafetyActuation|unsure,SafetyActuation,High,High-current EV charging can cause fire/electrical injury if mis-commanded.
+ev-charging,garo:wallbox_glb\+_t2ev7,garo,wallbox_glb\+_t2ev7,1,capturesAV,true|false|unsure,false,High,Wallbox has no camera or always-on mic.
+ev-charging,garo:wallbox_glb\+_t2ev7,garo,wallbox_glb\+_t2ev7,1,cloudDependence,CloudOptional|CloudRequired|LocalOnly|unsure,CloudOptional,High,App/cloud remote is common; local charging still works.
+ev-charging,garo:wallbox_glb\+_t2ev7,garo,wallbox_glb\+_t2ev7,1,computeTier,AndroidDerived|EmbeddedLinux|McuClass|Rtos|unsure,EmbeddedLinux,Low,Connected wallboxes commonly run embedded Linux controllers.
+ev-charging,garo:wallbox_glb\+_t2ev7,garo,wallbox_glb\+_t2ev7,1,consumerAvailability,InstallerChannel|MixedChannel|RetailConsumer|unsure,InstallerChannel,High,Hardwired wallbox normally commissioned by an electrician/installer.
+ev-charging,garo:wallbox_glb\+_t2ev7,garo,wallbox_glb\+_t2ev7,1,dataSensitivity,AvStreamData|BiometricData|NoData|TelemetryData|unsure,TelemetryData,High,Session energy/status telemetry supports occupancy inference.
+ev-charging,garo:wallbox_glb\+_t2ev7,garo,wallbox_glb\+_t2ev7,1,firmwareUpdateModel,ManualFlash|NoUpdatePath|OtaAutomatic|OtaUserInitiated|unsure,OtaUserInitiated,Low,App-triggered OTA is the usual path for connected wallboxes.
+ev-charging,garo:wallbox_glb\+_t2ev7,garo,wallbox_glb\+_t2ev7,1,formFactor,Fixed|Portable|Worn|unsure,Fixed,High,Wall-mounted charging unit.
+ev-charging,garo:wallbox_glb\+_t2ev7,garo,wallbox_glb\+_t2ev7,1,hasWebAdminUI,true|false|unsure,unsure,Low,Local web admin not knowable from the model name.
+ev-charging,garo:wallbox_glb\+_t2ev7,garo,wallbox_glb\+_t2ev7,1,placement,Either|Indoor|Outdoor|unsure,Either,High,Product line covers garage and exterior mounts.
+ev-charging,garo:wallbox_glb\+_t2ev7,garo,wallbox_glb\+_t2ev7,1,supportLifetime,DeclaredLifetime|UndeclaredLifetime|unsure,unsure,Low,Support window not knowable from the product name alone.
+ev-charging,schneider-electric:evc1s22p4,schneider-electric,evc1s22p4,2,actuatesPhysical,true|false|unsure,true,High,EVSE switches high-current charging power.
+ev-charging,schneider-electric:evc1s22p4,schneider-electric,evc1s22p4,2,actuationConsequence,ComfortActuation|NoActuation|PropertyActuation|SafetyActuation|unsure,SafetyActuation,High,High-current EV charging can cause fire/electrical injury if mis-commanded.
+ev-charging,schneider-electric:evc1s22p4,schneider-electric,evc1s22p4,2,capturesAV,true|false|unsure,false,High,Wallbox has no camera or always-on mic.
+ev-charging,schneider-electric:evc1s22p4,schneider-electric,evc1s22p4,2,cloudDependence,CloudOptional|CloudRequired|LocalOnly|unsure,CloudOptional,High,App/cloud remote is common; local charging still works.
+ev-charging,schneider-electric:evc1s22p4,schneider-electric,evc1s22p4,2,computeTier,AndroidDerived|EmbeddedLinux|McuClass|Rtos|unsure,EmbeddedLinux,Low,Connected wallboxes commonly run embedded Linux controllers.
+ev-charging,schneider-electric:evc1s22p4,schneider-electric,evc1s22p4,2,consumerAvailability,InstallerChannel|MixedChannel|RetailConsumer|unsure,InstallerChannel,High,Hardwired wallbox normally commissioned by an electrician/installer.
+ev-charging,schneider-electric:evc1s22p4,schneider-electric,evc1s22p4,2,dataSensitivity,AvStreamData|BiometricData|NoData|TelemetryData|unsure,TelemetryData,High,Session energy/status telemetry supports occupancy inference.
+ev-charging,schneider-electric:evc1s22p4,schneider-electric,evc1s22p4,2,firmwareUpdateModel,ManualFlash|NoUpdatePath|OtaAutomatic|OtaUserInitiated|unsure,OtaUserInitiated,Low,App-triggered OTA is the usual path for connected wallboxes.
+ev-charging,schneider-electric:evc1s22p4,schneider-electric,evc1s22p4,2,formFactor,Fixed|Portable|Worn|unsure,Fixed,High,Wall-mounted charging unit.
+ev-charging,schneider-electric:evc1s22p4,schneider-electric,evc1s22p4,2,hasWebAdminUI,true|false|unsure,unsure,Low,Local web admin not knowable from the model name.
+ev-charging,schneider-electric:evc1s22p4,schneider-electric,evc1s22p4,2,placement,Either|Indoor|Outdoor|unsure,Either,High,Product line covers garage and exterior mounts.
+ev-charging,schneider-electric:evc1s22p4,schneider-electric,evc1s22p4,2,supportLifetime,DeclaredLifetime|UndeclaredLifetime|unsure,unsure,Low,Support window not knowable from the product name alone.
+ev-charging,schneider-electric:evc1s7p4,schneider-electric,evc1s7p4,2,actuatesPhysical,true|false|unsure,true,High,EVSE switches high-current charging power.
+ev-charging,schneider-electric:evc1s7p4,schneider-electric,evc1s7p4,2,actuationConsequence,ComfortActuation|NoActuation|PropertyActuation|SafetyActuation|unsure,SafetyActuation,High,High-current EV charging can cause fire/electrical injury if mis-commanded.
+ev-charging,schneider-electric:evc1s7p4,schneider-electric,evc1s7p4,2,capturesAV,true|false|unsure,false,High,Wallbox has no camera or always-on mic.
+ev-charging,schneider-electric:evc1s7p4,schneider-electric,evc1s7p4,2,cloudDependence,CloudOptional|CloudRequired|LocalOnly|unsure,CloudOptional,High,App/cloud remote is common; local charging still works.
+ev-charging,schneider-electric:evc1s7p4,schneider-electric,evc1s7p4,2,computeTier,AndroidDerived|EmbeddedLinux|McuClass|Rtos|unsure,EmbeddedLinux,Low,Connected wallboxes commonly run embedded Linux controllers.
+ev-charging,schneider-electric:evc1s7p4,schneider-electric,evc1s7p4,2,consumerAvailability,InstallerChannel|MixedChannel|RetailConsumer|unsure,InstallerChannel,High,Hardwired wallbox normally commissioned by an electrician/installer.
+ev-charging,schneider-electric:evc1s7p4,schneider-electric,evc1s7p4,2,dataSensitivity,AvStreamData|BiometricData|NoData|TelemetryData|unsure,TelemetryData,High,Session energy/status telemetry supports occupancy inference.
+ev-charging,schneider-electric:evc1s7p4,schneider-electric,evc1s7p4,2,firmwareUpdateModel,ManualFlash|NoUpdatePath|OtaAutomatic|OtaUserInitiated|unsure,OtaUserInitiated,Low,App-triggered OTA is the usual path for connected wallboxes.
+ev-charging,schneider-electric:evc1s7p4,schneider-electric,evc1s7p4,2,formFactor,Fixed|Portable|Worn|unsure,Fixed,High,Wall-mounted charging unit.
+ev-charging,schneider-electric:evc1s7p4,schneider-electric,evc1s7p4,2,hasWebAdminUI,true|false|unsure,unsure,Low,Local web admin not knowable from the model name.
+ev-charging,schneider-electric:evc1s7p4,schneider-electric,evc1s7p4,2,placement,Either|Indoor|Outdoor|unsure,Either,High,Product line covers garage and exterior mounts.
+ev-charging,schneider-electric:evc1s7p4,schneider-electric,evc1s7p4,2,supportLifetime,DeclaredLifetime|UndeclaredLifetime|unsure,unsure,Low,Support window not knowable from the product name alone.
+ev-charging,tesla:wall_connector,tesla,wall_connector,2,actuatesPhysical,true|false|unsure,true,High,EVSE switches high-current charging power.
+ev-charging,tesla:wall_connector,tesla,wall_connector,2,actuationConsequence,ComfortActuation|NoActuation|PropertyActuation|SafetyActuation|unsure,SafetyActuation,High,High-current EV charging can cause fire/electrical injury if mis-commanded.
+ev-charging,tesla:wall_connector,tesla,wall_connector,2,capturesAV,true|false|unsure,false,High,Wallbox has no camera or always-on mic.
+ev-charging,tesla:wall_connector,tesla,wall_connector,2,cloudDependence,CloudOptional|CloudRequired|LocalOnly|unsure,CloudOptional,High,Can charge without cloud; app/cloud adds monitoring/control.
+ev-charging,tesla:wall_connector,tesla,wall_connector,2,computeTier,AndroidDerived|EmbeddedLinux|McuClass|Rtos|unsure,EmbeddedLinux,Low,Tesla Wall Connector is a networked embedded controller.
+ev-charging,tesla:wall_connector,tesla,wall_connector,2,consumerAvailability,InstallerChannel|MixedChannel|RetailConsumer|unsure,MixedChannel,High,Sold both retail DIY kits and through installers.
+ev-charging,tesla:wall_connector,tesla,wall_connector,2,dataSensitivity,AvStreamData|BiometricData|NoData|TelemetryData|unsure,TelemetryData,High,Session energy/status telemetry supports occupancy inference.
+ev-charging,tesla:wall_connector,tesla,wall_connector,2,firmwareUpdateModel,ManualFlash|NoUpdatePath|OtaAutomatic|OtaUserInitiated|unsure,OtaAutomatic,Low,Tesla ecosystem devices commonly auto-update when connected.
+ev-charging,tesla:wall_connector,tesla,wall_connector,2,formFactor,Fixed|Portable|Worn|unsure,Fixed,High,Wall-mounted charging unit.
+ev-charging,tesla:wall_connector,tesla,wall_connector,2,hasWebAdminUI,true|false|unsure,false,High,"Commissioned via Tesla app/installer tools, not a web admin UI."
+ev-charging,tesla:wall_connector,tesla,wall_connector,2,placement,Either|Indoor|Outdoor|unsure,Either,High,Product line covers garage and exterior mounts.
+ev-charging,tesla:wall_connector,tesla,wall_connector,2,supportLifetime,DeclaredLifetime|UndeclaredLifetime|unsure,unsure,Low,Support window not knowable from the product name alone.
+ev-charging,vw:id.charger_connect,vw,id.charger_connect,1,actuatesPhysical,true|false|unsure,true,High,EVSE switches high-current charging power.
+ev-charging,vw:id.charger_connect,vw,id.charger_connect,1,actuationConsequence,ComfortActuation|NoActuation|PropertyActuation|SafetyActuation|unsure,SafetyActuation,High,High-current EV charging can cause fire/electrical injury if mis-commanded.
+ev-charging,vw:id.charger_connect,vw,id.charger_connect,1,capturesAV,true|false|unsure,false,High,Wallbox has no camera or always-on mic.
+ev-charging,vw:id.charger_connect,vw,id.charger_connect,1,cloudDependence,CloudOptional|CloudRequired|LocalOnly|unsure,CloudRequired,Low,Connect variant implies vendor-connected control path.
+ev-charging,vw:id.charger_connect,vw,id.charger_connect,1,computeTier,AndroidDerived|EmbeddedLinux|McuClass|Rtos|unsure,EmbeddedLinux,Low,Connected wallboxes commonly run embedded Linux controllers.
+ev-charging,vw:id.charger_connect,vw,id.charger_connect,1,consumerAvailability,InstallerChannel|MixedChannel|RetailConsumer|unsure,InstallerChannel,High,VW ID.Charger wallboxes are installer-commissioned.
+ev-charging,vw:id.charger_connect,vw,id.charger_connect,1,dataSensitivity,AvStreamData|BiometricData|NoData|TelemetryData|unsure,TelemetryData,High,Session energy/status telemetry supports occupancy inference.
+ev-charging,vw:id.charger_connect,vw,id.charger_connect,1,firmwareUpdateModel,ManualFlash|NoUpdatePath|OtaAutomatic|OtaUserInitiated|unsure,OtaUserInitiated,Low,App-triggered OTA is the usual path for connected wallboxes.
+ev-charging,vw:id.charger_connect,vw,id.charger_connect,1,formFactor,Fixed|Portable|Worn|unsure,Fixed,High,Wall-mounted charging unit.
+ev-charging,vw:id.charger_connect,vw,id.charger_connect,1,hasWebAdminUI,true|false|unsure,unsure,Low,Local web admin not knowable from the model name.
+ev-charging,vw:id.charger_connect,vw,id.charger_connect,1,placement,Either|Indoor|Outdoor|unsure,Either,High,Product line covers garage and exterior mounts.
+ev-charging,vw:id.charger_connect,vw,id.charger_connect,1,supportLifetime,DeclaredLifetime|UndeclaredLifetime|unsure,unsure,Low,Support window not knowable from the product name alone.
+hub,homey:homey,homey,homey,2,actuatesPhysical,true|false|unsure,true,Low,Hub commands actuators on paired home devices.
+hub,homey:homey,homey,homey,2,actuationConsequence,ComfortActuation|NoActuation|PropertyActuation|SafetyActuation|unsure,ComfortActuation,Low,As a general hub its typical direct effects are comfort/automation.
+hub,homey:homey,homey,homey,2,capturesAV,true|false|unsure,false,High,Homey hub has no camera/mic product role.
+hub,homey:homey,homey,homey,2,cloudDependence,CloudOptional|CloudRequired|LocalOnly|unsure,CloudOptional,High,Homey is locally controllable; cloud is optional.
+hub,homey:homey,homey,homey,2,computeTier,AndroidDerived|EmbeddedLinux|McuClass|Rtos|unsure,EmbeddedLinux,High,Athom Homey runs an embedded Linux hub OS.
+hub,homey:homey,homey,homey,2,consumerAvailability,InstallerChannel|MixedChannel|RetailConsumer|unsure,RetailConsumer,High,Sold retail for self-install smart-home hubs.
+hub,homey:homey,homey,homey,2,dataSensitivity,AvStreamData|BiometricData|NoData|TelemetryData|unsure,TelemetryData,High,Aggregates device state/automation telemetry.
+hub,homey:homey,homey,homey,2,firmwareUpdateModel,ManualFlash|NoUpdatePath|OtaAutomatic|OtaUserInitiated|unsure,OtaUserInitiated,High,Updates delivered through Homey software/app flow.
+hub,homey:homey,homey,homey,2,formFactor,Fixed|Portable|Worn|unsure,Fixed,Low,Sits in one place as a hub appliance.
+hub,homey:homey,homey,homey,2,hasWebAdminUI,true|false|unsure,true,High,Homey exposes local web/app administration.
+hub,homey:homey,homey,homey,2,placement,Either|Indoor|Outdoor|unsure,Indoor,High,Indoor hub.
+hub,homey:homey,homey,homey,2,supportLifetime,DeclaredLifetime|UndeclaredLifetime|unsure,unsure,Low,Support window not knowable from the name alone.
+lighting,mystrom:wifi_button,mystrom,wifi_button,4,actuatesPhysical,true|false|unsure,false,High,Scene/button input device. No onboard actuator.
+lighting,mystrom:wifi_button,mystrom,wifi_button,4,actuationConsequence,ComfortActuation|NoActuation|PropertyActuation|SafetyActuation|unsure,NoActuation,High,Button only signals; does not itself move anything.
+lighting,mystrom:wifi_button,mystrom,wifi_button,4,capturesAV,true|false|unsure,false,High,No camera or microphone.
+lighting,mystrom:wifi_button,mystrom,wifi_button,4,cloudDependence,CloudOptional|CloudRequired|LocalOnly|unsure,CloudOptional,High,myStrom devices support local API; cloud optional.
+lighting,mystrom:wifi_button,mystrom,wifi_button,4,computeTier,AndroidDerived|EmbeddedLinux|McuClass|Rtos|unsure,McuClass,High,Wi-Fi button hardware is MCU-class.
+lighting,mystrom:wifi_button,mystrom,wifi_button,4,consumerAvailability,InstallerChannel|MixedChannel|RetailConsumer|unsure,RetailConsumer,High,Retail DIY smart-home accessory.
+lighting,mystrom:wifi_button,mystrom,wifi_button,4,dataSensitivity,AvStreamData|BiometricData|NoData|TelemetryData|unsure,TelemetryData,High,Press events support occupancy/activity inference.
+lighting,mystrom:wifi_button,mystrom,wifi_button,4,firmwareUpdateModel,ManualFlash|NoUpdatePath|OtaAutomatic|OtaUserInitiated|unsure,OtaUserInitiated,Low,Updated via myStrom app/local tools.
+lighting,mystrom:wifi_button,mystrom,wifi_button,4,formFactor,Fixed|Portable|Worn|unsure,Portable,Low,Can be placed or carried; not hardwired fixed.
+lighting,mystrom:wifi_button,mystrom,wifi_button,4,hasWebAdminUI,true|false|unsure,true,High,myStrom devices expose a local web configuration UI.
+lighting,mystrom:wifi_button,mystrom,wifi_button,4,placement,Either|Indoor|Outdoor|unsure,Indoor,High,Indoor button accessory.
+lighting,mystrom:wifi_button,mystrom,wifi_button,4,supportLifetime,DeclaredLifetime|UndeclaredLifetime|unsure,unsure,Low,Support window not knowable from the name.
+lighting,mystrom:wifi_button_plus,mystrom,wifi_button_plus,4,actuatesPhysical,true|false|unsure,false,High,Button-plus scene trigger input. No onboard actuator.
+lighting,mystrom:wifi_button_plus,mystrom,wifi_button_plus,4,actuationConsequence,ComfortActuation|NoActuation|PropertyActuation|SafetyActuation|unsure,NoActuation,High,Button only signals; does not itself move anything.
+lighting,mystrom:wifi_button_plus,mystrom,wifi_button_plus,4,capturesAV,true|false|unsure,false,High,No camera or microphone.
+lighting,mystrom:wifi_button_plus,mystrom,wifi_button_plus,4,cloudDependence,CloudOptional|CloudRequired|LocalOnly|unsure,CloudOptional,High,myStrom devices support local API; cloud optional.
+lighting,mystrom:wifi_button_plus,mystrom,wifi_button_plus,4,computeTier,AndroidDerived|EmbeddedLinux|McuClass|Rtos|unsure,McuClass,High,Wi-Fi button hardware is MCU-class.
+lighting,mystrom:wifi_button_plus,mystrom,wifi_button_plus,4,consumerAvailability,InstallerChannel|MixedChannel|RetailConsumer|unsure,RetailConsumer,High,Retail DIY smart-home accessory.
+lighting,mystrom:wifi_button_plus,mystrom,wifi_button_plus,4,dataSensitivity,AvStreamData|BiometricData|NoData|TelemetryData|unsure,TelemetryData,High,Press events support occupancy/activity inference.
+lighting,mystrom:wifi_button_plus,mystrom,wifi_button_plus,4,firmwareUpdateModel,ManualFlash|NoUpdatePath|OtaAutomatic|OtaUserInitiated|unsure,OtaUserInitiated,Low,Updated via myStrom app/local tools.
+lighting,mystrom:wifi_button_plus,mystrom,wifi_button_plus,4,formFactor,Fixed|Portable|Worn|unsure,Portable,Low,Can be placed or carried; not hardwired fixed.
+lighting,mystrom:wifi_button_plus,mystrom,wifi_button_plus,4,hasWebAdminUI,true|false|unsure,true,High,myStrom devices expose a local web configuration UI.
+lighting,mystrom:wifi_button_plus,mystrom,wifi_button_plus,4,placement,Either|Indoor|Outdoor|unsure,Indoor,High,Indoor button accessory.
+lighting,mystrom:wifi_button_plus,mystrom,wifi_button_plus,4,supportLifetime,DeclaredLifetime|UndeclaredLifetime|unsure,unsure,Low,Support window not knowable from the name.
+lighting,mystrom:wifi_led_strip,mystrom,wifi_led_strip,4,actuatesPhysical,true|false|unsure,true,High,LED strip changes lighting output.
+lighting,mystrom:wifi_led_strip,mystrom,wifi_led_strip,4,actuationConsequence,ComfortActuation|NoActuation|PropertyActuation|SafetyActuation|unsure,ComfortActuation,High,Lighting comfort only; reversible and non-damaging.
+lighting,mystrom:wifi_led_strip,mystrom,wifi_led_strip,4,capturesAV,true|false|unsure,false,High,No camera or mic on an LED strip.
+lighting,mystrom:wifi_led_strip,mystrom,wifi_led_strip,4,cloudDependence,CloudOptional|CloudRequired|LocalOnly|unsure,CloudOptional,High,myStrom local control works; cloud optional.
+lighting,mystrom:wifi_led_strip,mystrom,wifi_led_strip,4,computeTier,AndroidDerived|EmbeddedLinux|McuClass|Rtos|unsure,McuClass,High,Wi-Fi LED controller is MCU-class.
+lighting,mystrom:wifi_led_strip,mystrom,wifi_led_strip,4,consumerAvailability,InstallerChannel|MixedChannel|RetailConsumer|unsure,RetailConsumer,High,Retail consumer lighting accessory.
+lighting,mystrom:wifi_led_strip,mystrom,wifi_led_strip,4,dataSensitivity,AvStreamData|BiometricData|NoData|TelemetryData|unsure,TelemetryData,High,On/off and usage state can imply occupancy.
+lighting,mystrom:wifi_led_strip,mystrom,wifi_led_strip,4,firmwareUpdateModel,ManualFlash|NoUpdatePath|OtaAutomatic|OtaUserInitiated|unsure,OtaUserInitiated,Low,Updated via myStrom tooling/app.
+lighting,mystrom:wifi_led_strip,mystrom,wifi_led_strip,4,formFactor,Fixed|Portable|Worn|unsure,Fixed,Low,Installed along a surface and left in place.
+lighting,mystrom:wifi_led_strip,mystrom,wifi_led_strip,4,hasWebAdminUI,true|false|unsure,true,High,myStrom local web UI for configuration.
+lighting,mystrom:wifi_led_strip,mystrom,wifi_led_strip,4,placement,Either|Indoor|Outdoor|unsure,Indoor,High,Indoor LED strip.
+lighting,mystrom:wifi_led_strip,mystrom,wifi_led_strip,4,supportLifetime,DeclaredLifetime|UndeclaredLifetime|unsure,unsure,Low,Support window not knowable from the name.
+smartplugs,belkin:wemo_insight_smart_plug,belkin,wemo_insight_smart_plug,1,actuatesPhysical,true|false|unsure,true,High,Switched plug cuts/restores power to a load.
+smartplugs,belkin:wemo_insight_smart_plug,belkin,wemo_insight_smart_plug,1,actuationConsequence,ComfortActuation|NoActuation|PropertyActuation|SafetyActuation|unsure,ComfortActuation,High,Convenience power switching; not entry or injury-class.
+smartplugs,belkin:wemo_insight_smart_plug,belkin,wemo_insight_smart_plug,1,capturesAV,true|false|unsure,false,High,Smart plug has no camera/mic.
+smartplugs,belkin:wemo_insight_smart_plug,belkin,wemo_insight_smart_plug,1,cloudDependence,CloudOptional|CloudRequired|LocalOnly|unsure,CloudRequired,High,Classic Wemo primary control path used Belkin cloud.
+smartplugs,belkin:wemo_insight_smart_plug,belkin,wemo_insight_smart_plug,1,computeTier,AndroidDerived|EmbeddedLinux|McuClass|Rtos|unsure,EmbeddedLinux,Low,Wemo plugs historically ran an embedded networked stack.
+smartplugs,belkin:wemo_insight_smart_plug,belkin,wemo_insight_smart_plug,1,consumerAvailability,InstallerChannel|MixedChannel|RetailConsumer|unsure,RetailConsumer,High,Mass-market retail smart plug.
+smartplugs,belkin:wemo_insight_smart_plug,belkin,wemo_insight_smart_plug,1,dataSensitivity,AvStreamData|BiometricData|NoData|TelemetryData|unsure,TelemetryData,High,Insight energy/usage traces support occupancy inference.
+smartplugs,belkin:wemo_insight_smart_plug,belkin,wemo_insight_smart_plug,1,firmwareUpdateModel,ManualFlash|NoUpdatePath|OtaAutomatic|OtaUserInitiated|unsure,OtaAutomatic,Low,Wemo firmware commonly arrived as automatic cloud OTA.
+smartplugs,belkin:wemo_insight_smart_plug,belkin,wemo_insight_smart_plug,1,formFactor,Fixed|Portable|Worn|unsure,Portable,High,Plug-in module moved between outlets.
+smartplugs,belkin:wemo_insight_smart_plug,belkin,wemo_insight_smart_plug,1,hasWebAdminUI,true|false|unsure,false,High,App/cloud administered; not a LAN web appliance.
+smartplugs,belkin:wemo_insight_smart_plug,belkin,wemo_insight_smart_plug,1,placement,Either|Indoor|Outdoor|unsure,Indoor,High,Indoor plug.
+smartplugs,belkin:wemo_insight_smart_plug,belkin,wemo_insight_smart_plug,1,supportLifetime,DeclaredLifetime|UndeclaredLifetime|unsure,DeclaredLifetime,Low,Wemo line had a publicly announced end-of-support.
+smartplugs,meross:mss550x,meross,mss550x,1,actuatesPhysical,true|false|unsure,true,High,In-wall smart switch switches lighting loads.
+smartplugs,meross:mss550x,meross,mss550x,1,actuationConsequence,ComfortActuation|NoActuation|PropertyActuation|SafetyActuation|unsure,ComfortActuation,High,Lighting/comfort switching only.
+smartplugs,meross:mss550x,meross,mss550x,1,capturesAV,true|false|unsure,false,High,No camera/mic on a wall switch.
+smartplugs,meross:mss550x,meross,mss550x,1,cloudDependence,CloudOptional|CloudRequired|LocalOnly|unsure,CloudRequired,High,Meross switches are primarily cloud/app controlled.
+smartplugs,meross:mss550x,meross,mss550x,1,computeTier,AndroidDerived|EmbeddedLinux|McuClass|Rtos|unsure,McuClass,Low,Wi-Fi wall switches are typically MCU-class.
+smartplugs,meross:mss550x,meross,mss550x,1,consumerAvailability,InstallerChannel|MixedChannel|RetailConsumer|unsure,RetailConsumer,High,Retail DIY smart switch.
+smartplugs,meross:mss550x,meross,mss550x,1,dataSensitivity,AvStreamData|BiometricData|NoData|TelemetryData|unsure,TelemetryData,High,Switch state/usage implies occupancy.
+smartplugs,meross:mss550x,meross,mss550x,1,firmwareUpdateModel,ManualFlash|NoUpdatePath|OtaAutomatic|OtaUserInitiated|unsure,OtaUserInitiated,Low,Firmware updates via Meross app.
+smartplugs,meross:mss550x,meross,mss550x,1,formFactor,Fixed|Portable|Worn|unsure,Fixed,High,In-wall fixed install.
+smartplugs,meross:mss550x,meross,mss550x,1,hasWebAdminUI,true|false|unsure,false,High,App-managed; no local web admin as a product class.
+smartplugs,meross:mss550x,meross,mss550x,1,placement,Either|Indoor|Outdoor|unsure,Indoor,High,Indoor wall switch.
+smartplugs,meross:mss550x,meross,mss550x,1,supportLifetime,DeclaredLifetime|UndeclaredLifetime|unsure,UndeclaredLifetime,Low,Consumer Wi-Fi switch brands typically undeclared lifetime.
+smartspeakers,google:home,google,home,2,actuatesPhysical,true|false|unsure,true,Low,Voice assistant can command other home actuators.
+smartspeakers,google:home,google,home,2,actuationConsequence,ComfortActuation|NoActuation|PropertyActuation|SafetyActuation|unsure,ComfortActuation,Low,Typical commanded effects are comfort/automation.
+smartspeakers,google:home,google,home,2,capturesAV,true|false|unsure,true,High,Always-listening far-field microphones.
+smartspeakers,google:home,google,home,2,cloudDependence,CloudOptional|CloudRequired|LocalOnly|unsure,CloudRequired,High,Google Assistant primary path requires Google cloud.
+smartspeakers,google:home,google,home,2,computeTier,AndroidDerived|EmbeddedLinux|McuClass|Rtos|unsure,EmbeddedLinux,High,Google Home speaker runs an embedded Cast/Assistant OS.
+smartspeakers,google:home,google,home,2,consumerAvailability,InstallerChannel|MixedChannel|RetailConsumer|unsure,RetailConsumer,High,Mass-market retail smart speaker.
+smartspeakers,google:home,google,home,2,dataSensitivity,AvStreamData|BiometricData|NoData|TelemetryData|unsure,AvStreamData,High,Always-on mic audio of the home interior.
+smartspeakers,google:home,google,home,2,firmwareUpdateModel,ManualFlash|NoUpdatePath|OtaAutomatic|OtaUserInitiated|unsure,OtaAutomatic,High,Google Home devices auto-update from Google.
+smartspeakers,google:home,google,home,2,formFactor,Fixed|Portable|Worn|unsure,Portable,High,Freestanding speaker moved around the home.
+smartspeakers,google:home,google,home,2,hasWebAdminUI,true|false|unsure,false,High,"Administered via Google Home app, not LAN HTTP admin."
+smartspeakers,google:home,google,home,2,placement,Either|Indoor|Outdoor|unsure,Indoor,High,Indoor speaker.
+smartspeakers,google:home,google,home,2,supportLifetime,DeclaredLifetime|UndeclaredLifetime|unsure,unsure,Low,Exact published support window not fixed by the name alone.
+smartspeakers,google:nest_mini,google,nest_mini,2,actuatesPhysical,true|false|unsure,true,Low,Assistant can command other home actuators.
+smartspeakers,google:nest_mini,google,nest_mini,2,actuationConsequence,ComfortActuation|NoActuation|PropertyActuation|SafetyActuation|unsure,ComfortActuation,Low,Typical commanded effects are comfort/automation.
+smartspeakers,google:nest_mini,google,nest_mini,2,capturesAV,true|false|unsure,true,High,Always-listening microphones.
+smartspeakers,google:nest_mini,google,nest_mini,2,cloudDependence,CloudOptional|CloudRequired|LocalOnly|unsure,CloudRequired,High,Assistant features require Google cloud.
+smartspeakers,google:nest_mini,google,nest_mini,2,computeTier,AndroidDerived|EmbeddedLinux|McuClass|Rtos|unsure,EmbeddedLinux,High,Nest Mini runs Google embedded speaker OS.
+smartspeakers,google:nest_mini,google,nest_mini,2,consumerAvailability,InstallerChannel|MixedChannel|RetailConsumer|unsure,RetailConsumer,High,Retail smart speaker.
+smartspeakers,google:nest_mini,google,nest_mini,2,dataSensitivity,AvStreamData|BiometricData|NoData|TelemetryData|unsure,AvStreamData,High,Always-on mic audio.
+smartspeakers,google:nest_mini,google,nest_mini,2,firmwareUpdateModel,ManualFlash|NoUpdatePath|OtaAutomatic|OtaUserInitiated|unsure,OtaAutomatic,High,Automatic Google OTA updates.
+smartspeakers,google:nest_mini,google,nest_mini,2,formFactor,Fixed|Portable|Worn|unsure,Portable,High,Small freestanding speaker.
+smartspeakers,google:nest_mini,google,nest_mini,2,hasWebAdminUI,true|false|unsure,false,High,App-administered; no LAN web admin.
+smartspeakers,google:nest_mini,google,nest_mini,2,placement,Either|Indoor|Outdoor|unsure,Indoor,High,Indoor speaker.
+smartspeakers,google:nest_mini,google,nest_mini,2,supportLifetime,DeclaredLifetime|UndeclaredLifetime|unsure,unsure,Low,Support window not knowable from the model name alone.
+smartspeakers,lenovo:smart_clock_essential_with_alexa_built_in,lenovo,smart_clock_essential_with_alexa_built_in,1,actuatesPhysical,true|false|unsure,true,Low,Alexa can command other home actuators.
+smartspeakers,lenovo:smart_clock_essential_with_alexa_built_in,lenovo,smart_clock_essential_with_alexa_built_in,1,actuationConsequence,ComfortActuation|NoActuation|PropertyActuation|SafetyActuation|unsure,ComfortActuation,Low,Typical commanded effects are comfort/automation.
+smartspeakers,lenovo:smart_clock_essential_with_alexa_built_in,lenovo,smart_clock_essential_with_alexa_built_in,1,capturesAV,true|false|unsure,true,High,Alexa built-in implies always-listening mics.
+smartspeakers,lenovo:smart_clock_essential_with_alexa_built_in,lenovo,smart_clock_essential_with_alexa_built_in,1,cloudDependence,CloudOptional|CloudRequired|LocalOnly|unsure,CloudRequired,High,Alexa primary path requires Amazon cloud.
+smartspeakers,lenovo:smart_clock_essential_with_alexa_built_in,lenovo,smart_clock_essential_with_alexa_built_in,1,computeTier,AndroidDerived|EmbeddedLinux|McuClass|Rtos|unsure,AndroidDerived,Low,Lenovo Alexa clocks typically run Android-derived Fire/AOSP stacks.
+smartspeakers,lenovo:smart_clock_essential_with_alexa_built_in,lenovo,smart_clock_essential_with_alexa_built_in,1,consumerAvailability,InstallerChannel|MixedChannel|RetailConsumer|unsure,RetailConsumer,High,Retail smart clock.
+smartspeakers,lenovo:smart_clock_essential_with_alexa_built_in,lenovo,smart_clock_essential_with_alexa_built_in,1,dataSensitivity,AvStreamData|BiometricData|NoData|TelemetryData|unsure,AvStreamData,High,Microphone audio of the room.
+smartspeakers,lenovo:smart_clock_essential_with_alexa_built_in,lenovo,smart_clock_essential_with_alexa_built_in,1,firmwareUpdateModel,ManualFlash|NoUpdatePath|OtaAutomatic|OtaUserInitiated|unsure,OtaAutomatic,High,Alexa devices commonly auto-update.
+smartspeakers,lenovo:smart_clock_essential_with_alexa_built_in,lenovo,smart_clock_essential_with_alexa_built_in,1,formFactor,Fixed|Portable|Worn|unsure,Portable,High,"Bedside/table clock, movable."
+smartspeakers,lenovo:smart_clock_essential_with_alexa_built_in,lenovo,smart_clock_essential_with_alexa_built_in,1,hasWebAdminUI,true|false|unsure,false,High,App/Alexa administered; no LAN web admin.
+smartspeakers,lenovo:smart_clock_essential_with_alexa_built_in,lenovo,smart_clock_essential_with_alexa_built_in,1,placement,Either|Indoor|Outdoor|unsure,Indoor,High,Indoor clock.
+smartspeakers,lenovo:smart_clock_essential_with_alexa_built_in,lenovo,smart_clock_essential_with_alexa_built_in,1,supportLifetime,DeclaredLifetime|UndeclaredLifetime|unsure,unsure,Low,Support window not knowable from the name.
+smartspeakers,sonos:era_100,sonos,era_100,4,actuatesPhysical,true|false|unsure,false,High,Speaker playback only; no home actuator.
+smartspeakers,sonos:era_100,sonos,era_100,4,actuationConsequence,ComfortActuation|NoActuation|PropertyActuation|SafetyActuation|unsure,NoActuation,High,No physical home actuator on the Era 100.
+smartspeakers,sonos:era_100,sonos,era_100,4,capturesAV,true|false|unsure,true,High,Era 100 has microphones for tuning/voice.
+smartspeakers,sonos:era_100,sonos,era_100,4,cloudDependence,CloudOptional|CloudRequired|LocalOnly|unsure,CloudOptional,High,Sonos works on-LAN; cloud accounts optional for extras.
+smartspeakers,sonos:era_100,sonos,era_100,4,computeTier,AndroidDerived|EmbeddedLinux|McuClass|Rtos|unsure,EmbeddedLinux,High,Sonos speakers run embedded Linux.
+smartspeakers,sonos:era_100,sonos,era_100,4,consumerAvailability,InstallerChannel|MixedChannel|RetailConsumer|unsure,RetailConsumer,High,Retail smart speaker.
+smartspeakers,sonos:era_100,sonos,era_100,4,dataSensitivity,AvStreamData|BiometricData|NoData|TelemetryData|unsure,AvStreamData,High,On-device microphones capture room audio.
+smartspeakers,sonos:era_100,sonos,era_100,4,firmwareUpdateModel,ManualFlash|NoUpdatePath|OtaAutomatic|OtaUserInitiated|unsure,OtaUserInitiated,High,Sonos updates are approved/started in the Sonos app.
+smartspeakers,sonos:era_100,sonos,era_100,4,formFactor,Fixed|Portable|Worn|unsure,Portable,High,Freestanding speaker.
+smartspeakers,sonos:era_100,sonos,era_100,4,hasWebAdminUI,true|false|unsure,false,High,"Controlled via Sonos app/local protocols, not a web admin UI."
+smartspeakers,sonos:era_100,sonos,era_100,4,placement,Either|Indoor|Outdoor|unsure,Indoor,High,Indoor speaker.
+smartspeakers,sonos:era_100,sonos,era_100,4,supportLifetime,DeclaredLifetime|UndeclaredLifetime|unsure,unsure,Low,Support window not knowable from the model name alone.
+streaming,roku:streaming_stick_4k,roku,streaming_stick_4k,1,actuatesPhysical,true|false|unsure,false,High,Media stick; no physical home actuator.
+streaming,roku:streaming_stick_4k,roku,streaming_stick_4k,1,actuationConsequence,ComfortActuation|NoActuation|PropertyActuation|SafetyActuation|unsure,NoActuation,High,No physical actuation capability.
+streaming,roku:streaming_stick_4k,roku,streaming_stick_4k,1,capturesAV,true|false|unsure,false,High,Streaming stick has no camera/mic.
+streaming,roku:streaming_stick_4k,roku,streaming_stick_4k,1,cloudDependence,CloudOptional|CloudRequired|LocalOnly|unsure,CloudRequired,High,Streaming services/channel store require cloud connectivity.
+streaming,roku:streaming_stick_4k,roku,streaming_stick_4k,1,computeTier,AndroidDerived|EmbeddedLinux|McuClass|Rtos|unsure,EmbeddedLinux,Low,Roku OS is an embedded appliance stack.
+streaming,roku:streaming_stick_4k,roku,streaming_stick_4k,1,consumerAvailability,InstallerChannel|MixedChannel|RetailConsumer|unsure,RetailConsumer,High,Mass-market retail stick.
+streaming,roku:streaming_stick_4k,roku,streaming_stick_4k,1,dataSensitivity,AvStreamData|BiometricData|NoData|TelemetryData|unsure,TelemetryData,High,Viewing/usage telemetry; no onboard AV capture.
+streaming,roku:streaming_stick_4k,roku,streaming_stick_4k,1,firmwareUpdateModel,ManualFlash|NoUpdatePath|OtaAutomatic|OtaUserInitiated|unsure,OtaAutomatic,High,Roku devices auto-update over the network.
+streaming,roku:streaming_stick_4k,roku,streaming_stick_4k,1,formFactor,Fixed|Portable|Worn|unsure,Portable,High,HDMI stick moved between TVs.
+streaming,roku:streaming_stick_4k,roku,streaming_stick_4k,1,hasWebAdminUI,true|false|unsure,false,High,Settings on-device/app; not a LAN web admin appliance.
+streaming,roku:streaming_stick_4k,roku,streaming_stick_4k,1,placement,Either|Indoor|Outdoor|unsure,Indoor,High,Indoor entertainment device.
+streaming,roku:streaming_stick_4k,roku,streaming_stick_4k,1,supportLifetime,DeclaredLifetime|UndeclaredLifetime|unsure,unsure,Low,Support window not fixed by the product name alone.
+streaming,samsung:x14h,samsung,x14h,1,actuatesPhysical,true|false|unsure,unsure,Low,Model string alone does not identify the appliance function.
+streaming,samsung:x14h,samsung,x14h,1,actuationConsequence,ComfortActuation|NoActuation|PropertyActuation|SafetyActuation|unsure,unsure,Low,Cannot judge actuation class from x14h alone.
+streaming,samsung:x14h,samsung,x14h,1,capturesAV,true|false|unsure,unsure,Low,No camera/mic cue in the opaque model code.
+streaming,samsung:x14h,samsung,x14h,1,cloudDependence,CloudOptional|CloudRequired|LocalOnly|unsure,unsure,Low,Cloud path unknown for this SKU.
+streaming,samsung:x14h,samsung,x14h,1,computeTier,AndroidDerived|EmbeddedLinux|McuClass|Rtos|unsure,unsure,Low,OS tier unknown from the model code.
+streaming,samsung:x14h,samsung,x14h,1,consumerAvailability,InstallerChannel|MixedChannel|RetailConsumer|unsure,unsure,Low,Channel unknown from the model code.
+streaming,samsung:x14h,samsung,x14h,1,dataSensitivity,AvStreamData|BiometricData|NoData|TelemetryData|unsure,unsure,Low,Data class unknown without knowing the product.
+streaming,samsung:x14h,samsung,x14h,1,firmwareUpdateModel,ManualFlash|NoUpdatePath|OtaAutomatic|OtaUserInitiated|unsure,unsure,Low,Update path unknown from the model code.
+streaming,samsung:x14h,samsung,x14h,1,formFactor,Fixed|Portable|Worn|unsure,unsure,Low,Form factor unknown from the model code.
+streaming,samsung:x14h,samsung,x14h,1,hasWebAdminUI,true|false|unsure,unsure,Low,Admin UI unknown from the model code.
+streaming,samsung:x14h,samsung,x14h,1,placement,Either|Indoor|Outdoor|unsure,Indoor,Low,Streaming-category device is presumed indoor.
+streaming,samsung:x14h,samsung,x14h,1,supportLifetime,DeclaredLifetime|UndeclaredLifetime|unsure,unsure,Low,Support window unknown from the model code.
+streaming,sony:kd-43xe7000,sony,kd-43xe7000,3,actuatesPhysical,true|false|unsure,false,High,"KD-43XE7000 Display/media device, no home actuator."
+streaming,sony:kd-43xe7000,sony,kd-43xe7000,3,actuationConsequence,ComfortActuation|NoActuation|PropertyActuation|SafetyActuation|unsure,NoActuation,High,No physical home actuation on a TV.
+streaming,sony:kd-43xe7000,sony,kd-43xe7000,3,capturesAV,true|false|unsure,true,Low,Smart Bravia class often includes voice mic path.
+streaming,sony:kd-43xe7000,sony,kd-43xe7000,3,cloudDependence,CloudOptional|CloudRequired|LocalOnly|unsure,CloudOptional,Low,Local HDMI playback works; smart features use cloud.
+streaming,sony:kd-43xe7000,sony,kd-43xe7000,3,computeTier,AndroidDerived|EmbeddedLinux|McuClass|Rtos|unsure,AndroidDerived,High,Sony Bravia smart TVs of this era are Android TV-derived.
+streaming,sony:kd-43xe7000,sony,kd-43xe7000,3,consumerAvailability,InstallerChannel|MixedChannel|RetailConsumer|unsure,RetailConsumer,High,Retail consumer television.
+streaming,sony:kd-43xe7000,sony,kd-43xe7000,3,dataSensitivity,AvStreamData|BiometricData|NoData|TelemetryData|unsure,AvStreamData,Low,Voice mic / smart features can capture room audio.
+streaming,sony:kd-43xe7000,sony,kd-43xe7000,3,firmwareUpdateModel,ManualFlash|NoUpdatePath|OtaAutomatic|OtaUserInitiated|unsure,OtaUserInitiated,Low,TV firmware updates are typically user-approved OTA.
+streaming,sony:kd-43xe7000,sony,kd-43xe7000,3,formFactor,Fixed|Portable|Worn|unsure,Fixed,High,Wall/stand mounted television.
+streaming,sony:kd-43xe7000,sony,kd-43xe7000,3,hasWebAdminUI,true|false|unsure,false,High,On-TV settings/app; not a LAN web admin appliance.
+streaming,sony:kd-43xe7000,sony,kd-43xe7000,3,placement,Either|Indoor|Outdoor|unsure,Indoor,High,Indoor television.
+streaming,sony:kd-43xe7000,sony,kd-43xe7000,3,supportLifetime,DeclaredLifetime|UndeclaredLifetime|unsure,unsure,Low,Support window not knowable from the model name alone.
+streaming,sony:kd-43xe7093,sony,kd-43xe7093,3,actuatesPhysical,true|false|unsure,false,High,"KD-43XE7093 Display/media device, no home actuator."
+streaming,sony:kd-43xe7093,sony,kd-43xe7093,3,actuationConsequence,ComfortActuation|NoActuation|PropertyActuation|SafetyActuation|unsure,NoActuation,High,No physical home actuation on a TV.
+streaming,sony:kd-43xe7093,sony,kd-43xe7093,3,capturesAV,true|false|unsure,true,Low,Smart Bravia class often includes voice mic path.
+streaming,sony:kd-43xe7093,sony,kd-43xe7093,3,cloudDependence,CloudOptional|CloudRequired|LocalOnly|unsure,CloudOptional,Low,Local HDMI playback works; smart features use cloud.
+streaming,sony:kd-43xe7093,sony,kd-43xe7093,3,computeTier,AndroidDerived|EmbeddedLinux|McuClass|Rtos|unsure,AndroidDerived,High,Sony Bravia smart TVs of this era are Android TV-derived.
+streaming,sony:kd-43xe7093,sony,kd-43xe7093,3,consumerAvailability,InstallerChannel|MixedChannel|RetailConsumer|unsure,RetailConsumer,High,Retail consumer television.
+streaming,sony:kd-43xe7093,sony,kd-43xe7093,3,dataSensitivity,AvStreamData|BiometricData|NoData|TelemetryData|unsure,AvStreamData,Low,Voice mic / smart features can capture room audio.
+streaming,sony:kd-43xe7093,sony,kd-43xe7093,3,firmwareUpdateModel,ManualFlash|NoUpdatePath|OtaAutomatic|OtaUserInitiated|unsure,OtaUserInitiated,Low,TV firmware updates are typically user-approved OTA.
+streaming,sony:kd-43xe7093,sony,kd-43xe7093,3,formFactor,Fixed|Portable|Worn|unsure,Fixed,High,Wall/stand mounted television.
+streaming,sony:kd-43xe7093,sony,kd-43xe7093,3,hasWebAdminUI,true|false|unsure,false,High,On-TV settings/app; not a LAN web admin appliance.
+streaming,sony:kd-43xe7093,sony,kd-43xe7093,3,placement,Either|Indoor|Outdoor|unsure,Indoor,High,Indoor television.
+streaming,sony:kd-43xe7093,sony,kd-43xe7093,3,supportLifetime,DeclaredLifetime|UndeclaredLifetime|unsure,unsure,Low,Support window not knowable from the model name alone.
+streaming,sony:kd-49xe7005,sony,kd-49xe7005,3,actuatesPhysical,true|false|unsure,false,High,"KD-49XE7005 Display/media device, no home actuator."
+streaming,sony:kd-49xe7005,sony,kd-49xe7005,3,actuationConsequence,ComfortActuation|NoActuation|PropertyActuation|SafetyActuation|unsure,NoActuation,High,No physical home actuation on a TV.
+streaming,sony:kd-49xe7005,sony,kd-49xe7005,3,capturesAV,true|false|unsure,true,Low,Smart Bravia class often includes voice mic path.
+streaming,sony:kd-49xe7005,sony,kd-49xe7005,3,cloudDependence,CloudOptional|CloudRequired|LocalOnly|unsure,CloudOptional,Low,Local HDMI playback works; smart features use cloud.
+streaming,sony:kd-49xe7005,sony,kd-49xe7005,3,computeTier,AndroidDerived|EmbeddedLinux|McuClass|Rtos|unsure,AndroidDerived,High,Sony Bravia smart TVs of this era are Android TV-derived.
+streaming,sony:kd-49xe7005,sony,kd-49xe7005,3,consumerAvailability,InstallerChannel|MixedChannel|RetailConsumer|unsure,RetailConsumer,High,Retail consumer television.
+streaming,sony:kd-49xe7005,sony,kd-49xe7005,3,dataSensitivity,AvStreamData|BiometricData|NoData|TelemetryData|unsure,AvStreamData,Low,Voice mic / smart features can capture room audio.
+streaming,sony:kd-49xe7005,sony,kd-49xe7005,3,firmwareUpdateModel,ManualFlash|NoUpdatePath|OtaAutomatic|OtaUserInitiated|unsure,OtaUserInitiated,Low,TV firmware updates are typically user-approved OTA.
+streaming,sony:kd-49xe7005,sony,kd-49xe7005,3,formFactor,Fixed|Portable|Worn|unsure,Fixed,High,Wall/stand mounted television.
+streaming,sony:kd-49xe7005,sony,kd-49xe7005,3,hasWebAdminUI,true|false|unsure,false,High,On-TV settings/app; not a LAN web admin appliance.
+streaming,sony:kd-49xe7005,sony,kd-49xe7005,3,placement,Either|Indoor|Outdoor|unsure,Indoor,High,Indoor television.
+streaming,sony:kd-49xe7005,sony,kd-49xe7005,3,supportLifetime,DeclaredLifetime|UndeclaredLifetime|unsure,unsure,Low,Support window not knowable from the model name alone.
+streaming,sony:kdl-65w850c,sony,kdl-65w850c,2,actuatesPhysical,true|false|unsure,false,High,"KDL-65W850C Display/media device, no home actuator."
+streaming,sony:kdl-65w850c,sony,kdl-65w850c,2,actuationConsequence,ComfortActuation|NoActuation|PropertyActuation|SafetyActuation|unsure,NoActuation,High,No physical home actuation on a TV.
+streaming,sony:kdl-65w850c,sony,kdl-65w850c,2,capturesAV,true|false|unsure,true,Low,Smart Bravia class often includes voice mic path.
+streaming,sony:kdl-65w850c,sony,kdl-65w850c,2,cloudDependence,CloudOptional|CloudRequired|LocalOnly|unsure,CloudOptional,Low,Local HDMI playback works; smart features use cloud.
+streaming,sony:kdl-65w850c,sony,kdl-65w850c,2,computeTier,AndroidDerived|EmbeddedLinux|McuClass|Rtos|unsure,AndroidDerived,High,Sony Bravia smart TVs of this era are Android TV-derived.
+streaming,sony:kdl-65w850c,sony,kdl-65w850c,2,consumerAvailability,InstallerChannel|MixedChannel|RetailConsumer|unsure,RetailConsumer,High,Retail consumer television.
+streaming,sony:kdl-65w850c,sony,kdl-65w850c,2,dataSensitivity,AvStreamData|BiometricData|NoData|TelemetryData|unsure,AvStreamData,Low,Voice mic / smart features can capture room audio.
+streaming,sony:kdl-65w850c,sony,kdl-65w850c,2,firmwareUpdateModel,ManualFlash|NoUpdatePath|OtaAutomatic|OtaUserInitiated|unsure,OtaUserInitiated,Low,TV firmware updates are typically user-approved OTA.
+streaming,sony:kdl-65w850c,sony,kdl-65w850c,2,formFactor,Fixed|Portable|Worn|unsure,Fixed,High,Wall/stand mounted television.
+streaming,sony:kdl-65w850c,sony,kdl-65w850c,2,hasWebAdminUI,true|false|unsure,false,High,On-TV settings/app; not a LAN web admin appliance.
+streaming,sony:kdl-65w850c,sony,kdl-65w850c,2,placement,Either|Indoor|Outdoor|unsure,Indoor,High,Indoor television.
+streaming,sony:kdl-65w850c,sony,kdl-65w850c,2,supportLifetime,DeclaredLifetime|UndeclaredLifetime|unsure,unsure,Low,Support window not knowable from the model name alone.
+streaming,sony:xbr-55x809c,sony,xbr-55x809c,2,actuatesPhysical,true|false|unsure,false,High,"XBR-55X809C Display/media device, no home actuator."
+streaming,sony:xbr-55x809c,sony,xbr-55x809c,2,actuationConsequence,ComfortActuation|NoActuation|PropertyActuation|SafetyActuation|unsure,NoActuation,High,No physical home actuation on a TV.
+streaming,sony:xbr-55x809c,sony,xbr-55x809c,2,capturesAV,true|false|unsure,true,Low,Smart Bravia class often includes voice mic path.
+streaming,sony:xbr-55x809c,sony,xbr-55x809c,2,cloudDependence,CloudOptional|CloudRequired|LocalOnly|unsure,CloudOptional,Low,Local HDMI playback works; smart features use cloud.
+streaming,sony:xbr-55x809c,sony,xbr-55x809c,2,computeTier,AndroidDerived|EmbeddedLinux|McuClass|Rtos|unsure,AndroidDerived,High,Sony Bravia smart TVs of this era are Android TV-derived.
+streaming,sony:xbr-55x809c,sony,xbr-55x809c,2,consumerAvailability,InstallerChannel|MixedChannel|RetailConsumer|unsure,RetailConsumer,High,Retail consumer television.
+streaming,sony:xbr-55x809c,sony,xbr-55x809c,2,dataSensitivity,AvStreamData|BiometricData|NoData|TelemetryData|unsure,AvStreamData,Low,Voice mic / smart features can capture room audio.
+streaming,sony:xbr-55x809c,sony,xbr-55x809c,2,firmwareUpdateModel,ManualFlash|NoUpdatePath|OtaAutomatic|OtaUserInitiated|unsure,OtaUserInitiated,Low,TV firmware updates are typically user-approved OTA.
+streaming,sony:xbr-55x809c,sony,xbr-55x809c,2,formFactor,Fixed|Portable|Worn|unsure,Fixed,High,Wall/stand mounted television.
+streaming,sony:xbr-55x809c,sony,xbr-55x809c,2,hasWebAdminUI,true|false|unsure,false,High,On-TV settings/app; not a LAN web admin appliance.
+streaming,sony:xbr-55x809c,sony,xbr-55x809c,2,placement,Either|Indoor|Outdoor|unsure,Indoor,High,Indoor television.
+streaming,sony:xbr-55x809c,sony,xbr-55x809c,2,supportLifetime,DeclaredLifetime|UndeclaredLifetime|unsure,unsure,Low,Support window not knowable from the model name alone.
+streaming,sony:xbr-65x930c,sony,xbr-65x930c,2,actuatesPhysical,true|false|unsure,false,High,"XBR-65X930C Display/media device, no home actuator."
+streaming,sony:xbr-65x930c,sony,xbr-65x930c,2,actuationConsequence,ComfortActuation|NoActuation|PropertyActuation|SafetyActuation|unsure,NoActuation,High,No physical home actuation on a TV.
+streaming,sony:xbr-65x930c,sony,xbr-65x930c,2,capturesAV,true|false|unsure,true,Low,Smart Bravia class often includes voice mic path.
+streaming,sony:xbr-65x930c,sony,xbr-65x930c,2,cloudDependence,CloudOptional|CloudRequired|LocalOnly|unsure,CloudOptional,Low,Local HDMI playback works; smart features use cloud.
+streaming,sony:xbr-65x930c,sony,xbr-65x930c,2,computeTier,AndroidDerived|EmbeddedLinux|McuClass|Rtos|unsure,AndroidDerived,High,Sony Bravia smart TVs of this era are Android TV-derived.
+streaming,sony:xbr-65x930c,sony,xbr-65x930c,2,consumerAvailability,InstallerChannel|MixedChannel|RetailConsumer|unsure,RetailConsumer,High,Retail consumer television.
+streaming,sony:xbr-65x930c,sony,xbr-65x930c,2,dataSensitivity,AvStreamData|BiometricData|NoData|TelemetryData|unsure,AvStreamData,Low,Voice mic / smart features can capture room audio.
+streaming,sony:xbr-65x930c,sony,xbr-65x930c,2,firmwareUpdateModel,ManualFlash|NoUpdatePath|OtaAutomatic|OtaUserInitiated|unsure,OtaUserInitiated,Low,TV firmware updates are typically user-approved OTA.
+streaming,sony:xbr-65x930c,sony,xbr-65x930c,2,formFactor,Fixed|Portable|Worn|unsure,Fixed,High,Wall/stand mounted television.
+streaming,sony:xbr-65x930c,sony,xbr-65x930c,2,hasWebAdminUI,true|false|unsure,false,High,On-TV settings/app; not a LAN web admin appliance.
+streaming,sony:xbr-65x930c,sony,xbr-65x930c,2,placement,Either|Indoor|Outdoor|unsure,Indoor,High,Indoor television.
+streaming,sony:xbr-65x930c,sony,xbr-65x930c,2,supportLifetime,DeclaredLifetime|UndeclaredLifetime|unsure,unsure,Low,Support window not knowable from the model name alone.
+streaming,sony:xbr-75x850d,sony,xbr-75x850d,2,actuatesPhysical,true|false|unsure,false,High,"XBR-75X850D Display/media device, no home actuator."
+streaming,sony:xbr-75x850d,sony,xbr-75x850d,2,actuationConsequence,ComfortActuation|NoActuation|PropertyActuation|SafetyActuation|unsure,NoActuation,High,No physical home actuation on a TV.
+streaming,sony:xbr-75x850d,sony,xbr-75x850d,2,capturesAV,true|false|unsure,true,Low,Smart Bravia class often includes voice mic path.
+streaming,sony:xbr-75x850d,sony,xbr-75x850d,2,cloudDependence,CloudOptional|CloudRequired|LocalOnly|unsure,CloudOptional,Low,Local HDMI playback works; smart features use cloud.
+streaming,sony:xbr-75x850d,sony,xbr-75x850d,2,computeTier,AndroidDerived|EmbeddedLinux|McuClass|Rtos|unsure,AndroidDerived,High,Sony Bravia smart TVs of this era are Android TV-derived.
+streaming,sony:xbr-75x850d,sony,xbr-75x850d,2,consumerAvailability,InstallerChannel|MixedChannel|RetailConsumer|unsure,RetailConsumer,High,Retail consumer television.
+streaming,sony:xbr-75x850d,sony,xbr-75x850d,2,dataSensitivity,AvStreamData|BiometricData|NoData|TelemetryData|unsure,AvStreamData,Low,Voice mic / smart features can capture room audio.
+streaming,sony:xbr-75x850d,sony,xbr-75x850d,2,firmwareUpdateModel,ManualFlash|NoUpdatePath|OtaAutomatic|OtaUserInitiated|unsure,OtaUserInitiated,Low,TV firmware updates are typically user-approved OTA.
+streaming,sony:xbr-75x850d,sony,xbr-75x850d,2,formFactor,Fixed|Portable|Worn|unsure,Fixed,High,Wall/stand mounted television.
+streaming,sony:xbr-75x850d,sony,xbr-75x850d,2,hasWebAdminUI,true|false|unsure,false,High,On-TV settings/app; not a LAN web admin appliance.
+streaming,sony:xbr-75x850d,sony,xbr-75x850d,2,placement,Either|Indoor|Outdoor|unsure,Indoor,High,Indoor television.
+streaming,sony:xbr-75x850d,sony,xbr-75x850d,2,supportLifetime,DeclaredLifetime|UndeclaredLifetime|unsure,unsure,Low,Support window not knowable from the model name alone.
