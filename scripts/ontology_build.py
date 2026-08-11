@@ -289,12 +289,32 @@ def check_alignment(verbose=True):
         print(f"\n  coverage over the {n} analysis categories: "
               f"{len(exact)} exact ({100*len(exact)/n:.0f}%), "
               f"{len(coarse)} coarse ({100*len(coarse)/n:.0f}%)")
-        print(f"    no external class exists for: {', '.join(coarse)}")
+        # Deliberately NOT "no external class exists for" — that is what this line used to
+        # say, and it was wrong. Coarse means no class at the RIGHT GRANULARITY; every one
+        # of these categories does have a denoting class (usually a generic superclass).
+        # The 2026-08-10 pass found s4bldg:AudioVisualAppliance, s4bldg:Alarm and
+        # s4bldg:Controller already sitting in the manifest, uncited, because the original
+        # searches stopped at SAREF core. Overstating absence is how that survived.
+        print(f"    coarse (denoted only by a generic or over-broad class): "
+              f"{', '.join(coarse)}")
         if other:
             print(f"    (excluded types, not counted: {', '.join(other)})")
         if len(exact) + len(coarse) != n:
             print(f"    WARNING: {n - len(exact) - len(coarse)} categories carry no "
                   f"alignmentPrecision annotation")
+
+        # Every precision label must carry its search trail. Without this, "coarse" is
+        # indistinguishable from "nobody looked" — which is exactly the state the
+        # 2026-08-10 pass found, and the reason a published figure had to be retracted.
+        ag_comments = {str(s).split("#")[-1]: str(o)
+                       for s, o in ag.subject_objects(RDFS.comment)}
+        unevidenced = sorted(k for k in prec
+                             if k.replace("_", "-") in analysis
+                             and "Searched:" not in ag_comments.get(k, ""))
+        if unevidenced:
+            print(f"    UNEVIDENCED precision labels (no 'Searched:' trail): "
+                  f"{', '.join(unevidenced)}")
+            bad.append(("alignment", "unevidenced-precision", ", ".join(unevidenced)))
     return (not bad), bad, prec
 
 

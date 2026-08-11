@@ -175,11 +175,40 @@ Deriving judgments from facets would make `term_precision.csv` self-confirming �
 **Alignment is deliberately weak.** External alignment (SAREF, SSN/SOSA) uses `rdfs:subClassOf` /
 `skos:broadMatch` only — **never `owl:equivalentClass`**, since our classes are strictly narrower
 (`hiot:cameras` is residential consumer IP cameras; `saref:Sensor` is any sensor). Every external
-IRI is verified against a pinned 331-IRI manifest, which is what caught four plausible-but-
+IRI is verified against a pinned **435**-IRI manifest, which is what caught four plausible-but-
 nonexistent classes drafted from memory (`saref:Multimedia`, `saref:WashingMachine`,
-`saref:Generator`, and `sosa:System` — it is `ssn:System`). The measured payoff is a finding, not
-just hygiene: **15 of 24 categories (62%) have no corresponding external class**, and those
-categories carry **91.5%** of the confirmed CVEs.
+`saref:Generator`, and `sosa:System` — it is `ssn:System`).
+
+> **RETRACTED 2026-08-10: "15 of 24 categories (62%) have no corresponding external class,
+> carrying 91.5% of confirmed CVEs" — do not cite it.** A systematic re-check found the claim
+> rested on a hand-typed `hiot:alignmentPrecision` label, and that the original searches had
+> **stopped at SAREF core**. Three denoting classes were sitting in the manifest, uncited:
+> `s4bldg:AudioVisualAppliance` ("a device that displays, **captures**, transmits, or receives
+> audio or video" — i.e. cameras), `s4bldg:Alarm`, and `s4bldg:Controller`. Nine labels were
+> wrong, in **both** directions: seven understated (a class existed), and two overstated —
+> `thermostat` was `exact` against `saref:HVAC` (which is the *system*, not its controller) and
+> `home_power` was `exact` while its own comment said "no single external class covers the
+> category". The manifest check verifies that IRIs you *used* exist; it can never catch a class
+> you failed to look for.
+
+**What replaces it — three claims, each checkable against published class definitions:**
+1. **Only a generic superclass** (`saref:Device`/`Appliance`/`Sensor`/`Actuator`) denotes
+   **6 of 24 categories (25%)**, carrying **10.0%** of confirmed CVEs: `doorlock`,
+   `ev-charging`, `pet`, `robotvacuum`, `fridge`, `airpurifier`.
+2. **The stronger finding — SAREF can name these devices but cannot separate them.** One class,
+   `s4bldg:AudioVisualAppliance`, covers **five** of our categories — `cameras`, `babymonitor`,
+   `doorbell`, `smartspeakers`, `streaming` — carrying **61.1%** of confirmed CVEs. Device types
+   with different brand sets, threat models and CVE profiles collapse into a single class, and
+   the home-control role that admits `streaming`/`smartspeakers` under criterion 4(b) is not
+   expressible at all. Granularity, not absence, is the gap.
+3. Precision after correction: **7 exact (29%) / 17 coarse (71%)**.
+
+**Every precision label must now carry a `Searched:` trail** naming the vocabularies checked
+(all eight: SAREF core, S4BLDG, S4ENER, S4WEAR, S4AGRI, S4AUTO, S4CITY, S4EHAW), enforced by
+`--align`, which **fails** on a label without one. Without it, `coarse` is indistinguishable
+from "nobody looked" — which is exactly how the retracted figure survived. Still open: the
+manifest records `iri` and `vocabulary` only, so the SAREF **versions** behind it are
+undocumented (the four extensions added 2026-08-10 are v2.1.1).
 
 **Descriptive sub-facets — and the dominance rule that governs them.** The five criteria as first
 encoded were membership tests, too coarse to analyse with: criterion 5 was one value asserted

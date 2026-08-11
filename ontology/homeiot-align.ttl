@@ -9,6 +9,7 @@
 @prefix s4bldg:  <https://saref.etsi.org/saref4bldg/> .
 @prefix s4ener:  <https://saref.etsi.org/saref4ener/> .
 @prefix s4wear:  <https://saref.etsi.org/saref4wear/> .
+@prefix s4agri:  <https://saref.etsi.org/saref4agri/> .
 @prefix sosa:    <http://www.w3.org/ns/sosa/> .
 @prefix ssn:     <http://www.w3.org/ns/ssn/> .
 
@@ -71,42 +72,78 @@ hiot:DeviceType rdfs:subClassOf saref:Device ; skos:broadMatch saref:Device .
 
 hiot:lighting rdfs:subClassOf saref:Light ;
   skos:closeMatch saref:Light ; skos:relatedMatch s4bldg:Lamp , saref:LightSwitch ;
+  rdfs:comment """Searched: SAREF core, S4BLDG, S4ENER, S4WEAR, S4AGRI, S4AUTO, S4CITY, S4EHAW.
+saref:Light denotes the device directly. One of the few categories where SAREF's energy-
+management heritage lines up with a consumer product.""" ;
   hiot:alignmentPrecision "exact" .
 
 hiot:shades rdfs:subClassOf s4bldg:ShadingDevice ;
   skos:closeMatch s4bldg:ShadingDevice ;
+  rdfs:comment """Searched: SAREF core, S4BLDG, S4ENER, S4WEAR, S4AGRI, S4AUTO, S4CITY, S4EHAW.
+s4bldg:ShadingDevice denotes blinds/curtains/shutters directly.""" ;
   hiot:alignmentPrecision "exact" .
 
 hiot:fans rdfs:subClassOf s4bldg:Fan ;
   skos:closeMatch s4bldg:Fan ;
+  rdfs:comment """Searched: SAREF core, S4BLDG, S4ENER, S4WEAR, S4AGRI, S4AUTO, S4CITY, S4EHAW.
+s4bldg:Fan denotes the device directly, though it is scoped to building ventilation rather
+than a consumer standing fan.""" ;
   hiot:alignmentPrecision "exact" .
 
 hiot:smartplugs rdfs:subClassOf saref:Switch ;
-  skos:closeMatch saref:Switch ;
+  skos:closeMatch saref:Switch ; skos:relatedMatch s4bldg:Outlet ;
+  rdfs:comment """Searched: SAREF core, S4BLDG, S4ENER, S4WEAR, S4AGRI, S4AUTO, S4CITY, S4EHAW.
+saref:Switch denotes the switching function; s4bldg:Outlet is the socket. A smart plug is
+both, and no vocabulary has the combined device — but Switch names it adequately.""" ;
   hiot:alignmentPrecision "exact" .
 
 hiot:thermostat rdfs:subClassOf saref:HVAC ;
-  skos:closeMatch saref:HVAC ; skos:relatedMatch saref:TemperatureSensor ;
-  hiot:alignmentPrecision "exact" .
+  skos:broadMatch saref:HVAC ;
+  skos:relatedMatch saref:TemperatureSensor , s4bldg:Controller ;
+  rdfs:comment """Searched: SAREF core, S4BLDG, S4ENER, S4WEAR, S4AGRI, S4AUTO, S4CITY, S4EHAW.
+DOWNGRADED to coarse 2026-08-10. saref:HVAC denotes the heating/cooling SYSTEM; a thermostat is
+its controller, which is a different thing — the category was previously marked exact against
+it. No thermostat class exists in any vocabulary; s4bldg:Controller is the closest structural
+notion but is scoped to building automation. Errors in the original pass ran in both
+directions, and this is one of the two that overstated precision.""" ;
+  hiot:alignmentPrecision "coarse" .
 
 hiot:airconditioner rdfs:subClassOf saref:HVAC ;
   skos:closeMatch saref:HVAC ;
+  rdfs:comment """Searched: SAREF core, S4BLDG, S4ENER, S4WEAR, S4AGRI, S4AUTO, S4CITY, S4EHAW.
+Unlike thermostat, an AC unit IS HVAC equipment rather than its controller, so saref:HVAC
+denotes it directly. S4BLDG additionally has Chiller, Evaporator and EvaporativeCooler for
+the building-scale equivalents.""" ;
   hiot:alignmentPrecision "exact" .
 
 hiot:appliances rdfs:subClassOf saref:Appliance ;
-  skos:closeMatch saref:Appliance ;
+  skos:closeMatch saref:Appliance ; skos:relatedMatch s4bldg:ElectricAppliance ;
+  rdfs:comment """Searched: SAREF core, S4BLDG, S4ENER, S4WEAR, S4AGRI, S4AUTO, S4CITY, S4EHAW.
+Exact by construction rather than by fit: this category IS the generic appliance bucket, so
+the generic class matches it. Note that SAREF has no class for any SPECIFIC appliance
+(no washing machine, no oven, no refrigerator) — the match works only because the category is
+itself unspecific.""" ;
   hiot:alignmentPrecision "exact" .
 
 hiot:sensors rdfs:subClassOf saref:Sensor , sosa:Sensor ;
   skos:closeMatch saref:Sensor ; skos:relatedMatch saref:SmokeSensor , saref:TemperatureSensor ;
+  rdfs:comment """Searched: SAREF core, S4BLDG, S4ENER, S4WEAR, S4AGRI, S4AUTO, S4CITY, S4EHAW.
+Exact for the same reason as appliances — the category is the generic sensor bucket and both
+SAREF and SOSA model sensing well. SAREF names only smoke and temperature among the specific
+sensor types this category covers.""" ;
   hiot:alignmentPrecision "exact" .
 
 # home-power is the one category whose parts land on three different classes.
 hiot:home_power rdfs:subClassOf saref:Meter ;
   skos:broadMatch saref:Meter ;
   skos:relatedMatch s4bldg:SolarDevice , s4ener:Storage , s4ener:PowerProfile ;
-  rdfs:comment "Smart meters -> saref:Meter; residential PV -> s4bldg:SolarDevice; home batteries -> s4ener:Storage. No single external class covers the category." ;
-  hiot:alignmentPrecision "exact" .
+  rdfs:comment """Searched: SAREF core, S4BLDG, S4ENER, S4WEAR, S4AGRI, S4AUTO, S4CITY, S4EHAW.
+Smart meters -> saref:Meter; residential PV -> s4bldg:SolarDevice; home batteries ->
+s4ener:Storage. No single external class covers the category.
+DOWNGRADED to coarse 2026-08-10: the label read "exact" while this very comment said no single
+class covers the category, and the alignment uses broadMatch rather than closeMatch. The label
+contradicted its own evidence — the second of the two precision overstatements found.""" ;
+  hiot:alignmentPrecision "coarse" .
 
 ################################################################################
 # COARSE — only a generic superclass exists. These are the coverage gaps.
@@ -114,77 +151,143 @@ hiot:home_power rdfs:subClassOf saref:Meter ;
 
 hiot:cameras rdfs:subClassOf saref:Sensor , sosa:Sensor ;
   skos:broadMatch saref:Sensor ;
-  rdfs:comment "No camera class in SAREF or SSN/SOSA." ;
+  skos:broadMatch s4bldg:AudioVisualAppliance ;
+  rdfs:comment """Searched: SAREF core, S4BLDG, S4ENER, S4WEAR, S4AGRI, S4AUTO, S4CITY, S4EHAW.
+Closest: s4bldg:AudioVisualAppliance — "a device that displays, CAPTURES, transmits, or
+receives audio or video", which does denote an IP camera. Coarse because that one class also
+denotes babymonitor, doorbell, smartspeakers and streaming: it names the device without
+distinguishing device types with different threat models. S4AUTO has camera sensors
+(MonovideoSensor, SphericalCameraSensor) but they are scoped to vehicles/roadside, not
+residential. CORRECTION 2026-08-10: the previous comment here read "No camera class in SAREF
+or SSN/SOSA", which was false — the search had stopped at SAREF core.""" ;
   hiot:alignmentPrecision "coarse" .
 
 hiot:doorbell rdfs:subClassOf saref:Sensor , sosa:Sensor ;
-  skos:broadMatch saref:Sensor ;
-  rdfs:comment "No doorbell class in SAREF or SSN/SOSA." ;
+  skos:broadMatch s4bldg:AudioVisualAppliance ;
+  skos:relatedMatch s4bldg:CommunicationAppliance ;
+  rdfs:comment """Searched: SAREF core, S4BLDG, S4ENER, S4WEAR, S4AGRI, S4AUTO, S4CITY, S4EHAW.
+No doorbell class anywhere. A video doorbell is covered jointly by
+s4bldg:AudioVisualAppliance (captures/transmits video) and s4bldg:CommunicationAppliance
+("transmits and receives electronic or digital information as data or sound") — two coarse
+classes, neither specific to the device.""" ;
   hiot:alignmentPrecision "coarse" .
 
 hiot:babymonitor rdfs:subClassOf saref:Sensor , sosa:Sensor ;
-  skos:broadMatch saref:Sensor ;
-  rdfs:comment "No baby-monitor class in SAREF or SSN/SOSA." ;
+  skos:broadMatch s4bldg:AudioVisualAppliance ;
+  rdfs:comment """Searched: SAREF core, S4BLDG, S4ENER, S4WEAR, S4AGRI, S4AUTO, S4CITY, S4EHAW.
+No baby-monitor class. s4bldg:AudioVisualAppliance denotes it (captures and transmits audio
+or video) but does not distinguish it from a security camera — which is precisely the
+distinction this project keeps separate, on different brand sets. S4EHAW is health/ageing-well
+and covers the carer relationship, not the monitor device.""" ;
   hiot:alignmentPrecision "coarse" .
 
 hiot:alarms rdfs:subClassOf saref:Device ;
-  skos:broadMatch saref:Device ; skos:relatedMatch saref:SmokeSensor ;
-  rdfs:comment "SAREF has SmokeSensor but no security/alarm panel class." ;
+  skos:broadMatch s4bldg:Alarm ; skos:relatedMatch saref:SmokeSensor ;
+  rdfs:comment """Searched: SAREF core, S4BLDG, S4ENER, S4WEAR, S4AGRI, S4AUTO, S4CITY, S4EHAW.
+Closest: s4bldg:Alarm — "a device that signals the existence of a condition or situation that
+is outside the boundaries of normal expectation, or that activates such a device". That fits a
+consumer alarm system. Coarse because it is an IFC-derived building device (its own note gives
+break-glass buttons and manual pull boxes as examples) rather than a consumer panel with
+sensors, keypad and cloud service. CORRECTION 2026-08-10: the previous comment claimed SAREF
+had "no security/alarm panel class", which was false.""" ;
   hiot:alignmentPrecision "coarse" .
 
 hiot:doorlock rdfs:subClassOf saref:Actuator , sosa:Actuator ;
   skos:broadMatch saref:Actuator ; skos:relatedMatch saref:DoorSwitch ;
-  rdfs:comment "saref:DoorSwitch is a door state switch, NOT a lock — related, deliberately not a superclass." ;
+  rdfs:comment """Searched: SAREF core, S4BLDG, S4ENER, S4WEAR, S4AGRI, S4AUTO, S4CITY, S4EHAW.
+No lock class in any of them. saref:DoorSwitch is a door STATE switch, not a lock — related,
+deliberately not a superclass. This is a genuine gap: the category has no denoting class at
+any granularity, only the generic Actuator.""" ;
   hiot:alignmentPrecision "coarse" .
 
 hiot:hub rdfs:subClassOf saref:Device , ssn:System ;
-  skos:broadMatch saref:Device ; skos:relatedMatch sosa:Platform ;
-  rdfs:comment "No hub/controller/border-router class in SAREF. ssn:System is the closest structural notion." ;
+  skos:broadMatch s4bldg:Controller ; skos:relatedMatch sosa:Platform ;
+  rdfs:comment """Searched: SAREF core, S4BLDG, S4ENER, S4WEAR, S4AGRI, S4AUTO, S4CITY, S4EHAW.
+Closest: s4bldg:Controller — "a device that monitors inputs and controls outputs within a
+building automation system", which is structurally what a home hub does. Coarse because it is
+scoped to building automation, carries no notion of a consumer Matter/Thread/Zigbee border
+router, and does not distinguish a hub from any other BAS controller. ssn:System remains the
+closest structural notion. CORRECTION 2026-08-10: the previous comment claimed no
+hub/controller class existed in SAREF; s4bldg:Controller does.""" ;
   hiot:alignmentPrecision "coarse" .
 
 hiot:smartspeakers rdfs:subClassOf saref:Device ;
-  skos:broadMatch saref:Device ; skos:relatedMatch sosa:Platform ;
-  rdfs:comment "No smart-speaker or media class in SAREF core (it has no Multimedia class)." ;
+  skos:broadMatch s4bldg:AudioVisualAppliance ; skos:relatedMatch sosa:Platform ;
+  rdfs:comment """Searched: SAREF core, S4BLDG, S4ENER, S4WEAR, S4AGRI, S4AUTO, S4CITY, S4EHAW.
+SAREF core has no media class (and no Multimedia class — that IRI does not exist and was
+caught by the manifest check). s4bldg:AudioVisualAppliance does denote a speaker or smart
+display. Coarse, and coarse in the way that matters: the same class denotes cameras and
+streaming boxes, so the assistant/home-control role that puts this category in scope under
+criterion 4(b) is invisible in the alignment.""" ;
   hiot:alignmentPrecision "coarse" .
 
 hiot:streaming rdfs:subClassOf saref:Device ;
-  skos:broadMatch saref:Device ; skos:relatedMatch sosa:Platform ;
-  rdfs:comment "No streaming-device or media class in SAREF core." ;
+  skos:broadMatch s4bldg:AudioVisualAppliance ; skos:relatedMatch sosa:Platform ;
+  rdfs:comment """Searched: SAREF core, S4BLDG, S4ENER, S4WEAR, S4AGRI, S4AUTO, S4CITY, S4EHAW.
+No streaming-device class. s4bldg:AudioVisualAppliance ("displays ... or receives audio or
+video") denotes a TV or streaming stick. Coarse for the same reason as smartspeakers: the
+Matter/Thread-controller role that admits this category is not expressible, and the class
+does not separate a streaming box from a camera.""" ;
   hiot:alignmentPrecision "coarse" .
 
 hiot:ev_charging rdfs:subClassOf saref:Device ;
   skos:broadMatch saref:Device ; skos:relatedMatch s4ener:PowerProfile ;
-  rdfs:comment "No EVSE/charge-point class in SAREF core or SAREF4ENER." ;
+  rdfs:comment """Searched: SAREF core, S4BLDG, S4ENER, S4WEAR, S4AGRI, S4AUTO, S4CITY, S4EHAW.
+No EVSE/charge-point class anywhere. S4ENER is demand-flexibility vocabulary (power profiles,
+instructions, limits) with no charger device; S4AUTO is ITS/V2X (vehicles, roadside units) and
+has no charging equipment either. A genuine gap, and the largest one by CVE count.""" ;
   hiot:alignmentPrecision "coarse" .
 
 hiot:airpurifier rdfs:subClassOf saref:Appliance ;
-  skos:broadMatch saref:Appliance ;
-  rdfs:comment "No air-purifier class; SAREF4BLDG has ventilation equipment but not a consumer purifier." ;
+  skos:broadMatch saref:Appliance ; skos:relatedMatch s4bldg:Filter ;
+  rdfs:comment """Searched: SAREF core, S4BLDG, S4ENER, S4WEAR, S4AGRI, S4AUTO, S4CITY, S4EHAW.
+s4bldg:Filter is "an apparatus used to remove particulate or gaseous matter from fluids and
+gases" — the right function, but a building-services COMPONENT inside ductwork, not a consumer
+appliance. Related, deliberately not a superclass.""" ;
   hiot:alignmentPrecision "coarse" .
 
 hiot:fridge rdfs:subClassOf saref:Appliance ;
-  skos:broadMatch saref:Appliance ;
-  rdfs:comment "No refrigerator class in SAREF core." ;
+  skos:broadMatch saref:Appliance ; skos:relatedMatch s4bldg:ElectricAppliance ;
+  rdfs:comment """Searched: SAREF core, S4BLDG, S4ENER, S4WEAR, S4AGRI, S4AUTO, S4CITY, S4EHAW.
+No refrigerator class. s4bldg:ElectricAppliance ("a device intended for consumer usage that is
+powered by electricity") is consumer-scoped but denotes every powered appliance equally.""" ;
   hiot:alignmentPrecision "coarse" .
 
 hiot:robotvacuum rdfs:subClassOf saref:Appliance ;
-  skos:broadMatch saref:Appliance ;
-  rdfs:comment "No robot/vacuum class in SAREF." ;
+  skos:broadMatch saref:Appliance ; skos:relatedMatch s4bldg:ElectricAppliance ;
+  rdfs:comment """Searched: SAREF core, S4BLDG, S4ENER, S4WEAR, S4AGRI, S4AUTO, S4CITY, S4EHAW.
+No robot, vacuum or mobile-appliance class anywhere. Nothing in any vocabulary expresses
+autonomous navigation, which is the property that makes this device type distinctive (and is
+where its mapping/camera data comes from). A genuine gap.""" ;
   hiot:alignmentPrecision "coarse" .
 
 hiot:garden rdfs:subClassOf saref:Actuator , sosa:Actuator ;
   skos:broadMatch saref:Actuator ;
-  rdfs:comment "No irrigation-controller or mower class in SAREF core (SAREF4AGRI targets agriculture, not domestic gardens)." ;
+  skos:relatedMatch s4agri:WateringSystem , s4agri:WateringValve ;
+  rdfs:comment """Searched: SAREF core, S4BLDG, S4ENER, S4WEAR, S4AGRI, S4AUTO, S4CITY, S4EHAW.
+S4AGRI has WateringSystem, WateringValve and WateringGun — functionally the same equipment as
+a domestic irrigation controller, but scoped to agricultural holdings (Farm, Parcel, Crop),
+so related rather than a superclass. Judgement call, and the closest any vocabulary comes.
+No mower class anywhere.""" ;
   hiot:alignmentPrecision "coarse" .
 
 hiot:pet rdfs:subClassOf saref:Appliance ;
   skos:broadMatch saref:Appliance ;
-  rdfs:comment "No pet-device class in SAREF." ;
+  rdfs:comment """Searched: SAREF core, S4BLDG, S4ENER, S4WEAR, S4AGRI, S4AUTO, S4CITY, S4EHAW.
+No pet-device class. S4AGRI's Animal / AnimalGroup model livestock as observed subjects, not
+consumer pet hardware (feeders, trackers, cameras), so they are not a match. A genuine
+gap.""" ;
   hiot:alignmentPrecision "coarse" .
 
 hiot:sleeptracker rdfs:subClassOf saref:Sensor , sosa:Sensor ;
   skos:broadMatch saref:Sensor ;
-  rdfs:comment "Deliberately NOT aligned to s4wear:Wearable: the in-scope category is bedside, non-worn monitors. The wrist wearables currently contaminating this category (~88%) are exactly what s4wear:OnBodyWearable denotes and are out by criterion 3 — see hiot:vrar for the one place that class is used correctly." ;
+  rdfs:comment """Searched: SAREF core, S4BLDG, S4ENER, S4WEAR, S4AGRI, S4AUTO, S4CITY, S4EHAW.
+Deliberately NOT aligned to s4wear:Wearable or s4ehaw:HealthWearable: the in-scope category is
+bedside, non-worn monitors. The wrist wearables currently contaminating this category (~88%)
+are exactly what s4wear:OnBodyWearable denotes and are out by criterion 3 — see hiot:vrar for
+the one place that class is used correctly. S4EHAW (health/ageing-well) models the carer
+relationship and health actors rather than a bedside monitor device. The absence here is a
+scope decision, not a vocabulary gap.""" ;
   hiot:alignmentPrecision "coarse" .
 
 ################################################################################

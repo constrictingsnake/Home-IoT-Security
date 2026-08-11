@@ -1,24 +1,4 @@
 iri	vocabulary
-http://www.w3.org/ns/sosa/ActuatableProperty	W3C SOSA
-http://www.w3.org/ns/sosa/Actuation	W3C SOSA
-http://www.w3.org/ns/sosa/Actuator	W3C SOSA
-http://www.w3.org/ns/sosa/FeatureOfInterest	W3C SOSA
-http://www.w3.org/ns/sosa/ObservableProperty	W3C SOSA
-http://www.w3.org/ns/sosa/Observation	W3C SOSA
-http://www.w3.org/ns/sosa/Platform	W3C SOSA
-http://www.w3.org/ns/sosa/Procedure	W3C SOSA
-http://www.w3.org/ns/sosa/Result	W3C SOSA
-http://www.w3.org/ns/sosa/Sample	W3C SOSA
-http://www.w3.org/ns/sosa/Sampler	W3C SOSA
-http://www.w3.org/ns/sosa/Sampling	W3C SOSA
-http://www.w3.org/ns/sosa/Sensor	W3C SOSA
-http://www.w3.org/ns/ssn/Deployment	W3C SSN
-http://www.w3.org/ns/ssn/Input	W3C SSN
-http://www.w3.org/ns/ssn/Output	W3C SSN
-http://www.w3.org/ns/ssn/Property	W3C SSN
-http://www.w3.org/ns/ssn/Stimulus	W3C SSN
-http://www.w3.org/ns/ssn/System	W3C SSN
-http://www.w3.org/ns/ssn/systems/SystemCapability	W3C SSN
 https://saref.etsi.org/core/ActuatingFunction	SAREF core
 https://saref.etsi.org/core/Actuation	SAREF core
 https://saref.etsi.org/core/Actuator	SAREF core
@@ -114,6 +94,75 @@ https://saref.etsi.org/core/Time	SAREF core
 https://saref.etsi.org/core/ToggleCommand	SAREF core
 https://saref.etsi.org/core/UnitOfMeasure	SAREF core
 https://saref.etsi.org/core/Water	SAREF core
+https://saref.etsi.org/saref4agri/Animal	SAREF4AGRI
+https://saref.etsi.org/saref4agri/AnimalGroup	SAREF4AGRI
+https://saref.etsi.org/saref4agri/Crop	SAREF4AGRI
+https://saref.etsi.org/saref4agri/Deployment	SAREF4AGRI
+https://saref.etsi.org/saref4agri/EatingActivitySensor	SAREF4AGRI
+https://saref.etsi.org/saref4agri/Farm	SAREF4AGRI
+https://saref.etsi.org/saref4agri/FarmHolding	SAREF4AGRI
+https://saref.etsi.org/saref4agri/Farmer	SAREF4AGRI
+https://saref.etsi.org/saref4agri/MilkingSensor	SAREF4AGRI
+https://saref.etsi.org/saref4agri/MovementActivitySensor	SAREF4AGRI
+https://saref.etsi.org/saref4agri/Parcel	SAREF4AGRI
+https://saref.etsi.org/saref4agri/Platform	SAREF4AGRI
+https://saref.etsi.org/saref4agri/Pluviometer	SAREF4AGRI
+https://saref.etsi.org/saref4agri/Soil	SAREF4AGRI
+https://saref.etsi.org/saref4agri/SoilTensiometer	SAREF4AGRI
+https://saref.etsi.org/saref4agri/Thermometer	SAREF4AGRI
+https://saref.etsi.org/saref4agri/WateringGun	SAREF4AGRI
+https://saref.etsi.org/saref4agri/WateringSystem	SAREF4AGRI
+https://saref.etsi.org/saref4agri/WateringValve	SAREF4AGRI
+https://saref.etsi.org/saref4agri/WeatherStation	SAREF4AGRI
+https://saref.etsi.org/saref4agri/WeightSensor	SAREF4AGRI
+https://saref.etsi.org/saref4auto/AcousticSensor	SAREF4AUTO
+https://saref.etsi.org/saref4auto/AutomotiveDevice	SAREF4AUTO
+https://saref.etsi.org/saref4auto/AutomotiveEntity	SAREF4AUTO
+https://saref.etsi.org/saref4auto/BooleanProperty	SAREF4AUTO
+https://saref.etsi.org/saref4auto/ClusterBreakup	SAREF4AUTO
+https://saref.etsi.org/saref4auto/ClusterBreakupReason	SAREF4AUTO
+https://saref.etsi.org/saref4auto/ClusterJoin	SAREF4AUTO
+https://saref.etsi.org/saref4auto/ClusterLeave	SAREF4AUTO
+https://saref.etsi.org/saref4auto/ClusterLeaveReason	SAREF4AUTO
+https://saref.etsi.org/saref4auto/ConfidenceValue	SAREF4AUTO
+https://saref.etsi.org/saref4auto/ConfidenceValueAt95	SAREF4AUTO
+https://saref.etsi.org/saref4auto/DangerousGoods	SAREF4AUTO
+https://saref.etsi.org/saref4auto/DecimalProperty	SAREF4AUTO
+https://saref.etsi.org/saref4auto/IndexedProperty	SAREF4AUTO
+https://saref.etsi.org/saref4auto/IndexedPropertyValue	SAREF4AUTO
+https://saref.etsi.org/saref4auto/InductionLoopSensor	SAREF4AUTO
+https://saref.etsi.org/saref4auto/IntegerProperty	SAREF4AUTO
+https://saref.etsi.org/saref4auto/ItsAggregationSensor	SAREF4AUTO
+https://saref.etsi.org/saref4auto/LidarSensor	SAREF4AUTO
+https://saref.etsi.org/saref4auto/LocalAggregationSensor	SAREF4AUTO
+https://saref.etsi.org/saref4auto/MonovideoSensor	SAREF4AUTO
+https://saref.etsi.org/saref4auto/NightvisionSensor	SAREF4AUTO
+https://saref.etsi.org/saref4auto/ParkingSpot	SAREF4AUTO
+https://saref.etsi.org/saref4auto/Platoon	SAREF4AUTO
+https://saref.etsi.org/saref4auto/PlatoonBreakup	SAREF4AUTO
+https://saref.etsi.org/saref4auto/PlatoonJoin	SAREF4AUTO
+https://saref.etsi.org/saref4auto/PlatoonLeave	SAREF4AUTO
+https://saref.etsi.org/saref4auto/PmdSensor	SAREF4AUTO
+https://saref.etsi.org/saref4auto/RadarSensor	SAREF4AUTO
+https://saref.etsi.org/saref4auto/RoadSideActuator	SAREF4AUTO
+https://saref.etsi.org/saref4auto/RoadSideEquipment	SAREF4AUTO
+https://saref.etsi.org/saref4auto/RoadSideSensor	SAREF4AUTO
+https://saref.etsi.org/saref4auto/RoadSideUnit	SAREF4AUTO
+https://saref.etsi.org/saref4auto/SphericalCameraSensor	SAREF4AUTO
+https://saref.etsi.org/saref4auto/StereovisionSensor	SAREF4AUTO
+https://saref.etsi.org/saref4auto/StringProperty	SAREF4AUTO
+https://saref.etsi.org/saref4auto/TrafficDirection	SAREF4AUTO
+https://saref.etsi.org/saref4auto/TrafficEventCause	SAREF4AUTO
+https://saref.etsi.org/saref4auto/TrafficEventObservation	SAREF4AUTO
+https://saref.etsi.org/saref4auto/TrafficLightController	SAREF4AUTO
+https://saref.etsi.org/saref4auto/TrafficManagementCentre	SAREF4AUTO
+https://saref.etsi.org/saref4auto/TrafficParticipant	SAREF4AUTO
+https://saref.etsi.org/saref4auto/Trailer	SAREF4AUTO
+https://saref.etsi.org/saref4auto/UltrasonicSensor	SAREF4AUTO
+https://saref.etsi.org/saref4auto/UwbSensor	SAREF4AUTO
+https://saref.etsi.org/saref4auto/VRUCluster	SAREF4AUTO
+https://saref.etsi.org/saref4auto/Vehicle	SAREF4AUTO
+https://saref.etsi.org/saref4auto/VulnerableRoadUser	SAREF4AUTO
 https://saref.etsi.org/saref4bldg/Actuator	SAREF4BLDG
 https://saref.etsi.org/saref4bldg/AirToAirHeatRecovery	SAREF4BLDG
 https://saref.etsi.org/saref4bldg/Alarm	SAREF4BLDG
@@ -179,6 +228,41 @@ https://saref.etsi.org/saref4bldg/TubeBundle	SAREF4BLDG
 https://saref.etsi.org/saref4bldg/UnitaryControlElement	SAREF4BLDG
 https://saref.etsi.org/saref4bldg/Valve	SAREF4BLDG
 https://saref.etsi.org/saref4bldg/VibrationIsolator	SAREF4BLDG
+https://saref.etsi.org/saref4city/AccessibilityConcept	SAREF4CITY
+https://saref.etsi.org/saref4city/AdministrativeArea	SAREF4CITY
+https://saref.etsi.org/saref4city/Agent	SAREF4CITY
+https://saref.etsi.org/saref4city/City	SAREF4CITY
+https://saref.etsi.org/saref4city/CityObject	SAREF4CITY
+https://saref.etsi.org/saref4city/Country	SAREF4CITY
+https://saref.etsi.org/saref4city/District	SAREF4CITY
+https://saref.etsi.org/saref4city/Event	SAREF4CITY
+https://saref.etsi.org/saref4city/Facility	SAREF4CITY
+https://saref.etsi.org/saref4city/KeyPerformanceIndicator	SAREF4CITY
+https://saref.etsi.org/saref4city/KeyPerformanceIndicatorAssessment	SAREF4CITY
+https://saref.etsi.org/saref4city/Neighbourhood	SAREF4CITY
+https://saref.etsi.org/saref4city/PublicAdministration	SAREF4CITY
+https://saref.etsi.org/saref4city/PublicService	SAREF4CITY
+https://saref.etsi.org/saref4ehaw/Activity	SAREF4EHAW
+https://saref.etsi.org/saref4ehaw/Ban	SAREF4EHAW
+https://saref.etsi.org/saref4ehaw/BanApplicationTask	SAREF4EHAW
+https://saref.etsi.org/saref4ehaw/BanHub	SAREF4EHAW
+https://saref.etsi.org/saref4ehaw/Caregiver	SAREF4EHAW
+https://saref.etsi.org/saref4ehaw/CommunicationInterface	SAREF4EHAW
+https://saref.etsi.org/saref4ehaw/CommunicationNetwork	SAREF4EHAW
+https://saref.etsi.org/saref4ehaw/CommunicationProtocol	SAREF4EHAW
+https://saref.etsi.org/saref4ehaw/DailyActivity	SAREF4EHAW
+https://saref.etsi.org/saref4ehaw/FunctionalDevice	SAREF4EHAW
+https://saref.etsi.org/saref4ehaw/HealthActor	SAREF4EHAW
+https://saref.etsi.org/saref4ehaw/HealthActuator	SAREF4EHAW
+https://saref.etsi.org/saref4ehaw/HealthDevice	SAREF4EHAW
+https://saref.etsi.org/saref4ehaw/HealthSensor	SAREF4EHAW
+https://saref.etsi.org/saref4ehaw/HealthWearable	SAREF4EHAW
+https://saref.etsi.org/saref4ehaw/Helper	SAREF4EHAW
+https://saref.etsi.org/saref4ehaw/NocturnalActivity	SAREF4EHAW
+https://saref.etsi.org/saref4ehaw/ObservationCollectionExecution	SAREF4EHAW
+https://saref.etsi.org/saref4ehaw/Patient	SAREF4EHAW
+https://saref.etsi.org/saref4ehaw/ResponsibleParty	SAREF4EHAW
+https://saref.etsi.org/saref4ehaw/User	SAREF4EHAW
 https://saref.etsi.org/saref4ener/ActivationDelayDurationDescription	SAREF4ENER
 https://saref.etsi.org/saref4ener/ActiveDurationDescription	SAREF4ENER
 https://saref.etsi.org/saref4ener/ActiveDurationMax	SAREF4ENER
@@ -330,3 +414,23 @@ https://saref.etsi.org/saref4wear/Wearable	SAREF4WEAR
 https://saref.etsi.org/saref4wear/WearableProperty	SAREF4WEAR
 https://saref.etsi.org/saref4wear/Wearer	SAREF4WEAR
 https://saref.etsi.org/saref4wear/WearerProperty	SAREF4WEAR
+http://www.w3.org/ns/sosa/ActuatableProperty	W3C SOSA
+http://www.w3.org/ns/sosa/Actuation	W3C SOSA
+http://www.w3.org/ns/sosa/Actuator	W3C SOSA
+http://www.w3.org/ns/sosa/FeatureOfInterest	W3C SOSA
+http://www.w3.org/ns/sosa/ObservableProperty	W3C SOSA
+http://www.w3.org/ns/sosa/Observation	W3C SOSA
+http://www.w3.org/ns/sosa/Platform	W3C SOSA
+http://www.w3.org/ns/sosa/Procedure	W3C SOSA
+http://www.w3.org/ns/sosa/Result	W3C SOSA
+http://www.w3.org/ns/sosa/Sample	W3C SOSA
+http://www.w3.org/ns/sosa/Sampler	W3C SOSA
+http://www.w3.org/ns/sosa/Sampling	W3C SOSA
+http://www.w3.org/ns/sosa/Sensor	W3C SOSA
+http://www.w3.org/ns/ssn/Deployment	W3C SSN
+http://www.w3.org/ns/ssn/Input	W3C SSN
+http://www.w3.org/ns/ssn/Output	W3C SSN
+http://www.w3.org/ns/ssn/Property	W3C SSN
+http://www.w3.org/ns/ssn/Stimulus	W3C SSN
+http://www.w3.org/ns/ssn/System	W3C SSN
+http://www.w3.org/ns/ssn/systems/SystemCapability	W3C SSN
