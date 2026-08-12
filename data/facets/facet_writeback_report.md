@@ -20,16 +20,22 @@ A property carries the tier of its **weakest** cell, so one unevidenced category
 |---|---|---|
 | `actuatesPhysical` | Estimated | Estimated |
 | `actuationConsequence` | Estimated | Estimated |
+| `adminModel` | Estimated | Estimated |
+| `alsoDeployedIn` | Estimated | Estimated |
 | `capturesAV` | Estimated | Estimated |
 | `cloudDependence` | Estimated | Estimated |
 | `computeTier` | Estimated | Estimated |
 | `consumerAvailability` | Estimated | Estimated |
+| `credentialModel` | Estimated | Estimated |
 | `dataSensitivity` | Estimated | Estimated |
 | `firmwareUpdateModel` | Estimated | Estimated |
 | `formFactor` | Estimated | Estimated |
 | `hasWebAdminUI` | Estimated | Estimated |
+| `pairingModel` | Estimated | Estimated |
+| `patchResponsibility` | Estimated | Estimated |
 | `placement` | Estimated | Estimated |
 | `supportLifetime` | Estimated | Estimated |
+| `topology` | Estimated | Estimated |
 
 ## After applying
 

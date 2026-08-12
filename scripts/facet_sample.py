@@ -105,19 +105,18 @@ FORBIDDEN_IN_SHEET = {"description", "cwe_ids", "cvss_score", "vector_string", "
 
 # ---------------------------------------------------------------- ontology introspection
 
-def load_facet_spec():
-    """The 12 single-valued facets and their allowed values, read from the ontology.
+def _facet_properties():
+    """(graph, {property IRI: cardinality}) for every facet, cardinality in {single, multi}.
 
-    Single-valued is decided by shapes.ttl (sh:maxCount 1) rather than a hardcoded list, so
-    this cannot drift from the ontology the way a copied list would. Booleans get
-    true/false; object properties get the individuals of their rdfs:range class.
+    A facet property is exactly one carrying hiot:evidenceTier. Cardinality is decided by
+    shapes.ttl (sh:maxCount 1) rather than a hardcoded list, so this cannot drift from the
+    ontology the way a copied list would.
     """
     g = Graph()
     g.parse(os.path.join(ONTO, "homeiot.ttl"), format="turtle")
     shapes = Graph()
     shapes.parse(os.path.join(ONTO, "shapes.ttl"), format="turtle")
 
-    # Facet properties are exactly those carrying an evidenceTier annotation.
     tiered = {p for p in g.subjects(HIOT.evidenceTier, None)}
 
     single = set()
@@ -127,20 +126,66 @@ def load_facet_spec():
         if path in tiered and int(maxc) == 1:
             single.add(path)
 
+    return g, {p: ("single" if p in single else "multi") for p in tiered}
+
+
+def _values_for(g, prop):
+    """Allowed values of a facet property: true/false, or its range's individuals."""
+    rng = g.value(prop, RDFS.range)
+    if rng is not None and str(rng).endswith("#boolean"):
+        return ["true", "false"]
+    return sorted(str(i).split("#")[1] for i in g.subjects(RDF.type, rng))
+
+
+def _spec_for(cardinality):
+    g, props = _facet_properties()
     spec = {}
-    for prop in sorted(single, key=str):
-        name = str(prop).split("#")[1]
-        rng = g.value(prop, RDFS.range)
-        if rng is not None and str(rng).endswith("#boolean"):
-            values = ["true", "false"]
-        else:
-            values = sorted(
-                str(i).split("#")[1] for i in g.subjects(RDF.type, rng)
-            )
-        if not values:
-            continue
-        spec[name] = values
+    for prop in sorted((p for p, c in props.items() if c == cardinality), key=str):
+        values = _values_for(g, prop)
+        if values:
+            spec[str(prop).split("#")[1]] = values
     return spec
+
+
+def load_facet_spec():
+    """The 12 single-valued facets and their allowed values, read from the ontology.
+
+    Single-valued is decided by shapes.ttl (sh:maxCount 1); booleans get true/false, object
+    properties get the individuals of their rdfs:range class.
+
+    DELIBERATELY SINGLE-VALUED ONLY. The product-annotation sheet asks for one value per
+    cell and the kappa study is computed over exactly these 12 — widening this function
+    would silently move the frozen annotation kit and the agreement figures computed from
+    it. Callers that want the multi-valued facets ask for them by name.
+    """
+    return _spec_for("single")
+
+
+def load_multi_facet_spec():
+    """The 6 multi-valued facets (no sh:maxCount) and their allowed values.
+
+    Separate from load_facet_spec() because the ANSWER SHAPE differs, not just the list: a
+    cell here holds a set of values, so verdicts are pipe-separated and reviewer agreement
+    is set equality rather than string equality. Only the category-tagging pass consumes
+    these; the blind product panel never did.
+    """
+    return _spec_for("multi")
+
+
+def facet_is_optional(name):
+    """True when shapes.ttl imposes no sh:minCount — `none` is then a real answer.
+
+    Only hiot:alsoDeployedIn is optional today (a category sold to households only has no
+    non-residential context), but reading it from the shapes keeps the sheet honest if
+    another optional facet is added later.
+    """
+    shapes = Graph()
+    shapes.parse(os.path.join(ONTO, "shapes.ttl"), format="turtle")
+    prop = HIOT[name]
+    for pshape in shapes.subjects(SH.path, prop):
+        if shapes.value(pshape, SH.minCount) is not None:
+            return False
+    return True
 
 
 def load_categories():

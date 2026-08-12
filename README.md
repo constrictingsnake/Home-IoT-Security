@@ -388,6 +388,46 @@ python3 scripts/camera_subtype.py --draw
 python3 scripts/camera_subtype.py --aggregate
 ```
 
+### The human tagging pass (F5) — where facet answers actually get filled in
+
+The steps above *measure* the hand-assigned facets. This one **replaces** them with sourced
+human answers, and it is the only remaining human step in the facet system. It is a
+verification pass, not a blind annotation: every cell is pre-filled with the current best
+answer and the reviewer confirms or corrects it **against a source**. Do not carry habits
+between this and the blind annotation kit — the blindness inverts.
+
+```bash
+# 1. Build the sheet (already built; --overwrite DISCARDS any answers in it)
+python3 scripts/make_tagging_sheet.py
+python3 scripts/make_tagging_sheet.py --probe 20   # just the probe, to stdout
+```
+
+**Fill in `data/facets/tagging-kit/category_tags.csv`** — 432 cells, 420 asked. That file is
+the worksheet. `data/facets/facet_review_queue.csv` is a *generated, outstanding-only view*
+of the same cells and is never edited by hand; it exists so you can see what is left without
+re-scanning the sheet.
+
+Two reviewers fill `Verdict 1…` and `Verdict 2…` independently. Read
+`data/facets/tagging-kit/README.md` before starting (what counts as a source, when
+`Category-Wide` applies, why `single` and `multi` rows are answered differently) and
+`data/facets/tagging-kit/VALUE_DEFINITIONS.md` for each facet's allowed values — both are
+generated, so they cannot drift from the ontology.
+
+```bash
+# 2. Sheet -> store -> queue. ORDER MATTERS: finalize before extract, always.
+python3 scripts/facet_store.py --finalize   # sheet answers -> facet_store.csv (sticky)
+python3 scripts/facet_store.py --extract    # store -> outstanding-only queue
+python3 scripts/facet_store.py --status     # coverage + per-cell and per-property tier mix
+
+# 3. When cells are settled: propose the TTL edits (a REPORT, applied by hand)
+python3 scripts/facet_store.py --writeback  # -> data/facets/facet_writeback_report.md
+```
+
+`--finalize` warns about answers that need rewriting (a value not in `allowed_values`,
+`unsure`/`none` mixed into a set, or an exclusivity violation) and leaves those cells
+outstanding with a reason that names the problem. Re-run the four `ontology_build.py` gates
+after applying any writeback; `categories.csv` and `families.csv` must stay byte-identical.
+
 ---
 
 ## Device Categories
@@ -451,6 +491,8 @@ One line per script — full flag tables in `docs/SCRIPTS_REFERENCE.md`.
 | `facet_gemini.py` | facets (Phase A/2) | Fills the kit's `gemini.csv` from product identity only; refuses to run on a sheet carrying CVE text |
 | `facet_agreement.py` | facets (Phase 3) | Fleiss' κ / Scott's π, bootstrap CIs, PABAK, `unsure` rates; `--self-test` validates the statistics |
 | `camera_subtype.py` | facets (F4) | Measures the camera-vs-recorder split inside `cameras`, with a judgeability gate and a token check |
+| `make_tagging_sheet.py` | facets (F5) | Builds the human tagging kit (`data/facets/tagging-kit/`) — all 18 facets, pre-filled with provenance, sorted so a partial pass still pays |
+| `facet_store.py` | facets (F5) | Durable `(slug, facet)` verdict store; `--finalize` / `--extract` / `--status` / `--writeback`. Finalize before extract, always |
 
 Retired scripts live in `scripts/_legacy/` (superseded-by table in `docs/SCRIPTS_REFERENCE.md`).
 

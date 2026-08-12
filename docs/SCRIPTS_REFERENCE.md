@@ -368,6 +368,28 @@ Measures whether `cameras` is really two device types (cameras and DVR/NVR recor
 
 ---
 
+### `make_tagging_sheet.py` — F5 (human category-tagging sheet)
+Emits `data/facets/tagging-kit/` — the worksheet two human reviewers fill to replace hand-assigned facet values with **sourced** ones. The opposite exercise to `make_facet_copies.py`: that kit hides the current value, this one pre-fills it so the reviewer spends their time finding evidence rather than re-deriving a guess, and every row states its pre-fill **provenance** (`phase-a-cve-weighted` = measured; `author-prior` = the hand assignment under test). Covers all 18 facets — the `cardinality` column marks whether a cell takes one value or a `|`-separated set. Row order **is** the schedule: κ-failed facets first, then multi-valued, then grouping-only, then CITABLE, each by category CVE count, so a partial pass is still worth having. Cells Phase A marked NOT-USABLE are emitted as `excluded-validity` and never asked — a source cannot repair a category holding two device types.
+
+| Flag | Description |
+|------|-------------|
+| `--probe N` | Print the first N cells (the sourcing probe) and exit; writes nothing |
+| `--overwrite` | Rebuild an existing sheet (**discards any answers in it**) |
+
+---
+
+### `facet_store.py` — F5 (durable facet verdict store)
+To category tagging what `judgment_store.csv` is to CVE review: answers live in `data/facets/facet_store.csv` keyed `(slug, facet)` and survive sheet regeneration. Same **order rule** as the CVE chain — finalize before extract, or a freshly-filled verdict is still outstanding when the queue is rebuilt and gets asked twice. Human verdicts are sticky. A cell settles only on two independent, agreeing, non-`unsure` verdicts; on a `multi` row agreement is **set equality** (order, case, and spacing normalised first), and a superset in one column is a disagreement. The evidence tier is derived from what the reviewer did — `Documented` (source + `Category-Wide`), `HumanSourced` (source), `HumanJudged` (looked, found nothing) — never self-reported. `--finalize` warns about answers needing a rewrite and leaves those cells outstanding with a reason that names the problem (`outstanding-malformed`, `outstanding-contradiction`).
+
+| Flag | Description |
+|------|-------------|
+| `--finalize` | Sheet answers → store (run this **first**) |
+| `--extract` | Store → `facet_review_queue.csv`, outstanding-only |
+| `--status` | Coverage, per-cell tier mix, per-property tier by the floor rule |
+| `--writeback` | → `facet_writeback_report.md`, the TTL edits implied (**applied by hand**) |
+
+---
+
 ### Retired scripts — `scripts/_legacy/`
 Superseded by the current pipeline; kept on disk for reference only, not part of any live workflow.
 

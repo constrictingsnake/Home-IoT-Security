@@ -14,8 +14,19 @@ freshly-filled verdict is still outstanding when the queue is rebuilt and gets a
 WHY A NEW SCRIPT RATHER THAN REUSING finalize_judgments.py / extract_human_review.py.
     Those two work and are wired end to end into judgment_store.csv's columns and the CVE
     review directory layout. Generalising them over a second unit would put every CVE
-    settlement at risk to serve a 288-cell sheet. The pattern is what is worth reusing
+    settlement at risk to serve a 432-cell sheet. The pattern is what is worth reusing
     here, not the code.
+
+SINGLE- AND MULTI-VALUED CELLS SETTLE BY THE SAME RULE, APPLIED TO DIFFERENT THINGS.
+    A multi-valued cell holds a SET written into one CSV field, so two reviewers can write
+    the same answer in different order, case, or spacing. canonical() normalises both sides
+    first, which makes "the two reviewers agree" set equality rather than string equality —
+    the alternative is a settle rule that silently depends on typing. A superset in one
+    column is a DISAGREEMENT, deliberately: it is a different claim about the category, not
+    a more detailed version of the same one. `unsure` and `none` are whole-cell answers and
+    never mix with values; a cell that mixes them is `outstanding-malformed`, and one whose
+    agreed set violates an exclusivity rule is `outstanding-contradiction` — both named
+    distinctly so the queue says what actually needs doing instead of "awaiting reviewer 2".
 
 THE TIER IS DERIVED FROM WHAT THE REVIEWER DID, NOT SELF-REPORTED.
     A reviewer who cites evidence gets HumanSourced; one who looked and found nothing gets
@@ -41,7 +52,7 @@ from collections import Counter, OrderedDict
 
 from rdflib import Graph, Namespace
 
-from facet_sample import load_facet_spec
+from facet_sample import load_facet_spec, load_multi_facet_spec
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.dirname(HERE)
@@ -69,6 +80,88 @@ TRUE_ISH = {"yes", "y", "true", "1", "category-wide"}
 TIER_ORDER = ["Estimated", "HumanJudged", "HumanSourced", "Documented", "Derived"]
 
 UNSETTLED = {"", "unsure", "maybe"}
+
+
+def full_spec():
+    """Every facet -> allowed values, and every facet -> cardinality."""
+    single, multi = load_facet_spec(), load_multi_facet_spec()
+    spec = {**single, **multi}
+    cardinality = {**{f: "single" for f in single}, **{f: "multi" for f in multi}}
+    return spec, cardinality
+
+
+def canonical(verdict, facet, cardinality, spec):
+    """Normalise one reviewer's answer to its comparable, storable form.
+
+    A multi-valued verdict is a SET written into a CSV cell, so two reviewers can write the
+    same answer in different order, spacing, or case. Canonicalising to a sorted, ontology-
+    cased, `|`-joined string makes agreement a string comparison again — the alternative is
+    a settle rule that silently depends on typing.
+
+    Returns "" when the answer is unsettled (blank/unsure), so the caller's UNSETTLED check
+    keeps working unchanged for both kinds of row.
+    """
+    text = (verdict or "").strip()
+    if text.lower() in UNSETTLED:
+        return ""
+    if cardinality.get(facet) != "multi":
+        return text
+    # Ontology casing wins over the reviewer's, so `qrpaired` and `QrPaired` are one answer.
+    casing = {v.lower(): v for v in spec.get(facet, [])}
+    casing["none"] = "none"
+    parts = {p.strip().lower() for p in text.split("|") if p.strip()}
+    if not parts:
+        return ""
+    # `unsure` is a whole-cell answer; mixed into a set it is a malformed cell, not a value.
+    if "unsure" in parts:
+        return ""
+    if "none" in parts and len(parts) > 1:
+        return ""
+    return "|".join(sorted(casing.get(p, p) for p in parts))
+
+
+# Values that are meaningful only ALONE: a device either has an admin surface or it has
+# none, so NoAdminInterface cannot sit in a set beside a real interface. The rule is stated
+# in the value's own rdfs:comment and reaches the reviewer through VALUE_DEFINITIONS.md;
+# this catches it if they answer past it. It does NOT replace the shapes.ttl constraint that
+# plan item A8 still owes — a warning here guards the sheet, SHACL guards the ontology.
+EXCLUSIVE_VALUES = {"adminModel": "NoAdminInterface"}
+
+
+def contradictory(verdict, facet, cardinality):
+    """True when a canonicalised set pairs an exclusive value with anything else."""
+    if cardinality.get(facet) != "multi" or not verdict:
+        return False
+    lone = EXCLUSIVE_VALUES.get(facet)
+    parts = verdict.split("|")
+    return bool(lone) and lone in parts and len(parts) > 1
+
+
+def invalid_values(verdict, facet, cardinality, spec):
+    """Values in a canonicalised verdict that are not in the ontology's allowed set.
+
+    Reported as a warning rather than enforced: this script has never rejected a human
+    answer, and a typo should be visible to the person fixing it, not silently dropped on
+    the floor by the settle rule.
+    """
+    if not verdict:
+        return []
+    allowed = set(spec.get(facet, [])) | {"none"}
+    parts = verdict.split("|") if cardinality.get(facet) == "multi" else [verdict]
+    return [p for p in parts if p not in allowed]
+
+
+def malformed(verdict, facet, cardinality, spec):
+    """A non-blank answer canonical() cannot make sense of (`unsure`/`none` inside a set).
+
+    Distinguished from blank so the queue's Reason names what actually happened. Without
+    this the cell reports `outstanding-one-verdict`, which reads as "waiting on the second
+    reviewer" when the truth is that the first reviewer's answer needs rewriting.
+    """
+    text = (verdict or "").strip()
+    if not text or text.lower() in UNSETTLED:
+        return False
+    return not canonical(text, facet, cardinality, spec)
 
 
 def _read(path, key=None):
@@ -110,26 +203,39 @@ def is_category_wide(row):
     return False
 
 
-def settle(row):
-    """Return (final_value, tier, sources, status) for one sheet cell.
+def settle(row, cardinality, spec):
+    """Return (final_value, tier, sources, category_wide, status) for one sheet cell.
 
     A cell settles only on two independent, agreeing, non-`unsure` verdicts — the same bar
     the CVE queue uses, and for the same reason: a lone verdict is one reviewer, not a
     reconciliation.
+
+    On a multi-valued row "agreeing" means the SAME SET: canonical() has already sorted and
+    re-cased both sides, so equality here is set equality. An extra value in one column is a
+    disagreement, deliberately — a superset is a different claim about the category, not a
+    more detailed version of the same one.
     """
-    v1 = (row.get("Verdict 1") or "").strip()
-    v2 = (row.get("Verdict 2") or "").strip()
+    facet = row.get("facet", "")
+    v1 = canonical(row.get("Verdict 1"), facet, cardinality, spec)
+    v2 = canonical(row.get("Verdict 2"), facet, cardinality, spec)
     s1 = (row.get("Source 1") or "").strip()
     s2 = (row.get("Source 2") or "").strip()
 
     if row.get("status") == "excluded-validity":
         return "", "", "", False, "excluded-validity"
-    if v1.lower() in UNSETTLED and v2.lower() in UNSETTLED:
+    if any(malformed(row.get(f"Verdict {n}"), facet, cardinality, spec) for n in ("1", "2")):
+        return "", "", "", False, "outstanding-malformed"
+    if not v1 and not v2:
         return "", "", "", False, "outstanding-no-verdict"
-    if v1.lower() in UNSETTLED or v2.lower() in UNSETTLED:
+    if not v1 or not v2:
         return "", "", "", False, "outstanding-one-verdict"
     if v1.lower() != v2.lower():
         return "", "", "", False, "outstanding-disagreement"
+    # Two reviewers can agree on a set the ontology forbids. Agreement is not correctness,
+    # so this goes back to them rather than into a settled value the SHACL shape (A8) would
+    # later have to reject at the ontology boundary.
+    if contradictory(v1, facet, cardinality):
+        return "", "", "", False, "outstanding-contradiction"
 
     sources = " ; ".join(s for s in (s1, s2) if s)
     wide = is_category_wide(row)
@@ -141,11 +247,27 @@ def cmd_finalize():
         sys.exit(f"no sheet at {SHEET} — run: python3 scripts/make_tagging_sheet.py")
     sheet = _read(SHEET)
     store = _read(STORE, key=("slug", "facet"))
+    spec, cardinality = full_spec()
 
     added = updated = kept = 0
+    warnings = []
     for row in sheet:
         key = (row["slug"], row["facet"])
-        value, tier, sources, wide, status = settle(row)
+        value, tier, sources, wide, status = settle(row, cardinality, spec)
+        for n in ("1", "2"):
+            raw = (row.get(f"Verdict {n}") or "").strip()
+            canon = canonical(raw, row["facet"], cardinality, spec)
+            if raw and raw.lower() not in UNSETTLED and not canon:
+                warnings.append(f"  {row['slug']}/{row['facet']} Verdict {n}: "
+                                f"{raw!r} — malformed (`unsure`/`none` mixed with values?)")
+            for bad in invalid_values(canon, row["facet"], cardinality, spec):
+                warnings.append(f"  {row['slug']}/{row['facet']} Verdict {n}: "
+                                f"{bad!r} is not an allowed value")
+            if contradictory(canon, row["facet"], cardinality):
+                warnings.append(
+                    f"  {row['slug']}/{row['facet']} Verdict {n}: {canon!r} — "
+                    f"{EXCLUSIVE_VALUES[row['facet']]} is exclusive, it cannot be "
+                    f"combined with another value")
         prior = store.get(key)
 
         # Human verdicts are STICKY: a settled cell stays settled unless a fresh, agreeing
@@ -182,6 +304,12 @@ def cmd_finalize():
     print(f"{os.path.relpath(STORE, ROOT)}: {len(store)} cells "
           f"({added} added, {updated} updated, {kept} sticky-kept)")
     print(f"  settled: {settled}")
+    if warnings:
+        # Warn, never reject: an unusable answer stays outstanding on its own merits and the
+        # person fixing the typo needs to see it named.
+        print(f"\n  {len(warnings)} answer(s) need attention (cells stay outstanding):")
+        for w in warnings:
+            print(w)
     print("\nNow regenerate the queue — finalize before extract, always:")
     print("  python3 scripts/facet_store.py --extract")
 
@@ -198,9 +326,10 @@ def cmd_extract():
             continue
         src = sheet.get(key, {})
         out.append({**{c: src.get(c, "") for c in
-                       ("priority", "slug", "label", "facet", "allowed_values",
-                        "prefill_value", "prefill_source", "phase_a_verdict",
-                        "facet_kappa", "kappa_band", "category_cves", "scope_note")},
+                       ("priority", "slug", "label", "facet", "cardinality",
+                        "allowed_values", "prefill_value", "prefill_source",
+                        "phase_a_verdict", "facet_kappa", "kappa_band", "category_cves",
+                        "scope_note")},
                     "Reason": rec["Status"],
                     "Verdict 1": rec["Verdict 1"], "Source 1": rec["Source 1"],
                     "Category-Wide 1": rec.get("Category-Wide 1", ""),
@@ -244,7 +373,7 @@ def cmd_status():
     store = _read(STORE, key=("slug", "facet"))
     if not store:
         sys.exit("empty store — run --finalize first")
-    spec = load_facet_spec()
+    spec, cardinality = full_spec()
 
     status = Counter(r["Status"] for r in store.values())
     tiers = Counter(r["Evidence Tier"] for r in store.values() if r["Evidence Tier"])
@@ -260,7 +389,8 @@ def cmd_status():
 
     print("\nper-property tier by the FLOOR rule (weakest cell wins):")
     for facet, tier in sorted(property_tiers(store, spec).items()):
-        print(f"  {facet:24} {tier}")
+        kind = "[multi]" if cardinality.get(facet) == "multi" else ""
+        print(f"  {facet:24} {tier:14} {kind}")
 
 
 def cmd_writeback():
@@ -268,18 +398,28 @@ def cmd_writeback():
     store = _read(STORE, key=("slug", "facet"))
     if not store:
         sys.exit("empty store — run --finalize first")
-    spec = load_facet_spec()
+    spec, cardinality = full_spec()
 
     g = Graph()
     g.parse(os.path.join(ONTO, "homeiot.ttl"), format="turtle")
+
+    def local(term):
+        text = str(term)
+        return text.split("#")[1] if "#" in text else text
+
     current = {}
     for cls in g.subjects(HIOT.slug, None):
         slug = str(g.value(cls, HIOT.slug))
         for facet in spec:
+            if cardinality[facet] == "multi":
+                # Sorted and joined the same way the sheet's pre-fill and canonical() are,
+                # so "unchanged" means the same set rather than the same serialisation.
+                vals = sorted(local(v) for v in g.objects(cls, HIOT[facet]))
+                current[(slug, facet)] = "|".join(vals) if vals else "none"
+                continue
             val = g.value(cls, HIOT[facet])
             if val is not None:
-                text = str(val)
-                current[(slug, facet)] = text.split("#")[1] if "#" in text else text
+                current[(slug, facet)] = local(val)
 
     changes, unchanged, excluded = [], 0, 0
     for (slug, facet), rec in store.items():
@@ -293,8 +433,9 @@ def cmd_writeback():
             unchanged += 1
         else:
             changes.append((slug, facet, now, rec["Final Value"], rec["Evidence Tier"],
-                            rec["Sources"]))
+                            rec["Sources"], cardinality[facet]))
     changes.sort()
+    n_multi_changes = sum(1 for c in changes if c[6] == "multi")
 
     lines = [
         "# Facet writeback report",
@@ -314,11 +455,22 @@ def cmd_writeback():
         "",
     ]
     if changes:
-        lines += ["| category | facet | current | new | tier | source |",
-                  "|---|---|---|---|---|---|"]
-        for slug, facet, old, new, tier, src in changes:
-            lines.append(f"| `{slug}` | `{facet}` | `{old}` | **`{new}`** | {tier} | "
-                         f"{src or '—'} |")
+        if n_multi_changes:
+            lines += [
+                f"**{n_multi_changes} of these are multi-valued** (`kind` = `multi`), where "
+                "the value is a `|`-separated SET. Applying one means replacing the whole "
+                "comma-separated object list on that line — `hiot:pairingModel hiot:A, "
+                "hiot:B ;` — not appending to it. A `current` of `none` means the property "
+                "is absent for that category and the line must be added; a `new` of `none` "
+                "means the line is deleted. Both sides are sorted, so a row appears here "
+                "only when the SET differs, never because the order does.",
+                "",
+            ]
+        lines += ["| category | facet | kind | current | new | tier | source |",
+                  "|---|---|---|---|---|---|---|"]
+        for slug, facet, old, new, tier, src, kind in changes:
+            lines.append(f"| `{slug}` | `{facet}` | {kind} | `{old}` | **`{new}`** | "
+                         f"{tier} | {src or '—'} |")
     else:
         lines.append("None — every settled cell confirms the value already asserted.")
 

@@ -196,10 +196,12 @@ hiot:cloudDependence a owl:ObjectProperty ; rdfs:label "cloud dependence" ;
 hiot:topology a owl:ObjectProperty ; rdfs:label "network topology" ;
   rdfs:comment "How the device is reached. Multi-valued: a hub is both directly addressable and the mediator for others." ;
   rdfs:domain hiot:DeviceType ; rdfs:range hiot:Topology ;
+  hiot:annotatorGloss "How the device is reached on the network. List every route that is common for the category." ;
   hiot:evidenceTier hiot:Estimated .
 hiot:pairingModel a owl:ObjectProperty ; rdfs:label "pairing model" ;
   rdfs:comment "How a device is enrolled. Onboarding is a recurring weakness locus (unauthenticated pairing windows, static setup PINs); multi-valued because most categories support more than one route." ;
   rdfs:domain hiot:DeviceType ; rdfs:range hiot:PairingModel ;
+  hiot:annotatorGloss "How the device is enrolled onto the network when the owner sets it up. List every route that is common for the category." ;
   hiot:evidenceTier hiot:Estimated .
 
 # --- criterion 2 refinement: device class ------------------------------------
@@ -227,6 +229,7 @@ hiot:firmwareUpdateModel a owl:ObjectProperty ; rdfs:label "firmware update mode
 hiot:alsoDeployedIn a owl:ObjectProperty ; rdfs:label "also deployed in" ;
   rdfs:comment """Non-residential contexts the same product line genuinely serves. Activates the Prosumer/Commercial/Industrial vocabulary, which was declared from the start and never asserted. This is what makes 'cameras is contaminated by pro surveillance' a queryable property rather than a remark in a scope note.""" ;
   rdfs:domain hiot:DeviceType ; rdfs:range hiot:DeploymentContext ;
+  hiot:annotatorGloss "Which non-residential settings the same product line is genuinely sold into and used in. Residential is true of every category by definition and does not need listing; answer `none` for a category sold to households only." ;
   hiot:evidenceTier hiot:Estimated .
 hiot:consumerAvailability a owl:ObjectProperty ; rdfs:label "consumer availability" ;
   rdfs:comment """Sales channel: can a non-expert consumer buy and self-install it? This encodes the rule the human reviewers ALREADY used to settle the pro-camera Yes/No disagreements (see the human-review reconciliation record) — moving it from an undocumented heuristic into a machine-checkable facet, the same win as the reasoner reproducing the published rulings.""" ;
@@ -254,14 +257,17 @@ hiot:dataSensitivity a owl:ObjectProperty ; rdfs:label "data sensitivity" ;
 hiot:adminModel a owl:ObjectProperty ; rdfs:label "administration model" ;
   rdfs:comment "How the owner administers the device. Determines whether an authentication weakness is reachable from the LAN, from the vendor cloud, or not at all." ;
   rdfs:domain hiot:DeviceType ; rdfs:range hiot:AdminModel ;
+  hiot:annotatorGloss "Where the owner goes to change the device's settings. List every interface the category commonly offers." ;
   hiot:evidenceTier hiot:Estimated .
 hiot:credentialModel a owl:ObjectProperty ; rdfs:label "credential model" ;
   rdfs:comment "How the device authenticates its owner at first use. Maps directly onto CWE-798 (hardcoded credentials), a top CWE-888 class in this study's own RQ1 results — which is why this is the first of the criterion-5 facets worth building." ;
   rdfs:domain hiot:DeviceType ; rdfs:range hiot:CredentialModel ;
+  hiot:annotatorGloss "How the owner's access to the device is established at first use. List every scheme the category commonly ships with." ;
   hiot:evidenceTier hiot:Estimated .
 hiot:patchResponsibility a owl:ObjectProperty ; rdfs:label "patch responsibility" ;
   rdfs:comment "Who must act for a fix to land. The operational content of 'without dedicated IT security oversight': a user-initiated patch on a consumer device is, in practice, frequently no patch." ;
   rdfs:domain hiot:DeviceType ; rdfs:range hiot:PatchResponsibility ;
+  hiot:annotatorGloss "Who has to act before a released security fix is actually running on the device. List every arrangement common in the category." ;
   hiot:evidenceTier hiot:Estimated .
 hiot:supportLifetime a owl:ObjectProperty ; rdfs:label "support lifetime" ;
   rdfs:comment "Whether the vendor publishes an end-of-support date. Undeclared lifetime is the norm in consumer IoT and is why a disclosed CVE can remain live indefinitely." ;

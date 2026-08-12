@@ -21,12 +21,14 @@ the truth about the current state.
 | **F3** verdict enforcement | **DONE** — `6619d86` |
 | **F2** κ loop | **PANEL COMPLETE** — Codex column landed `a51603f` (2026-08-10); 3-rater Fleiss' κ runs on 471 shared items. Closeout items remain (see the phase) |
 | **F4** cameras subtype | **PILOT DONE** — `b4727de`, 70% judgeable → proceed with caveat. Full pass not started |
-| **F5** category study + writeback | **REDESIGNED 2026-08-10** — human-sourced category tagging replaces the second AI panel (see the rewritten phase). Machinery not started |
+| **F5** category study + writeback | **REDESIGNED 2026-08-10** — human-sourced category tagging replaces the second AI panel (see the rewritten phase). Machinery BUILT; sheet widened to all 18 facets 2026-08-11 (432 cells, 420 asked); human pass not started |
 | **F6** shades / KG vectors / push | **shades RESOLVED** (no NVD footprint, marker set, gates green); **branch pushed**; KG vectors still optional |
 
 The Codex run is in. **The one remaining human step is now F5's sourced category pass** —
-288 cells, pre-filled with the panel consensus so the human verifies with sources rather
-than starting cold.
+432 cells, pre-filled with the panel consensus so the human verifies with sources rather
+than starting cold. **Widened 2026-08-11 from 288 to 432**: the 6 multi-valued facets are
+asked in the same pass (step 6 below), so the vocabulary is settled once rather than in two
+passes with a second sheet to build later.
 
 ### The panel verdict (3 raters, 471 shared items) — the result F2 existed to produce
 
@@ -295,24 +297,47 @@ The steps:
    `finalize`/`extract` pattern reused — **plus `Sources` and `Evidence Tier` columns.**
    **BUILT** — `scripts/facet_store.py` (`--finalize` / `--extract` / `--status` /
    `--writeback`).
-3. **The human sheet** — 24 categories × 12 single-valued facets = **288 cells**, of
-   which **276 asked** and 12 emitted as `excluded-validity`. **BUILT** —
-   `scripts/make_tagging_sheet.py` → `data/facets/tagging-kit/`.
+3. **The human sheet** — 24 categories × all 18 facets = **432 cells**, of which **420
+   asked** and 12 emitted as `excluded-validity`. **BUILT** —
+   `scripts/make_tagging_sheet.py` → `data/facets/tagging-kit/`. (Was 288/276 while the
+   6 multi-valued facets were deferred; widened 2026-08-11, see step 6.)
 4. **Priority order, so partial completion still pays:** the 5 κ-failed facets first
-   (only sourcing saves them), then the 3 grouping-only, then spot-check the 4 CITABLE.
-   Implemented as the sheet's sort order (κ band, then category CVE count), so the
-   schedule is the file rather than a rule someone has to remember. For
+   (only sourcing saves them), then the 6 multi-valued, then the 3 grouping-only, then
+   spot-check the 4 CITABLE. Implemented as the sheet's sort order (κ band, then category
+   CVE count), so the schedule is the file rather than a rule someone has to remember. For
    `supportLifetime`, try a definition fix alongside the sourcing — below-chance κ plus
    28% abstention reads as annotators parsing the values differently.
+   **Why multi sits at rank 2 of 4:** those facets have no κ and no Phase A verdict at
+   all, so their need is *presumed* where the κ-failed cells' is *demonstrated* — they do
+   not displace them. But nothing else will ever move them off `Estimated`, so they
+   outrank the bands that already carry a measured number. Rank 0 is untouched, which is
+   why the documented sourcing probe is still exactly the same 20 cells.
 5. **No second AI panel, no `merge_facet_annotations.py`.** Two human columns on one
    sheet, the existing human-review convention: agreement on a non-`unsure` verdict
    settles; disagreement is discussed and reconciled (as the H1≠H2 scope rulings were).
    The AI merge/flag machinery has nothing to merge here.
-6. **`shapes.ttl`: `NoAdminInterface` exclusivity constraint** (A8) — landed *before*
-   writeback so the contradiction cannot reach the ontology. **Deferred with the
-   multi-valued facets** — `load_facet_spec()` returns only `sh:maxCount 1` properties,
-   so the 7 multi-valued facets need a second loader path; neither is needed for the
-   288-cell pass.
+6. **The 6 multi-valued facets are in the sheet — DONE 2026-08-11.** Previously deferred
+   because the answer *shape* differs, not the list: a cell holds a set. Deferring them
+   meant a third of the vocabulary could never leave `Estimated` and blocked both step-8
+   cross-tabs, each of which pairs a sheet facet with a left-out one. Built as:
+   `facet_sample.load_multi_facet_spec()` (a second loader path; `load_facet_spec()` is
+   left single-valued-only so the frozen κ kit and its agreement figures cannot move), a
+   `cardinality` column on the sheet and queue, `|`-separated verdicts, and
+   `facet_store.canonical()` normalising order/case/spacing so **agreement is set
+   equality**. A superset in one column is a disagreement, deliberately — it is a
+   different claim about the category, not a more detailed version of the same one.
+   `unsure` and `none` are whole-cell answers and never mix with values.
+   - Required six new `hiot:annotatorGloss` assertions in `homeiot.ttl`: the kit
+     generator hard-fails without one and refuses to fall back on `rdfs:comment`, which
+     on these six states the expected answer outright (`patchResponsibility`: user-
+     initiated patching is "in practice, frequently no patch") — exactly the anchor a
+     reviewer must not be handed.
+   - **`shapes.ttl`: `NoAdminInterface` exclusivity constraint** (A8) is still outstanding
+     and should land *before* writeback, so the contradiction cannot reach the ontology.
+     Now unblocked: `adminModel` is in the pass, so the constraint has settled values to
+     police.
+   - `facet_analysis.py` needed no change — it already collects each facet into a set and
+     already lists all six in `FACETS`.
 7. **Writeback — a REPORT, applied by hand.** Facet values live in hand-authored
    `homeiot.ttl`, and `ontology_build.py --write` deliberately only ever emits CSVs so
    rdflib cannot reserialize it. `facet_store.py --writeback` therefore emits
@@ -325,8 +350,9 @@ The steps:
    `CLAUDE.md` + memory files.
 8. **The two collinearity cross-tabs** (`firmwareUpdateModel` × `patchResponsibility`,
    `hasWebAdminUI` × `adminModel`) run on the human-settled category values from this
-   pass — they could not run on the product panel (F2 closeout item 5). Both need the
-   multi-valued facets, so they follow step 6.
+   pass — they could not run on the product panel (F2 closeout item 5). Both were blocked
+   on step 6 and are now unblocked: each pairs a single-valued sheet facet with a
+   multi-valued one, which is why deferring the multi half stalled them entirely.
 
 **Tier vocabulary — decided 2026-08-10, `hiot:Annotated` is dropped.** It was defined as
 "multiple independent annotators under a shared rubric, with measured agreement and human
