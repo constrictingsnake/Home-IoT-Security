@@ -1,5 +1,16 @@
 # Category Tagging Kit
 
+> **Column 1 is filled, and it was filled by Claude (Opus 5) on 2026-08-17 — not by a human.**
+> Every citation in `Source 1` was retrieved and read; cells with no source found were left
+> blank honestly. But the tier names (`HumanSourced`, `HumanJudged`, `Documented`) describe the
+> *pair* of columns agreeing, and no cell can settle on one column. **Do not report a tier from
+> column 1 alone, and do not run writeback off it.** If column 2 is also filled by an AI, this
+> phase has become the second AI panel the F5 redesign deleted — rename the tiers first.
+> Read `PROBE_RESULT.md` before using anything in here.
+>
+> Reviewer 2: work **by category, not in sheet order** — vendor documentation answers three or
+> four facets of one category at once. `PROBE_RESULT.md` explains why.
+
 **This is a verification pass, not a blind annotation.** You are shown the current best
 answer for every cell and asked to confirm or correct it **against a source**. That is the
 opposite of `data/facets/annotation-kit/`, which exists to keep annotators away from the

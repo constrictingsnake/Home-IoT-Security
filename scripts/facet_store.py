@@ -36,6 +36,14 @@ THE TIER IS DERIVED FROM WHAT THE REVIEWER DID, NOT SELF-REPORTED.
     source" is recorded rather than papered over, and the share of cells landing in
     HumanJudged becomes a reportable result about the facet instead of an invisible gap.
 
+    ONE THING THE REVIEWER'S OWN ACTIONS CANNOT REPORT is whether the products they cited
+    come from the population the cell asserts something about. facet_source_coverage.py
+    measures that, and a `below-floor` cell is demoted to HumanJudged with its source
+    RETAINED — citing a brand the corpus does not contain is not evidence about the corpus,
+    and "evidence exists but is unrepresentative" says more than a blank source would.
+    Measured on the first pass, the median cell cited vendors holding 3% of its category's
+    confirmed-Yes CVEs, so this is not a hypothetical failure mode.
+
 WHY --writeback ONLY WRITES A REPORT.
     Facet values live in hand-authored homeiot.ttl, and this project never lets a script
     reserialize that file — ontology_build.py --write emits CSVs for exactly that reason
@@ -67,8 +75,10 @@ REPORT = os.path.join(FACETS, "facet_writeback_report.md")
 
 HIOT = Namespace("https://w3id.org/homeiot/ontology#")
 
+COVERAGE = os.path.join(FACETS, "source_coverage.csv")
+
 STORE_COLS = ["slug", "facet", "Final Value", "Final Source", "Evidence Tier", "Sources",
-              "Category-Wide", "Status",
+              "Category-Wide", "Source Coverage", "Status",
               "Verdict 1", "Source 1", "Category-Wide 1", "Notes 1",
               "Verdict 2", "Source 2", "Category-Wide 2", "Notes 2",
               "Phase A Verdict", "Facet Kappa"]
@@ -181,9 +191,28 @@ def _write(path, cols, rows):
         w.writerows(rows)
 
 
-def derive_tier(sources, category_wide):
-    """What the reviewer actually did decides the tier — see the module docstring."""
+def load_coverage():
+    """(slug, facet) -> coverage verdict from facet_source_coverage.py, or {} if never run."""
+    if not os.path.exists(COVERAGE):
+        return {}
+    return {(r["slug"], r["facet"]): r["verdict"] for r in _read(COVERAGE)}
+
+
+def derive_tier(sources, category_wide, coverage=""):
+    """What the reviewer actually did decides the tier — see the module docstring.
+
+    `coverage` adds the one thing the reviewer's own actions cannot report: whether the
+    products they cited are drawn from the population the cell asserts something about.
+    A citation of a brand the corpus does not contain is not evidence about the corpus, so
+    a `below-floor` cell is demoted to HumanJudged even though a source is present — and
+    the source stays recorded, because "evidence exists but is unrepresentative" is a more
+    useful thing to know than a blank. `regulation` and `unmeasurable` never demote:
+    a law does not need a market share, and a category with too few CVEs has no measurable
+    share to fail.
+    """
     if not sources.strip():
+        return "HumanJudged"
+    if coverage == "below-floor" and not category_wide:
         return "HumanJudged"
     return "Documented" if category_wide else "HumanSourced"
 
@@ -203,7 +232,7 @@ def is_category_wide(row):
     return False
 
 
-def settle(row, cardinality, spec):
+def settle(row, cardinality, spec, coverage=None):
     """Return (final_value, tier, sources, category_wide, status) for one sheet cell.
 
     A cell settles only on two independent, agreeing, non-`unsure` verdicts — the same bar
@@ -222,24 +251,25 @@ def settle(row, cardinality, spec):
     s2 = (row.get("Source 2") or "").strip()
 
     if row.get("status") == "excluded-validity":
-        return "", "", "", False, "excluded-validity"
+        return "", "", "", False, "", "excluded-validity"
     if any(malformed(row.get(f"Verdict {n}"), facet, cardinality, spec) for n in ("1", "2")):
-        return "", "", "", False, "outstanding-malformed"
+        return "", "", "", False, "", "outstanding-malformed"
     if not v1 and not v2:
-        return "", "", "", False, "outstanding-no-verdict"
+        return "", "", "", False, "", "outstanding-no-verdict"
     if not v1 or not v2:
-        return "", "", "", False, "outstanding-one-verdict"
+        return "", "", "", False, "", "outstanding-one-verdict"
     if v1.lower() != v2.lower():
-        return "", "", "", False, "outstanding-disagreement"
+        return "", "", "", False, "", "outstanding-disagreement"
     # Two reviewers can agree on a set the ontology forbids. Agreement is not correctness,
     # so this goes back to them rather than into a settled value the SHACL shape (A8) would
     # later have to reject at the ontology boundary.
     if contradictory(v1, facet, cardinality):
-        return "", "", "", False, "outstanding-contradiction"
+        return "", "", "", False, "", "outstanding-contradiction"
 
     sources = " ; ".join(s for s in (s1, s2) if s)
     wide = is_category_wide(row)
-    return v1, derive_tier(sources, wide), sources, wide, "settled"
+    cov = (coverage or {}).get((row["slug"], row["facet"]), "")
+    return v1, derive_tier(sources, wide, cov), sources, wide, cov, "settled"
 
 
 def cmd_finalize():
@@ -248,12 +278,13 @@ def cmd_finalize():
     sheet = _read(SHEET)
     store = _read(STORE, key=("slug", "facet"))
     spec, cardinality = full_spec()
+    coverage = load_coverage()
 
     added = updated = kept = 0
     warnings = []
     for row in sheet:
         key = (row["slug"], row["facet"])
-        value, tier, sources, wide, status = settle(row, cardinality, spec)
+        value, tier, sources, wide, cov, status = settle(row, cardinality, spec, coverage)
         for n in ("1", "2"):
             raw = (row.get(f"Verdict {n}") or "").strip()
             canon = canonical(raw, row["facet"], cardinality, spec)
@@ -283,6 +314,7 @@ def cmd_finalize():
             "Evidence Tier": tier,
             "Sources": sources,
             "Category-Wide": "yes" if wide else "",
+            "Source Coverage": cov,
             "Status": status,
             "Verdict 1": row.get("Verdict 1", ""), "Source 1": row.get("Source 1", ""),
             "Category-Wide 1": row.get("Category-Wide 1", ""),
