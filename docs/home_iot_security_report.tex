@@ -997,6 +997,85 @@ Gemini/Gemma reviewer, whose free-tier model (\texttt{gemma-4-31b-it}) may be sw
 updated over time. We mitigate this by keeping one model fixed across an entire review
 pass and recording which model produced each Gemini judgment.
 
+Reliability of the \emph{ontology facets} is a separate question from reliability of the
+CVE judgments, and we measured it directly rather than assuming it. Three independent
+annotators labelled a shared subsample of sampled devices, yielding 471 facet--item
+judgments over 35--40 devices per facet, and we report Fleiss' $\kappa$ with bootstrap
+confidence intervals (Table~\ref{tab:facet-kappa}). Only 4 of 12 facets clear the
+conventional $\kappa \geq 0.60$ bar. We therefore treat the facet vocabulary as
+\emph{organizing structure} rather than as evidence: facets group categories and generate
+hypotheses, and no finding in this paper rests on a facet as its grouping variable. All
+496 facet assertions in the published ontology are recorded as \texttt{Estimated}
+provenance, and the build gate prints that mix on every run so it cannot fade from view.
+
+Three results here are worth stating explicitly, because each bounds a claim we might
+otherwise have made. First, \texttt{supportLifetime} scores \emph{below chance}
+($\kappa = -0.311$, 12.5\% raw agreement, 28.3\% ``unsure''). That is not a difficult
+facet but a broken instrument: annotators are either reading the value definitions
+differently or answering a question the input cannot support, namely a vendor's support
+policy inferred from a product name. More annotation would not repair it. Second,
+\texttt{hasWebAdminUI} (0.349) and \texttt{computeTier} (0.384) sit at the bottom of the
+table, and they are precisely the two facets an independent attempt to \emph{derive}
+facet values from CVE description text also failed on. Text derivation and human
+annotation share no mechanism, so their agreement about which facets are unassignable is
+considerably stronger evidence than either result alone. This is also why we report no
+contrast grouped by web-admin presence: the derivation attempt found the apparent effect
+size to be governed by the author's choice of keyword list, with 19 of 22 categories
+swinging by more than 25 points between a narrow and a loose word list. Third,
+\texttt{capturesAV}~--- the facet at the center of our device-heterogeneity
+correction~--- fails reliability ($\kappa = 0.386$) as well as validity, so we report it
+only as a distribution and never as a category-level value.
+
+Reliability presupposes validity, and the two can fail independently: three annotators
+can agree perfectly on a value that is false of the devices it is stamped onto. Because
+our facets are asserted per \emph{category} but joined onto \emph{CVE} rows, a category
+holding two device subfamilies has a facet value that is a fiction on part of its rows.
+We measured this separately by sampling devices within each category (272 devices across
+the 10 categories with enough CVE mass to sample) and computing each cell's modal share;
+86 of 120 measured cells (72\%) clear 0.80, and 12 fall below 0.60. Cells failing that
+gate are withheld from analysis \emph{in code} rather than by policy note, and a second
+withholding route catches cells where two reviewers split along a subfamily line in
+categories too small to sample at all. This is why \texttt{capturesAV} appears here as a
+withheld distribution rather than as a headline number.
+
+We do not report a facet-level triage of human reviewer disagreement, which an earlier
+plan for this work proposed. Attributing each two-reviewer split to the facet that drove
+it would require using facets as the grouping variable for a reliability analysis, and
+the $\kappa$ panel above establishes that most of them are not reliable enough to carry
+that weight. Reporting such a triage would invert the evidentiary order, explaining a
+measured disagreement in terms of an unmeasured one.
+
+\begin{table}[t]
+\centering
+\caption{Inter-annotator agreement on the ontology facets. Three annotators, 471
+facet--item judgments over 35--40 devices per facet; Fleiss' $\kappa$ with a 95\%
+bootstrap confidence interval. Bands follow the conventional cutoffs
+($\kappa \geq 0.60$ citable, 0.40--0.60 grouping-only, $< 0.40$ unreliable). Only the
+four CITABLE facets are quoted anywhere as values; the remainder organize the analysis
+but are never reported as findings.}
+\label{tab:facet-kappa}
+\begin{tabular}{lrrl}
+\toprule
+Facet & $\kappa$ & 95\% CI & Band \\
+\midrule
+\texttt{actuationConsequence}  & 0.755 & [0.61, 0.88]   & citable \\
+\texttt{actuatesPhysical}      & 0.737 & [0.56, 0.89]   & citable \\
+\texttt{consumerAvailability}  & 0.720 & [0.53, 0.89]   & citable \\
+\texttt{placement}             & 0.701 & [0.54, 0.85]   & citable \\
+\midrule
+\texttt{dataSensitivity}       & 0.595 & [0.35, 0.78]   & grouping only \\
+\texttt{formFactor}            & 0.489 & [-0.06, 0.80]  & grouping only \\
+\texttt{cloudDependence}       & 0.446 & [0.22, 0.63]   & grouping only \\
+\midrule
+\texttt{firmwareUpdateModel}   & 0.388 & [0.18, 0.56]   & unreliable \\
+\texttt{capturesAV}            & 0.386 & [0.15, 0.59]   & unreliable \\
+\texttt{computeTier}           & 0.384 & [0.28, 0.48]   & unreliable \\
+\texttt{hasWebAdminUI}         & 0.349 & [0.11, 0.57]   & unreliable \\
+\texttt{supportLifetime}       & $-0.311$ & [-0.39, -0.23] & below chance \\
+\bottomrule
+\end{tabular}
+\end{table}
+
 %==============================================================================
 \section{Lessons Learned and Implications}
 \label{sec:lessons}

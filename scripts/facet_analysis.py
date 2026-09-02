@@ -53,6 +53,25 @@ contributes its CVEs to the population total, because those CVEs are real and
 confirmed. What is unsafe is attributing them to a single facet VALUE. Withholding
 the attribution while keeping the count is exactly the distinction a human reading a
 policy note forgets, and the reason this is a join rather than a docstring.
+
+THERE ARE TWO WITHHOLDING SOURCES, AND THEY ARE DIFFERENT INSTRUMENTS. Phase A finds
+heterogeneity by SAMPLING DEVICES, so it can only speak about the 10 categories it had
+the CVE mass to sample. F5's sourced category pass finds it a second way: when the two
+reviewers of a cell split along a subfamily line, each right about a different half,
+that is the NOT-USABLE condition reached through disagreement rather than sampling.
+`garden` is the worked case — Ecovacs robot mowers (42% of the category's CVEs) against
+RainMachine irrigation controllers (32%), where capturesAV is true of the mowers and
+false of the controllers. Phase A never tested `garden` at all (n=19, below its CVE
+floor), so the reviewer split is the ONLY instrument that could have caught it, and
+before this join those 5 cells printed as `[unmeasured]` — the label that means "nobody
+looked", on cells somebody had looked at and ruled unusable.
+
+So facet_store.csv is read as a second withholding source, and the two are kept
+distinguishable in the output rather than merged into one count: a Phase A withholding
+carries a measured modal share and n_devices, a reviewer-split withholding carries
+neither and must never be rendered as though it did. Each guard has its own A/B switch
+(--ignore-phase-a, --ignore-f5-exclusions), the same convention every other guardrail
+in this pipeline follows.
 """
 import argparse
 import collections
@@ -70,6 +89,7 @@ STORE = os.path.join(ROOT, "data", "difference", "judgment_store.csv")
 SNAPSHOT = os.path.join(ROOT, "data", "nvd-snapshot", "nvd_all.csv")
 CWE888_MAP = os.path.join(ROOT, "data", "difference", "cwe888_cve_map.csv")
 DISTRIBUTION = os.path.join(ROOT, "data", "facets", "facet_distribution.csv")
+FACET_STORE = os.path.join(ROOT, "data", "facets", "facet_store.csv")
 
 # Phase A verdict -> how a (category, facet) may be used. The thresholds are
 # facet_sample.py's, restated here only as labels; the numbers live in that script so
@@ -78,6 +98,14 @@ USABLE = "summary-defensible"      # >= 0.80 — a value is a defensible summary
 GROUPING = "grouping-only"         # 0.60-0.80 — group by it, do not report it
 NOT_USABLE = "NOT-USABLE-report-distribution"   # < 0.60 — no single value is true
 UNMEASURED = "UNMEASURED"          # Phase A could not sample this category at all
+
+# F5's verdict for the same condition reached by a different instrument: the two
+# reviewers of a cell split along a subfamily line, so the category holds two device
+# types and no single value is true of both. Recorded in facet_store.csv, never in
+# facet_distribution.csv — that file is facet_sample.py's machine-written output and
+# hand-adding a row with no n_devices and no modal_share would misrepresent a reviewer
+# split as a sampled measurement.
+NOT_USABLE_SPLIT = "NOT-USABLE-reviewer-split"
 
 # Every descriptive sub-facet, in criterion order. hiot:hasConnectivity and the four
 # axiom-bearing properties are deliberately absent: they are membership tests, and
@@ -153,6 +181,29 @@ def load_phase_a(path=DISTRIBUTION):
     return out
 
 
+def load_f5_exclusions(path=FACET_STORE):
+    """{(category, facet): notes} for cells F5 excluded on a reviewer split.
+
+    Only NOT_USABLE_SPLIT is read. The store also carries the 12 Phase A
+    NOT-USABLE cells, but those come from facet_distribution.csv already and that
+    file is the machine-written source of truth for them — reading them twice would
+    let a hand-edited copy silently outvote the measurement it was copied from.
+
+    Absent file is not an error (F5 is a separate pass), but it IS reported, for the
+    same reason load_phase_a reports a missing distribution file.
+    """
+    if not os.path.exists(path):
+        return None
+    out = {}
+    with open(path, newline="", encoding="utf-8") as fh:
+        for r in csv.DictReader(fh):
+            if (r.get("Phase A Verdict", "") or "").strip() != NOT_USABLE_SPLIT:
+                continue
+            note = (r.get("Notes 1", "") or r.get("Notes 2", "") or "").strip()
+            out[(r["slug"], r["facet"])] = note
+    return out
+
+
 def verdict_for(phase_a, cat, facet):
     """Phase A's ruling on one (category, facet), or UNMEASURED."""
     if phase_a is None:
@@ -209,6 +260,11 @@ def main():
                          "heterogeneity verdict — the pre-enforcement behaviour, kept "
                          "for A/B only. A cell Phase A marked NOT-USABLE has a modal "
                          "value that is false for >40%% of the devices it lands on")
+    ap.add_argument("--ignore-f5-exclusions", action="store_true",
+                    help="report cells F5 excluded on a reviewer split as though no "
+                         "one had looked at them. Separate switch from --ignore-phase-a "
+                         "because it is a separate instrument: a split is evidence of "
+                         "heterogeneity in a category Phase A could not sample at all")
     args = ap.parse_args()
 
     facets = load_facets()
@@ -217,6 +273,7 @@ def main():
     wanted = args.facet or FACETS
 
     phase_a = None if args.ignore_phase_a else load_phase_a()
+    f5_excluded = {} if args.ignore_f5_exclusions else load_f5_exclusions()
 
     per_cat = collections.Counter(c for c, _v in pop)
     total = len(pop)
@@ -239,6 +296,18 @@ def main():
         print(f"Phase A: {vc[USABLE]} defensible / {vc[GROUPING]} grouping-only / "
               f"{vc[NOT_USABLE]} NOT-USABLE over {len(phase_a)} measured cells; "
               "unmeasured categories are marked [unmeasured]")
+    if args.ignore_f5_exclusions:
+        print("F5 exclusions: DISABLED (--ignore-f5-exclusions) — cells a reviewer "
+              "split ruled unusable are being reported as if unexamined")
+    elif f5_excluded is None:
+        print(f"F5 exclusions: no {os.path.relpath(FACET_STORE, ROOT)} — reviewer-split "
+              "heterogeneity unchecked; only Phase A's sampled verdicts are enforced")
+        f5_excluded = {}
+    else:
+        cats = sorted({c for c, _f in f5_excluded})
+        print(f"F5 exclusions: {len(f5_excluded)} cells withheld on a reviewer split "
+              f"({', '.join(cats) if cats else 'none'}) — heterogeneity found by "
+              "disagreement, in categories Phase A could not sample")
     print()
 
     for f in wanted:
@@ -247,23 +316,30 @@ def main():
         # CVEs are real, but attributing them to one facet value is what Phase A
         # measured to be false. Unmeasured categories are counted and labelled, never
         # silently promoted to sound (plan decision 12A).
-        withheld, unmeasured = {}, []
+        # Two withholding sources, checked in that order. Phase A wins a tie because
+        # it carries a measured modal share, which is the stronger statement; the F5
+        # split is what catches the categories Phase A could not sample, so it is
+        # checked against the UNMEASURED cells rather than competing for the sampled
+        # ones.
+        withheld, split_withheld, unmeasured = {}, {}, []
         for cat in {c for c, _v in pop}:
             if not facets.get(cat, {}).get(f):
                 continue
             va = verdict_for(phase_a, cat, f)
-            if va is None:
-                continue
-            if va["verdict"] == NOT_USABLE:
+            if va is not None and va["verdict"] == NOT_USABLE:
                 withheld[cat] = va
-            elif va["verdict"] == UNMEASURED:
+                continue
+            if (cat, f) in f5_excluded:
+                split_withheld[cat] = f5_excluded[(cat, f)]
+                continue
+            if va is not None and va["verdict"] == UNMEASURED:
                 unmeasured.append(cat)
 
         cells = collections.defaultdict(collections.Counter)
         withheld_n = collections.Counter()
         for cat, cve in pop:
             for v in facets.get(cat, {}).get(f, ()):
-                if cat in withheld:
+                if cat in withheld or cat in split_withheld:
                     withheld_n[cat] += 1
                     continue
                 cells[v][key(cat)] += 1
@@ -303,6 +379,16 @@ def main():
             print(f"  WITHHELD {cat}: {withheld_n[cat]} CVEs, asserted {asserted} — "
                   f"Phase A modal share {share:.3f} (n={va['n']} devices) is below the "
                   f"0.60 gate, so no single value is reportable for this category")
+        # Deliberately a separate line with no share and no n: a reviewer split has
+        # neither, and printing it in the Phase A format would dress a disagreement up
+        # as a measurement.
+        for cat, note in sorted(split_withheld.items(),
+                                key=lambda kv: -withheld_n[kv[0]]):
+            asserted = "/".join(sorted(facets.get(cat, {}).get(f, ())))
+            print(f"  WITHHELD {cat}: {withheld_n[cat]} CVEs, asserted {asserted} — "
+                  f"F5 reviewer split (no sampled share; the category holds two device "
+                  f"subfamilies and each reviewer was right about one)"
+                  + (f": {note[:110]}" if note else ""))
         if unmeasured:
             un_n = sum(1 for c, _v in pop
                        if c in set(unmeasured) and facets.get(c, {}).get(f))

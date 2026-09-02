@@ -285,6 +285,21 @@ one facet *value*. **Nothing is written into the TTL** — 120 measured numbers 
 hand-authored file is precisely the drift the byte-identical-CSV design prevents, so
 `facet_distribution.csv` stays the machine-readable source.
 
+**There are two withholding sources, and they are different instruments.** Phase A finds
+heterogeneity by *sampling devices*, so it can only speak about the 10 categories with the CVE
+mass to sample. F5's sourced pass finds it a second way: when a cell's two reviewers split along
+a subfamily line, each right about a different half, that is the same NOT-USABLE condition
+reached through disagreement. `garden` is the worked case (Ecovacs robot mowers vs RainMachine
+irrigation controllers) and Phase A **never tested it at all** — n=19, below the sampling floor —
+so the split was the only instrument that could have caught it. `facet_analysis.py` therefore
+reads `facet_store.csv` (verdict `NOT-USABLE-reviewer-split`) as a second source, with its own
+switch `--ignore-f5-exclusions`; the two guards are independent, and the two `WITHHELD` lines
+print differently on purpose — **a reviewer split has no modal share and no `n_devices`, and must
+never be rendered in the Phase A format**, which would dress a disagreement up as a measurement.
+Only the split verdict is read from the store: the 12 Phase A cells it also carries come from
+`facet_distribution.csv`, and reading them twice would let a hand-edited copy outvote the
+measurement it was copied from.
+
 Two caveats that bound all of it: only **10 of 24** categories were samplable (the rest are
 `too-few-cves`, `mega-cpe-bound` or `empty` and stay UNMEASURED, per decision 12A), and **21.6% of
 confirmed-Yes rows carry no device CPE at all** and cannot be product-sampled at any budget. The

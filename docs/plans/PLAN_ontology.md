@@ -15,15 +15,35 @@ framing; the family rollup changes a result.
 
 ---
 
-## STATUS — 2026-08-07, branch `ontology`
+## STATUS — 2026-09-01, branch `main`
 
-**Phases 1–5 complete.** The one open item is `shades` (below); everything else in this plan
-has landed. Facet *provenance* work continues in `PLAN_facet_annotation.md` and its fix plan
-`PLAN_facet_system_fixes.md` — neither can move a scope ruling, since every descriptive
-sub-facet sits outside the membership axiom by construction.
+**COMPLETE. Phases 1–5 have landed and every open item in this plan is closed.** The four
+gates are green as printed below (re-run 2026-09-01). Facet *provenance* work continues in
+`PLAN_facet_annotation.md` and its fix plan `PLAN_facet_system_fixes.md` — neither can move a
+scope ruling, since every descriptive sub-facet sits outside the membership axiom by
+construction.
+
+Closed on 2026-09-01, in the order they appear below:
+
+| Item | Was | Now |
+|---|---|---|
+| **L11** F5 exclusions not enforced | `facet_analysis.py` reported `garden` as `[unmeasured]` — the label meaning "nobody looked" — on 5 cells somebody *had* looked at and ruled unusable | `facet_store.csv` is a second withholding source, with its own A/B switch and a distinct output line that carries no fabricated share |
+| **L10** dead citation | 1 dead URL, believed to be a bad source on 1 cell | Link rot on **2** cells; same document relocated, and re-verified **by quoted content**, which is the check the limitation says a 200 cannot perform |
+| **Phase 4** CVSS vectors | "representable but not exported yet" | Already exported and verified: 1,676 `cvssVector`, 1,595 parsed metrics, 80,072 triples. F6.2 closed |
+| **Carried-forward 2** `PLAN_scope_exclusion.md` | unreachable, on unmerged branches only | tracked on `main` at `6619d86`; all 9 citing files resolve |
+| **Phase 5** optional facet triage | "not done" | **Deliberately not done, and the paper says why** — superseded by the κ panel, which is now written into §`sec:threats-reliability` along with the validity/reliability distinction |
+| `shades` | open scope call | resolved 2026-08-08, `noNvdFootprint` (unchanged, see below) |
+
+**The one standing limitation that is not closeable here:** L1–L9 remain true statements about
+the facet layer, and L2 in particular is *scope working as designed*, not a defect — F5 asked
+10 facets across 16 categories, so the floor rule leaves every property at `Estimated`. Nothing
+in this plan promotes a facet, and the four gates say nothing about whether one is citable.
+Read L1 before citing anything downstream of a green run.
 
 **Four gates, all currently green** (the plan originally described two; `--self-test` and
-`--sources` landed later). `--check` covers the schema side:
+`--sources` landed later). **Read *Known limitations of the facet layer* before citing anything
+downstream of a green run** — the gates test schema, axioms and reconciliation, and say nothing
+about whether a facet value is reliable or evidenced (L1). `--check` covers the schema side:
 
 ```
 SHACL: clean
@@ -111,8 +131,33 @@ units distinct when citing. The alignment gap is **9 exact / 15 coarse** over th
 categories (a 10th "exact", `vrar`, is an excluded class — don't count it), and those 15
 coarse categories carry **91.5%** of confirmed CVEs / 92.3% of attributions.
 
-**Not done (was marked optional in Phase 5):** the facet-level triage of reviewer disagreement
-in §`sec:threats-reliability`.
+**The last Phase 5 item — CLOSED 2026-09-01, but not as planned.** The optional deliverable was
+a facet-level triage of reviewer disagreement in §`sec:threats-reliability` (which facet drove
+each H1≠H2 split). **It is deliberately not done, and the section says so in the paper.** The
+triage would use facets as the grouping variable for a reliability analysis, and the κ panel
+that landed after this plan was written establishes that 8 of 12 facets are not reliable enough
+to carry that weight. Explaining a *measured* disagreement in terms of an *unmeasured* one
+inverts the evidentiary order — the refusal is the more defensible result, so it is stated
+rather than silently skipped.
+
+**What §`sec:threats-reliability` got instead** — the stronger material the plan could not have
+known about, since the section previously discussed only snapshot pinning and the swappable
+Gemini model, and reported no facet reliability at all:
+- The **3-rater κ table** (`tab:facet-kappa`), 471 facet–item judgments over 35–40 devices per
+  facet, with bootstrap CIs and the citable/grouping/unreliable bands. Only 4 of 12 clear 0.60.
+- The three bounding results, each retiring a claim: `supportLifetime` **below chance**
+  (−0.311 — a broken instrument, not a hard facet); `hasWebAdminUI`/`computeTier` failing κ
+  *and* text-derivation, two methods sharing no mechanism; and `capturesAV` failing reliability
+  on top of its validity verdict.
+- The **validity-vs-reliability distinction** stated explicitly (three annotators can agree
+  perfectly on a value that is false of the devices it is stamped onto), with Phase A's 272
+  devices / 86-of-120 cells and *both* withholding routes described as enforced in code.
+- An explicit statement that no finding in the paper uses a facet as its grouping variable, and
+  that all 496 assertions are `Estimated`.
+
+Not compiled — no LaTeX toolchain on this machine. Verified structurally instead: environments
+balanced, brace depth 0, and the new table's rows carry exactly the declared 4 columns (the
+unescaped-`&` bug from Phase 5 was a column-count error of precisely this kind).
 
 ### ~~The one thing still open: `shades`~~ — RESOLVED 2026-08-08, answer is (a)
 
@@ -171,12 +216,11 @@ correct?"*, but **at n=0 that question is moot** — the real question is (a) vs
 
 1. ~~`tab:cwe888-matrix` is stale AND predates the exclusion fix.~~ **Done in Phase 5** — table,
    family table, and all treemaps regenerated at N=1,904.
-2. **`docs/plans/PLAN_scope_exclusion.md` is referenced but unreachable.** Nine files on this
-   branch cite it (`data/categories.csv`, `ontology/homeiot.ttl`, `mark_excluded.py`,
-   `cpe_expansion.py`, `cpe_brand_mining.py`, `finalize_judgments.py`,
-   `extract_human_review.py`, `docs/RESULTS.md`, this plan). It was never deleted — it exists
-   only on the unmerged branches `docs/tvos-scope-exclusion` and `vulnrichment-test`. Decide
-   whether to merge one of those or cherry-pick the file; **still open.**
+2. ~~**`docs/plans/PLAN_scope_exclusion.md` is referenced but unreachable.**~~ **RESOLVED** —
+   the file is tracked on `main` as of `6619d86`, so all nine citing files
+   (`data/categories.csv`, `ontology/homeiot.ttl`, `mark_excluded.py`, `cpe_expansion.py`,
+   `cpe_brand_mining.py`, `finalize_judgments.py`, `extract_human_review.py`,
+   `docs/RESULTS.md`, this plan) now resolve. No merge or cherry-pick was needed.
 3. ~~`CLAUDE.md` still describes the ontology-less layout.~~ **Done in Phase 5** — added
    `ontology/` + `data/ontology/` to the file structure and a design-rationale section.
 
@@ -467,11 +511,16 @@ previously said CVSS is base-score-only because `download_nvd.py` discards `vect
 AV/PR/UI/S "are not representable here without a snapshot change". **That snapshot change has
 happened:** the 2026-08-05 cutover added `vector_string` at 100% coverage (it is what unblocked
 RQ3), and `cvss_vector.parse_vector` already reads it for `cvss_analysis.py` and
-`facet_analysis.py --cross attack_vector`. So the vectors *are* representable; they are simply
-not exported yet. Attaching AV/PR/UI/S to `Vulnerability` instances is cheap, touches the
-instance file only, and cannot perturb the byte-identical-`categories.csv` invariant. Tracked as
-optional work in `PLAN_facet_system_fixes.md` § F6 — do it or defer it explicitly, but do not
-keep citing the parser as the reason.
+`facet_analysis.py --cross attack_vector`.
+
+**DONE — the vectors are exported (verified 2026-09-01).** `build_kg` emits `hkg:cvssScore`,
+`hkg:cvssVersion` and `hkg:cvssVector` on every `Vulnerability`, plus the eight parsed metrics
+in `VECTOR_PREDICATES` (`hkg:attackVector`, `attackComplexity`, `privilegesRequired`,
+`userInteraction`, `scope`, `confidentialityImpact`, `integrityImpact`, `availabilityImpact`).
+Measured in the committed graph: **1,676 CVEs carry `cvssVector`, 1,595 carry the parsed
+metrics** — the 81-CVE gap is CVSS 2.0 records that do not normalise to 3.x, which the exporter
+deliberately skips rather than coercing. The triple count moved 63,918 → **80,072** accordingly,
+so any doc still quoting 63,918 predates this. F6.2 is closed; nothing here is deferred.
 
 ---
 
@@ -550,6 +599,239 @@ file. Do not proceed to Phase 2 until `--check` is green.
 
 ---
 
+## Known limitations of the facet layer (as of 2026-09-01)
+
+Written down because most of them are invisible from a green gate run, and two of them were
+live defects that a gate actively *concealed*. Scope-side limitations are not repeated here —
+the criteria, the reasoner and `--self-test` are unaffected by everything below, since no
+descriptive sub-facet appears in the membership axiom.
+
+### L1. Four green gates say nothing about whether a facet is citable
+
+`--check`, `--self-test`, `--sources` and `--verify-kg` verify schema, axioms, citation
+registration and instance reconciliation. **None of them tests whether a facet value is true,
+reliable, or evidenced.** That is the job of three separate measurements — κ
+(`facet_agreement.csv`), Phase A modal share (`facet_distribution.csv`), and the F5 evidence
+tier (`facet_store.csv`) — and all three are reported outside the gates. A run that prints
+`gate: PASS` five times is consistent with every facet in the file being unevidenced, and
+currently is: `facet provenance: 18 estimated (496 of 496 assertions unevidenced)`.
+
+### L2. F5 promotes no facet above `Estimated`, by construction
+
+The per-property tier uses a **floor rule** — weakest cell wins. F5 deliberately asked only
+10 facets across 16 categories, so of 432 cells:
+
+| bucket | cells |
+|---|---|
+| settled | 185 |
+| 7 facets never asked (4 CITABLE + 3 grouping-only keep their prior 5-category coverage) | 130 |
+| asked facet, one of the 8 skipped categories | 80 |
+| `computeTier`, dropped 2026-09-01 | 19 |
+| `excluded-validity` — 12 Phase A NOT-USABLE + 5 `garden` reviewer-split (L11) | 17 |
+| **genuine gap** — `doorlock/patchResponsibility`, answered `unsure` (n=36) | **1** |
+
+The 20 queue disagreements were adjudicated 2026-09-01 and the queue is now empty; every
+superseded answer is preserved verbatim in the losing column's `Notes`, together with the rule
+that decided it. Four rules settled all 20 — the multi-set rule (list what is *common*, not
+everything possible), the corpus rule (a citation on a vendor holding 0% of the category cannot
+overturn a value about the population the facet is joined onto), sourced-beats-unsourced where
+the source materially covers the corpus, and the `garden` exclusion below. **When a verdict lost,
+its column's `Source` was cleared**, since a citation supporting a different value must not ride
+along as evidence for the settled one.
+
+Every property therefore contains at least one unsettled cell and reports `Estimated`. This is
+scope working as designed, **not** a failure — but it means the deliverable of F5 is the
+per-cell tier mix and CVE-weighted sourced share, never a promoted property. Property-level
+promotion would need a "weakest cell *among asked categories*" variant of the floor rule, which
+is a design change and not a rerun.
+
+### L3. `Documented` is zero — no cell has a class-binding source
+
+Settled tier mix: **94 HumanSourced, 91 HumanJudged, 0 Documented.** Not one cell in the whole
+pass rests on a source binding the product class; every citation is per-product, generalised by
+a reviewer. Report that as a finding rather than letting it read as a gap — it is a real
+statement about how little of consumer IoT is covered by class-binding instruments.
+
+### L4. A regulation binds a market; a standard binds a class — conflating them inflated the tier
+
+The original coverage exemption listed UK PSTI and grid codes alongside ETSI EN 303 645 and
+Matter, reasoning that "a law does not need a market share". That is true of a **standard**
+(conformance is the only precondition, so it reaches every vendor in the corpus) and false of a
+**regulation** (UK PSTI reaches only vendors selling into the UK).
+
+Measured when caught: all 11 `supportLifetime` cells returned `DeclaredLifetime` sourced on
+PSTI, 10 claiming category-wide, and in **7 of those the cited vendor held 0% of the category's
+confirmed-Yes CVEs** — `babymonitor` sourced on Nanit while `dlink` carries 44%, `doorbell` on
+Ring while `akuvox` carries 36%, `thermostat` on Google/Bosch while `ecobee` carries 22%. The
+white-label brands holding the CVE mass are precisely the ones publishing no support
+declaration, so the exemption converted *absence of evidence* into the highest tier. A facet
+returning one identical value on all 11 categories also discriminates nothing.
+
+Fixed by splitting `CLASS_BINDING` (exempt) from `JURISDICTION_BOUND` (measured, labelled
+`jurisdiction-bound`, share still decides). `supportLifetime` went from 15 cells silently exempt
+to 12 below-floor and 3 passing on merits. **Do not restore the old exemption**; the standing
+caveat is that jurisdiction-bound evidence is only ever evidence about the part of the corpus
+sold into that jurisdiction.
+
+### L5. Two promotion checks could only fail in the promoting direction
+
+Both found 2026-09-01, both in `is_category_wide()`:
+
+1. **OR across columns.** Clearing `Category-Wide 2` left `Category-Wide 1` firing, so
+   `supportLifetime` still reported 100% sourced after the first correction. 24 stale claims
+   cleared (22 `supportLifetime` + `ev-charging`/`home-power` `consumerAvailability`).
+2. **The Notes substring fallback.** Any cell whose notes contained the phrase `category-wide`
+   was promoted, and a substring test cannot tell a claim from its denial. All three cells
+   firing it meant the opposite — including `ev-charging/supportLifetime`, whose note reads
+   *"Deliberately NOT marked category-wide"* because EV chargepoints are an **excepted product
+   under PSTI Schedule 3**. Column 1 got that right and the fallback was silently overriding it.
+   Zero cells depended on it for a genuine promotion; removed.
+
+The generalisable rule, and the reason both survived so long: **a check whose failure mode is
+one-directional will always fail toward the flattering answer.** Any future promotion test
+needs a negative case, the same way `--self-test` gives each criterion one.
+
+### L6. The CVE-weighted sourced share is dominance-contaminated
+
+Headline: **68.8% CVE-weighted sourced** across the 10 asked facets. Per *cell* it is 94/185 =
+**50.8%**. The gap is `cameras` (885 CVEs, **50.9%** of the confirmed population) sitting in the
+sourced half of several facets. `supportLifetime` is the clearest case: 57.7% CVE-weighted, but
+**13 of its 16 settled cells are `HumanJudged`** — `hub` (247), `alarms`, `streaming` and
+`ev-charging` are all unsourced, and the number is carried by `cameras` almost alone. Always
+report both figures; the CVE-weighted one alone overstates how much is actually sourced. This is
+the same dominance hazard `facet_analysis.py` flags for value cells, reappearing in the
+provenance layer where nothing currently checks for it.
+
+### L7. `computeTier` is dropped for the tail and settled for the head
+
+Dropped from the asked set after failing three routes — κ 0.38, `facet_derive.py` (evidence
+sufficed for 1 of 22 categories), and sourcing (`unsure` on 8 of 11). **But five cells were
+already settled** in the earlier human-verified block, four of them `HumanSourced`: `cameras`
+(885), `hub` (247), `alarms` (89), `streaming` (76), `ev-charging` (71) — **1,368 CVEs, 78.7%
+of the population.**
+
+So the honest statement is that sourcing failed **on the tail, not the head**: Codex's `unsure`
+answers were all small categories the human block never reached.
+
+**RESOLVED 2026-09-01 — the 5 cells are kept, as a restricted claim.** `computeTier` may be
+reported over `cameras`, `hub`, `alarms`, `streaming` and `ev-charging` **only**, and every use
+must name that restriction. It must **never** be reported as a whole-vocabulary property or
+compared across the other 19 categories: the κ and derivation failures are global, and the tail
+is not merely unsourced but demonstrably unsourceable — vendor documentation describes what a
+device does and essentially never states its SoC class.
+
+### L8. `source_vendors.csv` is not a complete record of what was cited
+
+It is hand-maintained, and the 2026-09-01 rebuild only adds vendor tokens **already present in
+that category's confirmed-Yes corpus** — anything else contributes 0% to a coverage share by
+construction, so omitting it cannot change a verdict. Correct for coverage, but it means the
+file must not be read as "the vendors this cell cites". 75 tokens were added across 60 cells,
+46 of which had no coverage row at all beforehand (`representative` 50 → 104, `below-floor`
+47 → 37). Any future citation edit needs a matching update here or coverage silently scores the
+*previous* citation — which is exactly how the 19 re-sourced cells stayed below-floor after
+being fixed.
+
+### L9. Reviewer independence is weaker on cells 90–202 than on 1–89
+
+Recorded in `scripts/make_codex_column2.py` and repeated here because it bounds every tier the
+pass produces:
+
+```
+cells   1- 89 : Claude draft (col 1) + human verification (col 2)
+cells  90-202 : Claude draft (col 1) + Codex draft, human-adjudicated (col 2)
+```
+
+On the second block the human **adjudicates two AI drafts** rather than acting as an independent
+second reviewer. The sheet is non-blind by design — it is a verification pass built from
+pre-fills, the opposite of `data/facets/annotation-kit/` — so the human was always the settling
+authority. But `HumanSourced` on a second-block cell is a weaker claim than the same label on a
+first-block cell, and the report must say so rather than presenting one tier column.
+
+### L10. Citation checking proves reachability, not support
+
+61 URLs across the Codex column were checked: 53 resolved, 7 were bot-blocked (Cloudflare/
+Zendesk, pages real), **1 was dead** — `akuvox.com/ProductsDownloadFile.aspx?did=253`, cited by
+**two** cells (`doorbell/capturesAV` and `doorbell/alsoDeployedIn`), not one.
+
+**RESOLVED 2026-09-01, and the failure mode is worth recording: the citation was never wrong,
+only its URL.** Akuvox dropped the `.aspx` route; the same document is live at
+`www.akuvox.com/productsDownloadFile?did=253` (the `www.` matters — the bare host 500s). This is
+link rot, not a bad source, and the two are easy to confuse when all you have is a status code.
+
+The document was then re-verified **by content, not by status code**, which is exactly what this
+limitation says a 200 cannot do. The R29CT datasheet reads `Main Camera: 3M pixels`,
+`Auxiliary Camera: 1M pixels`, `Microphone: -32dB`, `Camera permanently operational` and
+`Enables audio and visual monitoring of doors/gates` — which supports `capturesAV=true` — and
+markets the device for `residential or commercial premises`, which supports `alsoDeployedIn`.
+Both quotes are now recorded in the cells' `Notes 2`, so a future checker can test support
+rather than reachability. Coverage is unaffected (same vendor token, so `source_vendors.csv`
+needs no edit per L8) and both cells keep `HumanSourced` / `representative`.
+
+A 200 still does not establish that the page says what the facet claims; nothing in the
+pipeline tests that, and it remains a manual reviewer duty. This
+is the same limit `--sources` has on the literature side (7 of 10 manifest entries still carry
+`verified=` UNCONFIRMED bibliographic detail) and that the alignment manifest has on the
+standards side — **a manifest proves what you used exists, never that you used it correctly,
+and never that you looked for the right thing.** That is precisely how the retracted 62%/91.5%
+SAREF gap survived.
+
+### L11. An F5 validity exclusion does NOT propagate to `facet_analysis.py`
+
+`garden`'s 5 cells were excluded 2026-09-01 because the two reviewers split along a subfamily
+line — Ecovacs robot mowers (42% of the category's CVEs) against RainMachine irrigation
+controllers (32%) — with each right about a different half. `capturesAV` is true of the mowers
+and false of the controllers; `hasWebAdminUI` is false for Ecovacs and documented for "all
+RainMachine models". That is the NOT-USABLE condition exactly, reached by a different route than
+Phase A's device sampling: **Phase A never tested `garden` at all** (n=19, below its CVE floor),
+so a reviewer disagreement is the only instrument that could have found it.
+
+**The exclusion binds F5 and nothing else.** `facet_analysis.py` withholds a cell only when
+`facet_distribution.csv` carries the literal verdict `NOT-USABLE-report-distribution` for it,
+and that file is `facet_sample.py`'s machine-written output. `garden` has no row there, so
+**`facet_analysis.py` still reports `garden` and labels it `[unmeasured]`, not withheld.** The
+sheet records it as `NOT-USABLE-reviewer-split` to keep the two kinds of evidence distinguishable.
+
+Hand-adding `garden` rows to `facet_distribution.csv` would be the wrong fix twice over: it is
+the hand-copying of measured numbers into a machine-written file that the byte-identical-CSV
+design exists to prevent, and it would misrepresent a reviewer split as a sampled modal share
+(there is no `n_devices` and no `modal_share` to put in the row).
+
+**RESOLVED 2026-09-01 — `facet_analysis.py` now reads `facet_store.csv` as a second withholding
+source.** The manual workaround below is retired; `garden`'s 5 cells are withheld by the script.
+
+Three properties of the fix are deliberate:
+1. **Only `NOT-USABLE-reviewer-split` is read from the store.** The store also carries the 12
+   Phase A cells, but `facet_distribution.csv` is the machine-written source of truth for those
+   — reading them twice would let a hand-edited copy silently outvote the measurement it was
+   copied from.
+2. **The two withholdings print differently and are never merged into one count.** A Phase A
+   line carries a modal share and `n_devices`; a reviewer-split line carries neither and says
+   so, because rendering a disagreement in the Phase A format would dress it up as a
+   measurement.
+3. **Each guard has its own A/B switch** (`--ignore-phase-a`, `--ignore-f5-exclusions`), per the
+   `cpe_expansion.py --no-part-filter` convention. They are independent: disabling Phase A still
+   enforces the split exclusions, and vice versa. With both off, `capturesAV=true` reproduces the
+   published unguarded 1,124 rows / 79% cameras exactly, which is the regression check that
+   nothing else moved.
+
+Measured effect: on `capturesAV`, `garden` moves out of `[unmeasured]` (11 categories instead of
+12) into an explicit `WITHHELD garden: 19 CVEs` line, and the `false` cell drops 525 → 506. On
+the 13 facets `garden` was *not* excluded for, it correctly stays `[unmeasured]` — the exclusion
+is per-cell, not per-category.
+
+### Carried over, already documented elsewhere — do not re-derive
+
+- **All 496 facet assertions are `Estimated`**, hand-assigned with no source (`CLAUDE.md`).
+- **Phase A sampled only 10 of 24 categories**; the rest stay UNMEASURED, and **21.6% of
+  confirmed-Yes rows carry no device CPE** so cannot be product-sampled at any budget
+  (`PLAN_facet_annotation.md`).
+- **12 cells are Phase A NOT-USABLE** — a category holding two device types cannot have one
+  true value, and a perfect source does not repair that (`facet_analysis.py` withholds them).
+- **A per-category facet can never resolve below 24 buckets**, so the majority cell of nearly
+  every facet inherits `cameras`' mass (`CLAUDE.md`, dominance rule).
+
+---
+
 ## Risks
 
 | Risk | Mitigation |
@@ -560,15 +842,26 @@ file. Do not proceed to Phase 2 until `--check` is green.
 | Family assignment looks arbitrary | `rdfs:comment` rationale per family, tied to the existing granularity rule; report per-category numbers alongside families, never instead of |
 | Over-claimed SAREF equivalence | `rdfs:subClassOf` only; alignment in a separate droppable file |
 | Scope creep into classification | Enforced by the *Circularity boundary* section above |
+| A promotion check fails one-directionally and inflates a tier | Every promotion test needs a negative case, as `--self-test` gives each criterion. Two such checks shipped and both failed toward the flattering answer — see L5 |
+| A green gate run is read as "the facets are citable" | L1 + the STATUS pointer; `--check` prints the provenance mix on every run so it cannot fade from view |
 | Forces 3 open scope calls closed (`ev-charging`/`home-power`, `shades`, smart-display split) | Surface them in Phase 1 as explicit `hiot:provisional` markers; decide before Phase 3 |
 
 ## Acceptance criteria
 
-1. `python3 scripts/ontology_build.py --check` exits 0 with `categories.csv` byte-identical.
-2. SHACL validation clean: all 27 classes carry 5 criterion facets, a parent, and a sortOrder.
-3. Reasoner reproduces all 27 in/out rulings, or every discrepancy is documented and resolved.
-4. `cwe888_analysis.py --group family` family totals sum to the per-category total (1,904 as of
-   2026-08-04, exclusion applied), and `--include-excluded` reproduces the pre-fix population.
-5. No change to `judgment_store.csv`, `final_resolved.csv`, `term_precision.csv`, or
-   `recall_estimate.csv` — verified by diff before and after.
-```
+**All met — re-verified 2026-09-01.** Counts 2 and 3 were written as 27 before the five
+boundary cases were added; the real figure is **31** (24 analysis + 7 excluded), and the
+self-test below is the criterion that actually has teeth.
+
+1. ✅ `python3 scripts/ontology_build.py --check` exits 0 with `categories.csv` **and**
+   `families.csv` byte-identical.
+2. ✅ SHACL clean: all ~~27~~ **31** classes carry 5 criterion facets, a parent, and a sortOrder.
+3. ✅ Reasoner reproduces all ~~27~~ **31** in/out rulings — and, more importantly,
+   `--self-test` shows all 5 criteria load-bearing, each isolated by a boundary case that fails
+   exactly one. **Report the self-test, not the ruling count** (most rulings are true by
+   construction).
+4. ✅ `cwe888_analysis.py --group family` family totals sum to the per-category total (1,904,
+   exclusion applied), and `--include-excluded` reproduces the pre-fix population.
+5. ✅ No change to `judgment_store.csv`, `final_resolved.csv`, `term_precision.csv`, or
+   `recall_estimate.csv` — verified by `git status` after the 2026-09-01 work: all four are
+   untouched, as are `categories.csv` and `families.csv`. The facet work of this session
+   changed only `data/facets/*` and `scripts/facet_analysis.py`, which no CVE count reads.
