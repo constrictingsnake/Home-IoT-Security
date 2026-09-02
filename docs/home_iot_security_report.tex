@@ -47,90 +47,130 @@
 \section{Introduction}
 \label{sec:intro}
 
+Our homes are increasingly filled with internet-connected devices that monitor
+our environments and support everyday activities. Cameras, thermostats, door
+locks, voice assistants, and the hubs that coordinate them have become part of
+the consumer Internet of Things (IoT). As a result, there are common targets of
+cyberattacks. For example, botnets such as Mirai assembled armies of compromised
+cameras and routers~\cite{antonakakis2017}. Surveys of smart-home deployments
+also document weak authentication, outdated firmware, and porous trust
+boundaries as systemic problems~\cite{alrawi2019,hammi2022,zheng2022}. The
+increasing amount of devices that are connected to the home leads to more
+publicly disclosed vulnerabilities that can be exploited by malicious attackers,
+causing a higher risk.
+
+To better understand the risks associated with home IoT devices, this paper
+presents an empirical study on security vulnerabilities in these devices.
+Specifically, we study vulnerabilities that affect 24 categories of home IoT
+devices that are connected to the Internet and reported in NIST's National
+Vulnerability Database (NVD)~\cite{ref-nvd}. We collect the related CVEs and
+from them extract information about their individual weaknesses (CWEs),
+severity (CVSS), and category assignment.
+Then, following the approach introduced in~\cite{ref-mcsoftware}, we group the
+individual CWEs into 23 vulnerability classes of the CWE-888 Software Fault
+Patterns view~\cite{ref-cwe888} with the goal of categorizing the security
+vulnerabilities. Furthermore, we analyze the associated CVSS scores, which
+integrate the exploitability and impact aspects of each security vulnerability.
+
+This paper addresses the following research questions from the perspective of
+developers and manufacturers of home IoT devices:
+
+RQ1: What are the dominant vulnerability classes in different categories of
+home IoT devices?
+
+RQ2: What are the CVSS severity scores of different categories of home IoT
+devices?
+
+The main contributions of this paper are:
+\begin{itemize}
+\item We extract information on security vulnerabilities associated with home
+IoT devices from NVD and conduct empirical analysis that allowed us to
+identify:
+\begin{itemize}
+\item The dominant vulnerability classes for 24 categories of home IoT devices
+(reported at leaf and folding-category levels in
+Tables~\ref{tab:cwe888-matrix} and~\ref{tab:cwe888-family}).
+\item Typical CVSS severity scores for each category of home IoT devices, and
+statistically significant differences among them
+(Table~\ref{tab:cvss-summary}).
+\end{itemize}
+\item We compile the lessons learned and implications of our findings, and
+provide insights that can be used both by researchers and practitioners to
+improve the security of home IoT devices.
+\end{itemize}
+
+A few previous empirical studies mined NVD for IoT populations with keywords
+or LLMs~\cite{chen2024,rezaei2026}, but none applied a written home-scope
+definition across the full retail smart-home spectrum.
+Experimental home IoT work tends to focus on one platform or functional area at
+a time~\cite{fernandes2016,kumar2019,loi2017}. In this study, we analyze 24
+frozen device categories under five explicit scope criteria, run two independent
+NVD search methods reconciled per category, and subject every text-search
+candidate to blind multi-reviewer false-positive classification before analysis.
+Like~\cite{ref-mcsoftware}, we use CWE-888 to group vulnerabilities into
+23 high-level classes and identify several dominant classes for each category.
+We also analyze and compare CVSS scores across categories, testing whether the
+differences are statistically significant. Finally, based on a comprehensive
+synthesis of our findings, we compile lessons learned that identify overall
+patterns of security vulnerabilities in home IoT devices and provide actionable
+recommendations for researchers and practitioners.
+
+The paper is organized as follows. Section~\ref{sec:related} presents the
+related works. The methodology used to conduct this study is explained in
+Section~\ref{sec:method}. Section~\ref{sec:rq1} presents the results related to
+vulnerability classes, while Section~\ref{sec:rq2} discusses the results of the
+analysis of CVSS scores. The lessons learned and the practical implications of
+our findings are summarized in Section~\ref{sec:lessons}. The threats to
+validity are discussed in Section~\ref{sec:threats} and the paper is concluded
+in Section~\ref{sec:conclusion}.
 
 %==============================================================================
 \section{Related Work}
 \label{sec:related}
 
-\subsection{Defining and scoping home IoT}
-\label{sec:related-def}
-Our operational definition of a home IoT device follows the residential-deployment
-framing of Balta-Ozkan et al.~\cite{balta2013} and the home-based IoT security
-evaluation of Alrawi et al.~\cite{alrawi2019}, whose four-component (device, mobile app,
-cloud, communication) deployment model and hub-in/router-out scoping our criteria
-inherit. Prior taxonomies classify home IoT by \emph{function} rather than keyword
-alone: Bugeja et al.~\cite{bugeja2018} build an empirical taxonomy of 1{,}193 commercial
-smart-home products organized by functional area (security, climate, appliances,
-entertainment); Kumar et al.~\cite{kumar2019} analyze devices on real home networks and
-define device classes that explicitly separate computers, phones, and routers from home
-IoT; and FakhrHosseini et al.~\cite{fakhrhosseini2025} survey expert perspectives on
-home-automation taxonomy. On the standards side, NIST's consumer-IoT reviews and
-baselines~\cite{nistir8267,nistir8259a,nistir8425} enumerate the same retail categories
-(cameras, doorbells, plugs, thermostats, televisions) and define an IoT device as a
-system with at least one transducer and one network interface, supporting our
-connectivity criterion. Hammi et al.~\cite{hammi2022} frame smart-home vulnerabilities
-around physical risks to residents---burglary, occupancy inference, and device
-hijacking---matching our consumer-ownership criterion.
+Prior empirical studies of software vulnerabilities were focused on different
+domains, such as Android apps, operating systems~\cite{ref-mcsoftware},
+embedded devices used in power grids, machine learning libraries, and Python
+packages. Related non-empirical works focused on the home IoT domain include
+surveys of smart-home vulnerabilities and physical risks to
+residents~\cite{hammi2022,zheng2022,georgiadou2024}, taxonomies of commercial
+smart-home products~\cite{bugeja2018,kumar2019,fakhrhosseini2025}, and NIST
+consumer-IoT baselines~\cite{nistir8267,nistir8259a,nistir8425}. Foundational
+scope framing draws on residential-deployment studies~\cite{balta2013} and
+home-based IoT security evaluations~\cite{alrawi2019}. A recurring boundary in
+this literature is that enterprise, industrial, and commercial devices are out
+of scope even when they share a brand with consumer
+products~\cite{xenofontos2021,wurm2016,alladi2020,ugwuanyi2021}; on the
+networking axis, pure-transport gear such as routers is typically excluded from
+IoT definitions~\cite{stanford_iot}, matching our hub-in/router-out scoping.
 
-\subsection{Consumer versus commercial and industrial scope}
-\label{sec:related-scope}
-A recurring boundary in our review is that enterprise, industrial, and commercial
-devices are out of scope even when they share a brand or keyword with consumer products.
-This distinction is well established: Xenofontos et al.~\cite{xenofontos2021} present an
-attack taxonomy separating consumer, commercial, and industrial IoT with distinct threat
-models; Wurm et al.~\cite{wurm2016} compare consumer home-automation devices against
-industrial smart-meter and operational-technology equipment; and Alladi et
-al.~\cite{alladi2020} and Ugwuanyi and Irvine~\cite{ugwuanyi2021} reinforce a
-consumer-grade scope through case studies and consumer/industrial threat-landscape
-analysis~\cite{taxonomyci2023}. On the networking axis, Stanford's minimum-security
-standard~\cite{stanford_iot} explicitly excludes routers, switches, and access points
-from its IoT definition, supporting our decision to treat pure-transport gear as
-threat-model context rather than as study subjects.
+Individual categories in our set appear as distinct device classes in prior
+work. Cameras, doorbells, and baby monitors are treated separately from
+enterprise surveillance~\cite{sanders2017,nistir8267,apthorpe2019,albrecht2015,jacobsson2018}.
+Locks, sensors, and alarms are core subjects in smart-home platform
+analyses~\cite{fernandes2016,bugeja2018}. Plugs, lighting, and appliances have
+been studied experimentally~\cite{notra2014,loi2017,davis2020,alsubaei2018}.
+Hubs, voice assistants, and streaming surfaces are analyzed as home-control
+device classes~\cite{alrawi2019,zhou2019,vetrivel2023,fernandes2016}. Energy and
+outdoor categories draw on residential EV-charging
+security~\cite{brooks2022,sandia2020} and systematic reviews of smart-home
+harms~\cite{fernandez2023}. Companion-app vulnerabilities are covered
+separately~\cite{sivaraman2019,neupane2022,iotflow2023}. Broader threat context
+includes the Mirai botnet~\cite{antonakakis2017} and the OWASP IoT
+project~\cite{owasp}.
 
-\subsection{Device-category studies}
-\label{sec:related-cat}
-Individual categories in our set are recognized as distinct device classes in prior
-work. For cameras, doorbells, and baby monitors, Sanders et al.~\cite{sanders2017} and
-NIST~\cite{nistir8267} treat video doorbells as separate from standalone cameras, while
-Apthorpe et al.~\cite{apthorpe2019} and Albrecht and McIntyre~\cite{albrecht2015} analyze
-dedicated baby monitors separately from enterprise surveillance, and
-Jacobsson~\cite{jacobsson2018} performs a global assessment of internet-exposed smart
-cameras. Locks, sensors, and alarms appear as core subjects in the smart-home platform
-analyses of Fernandes et al.~\cite{fernandes2016} and the security/safety taxonomies of
-Bugeja et al.~\cite{bugeja2018} and Hammi et al.~\cite{hammi2022}. Climate devices
-(thermostats, HVAC) are covered by Kumar et al.~\cite{kumar2019}, and bedside sleep
-monitors---distinct from wrist wearables---by Apthorpe et
-al.~\cite{apthorpe2017,apthorpe2019}. Plugs, lighting, and appliances are dissected
-experimentally by Notra et al.~\cite{notra2014}, Loi et al.~\cite{loi2017}, Davis et
-al.~\cite{davis2020}, and Alsubaei et al.~\cite{alsubaei2018}. Hubs, voice assistants,
-and streaming surfaces are treated as home-control device classes by Alrawi et
-al.~\cite{alrawi2019}, Zhou et al.~\cite{zhou2019}, Vetrivel et al.~\cite{vetrivel2023},
-the voice-control taxonomy~\cite{voicecontrol2022}, and Fernandes et
-al.~\cite{fernandes2016}. Energy, pet, and outdoor categories draw on residential
-EV-charging security~\cite{brooks2022,sandia2020} and systematic reviews of smart-home
-device types~\cite{fernandez2023}. Because companion apps are in scope for our review, we
-also draw on the mobile-companion-app vulnerability
-literature~\cite{sivaraman2019,neupane2022,iotflow2023}. Broader threat-landscape context
-is provided by the Mirai botnet analysis~\cite{antonakakis2017}, smart-home security
-surveys~\cite{zheng2022,georgiadou2024}, and the OWASP IoT project~\cite{owasp}.
-
-\subsection{NVD-based and AI-assisted vulnerability characterization}
-\label{sec:related-method}
-Methodologically, our pipeline is closest to recent work that mines NVD for IoT
-vulnerabilities and confronts the same false-positive problem. Rezaei et
-al.~\cite{rezaei2026} (LLIoT) combine a written IoT definition, keyword filtering, a
-triple-expert 300-CVE ground truth, and an LLM labeler over the full 2013--2024 CVE set,
-reporting LLM agreement around 95\%---directly motivating our blind multi-model review,
-though we differ by using three blind AI reviewers plus human adjudication rather than a
-single production LLM. Chen et al.~\cite{chen2024} filter ${\sim}198$k CVEs to IoT via
-keyword search plus manual verification and analyze high-risk vulnerabilities, and Singla
-et al.~\cite{singla2023} label CPE \texttt{vendor:product} pairs into
-compute/IoT/networking bins with keyword-plus-human labeling---closest to our CPE-centric
-expansion step. FirmRec~\cite{firmrec2024} likewise seeds from NVD using mixed vendor and
-keyword terms, but for firmware rather than a home-scoped dual method. We differ from all
-of these in restricting scope to home IoT across 24 categories, running two independent
-discovery methods (vendor and keyword) reconciled per category, and following the
-CWE-888 profiling approach of prior empirical vulnerability studies~\cite{ref-mcsoftware}.
+Only a few empirical studies mine NVD for IoT vulnerabilities at scale, and
+none combine a written home-scope definition with category-stratified CWE-888
+profiling across the retail smart-home spectrum. Rezaei et al.~\cite{rezaei2026}
+(LLIoT) filter CVEs with keywords and an LLM labeler; Chen et al.~\cite{chen2024}
+filter ${\sim}198$k CVEs to IoT via keyword search plus manual verification;
+Singla et al.~\cite{singla2023} label CPE pairs with keyword-plus-human
+labeling; and FirmRec~\cite{firmrec2024} seeds from NVD for firmware rather than
+a home-scoped dual method. We differ in restricting scope to home IoT across 24
+categories, running two independent discovery methods reconciled per category,
+reviewing every text-search candidate for false positives before analysis, and
+following the CWE-888 profiling approach of prior empirical vulnerability
+studies~\cite{ref-mcsoftware}.
 
 %==============================================================================
 \section{Our Methodology}
@@ -158,7 +198,8 @@ Using an experimental approach (e.g., penetration testing) or a survey (e.g.,
 collecting expert opinions) are complementary empirical approaches that are out
 of the scope of this paper.
 
-\subsection{Scope: what counts as a home IoT device}
+\subsection{CVE collection from NVD}
+\label{sec:method-collect}
 \label{sec:method-scope}
 
 We define a \emph{home IoT device} as an internet-connected sensor, appliance,
@@ -237,9 +278,6 @@ reviewer's scope note --- so the formal model and the artifact the pipeline actu
 consumes cannot drift apart. It holds classes and scope notes only, never judgments: no
 CVE is classified by the ontology, and no reviewer sees information the prose scope note
 did not already contain.
-
-\subsection{CVE collection from NVD}
-\label{sec:method-collect}
 
 CVEs are publicly known security vulnerabilities reported in NVD~\cite{ref-nvd}
 and attributed to specific software applications or libraries. We ran all searches
@@ -335,65 +373,8 @@ the same offline engine against the same fixed NVD snapshot, matching descriptio
 CPE under the same whole-word rule, so that the only difference left between the two
 searches is the search terms themselves.
 
-\subsection{CWE and CVSS data extraction}
-\label{sec:method-extract}
-
-Each CVE is typically attributed to one or more CWEs. Some CVEs, however, either
-lacked enough information to be associated with a CWE in NVD or fell outside NVD's
-CWE mapping; NVD lists these as \texttt{NVD-CWE-noinfo} and \texttt{NVD-CWE-Other},
-respectively. Of the 3{,}413 confirmed home IoT CVEs in the analysis set, 633 carried
-no usable CWE mapping (an absent, \texttt{NVD-CWE-noinfo}, or \texttt{NVD-CWE-Other}
-value; our merged year-feed snapshot does not preserve the distinction among these
-three cases, collapsing all of them to an empty CWE field, so we report them together
-rather than splitting the \texttt{noinfo} and \texttt{Other} counts). We kept these in the CVE-level analysis
-(Sections~\ref{sec:rq1}--\ref{sec:rq2}), but they do not contribute to the CWE analysis.
-The remaining 2{,}780 CVEs carried CWE attributions spanning 289 unique CWE identifiers
-before mapping onto the CWE-888 view.
-
-For each CVE we also extracted the CVSS information. CVSS scores range from 0 to
-10 and are computed from the vulnerability's exploitability and impact
-metrics~\cite{ref-cvss}. Severity follows from the score: a score of 0 is the None
-severity level, and the Low, Medium, High, and Critical levels correspond to score
-ranges of 0.1--3.9, 4.0--6.9, 7.0--8.9, and 9.0--10, respectively. The corpus mixes both
-CVSS v2 and v3.x scores. Among the 3{,}413 confirmed CVEs, 2{,}284 carry a v3.1 base
-score, 804 a v3.0 score, and 272 only a v2.0 score, while 53 carry no CVSS score at all
-(predominantly recent CVEs awaiting NVD enrichment). When a CVE has both a v2 and a v3.x
-score, we use the v3.x score, since v3 is the current scoring standard and gives the more
-comparable severity banding across the corpus. We did not perform a component-level
-extraction of the vulnerable component from each CVE description in this study; a
-component breakdown mirroring the transportation study's Table~IV is left to future
-work (Section~\ref{sec:rq2}).
-
-\subsection{Mapping individual CWEs to the CWE-888 view}
-\label{sec:method-cwe888}
-
-CWE is a community-developed taxonomy of common weaknesses maintained by
-MITRE~\cite{ref-cwe}. The CWE hierarchy is large and complex, and several views
-have been developed to organize it. We chose the CWE-888 Software Fault Patterns
-view~\cite{ref-cwe888} to categorize the identified CWEs for two reasons:
-(i)~it was used in~\cite{ref-mcsoftware}, which keeps our results consistent with,
-and directly comparable to, that study; and (ii)~it centers on fault categorization,
-is more technical, and captures a wider range of weaknesses than alternatives such
-as the CWE-699 Software Development view~\cite{ref-cwe699}. We use the most recent
-version of CWE-888 and focus only on its 23 primary clusters, which we refer to
-as primary vulnerability classes.
-
-When an identified CWE is itself part of the CWE-888 view, we mapped it directly to
-its corresponding primary class. When it is not, we examined its parent CWEs and mapped
-those instead, so a CWE whose parents fall under two different primary classes counts
-toward both. This over-counting is bounded in practice. % NUMBERS PROVISIONAL — regenerate (scripts/cwe888_analysis.py) after the tvOS scope exclusion and vulnrichment/intersection additions settle; current figures are from the 2026-07-14 data generation.
-Of the CVEs carrying at least one mapped CWE, 90 (3.0\%) have a single CWE whose parents
-fall under two different primary classes and so count toward both. A further 225 (7.6\%)
-list two or more distinct CWEs; of those, 113 resolve to a single primary class while 112
-span two or more. Taken together, 182 CVEs (6.1\%) contribute to more than one primary
-class for one of these two reasons, while the large majority (a single CWE mapping to a
-single class) contribute to exactly one. This approach
-builds a more complete picture of the vulnerability types present while keeping
-over-counting in check.
-
-\subsection{False-positive classification}
+\paragraph{False-positive classification}
 \label{sec:method-review}
-
 Because the vendor and keyword searches are purely text-based, generic brand names
 and terms inevitably produce false positives, such as a brand string that also names an
 unrelated commercial product, or marketing copy that merely mentions a device category.
@@ -467,9 +448,8 @@ adjudication under the rule above. The final labels break down as 5{,}302 AI-con
 1{,}226 human-adjudicated (human verdicts are sticky across queue regenerations), and 6
 strong-consensus, with a single row still outstanding.
 
-\subsection{Term-level precision and list refinement}
+\paragraph{Term-level precision and list refinement}
 \label{sec:method-precision}
-
 The matched-term attribution recorded at collection lets us close the quality loop
 from the precision side as well. Joining each settled final judgment back to the term(s)
 that pulled its CVE into the corpus, we compute a per-term precision for every brand and
@@ -488,126 +468,80 @@ their category's false positives (e.g.\ \texttt{d-link} under cameras at $0.044$
 prioritized prune list, i.e.\ per-term precision \emph{on the difference set}, not a
 global precision over all of a term's matches.
 
+\subsection{CWE and CVSS data extraction}
+\label{sec:method-extract}
+
+Each CVE is typically attributed to one or more CWEs. Some CVEs, however, either
+lacked enough information to be associated with a CWE in NVD or fell outside NVD's
+CWE mapping; NVD lists these as \texttt{NVD-CWE-noinfo} and \texttt{NVD-CWE-Other},
+respectively. Of the 3{,}413 confirmed home IoT CVEs in the analysis set, 633 carried
+no usable CWE mapping (an absent, \texttt{NVD-CWE-noinfo}, or \texttt{NVD-CWE-Other}
+value; our merged year-feed snapshot does not preserve the distinction among these
+three cases, collapsing all of them to an empty CWE field, so we report them together
+rather than splitting the \texttt{noinfo} and \texttt{Other} counts). We kept these in the CVE-level analysis
+(Sections~\ref{sec:rq1}--\ref{sec:rq2}), but they do not contribute to the CWE analysis.
+The remaining 2{,}780 CVEs carried CWE attributions spanning 289 unique CWE identifiers
+before mapping onto the CWE-888 view.
+
+For each CVE we also extracted the CVSS information. CVSS scores range from 0 to
+10 and are computed from the vulnerability's exploitability and impact
+metrics~\cite{ref-cvss}. Severity follows from the score: a score of 0 is the None
+severity level, and the Low, Medium, High, and Critical levels correspond to score
+ranges of 0.1--3.9, 4.0--6.9, 7.0--8.9, and 9.0--10, respectively. The corpus mixes both
+CVSS v2 and v3.x scores. Among the 3{,}413 confirmed CVEs, 2{,}284 carry a v3.1 base
+score, 804 a v3.0 score, and 272 only a v2.0 score, while 53 carry no CVSS score at all
+(predominantly recent CVEs awaiting NVD enrichment). When a CVE has both a v2 and a v3.x
+score, we use the v3.x score, since v3 is the current scoring standard and gives the more
+comparable severity banding across the corpus. We did not perform a component-level
+extraction of the vulnerable component from each CVE description in this study; a
+component breakdown mirroring the transportation study's Table~IV is left to future
+work (Section~\ref{sec:rq2}).
+
+\subsection{Mapping individual CWEs to the CWE-888 view}
+\label{sec:method-cwe888}
+
+CWE is a community-developed taxonomy of common weaknesses maintained by
+MITRE~\cite{ref-cwe}. The CWE hierarchy is large and complex, and several views
+have been developed to organize it. We chose the CWE-888 Software Fault Patterns
+view~\cite{ref-cwe888} to categorize the identified CWEs for two reasons:
+(i)~it was used in~\cite{ref-mcsoftware}, which keeps our results consistent with,
+and directly comparable to, that study; and (ii)~it centers on fault categorization,
+is more technical, and captures a wider range of weaknesses than alternatives such
+as the CWE-699 Software Development view~\cite{ref-cwe699}. We use the most recent
+version of CWE-888 and focus only on its 23 primary clusters, which we refer to
+as primary vulnerability classes.
+
+When an identified CWE is itself part of the CWE-888 view, we mapped it directly to
+its corresponding primary class. When it is not, we examined its parent CWEs and mapped
+those instead, so a CWE whose parents fall under two different primary classes counts
+toward both. This over-counting is bounded in practice. % NUMBERS PROVISIONAL — regenerate (scripts/cwe888_analysis.py) after the tvOS scope exclusion and vulnrichment/intersection additions settle; current figures are from the 2026-07-14 data generation.
+Of the CVEs carrying at least one mapped CWE, 90 (3.0\%) have a single CWE whose parents
+fall under two different primary classes and so count toward both. A further 225 (7.6\%)
+list two or more distinct CWEs; of those, 113 resolve to a single primary class while 112
+span two or more. Taken together, 182 CVEs (6.1\%) contribute to more than one primary
+class for one of these two reasons, while the large majority (a single CWE mapping to a
+single class) contribute to exactly one. This approach
+builds a more complete picture of the vulnerability types present while keeping
+over-counting in check.
+
 %==============================================================================
 \section{RQ1: Analysis of Vulnerability Classes in Home IoT Devices}
 \label{sec:rq1}
 
-To answer RQ1, we refer to Table~\ref{tab:cwe888-matrix}, which maps every
-CWE attributed to a confirmed home IoT device CVE onto the 22 non-empty
-CWE-888 primary vulnerability classes (Section~\ref{sec:method-cwe888}),
-broken down by category. The corpus behind it is 1{,}738 confirmed
-CVE--category assignments over 1{,}676 distinct CVEs, yielding 1{,}904 mapped
-CWE attributions across the 22 categories with confirmed data.
-Figures~\ref{fig:cwe888-treemap-all}--\ref{fig:cwe888-treemap-evcharging}
-show the same distribution as area-proportional treemaps — one overall and
-one each for the four categories with the most confirmed CVEs (\texttt{cameras},
-\texttt{hub}, \texttt{alarms}, \texttt{ev-charging}, the only categories above
-$N=75$) — mirroring Figs.~2--4 of the transportation IoT study. Unlike
-Table~III of the transportation IoT study, which lists 23 classes as rows
-against 4 device categories as columns, this study's categories are shown as
-rows against the CWE-888 classes as columns, so that each category's own
-dominant classes read across a single line; the shaded cells in each row
-(\colorbox{yellow}{\phantom{0}}) mark that category's 6 most common classes,
-the same highlighting convention the transportation study uses to identify
-its dominant classes per column.
-
-Two findings stand out at the corpus level. First, a small number of classes
-account for most of the corpus: \texttt{Tainted Input} (23\%) and
-\texttt{Memory Access} (22\%) together cover almost half of all attributions,
-followed by \texttt{Authentication} (14\%) and \texttt{Information Leak}
-(10\%); the six most common classes account for 81\% of every attribution we
-observe. This is a markedly input-validation- and memory-centric profile,
-consistent with a device population built largely on embedded C firmware
-exposed through network-facing parsers and web interfaces. Second, the
-classes that \emph{recur} are not quite the ones that \emph{dominate}.
-\texttt{Information Leak} appears in 21 of the 22 categories and
-\texttt{Tainted Input} in 19, while \texttt{Memory Access} --- the second
-largest class by volume --- appears in only 14. Memory-safety defects are
-therefore concentrated rather than universal: they are the signature of
-specific device classes, not a property of home IoT as a whole.
-
-That concentration is visible in the per-category rows. \texttt{Memory
-Access} accounts for 61\% of \texttt{hub} attributions, 39\% of
-\texttt{smartspeakers}, and 36\% of \texttt{streaming} --- the three
-categories whose devices run the most substantial general-purpose software
-stacks --- against 17\% for \texttt{cameras}. The camera-style categories
-instead lead with \texttt{Tainted Input} (29\% for \texttt{cameras}, 40\% for
-\texttt{alarms}), reflecting the web-management and RTSP/ONVIF interfaces
-those devices expose. \texttt{Access Control} peaks in \texttt{doorlock}
-(21\%), the one category where the access-control decision \emph{is} the
-device's function. Reading the top-6 share as a concentration measure, the
-larger categories cluster tightly in the 76--91\% range, with \texttt{pet}
-(76\%) the most diffuse and \texttt{hub} (91\%) the most concentrated.
-
-The top-6 figures of 100\% in \texttt{fans}, \texttt{fridge},
-\texttt{sensors}, \texttt{airpurifier}, \texttt{appliances}, and
-\texttt{airconditioner} are an artifact of small $N$ rather than a finding:
-each of those categories rests on five or fewer confirmed CVEs, so six
-classes trivially exhaust them, and a cell reading ``\texttt{Channel} 67\%''
-in \texttt{sensors} represents two attributions. We therefore do not
-interpret those rows individually, and Section~\ref{sec:rq1-cat1} onward
-analyzes the folding categories of Table~\ref{tab:cwe888-family}, which
-aggregate them to a level where the percentages are supportable.
-
-Because one category (\texttt{cameras}) supplies 52\% of all attributions,
-Table~\ref{tab:cwe888-matrix} reports the overall profile under both
-weightings. The micro row pools every attribution, so it describes the
-average \emph{vulnerability}; the macro row averages the 22 per-category
-profiles with equal weight, so it describes the average \emph{category}. The
-two agree on the leading class and on \texttt{Authentication} at 14\%, and
-diverge most on \texttt{Memory Access} (22.0\% micro against 14.7\% macro, a
-7.3-point gap) and \texttt{Information Leak} (10.4\% against 16.2\%). The
-direction of both gaps restates the concentration finding above: memory
-defects are over-represented in the largest categories and information
-leakage is spread more evenly across small ones. We report the gap as a
-robustness check rather than a result --- at 7.3 points it is modest, and it
-narrows to 5.3 points once categories are folded
-(Table~\ref{tab:cwe888-family}), which is the expected effect of pooling
-small categories into better-populated ones.
-
-% BEGIN GENERATED FIGURES — from scripts/generate_cwe888_treemaps.py, output
-% docs/figures/cwe888_treemap_*.pdf. One treemap for the overall ("ALL") CWE-888
-% class distribution plus the four categories with N > 75 (cameras, hub, alarms,
-% ev-charging), mirroring Figs. 2-4 of the transportation IoT study. Box area is
-% each class's share of that category's confirmed CWE attributions; the same
-% class keeps the same color across every figure. Re-run the script after the
-% underlying data changes — output paths are already relative to docs/, so no
-% manual copy step is needed (unlike the table below).
-\begin{figure}[t]
-\centering
-\includegraphics[width=\columnwidth]{figures/cwe888_treemap_all.pdf}
-\caption{Distribution of confirmed home IoT CVEs' CWE-888 primary classes, overall.}
-\label{fig:cwe888-treemap-all}
-\end{figure}
-
-\begin{figure}[t]
-\centering
-\includegraphics[width=\columnwidth]{figures/cwe888_treemap_cameras.pdf}
-\caption{Distribution of \texttt{cameras} category CVEs' CWE-888 primary classes.}
-\label{fig:cwe888-treemap-cameras}
-\end{figure}
-
-\begin{figure}[t]
-\centering
-\includegraphics[width=\columnwidth]{figures/cwe888_treemap_hub.pdf}
-\caption{Distribution of \texttt{hub} category CVEs' CWE-888 primary classes.}
-\label{fig:cwe888-treemap-hub}
-\end{figure}
-
-\begin{figure}[t]
-\centering
-\includegraphics[width=\columnwidth]{figures/cwe888_treemap_alarms.pdf}
-\caption{Distribution of \texttt{alarms} category CVEs' CWE-888 primary classes.}
-\label{fig:cwe888-treemap-alarms}
-\end{figure}
-
-\begin{figure}[t]
-\centering
-\includegraphics[width=\columnwidth]{figures/cwe888_treemap_ev-charging.pdf}
-\caption{Distribution of \texttt{ev-charging} category CVEs' CWE-888 primary classes.}
-\label{fig:cwe888-treemap-evcharging}
-\end{figure}
-% END GENERATED FIGURES
+To answer RQ1, we refer to Table~\ref{tab:cwe888-matrix}, which shows the
+numbers and percentages of individual CWEs mapped to the 23 CWE-888 primary
+vulnerability classes, for each home IoT device category and overall. The
+analysis set comprises 1{,}738 confirmed CVE--category assignments over
+1{,}676 distinct CVEs, yielding 1{,}904 mapped CWE attributions across 22
+categories with confirmed data. Shaded cells (\colorbox{yellow}{\phantom{0}})
+mark each row's six most common classes, mirroring Table~III of the
+transportation IoT study. Table~\ref{tab:cwe888-family} reports the same
+distribution at the folding-category level defined in our device ontology
+(Section~\ref{sec:method-scope}), used wherever leaf categories are too sparse
+to interpret individually. Figure~\ref{fig:cwe888-treemap-all} shows the overall
+distribution; the subsections below discuss the four categories with the most
+confirmed CVEs (\texttt{cameras}, \texttt{hub}, \texttt{alarms}, and
+\texttt{ev-charging}).
 
 % BEGIN GENERATED TABLE — from scripts/generate_cwe888_table.py, output
 % data/difference/cwe888_table.tex. Inlined here (rather than \input) because
@@ -690,108 +624,103 @@ Climate \& Air &  & 3 & \cellcolor{yellow}12 & \cellcolor{yellow}9 & 6 &  &  &  
 \end{table*}
 % END GENERATED TABLE
 
+\begin{figure}[t]
+\centering
+\includegraphics[width=\columnwidth]{figures/cwe888_treemap_all.pdf}
+\caption{Distribution of confirmed home IoT CVEs' CWE-888 primary classes, overall.}
+\label{fig:cwe888-treemap-all}
+\end{figure}
 
-The subsections that follow discuss the four largest folding categories of
-Table~\ref{tab:cwe888-family}, which between them carry 1{,}558 of the 1{,}904
-attributions (82\%). The folding categories are the coarser grouping defined
-over the 24 leaf categories in the device ontology
-(Section~\ref{sec:method-scope}); we discuss results at this level because six
-leaf categories rest on five or fewer confirmed CVEs and cannot support
-per-category interpretation, while the folded groups are populated enough to
-compare. Per-category numbers remain in Table~\ref{tab:cwe888-matrix}
-throughout, and the folding never re-labels a CVE --- it is a view over the
-same judgments.
-
-\subsection{Cameras and Monitors}
+\subsection{Camera vulnerabilities}
 \label{sec:rq1-cat1}
 
-The \texttt{cameras}, \texttt{doorbell}, and \texttt{babymonitor} categories
-fold into a single group of 948 confirmed CVEs and 1{,}052 CWE attributions,
-55\% of the corpus and by a wide margin the largest group in the study. Its
-profile is led by \texttt{Tainted Input} (28\%), followed by \texttt{Memory
-Access} (16\%), \texttt{Authentication} (15\%), and \texttt{Information Leak}
-(10\%), with a top-6 share of 83\%.
+Figure~\ref{fig:cwe888-treemap-cameras} shows the distribution of
+\texttt{cameras} CWEs across CWE-888 primary classes. The \texttt{cameras}
+category is the largest in the study, with 555 confirmed CVEs corresponding to
+996 CWE attributions (52\% of the corpus). Its profile is led by
+\texttt{Tainted Input} (29\%), followed by \texttt{Memory Access} (17\%),
+\texttt{Authentication} (15\%), and \texttt{Information Leak} (10\%). The top
+six classes account for 84\% of all camera vulnerabilities (see
+Table~\ref{tab:cwe888-matrix}). These devices are network-facing: their
+management surface is typically an embedded web interface and their media path
+speaks RTSP or ONVIF, exposing externally supplied input to firmware parsers
+written in C. Related leaf categories \texttt{doorbell} (21\%
+\texttt{Tainted Input}) and \texttt{babymonitor} (18\%) show a similar
+profile; together they fold into the Cameras and Monitors group of
+Table~\ref{tab:cwe888-family} (28\% \texttt{Tainted Input} overall).
 
-The dominance of \texttt{Tainted Input} is the clearest device-level signal in
-our data. These are network-facing devices whose management surface is
-typically an embedded web interface and whose media path speaks RTSP or ONVIF,
-so they expose an unusually large amount of externally supplied input to
-firmware parsers written in C. That the same profile holds across all three
-leaf categories --- 29\% for \texttt{cameras}, 21\% for \texttt{doorbell},
-18\% for \texttt{babymonitor} --- supports the ontology's decision to fold
-them: consumers treat them as three products with distinct brand sets, but
-their vulnerability profiles are close enough that the group behaves as one
-population. \texttt{Authentication} is the second consistent thread, at
-15--23\% across the three, reflecting the recurring pattern of default
-credentials and weak session handling in consumer camera firmware. We note
-that \texttt{babymonitor} is the category most affected by the vendor-list
-contamination discussed in Section~\ref{sec:threats-internal}, so its 22
-attributions should be read as the most provisional of the three.
+\begin{figure}[t]
+\centering
+\includegraphics[width=\columnwidth]{figures/cwe888_treemap_cameras.pdf}
+\caption{Distribution of \texttt{cameras} category CVEs' CWE-888 primary classes.}
+\label{fig:cwe888-treemap-cameras}
+\end{figure}
 
-\subsection{Hubs and Controllers}
+\subsection{Hub vulnerabilities}
 \label{sec:rq1-cat2}
 
-The \texttt{hub} category stands alone as a folding category, with 247
-confirmed CVEs and 282 attributions (15\% of the corpus). Its profile is the
-most distinctive in the study: \texttt{Memory Access} alone accounts for 61\%
-of its attributions, more than any other class in any other group, and its
-top-6 share of 91\% is the highest of the four groups discussed here.
-
-This is a genuine architectural difference rather than a sampling artifact.
-Hubs and controllers run the most substantial software stacks of any device
-class in scope --- full Linux systems bridging Zigbee, Z-Wave, Thread, and IP,
-often with a local automation runtime --- and that additional native code
-surface is where memory-safety defects accumulate. The contrast with the
-camera group is the sharpest result in Table~\ref{tab:cwe888-family}:
-\texttt{Memory Access} is 61\% here against 16\% there, while
-\texttt{Tainted Input} inverts, at 10\% here against 28\% there. Cameras are
-compromised through what they parse; hubs are compromised through how they are
-built. The security implication also differs in kind, because a hub is by
-definition a control surface for other devices, so a memory-safety defect
-there is a pivot into every device it manages rather than a compromise of one
+Figure~\ref{fig:cwe888-treemap-hub} shows the distribution of \texttt{hub}
+CWEs across CWE-888 primary classes. There were 92 confirmed CVEs
+corresponding to 282 CWE attributions. The most common class was
+\texttt{Memory Access} with 61\% of the CWEs --- the highest share of any class
+in any category in this study. The following top six classes made up 91\% of
+all hub vulnerabilities: \texttt{Memory Access}, \texttt{Tainted Input},
+\texttt{Authentication}, \texttt{Information Leak}, \texttt{Access Control},
+and \texttt{Cryptography} (see Table~\ref{tab:cwe888-matrix}). Hubs run the
+most substantial software stacks in scope --- full Linux systems bridging
+Zigbee, Z-Wave, Thread, and IP --- and memory-safety defects in that native code
+are a pivot into every device the hub manages, not merely a compromise of one
 endpoint.
 
-\subsection{Energy}
+\begin{figure}[t]
+\centering
+\includegraphics[width=\columnwidth]{figures/cwe888_treemap_hub.pdf}
+\caption{Distribution of \texttt{hub} category CVEs' CWE-888 primary classes.}
+\label{fig:cwe888-treemap-hub}
+\end{figure}
+
+\subsection{Alarm vulnerabilities}
 \label{sec:rq1-cat3}
 
-The \texttt{ev-charging} and \texttt{home-power} categories fold into an
-energy group of 116 confirmed CVEs and 135 attributions (7\%). The ontology
-keeps these two leaves separate --- they share no confirmed CVE and their
-vendor sets are disjoint --- but folds them for reporting, and their combined
-profile is the most evenly spread of the four groups: \texttt{Tainted Input}
-(19\%), \texttt{Authentication} (16\%), \texttt{Information Leak} (13\%), and
-\texttt{Memory Access} (12\%), with the lowest top-6 concentration of the
-group at 78\%.
+Figure~\ref{fig:cwe888-treemap-alarms} shows the distribution of
+\texttt{alarms} CWEs across CWE-888 primary classes. There were 77 confirmed
+CVEs corresponding to 86 CWE attributions. The most dominant class was
+\texttt{Tainted Input} with 40\% of the CWEs. The top six primary classes
+accounted for 90\% of the total vulnerabilities: \texttt{Tainted Input},
+\texttt{Information Leak}, \texttt{Channel}, \texttt{Authentication},
+\texttt{Predictability}, and \texttt{Access Control}. The elevated
+\texttt{Channel} share (14\%) is distinctive: alarm systems rely on wireless
+sensor links whose confidentiality and integrity properties have historically
+been weak, so a channel-level defect can defeat the system without touching its
+application software.
 
-That flatness is itself the finding. Where cameras and hubs each have a single
-defect class accounting for a quarter to two-thirds of their attributions,
-energy devices distribute across the full range, which is consistent with a
-category that spans two quite different architectures: vehicle-charging
-equipment with OCPP-style backend connectivity on one side, and inverters and
-home battery systems with cloud-linked monitoring on the other. The elevated
-\texttt{Authentication} share (16\%, against 14\% corpus-wide) is notable
-given that these devices mediate physical electrical load, where an
-authentication bypass has consequences beyond information disclosure.
+\begin{figure}[t]
+\centering
+\includegraphics[width=\columnwidth]{figures/cwe888_treemap_alarms.pdf}
+\caption{Distribution of \texttt{alarms} category CVEs' CWE-888 primary classes.}
+\label{fig:cwe888-treemap-alarms}
+\end{figure}
 
-\subsection{Alarms and Sensors}
+\subsection{EV charging vulnerabilities}
 \label{sec:rq1-cat4}
 
-The \texttt{alarms} and \texttt{sensors} categories fold into a group of 93
-confirmed CVEs and 89 attributions (5\%), though the group is effectively the
-\texttt{alarms} category: \texttt{sensors} contributes only 3 attributions and
-is one of the six under-populated leaves noted above.
+Figure~\ref{fig:cwe888-treemap-evcharging} shows the distribution of
+\texttt{ev-charging} CWEs across CWE-888 primary classes. There were 24
+confirmed CVEs corresponding to 85 CWE attributions. The profile is more evenly
+spread than in cameras or hubs: \texttt{Tainted Input} and \texttt{Memory
+Access} each account for 19\%, followed by \texttt{Authentication} (15\%) and
+\texttt{Information Leak} (9\%). The top six classes cover 79\% of
+attributions. This flatness is consistent with a category spanning
+vehicle-charging equipment with OCPP-style backend connectivity, where
+authentication and input-validation defects on network-exposed management
+interfaces are as prominent as memory-safety issues in embedded firmware.
 
-The group's profile is the most \texttt{Tainted Input}-heavy in the study at
-38\%, ahead even of the camera group, and it is the only group in which
-\texttt{Channel} appears among the leading classes (16\%, against 2\%
-corpus-wide). That \texttt{Channel} share is the substantive result here: it
-covers defects in the communication path itself, and it surfaces in alarm
-systems because they rely on wireless sensor links --- frequently
-proprietary sub-GHz protocols --- whose confidentiality and integrity
-properties have historically been weak. An alarm system is also the category
-where a channel-level defect maps most directly onto the threat the device
-exists to counter, since suppressing or spoofing a sensor link defeats the
-system without touching its software at all.
+\begin{figure}[t]
+\centering
+\includegraphics[width=\columnwidth]{figures/cwe888_treemap_ev-charging.pdf}
+\caption{Distribution of \texttt{ev-charging} category CVEs' CWE-888 primary classes.}
+\label{fig:cwe888-treemap-evcharging}
+\end{figure}
 
 
 %==============================================================================
@@ -896,116 +825,137 @@ cameras         & 555   & 7.72 & 7.7  & 1.48 & 19.3 & 51.4 & 24.3 & 0.7  \\
 \section{Threats to Validity}
 \label{sec:threats}
 
-\subsection{Construct Validity}
-\label{sec:threats-construct}
-
-Our operationalization of ``home IoT device'' rests on five definitional criteria
+Construct validity relates to the ability to measure what we intend to evaluate.
+As in other studies on security vulnerabilities, we searched for information on
+NIST's NVD and MITRE's CWE, which are widely used.
+\label{sec:threats-construct} Our operationalization of
+``home IoT device'' rests on five definitional criteria
 (Section~\ref{sec:method-scope}), and those criteria require judgment calls at the
-margin: whether a streaming device's platform genuinely acts as a home-control surface,
-say, or whether a brand's product line is residential rather than commercial or
-industrial. We mitigated this by freezing the category list before large-scale collection
-and by pinning a shared, written scope note per category (\texttt{categories.csv})
-that every reviewer, human or AI, judges against. Even so, the underlying category
-boundaries are themselves a modeling choice, and a different set of criteria could redraw
-them.
+margin. We mitigated this by freezing the category list before large-scale collection
+and by pinning a shared scope note per category (\texttt{categories.csv}) that every
+reviewer judges against. Encoding the criteria as OWL axioms lets an OWL reasoner
+reproduce all 27 published in-scope and out-of-scope rulings as a consistency check.
+Mapping individual CWEs onto CWE-888 clusters (Section~\ref{sec:method-cwe888}) is a
+second construct threat: parent-resolution can count a CWE toward two primary classes.
+We follow the same mapping convention as~\cite{ref-mcsoftware} to keep results
+comparable.
 
-Two further checks bound this threat. First, encoding the five criteria as OWL axioms
-(Section~\ref{sec:method-scope}) lets us test whether our published scope decisions
-actually follow from our stated criteria, rather than from case-by-case intuition. An
-OWL~2~RL reasoner over the criterion facets reproduces all 27 in-scope and out-of-scope
-rulings, so no category is in the study for reasons its own criteria do not support.
-This is a consistency check and not a validity proof --- the facet values are themselves
-assigned by us, so the reasoner confirms that our decisions are internally coherent, not
-that the criteria are the right ones. Second, aligning the categories to established
-smart-home vocabularies quantifies how far the scope departs from existing practice. Of
-the 24 categories, only 9 (38\%) have an exactly corresponding class in SAREF (core,
-4BLDG, 4ENER, 4WEAR) or W3C SSN/SOSA; the remaining 15 (62\%) can be placed only under a
-generic superclass such as \texttt{Device} or \texttt{Sensor}. The gap is not evenly
-distributed: it falls almost entirely on the consumer security and monitoring tier ---
-cameras, doorbells, baby monitors, alarms, door locks, hubs --- which carries 91.5\% of
-our confirmed CVEs. The categories the standard vocabularies model precisely are largely
-the ones with the fewest disclosed vulnerabilities. This supports the choice to define
-categories from consumer product boundaries rather than adopt an existing vocabulary,
-but it is equally a limitation on comparability: our categories cannot be mapped
-one-to-one onto studies built on those vocabularies.
-
-Mapping individual CWEs onto the CWE-888 Software Fault Pattern clusters
-(Section~\ref{sec:method-cwe888}) is a second construct-validity threat. When a CWE is not
-itself in CWE-888, we map through its parent CWEs, and a CWE whose parents span two
-primary clusters is counted in both, which can inflate cluster totals relative to a
-stricter one-CWE-one-cluster scheme. We follow the same mapping convention as prior
-work~\cite{ref-mcsoftware} to keep the two studies comparable, but both the choice of view
-(CWE-888 over, e.g., CWE-699) and the parent-resolution rule shape the resulting ``big
-picture'' of vulnerability classes.
-
-\subsection{Internal Validity}
+Internal validity is based on factors that may affect the independent variables
+without the researchers' knowledge.
 \label{sec:threats-internal}
-
 The vendor and keyword searches are text-based over CVE descriptions and CPE strings,
-so classification errors are possible in either direction. A generic brand name can
-collide with an unrelated product (the per-term precision analysis,
-Section~\ref{sec:method-precision}, found 10 of 343 judged terms at or below the
-0.10-precision prune threshold, e.g.\ vendor terms that matched only unrelated enterprise
-products in every judged row), and a device-relevant CVE can contain none of our search
-terms at all. We addressed the first failure mode with the three-AI-plus-human review of
-every difference-set row and with the term-precision pass that flags terms for pruning.
-We addressed the second only partially, through the CPE-expansion step
-(Section~\ref{sec:method-collect}), which finds additional CVEs attributed to
-already-confirmed device products independent of description wording. The review is
-effectively complete: all 6{,}535 reviewed rows carry a settled label, with a single row
-still outstanding. A residual error rate nonetheless remains even on the rows that never
-reached a human. We validated the strong-consensus relaxation at 99.7\% human agreement
-(293 of 294 rows), so on the order of one in a few hundred high-confidence AI-consensus
-rows may still be misclassified, and that residual is concentrated in exactly the
-high-false-positive categories (cameras, baby monitor, air conditioner) where the
-reviewers face the hardest calls. Reviewer disagreement is itself a threat. Codex is
-systematically more conservative, rejecting unfamiliar security-focused brands, while
-Gemini/Gemma is systematically more liberal, accepting function-overlap across categories
-(e.g.\ IP camera $\to$ baby monitor). For that reason we treat Gemini as the weaker third
-vote and exclude its confidence from the human-review flag; its judgment still counts
-toward the unanimity check, however, so residual bias from either model can still shape
-which rows are, and are not, escalated to a human.
+so classification errors are possible in either direction. We addressed false positives
+with three-AI-plus-human review of every difference-set row and a term-precision pass
+that flags low-precision terms for pruning (Section~\ref{sec:method-precision}). We
+addressed missed CVEs only partially through CPE expansion
+(Section~\ref{sec:method-collect}). The quality of the extracted data depends on NVD and
+CWE completeness; as with any empirical vulnerability study, undisclosed and zero-day
+vulnerabilities cannot be accounted for. Residual reviewer bias remains possible:
+systematic differences among AI reviewers mean that scope notes and human escalation
+rules are part of the method, not optional metadata.
 
-\subsection{External Validity}
+Conclusion validity threats impact the ability to draw correct conclusions. The
+results are based on an analysis of 1{,}676 distinct confirmed CVEs and 1{,}904 CWE
+attributions, which constitute a large sample overall. Analyses per IoT device
+category, however, are based on smaller sample sizes (from 2 to 996 CWE attributions),
+which poses a threat to per-category conclusions, especially for categories with fewer
+than five confirmed CVEs.
+
+External validity is focused on the generalizability.
 \label{sec:threats-external}
-
-Our dataset is bounded by NVD's CVE disclosure and CPE-tagging practices, not by actual
-real-world deployment or exploitation. A device with no publicly disclosed CVE is
-invisible to this study, however insecure it may be in practice, and smaller or newer
-vendors are structurally under-represented relative to established brands with active CVE
-reporting histories and extensive CPE tagging. CPE data is also known to lag on recent
-(2024--2026) CVEs (Section~\ref{sec:method-review}), so the most recent portion of the
-corpus is more likely to be classified from description text alone. The snapshot is a
-single fixed point in time (2026-06-25), so any vulnerability disclosed after that date is
-out of scope by construction, and the study reports a static ``as-of'' picture rather than
-a continuously updated one. Finally, since both search methods are text-based, a
-device-relevant CVE whose description and CPE strings contain none of our vendor or
-keyword terms never enters the dataset, and the CPE-expansion step reaches only products
-already confirmed in scope. The analysis therefore characterizes the CVEs our terms
-surfaced for each category, not every CVE that may affect it.
-
-\subsection{Reliability}
+Our results apply to the types of home IoT devices and categories covered in this
+paper. The dataset is bounded by NVD's disclosure and CPE-tagging practices, not by
+real-world deployment; a device with no public CVE is invisible to this study. The
+snapshot is fixed at 2026-06-25, so the study reports a static ``as-of'' picture. A
+device-relevant CVE whose description and CPE strings contain none of our search terms
+never enters the dataset unless its product was already confirmed through CPE expansion.
+To support reproducibility, all searches run against one fixed NVD snapshot rather than
+the live API, and every judgment is persisted in a store keyed by (category, CVE). The
+Gemini/Gemma reviewer is the one non-deterministic step; we keep one model fixed per
+review pass and record which model produced each judgment.
 \label{sec:threats-reliability}
-
-To support reproducibility, all searches run against one fixed, dated, and documented
-NVD snapshot (Section~\ref{sec:method-collect}) rather than the live NVD API, so the
-corpus a reader would reconstruct today matches the one analyzed here. Every
-difference-set judgment, human or AI, is persisted in a store keyed by (category, CVE),
-so the review can be audited, re-run, or extended without silently losing or duplicating
-prior work. The one part of the pipeline that is not fully deterministic is the
-Gemini/Gemma reviewer, whose free-tier model (\texttt{gemma-4-31b-it}) may be swapped or
-updated over time. We mitigate this by keeping one model fixed across an entire review
-pass and recording which model produced each Gemini judgment.
 
 %==============================================================================
 \section{Lessons Learned and Implications}
 \label{sec:lessons}
 
+Our main findings about vulnerabilities reported for home IoT devices are as
+follows.
+
+The considered home IoT devices had vulnerabilities reported across the CWE-888
+primary classes, with the top six classes accounting for 81\% of all
+attributions corpus-wide. The six most common primary classes together were
+\texttt{Tainted Input}, \texttt{Memory Access}, \texttt{Authentication},
+\texttt{Information Leak}, \texttt{Access Control}, and \texttt{Other}. This
+finding is consistent with~\cite{ref-mcsoftware}, which reported that security
+vulnerabilities in mission-critical software were unevenly distributed, with
+the top five primary classes contributing from around 80\% to 90\% of
+vulnerabilities in each dataset.
+
+In each of the four largest categories discussed in Section~\ref{sec:rq1}, the
+six most common primary classes accounted for 79\% to 91\% of all reported
+vulnerabilities. For \texttt{cameras}, \texttt{hub}, \texttt{alarms}, and
+\texttt{ev-charging}, the top-six shares were 84\%, 91\%, 90\%, and 79\%,
+respectively. The most prominent classes differ by architecture, however.
+\texttt{cameras} lead with \texttt{Tainted Input} (29\%), reflecting embedded
+web interfaces and RTSP/ONVIF parsers; \texttt{hub} with \texttt{Memory Access}
+(61\%), reflecting large native-code stacks on Linux controllers;
+\texttt{alarms} with \texttt{Tainted Input} (40\%) and an elevated
+\texttt{Channel} share (14\%) from wireless sensor links; and \texttt{ev-charging}
+with a flatter mix of \texttt{Tainted Input}, \texttt{Memory Access}, and
+\texttt{Authentication}. There were similarities but also differences among the
+top six dominant vulnerability classes for different IoT device categories.
+\texttt{Information Leak} and \texttt{Authentication} appeared among the leading
+classes in most large categories, while \texttt{Memory Access} dominated only
+the controller-style devices.
+
+Our main findings related to CVSS scores and severity are as follows.
+\texttt{alarms} had the highest mean and median CVSS scores and the highest
+critical-severity share (46.8\%) among categories with $n \ge 5$.
+\texttt{hub} and \texttt{doorlock} also scored at the top of the distribution.
+\texttt{cameras}, despite supplying 52\% of CWE attributions, clustered in the
+High severity band with a lower critical share (19.3\%). A Kruskal--Wallis test
+rejected the null hypothesis of equal CVSS distributions across categories
+($p < 10^{-9}$), and Dunn's post-hoc test showed statistically significant
+pairwise differences involving \texttt{alarms}, \texttt{hub}, and
+\texttt{cameras}.
+
+Our findings have the following actionable implications that could be useful for
+developers, manufacturers, and researchers. Focusing on several dominant CWE
+classes is an efficient way to improve the security of home IoT devices --- for
+example, through secure software development and code-review checklists centered
+on input validation, memory safety, authentication, and information disclosure.
+Hub and alarm products warrant stricter verification because both weakness
+profiles and CVSS scores indicate higher downstream impact when a controller or
+security sensor is compromised. Text search over NVD is necessary but
+insufficient: 47.8\% of our raw candidates were false positives, so scope
+criteria, blind review, and term-list refinement must accompany any NVD-mining
+pipeline. Publishing scope notes and search terms alongside mined datasets would
+let future studies reproduce and extend our corpus without re-learning the same
+false-positive lessons.
 
 %==============================================================================
 \section{Conclusions}
 \label{sec:conclusion}
 
+This paper is focused on empirical analysis of security vulnerabilities in home
+IoT devices. Specifically, we identified the dominant vulnerability classes in
+24 categories of home IoT devices and analyzed their CVSS severity scores. Our
+results showed that the distribution of vulnerabilities is skewed, with the top
+six CWE-888 classes accounting for 81\% of all attributions corpus-wide, and
+for 79\% to 91\% within each of the four largest categories. \texttt{alarms}
+and \texttt{hub} had the highest CVSS scores among well-populated categories,
+with statistically significant differences from several other categories. In
+addition to compiling the lessons learned, we identified the implications of our
+findings and provided insights that can be used by researchers, developers, and
+manufacturers to cost-efficiently improve the security of home IoT devices.
+
+Our future research includes (i)~component-level extraction from CVE
+descriptions (web interface, companion app, cloud API, radio stack), mirroring the
+transportation IoT study; (ii)~data triangulation with deployment-oriented
+sources such as Shodan and Censys; and (iii)~continued refinement of vendor and
+keyword term lists in categories where recall estimation indicates thin brand
+coverage.
 
 %==============================================================================
 \section*{Data Availability}
