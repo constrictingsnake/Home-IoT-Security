@@ -27,12 +27,40 @@ sum to 1 - deliberately, since a CVE genuinely attributed to two vendors is evid
 
 EXEMPTIONS, both recorded rather than silent
 --------------------------------------------
-- `regulation` - the cell's evidence is a regulation, standard or certification requirement
-  binding the product class (UK PSTI, ETSI EN 303 645, Matter, grid codes). Vendor coverage is
-  the wrong test for these; a law does not need a market share.
+- `regulation` - the cell's evidence is a standard or certification requirement binding the
+  product CLASS (ETSI EN 303 645, Matter). Vendor coverage is the wrong test for these: a
+  device conforming to the standard carries the property wherever it is sold, so the
+  requirement reaches the corpus by definition and does not need a market share.
 - `unmeasurable` - fewer than 10 confirmed-Yes CVEs in the category, so any share is noise.
   These keep whatever tier they had, flagged, never silently promoted - the same convention
   `facet_analysis.py` uses for Phase A's `[unmeasured]` categories.
+
+WHY A LAW IS NOT AUTOMATICALLY AN EXEMPTION (corrected 2026-09-01)
+------------------------------------------------------------------
+The exemption above originally read "regulation, standard or certification requirement" and
+listed UK PSTI and grid codes alongside ETSI and Matter, on the reasoning that "a law does not
+need a market share". That conflates two different kinds of instrument, and the difference is
+exactly a coverage question:
+
+  - A STANDARD binds a product class. Any Matter-commissioned device has a printed onboarding
+    code; any device conforming to EN 303 645 has no universal default password. Membership of
+    the class is the only precondition, so the instrument reaches every vendor in the corpus.
+  - A REGULATION binds a MARKET. UK PSTI requires a declared support period for consumer
+    connectable products placed on the UK market. It says nothing whatsoever about a vendor
+    that does not sell there - and the corpus is full of them.
+
+Measured when this was caught: all 11 `supportLifetime` cells came back `DeclaredLifetime`
+sourced on UK PSTI, 10 of them claiming category-wide, and in 7 of those the cited vendor held
+0% of the category's confirmed-Yes CVEs. `babymonitor` was sourced on Nanit while dlink carries
+44%; `doorbell` on Ring while akuvox carries 36%; `thermostat` on Google/Bosch while ecobee
+carries 22%. The white-label brands holding the CVE mass are precisely the ones that publish no
+support declaration, so the exemption was converting an absence of evidence into the highest
+tier - and a facet that comes out identical on all 11 categories discriminates nothing anyway.
+
+So jurisdiction-bound instruments now face the coverage test like any vendor citation and are
+recorded as `jurisdiction-bound` rather than silently exempted. They are NOT rejected: the
+verdict is informational, and it is the SHARE that decides, so a PSTI citation backed by a
+vendor that does hold the corpus still passes as `representative`.
 """
 import argparse
 import collections
@@ -49,12 +77,17 @@ OUT = os.path.join(ROOT, "data", "facets", "source_coverage.csv")
 MIN_CVES = 10
 ABSOLUTE_FLOOR = 0.10
 
-# A cell whose evidence is one of these is class-binding, not product-level.
+# A cell whose evidence is one of these is class-binding, not product-level: conformance is the
+# only precondition, so the requirement reaches every vendor in the corpus by definition.
 # NOTE a CISA ICS advisory is deliberately NOT here: it is coordinated vulnerability disclosure
 # about named products, so it is per-product evidence and must face the coverage test like any
 # other vendor citation. Only instruments that bind the product class qualify.
-REGULATORY = ("legislation.gov.uk", "etsi.org", "gov.uk/guidance", "csa-iot.org",
-              "docs.silabs.com/matter", "surgepv.com/solar-compliance")
+CLASS_BINDING = ("etsi.org", "csa-iot.org", "docs.silabs.com/matter")
+
+# Instruments that bind a MARKET rather than a product class - they reach only the vendors who
+# sell into that jurisdiction, which is a coverage question and therefore measured, not assumed.
+# See the module docstring for the `supportLifetime` case that produced this split.
+JURISDICTION_BOUND = ("legislation.gov.uk", "gov.uk/guidance", "surgepv.com/solar-compliance")
 
 FIELDS = ["slug", "facet", "n_cves", "cited_vendors", "cited_share",
           "top_uncited_vendor", "top_uncited_share", "verdict"]
@@ -86,10 +119,16 @@ def cve_vendors():
 
 
 def sheet_sources():
-    """(slug, facet) -> Source 1 text, for the regulation test."""
+    """(slug, facet) -> both reviewers' source text, for the instrument test.
+
+    Both columns are read, not just column 1: a cell can be re-sourced in column 2 (the 19
+    `below-floor` cells were re-sourced onto the corpus vendors by design), and the instrument
+    a cell rests on is whatever either reviewer actually cited.
+    """
     path = os.path.join(ROOT, "data", "facets", "tagging-kit", "category_tags.csv")
+    csv.field_size_limit(10 ** 8)
     with open(path) as fh:
-        return {(r["slug"], r["facet"]): (r.get("Source 1") or "")
+        return {(r["slug"], r["facet"]): f"{r.get('Source 1') or ''} {r.get('Source 2') or ''}"
                 for r in csv.DictReader(fh) if r["status"] == "ask"}
 
 
@@ -105,8 +144,9 @@ def compute():
             slug, facet = r["slug"], r["facet"]
             cited = {v for v in (r["cpe_vendors"] or "").split("|") if v}
             n = len(yes.get(slug, ()))
-            src = sources.get((slug, facet), "")
-            regulatory = any(k in src.lower() for k in REGULATORY)
+            src = sources.get((slug, facet), "").lower()
+            class_binding = any(k in src for k in CLASS_BINDING)
+            jurisdictional = any(k in src for k in JURISDICTION_BOUND)
 
             if n < MIN_CVES:
                 rows.append(dict(slug=slug, facet=facet, n_cves=n,
@@ -124,10 +164,13 @@ def compute():
             top_v, top_n = (counts.most_common(1) or [("", 0)])[0]
             top_share = top_n / n
 
-            if regulatory:
+            if class_binding:
                 verdict = "regulation"
             elif share > top_share and share >= ABSOLUTE_FLOOR:
-                verdict = "representative"
+                # A jurisdiction-bound citation can still pass on the merits: the vendors
+                # behind it do hold the corpus. The label records the instrument; the share
+                # decides the verdict.
+                verdict = "jurisdiction-bound" if jurisdictional else "representative"
             else:
                 verdict = "below-floor"
 

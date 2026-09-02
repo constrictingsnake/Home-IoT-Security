@@ -220,16 +220,23 @@ def derive_tier(sources, category_wide, coverage=""):
 def is_category_wide(row):
     """Did a reviewer claim the source covers the whole category, not a few products?
 
-    Read from the dedicated Category-Wide columns. The Notes fallback exists only so an
-    answer written the old way (the marker as free text) is not silently downgraded to
-    HumanSourced; new sheets carry the column and should use it.
+    Read ONLY from the dedicated Category-Wide columns. There used to be a fallback that also
+    returned True when the phrase "category-wide" appeared anywhere in either Notes field,
+    so an answer written the old way (the marker as free text) would not be silently
+    downgraded to HumanSourced.
+
+    THAT FALLBACK IS REMOVED (2026-09-01) because a substring test cannot tell a claim from
+    its denial, and it can only ever fail in the promoting direction. Measured on the sheet
+    when it was pulled: three cells fired the fallback with the column unset, and all three
+    were the OPPOSITE of a claim - `ev-charging/supportLifetime` says "Deliberately NOT marked
+    category-wide" (EV chargepoints are an EXCEPTED product under PSTI Schedule 3, which is
+    the whole point of that note), `thermostat/topology` says "rather than a required
+    category-wide hub", and the third was a note recording a WITHDRAWN claim. Zero cells
+    depended on the fallback for a genuine promotion. A reviewer who means the claim has a
+    column to put it in, and reasoning about the claim in prose must stay free to do so.
     """
-    for n in ("1", "2"):
-        if (row.get(f"Category-Wide {n}") or "").strip().lower() in TRUE_ISH:
-            return True
-        if "category-wide" in (row.get(f"Notes {n}") or "").lower():
-            return True
-    return False
+    return any((row.get(f"Category-Wide {n}") or "").strip().lower() in TRUE_ISH
+               for n in ("1", "2"))
 
 
 def settle(row, cardinality, spec, coverage=None):
