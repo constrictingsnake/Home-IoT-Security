@@ -222,7 +222,7 @@ ontology, which serves three purposes in this study. First, it makes the scope
 decision auditable: each of the 24 in-scope categories and each defined-but-excluded
 type carries an explicit value for all five criteria, and criteria~1--5 are stated as an
 equivalence axiom, so an OWL reasoner --- rather than the prose --- decides membership.
-Running it reproduces all 27 published in-scope and out-of-scope rulings, which we report
+Running it reproduces all 31 published in-scope and out-of-scope rulings, which we report
 as a construct-validity check in Section~\ref{sec:threats-construct}. Second, it records
 the admission route, not merely the verdict. Because criterion~4 admits a device either
 by direct home control (4(a)) or by acting as a control surface for other devices (4(b)),
@@ -912,22 +912,35 @@ them.
 Two further checks bound this threat. First, encoding the five criteria as OWL axioms
 (Section~\ref{sec:method-scope}) lets us test whether our published scope decisions
 actually follow from our stated criteria, rather than from case-by-case intuition. An
-OWL~2~RL reasoner over the criterion facets reproduces all 27 in-scope and out-of-scope
+OWL~2~RL reasoner over the criterion facets reproduces all 31 in-scope and out-of-scope
 rulings, so no category is in the study for reasons its own criteria do not support.
 This is a consistency check and not a validity proof --- the facet values are themselves
 assigned by us, so the reasoner confirms that our decisions are internally coherent, not
 that the criteria are the right ones. Second, aligning the categories to established
-smart-home vocabularies quantifies how far the scope departs from existing practice. Of
-the 24 categories, only 9 (38\%) have an exactly corresponding class in SAREF (core,
-4BLDG, 4ENER, 4WEAR) or W3C SSN/SOSA; the remaining 15 (62\%) can be placed only under a
-generic superclass such as \texttt{Device} or \texttt{Sensor}. The gap is not evenly
-distributed: it falls almost entirely on the consumer security and monitoring tier ---
-cameras, doorbells, baby monitors, alarms, door locks, hubs --- which carries 91.5\% of
-our confirmed CVEs. The categories the standard vocabularies model precisely are largely
-the ones with the fewest disclosed vulnerabilities. This supports the choice to define
-categories from consumer product boundaries rather than adopt an existing vocabulary,
-but it is equally a limitation on comparability: our categories cannot be mapped
-one-to-one onto studies built on those vocabularies.
+smart-home vocabularies quantifies how far the scope departs from existing practice. We
+searched eight vocabularies --- SAREF core together with the S4BLDG, S4ENER, S4WEAR,
+S4AGRI, S4AUTO, S4CITY and S4EHAW extensions --- and W3C SSN/SOSA, verifying every
+external IRI against a pinned 435-IRI manifest. Of the 24 categories, 7 (29\%) have an
+exactly corresponding external class; the remaining 17 (71\%) can be denoted only by a
+coarser one.
+
+Two distinct gaps sit inside that figure, and the second is the more consequential. Only
+a generic superclass --- \texttt{saref:Device}, \texttt{saref:Appliance},
+\texttt{saref:Sensor} or \texttt{saref:Actuator} --- denotes 6 of the 24 categories
+(25\%): door locks, EV charging, pet devices, robot vacuums, refrigerators and air
+purifiers. These are small categories, carrying 10.0\% of our confirmed CVEs. The larger
+problem is granularity rather than absence. A single class,
+\texttt{s4bldg:AudioVisualAppliance}, denotes five of our categories --- cameras, baby
+monitors, doorbells, smart speakers and streaming devices --- which together carry 61.1\%
+of our confirmed CVEs. Device types with distinct brand sets, threat models and CVE
+profiles collapse into one class, and the home-control role by which streaming devices and
+smart speakers enter our scope at all is not expressible in these vocabularies. This
+supports the choice to define categories from consumer product boundaries rather than
+adopt an existing vocabulary, but it is equally a limitation on comparability: our
+categories cannot be mapped one-to-one onto studies built on those vocabularies. We note
+one limit of the manifest check itself: it verifies that the IRIs we cite exist, and can
+never detect a class we failed to look for --- an earlier version of this analysis stopped
+at SAREF core and consequently overstated the absence of denoting classes.
 
 Mapping individual CWEs onto the CWE-888 Software Fault Pattern clusters
 (Section~\ref{sec:method-cwe888}) is a second construct-validity threat. When a CWE is not
