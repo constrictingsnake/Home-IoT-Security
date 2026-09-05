@@ -1,10 +1,21 @@
 # Plan — Analysis Improvements (what to do with the confirmed CVE set)
 
-*Status: **Proposed** (2026-07-26). This is a roadmap for **analysis**, not collection. The
-existing `PLAN_*` docs are about *finding* CVEs (discovery/mining); this one is about *what we
-say* once they're confirmed. Input to every item below is the confirmed in-scope set in
-`data/difference/final_resolved.csv` (`Final Judgment = yes`, tvOS-excluded rows dropped),
-with the full 361k-CVE `data/nvd-snapshot/nvd_all.csv` as the **baseline control group**.*
+*Status: **PARTLY IMPLEMENTED** — roadmap, re-verified 2026-09-04. This is about **analysis**, not
+collection: the other `PLAN_*` docs are about *finding* CVEs, this one is about *what we say* once
+they're confirmed. Input to every item is the confirmed in-scope set in
+`data/difference/final_resolved.csv` (`Final Judgment = yes`, tvOS-excluded rows dropped), with the
+full `data/nvd-snapshot/nvd_all.csv` as the **baseline control group**.*
+
+| Item | State |
+|---|---|
+| **1** CWE fingerprint vs baseline | **DONE** — `cwe888_analysis.py` (RQ1), plus `generate_cwe888_table.py` / `_treemaps.py` for the paper, and `kg_queries.py weakness-fingerprint` |
+| **2** Severity contrast per category | **DONE** — `cvss_analysis.py` RQ2: distributions, severity bands, Kruskal-Wallis + Dunn |
+| **8** CVSS vector decomposition | **DONE, by a different route** — the 2026-08-05 snapshot refresh captured `vector_string` at 100% coverage, so RQ3 runs off NVD directly. `PLAN_nvd_update.md` supersedes this item's cvelistV5 proposal; the vectors are also exported into the KG |
+| **3** Temporal trends | **partial** — `kg_queries.py cves-by-year` exists; the per-category growth curves and the pre-2024 cutoff decision are not written up |
+| **4** Vendor concentration (HHI/Gini) | **not started** — no implementation in `scripts/` |
+| **5** Shared-firmware / ODM detection | **not started** |
+| **6+7** CISA KEV + EPSS join | **not started** — still the cheapest remaining win, and the exploitation axis the study wholly lacks |
+| **9** Reference-tag signals | **not started** (same data source as 8's original cvelistV5 route, which 8 no longer needs) |
 
 ## Why we can do more than the transportation-IoT study
 

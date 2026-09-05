@@ -49,6 +49,23 @@ Writes `data/nvd-snapshot/snapshot_churn.csv` (per-CVE) and `snapshot_churn.md` 
 
 ---
 
+### `nvd_stats.py` — Setup (corpus summary)
+Summary statistics for any file in the project's common CVE schema — the fixed snapshot or any
+per-category search output. Writes machine-readable JSON + CSV tables plus a Markdown report:
+CWE distribution, severity bands, CVEs by year, top vendors. This is where the NVD **baseline**
+numbers every "over-index vs the corpus" claim is measured against come from. Rows are counted by
+parsing the CSV, never by `wc -l` — descriptions carry embedded newlines.
+
+| Flag | Description |
+|------|-------------|
+| `input` | CSV/XLSX to summarize (default: `data/nvd-snapshot/nvd_all.csv`) |
+| `--out-dir DIR` | Where the report and tables land (default: next to the input) |
+| `--top N` | How many top items to list per table |
+| `--judgments FILE` | Judgment store to annotate the summary with |
+| `--no-judgments` | Summarize the file alone, ignoring any judgments |
+
+---
+
 ### `cve_search.py` — Stage 1 & 2 engine
 Core NVD search engine and the shared filter used by `build_search.py`. Operates in one of three mutually exclusive modes.
 
@@ -186,6 +203,27 @@ Folds human verdicts back into one settled judgment per CVE. Writes `03_final.cs
 
 ---
 
+### `mark_excluded.py` — Stage 4 (scope exclusion)
+Bulk-flags `judgment_store.csv` rows as `Excluded` — out of the analysis population — **without
+touching any judgment cell**. That separation is the whole design: a scope ruling says "this device
+type is not in the study", which is a different statement from "this CVE is not a match", and
+flipping judgments to record it would corrupt the precision numbers the judgments feed. Every
+consumer (`cwe888_analysis.py`, `cvss_analysis.py`, `ontology_build.py --export-kg`,
+`snapshot_churn.py`) filters on the flag by default and offers `--include-excluded` to reproduce
+the pre-exclusion numbers. Worked case: the 2,015 `apple:tvos` rows, reason `scope:tvos-2026-07`
+(see `docs/plans/PLAN_scope_exclusion.md`).
+
+| Flag | Description |
+|------|-------------|
+| `--category SLUG` | Category slug the exclusion applies to (**required**) |
+| `--cpe-vp VP` | Select by `vendor:product`, e.g. `apple:tvos` |
+| `--cve-file FILE` | Select by a file of CVE ids, one per line (alternative to `--cpe-vp`) |
+| `--reason SLUG` | Reason slug, e.g. `scope:tvos-2026-07` (required unless `--clear`) |
+| `--dry-run` | Print the selection only; do not write the store |
+| `--clear` | Blank the flag for the selection instead of setting it (reversibility) |
+
+---
+
 ### `term_precision.py` — Stage 8 (pruning)
 Scores every search term's precision from the settled judgments, joining `matched_terms` attribution back to `final_resolved.csv`. Writes `data/difference/term_precision.csv`.
 
@@ -270,6 +308,45 @@ Groups the CWEs of every confirmed-Yes CVE in the judgment store into the 23 pri
 
 ---
 
+### `generate_cwe888_table.py` — Stage 7 (report output)
+Emits the LaTeX CWE-888 × category matrix with the transportation IoT study's Table III cell-shading
+convention (each row's top-6 dominant classes highlighted). Reads `cwe888_analysis.py`'s
+`cwe888_distribution.csv` rather than recomputing from the store, so it has no CWE-catalog
+dependency and **cannot disagree with `cwe888_matrix.md`**. The matrix is transposed relative to the
+paper (categories as rows) because 20+ categories don't fit as columns; cells carry the row
+percentage only, with exact counts staying in `cwe888_matrix.md`. Writes
+`data/difference/cwe888_table.tex`, `\input`-able from the report. Needs `\usepackage[table]{xcolor}`
+in the preamble.
+
+| Flag | Description |
+|------|-------------|
+| `--distribution FILE` | Input distribution CSV (default: `data/difference/cwe888_distribution.csv`) |
+| `--categories FILE` | `categories.csv` for row ordering/labels |
+| `--out FILE` | Output `.tex` (default: `data/difference/cwe888_table.tex`) |
+| `--highlight-color SPEC` | xcolor spec used for `\cellcolor` on each row's top-6 classes |
+| `--label LABEL` | LaTeX `\label` for the emitted table |
+| `--unit-label NOUN` | Noun for the unit of analysis in caption/row header (e.g. `folding category` for a `--group family` distribution) |
+| `--order-by-n` | Order rows by descending N instead of `--categories` file order; use for family rollups, whose labels aren't in `categories.csv` |
+
+---
+
+### `generate_cwe888_treemaps.py` — Stage 7 (report figures)
+Treemap figures of the CWE-888 primary-class distribution, in the style of the transportation IoT
+study's Figs. 2–4. Reads the same `cwe888_distribution.csv` as the table generator, so the two are
+consistent by construction. One figure for the overall row plus the top-N categories by CWE count
+(default `cameras`, `hub`, `alarms`, `ev-charging` — the only categories with N > 75). Each class
+keeps a **fixed colour across every figure** (assigned by class identity, never by size within one
+treemap) and every box's identity is always available as text — in-box or in a side legend — so
+identity never depends on colour alone. Writes vector PDFs to `docs/figures/cwe888_treemap_<slug>.pdf`.
+
+| Flag | Description |
+|------|-------------|
+| `--distribution FILE` | Input distribution CSV (default: `data/difference/cwe888_distribution.csv`) |
+| `--out-dir DIR` | Figure output directory (default: `docs/figures`) |
+| `--categories SLUG …` | Categories to render (default: the four above, plus the overall figure) |
+
+---
+
 ### `cvss_analysis.py` — Stage 8 (analysis)
 Two research questions over the same confirmed-Yes population. **RQ2** (transportation IoT study,
 Section V): per-category CVSS score distribution, severity buckets, and a Kruskal-Wallis omnibus
@@ -298,6 +375,50 @@ None/Low/High) and is reported as unconvertible rather than reshaped. Requires `
 Writes `cvss_distribution.csv`, `cvss_severity.csv`, `cvss_matrix.md`, `cvss_dunn_pairwise.csv`
 (only if the omnibus test is significant), plus `cvss_vectors.csv` and `cvss_vector_matrix.md`
 for RQ3.
+
+---
+
+### `ontology_build.py` — the ontology gates
+Validates `ontology/homeiot.ttl` and generates every file derived from it. **The four gates that
+must all stay green** are `--check`, `--self-test`, `--sources`, and `--verify-kg`; run them before
+any commit that touches the ontology. `--check` is the composite: SHACL, external-IRI verification
+against the pinned manifest, citation verification against `study_sources.tsv`, the OWL reasoner
+reproducing all 31 in/out rulings, and a proof that `categories.csv` and `families.csv` regenerate
+**byte-identically**. `--write` only ever emits CSVs — **never reserialize the hand-authored `.ttl`
+files**, or rdflib churns the diffs.
+
+| Flag | Description |
+|------|-------------|
+| `--check` | Validate + prove the derived CSVs are unchanged; exit 1 on drift |
+| `--write` | Regenerate `data/categories.csv` and `data/ontology/families.csv` |
+| `--reason` | Print the in/out ruling table |
+| `--align` | Verify external alignment IRIs and report coverage. **Fails on a precision label with no `Searched:` trail** — without one, `coarse` is indistinguishable from "nobody looked" |
+| `--self-test` | Delete each criterion from the membership axiom in turn and require the reasoner to catch it — proves the criteria are load-bearing rather than decorative. The negative cases are the strong claim, not the ruling count |
+| `--sources` | Verify study citations against the pinned manifest; report how much confirmed-CVE mass rests on categories no study examines directly |
+| `--export-kg` | Emit the instance graph to `data/ontology/homeiot-kg.ttl` and run the Phase 4 gate |
+| `--verify-kg` | Rebuild the graph in memory and run the gate without writing |
+| `--include-excluded` | KG export only: keep rows carrying a `judgment_store` `Excluded` reason (default drops them, matching `cwe888_analysis.py`) |
+| `--ttl FILE` | Ontology file (default: `ontology/homeiot.ttl`) |
+| `--snapshot FILE` | KG export only: NVD snapshot to hydrate CVEs from. Point this, `cwe888_analysis.py` and `cvss_analysis.py` at **one vintage**, or the graph reconciles against a CWE map built from different data |
+
+---
+
+### `kg_queries.py` — knowledge-graph exploration
+Loads `homeiot.ttl` (classes + facets) and the generated `data/ontology/homeiot-kg.ttl` (instances:
+confirmed CVEs, products, vendors, weaknesses, reified category assignments) into one rdflib graph
+and runs SPARQL. **Exploration tool, not a pipeline stage** — it never writes back to the ontology or
+the judgment store and isn't chained into `pipeline.py`. Note the boundary on
+`weakness-fingerprint`: the per-category CWE-888 histogram comes from the KG, but the "software at
+large" baseline **cannot** — the KG deliberately holds only confirmed in-scope CVEs, so the baseline
+is read from the full NVD snapshot instead.
+
+| Subcommand | Description |
+|------|-------------|
+| `list` | What canned queries exist |
+| `run NAME` | Run one canned query (or `all`) |
+| `sparql "SELECT …"` | Run an ad hoc query |
+| `weakness-fingerprint` | Per-category CWE-888 histogram vs the NVD baseline |
+| `cves-by-year` | Disclosure counts over time |
 
 ---
 
@@ -354,6 +475,46 @@ Reads the three blind copies and reports, per facet: Fleiss' κ (Scott's π at 2
 
 ---
 
+### `facet_analysis.py` — facet reporting (with both guards enforced)
+Joins each category's facet values to the confirmed population and reports the cells, so a facet can
+be argued about with numbers. **The dominance column is the point:** `cameras` is 51% of the
+confirmed population, so a facet cell can look like an independent grouping while being a rename of
+`cameras`. Cells above `--dominance-threshold` are flagged, never dropped (flags triage, they never
+filter). Two independent withholding guards run by default and print differently on purpose — a
+Phase A NOT-USABLE cell shows its modal share and `n_devices`; an F5 reviewer-split cell has
+**neither**, and must never be rendered in the Phase A format, which would dress a disagreement up as
+a measurement. Unmeasured categories are labelled `[unmeasured]`, never silently promoted to sound.
+
+| Flag | Description |
+|------|-------------|
+| `--facet NAME` | Restrict to one facet (repeatable; default: all) |
+| `--group category\|family` | Attribute the top-share column to a leaf category (default) or its family fold — a cell dominated by one CATEGORY may still be well spread across FAMILIES |
+| `--cross NAME` | Cross-tabulate against `cwe888` or a CVSS vector metric (`attack_vector`, `scope`, `confidentiality`, …) |
+| `--dominance-threshold F` | Flag cells where one group exceeds this share (default `0.55`) |
+| `--min-n N` | Hide cells below this CVE count |
+| `--ignore-phase-a` | Report every value regardless of its Phase A verdict — **pre-enforcement behaviour, A/B only** |
+| `--ignore-f5-exclusions` | Report cells F5 excluded on a reviewer split as though nobody had looked. Separate switch because it is a separate instrument: a split is evidence about a category Phase A could not sample at all |
+
+---
+
+### `facet_derive.py` — the failed promotion attempt (kept as the record)
+Tries to promote `hasWebAdminUI` and `computeTier` from `Estimated` to `Derived` by measuring them
+from CVE text, and compares the result to what the ontology asserts. **Both failed, and that failure
+is the output.** `hasWebAdminUI` is pattern-fragile — a narrow word list puts cameras at 23% and hub
+at 5%, a looser one puts them at 65% and 81%, with 19 of 22 categories swinging >25 points, so the
+number measures the author's keyword choice; `computeTier` leaves almost no textual trace (evidence
+sufficed for 1 of 22). It never edits `homeiot.ttl` — same convention as the discovery miners. The
+confound is stated up front: descriptions are written by the same analysts who assign the CWE, so a
+`hasWebAdminUI` × CWE-888 comparison is **not** a clean natural experiment.
+
+| Flag | Description |
+|------|-------------|
+| `--write` | Write `data/ontology/facet_evidence.csv` |
+| `--threshold F` | Web-admin share at which the facet is called true (default `0.2`) |
+| `--snapshot FILE` | NVD snapshot to read descriptions from |
+
+---
+
 ### `camera_subtype.py` — F4 (cameras device-subtype pass)
 Measures whether `cameras` is really two device types (cameras and DVR/NVR recorders) and whether they can be told apart from a product name. Draws a pilot from the cameras frame and classifies camera/recorder/other from product identity alone. `--aggregate` reports the split under both weightings, a **judgeability** rate against a pre-registered decision rule, and an annotator-independent **token check** (the mechanical `nvr`/`dvr`/`xvr` rule, deliberately kept out of the sheet so the annotator cannot anchor on it).
 
@@ -378,6 +539,21 @@ Emits `data/facets/tagging-kit/` — the worksheet two human reviewers fill to r
 
 ---
 
+### `make_codex_column2.py` — F5 (Codex draft of the second column)
+Emits and merges back Codex's draft of the tagging sheet's column 2. **The provenance shape this
+creates must be reported, not hidden:** cells 1–89 are a Claude draft plus independent human
+verification; cells 90–202 are a Claude draft plus a Codex draft that the human then adjudicates —
+on that second block the human is adjudicating two AI drafts rather than acting as an independent
+second reviewer. That is weaker independence, and the human is still the settling authority either
+way (this sheet is made of pre-fills by design — the opposite of the blind `annotation-kit/`).
+
+| Flag | Description |
+|------|-------------|
+| `--emit` | Write the Codex working copy |
+| `--merge` | Fold the filled copy back into the tagging sheet |
+
+---
+
 ### `facet_store.py` — F5 (durable facet verdict store)
 To category tagging what `judgment_store.csv` is to CVE review: answers live in `data/facets/facet_store.csv` keyed `(slug, facet)` and survive sheet regeneration. Same **order rule** as the CVE chain — finalize before extract, or a freshly-filled verdict is still outstanding when the queue is rebuilt and gets asked twice. Human verdicts are sticky. A cell settles only on two independent, agreeing, non-`unsure` verdicts; on a `multi` row agreement is **set equality** (order, case, and spacing normalised first), and a superset in one column is a disagreement. The evidence tier is derived from what the reviewer did — `Documented` (source + `Category-Wide`), `HumanSourced` (source), `HumanJudged` (looked, found nothing) — never self-reported. `--finalize` warns about answers needing a rewrite and leaves those cells outstanding with a reason that names the problem (`outstanding-malformed`, `outstanding-contradiction`).
 
@@ -387,6 +563,53 @@ To category tagging what `judgment_store.csv` is to CVE review: answers live in 
 | `--extract` | Store → `facet_review_queue.csv`, outstanding-only |
 | `--status` | Coverage, per-cell tier mix, per-property tier by the floor rule |
 | `--writeback` | → `facet_writeback_report.md`, the TTL edits implied (**applied by hand**) |
+
+---
+
+### `facet_source_coverage.py` — F5 (is a citation about *this* corpus?)
+Measures whether a facet cell's citations are representative of the category they assert. The tier
+vocabulary could tell `Documented` from `HumanSourced`, but not a per-product citation drawn from the
+population the facet describes from one drawn from whatever brand happens to be famous. Measured on
+the first sourced pass: **the median cell cited vendors accounting for 3% of its category's
+confirmed-Yes CVEs** — `hub` was sourced on Hubitat, which has no CVEs in the corpus at all, while
+Insteon carried 45%. A cell failing the floor drops to `HumanJudged` with its source **retained and
+labelled**, which says more than a blank source would.
+
+**The floor rule** is relative with an absolute backstop: cited vendors' share must *exceed* the
+largest single uncited vendor's share, and be at least 10%. The relative half adapts to how
+concentrated a category is; the backstop stops a fragmented category passing on crumbs. Two
+exemptions, both recorded rather than silent: `CLASS_BINDING` (a standard binding the product class —
+ETSI EN 303 645, Matter — where vendor share is the wrong test) and `unmeasurable` (<10 confirmed-Yes
+CVEs). `JURISDICTION_BOUND` is deliberately **not** exempt: a standard binds a class, a regulation
+binds a market, and conflating them let UK PSTI exempt 15 `supportLifetime` cells whose cited vendor
+held 0% of the category.
+
+| Flag | Description |
+|------|-------------|
+| `--write` | Write `data/facets/source_coverage.csv` |
+
+---
+
+### Shell helpers
+
+**`run_gemini.sh`** — drives the Gemini reviewer over every category's blind review copy.
+`gemini_classify.py` handles one copy at a time; this loops the categories, pulls each one's label +
+scope note from `data/categories.csv` (so it stays correct if the category set changes), and applies
+the rate-limit knobs consistently across the whole pass. Resumable and idempotent — only rows whose
+`Gemini Judgment` is still blank are classified, progress is flushed after every batch, and finished
+categories print "nothing to do". Token defaults are set *below* the true free-tier limits because
+the ~4 chars/token estimate undercounts CPE-dense rows and the script does not retry 429s.
+
+```
+scripts/run_gemini.sh                 # all categories
+scripts/run_gemini.sh hub cameras     # only these slugs
+```
+Env overrides: `MODEL`, `MAX_BATCH_TOKENS`, `TPM`, `RPS`, `MAX_BATCH_ROWS`. Needs `GEMINI_API_KEY`.
+
+**`sync.sh`** — pushes to GitHub and mirrors the repo to the shared Google Drive folder in one shot,
+via your local `rclone` OAuth remote (Drive writes are owned by you: no service-account quota
+problem, no GitHub secret). Commit first — it runs `git push origin HEAD`. Prereq: an `rclone` remote
+named `gdrive` (`rclone config`); the script preflights for it and exits if it's missing.
 
 ---
 

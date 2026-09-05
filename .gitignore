@@ -37,7 +37,7 @@ data/nvd-snapshot/*.json.gz
 # surviving evidence of the drift.
 !data/nvd-snapshot/snapshot_churn.csv
 
-# Per-category prep marker touched by run_gemma_column.sh — local, per-machine
+# Per-category prep marker touched by run_gemini.sh — local, per-machine
 # bookkeeping only. Must NOT be tracked: if checked out elsewhere it would make
 # the script skip the one-time backup/blank of the Gemini column.
 data/difference/*/.gemma_prepped

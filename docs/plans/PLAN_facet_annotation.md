@@ -1,7 +1,13 @@
 # Plan — Multi-Annotator Facet Assignment with Measured Agreement
 
-*Status: **planned**, not started. Supersedes nothing; it is the route out of the
-`hiot:Estimated` dead end recorded in `CLAUDE.md` § Facet provenance.*
+*Status: **EXECUTED** (2026-08 → 2026-09) — this doc is the design record, not a to-do list. The
+route out of the `hiot:Estimated` dead end it proposed was taken, and it produced a verdict rather
+than a promotion: the 3-rater panel ran (471 shared items) and **only 4 of 12 facets reach
+κ ≥ 0.60**, with `supportLifetime` below chance at −0.311. Phase A (device sampling, § below) was
+added mid-flight when it became clear **validity sits upstream of reliability**. Sourcing landed
+via `PLAN_facet_system_fixes.md` § F5, not via this plan's writeback step. Live state and the
+κ table are in `CLAUDE.md` § Phase A heterogeneity; the one open follow-on is F4's cameras subtype
+pass. Read the `DONE` markers inline below for what each step actually produced.*
 
 **Goal:** move the 496 device-type facet assertions in `ontology/homeiot.ttl` from
 "one author asserted them" to "independently annotated by three models under a shared

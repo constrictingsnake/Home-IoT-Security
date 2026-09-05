@@ -265,7 +265,7 @@ def main():
     )
     ap.add_argument("--all", action="store_true",
                     help="Iterate every category in data/categories.csv (folds in the old "
-                         "run_gemma_column.sh loop). With --run-gemini the per-category label from "
+                         "run_gemini.sh loop). With --run-gemini the per-category label from "
                          "that file is used, so --category is not needed.")
     ap.add_argument("--reviews", help="Directory holding claude.csv / codex.csv / gemini.csv")
     ap.add_argument("--claude", help="Path to the Claude copy (overrides --reviews)")

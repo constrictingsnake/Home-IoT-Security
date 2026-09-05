@@ -1,6 +1,6 @@
 # Suggested keyword terms per analysis category — REFERENCE ONLY.
 # ---------------------------------------------------------------------------
-# This file is NOT read by build_keyword_search.py. It is a copy-from menu:
+# This file is NOT read by build_search.py. It is a copy-from menu:
 # pick the device-PHRASE terms you want for each category and paste the rows
 # into keyword_terms.csv (the live, user-authored file the driver reads).
 #

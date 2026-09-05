@@ -7,7 +7,7 @@ This script is the only thing that reads it and writes anything.
 
     python3 scripts/ontology_build.py --check     # validate + prove CSVs unchanged (no writes)
     python3 scripts/ontology_build.py --write     # emit categories.csv + families.csv
-    python3 scripts/ontology_build.py --reason    # 27-class in/out ruling table
+    python3 scripts/ontology_build.py --reason    # 31-class in/out ruling table
     python3 scripts/ontology_build.py --export-kg # emit the instance graph (Phase 4)
 
 Two invariants (docs/plans/PLAN_ontology.md):
@@ -1055,7 +1055,7 @@ def main():
     ap.add_argument("--write", action="store_true",
                     help="regenerate data/categories.csv and data/ontology/families.csv")
     ap.add_argument("--reason", action="store_true",
-                    help="print the 27-class in/out ruling table")
+                    help="print the 31-class in/out ruling table")
     ap.add_argument("--align", action="store_true",
                     help="verify external alignment IRIs and report coverage")
     ap.add_argument("--self-test", action="store_true",

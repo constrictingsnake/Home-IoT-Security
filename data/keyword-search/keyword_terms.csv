@@ -1,6 +1,6 @@
 # Keyword terms for the offline per-category keyword search (Stage 1).
 # ---------------------------------------------------------------------------
-# THIS is the file build_keyword_search.py reads. Populated from
+# THIS is the file build_search.py reads. Populated from
 # keyword_terms.suggested.csv, plus the high-yield terms mined from the
 # difference-set review (Keyword Yields + Per-category Trends analysis).
 #

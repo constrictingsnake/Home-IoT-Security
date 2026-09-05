@@ -1,4 +1,4 @@
-# Vendor/brand search terms (Stage 2 — build_vendor_search.py).
+# Vendor/brand search terms (Stage 2 — build_search.py).
 # ---------------------------------------------------------------------------
 # Format: one "slug,term" per line (same parser as keyword_terms.csv). Terms are
 # RAW brand strings, NOT quoted. '#'-comment and blank lines are ignored.
@@ -8,7 +8,7 @@
 # PROVENANCE / REPRODUCIBILITY:
 #   * The 15 ORIGINAL categories below were recovered from the exact --keywords
 #     strings in "Devices List.docx" (Jason's brand strings; "Omitted:" terms
-#     excluded). Verified 2026-06-28: rebuilding each through build_vendor_search.py
+#     excluded). Verified 2026-06-28: rebuilding each through build_search.py
 #     (whole_word=True) against data/nvd-snapshot/nvd_all.csv reproduces the
 #     committed results_all_<cat>.xlsx CVE sets EXACTLY for all 14 in-scope
 #     categories. (gameconsoles is out of scope — its xlsx was regenerated here

@@ -462,6 +462,7 @@ One line per script — full flag tables in `docs/SCRIPTS_REFERENCE.md`.
 |--------|-------|---------|
 | `download_nvd.py` | Setup | Bulk-download the NVD snapshot via the API (resumable) |
 | `snapshot_churn.py` | Setup | Diffs two snapshot vintages over the confirmed-Yes set — run **before** a cutover |
+| `nvd_stats.py` | Setup | Summary stats (CWE / severity / by-year / top vendors) for the snapshot or any search output — the source of the NVD **baseline** numbers |
 | `cve_search.py` | 1 & 2 (engine) | Core NVD search engine: `--convert`, `--merge`, `--input` modes |
 | `build_search.py` | 1 & 2 | Per-category keyword + vendor search against the fixed snapshot |
 | `review_lib.py` | 3/4 (shared lib) | Shared helpers: `load_cves`, `difference_rows`, `intersection_rows`, `write_raw` |
@@ -472,6 +473,7 @@ One line per script — full flag tables in `docs/SCRIPTS_REFERENCE.md`.
 | `pipeline.py` | orchestrator | `refresh` / `settle` / `status` / `discover-vendors` / `mine-keywords` / `scan-products` — chains the idempotent steps |
 | `extract_human_review.py` | 4 | Regenerates the **outstanding-only** human-review queue (drops rows already settled in the store) |
 | `finalize_judgments.py` | 4 | Folds human verdicts into `Final Judgment`; upserts AI + raw human verdicts into `judgment_store.csv` |
+| `mark_excluded.py` | 4 (scope) | Bulk-flags store rows `Excluded` (out of the analysis population) **without touching any judgment cell**; `--clear` reverses it |
 | `term_precision.py` | 8 (pruning) | Per-term precision from settled judgments |
 | `cpe_expansion.py` | 5 | Third discovery method: CPE-based densification of confirmed products |
 | `cpe_brand_mining.py` | 2 (discovery) | Mines CPE vendors missing from `vendor_terms.csv`; writes a candidate list, never auto-adds |
@@ -484,6 +486,7 @@ One line per script — full flag tables in `docs/SCRIPTS_REFERENCE.md`.
 | `cvss_analysis.py` | 8 (analysis) | CVSS score distribution + Kruskal-Wallis/Dunn's test (RQ2) and vector-component distributions (RQ3) |
 | `cvss_vector.py` | 8 (shared lib) | CVSS vector parsing normalised to 3.x (4.0 back-conversion); shared by `cvss_analysis.py` and `ontology_build.py` |
 | `ontology_build.py` | ontology | `--check` / `--write` / `--reason` / `--align` / `--sources` / `--self-test` / `--export-kg` / `--verify-kg` |
+| `kg_queries.py` | ontology (exploration) | SPARQL over `homeiot.ttl` + the generated instance KG; canned queries, `weakness-fingerprint`, `cves-by-year`. Never writes back, not in `pipeline.py` |
 | `facet_derive.py` | ontology (provenance) | Derives `hasWebAdminUI` / `computeTier` from the snapshot and compares to the asserted values; reports pattern-fragility. Writes `data/ontology/facet_evidence.csv`, never edits the ontology |
 | `facet_analysis.py` | ontology → analysis | Slices the confirmed-Yes population by ontology facet, with a dominance column and `--cross cwe888` / `--cross attack_vector`. **Withholds cells Phase A measured as NOT-USABLE**; `--ignore-phase-a` to A/B |
 | `facet_sample.py` | facets (Phase A) | Draws a device sample per category and measures within-category facet heterogeneity → `facet_distribution.csv` |
@@ -492,7 +495,9 @@ One line per script — full flag tables in `docs/SCRIPTS_REFERENCE.md`.
 | `facet_agreement.py` | facets (Phase 3) | Fleiss' κ / Scott's π, bootstrap CIs, PABAK, `unsure` rates; `--self-test` validates the statistics |
 | `camera_subtype.py` | facets (F4) | Measures the camera-vs-recorder split inside `cameras`, with a judgeability gate and a token check |
 | `make_tagging_sheet.py` | facets (F5) | Builds the human tagging kit (`data/facets/tagging-kit/`) — all 18 facets, pre-filled with provenance, sorted so a partial pass still pays |
+| `make_codex_column2.py` | facets (F5) | `--emit` / `--merge` the Codex draft of the tagging sheet's column 2 (the human still settles every cell) |
 | `facet_store.py` | facets (F5) | Durable `(slug, facet)` verdict store; `--finalize` / `--extract` / `--status` / `--writeback`. Finalize before extract, always |
+| `facet_source_coverage.py` | facets (F5) | Measures whether a cell's cited vendors actually cover the category's CVEs; below the floor a cell drops to `HumanJudged` with its source retained |
 
 Retired scripts live in `scripts/_legacy/` (superseded-by table in `docs/SCRIPTS_REFERENCE.md`).
 

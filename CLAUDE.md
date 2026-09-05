@@ -238,10 +238,11 @@ hypothesis needing product-level facets, not as a result.
 > `alarms` (0.574). Both were deliberately ruled in scope, so the categories genuinely hold
 > two device types and one `capturesAV` value cannot be true for both. Note the direction:
 > this makes the dominance problem **worse**, not better — `capturesAV` is not even reliably
-> `cameras`. The corrected figure waits on the κ subsample plus the cameras device-subtype
-> pass (`PLAN_facet_system_fixes.md` § F2, F4); one contaminated annotator at n=40 does not
-> license changing a published number. **Phase A verdicts are enforced in code** — see
-> *Phase A heterogeneity* below.
+> `cameras`. The κ subsample has since landed and **`capturesAV` fails reliability too** (κ=0.386,
+> `stays-Estimated`) — so the facet now fails both gates, by two methods sharing no mechanism. The
+> corrected figure still waits on the cameras device-subtype pass (`PLAN_facet_system_fixes.md` § F4);
+> one contaminated annotator at n=40 does not license changing a published number. **Phase A verdicts
+> are enforced in code** — see *Phase A heterogeneity* below.
 
 **Facet provenance — every facet is `hiot:Estimated`, and that is a hard constraint on use.** All
 **496** facet assertions were hand-assigned from domain knowledge with no source. `hiot:evidenceTier`
@@ -303,7 +304,49 @@ measurement it was copied from.
 Two caveats that bound all of it: only **10 of 24** categories were samplable (the rest are
 `too-few-cves`, `mega-cpe-bound` or `empty` and stay UNMEASURED, per decision 12A), and **21.6% of
 confirmed-Yes rows carry no device CPE at all** and cannot be product-sampled at any budget. The
-whole pass is one annotator with κ not yet measured — see `docs/plans/PLAN_facet_system_fixes.md`.
+Phase A sampling pass itself is **one annotator** — reliability is measured separately, below.
+
+**Reliability — the κ panel, and the four facets that survive it.** Three blind annotators (Claude,
+Gemini, Codex) over a 40-device subsample per facet, **471 shared items**; Fleiss' κ with bootstrap
+CIs in `data/facets/facet_agreement.csv` (`facet_agreement.py`). Bands mirror the Phase A rule
+deliberately — ≥0.60 citable / 0.40–0.60 grouping-only / <0.40 stays `Estimated`:
+
+| band | facets (κ) |
+|---|---|
+| **CITABLE** | `actuationConsequence` 0.755 · `actuatesPhysical` 0.737 · `consumerAvailability` 0.720 · `placement` 0.701 |
+| **grouping-only** | `dataSensitivity` 0.595 · `formFactor` 0.489 *(n=35, CI spans 0 — do not quote alone)* · `cloudDependence` 0.445 |
+| **stays-Estimated** | `firmwareUpdateModel` 0.388 · `capturesAV` 0.386 · `computeTier` 0.384 · `hasWebAdminUI` 0.349 · `supportLifetime` **−0.311** |
+
+Three things this panel is load-bearing for. **(1) Adding Codex lowered agreement on 7 of 12 facets**
+(`formFactor` 1.000 → 0.489, `actuatesPhysical` 0.950 → 0.737). That is the panel working, not
+breaking: the 2-rater figures were Claude-vs-Gemini, and Claude authored *both* the prior assignment
+and the value definitions both were annotating against, so they were flattered. **Quote the 3-rater κ
+everywhere; the historical π values (0.358 / 0.131 / 0.283) are superseded.** **(2) Reliability and
+validity are separate gates and a facet must clear both.** `capturesAV` fails κ *on top of* the Phase
+A verdict — two methods sharing no mechanism reaching the same answer. Conversely `consumerAvailability`
+and `placement` are reliable but their `cameras` cell fails validity, so their safe mass is only
+~34–37%; note the inversion — excluding cameras makes them the *least* cameras-confounded facets
+available. `actuatesPhysical` and `actuationConsequence` clear both gates in 8 of 10 measured cells
+carrying **85.6%** of CVE mass, and are the only two that survive outright. **(3) `supportLifetime`
+below chance (−0.311, 28% `unsure`)** means annotators were not reading one construct — it is
+evidence against the *facet*, not against the annotators.
+
+**F5 — sourcing, and the coverage gate that governs a citation.** The sourced category pass is
+settled in `data/facets/facet_store.csv`: **185 cells, 94 `HumanSourced` / 91 `HumanJudged` /
+0 `Documented`**, review queue empty. The tier is derived from what the reviewer did, never
+self-reported. But a citation is only evidence about *this* corpus if it covers it —
+`facet_source_coverage.py` measures the cited vendors' share of the category's confirmed-Yes CVEs,
+and on the first pass **the median cell cited vendors holding 3%** (`hub` was sourced on Hubitat,
+which has no CVEs in the corpus, while Insteon carried 45%). A cell below the floor drops to
+`HumanJudged` with its source retained and labelled. **Before calling any citation evidence, check
+its coverage.** Two exemptions, both recorded rather than silent: a standard binding the product
+*class* (ETSI EN 303 645, Matter), and categories under 10 CVEs. A regulation binding a *market* is
+**not** exempt — conflating the two let UK PSTI exempt 15 `supportLifetime` cells whose cited vendor
+held 0% of the category.
+
+None of this is written back into `homeiot.ttl`: all **496** TTL assertions remain `hiot:Estimated`,
+and the store stays the machine-readable source, for the same reason Phase A's 120 numbers do. See
+`docs/plans/PLAN_facet_system_fixes.md` for what is still open (the full cameras subtype pass).
 
 **Literature provenance.** `ontology/homeiot-sources.ttl` records why each category exists, split
 into `dcterms:source` (the study evaluates this device type by name) and `hiot:methodologicalSource`
@@ -359,8 +402,11 @@ Home IoT Security/
 ├── AGENTS.md                        # Codex reviewer instructions (auto-loaded by Codex)
 ├── docs/
 │   ├── RESULTS.md                       # Result tables (first-run + current snapshots) + worked examples
-│   ├── SCRIPTS_REFERENCE.md             # Full per-script flag tables
-│   └── ...                              # Prior analysis docs, report draft
+│   ├── SCRIPTS_REFERENCE.md             # Full per-script flag tables (every script, incl. the 4 ontology gates)
+│   ├── RECALL_ESTIMATION_EXPLAINER.md   # Stage 6 capture-recapture, one section per slide
+│   ├── REVIEW_DISAGREEMENT_FINDINGS.md  # 2026-07 Claude-vs-Codex disagreement typology (historical; see its header)
+│   ├── home_iot_security_report.tex     # the paper draft + figures/
+│   └── plans/                           # design records — each carries its own STATUS block
 │
 ├── ontology/                        # OWL device ontology — hand-authored, citable artifact
 │   ├── homeiot.ttl                       # 24 leaf categories, 13 folding categories, criteria 1-5 as axioms
@@ -368,8 +414,10 @@ Home IoT Security/
 │   ├── homeiot-align.ttl                 # SAREF + SSN/SOSA alignment (separate file, droppable)
 │   ├── homeiot-sources.ttl               # literature provenance per category (separate file, droppable)
 │   ├── homeiot-kg.ttl                    # instance vocabulary for the exported knowledge graph
-│   ├── external_classes.tsv              # pinned 331-IRI manifest the alignment is verified against
-│   └── study_sources.tsv                 # pinned study manifest the citations are verified against
+│   ├── external_classes.tsv              # pinned 435-IRI manifest the alignment is verified against
+│   ├── external_sources.tsv              # where each manifest IRI was read from
+│   ├── study_sources.tsv                 # pinned study manifest the citations are verified against
+│   └── README.md                         # how to read/extend the ontology files
 │
 ├── scripts/                         # All pipeline scripts (see README "Scripts" for one-liners)
 │   └── _legacy/                          # Retired — superseded, kept for reference only
@@ -384,6 +432,10 @@ Home IoT Security/
     ├── vendor-search/                # Stage 2 output + user-authored vendor_terms.csv + vendor_candidates.csv (automated discovery, unreviewed)
     ├── cpe-product-tokens.csv        # user-authored slug,token list for cpe_product_scan.py (automated discovery)
     ├── cpe-product-scan/             # cpe_product_scan.py output — product_candidates.csv (unreviewed)
+    ├── cwe/                          # pinned CWE catalog (cwec_v4.12.xml.zip) — the CWE-888 view's version
+    ├── facets/                       # the facet system: facet_store.csv (F5 verdicts, keyed slug+facet),
+    │                                 #   facet_distribution.csv (Phase A modal shares), facet_agreement.csv (κ),
+    │                                 #   source_coverage.csv, + annotation-kit/ (blind) and tagging-kit/ (pre-filled)
     └── difference/                  # Stage 3+4 — vendor/keyword difference + its triple-AI review
         ├── CLASSIFICATION_PROMPT.md     # shared rubric all 3 AI reviewers judge by
         ├── judgment_store.csv           # persistent judgment store — keyed (category, cve_id); holds AI judgments + Final Judgment + raw Human Verdict/Notes 1&2

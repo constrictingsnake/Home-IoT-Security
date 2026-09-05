@@ -13,22 +13,22 @@ the truth about the current state.
 
 ---
 
-## STATUS — 2026-08-10
+## STATUS — 2026-09-04
 
 | Phase | State |
 |---|---|
 | **F1** docs truth pass | **DONE** — `6619d86` |
-| **F3** verdict enforcement | **DONE** — `6619d86` |
-| **F2** κ loop | **PANEL COMPLETE** — Codex column landed `a51603f` (2026-08-10); 3-rater Fleiss' κ runs on 471 shared items. Closeout items remain (see the phase) |
-| **F4** cameras subtype | **PILOT DONE** — `b4727de`, 70% judgeable → proceed with caveat. Full pass not started |
-| **F5** category study + writeback | **REDESIGNED 2026-08-10** — human-sourced category tagging replaces the second AI panel (see the rewritten phase). Machinery BUILT; sheet widened to all 18 facets 2026-08-11 (432 cells, 420 asked); human pass not started |
-| **F6** shades / KG vectors / push | **shades RESOLVED** (no NVD footprint, marker set, gates green); **branch pushed**; KG vectors still optional |
+| **F3** verdict enforcement | **DONE** — `6619d86`; extended `a08b0b7` to read F5 reviewer-splits as a *second*, independent withholding source with its own `--ignore-f5-exclusions` switch |
+| **F2** κ loop | **DONE** — Codex column landed `a51603f`; 3-rater Fleiss' κ over 471 shared items, table + bootstrap CIs now reported in the paper's `sec:threats-reliability` (`a08b0b7`) |
+| **F5** category study | **DONE** — `c57f073` filled column 1, `6fac5ab` adjudicated all 20 queue disagreements. Settled: **185 cells, 94 HumanSourced / 91 HumanJudged / 0 Documented**, queue empty. Every citation now gated on corpus coverage (`facet_source_coverage.py`). TTL writeback deliberately **not** done — it returns 0 value changes, and the store stays the machine-readable source |
+| **F6** shades / KG vectors / push | **DONE** — shades resolved (no NVD footprint, marker set); branch pushed; KG vectors exported `a08b0b7` (1,676 CVEs carry `cvssVector`, 1,595 the parsed AV/PR/UI/S; graph is 80,072 triples) |
+| **F4** cameras subtype | **PILOT DONE** — `b4727de`, 70% judgeable → proceed with caveat. **Full pass not started — this is the only phase still open.** |
 
-The Codex run is in. **The one remaining human step is now F5's sourced category pass** —
-432 cells, pre-filled with the panel consensus so the human verifies with sources rather
-than starting cold. **Widened 2026-08-11 from 288 to 432**: the 6 multi-valued facets are
-asked in the same pass (step 6 below), so the vocabulary is settled once rather than in two
-passes with a second sheet to build later.
+**The one remaining item in this plan is F4's full cameras subtype pass.** It is what the
+`capturesAV` 79%-dominance correction is still waiting on: `capturesAV` now fails *both* gates
+(Phase A validity NOT-USABLE at modal share 0.591, and κ=0.386), so the published figure cannot
+be corrected — only withheld — until the subtype pass says what `cameras` actually contains.
+Settle retire-vs-recompute before starting it (see the phase).
 
 ### The panel verdict (3 raters, 471 shared items) — the result F2 existed to produce
 
@@ -411,10 +411,10 @@ survives in `CLAUDE.md` or memory.
 ```
 F1 (docs truth)            ── DONE
 F3 (verdict enforcement)   ── DONE
-F2 closeout (gemini blanks → regenerate CSV → prior/three-way stats → record calls)
-F5 (sourcing probe → store + sheet → human pass → writeback)  ← now the critical path
-F4 (cameras full subtype pass) ── parallel to F5; settle retire-vs-recompute first
-F6 (KG vectors) ── independent, any time
+F2 (κ panel → 3-rater table + CIs → reported in the paper)   ── DONE
+F5 (sourcing probe → store + sheet → human pass → coverage gate) ── DONE (writeback declined)
+F6 (KG vectors)            ── DONE
+F4 (cameras full subtype pass) ← the only open phase; settle retire-vs-recompute first
 ```
 
 ## What "done" looks like

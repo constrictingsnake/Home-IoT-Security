@@ -2,10 +2,20 @@
 
 **Date captured:** 2026-07-01
 **Basis:** `data/intersection/matched_*_cves.csv` as of the capture date (directory since deleted —
-recover via git history) + current `data/difference/<cat>/reviews/{claude,codex}.csv`
-**Status:** PRELIMINARY — no Gemini vote and no human adjudication folded in yet. These are the
-Claude/Codex-only patterns. Save this for the adjudication / keyword-refresh pass; nothing here has
-been acted on.
+recover via git history) + `data/difference/<cat>/reviews/{claude,codex}.csv` as they then stood.
+
+> **Status (re-verified 2026-09-04): HISTORICAL — absorbed, not pending.** The numbers are a
+> 2026-07-01 capture and are stale; the *typology* is what survived, and it was acted on:
+> - **Type A** (home vs commercial/fleet) is now a rubric rule — `CLASSIFICATION_PROMPT.md` names
+>   `ev-charging` = home wallbox only and `cameras` = not enterprise NVR/VMS/SAN.
+> - **Type B** was a search bug, and it is fixed: `smart switch` is **gone** from
+>   `keyword_terms.csv`.
+> - **Type C** (Codex over-excluding unfamiliar residential brands) is recorded in `CLAUDE.md`
+>   § Reviewer behaviour as a standing model bias, with Claude as the anchor.
+> - **Action 3** (an auto-classified A/B/C/D disagreement queue) was never built and is now **moot**
+>   — the human queue has since been worked to empty through the normal `finalize`/`extract` chain.
+>
+> Kept for the per-type evidence and the reproduction recipe. Do not cite its counts.
 
 ---
 

@@ -1,10 +1,19 @@
 # Small-Category Recovery — Findings & Implementation Plan
 
 *Analysis date: 2026-07-09, run against the fixed NVD snapshot (2026-06-25, 360,981 CVEs).
-Status: **F1 (engine fix) implemented 2026-07-09** — see `scripts/cve_search.py`
-`filter_by_keywords` whole-word matcher, which now matches a space in a multi-word term
-against `[ _]` so CPE-only mentions are reachable. F2–F4 (vendor-term additions,
-CPE-expansion guardrail relaxation, scope-decision writeups) are still **not implemented**.*
+Status (re-verified 2026-09-04):
+**F1 (engine fix) — implemented 2026-07-09**, see `scripts/cve_search.py` `filter_by_keywords`
+whole-word matcher, which now matches a space in a multi-word term against `[ _]` so CPE-only
+mentions are reachable.
+**F2 (vendor-term additions) — mostly landed.** Present in `vendor_terms.csv`: growatt, solax,
+solaredge, goodwe, deye, aqara, shelly, fibaro, zooz, sonoff, lutron, miele, thinq, dyson.
+Still missing: `home-power`/`solar-log`, `sinapsi`, `apsystems`; `sensors`+`thermostat`/`netatmo`;
+`thermostat`/`heatmiser`; `appliances`/`crock-pot`, `wemo` (the wemo→smartplugs routing call in
+step 2 was never decided).
+**F3 (CPE-expansion guardrail relaxation) and F4 (scope-decision writeups) — still not
+implemented.** F4's substance partly landed elsewhere: sleeptracker and shades are recorded in
+the ontology (shades carries `hiot:noNvdFootprint`), but airpurifier/fans/fridge have no such
+ruling written down.*
 
 This doc records why the under-represented categories (`airpurifier`, `fans`, `fridge`,
 `shades`, `sleeptracker`, `sensors`, `appliances`, `airconditioner`, `thermostat`,
