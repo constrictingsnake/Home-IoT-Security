@@ -16,10 +16,10 @@ key	iri	title	authors	venue	year	verified
 alrawi2019	https://w3id.org/homeiot/source/alrawi2019	SoK: Security Evaluation of Home-Based IoT Deployments	Alrawi, Lever, Antonakakis, Monrose	IEEE Symposium on Security and Privacy	2019	yes
 fernandes2016	https://w3id.org/homeiot/source/fernandes2016	Security Analysis of Emerging Smart Home Applications	Fernandes, Jung, Prakash	IEEE Symposium on Security and Privacy	2016	yes
 baltaozkan2013	https://w3id.org/homeiot/source/baltaozkan2013	Social barriers to the adoption of smart homes	Balta-Ozkan, Davidson, Bicket, Whitmarsh	Energy Policy	2013	yes
-notra2014	https://w3id.org/homeiot/source/notra2014	An Experimental Study of Security and Privacy Risks with Emerging Household Appliances				no
-loi2017	https://w3id.org/homeiot/source/loi2017	Systematically Evaluating Security and Privacy for Consumer IoT Devices				no
-ali2018	https://w3id.org/homeiot/source/ali2018	Cyber and Physical Security Vulnerability Assessment for IoT-Based Smart Homes				no
-zhou2019	https://w3id.org/homeiot/source/zhou2019	Discovering and Understanding the Security Hazards in the Interactions between IoT Devices, Mobile Apps, and Clouds on Smart Home Platforms				no
-smarthomecase	https://w3id.org/homeiot/source/smarthomecase	Vulnerability Studies and Security Postures of IoT Devices: A Smart Home Case Study				no
-smartcameras	https://w3id.org/homeiot/source/smartcameras	Investigation of Vulnerabilities in Smart Connected Cameras				no
-stanfordiot	https://w3id.org/homeiot/source/stanfordiot	Minimum Security Standards: Internet of Things (IoT) Devices				no
+notra2014	https://w3id.org/homeiot/source/notra2014	An Experimental Study of Security and Privacy Risks with Emerging Household Appliances	Notra, Siddiqi, Habibi Gharakheili, Sivaraman, Boreli	IEEE Conference on Communications and Network Security	2014	yes
+loi2017	https://w3id.org/homeiot/source/loi2017	Systematically Evaluating Security and Privacy for Consumer IoT Devices	Loi, Sivanathan, Habibi Gharakheili, Radford, Sivaraman	ACM Workshop on Internet of Things Security and Privacy	2017	yes
+ali2018	https://w3id.org/homeiot/source/ali2018	Cyber and Physical Security Vulnerability Assessment for IoT-Based Smart Homes	Ali, Awad	Sensors	2018	yes
+zhou2019	https://w3id.org/homeiot/source/zhou2019	Discovering and Understanding the Security Hazards in the Interactions between IoT Devices, Mobile Apps, and Clouds on Smart Home Platforms	Zhou, Jia, Yao, Zhu, Guan, Mao, Liu, Zhang	USENIX Security Symposium	2019	yes
+smarthomecase	https://w3id.org/homeiot/source/smarthomecase	Vulnerability Studies and Security Postures of IoT Devices: A Smart Home Case Study	Davis, Mason, Anwar	IEEE Internet of Things Journal	2020	yes
+smartcameras	https://w3id.org/homeiot/source/smartcameras	Investigation of Vulnerabilities in Smart Connected Cameras	Bugeja, Jonsson, Jacobsson	IEEE PerCom Workshops	2018	yes
+stanfordiot	https://w3id.org/homeiot/source/stanfordiot	Minimum Security Standards: Internet of Things (IoT) Devices	Stanford University IT	Stanford University (web)	n.d.	yes

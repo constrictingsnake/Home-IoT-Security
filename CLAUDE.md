@@ -206,9 +206,17 @@ nonexistent classes drafted from memory (`saref:Multimedia`, `saref:WashingMachi
 **Every precision label must now carry a `Searched:` trail** naming the vocabularies checked
 (all eight: SAREF core, S4BLDG, S4ENER, S4WEAR, S4AGRI, S4AUTO, S4CITY, S4EHAW), enforced by
 `--align`, which **fails** on a label without one. Without it, `coarse` is indistinguishable
-from "nobody looked" — which is exactly how the retracted figure survived. Still open: the
-manifest records `iri` and `vocabulary` only, so the SAREF **versions** behind it are
-undocumented (the four extensions added 2026-08-10 are v2.1.1).
+from "nobody looked" — which is exactly how the retracted figure survived. **Closed
+2026-09-09:** the version gap is gone. `external_sources.tsv` now carries a row per source
+document — 12 of them, since the manifest also draws on the SSN **systems** module (a separate
+namespace document; the correct IRI is `ssn/systems/SystemCapability`, never
+`ssn:SystemCapability`) and on one SAREF4SYST class checked while resolving the
+`sosa:System`/`ssn:System` confusion. Every one of the 435 IRIs was re-resolved against its
+pinned document, and the six hashes recorded 2026-08-04 all still reproduce. Keep the three
+counts distinct when writing about this: **8 searched** (what a `coarse` label claims and what
+the paper reports), **12 source documents / 435 IRIs manifested**, **8 vocabularies actually
+used** in the alignment — S4AUTO and S4CITY were searched and yielded nothing in scope, which is
+a result, not an omission.
 
 **Descriptive sub-facets — and the dominance rule that governs them.** The five criteria as first
 encoded were membership tests, too coarse to analyse with: criterion 5 was one value asserted

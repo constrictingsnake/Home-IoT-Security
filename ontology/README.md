@@ -12,8 +12,8 @@ Design rationale and phasing: `docs/plans/PLAN_ontology.md`.
 | `shapes.ttl` | SHACL constraints. Catches what a reasoner won't (missing facet, duplicate sortOrder, bad slug). |
 | `homeiot-align.ttl` | Alignment to SAREF + SSN/SOSA. **Hand-authored.** Separate so a reviewer can evaluate the core without it. |
 | `homeiot-kg.ttl` | Instance-level **vocabulary** for the vulnerability knowledge graph. **Hand-authored.** Separate file so nothing about the instance layer can perturb `homeiot.ttl`. |
-| `external_classes.tsv` | Pinned manifest of 331 verified external class IRIs. Generated; regenerate only when bumping a vocabulary version. |
-| `external_sources.tsv` | Retrieval provenance for the manifest: version, URL, source sha256, date. |
+| `external_classes.tsv` | Pinned manifest of 435 verified external class IRIs. Generated; regenerate only when bumping a vocabulary version. |
+| `external_sources.tsv` | Retrieval provenance for the manifest: version, URL, source sha256, date. One row per source document (12): the 8 searched SAREF-family vocabularies, W3C SOSA, SSN core and the SSN **systems** module, plus SAREF4SYST. Re-verified 2026-09-09 — every manifest IRI resolves in its pinned document and all six 2026-08-04 hashes still reproduce. |
 
 Generated **from** this ontology (do not hand-edit):
 
@@ -35,7 +35,7 @@ backlog). See its module docstring for the method.
 ```bash
 python3 scripts/ontology_build.py --check      # validate + prove CSVs unchanged; exit 1 on drift
 python3 scripts/ontology_build.py --write      # regenerate categories.csv + families.csv
-python3 scripts/ontology_build.py --reason     # 27-class in/out ruling table
+python3 scripts/ontology_build.py --reason     # per-device-type in/out ruling table (24 in + 7 excluded)
 python3 scripts/ontology_build.py --align      # verify alignment IRIs + coverage report
 python3 scripts/ontology_build.py --export-kg  # rebuild the instance graph, then verify it
 python3 scripts/ontology_build.py --verify-kg  # verify the committed graph without rewriting it

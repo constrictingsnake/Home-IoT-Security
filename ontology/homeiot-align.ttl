@@ -20,14 +20,31 @@
 # dropping this file changes nothing about the analysis pipeline.
 #
 # Every external IRI used here is verified against ontology/external_classes.tsv,
-# a pinned manifest of 331 class IRIs extracted from the actual published
+# a pinned manifest of 435 class IRIs extracted from the actual published
 # vocabularies. Retrieval provenance (version, URL, source sha256, date) is in
-# ontology/external_sources.tsv.
+# ontology/external_sources.tsv, one row per source document.
 # `scripts/ontology_build.py --check` fails if this file references an IRI that is
 # not in the manifest. This exists because the obvious mistakes here are inventing
 # a plausible-sounding class that does not exist: SAREF core has no `Multimedia`,
 # no `WashingMachine`, no `Generator`, and `sosa:System` is not a class (it is
 # `ssn:System`) — all four were caught this way.
+#
+# THE MANIFEST IS WIDER THAN THE SEARCH, AND WIDER THAN THIS FILE. Three counts,
+# deliberately different, so none of them is read as the others:
+#   * SEARCHED (8)  — the per-category `Searched:` trail below names SAREF core,
+#     S4BLDG, S4ENER, S4WEAR, S4AGRI, S4AUTO, S4CITY, S4EHAW. That is the set a
+#     `coarse` label is a claim about, and it is what the paper reports.
+#   * MANIFEST (435 IRIs, 12 source documents) — the eight above plus W3C SOSA,
+#     SSN, the SSN *systems* module (a separate namespace document: the correct
+#     IRI is ssn/systems/SystemCapability, not ssn:SystemCapability), and one
+#     SAREF4SYST class checked while resolving the sosa/ssn `System` confusion
+#     above. Verified but unused — a manifest entry licenses an IRI, it does not
+#     assert we aligned to it.
+#   * USED HERE (8 vocabularies) — saref, s4bldg, s4ener, s4wear, s4agri, s4ehaw,
+#     sosa, ssn. S4AUTO and S4CITY were searched and yielded nothing in scope,
+#     which is a result, not an omission.
+# Re-verified 2026-09-09: every one of the 435 IRIs resolves in the pinned source
+# document, and all six sha256 values recorded 2026-08-04 still reproduce.
 #
 # NO owl:equivalentClass ANYWHERE. Our classes are strictly narrower than their
 # external counterparts (hiot:cameras is residential consumer IP cameras;
@@ -44,11 +61,13 @@
 
 <https://w3id.org/homeiot/ontology/alignment> a owl:Ontology ;
   dcterms:title "Home IoT Device Ontology — external alignment" ;
-  dcterms:description "Alignment of the 24 home IoT analysis categories to SAREF (core, 4BLDG, 4ENER, 4WEAR) and W3C SSN/SOSA." ;
+  dcterms:description "Alignment of the 24 home IoT analysis categories to SAREF (core, 4BLDG, 4ENER, 4WEAR, 4AGRI, 4EHAW) and W3C SSN/SOSA. Searched but unused: SAREF4AUTO, SAREF4CITY." ;
   dcterms:source <https://saref.etsi.org/core/v3.2.1/saref.ttl> ,
                  <https://saref.etsi.org/saref4bldg/v1.1.2/saref4bldg.ttl> ,
                  <https://saref.etsi.org/saref4ener/v1.2.1/saref4ener.ttl> ,
                  <https://saref.etsi.org/saref4wear/v1.1.1/saref4wear.ttl> ,
+                 <https://saref.etsi.org/saref4agri/v2.1.1/saref4agri.ttl> ,
+                 <https://saref.etsi.org/saref4ehaw/v2.1.1/saref4ehaw.ttl> ,
                  <http://www.w3.org/ns/sosa/> , <http://www.w3.org/ns/ssn/> ;
   owl:versionInfo "0.1.0" .
 
