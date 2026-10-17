@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2020-28999",
+  "description": "An issue was discovered in Apexis Streaming Video Web Application on Geeni GNC-CW013 doorbell 1.8.1 devices. A remote attacker can take full control of the camera with a high-privileged account. The vulnerability exists because a static username and password are compiled into a shared library (libhipcam.so) used to provide the streaming camera service.",
+  "cpe_strings": "cpe:2.3:o:mygeeni:gnc-cw013_firmware:1.8.1:*:*:*:*:*:*:*|cpe:2.3:h:mygeeni:gnc-cw013:-:*:*:*:*:*:*:*"
+ }
+]

@@ -1,0 +1,78 @@
+{
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "results"
+  ],
+  "properties": {
+    "results": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "cve_id",
+          "home_iot",
+          "categories",
+          "confidence",
+          "reasoning"
+        ],
+        "properties": {
+          "cve_id": {
+            "type": "string"
+          },
+          "home_iot": {
+            "type": "string",
+            "enum": [
+              "Yes",
+              "No",
+              "Maybe"
+            ]
+          },
+          "categories": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "enum": [
+                "doorlock",
+                "smartspeakers",
+                "sleeptracker",
+                "doorbell",
+                "thermostat",
+                "babymonitor",
+                "smartplugs",
+                "alarms",
+                "robotvacuum",
+                "fans",
+                "fridge",
+                "shades",
+                "sensors",
+                "airpurifier",
+                "lighting",
+                "appliances",
+                "hub",
+                "ev-charging",
+                "home-power",
+                "garden",
+                "pet",
+                "streaming",
+                "airconditioner",
+                "cameras"
+              ]
+            }
+          },
+          "confidence": {
+            "type": "string",
+            "enum": [
+              "High",
+              "Low"
+            ]
+          },
+          "reasoning": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}

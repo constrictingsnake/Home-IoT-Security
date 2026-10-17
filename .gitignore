@@ -42,5 +42,10 @@ data/nvd-snapshot/*.json.gz
 # the script skip the one-time backup/blank of the Gemini column.
 data/difference/*/.gemma_prepped
 
+# LLIoT label table (75 MB): kept local; the committed lliot_labels.csv is the slim extract
+data/external/lliot/iot_cls_full.tsv
+# LLIoT-method experiment: researchers' local run dirs never live in the repo, but guard anyway
+data/lliot-comparison/run-dir*/
+
 # Compiled paper: a build output of docs/home_iot_security_report.tex; a committed copy goes stale
 docs/home_iot_security_report.pdf

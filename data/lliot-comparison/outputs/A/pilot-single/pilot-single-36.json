@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2019-8726","home_iot":"No","categories":[],"confidence":"High","reasoning":"The affected products are tvOS, iTunes for Windows, and iCloud for Windows, and tvOS CVEs are explicitly excluded from the streaming category."}]}

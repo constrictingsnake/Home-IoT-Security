@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2023-0864","home_iot":"Yes","categories":["ev-charging"],"confidence":"Low","reasoning":"ABB Terra AC wallboxes are connected EV chargers that can be installed at private homes, although the affected range also includes commercial deployments."}]}

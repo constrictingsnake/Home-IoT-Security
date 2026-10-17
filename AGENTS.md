@@ -32,6 +32,16 @@ category's files. Keep the existing columns and row order; just fill your three 
      reviewers use the same note; Gemini gets it injected automatically, you read it here.
 3. Fill every row, then save `codex.csv` in place.
 
+## Not your job: the LLIoT-method experiment
+If you are working on `data/lliot-comparison/` or a `scripts/lliot_*.py` script, you are **not**
+the reviewer above. You are helping build tooling for `docs/plans/PLAN_lliot_method_comparison.md`.
+- **Never classify CVEs from inside this repo.** That experiment runs only from a run dir
+  outside the repo, with its own generated `run-kit/AGENTS.md`.
+- **Never open or summarize** `data/lliot-comparison/outputs/` or `adjudication/`. The people
+  you are helping adjudicate those labels blind.
+- **Never edit `run-kit/AGENTS.md` or `schema.json` by hand.** Regenerate them with
+  `python3 scripts/lliot_build_prompt.py`.
+
 ## After you finish
 The operator combines all three reviewers with:
 ```

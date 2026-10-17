@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2019-9725",
+  "description": "The Web manager (aka Commander) on Korenix JetPort 5601 and 5601f devices has Persistent XSS via the Port Alias field under Serial Setting.",
+  "cpe_strings": "cpe:2.3:a:korenix:jetport_web_manager:-:*:*:*:*:*:*:*|cpe:2.3:o:korenix:jetport_5601_firmware:-:*:*:*:*:*:*:*|cpe:2.3:h:korenix:jetport_5601:-:*:*:*:*:*:*:*|cpe:2.3:o:korenix:jetport_5601f_firmware:-:*:*:*:*:*:*:*|cpe:2.3:h:korenix:jetport_5601f:-:*:*:*:*:*:*:*"
+ }
+]

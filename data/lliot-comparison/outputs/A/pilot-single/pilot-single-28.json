@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2020-6765","home_iot":"No","categories":[],"confidence":"High","reasoning":"The D-Link DSL-GS225 is a modem/router providing network transport, which is explicitly outside the home-IoT hub category."}]}

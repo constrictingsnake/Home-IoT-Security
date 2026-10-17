@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2015-7061","home_iot":"No","categories":[],"confidence":"High","reasoning":"The vulnerability affects macOS, watchOS, and tvOS, all of which are excluded general-computing, wearable, or explicitly out-of-scope tvOS platforms."}]}

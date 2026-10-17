@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2017-7253","home_iot":"Yes","categories":["cameras"],"confidence":"High","reasoning":"The vulnerability affects a Dahua networked IP camera, which fits the consumer security-camera category despite the description not naming a specific model."}]}

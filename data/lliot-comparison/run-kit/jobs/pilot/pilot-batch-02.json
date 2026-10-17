@@ -1,0 +1,102 @@
+[
+ {
+  "cve_id": "CVE-2024-52548",
+  "description": "An attacker who can execute arbitrary Operating Systems commands, can bypass code signing enforcements in the kernel, and execute arbitrary native code. This vulnerability has been resolved in firmware version 2.800.0000000.8.R.20241111.",
+  "cpe_strings": ""
+ },
+ {
+  "cve_id": "CVE-2016-6551",
+  "description": "Intellian Satellite TV antennas t-Series and v-Series, firmware version 1.07, uses non-random default credentials of: ftp/ftp or intellian:12345678. A remote network attacker can gain elevated access to a vulnerable device.",
+  "cpe_strings": "cpe:2.3:o:intelliantech:v60_firmware:1.07:*:*:*:*:*:*:*|cpe:2.3:h:intelliantech:v60:-:*:*:*:*:*:*:*|cpe:2.3:o:intelliantech:v60ka_firmware:1.07:*:*:*:*:*:*:*|cpe:2.3:h:intelliantech:v60ka:-:*:*:*:*:*:*:*|cpe:2.3:o:intelliantech:v65_firmware:1.07:*:*:*:*:*:*:*|cpe:2.3:h:intelliantech:v65:-:*:*:*:*:*:*:*|cpe:2.3:o:intelliantech:v80g_firmware:1.07:*:*:*:*:*:*:*|cpe:2.3:h:intelliantech:v80g:-:*:*:*:*:*:*:*|cpe:2.3:o:intelliantech:t80w_firmware:1.07:*:*:*:*:*:*:*|cpe:2.3:h:intelliantech:t80w:-:*:*:*:*:*:*:*|cpe:2.3:o:intelliantech:t80q_firmware:1.07:*:*:*:*:*:*:*|cpe:2.3:h:intelliantech:t80q:-:*:*:*:*:*:*:*|cpe:2.3:o:intelliantech:t100w_firmware:1.07:*:*:*:*:*:*:*|cpe:2.3:h:intelliantech:t100w:-:*:*:*:*:*:*:*|cpe:2.3:o:intelliantech:t100q_firmware:1.07:*:*:*:*:*:*:*|cpe:2.3:h:intelliantech:t100q:-:*:*:*:*:*:*:*|cpe:2.3:o:intelliantech:t110w_firmware:1.07:*:*:*:*:*:*:*|cpe:2.3:h:intelliantech:t110w:-:*:*:*:*:*:*:*|cpe:2.3:o:intelliantech:t110q_firmware:1.07:*:*:*:*:*:*:*|cpe:2.3:h:intelliantech:t110q:-:*:*:*:*:*:*:*|cpe:2.3:o:intelliantech:t130w_firmware:1.07:*:*:*:*:*:*:*|cpe:2.3:h:intelliantech:t130w:-:*:*:*:*:*:*:*|cpe:2.3:o:intelliantech:t130q_firmware:1.07:*:*:*:*:*:*:*|cpe:2.3:h:intelliantech:t130q:-:*:*:*:*:*:*:*|cpe:2.3:o:intelliantech:t240ck_firmware:1.07:*:*:*:*:*:*:*|cpe:2.3:h:intelliantech:t240ck:-:*:*:*:*:*:*:*"
+ },
+ {
+  "cve_id": "CVE-2017-17751",
+  "description": "Bose SoundTouch devices allows remote attackers to achieve remote control via a crafted web site that uses the WebSocket Protocol.",
+  "cpe_strings": "cpe:2.3:a:bose:soundtouch:-:*:*:*:*:android:*:*|cpe:2.3:a:bose:soundtouch:-:*:*:*:*:iphone_os:*:*"
+ },
+ {
+  "cve_id": "CVE-2021-3625",
+  "description": "Buffer overflow in Zephyr USB DFU DNLOAD. Zephyr versions >= v2.5.0 contain Heap-based Buffer Overflow (CWE-122). For more information, see https://github.com/zephyrproject-rtos/zephyr/security/advisories/GHSA-c3gr-hgvr-f363",
+  "cpe_strings": "cpe:2.3:o:zephyrproject:zephyr:*:*:*:*:*:*:*:*"
+ },
+ {
+  "cve_id": "CVE-2021-22726",
+  "description": "A CWE-918: Server-Side Request Forgery (SSRF) vulnerability exists in EVlink City (EVC1S22P4 / EVC1S7P4 all versions prior to R8 V3.4.0.1), EVlink Parking (EVW2 / EVF2 / EV.2 all versions prior to R8 V3.4.0.1), and EVlink Smart Wallbox (EVB1A all versions prior to R8 V3.4.0.1 ) that could allow an attacker to perform unintended actions or access to data when crafted malicious parameters are submitted to the charging station web server.",
+  "cpe_strings": "cpe:2.3:o:schneider-electric:evlink_city_evc1s22p4_firmware:*:*:*:*:*:*:*:*|cpe:2.3:h:schneider-electric:evlink_city_evc1s22p4:-:*:*:*:*:*:*:*|cpe:2.3:o:schneider-electric:evlink_city_evc1s7p4_firmware:*:*:*:*:*:*:*:*|cpe:2.3:h:schneider-electric:evlink_city_evc1s7p4:-:*:*:*:*:*:*:*|cpe:2.3:o:schneider-electric:evlink_parking_evw2_firmware:*:*:*:*:*:*:*:*|cpe:2.3:h:schneider-electric:evlink_parking_evw2:-:*:*:*:*:*:*:*|cpe:2.3:o:schneider-electric:evlink_parking_evf2_firmware:*:*:*:*:*:*:*:*|cpe:2.3:h:schneider-electric:evlink_parking_evf2:-:*:*:*:*:*:*:*|cpe:2.3:o:schneider-electric:evlink_parking_ev.2_firmware:*:*:*:*:*:*:*:*|cpe:2.3:h:schneider-electric:evlink_parking_ev.2:-:*:*:*:*:*:*:*|cpe:2.3:o:schneider-electric:evlink_smart_wallbox_evb1a_firmware:*:*:*:*:*:*:*:*|cpe:2.3:h:schneider-electric:evlink_smart_wallbox_evb1a:-:*:*:*:*:*:*:*"
+ },
+ {
+  "cve_id": "CVE-2024-5269",
+  "description": "Sonos Era 100 SMB2 Message Handling Use-After-Free Remote Code Execution Vulnerability. This vulnerability allows network-adjacent attackers to execute arbitrary code on affected installations of Sonos Era 100 smart speakers. Authentication is not required to exploit this vulnerability.\n\nThe specific flaw exists within the handling of SMB2 messages. The issue results from the lack of validating the existence of an object prior to performing operations on the object. An attacker can leverage this vulnerability to execute code in the context of root. Was ZDI-CAN-22459.",
+  "cpe_strings": "cpe:2.3:o:sonos:era_100_firmware:15.9:*:*:*:*:*:*:*|cpe:2.3:h:sonos:era_100:*:*:*:*:*:*:*:*"
+ },
+ {
+  "cve_id": "CVE-2017-2851",
+  "description": "In the web management interface in Foscam C1 Indoor HD cameras with application firmware 2.52.2.37, a specially crafted HTTP request can cause a buffer overflow.",
+  "cpe_strings": "cpe:2.3:o:foscam:c1_indoor_hd_camera_firmware:2.52.2.37:*:*:*:*:*:*:*|cpe:2.3:h:foscam:c1_indoor_hd_camera:-:*:*:*:*:*:*:*"
+ },
+ {
+  "cve_id": "CVE-2020-6765",
+  "description": "D-Link DSL-GS225 J1 AU_1.0.4 devices allow an admin to execute OS commands by placing shell metacharacters after a supported CLI command, as demonstrated by ping -c1 127.0.0.1; cat/etc/passwd. The CLI is reachable by TELNET.",
+  "cpe_strings": "cpe:2.3:o:dlink:dsl-gs225_firmware:*:*:*:*:*:*:*:*|cpe:2.3:h:dlink:dsl-gs225:j1:*:*:*:*:*:*:*"
+ },
+ {
+  "cve_id": "CVE-2017-7253",
+  "description": "Dahua IP Camera devices 3.200.0001.6 can be exploited via these steps: 1. Use the default low-privilege credentials to list all users via a request to a certain URI. 2. Login to the IP camera with admin credentials so as to obtain full control of the target IP camera. During exploitation, the first JSON object encountered has a \"Component error: login challenge!\" message. The second JSON object encountered has a result indicating a successful admin login.",
+  "cpe_strings": "cpe:2.3:o:dahuasecurity:ip_camera_firmware:3.200.0001.6:*:*:*:*:*:*:*|cpe:2.3:h:dahuasecurity:ip_camera:-:*:*:*:*:*:*:*"
+ },
+ {
+  "cve_id": "CVE-2018-15745",
+  "description": "Argus Surveillance DVR 4.0.0.0 devices allow Unauthenticated Directory Traversal, leading to File Disclosure via a ..%2F in the WEBACCOUNT.CGI RESULTPAGE parameter.",
+  "cpe_strings": "cpe:2.3:a:argussurveillance:dvr:4.0.0.0:*:*:*:*:*:*:*"
+ },
+ {
+  "cve_id": "CVE-2020-28999",
+  "description": "An issue was discovered in Apexis Streaming Video Web Application on Geeni GNC-CW013 doorbell 1.8.1 devices. A remote attacker can take full control of the camera with a high-privileged account. The vulnerability exists because a static username and password are compiled into a shared library (libhipcam.so) used to provide the streaming camera service.",
+  "cpe_strings": "cpe:2.3:o:mygeeni:gnc-cw013_firmware:1.8.1:*:*:*:*:*:*:*|cpe:2.3:h:mygeeni:gnc-cw013:-:*:*:*:*:*:*:*"
+ },
+ {
+  "cve_id": "CVE-2021-28838",
+  "description": "Null pointer dereference vulnerability in D-Link DAP-2310 2,10RC039, DAP-2330 1.10RC036 BETA, DAP-2360 2.10RC055, DAP-2553 3.10rc039 BETA, DAP-2660 1.15rc131b, DAP-2690 3.20RC115 BETA, DAP-2695 1.20RC093, DAP-3320 1.05RC027 BETA and DAP-3662 1.05rc069 in the sbin/httpd binary. The crash happens at the `atoi' operation when a specific network package are sent to the httpd binary.",
+  "cpe_strings": "cpe:2.3:o:dlink:dap-2310_firmware:*:*:*:*:*:*:*:*|cpe:2.3:h:dlink:dap-2310:-:*:*:*:*:*:*:*|cpe:2.3:o:dlink:dap-2330_firmware:*:*:*:*:*:*:*:*|cpe:2.3:o:dlink:dap-2330_firmware:1.10rc036:beta:*:*:*:*:*:*|cpe:2.3:h:dlink:dap-2330:-:*:*:*:*:*:*:*|cpe:2.3:o:dlink:dap-2360_firmware:*:*:*:*:*:*:*:*|cpe:2.3:h:dlink:dap-2360:-:*:*:*:*:*:*:*|cpe:2.3:o:dlink:dap-2553_firmware:*:*:*:*:*:*:*:*|cpe:2.3:o:dlink:dap-2553_firmware:3.10rc039:beta:*:*:*:*:*:*|cpe:2.3:h:dlink:dap-2553:-:*:*:*:*:*:*:*|cpe:2.3:o:dlink:dap-2660_firmware:*:*:*:*:*:*:*:*|cpe:2.3:h:dlink:dap-2660:-:*:*:*:*:*:*:*|cpe:2.3:o:dlink:dap-2690_firmware:*:*:*:*:*:*:*:*|cpe:2.3:o:dlink:dap-2690_firmware:3.20rc115:beta:*:*:*:*:*:*|cpe:2.3:h:dlink:dap-2690:-:*:*:*:*:*:*:*|cpe:2.3:o:dlink:dap-2695_firmware:*:*:*:*:*:*:*:*|cpe:2.3:h:dlink:dap-2695:-:*:*:*:*:*:*:*|cpe:2.3:o:dlink:dap-3320_firmware:*:*:*:*:*:*:*:*|cpe:2.3:o:dlink:dap-3320_firmware:1.05rc027:beta:*:*:*:*:*:*|cpe:2.3:h:dlink:dap-3320:-:*:*:*:*:*:*:*|cpe:2.3:o:dlink:dap-3662_firmware:*:*:*:*:*:*:*:*|cpe:2.3:o:dlink:dap-3662_firmware:1.05rc069:beta:*:*:*:*:*:*|cpe:2.3:h:dlink:dap-3662:-:*:*:*:*:*:*:*"
+ },
+ {
+  "cve_id": "CVE-2018-3832",
+  "description": "An exploitable firmware update vulnerability exists in Insteon Hub running firmware version 1013. The HTTP server allows for uploading arbitrary MPFS binaries that could be modified to enable access to hidden resources which allow for uploading unsigned firmware images to the device. To trigger this vulnerability, an attacker can upload an MPFS binary via the '/mpfsupload' HTTP form and later on upload the firmware via a POST request to 'firmware.htm'.",
+  "cpe_strings": "cpe:2.3:o:insteon:hub_2245-222_firmware:1013:*:*:*:*:*:*:*|cpe:2.3:h:insteon:hub_2245-222:-:*:*:*:*:*:*:*"
+ },
+ {
+  "cve_id": "CVE-2015-7061",
+  "description": "The ASN.1 decoder in Apple OS X before 10.11.2, tvOS before 9.1, and watchOS before 2.1 allows remote attackers to execute arbitrary code or cause a denial of service (memory corruption) via a crafted certificate, a different vulnerability than CVE-2015-7059 and CVE-2015-7060.",
+  "cpe_strings": "cpe:2.3:o:apple:mac_os_x:*:*:*:*:*:*:*:*|cpe:2.3:o:apple:tvos:*:*:*:*:*:*:*:*|cpe:2.3:o:apple:watchos:*:*:*:*:*:*:*:*"
+ },
+ {
+  "cve_id": "CVE-2017-16252",
+  "description": "Specially crafted commands sent through the PubNub service in Insteon Hub 2245-222 with firmware version 1012 can cause a stack-based buffer overflow overwriting arbitrary data. An attacker should send an authenticated HTTP request to trigger this vulnerability.At 0x9d014cc0 the value for the cmd key is copied using strcpy to the buffer at $sp+0x11c. This buffer is 20 bytes large, sending anything longer will cause a buffer overflow.",
+  "cpe_strings": "cpe:2.3:o:insteon:hub_firmware:1012:*:*:*:*:*:*:*|cpe:2.3:h:insteon:hub_2245-222:-:*:*:*:*:*:*:*"
+ },
+ {
+  "cve_id": "CVE-2019-8726",
+  "description": "Multiple memory corruption issues were addressed with improved memory handling. This issue is fixed in tvOS 13, iTunes for Windows 12.10.1, iCloud for Windows 10.7, iCloud for Windows 7.14. Processing maliciously crafted web content may lead to arbitrary code execution.",
+  "cpe_strings": "cpe:2.3:a:apple:icloud:*:*:*:*:*:windows:*:*|cpe:2.3:a:apple:itunes:*:*:*:*:*:windows:*:*|cpe:2.3:o:apple:tvos:*:*:*:*:*:*:*:*"
+ },
+ {
+  "cve_id": "CVE-2023-0864",
+  "description": "Cleartext Transmission of Sensitive Information vulnerability in ABB Terra AC wallbox (UL40/80A), ABB Terra AC wallbox (UL32A), ABB Terra AC wallbox (CE) (Terra AC MID), ABB Terra AC wallbox (CE) Terra AC Juno CE, ABB Terra AC wallbox (CE) Terra AC PTB, ABB Terra AC wallbox (CE) Symbiosis, ABB Terra AC wallbox (JP).This issue affects Terra AC wallbox (UL40/80A): from 1.0;0 through 1.5.5; Terra AC wallbox (UL32A) : from 1.0;0 through 1.6.5; Terra AC wallbox (CE) (Terra AC MID): from 1.0;0 through 1.6.5; Terra AC wallbox (CE) Terra AC Juno CE: from 1.0;0 through 1.6.5; Terra AC wallbox (CE) Terra AC PTB : from 1.0;0 through 1.5.25; Terra AC wallbox (CE) Symbiosis: from 1.0;0 through 1.2.7; Terra AC wallbox (JP): from 1.0;0 through 1.6.5.\n\n",
+  "cpe_strings": "cpe:2.3:o:abb:terra_ac_wallbox_ul40_firmware:*:*:*:*:*:*:*:*|cpe:2.3:h:abb:terra_ac_wallbox_ul40:-:*:*:*:*:*:*:*|cpe:2.3:o:abb:terra_ac_wallbox_80a_firmware:*:*:*:*:*:*:*:*|cpe:2.3:h:abb:terra_ac_wallbox_80a:-:*:*:*:*:*:*:*|cpe:2.3:o:abb:terra_ac_wallbox_ul32a_firmware:*:*:*:*:*:*:*:*|cpe:2.3:h:abb:terra_ac_wallbox_ul32a:-:*:*:*:*:*:*:*|cpe:2.3:o:abb:terra_ac_wallbox_jp_firmware:*:*:*:*:*:*:*:*|cpe:2.3:h:abb:terra_ac_wallbox_jp:-:*:*:*:*:*:*:*|cpe:2.3:o:abb:terra_ac_wallbox_ce_mid_firmware:*:*:*:*:*:*:*:*|cpe:2.3:h:abb:terra_ac_wallbox_ce_mid:-:*:*:*:*:*:*:*|cpe:2.3:o:abb:terra_ac_wallbox_ce_juno_firmware:*:*:*:*:*:*:*:*|cpe:2.3:h:abb:terra_ac_wallbox_ce_juno:-:*:*:*:*:*:*:*|cpe:2.3:o:abb:terra_ac_wallbox_ce_ptb_firmware:*:*:*:*:*:*:*:*|cpe:2.3:h:abb:terra_ac_wallbox_ce_ptb:-:*:*:*:*:*:*:*|cpe:2.3:o:abb:terra_ac_wallbox_ce_symbiosis_firmware:*:*:*:*:*:*:*:*|cpe:2.3:h:abb:terra_ac_wallbox_ce_symbiosis:-:*:*:*:*:*:*:*"
+ },
+ {
+  "cve_id": "CVE-2023-5881",
+  "description": "Unauthenticated access permitted to web interface page The Genie Company Aladdin Connect (Retrofit-Kit Model ALDCM) \"Garage Door Control Module Setup\" and modify the Garage door's SSID settings. \n\n\n\n",
+  "cpe_strings": "cpe:2.3:o:geniecompany:aladdin_connect_garage_door_opener_firmware:*:*:*:*:*:*:*:*|cpe:2.3:h:geniecompany:aladdin_connect_garage_door_opener:-:*:*:*:*:*:*:*"
+ },
+ {
+  "cve_id": "CVE-2023-1749",
+  "description": "The listed versions of Nexx Smart Home devices lack proper access control when executing actions. An attacker with a valid NexxHome deviceId could send API requests that the affected devices would execute.",
+  "cpe_strings": "cpe:2.3:o:getnexx:nxal-100_firmware:*:*:*:*:*:*:*:*|cpe:2.3:h:getnexx:nxal-100:-:*:*:*:*:*:*:*|cpe:2.3:o:getnexx:nxg-100b_firmware:*:*:*:*:*:*:*:*|cpe:2.3:h:getnexx:nxg-100b:-:*:*:*:*:*:*:*|cpe:2.3:o:getnexx:nxpg-100w_firmware:*:*:*:*:*:*:*:*|cpe:2.3:h:getnexx:nxpg-100w:-:*:*:*:*:*:*:*|cpe:2.3:o:getnexx:nxg-200_firmware:*:*:*:*:*:*:*:*|cpe:2.3:h:getnexx:nxg-200:-:*:*:*:*:*:*:*"
+ },
+ {
+  "cve_id": "CVE-2023-1752",
+  "description": "The listed versions of Nexx Smart Home devices could allow any user to register an already registered alarm or associated device with only the device’s MAC address.",
+  "cpe_strings": "cpe:2.3:o:getnexx:nxal-100_firmware:*:*:*:*:*:*:*:*|cpe:2.3:h:getnexx:nxal-100:-:*:*:*:*:*:*:*|cpe:2.3:o:getnexx:nxg-100b_firmware:*:*:*:*:*:*:*:*|cpe:2.3:h:getnexx:nxg-100b:-:*:*:*:*:*:*:*|cpe:2.3:o:getnexx:nxpg-100w_firmware:*:*:*:*:*:*:*:*|cpe:2.3:h:getnexx:nxpg-100w:-:*:*:*:*:*:*:*|cpe:2.3:o:getnexx:nxg-200_firmware:*:*:*:*:*:*:*:*|cpe:2.3:h:getnexx:nxg-200:-:*:*:*:*:*:*:*"
+ }
+]

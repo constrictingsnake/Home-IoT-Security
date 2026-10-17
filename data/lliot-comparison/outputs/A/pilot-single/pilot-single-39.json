@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2023-1749","home_iot":"Yes","categories":["doorlock","alarms","smartplugs"],"confidence":"High","reasoning":"The affected Nexx models include consumer smart garage-door controllers, a home alarm controller, and a smart plug, all of which execute actions through the NexxHome API."}]}

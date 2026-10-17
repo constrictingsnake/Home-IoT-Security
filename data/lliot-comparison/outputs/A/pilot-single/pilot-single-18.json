@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2018-3918","home_iot":"Yes","categories":["hub","cameras"],"confidence":"High","reasoning":"The vulnerability affects a Samsung SmartThings home automation hub and its camera-management functionality, allowing arbitrary deletion of connected cameras."}]}

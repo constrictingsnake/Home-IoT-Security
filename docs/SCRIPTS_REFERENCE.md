@@ -598,6 +598,33 @@ paper's §III-E prose quotes. See the script's docstring for what each figure sh
 
 ---
 
+### LLIoT-method experiment — `lliot_build_prompt.py`, `lliot_sample.py`, `lliot_run.py`, `lliot_validate.py`
+Tests whether LLIoT's method (one model, open world, no search) works on *our* question. Design:
+`docs/plans/PLAN_lliot_method_comparison.md`. Run guide for both researchers:
+`data/lliot-comparison/README.md`. None of these is chained into `pipeline.py`: the experiment
+reads the pipeline's settled state and never writes back to it.
+
+| Script / command | Description |
+|------|-------------|
+| `lliot_build_prompt.py` | Writes `run-kit/AGENTS.md` (rubric definition sections verbatim, pipeline framing replaced, all 24 scope notes inlined), `schema.json` and `job_preamble.txt` |
+| `lliot_build_prompt.py --check` | Exit 1 if the kit on disk is stale (the hashes are pre-registered, so a change needs an amendment) |
+| `lliot_sample.py sample` | Pipeline status per in-window CVE → strata (M → R → Y → X → N → U) → seeded sample + 40-CVE pilot. Writes `manifest.csv`, `strata.csv`. **Stops** on > 1% drift from the plan's counts, or on surfaced-but-unreviewed CVEs |
+| `lliot_sample.py jobs --pilot-only` | Pilot job files only (40 single + 2 batched-20, run by both owners) |
+| `lliot_sample.py jobs --size 1\|20` | Main job files after the pilot gate: odd jobs → A, even → B, plus 5% cross-reruns. Refuses to overwrite existing main jobs |
+| `lliot_run.py setup --owner A\|B --run-dir DIR` | Create/sync a run dir; **refuses one inside a git repo**; copies the hash-checked kit and that owner's jobs |
+| `lliot_run.py smoke --run-dir DIR` | One non-classification call: confirms `AGENTS.md` loaded, lists tools, asks about web access |
+| `lliot_run.py run --run-dir DIR --set pilot-single\|pilot-batch\|main\|rerun` | Runs the set's unfinished jobs; `--workers N`, `--limit N`, `--inline-instructions` (fallback if `smoke` says `AGENTS.md` isn't loaded). Appends `run_log_<owner>.csv` |
+| `lliot_run.py collect --run-dir DIR` | Copies valid outputs into `data/lliot-comparison/outputs/<owner>/` |
+| `lliot_validate.py JOB OUT` / `--dir JOBS OUTS` | Spot-check outputs: IDs, enums, slugs, Maybe→Low, No→no categories |
+
+**Blindness is structural, not by instruction.** `lliot_run.py` pins `gpt-5.6-sol`/`medium`,
+disables web search and every shell/exec/code-mode/multi-agent tool (`DISABLE`), and runs from a
+dir outside any repo. The read-only sandbox alone blocks writes but not reads. A canary test
+(2026-10-16) confirmed that a session with no `AGENTS.md` could not read a file outside its run
+dir by any means. No script prints a model label.
+
+---
+
 ### Shell helpers
 
 **`run_gemini.sh`** — drives the Gemini reviewer over every category's blind review copy.

@@ -499,6 +499,10 @@ One line per script — full flag tables in `docs/SCRIPTS_REFERENCE.md`.
 | `facet_store.py` | facets (F5) | Durable `(slug, facet)` verdict store; `--finalize` / `--extract` / `--status` / `--writeback`. Finalize before extract, always |
 | `facet_source_coverage.py` | facets (F5) | Measures whether a cell's cited vendors actually cover the category's CVEs; below the floor a cell drops to `HumanJudged` with its source retained |
 | `generate_review_figures.py` | 4 (report) | The five Stage-4 review figures for the paper (funnel, disagreement, precision, confidence, FP by category), computed from `judgment_store.csv` on every run |
+| `lliot_build_prompt.py` | LLIoT experiment | Generates the run kit's `AGENTS.md` + `schema.json` + `job_preamble.txt` from the rubric and scope notes; `--check` fails on a stale kit |
+| `lliot_sample.py` | LLIoT experiment | `sample` draws the stratified 3,035-CVE sample + pilot; `jobs --size N` cuts job files and assigns owners A/B |
+| `lliot_run.py` | LLIoT experiment | `setup` / `smoke` / `run` / `collect`: runs `codex exec` over one researcher's jobs, hash-checked, tools disabled, resumable |
+| `lliot_validate.py` | LLIoT experiment | Checks model outputs against their jobs; prints pass/fail only, never a label |
 
 Retired scripts live in `scripts/_legacy/` (superseded-by table in `docs/SCRIPTS_REFERENCE.md`).
 

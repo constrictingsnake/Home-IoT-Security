@@ -441,6 +441,9 @@ Home IoT Security/
     ├── cpe-product-tokens.csv        # user-authored slug,token list for cpe_product_scan.py (automated discovery)
     ├── cpe-product-scan/             # cpe_product_scan.py output — product_candidates.csv (unreviewed)
     ├── cwe/                          # pinned CWE catalog (cwec_v4.12.xml.zip) — the CWE-888 view's version
+    ├── external/lliot/               # pinned LLIoT label extract (MIT) — stratification only, never shown to a model
+    ├── lliot-comparison/             # LLIoT-method experiment: manifest, strata, jobs, run-kit/ (generated AGENTS.md),
+    │                                 #   outputs/{A,B}/ (never open — blind adjudication), run logs; see its README
     ├── facets/                       # the facet system: facet_store.csv (F5 verdicts, keyed slug+facet),
     │                                 #   facet_distribution.csv (Phase A modal shares), facet_agreement.csv (κ),
     │                                 #   source_coverage.csv, + annotation-kit/ (blind) and tagging-kit/ (pre-filled)
