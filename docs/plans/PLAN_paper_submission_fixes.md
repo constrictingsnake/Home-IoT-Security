@@ -29,8 +29,10 @@ Two things Phase 5's acceptance checks should absorb:
 - Phase 1 also rewrote the per-category FP narrative (1.5) and added the §III→RQ1
   reconciliation bridge, so RQ1's 1,738/1,676 no longer appear from nowhere.
 
-Phase 1 was verified by brace-balance and label-resolution checks only — **the paper still
-has never been compiled** (Phase 5.1).
+Phase 1 was verified by brace-balance and label-resolution checks only. **Phase 5.1 is now
+done: the paper compiles** (2026-09-14, `tectonic` 0.17.0, 19 pages, 0 errors, 0 undefined
+references, 0 undefined citations, 0 overfull boxes) — see Phase 5.1 below for what the build
+caught that the static checks could not.
 
 ---
 
@@ -281,13 +283,35 @@ the current result:
 
 ## Phase 5 — Compile + verification (acceptance checks)
 
-1. **Compile the paper — it never has been.** No TeX toolchain on this machine
-   (`pdflatex`/`latexmk`/`tectonic` all absent): either `brew install --cask mactex-no-gui`
-   (or `basictex` + the needed packages: IEEEtran, booktabs, multirow, xcolor, cite), or use
-   Overleaf (the generated-table comments already assume Overleaf's sandboxed root — tables are
-   inlined, figures resolve via relative `figures/` paths, so the doc + `docs/figures/*.pdf`
-   upload cleanly). Run twice for refs; zero errors, zero undefined references, then check the
-   rendered tables actually fit (`\resizebox` on a 24-column table needs eyeballing).
+1. ✅ **DONE 2026-09-14 — the paper compiles.** Toolchain installed with `brew install tectonic`
+   (formula, no sudo, fetches packages on demand — the cask route needs an interactive sudo and
+   was not usable here). Build command:
+
+   ```bash
+   cd docs && tectonic -X compile home_iot_security_report.tex --outdir <build> --keep-logs
+   ```
+
+   Result: **19 pages, 0 errors, 0 undefined references, 0 undefined citations, 0 overfull
+   boxes**, 59 bibitems all cited. `brew install poppler` was added to render pages for visual
+   inspection (`pdftoppm`/`pdftotext`).
+
+   **Four defects the build caught that brace-balance and label-resolution could not:**
+   - a bare `\paragraph` under `\section` is lettered by IEEEtran, so §III's lead-in rendered
+     as "a)" before III-A → `\paragraph*`;
+   - a cross-reference that *resolved cleanly to the wrong subsection* after the restructure
+     (review pointed at III-C for the tvOS exclusion, which had moved into III-D);
+   - a "described below" that had become a forward reference across two subsections;
+   - `tab:facet-kappa` overflowing its column by 1.9pt → `\tabcolsep` 4pt.
+
+   ⚠️ **Still worth one `pdflatex` run before submission.** `tectonic` is XeTeX-based while the
+   paper's header documents pdflatex; the 52 remaining warnings are all `TU/ptm` font-shape
+   substitutions (XeTeX asking IEEEtran for Times in Unicode encoding) and would not occur under
+   pdflatex. As a hedge, all literal em-dashes were converted to `---`: no non-ASCII now remains
+   outside `%` comments, so the file needs no `inputenc`/`fontspec`.
+
+   Visual check done on the rendered pages: the §III numbered list, all four stage-titled
+   subsections, and `tab:facet-kappa` all typeset correctly. Two `\stub` markers still render as
+   red brackets — deliberate, see Phase 5 item 3 / the outline's item 3.
 2. **Stale-number grep must come back empty** over the tex:
    `grep -nE '6[,{]535|3[,{]413|3[,{]121|360[,{]981|2026-06-25|343 distinct|976 were|2[,{]081|H=77|df=15|df~=~15' docs/home_iot_security_report.tex`
 3. **Cross-check script** (run, don't trust the edit): recompute from

@@ -5,7 +5,13 @@
 % All section bodies are intentionally left blank.
 %
 % Build:  pdflatex home_iot_security_report.tex   (run twice for refs)
+%     or: tectonic -X compile home_iot_security_report.tex   (self-contained; resolves refs
+%         itself, no second run needed -- this is what the 2026-09-14 build used)
 % Class:  IEEEtran (conference).
+% Last verified build: 2026-09-14 -- 19 pages, 0 errors, 0 undefined refs/cites, 0 overfull
+%     boxes. The file is pure ASCII outside these comments, so no inputenc/fontspec is needed.
+%     Under tectonic (XeTeX) expect ~52 harmless "Font shape TU/ptm/... undefined" warnings;
+%     they do not occur under pdflatex.
 %==============================================================================
 \documentclass[conference]{IEEEtran}
 \IEEEoverridecommandlockouts
@@ -19,9 +25,30 @@
 \usepackage[table]{xcolor}
 \usepackage{url}
 \usepackage[hidelinks]{hyperref}
+\usepackage{tikz}
+
+\definecolor{darkred}{HTML}{8B0000}
+
+% Small filled circle carrying a number/label, set on the text baseline. Used to
+% mark the numbered stages of the collection framework in place of \enumerate.
+\newcommand{\circulo}[1]{%
+  \tikz[baseline=(char.base)]{%
+    \node[shape=circle, draw=none, fill=darkred, text=white,
+          inner sep=0pt, minimum size=\ht\strutbox] (char) {%
+      \scalebox{0.7}{\textbf{#1}}};%
+  }%
+}
 
 % Inline placeholder for values the author must supply. Renders in bold red.
 \newcommand{\stub}[1][?]{{\color{red}\textbf{[#1]}}}
+
+% Brackets a block of text that is kept but not yet rewritten: a red rule and label above,
+% a red rule and label below. The block itself stays black so it remains readable.
+\newcommand{\wipbegin}{\par\medskip\noindent{\color{red}\rule{\linewidth}{0.8pt}}\par\nopagebreak
+  \noindent\textcolor{red}{\textbf{WORK IN PROGRESS} --- \emph{descriptive facets: earlier
+  draft, not yet rewritten}}\par\nopagebreak\smallskip}
+\newcommand{\wipend}{\par\nopagebreak\smallskip\noindent\textcolor{red}{\textbf{END WORK IN
+  PROGRESS}}\par\nopagebreak\noindent{\color{red}\rule{\linewidth}{0.8pt}}\par\medskip}
 
 \begin{document}
 
@@ -46,7 +73,6 @@
 %==============================================================================
 \section{Introduction}
 \label{sec:intro}
-
 
 %==============================================================================
 \section{Related Work}
@@ -136,663 +162,787 @@ CWE-888 profiling approach of prior empirical vulnerability studies~\cite{ref-mc
 \section{Our Methodology}
 \label{sec:method}
 
-This section describes the methodology used in the paper. We began by fixing what
-counts as a home IoT device, freezing the resulting category list, and publishing
-the scope criteria as an OWL ontology so that membership follows from stated
-criteria rather than case-by-case intuition. We then identified the device types
-belonging to each category and collected the CVEs reported about them in
-NVD~\cite{ref-nvd}. Collection relied on two complementary text-search methods, a
-vendor/brand search and a device-keyword search, both run offline through a single
-engine against one fixed NVD snapshot. We reconciled their results per category
-into three disjoint directions --- the two one-sided differences and their
-intersection --- and added a fourth through a CPE-based expansion step that deepens
-coverage of already-confirmed devices. Because both term lists are hand-compiled and
-therefore incomplete in ways their authors cannot see, three automated passes mine
-the snapshot for terms the lists are missing; every candidate they propose is vetted
-by hand before it enters a list. For each CVE we extracted its characteristics,
-including the corresponding CWEs and CVSS information. Following a previous
-study~\cite{ref-mcsoftware}, we grouped the individual CWEs into the primary
-clusters of the CWE-888 Software Fault Patterns view~\cite{ref-cwe888} to build a
-`big picture' of the security vulnerabilities in home IoT devices. Because keyword-
-and brand-based NVD searches are text-based, and therefore noisy, every candidate
-vulnerability went through a structured false-positive review before we analyzed it.
-We close the quality loop from both ends: a per-term precision pass prunes the terms
-that generate the noise, and a capture--recapture estimate bounds what our terms
-never reached at all.
+This section describes our methodology. We decide what a home IoT device is
+(Section~\ref{sec:method-scope}) and define it as an OWL ontology
+(Section~\ref{sec:method-ontology}). Then we collect candidate CVEs from the
+NVD~\cite{ref-nvd} against a snapshot using two search methods: device/keyword
+and vendor/brand based. This is done for each of our 24 categories and split
+into three directions (intersection, device/keyword only, vendor/brand only). A
+CPE-based expansion step deepens coverage of CVEs already found. Automated
+passes go through the snapshot to compile terms to add to the search methods,
+and each candidate is confirmed by humans before being added. A false-positive
+review is run on every candidate, where terms that produce false positives are
+pruned, and work to estimate what terms aren't reached through
+capture-recapture estimate. Finally, each in-scope CVE has its CWE
+classification and CVSS data analyzed by grouping the CWE into the CWE-888
+Software Fault Pattern clusters~\cite{ref-mcsoftware} and comparing the CVSS
+scores. The study is observational in nature over publicly available and
+reputable NVD data.
 
-The empirical work presented in this paper follows the case study (i.e.,
-observational) approach based on publicly available data in NVD that are entered
-and validated by experts and are widely used by researchers and practitioners.
-Using an experimental approach (e.g., penetration testing) or a survey (e.g.,
-collecting expert opinions) are complementary empirical approaches that are out
-of the scope of this paper.
+% ---------------------------------------------------------------------------
+% Framework diagram, keyed to the hand-drawn "Home IoT Framework V3" sketch
+% (the diagram is the source of truth for stage numbers/titles as of the
+% 2026-10 revision). Numbering: 1 keyword search, 2 vendor search, 3 NVD
+% snapshot, 4 reconciliation, 5 blind AI review (5.1 Claude / 5.2 Codex /
+% 5.3 Gemini), 6 decision making, 7 human resolution, 8 home IoT benchmark,
+% 9 refinement and discovery (9.1 CPE expansion / 9.2 keyword and vendor
+% refinement / 9.3 keyword discovery / 9.4 CPE vendor discovery), 10 recall,
+% 11 analysis.
+% ---------------------------------------------------------------------------
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\columnwidth]{figures/pipeline.png}
+\caption{The home IoT CVE framework (Framework V3). Solid arrows carry data
+forward; dashed arrows are feedback loops that re-enter an earlier stage.
+Numbers correspond to the stages enumerated in Section~\ref{sec:method}.}
+\label{fig:pipeline}
+\end{figure}
+
+\paragraph*{The framework stage by stage} Collection works as a combination of
+ten stages, numbered in the order that a CVE encounters them, with analysis
+being the eleventh stage that takes the output of the first ten, shown in
+Figure~\ref{fig:pipeline}. The list below exists to make dependencies between
+stages clear and provide a brief overview of said stages before they are
+expanded upon further.
+
+\smallskip\noindent\circulo{1}\ \textbf{Keyword search.} Generic device-type
+phrases, one set per category (208 phrases in total), which name what a product
+is rather than who makes it. This list deliberately excludes brands, protocols,
+and firmware strings, so that the two text-based search methods stay separate.
+
+\smallskip\noindent\circulo{2}\ \textbf{Vendor search.} Manufacturer and
+brand strings for each category, with 1{,}564 pairs of (category, term) over
+1{,}540 different brands.
+
+\smallskip\noindent\circulo{3}\ \textbf{NVD snapshot.} Both lists are matched
+by an engine against one offline snapshot of the NVD (373{,}518 records as of
+2026-08-05), against the CVE description as well as the CPE strings associated
+with it, on whole-word boundaries. Running both search methods through the
+same engine and the same corpus makes a gap between them attributable to terms
+rather than staleness of data.
+
+\smallskip\noindent\circulo{4}\ \textbf{Reconciliation into disjoint
+directions.} For each category, the resulting sets are combined by set
+operations into three parts: vendor-only, keyword-only, and the intersection.
+Initially, we blindly trusted the intersection, but in a correction to our
+original design (Section~\ref{sec:method-collect}) we now review it.
+
+\smallskip\noindent\circulo{5}\ \textbf{Blind AI review.} Every candidate row
+in every direction is judged independently by 3 AI reviewers:
+\circulo{5.1}~Claude, \circulo{5.2}~Codex, and \circulo{5.3}~Gemini.
+Blindness is structural so that each reviewer fills in its own judgement
+without context from the other judgements (Section~\ref{sec:method-review}).
+
+\smallskip\noindent\circulo{6}\ \textbf{Decision making.} The three judgement
+columns are merged into a single verdict per row, and rows that do not settle
+confidently are flagged for human review (Section~\ref{sec:method-review}).
+
+\smallskip\noindent\circulo{7}\ \textbf{Human resolution.} The flagged rows
+are adjudicated blindly by two human reviewers, and a row settles only when
+both humans agree on a verdict. Their verdict then returns to the store
+(Section~\ref{sec:method-review}).
+
+\smallskip\noindent\circulo{8}\ \textbf{Home IoT benchmark.} All AI judgements,
+human verdicts, and final labels persist in one store keyed by (category, CVE).
+This judgement allows the pipeline to be re-runnable, since regenerating the
+candidate sets only reviews new rows and never repeats settled work
+(Section~\ref{sec:method-review}).
+
+\smallskip\noindent\circulo{9}\ \textbf{Refinement and discovery.} Settled
+judgements close the loop back. \circulo{9.1}~CPE expansion runs from the
+home IoT benchmark back to the snapshot: for every confirmed-\texttt{Yes} CVE
+it pulls every other CVE NVD attributes to the same CPE, and re-enters the
+review chain at stage~5, deepening coverage of devices already in the corpus.
+A per-term precision pass, \circulo{9.2}~keyword and vendor refinement, joins
+each judgement back to the term that pulled the CVE in and flags terms which
+have a high false-positive rate, so removal is directly based on measured data
+(Section~\ref{sec:method-precision}). \circulo{9.3}~Keyword discovery harvests
+device-type n-grams from confirmed matches that the phrase list is missing, and
+\circulo{9.4}~CPE vendor discovery harvests brands from the NVD's vendor field
+and device nouns from its product field. Mined candidates are never accepted
+automatically, and everything is confirmed by hand before entering a list.
+
+\smallskip\noindent\circulo{10}\ \textbf{Recall estimation.} Since review only
+measures precision, vendor and keyword searches are treated as two captures
+occasions of the same CVE population, which bounds what the terms never
+reached (Section~\ref{sec:method-recall}).
+
+\smallskip\noindent\circulo{11}\ \textbf{CVE analysis.} The confirmed CVEs are
+characterized by CWE classes and CVSS scores
+(Sections~\ref{sec:method-extract} and~\ref{sec:method-cwe888}).
+\smallskip
+
+One element of the framework is not a stage in this sequence. The
+\textbf{category list} sits upstream of everything: generated from the
+ontology (Section~\ref{sec:method-ontology}), it partitions every term list,
+result set, review direction, and reported distribution. Because so much of
+the pipeline is partitioned by category, we froze category membership before
+collection while keeping the term lists open.
+
+\stub[Methodology rewrite is complete up to this point.]
 
 \subsection{Scope: what counts as a home IoT device}
 \label{sec:method-scope}
 
-We define a \emph{home IoT device} as an internet-connected sensor, appliance,
-or embedded system deployed within a residential environment for the purpose of
+We define a home IoT device as an internet-connected sensor, appliance, or
+embedded system deployed in a residential environment for the purpose of
 monitoring, automation, or control, owned and maintained by non-expert consumers
-without dedicated IT security oversight~\cite{balta2013,alrawi2019}. For a device type to be in scope it must
-satisfy all five definitional criteria: (1)~\emph{connectivity} --- it
-communicates over a standard network protocol (TCP/IP, MQTT, CoAP, Zigbee, BLE);
-(2)~\emph{device class} --- it is a special-purpose sensor, appliance, or
-embedded system, not general-purpose IT (PC, phone, tablet, server, game
-console); (3)~\emph{deployment context} --- it is intended for a private
-residence, not primarily for enterprise or industrial use; (4)~\emph{function}
---- it qualifies if \emph{either} (a)~its primary purpose is to monitor, automate,
-or control the home environment or its systems (climate, security, access,
-lighting, appliances, presence), \emph{or} (b)~it serves as a home-control surface
-or hub for \emph{other} home IoT devices, discovering, controlling, or displaying
-their state (e.g.\ acting as a Matter/Thread controller or border router, running a
-voice assistant, or surfacing camera/sensor feeds); general-purpose computing and
-pure media playback with no such control role do not qualify; and
-(5)~\emph{security context} --- it is owned and
-maintained by consumers with no professional security administration. An
-operational study-inclusion criterion further requires that the device have a
-CPE-identifiable footprint in NVD and be subject to CVE disclosure. Virtually
-every networked product satisfies connectivity (criterion~1), so the criteria
-that actually decide membership are the device's own function (criterion~4) and
-class (criterion~2): a device that merely interoperates with home IoT is not
-itself home IoT. This is why entertainment hardware is in scope \emph{only} when
-it doubles as a home-control surface under criterion~4(b). Streaming TVs, sticks,
-and boxes qualify on that basis, because their platforms act as Matter/Thread
-controllers, run assistants, and surface camera/doorbell feeds, as do smart
-speakers and displays~\cite{kumar2019,fernandes2016}; game consoles and VR/AR
-headsets do not, remaining general-purpose compute that fails criteria~2 and~4.
-The networking axis follows the same logic: what matters is whether a device
-controls other home IoT devices, not whether it carries their traffic. IoT hubs,
-bridges, and Matter/Thread/Zigbee controllers are therefore in scope, while
-pure-transport gear (plain routers, modems, ONT, unmanaged switches) is excluded
-and appears only as untrusted threat-model context~\cite{alrawi2019,stanford_iot}.
+without dedicated IT security oversight~\cite{balta2013,alrawi2019}. A device is
+in scope only if it satisfies all five criteria below.
 
-The study analyzes 24 home IoT categories: cameras, doorbells, baby monitors, door
-locks, alarms, sensors, thermostats, air conditioners, fans, air purifiers, smart
-plugs, lighting, refrigerators, robot vacuums, other appliances, hubs, smart speakers,
-sleep trackers, shades, EV charging, home power, garden, pet, and streaming devices.
-We treat two device types as separate categories when a consumer would call them
-different products \emph{and} their brand sets differ meaningfully, and merge them only
-when they are the same product under a different label. Under that rule, smart displays
-and soundbars fold into the smart-speakers category, and blinds, curtains, and shutters
-fold into a single shades category, while cameras, doorbells, and baby monitors stay
-distinct despite their hardware overlap, since their brand sets differ. A few device
-types satisfy connectivity but fail the class or function criteria; we define them but
-keep them out of the analysis set. These are game consoles and VR/AR headsets
-(general-purpose compute, out by criteria~2 and~4) and pure-transport networking such as
-routers and modems (out by criterion~4). We also still list the sleep-tracker category,
-but it is dominated by wrist wearables (out by criterion~3) with essentially no bedside
-monitors, and is pending a rebuild that may drop it altogether. We froze category
-membership before large-scale collection, so that a later change to one category forces
-a re-run of only that category's chain rather than the whole pipeline. The per-category
-\emph{term} lists, by contrast, stay open to refinement (Section~\ref{sec:method-precision}).
+\begin{enumerate}
+\item \emph{Connectivity} --- it communicates over a standard network protocol
+(TCP/IP, MQTT, CoAP, Zigbee, BLE)
+
+\item \emph{Device class} --- it is a special-purpose sensor, appliance, or
+embedded system, not a general-purpose IT (PC, phone, tablet, server, game
+console)
+
+\item \emph{Deployment context} --- it is intended for a private residence, not
+primarily for enterprise or industrial use
+
+\item \emph{Function} --- it qualifies if either
+  \begin{enumerate}
+  \item its primary purpose is to monitor, automate, or control the home
+  environment or its systems (climate, security, access, lighting, appliances,
+  presence); or
+
+  \item it serves as a home-control surface or hub for \emph{other} home IoT
+  devices --- discovering, controlling, or displaying their state (a
+  Matter/Thread controller or border router, a voice assistant, a
+  camera/sensor feed surface). General-purpose computing and pure media playback
+  with no control role do not qualify.
+  \end{enumerate}
+
+\item \emph{Security context} --- it is owned and maintained by consumers with
+no professional security administration
+\end{enumerate}
+
+A sixth, operational (not definitional) criterion scopes what we can
+\emph{study}: the device must have a CPE-identifiable footprint in the NVD and be
+subject to CVE disclosure. Almost every networked product satisfies connectivity,
+so criteria~2 and~4 --- class and function --- do the actual discriminating: a
+device that merely interoperates with home IoT is not itself home IoT.
+
+This is why entertainment hardware is in scope only when it doubles as a
+home-control surface under criterion~4(b): streaming TVs, sticks, and boxes
+qualify because their platform runs a Matter/Thread controller, an assistant, or
+surfaces camera/doorbell feeds, as do smart speakers and
+displays~\cite{kumar2019,fernandes2016}. Game consoles and VR/AR headsets do not,
+remaining general-purpose IT excluded on criteria~2 and~4. The same logic applies
+to networking: what matters is whether a device \emph{controls} other home IoT
+devices, not whether it carries their traffic. IoT hubs, bridges, and
+Matter/Thread/Zigbee controllers are in scope; pure transport gear (routers,
+modems, switches) is not, and appears only as untrusted threat-model
+context~\cite{alrawi2019,stanford_iot}.
+
+The study analyzes 24 categories: cameras, doorbells, baby monitors, door locks,
+alarms, sensors, thermostats, air conditioners, fans, air purifiers, smart plugs,
+lighting, refrigerators, robot vacuums, other appliances, hubs, smart speakers,
+sleep trackers, shades, EV charging, home power, garden, pet, and streaming
+devices. Two device types are separate categories only if a consumer would call
+them different products \emph{and} their brand sets differ meaningfully;
+otherwise we merge them. Smart displays and soundbars therefore fold into
+\texttt{smartspeakers}, and blinds, curtains, and shutters fold into
+\texttt{shades}, while cameras, doorbells, and baby monitors stay distinct
+despite overlapping hardware, since their brand sets differ. Game consoles, VR/AR
+headsets, and pure-transport networking gear satisfy connectivity but fail class
+or function, and stay excluded. \texttt{sleeptracker} stays on the list but is
+dominated by wrist wearables (out by criterion~3) and contributes nothing to
+analysis pending a rebuild. We froze category membership before large-scale
+collection, so a later change to one category only re-runs that category's
+chain; the per-category term lists remain open throughout.
 
 \subsection{Formalizing the scope as an ontology}
 \label{sec:method-ontology}
 
-The criteria above are also published in machine-readable form as an OWL~2
-ontology, which serves three purposes in this study. First, it makes the scope
-decision auditable: each of the 24 in-scope categories and each defined-but-excluded
-type carries an explicit value for all five criteria, and criteria~1--5 are stated as an
-equivalence axiom, so an OWL reasoner --- rather than the prose --- decides membership.
-Reproducing our published in-scope and out-of-scope rulings is a weak test on its own,
-since most of those rulings are in-scope categories confirming that they are in scope,
-which the axiom satisfies by construction. The stronger check is that every criterion is
-independently load-bearing. We verify this by deleting each of the five conjuncts of the
-membership axiom in turn and requiring the reasoner to object, which it can only do if
-some defined type fails on precisely that criterion. Five defined-but-excluded boundary
-types serve that role, one per criterion: a non-networked detector (criterion~1), a
-tablet control panel (2), a commercial HVAC controller (3), pure-transport networking
-gear (4), and a professionally monitored alarm service (5). All five criteria are
-load-bearing under this test; we report it as a construct-validity check in
-Section~\ref{sec:threats-construct}. Second, it records
-the admission route, not merely the verdict. Because criterion~4 admits a device either
-by direct home control (4(a)) or by acting as a control surface for other devices (4(b)),
-and because 4(b) is the contested clause that lets entertainment hardware in, the
-distinction is worth quantifying: 1{,}624 of the 1{,}738 confirmed CVE--category
-assignments enter through 4(a) and only 114 through 4(b), so the boundary that attracts
-the most methodological objection governs 6.6\% of the corpus. Third, it defines a
-coarser tier of 13 \emph{folding categories} over the 24 leaves, used for reporting
-wherever a leaf category is too sparse to interpret (Section~\ref{sec:rq1}). The
-ontology generates \texttt{categories.csv} --- the same file that supplies every
-reviewer's scope note --- so the formal model and the artifact the pipeline actually
-consumes cannot drift apart. It holds classes and scope notes only, never judgments: no
-CVE is classified by the ontology, and no reviewer sees information the prose scope note
-did not already contain. Deriving judgments from the ontology instead would make the
-term-precision figures of Section~\ref{sec:method-precision} self-confirming, since the
-labels being measured would then come from the same model that defined the scope.
+We also publish the five criteria as a machine-readable OWL ontology, for three
+reasons. First, it makes scope decisions auditable: every in-scope and excluded
+type carries an explicit value for all five criteria, criteria~1--5 compose into
+one equivalence axiom, and an OWL reasoner --- not prose --- decides membership.
+Reproducing our published rulings is a weak test on its own, since most rulings
+are in-scope categories confirming they are in scope, which the axiom satisfies
+by construction. The stronger check deletes each of the five conjuncts from the
+axiom in turn and requires the reasoner to then admit a device it should exclude;
+it does, on one defined-but-excluded boundary type per criterion --- a
+non-networked detector (1), a tablet control panel (2), a commercial HVAC
+controller (3), pure-transport networking gear (4), and a professionally
+monitored alarm service (5) --- so all five criteria are load-bearing (reported
+as a construct-validity check in Section~\ref{sec:threats-construct}).
 
-Once the review has settled, we export the analyzed corpus itself as an instance graph
-against this vocabulary (80{,}072 triples: 1{,}676 vulnerabilities, 1{,}738
-category assignments, 4{,}707 device products, 292 vendors and 21 CWE-888 classes). The
-export is verified rather than trusted: a gate re-derives every one of those counts, the
-per-category totals, the leaf-to-family rollup, and the 1{,}904 CWE-888 attributions from
-the judgment store and the CWE mapping used in Sections~\ref{sec:rq1}--\ref{sec:rq2}, so
-the published graph cannot drift from the files the analysis runs on. Two of the 24
-categories and two of the 13 folding categories carry no confirmed CVE and appear in the
-graph as empty classes.
+Second, the ontology records the route of admission, not just the verdict: of
+the 1{,}738 confirmed category assignments, 1{,}624 (93.4\%) enter through
+criterion~4(a) and 114 (6.6\%) through 4(b), so the boundary that attracts the
+most methodological objection --- home-control surfaces such as streaming TVs
+and smart speakers --- governs a small minority of the corpus. Third, it defines
+a broader tier of 13 folding categories over the 24 leaves, used when a leaf
+category is too small to interpret on its own (Section~\ref{sec:rq1}). The
+ontology generates \texttt{categories.csv}, the same file that supplies every
+reviewer's scope note, so the formal model and the artifact the pipeline runs on
+cannot drift apart. The file holds only classes and scope notes: no CVE is
+classified by the ontology, and no reviewer sees information its prose scope note
+did not already contain, so judgments derived from the ontology cannot
+self-confirm the term-precision scores of Section~\ref{sec:method-precision}.
 
-Beyond the five membership criteria, the ontology carries a vocabulary of
-\emph{descriptive facets} (for example placement, cloud dependence, whether the device
-actuates something physical, and the consequence if it does) used to group categories for
-analysis. None of these facets appears in the membership axiom, so none can move a scope
-ruling. Their evidentiary status is recorded explicitly and is deliberately modest: all
-496 facet assertions in the published ontology are marked \texttt{Estimated}, meaning
-hand-assigned from domain knowledge with no external source, and the build gate prints
-that mix on every run. We subjected the facet vocabulary to three separate checks, each
-of which can disqualify a facet independently, and report the results in
-Section~\ref{sec:threats-reliability}. (i)~\emph{Validity.} Facets are asserted per
-category but joined onto CVE rows, so we sampled devices within each category (272
-devices across the 10 categories with enough CVE mass to sample, 120 category--facet
-cells) and measured what share of a cell's devices actually take its asserted value,
-banding the result on the same 0.80 and 0.60 cutoffs used for agreement in~(ii). Cells
-that fail are withheld from the analysis in code rather than by a note to the reader, and
-a second withholding route covers cells where two independent reviewers split along a
-device-subfamily line in categories too small to sample. The remaining 14 categories stay
-unmeasured rather than being assumed sound, and roughly a fifth of confirmed assignments
-carry no device CPE at all and so cannot be product-sampled at any budget.
-(ii)~\emph{Reliability.} Three annotators independently labelled a shared subsample of
-35--40 devices per facet, 471 facet--item judgments in total, and we report Fleiss'
-$\kappa$~\cite{fleiss1971}; only 4 of 12 facets clear the conventional $\kappa \geq 0.60$
-bar~\cite{landis1977}. (iii)~\emph{Sourcing.} A per-category pass attempted
-to attach an external source to each facet value, settling 185 cells, of which 94 carry a
-citation and 91 record a reasoned judgment with no source that supports the whole
-category; none reached documented-by-the-vendor status. Because a citation is only
-evidence about \emph{this} corpus if it covers it, each cited source is scored by the
-share of the category's confirmed CVEs that its vendors account for, and a cell whose
-citation falls below that floor is demoted to a judgment with the source retained. Taken
-together, these checks are why we treat the facets as organizing structure: they group
-categories and generate hypotheses, and no finding in this paper uses one as its grounding
+Once review settles, we export the analyzed data as an instance graph over this
+vocabulary (80{,}072 triples: 1{,}676 vulnerabilities, 1{,}738 category
+assignments, 4{,}707 device products, 292 vendors, 21 CWE-888 classes). A gate
+re-derives every count --- per-category totals, folding totals, CWE-888
+attributions --- from the judgment store and CWE mapping
+(Sections~\ref{sec:rq1}--\ref{sec:rq2}) and checks it against the export, so the
+published graph cannot drift from the files the analysis actually runs on. Two of
+the 24 categories have no confirmed CVEs and appear in the graph as empty
+classes.
+
+Beyond the five membership criteria, the ontology also carries \emph{descriptive
+facets} (placement, cloud dependence, whether a device actuates something
+physical, and the consequence if it does) used to group categories for analysis.
+None appears in the membership axiom, so none can move a scope ruling. Their
+evidentiary status is deliberately modest: all 496 facet assertions are marked
+\texttt{Estimated} --- hand-assigned from domain knowledge with no external
+source --- and the build gate prints that mix on every run. We subject the facet
+vocabulary to three independent checks, any of which can disqualify a facet
+(results in Section~\ref{sec:threats-reliability}). \emph{Validity}: facets are
+asserted per category but joined onto CVE rows, so we sampled devices within each
+category (272 devices, 10 categories with enough CVE mass to sample, 120
+category--facet cells) and measured what share of a cell's devices actually take
+its asserted value, on the same 0.80/0.60 bands used for agreement below. Failing
+cells are withheld from the analysis in code, not by a note to the reader; a
+second withholding route covers cells where two reviewers split along a
+device-subfamily line in categories too small to sample. The remaining 14
+categories stay unmeasured rather than assumed sound, and roughly a fifth of
+confirmed assignments carry no device CPE at all and so cannot be
+product-sampled at any budget. \emph{Reliability}: three annotators
+independently labelled a shared subsample (471 facet--item judgments across
+35--40 devices per facet), and we report Fleiss' $\kappa$~\cite{fleiss1971}; only
+4 of 12 facets clear the conventional $\kappa \geq 0.60$ bar~\cite{landis1977}.
+\emph{Sourcing}: a per-category pass attached an external source to each facet
+value where possible, settling 185 cells (94 citations, 91 reasoned judgments
+with no source, none vendor-documented); because a citation is only evidence
+about \emph{this} corpus if it covers it, we score each cited source by the
+share of the category's confirmed CVEs its vendors account for, and demote a
+cell below that floor to an unsourced judgment. Taken together, these checks are
+why we treat facets as organizing structure only: they group categories and
+generate hypotheses, and no finding in this paper uses one as its grounding
 variable.
 
-Two further artifacts sit alongside the class definitions, both verified against pinned
-manifests for the same reason. The first is an alignment to established smart-home
-vocabularies --- SAREF core~\cite{saref} with its S4BLDG~\cite{saref4bldg} and its S4ENER,
-S4WEAR, S4AGRI, S4AUTO, S4CITY and S4EHAW extensions~\cite{saref4ext}, plus W3C
-SSN/SOSA~\cite{ssn2017} --- expressed only as subclass and broader-match
-relations, never as class equivalence, since our classes are strictly narrower than the
-external ones they map to (our camera class is residential consumer IP cameras, whereas
-\texttt{saref:Sensor} is any sensor). Every external IRI is checked against a pinned
-435-IRI manifest drawn from those vocabularies, each recorded at a fixed version and
-content hash, so a reader can reconstruct the exact documents we searched rather than
-whichever version of them is current. Two of the eight yielded nothing in scope, which we
-record as a result rather than dropping them from the searched set;
-Section~\ref{sec:threats-construct} reports what the alignment shows.
-The second records, per category, the literature that motivates its inclusion, separating
-studies that evaluate the device type by name from those whose method covers it without
-naming it. Collapsing that distinction would overstate how well grounded the category set
-is: of the 24 categories, 13 (54\%) have a study evaluating them directly, 10 are
-supported only methodologically, and \texttt{streaming} has neither. Weighted by confirmed
-CVEs, 14.6\% of the analysis set sits on categories that no study in our manifest examines
-directly.
+Two further artifacts are verified against pinned manifests. The first aligns
+our classes to established smart-home vocabularies: SAREF core~\cite{saref} and
+its S4BLDG~\cite{saref4bldg}, S4ENER, S4WEAR, S4AGRI, S4AUTO, S4CITY, and S4EHAW
+extensions~\cite{saref4ext} (eight SAREF vocabularies), plus W3C
+SSN/SOSA~\cite{ssn2017}. Alignment uses only subclass (\texttt{rdfs:subClassOf})
+and SKOS match relations (broad, close, related), never class equivalence, since
+our classes are narrower than the external ones they map to --- our camera class
+is residential consumer IP cameras, while \texttt{saref:Sensor} is any sensor.
+Every external IRI is checked against a pinned 435-IRI manifest, each entry
+recorded with a retrieval date and content hash and, where the vocabulary
+publishes one, a version, so a reader can reconstruct the exact document rather
+than its current version. Two of the eight SAREF vocabularies (S4AUTO, S4CITY)
+yielded nothing in scope, which we treat as a result rather than an omission;
+Section~\ref{sec:threats-construct} reports what the alignment did find. The
+second artifact records, per category, the literature that motivates its
+inclusion, separating studies that evaluate the device type by name from those
+whose method covers it without naming it --- collapsing that distinction would
+overstate how well grounded the category set is. Of the 24 categories, 13 (54\%)
+have a study evaluating them directly, 10 are supported only by methodology, and
+\texttt{streaming} has neither; weighted by confirmed CVEs, 14.6\% of the
+analysis set sits on categories no study in the manifest examines directly.
 
-\subsection{CVE collection from NVD}
+\subsection{Collecting candidate CVEs (stages 1--4)}
 \label{sec:method-collect}
 
-CVEs are publicly known security vulnerabilities reported in NVD~\cite{ref-nvd}
-and attributed to specific software applications or libraries. We ran all searches
-offline against a single fixed snapshot of NVD, built by merging the per-year
-NVD JSON feeds (2000--2026, i.e.\ every CVE in NVD as of the download date) pulled from
-the NVD 2.0 API on 2026-08-05, for a total of 373{,}518 unique CVE records. Freezing the
-corpus this way serves two purposes: it makes the dataset reproducible and citeable
-(``as of'' that date), and it removes data-lag differences between the two searches. We
-collected CVEs related to home IoT devices using two complementary text-search methods,
-each more reliable in a different respect, augmented them with a CPE-based expansion step,
-and mined the snapshot itself for terms the two hand-compiled lists were missing:
+A CVE is a publicly known security vulnerability reported in NVD~\cite{ref-nvd}
+and attributed to specific software, firmware, or hardware. We ran every search
+offline against one fixed snapshot: the per-year NVD JSON feeds (2000--2026)
+pulled from the NVD 2.0 API on 2026-08-05, merged into 373{,}518 unique CVE
+records. Freezing the corpus this way makes it reproducible and citeable as of
+that date, following established practice~\cite{bhandari2021}, and removes
+data-lag as a difference between the two search methods; collection is therefore
+a point-in-time picture, not a date range. We searched for home IoT CVEs with two
+complementary text methods --- stage~1 (keyword) and stage~2 (vendor), run in
+parallel against the same snapshot --- and augmented them with a CPE-based
+expansion step that works from NVD's own attribution rather than from text. Terms
+the two hand-compiled lists are missing are mined from the snapshot itself, but
+that pass reads settled judgments as its evidence, so we describe it with its
+pruning counterpart in Section~\ref{sec:method-precision}, downstream of review.
 
-\paragraph{Vendor/brand search} For each category we first compiled a list of
-the manufacturers and brands that produce devices of that type, then searched the
-snapshot for those vendor and brand names. We assembled the brand lists per
-category by surveying the major residential smart-home ecosystems---Google
-Nest/Home, Apple Home (HomeKit), Amazon Alexa, and comparable hub platforms---and
-enumerating the device types and device brands certified to interoperate within
-each ecosystem, supplemented by targeted per-category web searches for additional
-brands not surfaced through the ecosystems. Where a bare brand name overlaps unrelated
-products, we qualified it with a product word (e.g.\ ``carrier infinity'' rather
-than ``carrier'') to suppress the obvious noise. Every brand term was matched against
-both the CVE \emph{description text and the CPE (Common Platform Enumeration)
-strings}, so that brand-in-CPE associations are captured. Matching is whole-word
-(tokens must sit on alphanumeric boundaries, with a trailing plural allowed), which
-blocks substring false hits --- \texttt{nvr} matching \texttt{nvram}, \texttt{evse}
-matching \texttt{prevsell} --- while leaving CPE matching unaffected, since the
-punctuation CPE uses to separate its fields counts as a boundary. One matching
-concession is specific to CPE: a space in a multi-word term also matches an
-underscore, so that \texttt{hunter douglas} reaches
-\texttt{hunter\_douglas:\ldots}. Without it a multi-word term could only ever match
-the description half of the haystack, which had silently suppressed the CPE
-contribution of every multi-word brand. Each output row
-also records \emph{which} brand term(s) matched it, which feeds the per-term precision
-analysis in Section~\ref{sec:method-precision}. The list also absorbs the hand-vetted
-output of the automated discovery passes described below. The final vendor list holds
-1{,}564 category--term pairs over 1{,}540 distinct brand strings. Since brand names frequently overlap
-with unrelated products, this method returns more candidate matches but is also more
-prone to false positives.
+\paragraph{Vendor/brand search (stage 2)} For each category we compiled the
+manufacturers and brands that make that type of device, by surveying major
+smart-home ecosystems (Google Nest/Home, Apple Home, Amazon Alexa, comparable hub
+platforms) for certified device brands, supplemented by targeted per-category web
+searches. Where a bare brand name overlaps unrelated products, we qualified it
+with a product word (e.g.\ ``carrier infinity'', not ``carrier''). Every term is
+matched against both the CVE description and its CPE strings, on whole-word
+boundaries with a trailing plural allowed --- blocking substring hits such as
+\texttt{nvr} in \texttt{nvram} or \texttt{evse} in \texttt{prevsell}, since CPE's
+field-separating punctuation also counts as a boundary. One concession is
+CPE-specific: a space in a multi-word term also matches an underscore, so
+\texttt{hunter douglas} reaches \texttt{hunter\_douglas:\ldots}; without it, a
+multi-word brand could only ever match through the description, silently losing
+its CPE matches. Each output row records which term(s) matched it, feeding the
+per-term precision analysis of Section~\ref{sec:method-precision}; the list also
+absorbs vetted candidates from the discovery passes described there. The final
+list holds 1{,}564 category--term pairs over 1{,}540 distinct brands. Because
+brand names frequently overlap unrelated products, this method returns more
+candidates but is more prone to false positives.
 
-\paragraph{Device-keyword search} In parallel, we searched for generic device-type
-phrases (e.g.\ ``ip camera'', ``video doorbell'', ``smart lock''), restricted to
-device-type language only, with no brands, protocols, or firmware names, since brand
-discovery is the vendor search's job. This search runs through the \emph{same offline
-engine and against the same fixed snapshot} as the vendor search, matching \emph{both
-description text and CPE strings} under the same whole-word rule and emitting the
-identical output schema (including matched-term attribution). The keyword list is
-correspondingly much smaller than the brand list at 208 device phrases, since it names
-device types rather than enumerating manufacturers. The two methods thus
-differ only in their search \emph{terms}, device phrases versus brand names, which is
-what makes their outputs directly comparable. Each CVE carries its CVSS score and
-version, CWE identifiers, CPE strings, and description.
+\paragraph{Device-keyword search (stage 1)} In parallel, we searched for generic
+device-type phrases (``ip camera'', ``video doorbell'', ``smart lock''),
+restricted to device-type language with no brands, protocols, or firmware names
+--- brand discovery is the vendor search's job. This runs through the same
+engine, the same snapshot, the same description-plus-CPE match, and the same
+whole-word rule as the vendor search, emitting the same output schema. The list
+is far smaller, at 208 phrases, since it names device types rather than
+enumerating manufacturers. The two searches therefore differ only in their
+terms, which is what makes their outputs directly comparable.
 
-\paragraph{Automated term discovery} Both term lists are hand-compiled, and a
-hand-compiled list is incomplete in ways its author cannot introspect: the brands one
-does not know about are exactly the ones that never get searched. We therefore mine the
-snapshot itself for terms the lists are missing, on each of the three text surfaces
-separately. The first mines the CPE \emph{vendor} field for manufacturers that co-occur
-with our confirmed devices, weighting evidence from vendors appearing on confirmed
-true-match CVEs above vendors appearing merely on keyword-matched but unjudged ones. The
-second mines confirmed true-match CVE \emph{descriptions} for device-type n-grams, scored
-both for how strongly they discriminate confirmed from rejected rows and for how many
-CVEs they would newly bring in, measured through the same matcher the pipeline uses. The
-third mines the CPE \emph{product} field for single device nouns, which is where a term
-too generic to use as a description keyword becomes precise: \texttt{camera} matches half
-of NVD in free text, but a product literally named \texttt{\ldots\_camera\_firmware} is a
-camera. That surface is the only one on which several of our vendors were reachable at
-all. Each pass discards candidates already covered by an existing term for that category,
-scores every survivor for the CVEs it would add that neither text search already found,
-and flags the known hazards --- diversified mega-vendors whose footprint dwarfs their
-in-scope products, dictionary words, and terms with an established false-positive record.
-Flags triage the list; they never filter it. Critically, none of the three passes writes to
-a term list: each emits a candidate file, and accepting a term is a human judgment made
-against the flags and the yield estimate, which is also why term discovery is not chained
-into the automated pipeline. The one vetting pass to date accepted 41 mined terms (17
-brand terms and 24 device phrases); the product-noun scan currently runs 47 tokens across
-19 categories, and terms accepted from it enter as ordinary brand terms, since the
-underscore concession above lets them reach CPE strings directly.
+\paragraph{Reconciliation (stage 4)} For each category we split the two result
+sets by set operations into three disjoint parts that partition their union:
+\emph{vendor-only} (vendor CVEs the keyword search missed) and
+\emph{keyword-only} (keyword CVEs the vendor list missed) surface gaps in each
+list, and the \emph{intersection} holds CVEs both methods found. We review all
+three, which was not the original design: we initially treated the intersection
+as high-precision by construction and reviewed only the two differences. An
+audit showed that assumption fails --- only 70.2\% of intersection rows are true
+matches overall, concentrated exactly where a category's generic device
+vocabulary collides with a professional product line (67.0\% in
+\texttt{cameras}, 15.8\% in \texttt{smartspeakers}). Method agreement measures
+that two term lists overlap, not that a device is in scope. Reviewing all three
+directions also feeds confirmed true matches back into whichever term list was
+missing them.
 
-\paragraph{Reconciliation} For each category we combined the two result sets
-using set operations, into three disjoint parts that together partition the union of the
-two searches. The \emph{difference} we compute \emph{bidirectionally}: \emph{vendor-only}
-(vendor $-$ keyword) collects vendor CVEs the keyword search missed, and
-\emph{keyword-only} (keyword $-$ vendor) collects keyword CVEs the brand list missed,
-which is what surfaces gaps in the vendor/brand list. The \emph{intersection} (vendor
-$\cap$ keyword) holds the CVEs both methods found. All three are reviewed, which was not
-our original design: we initially treated the intersection as high-precision by
-construction, on the reasoning that two independent methods agreeing is itself evidence,
-and reviewed only the two differences. An audit of the intersection showed that reasoning
-does not hold, and the settled corpus quantifies by how much --- across all categories,
-70.2\% of intersection rows are true matches, so close to a third would have entered the
-dataset unexamined. The failure is concentrated exactly where a category's generic device
-vocabulary collides with a professional product line: 67.0\% in \texttt{cameras}, where
-device phrases such as ``ip camera'' match enterprise surveillance brands that also carry
-the vendor terms, and 15.8\% in \texttt{smartspeakers}. Method agreement, in other words,
-measures that two term lists overlap, not that the device is in scope. Reviewing these
-sets serves a dual purpose: it cleans the dataset, and, by mining the confirmed true
-matches, it feeds new terms back into whichever list was missing them (keyword phrases
-from vendor-only true matches, brands from keyword-only true matches).
+\paragraph{CPE expansion} As a further, text-independent discovery step, we
+expand the set of CVEs NVD attributes to devices already confirmed in scope.
+Seeding only from confirmed (\texttt{Yes}) rows, we take each device's
+\texttt{vendor:product} CPE, restricted to \texttt{part} = hardware or operating
+system (dropping vendor-only and shared application/library CPEs), and scan the
+snapshot for every other CVE NVD attributes to that same product, subtracting
+what the two text searches already found. Three constraints keep this honest: it
+may seed only from a settled true match, never an unreviewed CVE; it seeds from
+\texttt{vendor:product}, not from a bare vendor, so a confirmed smart plug
+expands to that product line and not to everything its manufacturer makes; and
+general-purpose computing platforms are denied outright even though they are
+operating-system CPEs, so a vendor that attributes one CVE across an entire OS
+family cannot drag the whole desktop/mobile corpus in behind one confirmed
+device. The resulting candidates flow back through the same review and are never
+accepted automatically.
 
-\paragraph{CPE expansion} As a further discovery step, working from NVD's own attribution
-rather than from text, we expand the set of CVEs attributed to devices already confirmed as
-in scope. Seeding from the true-match
-(\texttt{Yes}) rows of the review, we take each confirmed device's
-\texttt{vendor:product} CPE, restricted to genuine device CPEs (\texttt{vendor:product}
-pairs whose \texttt{part} is hardware or operating system, dropping vendor-only and
-shared application/library CPEs). We then scan the snapshot for every other CVE that NVD
-attributes to that same product and subtract everything the two text searches already
-found. The remaining CVEs form a fourth candidate set that flows back through the same
-false-positive review; like the mined terms above, they are never accepted automatically.
-Three constraints keep the step honest. It may seed only from a settled true match, never
-from an unreviewed CVE, so it can never introduce a brand no reviewer has signed off on.
-It seeds from \texttt{vendor:product} pairs rather than from a vendor, so a confirmed
-smart plug expands to that plug's product line and not to everything its manufacturer
-makes. And the \texttt{part} restriction pins expansion to the physical device rather
-than its dependencies, dropping the application and library CPEs that ride along on a
-device CVE; general-purpose computing platforms are denied outright even though they are
-operating systems, because a vendor that attributes one CVE across its entire OS family
-would otherwise drag the whole desktop and mobile corpus in behind a single confirmed
-device.
+Yield is strongly category-dependent, and the aggregate figure is misleading
+before the scope exclusion below is applied. The step returned 2{,}068
+candidates, of which reviewers confirmed 1{,}960 --- but 1{,}897 of those are
+Apple TV expansions later removed by the tvOS exclusion, so precision on the 171
+candidates that reach the analysis set is 36.8\% (63 of 171). Within that
+remainder the split is stark: all 38 \texttt{alarms} candidates were confirmed,
+tracing to one prolific product whose terse CVE text named no brand our terms
+would catch, while \texttt{cameras} confirmed 15 of 67. The method faithfully
+propagates whatever its seeds imply, making it a high-value densifier for
+products NVD describes by CPE rather than by name, and a source of noise
+wherever a confirmed seed sits in a crowded product namespace.
 
-Its yield is strongly category-dependent, and the aggregate figure is misleading unless
-the scope exclusion below is applied first. The step returned 2{,}068 candidates, of which
-reviewers confirmed 1{,}960 --- but 1{,}897 of those confirmations are Apple TV
-expansions later removed by the tvOS exclusion, so on the 171 candidates that reach the
-analysis set precision is 36.8\% (63 of 171). Within that remainder the split is stark:
-every one of the 38 \texttt{alarms} candidates was confirmed, tracing to a single prolific
-product with tersely worded CVEs that named no brand our terms would catch, while
-\texttt{cameras} confirmed 15 of 67. The method faithfully propagates whatever its seeds
-imply, which makes it a high-value densifier for products NVD describes by CPE rather than
-by name, and a source of noise wherever a confirmed seed sits in a crowded product
-namespace.
+\paragraph{Comparability} An earlier iteration ran the keyword search against
+the live NVD API, matching description text only, while the vendor search ran
+offline over a snapshot matching description plus CPE. That asymmetry made
+apparent ``gaps'' between the methods partly an artifact of data lag and match
+surface rather than a genuine difference in what each found. We eliminated it by
+running both term lists through the same offline engine, against the same
+snapshot, matching description plus CPE under the same whole-word rule, so the
+only remaining difference between the searches is the terms themselves.
 
-Because all searches run against the single fixed snapshot, the collection is a
-point-in-time picture as of 2026-08-05 rather than a date range. After reconciliation
-and the CPE-expansion step, the two searches together produced 8{,}124 candidate
-(category, CVE) pairs across the 24 categories, all of which entered the false-positive
-review of Section~\ref{sec:method-review}. Of these, 3{,}753 were confirmed as true
-matches to a home IoT device and 4{,}371 were rejected as false positives, with no rows
-left outstanding. By provenance, the candidate pairs decompose into 4{,}241 vendor-only,
-1{,}049 keyword-only, 766 intersection, and 2{,}068 CPE-expansion rows, and their
-precisions differ by a factor of four: 22.9\% of vendor-only and 18.5\% of keyword-only
-rows reached the analysis set, against 70.2\% of intersection rows. The two one-sided differences
-are therefore where the false-positive load lives, which is what makes reviewing them the
-expensive part of the pipeline and pruning their terms
-(Section~\ref{sec:method-precision}) the cheapest available saving. A single CVE
-that legitimately affects devices in more
-than one category is counted once per category, so these are category-CVE pairs rather
-than distinct CVE identifiers. The transportation IoT study conservatively excluded
-ambiguous Qualcomm chipsets; the analogous deliberate exclusion here was Apple's tvOS.
-Although a streaming platform such as Apple TV nominally qualifies as a home-control
-surface, tvOS shares a codebase with Apple's general-purpose operating systems (iOS,
-macOS, watchOS), so NVD attributes a single such CVE across the entire OS family at
-once; tvOS-tagged CVEs would therefore dominate the \texttt{streaming} category by
-sheer volume while reflecting shared-platform rather than device-specific weaknesses.
-We accordingly mark tvOS CVEs out of scope for \texttt{streaming}
-(Section~\ref{sec:method-scope}). This exclusion is substantial and applied after review
-rather than before it: it removes 2{,}015 of the 3{,}753 confirmed true matches, every one
-of them in \texttt{streaming}. What remains --- 1{,}738 confirmed CVE--category
-assignments over 1{,}676 distinct CVEs --- is the analysis set used throughout
-Sections~\ref{sec:rq1}--\ref{sec:rq2}. We record the excluded rows as scope exclusions
-rather than deleting them or reversing their judgments, so the review outcome and the
-scope decision stay separable in the published data.
+\paragraph{Snapshot vintage} Pinning the snapshot makes the two searches
+comparable; it does not mean the corpus never moves. The invariant is that both
+lists always run against the same vintage, which a re-download preserves at a new
+date so long as both are re-run. We did this once, replacing a 2026-06-25
+snapshot (360{,}981 records) with the 2026-08-05 snapshot (373{,}518) used
+throughout this paper, and rebuilt both searches and every downstream set
+against it. Because settled judgments persist in a store keyed by (category,
+CVE), the refresh cost only 111 genuinely new review rows out of 5{,}122; the
+previous vintage was retained rather than overwritten, letting us measure what
+NVD had changed on already-analyzed records before cutting over
+(Section~\ref{sec:method-extract}).
 
-The review described above establishes the \emph{precision} of this collection but says
-nothing about its \emph{recall}, which matters because both methods are text-based and a
-device-relevant CVE naming none of our terms never enters the corpus at all. We estimate
-recall by treating the vendor and keyword searches as two independent capture occasions of
-the same underlying CVE population and applying the Chapman-corrected Lincoln--Petersen
-estimator~\cite{chapman1951}, which requires no additional labelling. Pooled across categories this puts
-combined search-stage recall at 0.603 (95\% CI 0.556--0.648), over 4{,}849 observed CVEs
-against an estimated population of 8{,}046. That figure should be read as an \emph{upper}
-bound: the two searches are positively dependent rather than independent, since a CVE
-naming a brand often also names the device type, and such dependence biases the estimated
-population size downward and hence recall upward.
+\subsection{False-positive classification (stages 5--8)}
+\label{sec:method-review}
 
-Because that dependence is the estimate's main weakness, we also fit a three-source
-variant that does not have to assume it away. It adds a third capture occasion --- every
-CVE NVD attributes to a confirmed-in-scope device CPE --- and selects among Poisson
-log-linear models~\cite{fienberg1972} with and without pairwise interaction terms by
-AIC~\cite{akaike1974}, letting the data
-estimate the vendor--keyword dependence instead of stipulating independence. Of the 22
-categories that support any estimate at all, 21 support a three-source fit, and their intervals are wide
-enough that we read the per-category figures as indicative rather than precise; the third
-set is also not a clean capture occasion, since it can only reach products that already
-appeared in one of the two searches. Three structural cases carry no estimate at all, and
-we report them rather than filling them in: five categories are \emph{degenerate}, with
-one search's results a subset of the other's, so recapture carries no information and the
-estimator returns an artifactual 1.0 (these are excluded from the pooled figure); one
-category has no in-scope seed and so forms no third set; and two categories have an empty
-term list on one side, so no recapture is possible at all. We therefore treat recall as an
-order-of-magnitude check on coverage rather than a measurement, and return to its
-limitations in Section~\ref{sec:threats-external}.
+% ---------------------------------------------------------------------------
+% The five review figures are generated by scripts/generate_review_figures.py,
+% which recomputes every count in every one of them from
+% data/difference/judgment_store.csv at run time. Re-run it after any change to
+% the store; never hand-edit a number quoted in a caption without re-running it.
+%   python3 scripts/generate_review_figures.py
+% (--print-stats dumps every figure's numbers as text for checking against the
+% prose in this section.)
+% ---------------------------------------------------------------------------
+\begin{figure*}[t]
+\centering
+\includegraphics[width=\textwidth]{figures/review_funnel.pdf}
+\caption{Every candidate row through the review, from the three blind AI
+judgments to the analysis set. Band thickness is proportional to row count at
+every stage with no minimum width, so two small paths render as hairlines. The
+first runs from \emph{unanimous} to \emph{human adjudicated}: 60 rows on which
+all three reviewers agreed, but on which both strong reviewers reported Low
+confidence, so the flag rule sends them to a human regardless of the agreement.
+The second runs from \emph{split} through the strong-consensus node --- the only
+node below 1\%, and the one carrying a leader line --- and on into the final
+label: 19 rows where Claude and Codex agreed at High confidence and Gemini alone
+dissented, 18 of which settle \texttt{No}. The scope gate at the right is the
+tvOS exclusion, which is applied after review and removes confirmed true matches
+rather than reversing any judgment.}
+\label{fig:review-funnel}
+\end{figure*}
 
-\paragraph{Comparability} An earlier iteration of this pipeline ran the keyword
-search against the live NVD API (matching the description only), while the vendor
-search ran offline over a year-feed snapshot (matching description plus CPE). That
-asymmetry made apparent ``gaps'' between the methods partly an artifact of data lag and
-of the description-versus-CPE match surface, rather than a genuine difference in what
-each method found. We eliminated the confound by running \emph{both} term lists through
-the same offline engine against the same fixed NVD snapshot, matching description plus
-CPE under the same whole-word rule, so that the only difference left between the two
-searches is the search terms themselves.
+Because the vendor and keyword searches are purely text-based, generic brand
+names and terms inevitably produce false positives --- a brand string that also
+names an unrelated commercial product, or marketing copy that merely mentions a
+device category. We classify each candidate CVE in the difference set
+independently as a true match or a false positive.
 
-\paragraph{Snapshot vintage} Pinning the snapshot makes the two searches comparable; it
-does not mean the corpus can never move. The invariant we hold is that both term lists are
-always run against the \emph{same} vintage, which a re-download preserves at a new date so
-long as both searches are re-run. We did this once during the study, replacing a 2026-06-25
-snapshot of 360{,}981 records with the 2026-08-05 snapshot of 373{,}518 used throughout
-this paper, rebuilding both searches and every downstream set against it. Two properties of
-the design made that affordable. Because settled judgments persist in a store keyed by
-(category, CVE), the full snapshot refresh plus re-search cost 111 genuinely new review
-rows out of 5{,}122, with the remainder restored automatically. And because the previous
-vintage was retained rather than overwritten, we could measure what NVD had changed on
-records we had already analyzed before cutting over --- a comparison that has to be made
-prospectively, since NVD serves only current state (Section~\ref{sec:method-extract}).
+Every row is judged independently and blind by three AI reviewers, and the rows
+they leave unsettled are blind-adjudicated by two human researchers (Aarav Verma
+and Suhani Assija).
+% DOUBLE-BLIND: if the venue requires anonymized submission, replace the two names above
+% with "two of the authors" and drop the acknowledgement of individual reviewers.
+The AI reviewers are Anthropic's Claude, via Claude Code (judgments collected
+2026-06-01--07-02); OpenAI's ChatGPT Codex (06-15--06-30); and Google's
+\texttt{gemma-4-31b-it}, via the Gemini API
+(06-16--07-01)\stub[optional: add the exact Claude and Codex model version
+strings if they can be recovered]. Each reviewer judges every row in a single
+pass, with no self-consistency sampling, and one model is held fixed for a
+reviewer's whole column. We record collection dates rather than internal build
+identifiers for the two interactively accessed reviewers, since the identifiers
+were not captured at run time --- a reproducibility limitation we note rather
+than resolve. Blindness is structural: each reviewer works from its own copy of
+the data, containing only the raw fields and its own empty judgment columns, so
+no reviewer can see another's answer. All three apply one shared rubric and one
+shared per-category scope note, judging only from a row's \texttt{description}
+and \texttt{cpe\_strings}; one scope note per category is what makes agreement
+between reviewers mean agreement under a common scope, not three readings of a
+one-word label.
+
+Each reviewer assigns a \emph{Judgment} (\texttt{Yes}/\texttt{No}/\texttt{Maybe}),
+a \emph{Confidence} (\texttt{High}/\texttt{Low}), and a short \emph{Reasoning},
+required for \texttt{Low} and \texttt{Maybe} rows; \texttt{Maybe} always pairs
+with \texttt{Low}. We reserve Low confidence for the harder calls: a device
+plausibly residential but primarily commercial, a description naming the
+category while the CPE points at enterprise hardware, or a CVE in a
+software/protocol layer shared between home and non-home contexts. A missing CPE
+does not by itself force a \texttt{Maybe} --- CPE is frequently absent on recent
+(2024--2026) CVEs from NVD enrichment lag, so an unambiguous description is
+judged on its content. The rubric also fixes two recurring calls: a device's own
+companion app and vendor cloud API count as part of the device, since the
+app--device--cloud coupling is a defining property of a consumer IoT deployment
+rather than grounds to exclude it~\cite{alrawi2019} (the converse does not hold:
+an unrelated app that merely controls home IoT still fails class and function);
+and an app-layer vulnerability spanning several of a vendor's product lines is
+accepted for every named line, keeping per-category counts additive rather than
+dependent on review order.
+
+Two of the three AI reviewers (Claude Code, ChatGPT Codex) run manually, and
+Gemini is scripted against its API. All three judge the combined review set for
+a category --- vendor-only, keyword-only, intersection, and CPE-expansion rows
+together, with a \texttt{Difference Type} field recording each row's origin ---
+and their judgments are merged. We flag a row for human adjudication when both
+Claude and Codex report Low confidence, or when the three judgments are not
+unanimous; Figure~\ref{fig:review-confidence} is the empirical case for keying
+the flag this way --- unanimity is 91.3\% when both report High confidence and
+falls to 4.1--36.6\% when either is Low. We relax this in one case: a lone
+Gemini dissent does not flag a row where Claude and Codex both agree at High
+confidence, since we validated that relaxation against a fully worked human
+queue, where humans sided with the Claude--Codex pair on 293 of 294 such rows
+(99.7\%; only 95.5\% at any confidence, which is why High confidence is required
+on both). Such rows settle as \texttt{strong-consensus} and stay in a
+high-confidence audit pool with a recorded Gemini-dissent flag, rather than
+joining the human queue. Gemini's judgment counts toward unanimity; its
+confidence is recorded but excluded from the flag, since it is the weaker third
+vote.
+
+Humans then adjudicate only the flagged rows. Each CVE's judgments collapse into
+one final label (\texttt{ai-consensus} for unflagged rows, \texttt{human} for
+adjudicated ones). The human stage mirrors the AI stage in requiring agreement: a
+flagged row settles only when both human reviewers agree on a non-\texttt{Maybe}
+verdict; one verdict, a conflict, or a \texttt{Maybe} stays outstanding for the
+next round, so no final label rests on a single human reading. Human verdicts are
+sticky --- unaffected by later flag-rule changes or queue regenerations,
+superseded only by a fresh agreeing pair. At analysis time nothing was
+outstanding and no \texttt{Maybe} survived. All settled judgments persist in a
+store keyed by (category, CVE); regenerating a difference set after a term-list
+change restores prior judgments automatically and reviews only genuinely new
+rows.
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\columnwidth]{figures/review_confidence.pdf}
+\caption{Why the human-review flag is keyed on the two strong reviewers'
+confidence. Each pair of bars is one (Claude, Codex) confidence cell: the share
+of its rows on which all three reviewers were unanimous, and the share that
+reached a human. Unanimity falls from 91.3\% when both report High to 4.1\% when
+Claude is High and Codex is Low.}
+\label{fig:review-confidence}
+\end{figure}
+
+Across all 8{,}124 reviewed (category, CVE) rows, 3{,}753 (46.2\%) settled as true
+matches and 4{,}371 (53.8\%) as false positives (Figure~\ref{fig:review-funnel}):
+the majority of candidate rows are noise, confirming that a text-based NVD
+search needs exactly the per-category review we ran. The false-positive rate
+(Figure~\ref{fig:review-fp-category}) tracks how distinctive a category's device
+language and brands are. Two categories sit at 100\% for reasons of scope rather
+than term collision: \texttt{shades} (5 of 5, essentially no NVD footprint) and
+\texttt{sleeptracker} (29 of 29, whose term list surfaced almost only wrist-worn
+wearables that fail the residential-deployment criterion, contributing nothing to
+the analysis set). Among the rest, the rate is highest where a generic brand or
+noun collides with enterprise or unrelated products (air conditioner 96.2\%,
+thermostat 80.0\%, baby monitor 78.0\%, cameras 77.6\% over 3{,}950 rows) ---
+the camera and baby-monitor rates trace to an over-broad vendor list, which
+Section~\ref{sec:method-precision} turns into concrete pruning actions --- and
+lowest for categories with unambiguous vocabulary and distinctive brands (home
+power 13.5\%, garden 29.6\%, hubs 30.0\%). \texttt{smartspeakers}, at 62.0\%, is
+not the clean category its name suggests: one over-broad term, \texttt{smart
+display}, accounts for 48 rejections on its own.
+\begin{figure}[t]
+\centering
+\includegraphics[width=\columnwidth]{figures/review_fp_by_category.pdf}
+\caption{False-positive rate per category, over all reviewed rows. Categories
+with fewer than 30 reviewed rows are shaded, since at that $n$ a rate is
+indicative rather than a finding. The rate measures review outcome only: it is
+not a yield, which is why \texttt{streaming} carries a note that the scope gate
+later removes most of its confirmed matches.}
+\label{fig:review-fp-category}
+\end{figure}
+The \texttt{streaming} rate (14.3\% over 2{,}440 rows) should be read alongside
+the tvOS scope exclusion below: review found most of those rows genuine, and it
+is the subsequent scope decision, not the false-positive review, that removes
+them.
+
+The three reviewers agreed pairwise on 87.0\% (Claude--Codex), 86.3\%
+(Claude--Gemini), and 85.2\% (Codex--Gemini) of rows, and were unanimous on
+80.3\% (Figure~\ref{fig:review-disagreement}). They differ less in how often they
+say \texttt{Yes} --- 3{,}683, 3{,}979, and 4{,}218 rows respectively --- than the
+reviewer-bias discussion might suggest, and on the 1{,}597 rows where they split,
+no single reviewer dominates the dissent (Gemini 33.8\%, Codex 30.1\%, Claude
+24.6\%, all three differing on the remaining 11.5\%): the third vote is doing
+real work, not just tracking one of the other two. Final labels: 6{,}467
+AI-consensus, 1{,}638 human-adjudicated, and 19 strong-consensus, with none
+outstanding.
+
+\begin{figure*}[t]
+\centering
+\includegraphics[width=\textwidth]{figures/review_disagreement.pdf}
+\caption{What the reviewers disagree about. (a) Each reviewer's judgment mix
+over all 8{,}124 rows; the \texttt{Maybe} share is small for all three and is
+labeled past the bar end rather than shown as an unreadable sliver. (b) On the
+1{,}597 rows where the three did not agree, which reviewer stood alone. No
+reviewer accounts for even 35\% of the dissent, and on 184 rows all three
+judgments differ --- possible because the judgment vocabulary is
+\texttt{Yes}/\texttt{No}/\texttt{Maybe} rather than binary.}
+\label{fig:review-disagreement}
+\end{figure*}
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\columnwidth]{figures/review_precision.pdf}
+\caption{Share of each direction's rows that reached the analysis set. The
+intersection --- the direction our original design assumed clean and skipped ---
+is the most precise of the four but is far from noise-free, which is what the
+audit that added it as a review direction established. Denominators exclude
+tvOS-scoped rows, so CPE expansion is scored on the 171 of its 2{,}068 reviewed
+rows that survive the scope gate.}
+\label{fig:review-precision}
+\end{figure}
+
+After reconciliation and CPE expansion, the two searches produced 8{,}124
+candidate (category, CVE) pairs across the 24 categories: 4{,}241 vendor-only,
+1{,}049 keyword-only, 766 intersection, and 2{,}068 CPE-expansion. Their
+precisions differ by a factor of four (Figure~\ref{fig:review-precision}): 22.9\%
+of vendor-only and 18.5\% of keyword-only rows reached the analysis set, against
+70.2\% of intersection rows --- the two one-sided differences carry the
+false-positive load, which is what makes pruning their terms
+(Section~\ref{sec:method-precision}) the cheapest available saving. A CVE
+affecting devices in more than one category is counted once per category, so
+these are category-CVE pairs, not distinct CVE identifiers.
+
+We made one deliberate scope exclusion after review, analogous to how a prior
+transportation-IoT study excluded ambiguous Qualcomm chipsets: Apple's tvOS. A
+streaming platform such as Apple TV nominally qualifies as a home-control
+surface, but tvOS shares a codebase with Apple's general-purpose operating
+systems, so NVD attributes a single such CVE across the whole OS family at once;
+tvOS CVEs would dominate \texttt{streaming} by volume while reflecting
+shared-platform rather than device-specific weaknesses. We mark tvOS CVEs out of
+scope for \texttt{streaming} (Section~\ref{sec:method-scope}). This exclusion is
+substantial and applied \emph{after} review, not before: it removes 2{,}015 of
+the 3{,}753 confirmed true matches, all in \texttt{streaming}. What remains ---
+1{,}738 confirmed category assignments over 1{,}676 distinct CVEs --- is the
+analysis set used throughout Sections~\ref{sec:rq1}--\ref{sec:rq2}. We record
+excluded rows as exclusions rather than deleting them or reversing their
+judgments, keeping the review outcome and the scope decision separable in the
+published data.
+
+\subsection{Closing the loop: pruning and discovery (stage 9)}
+\label{sec:method-precision}
+
+Both term lists are refined between passes, using settled judgments as evidence:
+pruning removes terms shown to generate noise, and discovery proposes terms the
+lists never had.
+
+\paragraph{Pruning by per-term precision} The matched-term attribution recorded
+at collection lets us join each settled judgment back to the term(s) that pulled
+its CVE in, and compute a per-term precision --- the fraction of a term's judged
+difference-set matches confirmed true. We flag as prune candidates any term at or
+below $0.10$ precision over at least 5 judged rows. Precision is computed per
+(term, category, search method), since a string can be registered for more than
+one category or on both lists: of 426 such combinations with at least one judged
+match (398 distinct strings), 20 crossed the threshold, over 19 distinct terms.
+Most are vendor terms naming professional or enterprise product lines (e.g.\
+\texttt{synology surveillance station}, \texttt{geutebruck}, \texttt{digital
+watchdog} under cameras, each at $0.0$ over 7--25 rows), plus broad consumer
+brands that dominate their category's false positives (\texttt{d-link} under
+cameras, $0.044$ over 1{,}802 rows). Five are keyword rather than brand terms
+(\texttt{smart display}, \texttt{home hub}, \texttt{evse}, \texttt{charge
+point}, \texttt{weather station}) --- umbrella phrases broad enough to match
+marketing copy rather than a device. \texttt{smart display} is registered on
+both lists and is flagged twice, which is why 20 flagged combinations span 19
+terms; the same threshold pruning both lists is deliberate, since the keyword
+list is not immune to over-breadth just because it avoids brand names. Because
+these labels cover only the difference set, this is a prioritized prune list,
+not a global precision over all of a term's matches.
+
+\paragraph{Automated term discovery} A hand-compiled list is incomplete in ways
+its author cannot introspect --- the brands one does not know about are exactly
+the ones never searched. We mine the snapshot for missing terms on three
+separate text surfaces. The first mines the CPE \emph{vendor} field for
+manufacturers co-occurring with confirmed devices, weighting vendors on
+confirmed true matches above vendors on merely keyword-matched, unjudged CVEs.
+The second mines confirmed true-match \emph{descriptions} for device-type
+n-grams, scored both for how strongly they discriminate confirmed from rejected
+rows and for how many CVEs they would newly add, measured through the pipeline's
+own matcher. The third mines the CPE \emph{product} field for single device
+nouns --- precise inside a product name even though too generic for a free-text
+keyword (\texttt{camera} matches half of NVD in text, but
+\texttt{\ldots\_camera\_firmware} is a camera), and the only surface on which
+several of our vendors were reachable at all. Each pass discards candidates
+already covered by an existing term, scores survivors for the new CVEs they
+would add, and flags known hazards --- mega-vendors whose footprint dwarfs their
+in-scope products, dictionary words, terms with an established false-positive
+record --- as triage, not a filter. None of the three passes writes to a term
+list directly: each emits a candidate file, and accepting a term is a human
+judgment against the flags and yield estimate, which is also why discovery is
+not chained into the automated pipeline. The one vetting pass to date accepted
+41 mined terms (17 brand, 24 phrase); the product-noun scan currently runs 47
+tokens across 19 categories, and accepted tokens enter as ordinary brand terms,
+since the underscore concession of Section~\ref{sec:method-collect} lets them
+reach CPE strings directly.
+
+The two passes are deliberately asymmetric: discovery proposes terms a
+hand-compiled list is missing and requires a human to accept each one, since
+accepting a brand is a scope judgment; pruning removes terms already shown to
+generate noise, using labels the review produced, so its evidence is measured
+rather than predicted. Both write only candidate lists, and both run between
+pipeline passes rather than inside one, so a term list never changes mid-review.
+
+\subsection{Estimating what the searches missed (stage 10)}
+\label{sec:method-recall}
+
+Review (Section~\ref{sec:method-review}) establishes precision but says nothing
+about recall: a device-relevant CVE naming none of our terms never enters the
+corpus at all. We estimate recall by treating the vendor and keyword searches as
+two independent capture occasions of the same CVE population and applying the
+Chapman-corrected Lincoln--Petersen estimator~\cite{chapman1951}, which needs no
+additional labelling. Pooled across categories, combined search-stage recall is
+0.603 (95\% CI 0.556--0.648), over 4{,}849 observed CVEs against an estimated
+population of 8{,}046. This is an \emph{upper} bound: the two searches are
+positively dependent rather than independent --- a CVE naming a brand often also
+names the device type --- and such dependence biases the estimated population
+downward and recall upward.
+
+Because that dependence is the estimate's main weakness, we also fit a
+three-source variant that does not have to assume it away, adding a third
+capture occasion --- every CVE NVD attributes to a confirmed-in-scope device CPE
+--- and selecting among Poisson log-linear models~\cite{fienberg1972}, with and
+without pairwise interaction terms, by AIC~\cite{akaike1974}, letting the data
+estimate vendor--keyword dependence rather than assuming independence. Of the 22
+categories that support any estimate, 21 support a three-source fit; their
+intervals are wide enough that we read per-category figures as indicative rather
+than precise, and the third capture set can only reach products that already
+appeared in one of the two searches. Three structural cases carry no estimate at
+all: five categories are \emph{degenerate} (one search's results a subset of the
+other's, so recapture carries no information and the estimator returns an
+artifactual 1.0 --- excluded from the pooled figure); one category has no
+in-scope seed and so forms no third set; and two have an empty term list on one
+side, so no recapture is possible. We treat recall as an order-of-magnitude
+coverage check rather than a measurement, and return to its limitations in
+Section~\ref{sec:threats-external}.
 
 \subsection{CWE and CVSS data extraction}
 \label{sec:method-extract}
 
-Each CVE is typically attributed to one or more CWEs. Some CVEs, however, either
-lacked enough information to be associated with a CWE in NVD or fell outside NVD's
-CWE mapping; NVD lists these as \texttt{NVD-CWE-noinfo} and \texttt{NVD-CWE-Other},
-respectively. Of the 1{,}676 confirmed home IoT CVEs in the analysis set, 118 (7.0\%)
-carried no usable CWE mapping (an absent, \texttt{NVD-CWE-noinfo}, or \texttt{NVD-CWE-Other}
-value; our merged year-feed snapshot does not preserve the distinction among these
-three cases, collapsing all of them to an empty CWE field, so we report them together
-rather than splitting the \texttt{noinfo} and \texttt{Other} counts). We kept these in the CVE-level analysis
-(Sections~\ref{sec:rq1}--\ref{sec:rq2}), but they do not contribute to the CWE analysis.
-The remaining 1{,}558 CVEs carried CWE attributions spanning 155 unique CWE identifiers
-before mapping onto the CWE-888 view.
+Each CVE is typically attributed to one or more CWEs; some lack enough
+information for NVD to map one, recorded as \texttt{NVD-CWE-noinfo} or
+\texttt{NVD-CWE-Other}. Of the 1{,}676 confirmed CVEs in the analysis set, 118
+(7.0\%) carry no usable CWE mapping (our merged year-feed snapshot collapses
+\texttt{noinfo}, \texttt{Other}, and absent values into one empty field, so we
+report them together). We keep these in the CVE-level analysis
+(Sections~\ref{sec:rq1}--\ref{sec:rq2}) but exclude them from the CWE analysis;
+the remaining 1{,}558 CVEs carry 155 unique CWE identifiers before CWE-888
+mapping.
 
-A second, independent gap affects CPE rather than CWE data: 193 of the 1{,}676 confirmed
-CVEs (11.5\%) carry no CPE string at all. This is the population that our reviewers had to
-classify from description text alone (Section~\ref{sec:method-review}), and it is also
-what bounds the CPE-expansion step, which can only seed from CVEs that carry a device CPE.
-We report both gaps as standing limitations of the corpus rather than as artifacts of NVD
-enrichment lag that a later snapshot would clear. Comparing our snapshot against the
-preceding vintage six weeks earlier, NVD had backfilled a CWE on none of the 118 CWE-less
-rows and a CPE on 3 of the 196 then CPE-less ones, had changed no base score, had re-scored
-none of the 81 v2.0-only records under v3.x, and had newly rejected nothing. All three of
-the real changes are 2026 CVEs NVD was analyzing for the first time, so what the comparison
-measures is first analysis, not reanalysis: on a fixed set of already-analyzed records, NVD
-churn is close to nil, and neither gap is closing at a rate that would change these
-figures.
+A second, independent gap affects CPE: 193 of the 1{,}676 CVEs (11.5\%) carry no
+CPE at all, the population reviewers had to classify from description text alone
+(Section~\ref{sec:method-review}), and the ceiling on CPE expansion. We report
+both gaps as standing limitations rather than artifacts a later snapshot would
+clear: comparing against the preceding vintage six weeks earlier, NVD had
+backfilled a CWE on none of the 118 CWE-less rows, a CPE on 3 of the then-196
+CPE-less rows, changed no base score, re-scored no v2.0 record under v3.x, and
+rejected nothing. All three real changes were 2026 CVEs NVD was analyzing for the
+first time, so the comparison measures first analysis, not reanalysis: churn on
+already-analyzed records is close to nil, and neither gap is closing at a rate
+that would change these figures.
 
-For each CVE we also extracted the CVSS information. CVSS scores range from 0 to
-10 and are computed from the vulnerability's exploitability and impact
-metrics~\cite{ref-cvss}. Severity follows from the score: a score of 0 is the None
-severity level, and the Low, Medium, High, and Critical levels correspond to score
-ranges of 0.1--3.9, 4.0--6.9, 7.0--8.9, and 9.0--10, respectively. The corpus mixes CVSS
-v2, v3.x, and v4.0 scores. Where a CVE carries metrics under more than one version we
-select one, in the fixed preference order v3.1, v3.0, v4.0, v2.0. Placing v4.0 below both
-v3 versions is deliberate: mixing base-score versions within a single distribution is a
-confound, so we keep the bulk of the corpus on v3.x and fall back to v4.0 only where no v3
-metric exists, which is what recovers the CVEs NVD has scored under v4.0 alone. v2.0 stays
-last, as the oldest and least comparable standard. Under this rule the 1{,}676 confirmed
-CVEs resolve to 1{,}211 v3.1 scores, 330 v3.0, 54 v4.0-only, and 81 v2.0-only. Both base
-score and vector string are present for every CVE in the analysis set (1{,}676 of 1{,}676),
-so no CVE is dropped from the severity analysis for want of a score. That completeness is
-worth attributing correctly, because it came from a correction on our side rather than from
-NVD: 57 CVEs in the analysis set had previously extracted as unscored, of which 54 were
-scored only under v4.0 and were being missed by a metric reader that never inspected the
-v4.0 block, the other 3 being CVEs NVD analyzed for the first time in the interval. Vector
-strings were likewise not extracted at all until that pass. A silent parser gap of this
-kind is indistinguishable from missing upstream data unless the two vintages are compared
-directly, which is the argument for retaining the superseded snapshot. We did not perform
-a component-level extraction of the vulnerable component from each CVE description in this study; a
-component breakdown mirroring the transportation study's Table~IV is left to future
-work (Section~\ref{sec:rq2}).
+For each CVE we also extracted CVSS data. Scores range from 0 to 10, derived
+from exploitability and impact metrics~\cite{ref-cvss}; severity bands are None
+(0), Low (0.1--3.9), Medium (4.0--6.9), High (7.0--8.9), and Critical (9.0--10).
+The corpus mixes CVSS v2, v3.x, and v4.0; where a CVE carries more than one, we
+select one in the fixed preference order v3.1, v3.0, v4.0, v2.0. Placing v4.0
+below both v3 versions is deliberate --- mixing base-score versions within one
+distribution is a confound, so we keep the bulk of the corpus on v3.x and fall
+back to v4.0 only where no v3 metric exists, recovering CVEs NVD scored under
+v4.0 alone; v2.0, the oldest and least comparable standard, is last. Under this
+rule the 1{,}676 confirmed CVEs resolve to 1{,}211 v3.1, 330 v3.0, 54 v4.0-only,
+and 81 v2.0-only scores, and every one of the 1{,}676 carries both a base score
+and a vector string, so none is dropped from the severity analysis. That
+completeness came from a correction on our side, not NVD: 57 CVEs had previously
+extracted as unscored, of which 54 were scored only under v4.0 and missed by a
+reader that never inspected the v4.0 block (the other 3 were CVEs NVD analyzed
+for the first time in the interval); vector strings were not extracted at all
+before that pass. A silent parser gap of this kind is indistinguishable from
+missing upstream data unless the two vintages are compared directly, which is
+the argument for retaining the superseded snapshot. We did not perform a
+component-level extraction of the vulnerable component from each description; a
+breakdown mirroring the transportation study's Table~IV is left to future work
+(Section~\ref{sec:rq2}).
 
 \subsection{Mapping individual CWEs to the CWE-888 view}
 \label{sec:method-cwe888}
 
 CWE is a community-developed taxonomy of common weaknesses maintained by
-MITRE~\cite{ref-cwe}. The CWE hierarchy is large and complex, and several views
-have been developed to organize it. We chose the CWE-888 Software Fault Patterns
-view~\cite{ref-cwe888} to categorize the identified CWEs for two reasons:
-(i)~it was used in~\cite{ref-mcsoftware}, which keeps our results consistent with,
-and directly comparable to, that study; and (ii)~it centers on fault categorization,
-is more technical, and captures a wider range of weaknesses than alternatives such
-as the CWE-699 Software Development view~\cite{ref-cwe699}. We pin the CWE catalog to
-version 4.12 (released 29 June 2023) so that the mapping is reproducible, and focus only
-on the view's 23 primary clusters, which we refer to as primary vulnerability classes.
-Of those 23, 21 receive at least one attribution from our corpus and 2 receive none;
-the empty clusters are retained in the mapping but carry no data in our results.
+MITRE~\cite{ref-cwe}; several views organize the hierarchy for different
+purposes. We use the CWE-888 Software Fault Patterns view~\cite{ref-cwe888} for
+two reasons: it was used by a prior study~\cite{ref-mcsoftware}, keeping our
+results directly comparable, and it centers on fault categorization with wider
+coverage than alternatives such as CWE-699 Software
+Development~\cite{ref-cwe699}. We pin the catalog to version 4.12 (29 June 2023)
+for reproducibility, and focus on the view's 23 primary clusters (``primary
+vulnerability classes''); 21 receive at least one attribution from our corpus,
+and 2 receive none but stay in the mapping.
 
-When an identified CWE is itself part of the CWE-888 view, we mapped it directly to
-its corresponding primary class. When it is not, we examined its parent CWEs and mapped
-those instead, so a CWE whose parents fall under two different primary classes counts
-toward both. This over-counting is bounded in practice.
-Of the 1{,}613 (category, CVE) assignments carrying at least one CWE --- 1{,}571 of which
-carry a CWE that resolves to at least one primary class, the remaining 42 carrying only
-CWEs that resolve to none --- 76 (4.7\%)
-have a single CWE whose parents fall under two different primary classes and so count
-toward both. A further 220 (13.6\%) list two or more distinct CWEs; of those, 123 resolve
-to a single primary class while 97 span two or more. Taken together, 173 assignments
-(10.7\%) contribute to more than one primary class for one of these two reasons, while the
-large majority (a single CWE mapping to a single class) contribute to exactly one. This
-approach builds a more complete picture of the vulnerability types present while keeping
-over-counting in check.
-
-\subsection{False-positive classification}
-\label{sec:method-review}
-
-Because the vendor and keyword searches are purely text-based, generic brand names
-and terms inevitably produce false positives, such as a brand string that also names an
-unrelated commercial product, or marketing copy that merely mentions a device category.
-We therefore classified each candidate CVE in the difference set independently, as either
-a true match for its category or a false positive.
-
-To make this trustworthy, every row was judged \emph{independently and blind} by
-three AI reviewers, and the rows
-those three left unsettled were blind-adjudicated by two human researchers (Aarav Verma
-and Suhani Assija).
-% DOUBLE-BLIND: if the venue requires anonymized submission, replace the two names above
-% with "two of the authors" and drop the acknowledgement of individual reviewers.
-The three AI reviewers were Anthropic's Claude, accessed through
-Claude Code (judgments collected 2026-06-01 to 2026-07-02); OpenAI's ChatGPT Codex
-(2026-06-15 to 2026-06-30); and Google's \texttt{gemma-4-31b-it}, accessed through the
-Gemini API (2026-06-16 to 2026-07-01)\stub[optional: add the exact Claude and Codex model
-version strings if they can be recovered]. Each reviewer judged every row in a single pass, with no
-self-consistency sampling or re-prompting, and we held one model fixed for the whole of a
-given reviewer's column, so that a column reflects one judge rather than a mixture. We
-record the collection dates rather than internal model build identifiers for the two
-interactively accessed reviewers, since those identifiers were not captured at run time;
-this is a reproducibility limitation we note rather than resolve. We enforce
-blindness structurally. Each reviewer works on its own copy of the data, containing only
-the raw fields plus its own empty judgment columns, so no reviewer can see another's
-answer. All reviewers apply a single shared rubric together with a shared per-category
-scope note (a short in/out scope statement pinned to each category), and judge \emph{only}
-from each row's \texttt{description} and \texttt{cpe\_strings}. Pinning one scope note per
-category is what ensures that agreement between reviewers reflects a common scope, rather
-than three different readings of a one-word category label.
-
-Each reviewer assigns three fields per row: a \emph{Judgment} of \texttt{Yes}
-(genuinely affects a home IoT device of this category), \texttt{No} (false
-positive), or \texttt{Maybe} (genuinely ambiguous); a \emph{Confidence} of
-\texttt{High} or \texttt{Low}; and a short, self-contained \emph{Reasoning},
-required for \texttt{Low}-confidence and \texttt{Maybe} rows. A \texttt{Maybe} always
-pairs with \texttt{Low} confidence. We reserve Low confidence for the harder calls:
-when the device is plausibly residential but primarily commercial or industrial, when
-the description names the category but the CPE points at enterprise hardware, or when the
-CVE lies in a software or protocol layer shared between home and non-home contexts. A
-missing CPE string does not by itself force a \texttt{Maybe}. CPE data is frequently
-absent on recent (2024--2026) CVEs because of NVD enrichment lag, so when a description
-unambiguously names a home device with a residential attack vector, we classify it on
-that content. The rubric also fixes two recurring boundary calls that reviewers would
-otherwise resolve inconsistently. A device's own companion app and vendor cloud API count
-as part of the device: a vulnerability that compromises a specific home IoT product
-through the app used to provision or control it is in scope for that product's category
-even though the fix lands in app code, because the app--device--cloud coupling is a
-defining property of a consumer IoT deployment rather than a reason to exclude
-it~\cite{alrawi2019}. The rule does not run the other way: an unrelated device that merely
-runs an app controlling home IoT still fails the class and function criteria, which is the
-guiding principle of Section~\ref{sec:method-scope} restated at row level. And where one
-app-layer vulnerability spans several of a vendor's product lines at once --- bulbs, a plug
-and a camera behind a single app --- reviewers accept it for every named product line
-rather than rejecting it for ambiguity, which is what makes the per-category counts
-additive over such a CVE rather than dependent on which category happened to be reviewed
-first.
-
-Of the three AI reviewers, two (Claude Code and ChatGPT Codex) are run manually and
-the third (Gemini/Gemma) is scripted against the vendor's API. All three judge the
-combined review set for a category, which unions the vendor-only, keyword-only,
-intersection, and CPE-expansion directions (a \texttt{Difference Type} field on each row
-records its origin), and their judgments are then merged. We flag a row for human adjudication when
-both strong reviewers (Claude and Codex) are Low confidence, or when the three AI
-judgments are not unanimous. We deliberately relax this in one case: a lone Gemini
-dissent does \emph{not} flag a row when Claude and Codex both agree on a definite
-\texttt{Yes} or \texttt{No} at High confidence. Such rows settle as
-\texttt{strong-consensus} and stay in a high-confidence audit pool (carrying a recorded
-Gemini-dissent flag) as an ongoing spot check, rather than adding to the human queue. We
-validated this relaxation against a fully worked human queue, on which the human
-reviewers sided with the Claude--Codex pair on 293 of 294 such rows (99.7\%); that
-agreement drops to 95.5\% when the pair agree at any confidence, which is why we require
-High confidence on both. We treat Gemini as a weaker third vote: its judgment counts
-toward unanimity, but its self-reported confidence is recorded and left out of the flag.
-Humans then adjudicate only the flagged rows, and each CVE's judgments collapse into a
-single final label (\texttt{ai-consensus} for unflagged rows, \texttt{human} for
-adjudicated rows). The human stage mirrors the AI stage in requiring agreement rather than
-a single verdict: a flagged row settles only when both human reviewers have answered, agree,
-and the shared verdict is not \texttt{Maybe}. A row with one verdict, two conflicting
-verdicts, or a \texttt{Maybe} stays outstanding and is carried forward to the next
-adjudication round rather than being resolved by a tie-break, so no final label rests on a
-lone human reading. Human verdicts are also sticky: once a row has settled this way it is
-not reopened by later changes to the flag rule or by regeneration of the queue, and only a
-fresh pair of agreeing verdicts can supersede it. At the point of analysis every flagged
-row had settled under this bar: none remained outstanding, and no \texttt{Maybe} survives
-in the final labels. All settled judgments are written to a persistent store keyed by
-(category, CVE). When a difference set is later regenerated after a term-list change,
-prior judgments are restored automatically and only genuinely new rows are re-reviewed,
-so no settled work is repeated.
-
-Across all 8{,}124 reviewed (category, CVE) rows, 3{,}753 (46.2\%) settled as true
-matches and 4{,}371 (53.8\%) as false positives. This confirms that a text-based search
-over NVD carries a substantial false-positive load, one that per-category review has to
-remove: on this corpus the majority of candidate rows are noise. The false-positive rate
-varies widely by category, and it tracks how distinctive each category's device language
-and brand set are. Two categories sit at 100\% for reasons of scope rather than term
-collision and we set them aside here, returning to them below: \texttt{shades} (5 of 5),
-which has essentially no NVD footprint at all, and \texttt{sleeptracker} (29 of 29).
-Among the rest, the rate is highest where a generic brand or device noun collides with
-enterprise or unrelated products (air conditioner 96.2\%, thermostat 80.0\%, baby monitor
-78.0\%, cameras 77.6\% over 3{,}950 rows), and lowest for categories with unambiguous
-device vocabulary and distinctive brand names (home power 13.5\%, garden 29.6\%, hubs
-30.0\%). The camera and baby-monitor rates in particular come from an over-broad vendor
-list that pulls in professional and enterprise surveillance gear alongside generic IP
-cameras; the term-precision pass (Section~\ref{sec:method-precision}) is what turns those
-recurring false positives into concrete list-pruning actions. Two categories are
-instructive edge cases. The \texttt{sleeptracker} rate, set aside above, is 100\% (29 of 29): its term list
-surfaced almost only wrist-worn fitness wearables, which fail the residential-deployment
-criterion, and no bedside monitors at all, so the category contributes nothing to the
-analysis set. And \texttt{smartspeakers}, at 62.0\%, is not the low-false-positive
-category it appears to be by name: a single over-broad term, \texttt{smart display},
-accounts for 48 rejected rows on its own, which is precisely the kind of recurring failure
-the term-precision loop converts into a prune action rather than a repeated adjudication.
-The \texttt{streaming} rate (14.3\% over 2{,}440 rows) should be read alongside the tvOS
-scope exclusion of Section~\ref{sec:method-collect}: the review found most of those rows to
-be genuine matches, and it is the subsequent scope decision, not the false-positive review,
-that removes them. The three AI reviewers agreed pairwise on 87.0\%
-(Claude--Codex), 86.3\% (Claude--Gemini), and 85.2\% (Codex--Gemini) of rows, and all
-three were unanimous on 80.3\%. The final labels break down as 6{,}467 AI-consensus,
-1{,}638 human-adjudicated (human verdicts are sticky across queue regenerations), and 19
-strong-consensus, with no rows outstanding.
-
-\subsection{Term-level precision and list refinement}
-\label{sec:method-precision}
-
-The matched-term attribution recorded at collection lets us close the quality loop
-from the precision side as well. Joining each settled final judgment back to the term(s)
-that pulled its CVE into the corpus, we compute a per-term precision for every brand and
-keyword term, defined as the fraction of a term's judged difference-set matches that were
-confirmed true. We flag as prune candidates any term whose difference-set precision falls
-at or below $0.10$ over at least 5 judged rows. In practice this turns a brand string that
-collides with unrelated software, or an over-broad vendor entry that pulls in generic
-hardware, into a concrete line item to remove from the term list rather than a recurring
-disagreement to re-adjudicate. Precision is computed per (term, category, search method),
-since the same string can be registered for more than one category or on both term lists;
-of the 426 such combinations with at least one judged difference-set match, spanning 398
-distinct term strings, 20 crossed this threshold, over 19 distinct terms. Most are vendor terms naming
-professional or enterprise product lines (e.g.\ \texttt{synology surveillance station},
-\texttt{geutebruck}, and \texttt{digital watchdog} under cameras, each at $0.0$ precision
-over 7--25 judged rows), plus a handful of broad consumer-brand entries that dominate
-their category's false positives (e.g.\ \texttt{d-link} under cameras at $0.044$ over
-1{,}802 judged rows). Five, however, are device-keyword rather than brand terms
-(\texttt{smart display}, \texttt{home hub}, \texttt{evse}, \texttt{charge point}, and
-\texttt{weather station}), each an umbrella phrase broad enough to match marketing copy
-rather than a device. One term, \texttt{smart display}, is registered on \emph{both} lists
-and is therefore flagged twice, which is why the 20 flagged combinations span 19 distinct
-terms. That the same threshold prunes both lists matters: the loop is not
-merely a brand-list filter but a symmetric check on either search method's terms, and the
-keyword list is not immune to the over-breadth problem simply because it avoids brand
-names. Since these labels cover only the difference set, this is a
-prioritized prune list, i.e.\ per-term precision \emph{on the difference set}, not a
-global precision over all of a term's matches.
-
-This pass and the automated discovery of Section~\ref{sec:method-collect} are the two
-halves of one loop, and they are deliberately asymmetric in what they automate. Discovery
-proposes terms a hand-compiled list is missing and requires a human to accept each one,
-because accepting a brand is a scope judgment. Pruning identifies terms that have already
-been shown to generate noise, using labels the review produced, so the evidence for
-removal is measured rather than predicted. Both write only candidate lists, and both are
-run between pipeline passes rather than inside one: a term list that changed while a review
-was in progress would leave a category's judgments spanning two different search
-definitions.
+When an identified CWE is itself in the CWE-888 view, we map it directly to its
+primary class; otherwise we map its parent CWEs instead, so a CWE whose parents
+fall under two different classes counts toward both. This over-counting is
+bounded: of 1{,}613 (category, CVE) assignments carrying at least one CWE
+(1{,}571 resolving to at least one primary class, 42 to none), 76 (4.7\%) have a
+single CWE whose parents span two classes, and a further 220 (13.6\%) list two or
+more distinct CWEs, of which 123 resolve to one class and 97 span two or more. In
+total, 173 assignments (10.7\%) contribute to more than one primary class for one
+of these two reasons, while the large majority --- a single CWE mapping to a
+single class --- contribute to exactly one.
 
 %==============================================================================
 \section{RQ1: Analysis of Vulnerability Classes in Home IoT Devices}
@@ -807,10 +957,10 @@ category. The corpus behind it is 1{,}738 confirmed
 CVE--category assignments over 1{,}676 distinct CVEs, yielding 1{,}904 mapped
 CWE attributions across the 22 categories with confirmed data.
 Figures~\ref{fig:cwe888-treemap-all}--\ref{fig:cwe888-treemap-evcharging}
-show the same distribution as area-proportional treemaps — one overall and
+show the same distribution as area-proportional treemaps --- one overall and
 one each for the four categories with the most confirmed CVEs (\texttt{cameras},
 \texttt{hub}, \texttt{alarms}, \texttt{ev-charging}, the only categories above
-$N=75$) — mirroring Figs.~2--4 of the transportation IoT study. Unlike
+$N=75$) --- mirroring Figs.~2--4 of the transportation IoT study. Unlike
 Table~III of the transportation IoT study, which lists 23 classes as rows
 against 4 device categories as columns, this study's categories are shown as
 rows against the CWE-888 classes as columns, so that each category's own
@@ -998,7 +1148,6 @@ Climate \& Air &  & 3 & \cellcolor{yellow}12 & \cellcolor{yellow}9 & 6 &  &  &  
 \end{table*}
 % END GENERATED TABLE
 
-
 The subsections that follow discuss the four largest folding categories of
 Table~\ref{tab:cwe888-family}, which between them carry 1{,}558 of the 1{,}904
 attributions (82\%). The folding categories are the coarser grouping defined
@@ -1100,7 +1249,6 @@ properties have historically been weak. An alarm system is also the category
 where a channel-level defect maps most directly onto the threat the device
 exists to counter, since suppressing or spoofing a sensor link defeats the
 system without touching its software at all.
-
 
 %==============================================================================
 \section{RQ2: Analysis of CVSS Scores and Severity}
@@ -1408,6 +1556,7 @@ bootstrap confidence interval. Bands follow the conventional cutoffs~\cite{landi
 four CITABLE facets are quoted anywhere as values; the remainder organize the analysis
 but are never reported as findings.}
 \label{tab:facet-kappa}
+\setlength{\tabcolsep}{4pt}
 \begin{tabular}{lrrl}
 \toprule
 Facet & $\kappa$ & 95\% CI & Band \\
@@ -1434,11 +1583,9 @@ Facet & $\kappa$ & 95\% CI & Band \\
 \section{Lessons Learned and Implications}
 \label{sec:lessons}
 
-
 %==============================================================================
 \section{Conclusions}
 \label{sec:conclusion}
-
 
 %==============================================================================
 \section*{Data Availability}
@@ -1628,6 +1775,11 @@ derived data is included without credentials.
   ``Accurate and efficient recurring vulnerability detection for IoT firmware,'' in
   \emph{ACM SIGSAC Conf. on Computer and Communications Security (CCS)}, 2024,
   pp.~3317--3331.
+\bibitem{bhandari2021} G. Bhandari, A. Naseer, and L. Moonen, ``CVEfixes: Automated
+  collection of vulnerabilities and their fixes from open-source software,'' in
+  \emph{Proc. 17th Int. Conf. on Predictive Models and Data Analytics in Software
+  Engineering (PROMISE)}, 2021, pp.~30--39.
+  \url{https://doi.org/10.1145/3475960.3475985}.
 
 % --- External vocabularies the device ontology is aligned to (Section III-B) ---
 \bibitem{saref} ETSI, ``SmartM2M; Smart Applications; Reference Ontology and oneM2M

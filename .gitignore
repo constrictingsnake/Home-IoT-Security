@@ -41,3 +41,6 @@ data/nvd-snapshot/*.json.gz
 # bookkeeping only. Must NOT be tracked: if checked out elsewhere it would make
 # the script skip the one-time backup/blank of the Gemini column.
 data/difference/*/.gemma_prepped
+
+# Compiled paper: a build output of docs/home_iot_security_report.tex; a committed copy goes stale
+docs/home_iot_security_report.pdf

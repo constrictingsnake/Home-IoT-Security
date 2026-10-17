@@ -1,6 +1,7 @@
 # §III Our Methodology — annotated map
-*State: CURRENT (rewritten 2026-09-09; every figure recomputed from the derived files at edit
-time) · tex lines 136–789 · seven subsections*
+*State: CURRENT (restructured 2026-09-14 around the collection framework diagram; figures
+recomputed 2026-09-09 and unchanged since) · tex lines 136–921 · a ten-stage framework
+walkthrough + eight subsections*
 
 ## How this section fits
 
@@ -24,17 +25,125 @@ finding (intersection precision, CPE-expansion precision, per-category FP rates)
 because it *characterises the pipeline*, not the devices — that is the line to hold if the section
 is trimmed.
 
-The seven-subsection order is deliberate and worth defending if a reviewer asks: scope → formal
-scope → collection → per-CVE extraction → CWE-888 mapping → review → term refinement. It runs
-definition first, measurement last, with each stage's input already justified by the one above it.
-The only non-obvious placement is that the false-positive review comes *after* the CWE/CVSS
-extraction subsections even though it runs before them in the pipeline; that is because the
-extraction subsections define what a CVE row *is*, which the review's rubric then refers to.
+**The section is now built around the framework diagram, in three parts.** The diagram is a
+diagram of *collection*, and that is the whole reason the shape works: it governs the middle and
+is honestly absent from the two ends.
+
+| part | subsections | what it is |
+|---|---|---|
+| **prior** | Topics 1–2 (scope, ontology) | what counts as a home IoT device — inherited by every stage, itself no stage |
+| **pipeline** | Topics 3–6 (stages 1–4 · 5–8 · 9 · 10) | the diagram, in running order, stage range in each title |
+| **measurement** | Topics 7–8 (extraction, CWE-888 mapping) | what a confirmed CVE contributes — feeds stage 11 |
+
+The previous order (scope → ontology → collection → extraction → CWE-888 → review → term
+refinement) ran definition first and measurement last, which is defensible on its own terms, but
+the restructure fixed **three real ordering inversions**, not just navigation:
+
+1. **Term discovery sat among the searches** though all three mining passes read *settled
+   judgments* as their evidence — it was printed upstream of the data it consumes. Now Topic 5,
+   stage 9, beside its pruning counterpart.
+2. **The review totals and the tvOS exclusion closed the collection subsection**, before the
+   review that produces them had been described. Now the close of Topic 4.
+3. **Extraction preceded the review** on the argument that it defines what a CVE row *is* — but
+   its own opening sentence counts "the 1,676 confirmed CVEs in the analysis set", a
+   post-review, post-exclusion denominator, and the review subsection never referenced it back.
+   Now Topic 7, after the pipeline.
+
+What the old order got right and the new one keeps: the CWE-888 mapping still follows extraction,
+and scope still precedes everything. What it costs: two subsections gained stage-range titles that
+must be renumbered if the diagram is ever renumbered.
+
+---
+
+## Topic 0 · The framework stage by stage — the numbered walkthrough
+*tex 186–284 · added 2026-09-14 · the organizing spine of Topics 3–6 · keyed to the hand-drawn
+collection-framework diagram*
+
+**Beats:** **ten** collection stages in the order a CVE meets them, plus the analysis that
+consumes them numbered eleventh · Topics 3–6 are organized around this numbering and **carry their
+stage range in their titles** · the two subsections on either side are deliberately outside it —
+the *prior* (Topics 1–2) and the *measurement* (Topics 7–8) · **1** keyword term list
+(208 device-type phrases, no brands/protocols/firmware) · **2** vendor term list (1,564
+category–term pairs / 1,540 distinct brands, bare-brand overlap qualified with a product word) ·
+**3** one fixed snapshot + **one** matching engine (373,518 records @ 2026-08-05; description +
+CPE; whole-word) → a gap between methods is attributable to *terms*, not freshness · **4**
+reconciliation into three disjoint parts partitioning V∪K (vendor-only · keyword-only ·
+intersection), intersection reviewed rather than trusted · **5** blind AI review — (5.1) Claude ·
+(5.2) Codex · (5.3) Gemini — blindness structural, own copy + own empty columns · **6** merge and
+flag · **7** judgment store keyed (category, CVE), the re-runnability mechanism · **8** human
+review queue, two blind adjudicators, settles only on an agreeing non-Maybe pair, verdicts return
+to the store · **9** term refinement back onto stages 1–2, in two opposite directions — (9.1)
+per-term precision *prunes* on measured evidence · (9.2) keyword mining + (9.3) CPE mining
+*discover*, and every candidate is hand-vetted · **10** recall estimation (capture–recapture, no
+new labelling) · **11** CVE analysis (CWE, CWE-888, CVSS) · **two non-stages**: the CPE-expansion
+feedback arrow (store → snapshot → re-enters review at stage 5 as a fourth direction) and the
+**category list** upstream of everything (generated from the ontology; frozen while terms stay
+open)
+
+**How it connects:** this is a map, not an argument, and it must never acquire findings. Since the
+2026-09-14 restructure it is also load-bearing in a way it was not when first written: Topics 3–6
+are *ordered by it* and cite their stage ranges in their titles, so the list is no longer a
+convenience the reader can skip — it is the key to the section's shape. Two consequences follow.
+**The numbering is now structural**: renumbering the diagram renumbers four subsection titles and
+every stage-range cross-reference, so the diagram and the prose have to move together or not at
+all. And **the list must stay honest about what the diagram is** — a collection diagram. Stage 11
+is named but explicitly flagged as downstream of the framework rather than part of it, and the
+prose says in as many words that the prior and the measurement are not stages. Drop that sentence
+and the list starts implying the methodology *is* the pipeline, which is the overclaim the
+three-part shape exists to avoid.
+⚠️ Three figures in the list are **duplicated** from Topic 3 (208 · 1,564/1,540 · 373,518). If one
+changes, it changes in two places — check before submission.
+
+**Quote — the two non-stages, tex** (`docs/home_iot_security_report.tex:276`):
+> It deepens coverage of devices
+> already in the corpus and by construction cannot introduce a brand no reviewer
+> has approved.
+
+**Quote — why the category list is upstream, tex** (`docs/home_iot_security_report.tex:281`):
+> This is why category
+> membership is frozen before collection while the term lists stay open, and why
+> changing one category forces a re-run of only that category's chain.
+
+**Evidence:** the hand-drawn framework diagram (1–11 + the CPE-expansion arrow + the
+"where to mention categories" note) · `scripts/pipeline.py` (`refresh` / `settle` chains, which
+are stages 1–8 in code) · stage-to-script map: 1–3 `build_search.py` + `cve_search.py` ·
+4 `build_review_sets.py` · 5 `make_review_copies.py` + `gemini_classify.py` ·
+6 `merge_judgments.py` · 7 `finalize_judgments.py` · 8 `extract_human_review.py` ·
+9.1 `term_precision.py` · 9.2 `keyword_mining.py` · 9.3 `cpe_brand_mining.py` +
+`cpe_product_scan.py` · 10 `recall_estimate.py` · 11 `cwe888_analysis.py` + `cvss_analysis.py` ·
+CPE expansion `cpe_expansion.py`
+
+**Cite:** none — the list forward-references subsections, and every citation sits in the
+subsection it belongs to
+
+**Known divergences from the drawing** (recorded so the diagram and the prose can be reconciled
+deliberately rather than silently; the restructure resolved the third, the rest stand):
+- **Box 9.3 covers two scripts.** `cpe_brand_mining.py` mines the CPE *vendor* field,
+  `cpe_product_scan.py` the CPE *product* field. The paper describes three mining surfaces
+  (vendor field · descriptions · product field); the drawing shows two mining boxes. The prose
+  names both under 9.3 rather than adding a 9.4, so the numbering still matches the drawing.
+- **Box 4 shows three directions; review sees four.** CPE expansion is the fourth, and in the
+  drawing it appears only as the dashed arrow. The prose says explicitly that it re-enters at
+  stage 5 like the other three.
+- ✅ **The scope-exclusion step is not on the diagram — now handled in prose.** `mark_excluded.py`
+  is what takes 3,753 confirmed rows to the 1,738-assignment analysis set (the tvOS ruling). It is
+  a deliberate human ruling rather than a pipeline step, which is why it is not on the drawing and
+  not chained into `refresh`/`settle`. The restructure moved it to the close of Topic 4, where the
+  3,753 is produced, so a reader tracing 3,753 → 1,738 now finds it in the right place even though
+  the diagram has no box for it. Worth a dashed box if you redraw.
+- **Box 8's arrow should be bidirectional.** Human verdicts flow back into the store
+  (`finalize_judgments.py` upserts them), which is what lets the queue regenerate as
+  outstanding-only. Drawn one-way, the store looks like a dead end for human work.
+
+🔴 **The figure is not in the build.** `docs/figures/pipeline.pdf` does not exist, so the
+`\begin{figure}` block at tex 180–186 is **commented out** and the walkthrough currently stands
+alone. Export the diagram to that path, uncomment the block, and add the
+`Figure~\ref{fig:pipeline}` clause flagged in the comment.
 
 ---
 
 ## Topic 1 · Scope — five criteria, function and class as the discriminators
-*tex 170–227*
+*tex 285–343* 
 
 **Beats:** definition = internet-connected sensor/appliance/embedded system · residential ·
 monitor/automate/control · consumer-maintained, no IT oversight → five criteria, all required ·
@@ -57,11 +166,11 @@ reason Topic 2 quantifies the split rather than merely asserting it. The frozen-
 open-terms distinction licenses Topic 7: you can prune a term without re-running the study, but you
 cannot add a category without re-running that category's chain.
 
-**Quote — the guiding principle, tex** (`docs/home_iot_security_report.tex:196`):
+**Quote — the guiding principle, tex** (`docs/home_iot_security_report.tex:311`):
 > a device that merely interoperates with home IoT is not
 > itself home IoT.
 
-**Quote — the granularity rule as applied, tex** (`docs/home_iot_security_report.tex:217`):
+**Quote — the granularity rule as applied, tex** (`docs/home_iot_security_report.tex:332`):
 > while cameras, doorbells, and baby monitors stay
 > distinct despite their hardware overlap, since their brand sets differ.
 
@@ -73,7 +182,7 @@ cannot add a category without re-running that category's chain.
 ---
 
 ## Topic 2 · The ontology — the scope criteria as an auditable artifact
-*tex 229–320 · new subsection as of this rewrite (was two paragraphs inside Topic 1)*
+*tex 344–442 · new subsection as of this rewrite (was two paragraphs inside Topic 1)*
 
 **Beats:** five criteria → OWL 2 equivalence axiom · reasoner, not prose, decides membership ·
 "reproduces 31 rulings" = weak, true by construction 🚫 **never the headline** · strong check =
@@ -109,22 +218,22 @@ a facet as a grouping variable. Check that before submission. The 14.6% literatu
 the paper as of this rewrite and is the literature-side twin of the SAREF granularity finding in
 §V-A; if a reviewer accepts one they should accept the other.
 
-**Quote — the weak-test disclaimer, tex** (`docs/home_iot_security_report.tex:237`):
+**Quote — the weak-test disclaimer, tex** (`docs/home_iot_security_report.tex:352`):
 > Reproducing our published in-scope and out-of-scope rulings is a weak test on its own,
 > since most of those rulings are in-scope categories confirming that they are in scope,
 > which the axiom satisfies by construction.
 
-**Quote — the 4(b) exposure, tex** (`docs/home_iot_security_report.tex:251`):
+**Quote — the 4(b) exposure, tex** (`docs/home_iot_security_report.tex:366`):
 > 1{,}624 of the 1{,}738 confirmed CVE--category
 > assignments enter through 4(a) and only 114 through 4(b), so the boundary that attracts
 > the most methodological objection governs 6.6\% of the corpus.
 
-**Quote — the circularity boundary, tex** (`docs/home_iot_security_report.tex:258`):
+**Quote — the circularity boundary, tex** (`docs/home_iot_security_report.tex:373`):
 > It holds classes and scope notes only, never judgments: no
 > CVE is classified by the ontology, and no reviewer sees information the prose scope note
 > did not already contain.
 
-**Quote — facet provenance, tex** (`docs/home_iot_security_report.tex:278`):
+**Quote — facet provenance, tex** (`docs/home_iot_security_report.tex:393`):
 > all
 > 496 facet assertions in the published ontology are marked \texttt{Estimated}, meaning
 > hand-assigned from domain knowledge with no external source
@@ -144,54 +253,47 @@ standards and Fleiss have no `\bibitem`; OWL 2 / SHACL are uncited)
 
 ---
 
-## Topic 3 · Collection — two text searches, one engine, one snapshot
-*tex 322–539 · six labelled paragraphs*
+## Topic 3 · Collection — two text searches, one engine, one snapshot *(stages 1--4)*
+*tex 443–581 · six labelled paragraphs · restructured 2026-09-14: term mining moved to Topic 5,
+review totals + the tvOS exclusion moved to Topic 4, recall split out as Topic 6*
 
 **Beats:** snapshot = NVD 2.0 API, 2026-08-05, **373,518** records, offline · freezing buys
-reproducibility **and** removes data-lag as a confound between methods · **vendor search** =
-brands per category, ecosystem enumeration (Google Nest/Home, Apple Home, Alexa, hub platforms) +
-targeted per-category search + vetted mined terms · bare-brand overlap → qualify with a product
-word (`carrier infinity`, not `carrier`) · match against description **+ CPE** · whole-word,
-trailing plural allowed → blocks `nvr`→`nvram`, `evse`→`prevsell` · CPE punctuation acts as a
-boundary · space in a multi-word term also matches `_` → `hunter douglas` reaches
-`hunter_douglas:…` · matched-term attribution recorded per row → feeds Topic 7 · **1,564
-category–term pairs / 1,540 distinct brands** · **keyword search** = device-type phrases only, no
+reproducibility **and** removes data-lag as a confound between methods · collection is a
+point-in-time picture, not a date range · **comparability**: the live-API/description-only
+asymmetry was the original confound and is gone · **snapshot vintage**: pinned ≠ frozen;
+refreshed once (360,981 @ 2026-06-25 → 373,518 @ 2026-08-05), both searches re-run, cost
+**111 genuinely new review rows of 5,122** · **vendor search (stage 2)** = brands per category,
+ecosystem enumeration (Google Nest/Home, Apple Home, Alexa, hub platforms) + targeted
+per-category search + vetted mined terms · bare-brand overlap → qualify with a product word
+(`carrier infinity`, not `carrier`) · match against description **+ CPE** · whole-word, trailing
+plural allowed → blocks `nvr`→`nvram`, `evse`→`prevsell` · CPE punctuation acts as a boundary ·
+space in a multi-word term also matches `_` → `hunter douglas` reaches `hunter_douglas:…` ·
+matched-term attribution recorded per row → feeds Topic 5 · **1,564 category–term pairs / 1,540
+distinct brands** · **keyword search (stage 1)** = device-type phrases only, no
 brands/protocols/firmware · **208 phrases** · same engine, same snapshot, same match surface →
-only the *terms* differ · **automated term discovery** on three text surfaces: CPE vendor field ·
-confirmed-Yes descriptions (n-grams, discriminativeness + real new-yield) · CPE product field
-(single device nouns, precise inside a product name where useless in free text) · risk flags
-(mega-vendor / dictionary word / known FP bomb) **triage, never filter** · candidates never
-auto-included → one vetting pass accepted **41 terms (17 brand / 24 phrase)**; product scan runs
-**47 tokens / 19 categories** · **reconciliation** = three disjoint parts partitioning V∪K ·
+only the *terms* differ · **reconciliation (stage 4)** = three disjoint parts partitioning V∪K ·
 intersection was originally assumed clean and skipped → audit killed that → **70.2% intersection
-precision** overall, `cameras` 67.0%, `smartspeakers` 15.8% · **CPE expansion** = fourth direction,
-seeds only from settled Yes, `vendor:product` not vendor, `part ∈ {o,h}`, general-purpose
-platforms denied · 2,068 candidates → 1,960 confirmed → **1,897 are tvOS**, so post-exclusion
-precision is **36.8% (63/171)**; `alarms` 38/38 vs `cameras` 15/67 · totals: **8,124** candidate
-pairs (4,241 vendor-only · 1,049 keyword-only · 766 intersection · 2,068 expansion) → 3,753 Yes /
-4,371 No, none outstanding · per-direction precision **22.9% / 18.5% / 70.2%** · tvOS exclusion
-removes **2,015** confirmed rows, all `streaming` → analysis set **1,738 assignments / 1,676
-CVEs** · exclusions recorded, judgments never reversed · recall: 2-source Chapman pooled
-**0.603 (CI 0.556–0.648)**, 4,849 observed vs N̂ 8,046, ⚠️ **upper bound** · 3-source log-linear,
-AIC-selected, 21 of 22 estimable categories · structural gaps: 5 degenerate (excluded from pool) ·
-1 with no in-scope seed · 2 with an empty term list on one side · **comparability**: the
-live-API/description-only asymmetry was the original confound and is gone · **snapshot vintage**:
-pinned ≠ frozen; refreshed once (360,981 @ 2026-06-25 → 373,518 @ 2026-08-05), both searches
-re-run, cost **111 genuinely new review rows of 5,122**
+precision** overall, `cameras` 67.0%, `smartspeakers` 15.8% · **CPE expansion** = the feedback
+loop, fourth review direction, seeds only from settled Yes, `vendor:product` not vendor,
+`part ∈ {o,h}`, general-purpose platforms denied · 2,068 candidates → 1,960 confirmed →
+**1,897 are tvOS**, so post-exclusion precision is **36.8% (63/171)**; `alarms` 38/38 vs
+`cameras` 15/67
 
 **How it connects:** this is the subsection a methods reviewer will actually attack, and the
 defence is that every asymmetry between the two methods has been eliminated by construction —
 same engine, same snapshot, same match surface, same output schema — so the difference sets mean
-what you say they mean. Three of the beats above are load-bearing for claims elsewhere and should
+what you say they mean. Two of the beats above are load-bearing for claims elsewhere and should
 not be cut: the underscore concession (without it every multi-word brand was silently
-description-only, which is a *bug-shaped* methodological fact and worth keeping), the intersection
-audit (it is the reason your review population is 8,124 rather than ~7,400, and it pre-empts the
-obvious "why review rows both methods agreed on?" question), and the tvOS decomposition of
-CPE-expansion precision (without it, 94.8% is a number that flatters the method and collapses
-under one follow-up question). The recall paragraph is the section's most exposed claim: state it
-as an upper bound in the same sentence you state it, every time.
+description-only, which is a *bug-shaped* methodological fact and worth keeping) and the
+intersection audit (it is the reason the review population is 8,124 rather than ~7,400, and it
+pre-empts the obvious "why review rows both methods agreed on?" question). The third — the tvOS
+decomposition of CPE-expansion precision — stays here with the expansion paragraph, but the
+exclusion *itself* now lives in Topic 4, where the numbers it operates on are produced; the two
+must stay numerically consistent. Note what the restructure bought: this subsection no longer
+describes anything that depends on a settled judgment, so it can be read straight through without
+forward-referencing the review.
 
-**Quote — the matcher concession, tex** (`docs/home_iot_security_report.tex:357`):
+**Quote — the matcher concession, tex** (`docs/home_iot_security_report.tex:479`):
 > One matching
 > concession is specific to CPE: a space in a multi-word term also matches an
 > underscore, so that \texttt{hunter douglas} reaches
@@ -199,124 +301,31 @@ as an upper bound in the same sentence you state it, every time.
 > the description half of the haystack, which had silently suppressed the CPE
 > contribution of every multi-word brand.
 
-**Quote — what method agreement is worth, tex** (`docs/home_iot_security_report.tex:424`):
+**Quote — what method agreement is worth, tex** (`docs/home_iot_security_report.tex:520`):
 > Method agreement, in other words,
 > measures that two term lists overlap, not that the device is in scope.
 
-**Quote — expansion precision after the exclusion, tex** (`docs/home_iot_security_report.tex:452`):
+**Quote — expansion precision after the exclusion, tex** (`docs/home_iot_security_report.tex:548`):
 > The step returned 2{,}068 candidates, of which
 > reviewers confirmed 1{,}960 --- but 1{,}897 of those confirmations are Apple TV
 > expansions later removed by the tvOS exclusion, so on the 171 candidates that reach the
 > analysis set precision is 36.8\% (63 of 171).
 
-**Quote — recall's direction of bias, tex** (`docs/home_iot_security_report.tex:501`):
-> That figure should be read as an \emph{upper}
-> bound: the two searches are positively dependent rather than independent, since a CVE
-> naming a brand often also names the device type, and such dependence biases the estimated
-> population size downward and hence recall upward.
-
 **Evidence:** `data/nvd-snapshot/SNAPSHOT.md` (date, source, record count) ·
 `data/vendor-search/vendor_terms.csv` (1,564 pairs / 1,540 distinct) ·
-`data/keyword-search/keyword_terms.csv` (208) · `data/cpe-product-tokens.csv` (47 / 19 slugs) ·
+`data/keyword-search/keyword_terms.csv` (208) ·
 `scripts/cve_search.py::filter_by_keywords` (whole-word + plural + space↔underscore rule) ·
-`scripts/build_search.py` · `scripts/cpe_brand_mining.py` · `scripts/keyword_mining.py` ·
-`scripts/cpe_product_scan.py` · `scripts/cpe_expansion.py` ·
-`data/difference/judgment_store.csv` (all direction counts, per-direction precision, the 2,015
-`scope:tvos-2026-07` exclusions) · `data/difference/recall_estimate.csv` (POOLED row; 23 2-src
-rows incl. POOLED, 21 3-src rows; degenerate = fans/fridge/pet/robotvacuum/sensors) ·
-`data/nvd-snapshot/snapshot_churn.md` · commit `d4c09b3` (the 41 accepted mined terms)
+`scripts/build_search.py` · `scripts/build_review_sets.py` · `scripts/cpe_expansion.py` ·
+`data/difference/judgment_store.csv` (direction counts, per-direction precision) ·
+`data/nvd-snapshot/snapshot_churn.md`
 
 **Cite:** `ref-nvd`
 
 ---
 
-## Topic 4 · Per-CVE extraction — CWE gaps, CPE gaps, CVSS version policy
-*tex 540–593*
-
-**Beats:** CWE per CVE, `NVD-CWE-noinfo` / `NVD-CWE-Other` = no usable mapping · **118 of 1,676
-(7.0%)** unusable — the merged year-feed schema collapses all three cases, so they are reported
-together, not split · kept in the CVE-level analysis, excluded from the CWE analysis · remaining
-**1,558** CVEs → **155** distinct CWE ids pre-mapping · second, independent gap: **193 (11.5%)**
-carry no CPE at all → the population reviewers judged from text alone, and the ceiling on CPE
-expansion · both gaps are **standing limitations, not backlog** · churn vs the prior vintage: 0
-CWEs backfilled on 118 · 3 CPEs on 196 · 0 base-score changes · 0 v2 records re-scored · 0 newly
-rejected · all 3 real changes = first analysis, not reanalysis · CVSS 0–10, exploitability +
-impact · severity bands None/Low/Medium/High/Critical · corpus mixes v2.0, v3.x, **v4.0** ·
-version preference **v3.1 → v3.0 → v4.0 → v2.0**, deliberately putting v4.0 below v3 to keep the
-bulk of the distribution on one formula · resolves to **1,211 v3.1 · 330 v3.0 · 54 v4.0-only ·
-81 v2.0-only** · score + vector present for **1,676/1,676** · that completeness came from a
-**parser fix on our side**, not NVD: 57 previously unscored, 54 of them v4.0-only, 3 genuinely new ·
-vector strings not extracted at all before that pass · component-level extraction not performed
-(future work)
-
-**How it connects:** this subsection quietly sets up two later defences. The churn table is what
-lets §V-C say the corpus is bounded by NVD *practice* rather than by NVD *lag* — a reviewer will
-otherwise propose "just re-download" as a fix for the 7.0%/11.5% gaps, and the measured answer is
-that a six-week refresh moved 3 rows. The parser-fix attribution is the more interesting
-methodological point and is new to the paper as of this rewrite: a silent extraction gap is
-indistinguishable from missing upstream data unless you keep the superseded snapshot and diff it,
-which is the concrete argument for the retain-the-old-vintage discipline in Topic 3. RQ2's v2-only
-sensitivity check depends on the version-preference rule being stated here, so do not compress it.
-
-**Quote — the parser attribution, tex** (`docs/home_iot_security_report.tex:589`):
-> That completeness is
-> worth attributing correctly, because it came from a correction on our side rather than from
-> NVD: 57 CVEs in the analysis set had previously extracted as unscored, of which 54 were
-> scored only under v4.0 and were being missed by a metric reader that never inspected the
-> v4.0 block
-
-**Quote — what the vintage comparison measures, tex** (`docs/home_iot_security_report.tex:571`):
-> what the comparison
-> measures is first analysis, not reanalysis: on a fixed set of already-analyzed records, NVD
-> churn is close to nil
-
-**Evidence:** `data/nvd-snapshot/nvd_all.csv` (verified this session over the 1,676: version mix
-1211/330/81/54 · 118 no CWE · 193 no CPE · 0 missing vectors · 155 distinct CWEs) ·
-`data/nvd-snapshot/snapshot_churn.md` + `.csv` · `scripts/download_nvd.py:139` (the preference
-order, with its own comment explaining why v4.0 sits below v3) ·
-`data/difference/cvss_distribution.csv` (`n_scored == n_cves` everywhere)
-
-**Cite:** `ref-cvss`
-
----
-
-## Topic 5 · CWE-888 mapping — why this view, and how far over-counting goes
-*tex 594–624*
-
-**Beats:** CWE = MITRE taxonomy, several organising views · CWE-888 Software Fault Patterns chosen
-for two reasons: comparability with the prior study, and a fault-centred, wider-coverage framing
-than CWE-699 · catalog pinned to **v4.12 (29 June 2023)** → mapping reproducible · **23 primary
-clusters**, 21 attributed, 2 empty (retained in the mapping, blank in results) · CWE in the view →
-map directly · CWE not in the view → map through parents; parents in two clusters → counts in both ·
-over-counting bounded and quantified over the **1,613** assignments carrying ≥1 CWE (1,571 resolve
-to ≥1 class; 42 resolve to none): **76 (4.7%)** single CWE spanning two classes · **220 (13.6%)**
-with ≥2 distinct CWEs, of which 123 resolve to one class and 97 span · union **173 (10.7%)**
-contribute to more than one class · large majority contribute to exactly one
-
-**How it connects:** the whole point of stating 4.7 / 13.6 / 10.7 rather than "some over-counting
-occurs" is that RQ1's percentages are computed over attributions, not CVEs, so a reviewer needs
-the inflation ceiling to read the table. §V-A owns the *threat* framing of the same mechanism —
-keep the arithmetic here and the "this is a modelling choice" argument there. One consistency trap:
-these are per-(category, CVE) **assignments**, not CVEs; the denominators differ from Topic 4's and
-a stray "CVEs" in this paragraph would make the two subsections look mutually inconsistent.
-
-**Quote — the mapping rule, tex** (`docs/home_iot_security_report.tex:617`):
-> When an identified CWE is itself part of the CWE-888 view, we mapped it directly to
-> its corresponding primary class. When it is not, we examined its parent CWEs and mapped
-> those instead, so a CWE whose parents fall under two different primary classes counts
-> toward both.
-
-**Evidence:** `data/difference/cwe888_cve_map.csv` (recomputed this session: 1,613 / 1,571 / 42 ·
-76 · 220 → 123/97 · 173 · 155 CWEs · 21 classes present) ·
-`data/difference/cwe888_distribution.csv` · `data/cwe/cwec_v4.12.xml.zip` (pinned catalog) ·
-`scripts/cwe888_analysis.py`
-
-**Cite:** `ref-cwe` · `ref-cwe888` · `ref-cwe699` · `ref-mcsoftware`
-
----
-
-## Topic 6 · False-positive classification — three blind AI reviewers, two human adjudicators
-*tex 625–748 · the longest subsection, and the one that carries (b) of the section's three debts*
+## Topic 4 · False-positive classification — three blind AI reviewers, two human adjudicators *(stages 5--8)*
+*tex 582–733 · the longest subsection, and the one that carries (b) of the section's three debts ·
+absorbed the review totals + the tvOS scope exclusion in the 2026-09-14 restructure*
 
 **Beats:** text search → brand strings that name unrelated products, marketing copy that mentions
 a category · every candidate row judged independently and **blind** · 3 AI reviewers judge *every*
@@ -350,7 +359,12 @@ term-pruning action, not a reviewer problem · `smartspeakers` 62.0% is not what
 one term (`smart display`) accounts for 48 rejections · `streaming` 14.3% (n=2,440) must be read
 with the tvOS exclusion — review kept those rows, the *scope decision* removed them · pairwise
 agreement **87.0 / 86.3 / 85.2**, unanimity **80.3%** · final labels **6,467 ai-consensus / 1,638
-human / 19 strong-consensus**, none outstanding
+human / 19 strong-consensus**, none outstanding · **totals now close this subsection** (moved here
+2026-09-14): **8,124** candidate pairs (4,241 vendor-only · 1,049 keyword-only · 766 intersection ·
+2,068 expansion) → 3,753 Yes / 4,371 No · per-direction precision **22.9% / 18.5% / 70.2%** →
+the two one-sided differences carry the FP load · **tvOS exclusion** applied *after* review, not
+before: removes **2,015** confirmed rows, all `streaming` → analysis set **1,738 assignments /
+1,676 CVEs** · exclusions recorded as exclusions, judgments never reversed
 
 **How it connects:** the blindness-by-construction argument is what distinguishes this from
 "we asked three models and took a vote", and it is the sentence to lead with if the subsection ever
@@ -360,22 +374,30 @@ human — so if you re-word it here, §V-B moves with it. Two per-category rates
 attached wherever they travel: `sleeptracker` at 100% is a scope artefact (wearables), not term
 noise, and `streaming` at 14.3% would otherwise read as your cleanest category when in fact almost
 all of it was later excluded. `smartspeakers` at 62.0% is the best single illustration in the paper
-of why Topic 7 exists — one term, 48 rejections, one prune action.
+of why Topic 5 exists — one term, 48 rejections, one prune action.
 
-**Quote — structural blindness, tex** (`docs/home_iot_security_report.tex:656`):
+The totals and the tvOS exclusion moved here from Topic 3 in the restructure, and the reason is
+worth keeping: those numbers are *produced* by this subsection. Stated at the end of collection
+they forced a forward reference to a review that had not been described yet, and the exclusion —
+which is a scope ruling applied to settled judgments — read as though it happened before anyone
+judged anything. The sentence that has to survive any edit is that the exclusion is applied after
+review rather than before it, because that is what keeps the review outcome and the scope decision
+separable in the published data.
+
+**Quote — structural blindness, tex** (`docs/home_iot_security_report.tex:606`):
 > We enforce
 > blindness structurally. Each reviewer works on its own copy of the data, containing only
 > the raw fields plus its own empty judgment columns, so no reviewer can see another's
 > answer.
 
-**Quote — the relaxation and its validation, tex** (`docs/home_iot_security_report.tex:702`):
+**Quote — the relaxation and its validation, tex** (`docs/home_iot_security_report.tex:652`):
 > We
 > validated this relaxation against a fully worked human queue, on which the human
 > reviewers sided with the Claude--Codex pair on 293 of 294 such rows (99.7\%); that
 > agreement drops to 95.5\% when the pair agree at any confidence, which is why we require
 > High confidence on both.
 
-**Quote — the aggregate, tex** (`docs/home_iot_security_report.tex:724`):
+**Quote — the aggregate, tex** (`docs/home_iot_security_report.tex:674`):
 > Across all 8{,}124 reviewed (category, CVE) rows, 3{,}753 (46.2\%) settled as true
 > matches and 4{,}371 (53.8\%) as false positives.
 
@@ -385,14 +407,15 @@ confidence policy, missing-CPE rule, companion-app rule at lines 68–77) · `da
 per-category FP rates, agreement 87.0/86.3/85.2, unanimity 80.3%, labels 6,467/1,638/19) ·
 `scripts/make_review_copies.py` · `scripts/gemini_classify.py` · `scripts/merge_judgments.py`
 (flag rule) · `scripts/finalize_judgments.py` (stickiness) · `scripts/extract_human_review.py`
-(outstanding-only queue)
+(outstanding-only queue) · `scripts/mark_excluded.py` (the tvOS ruling — flags `Excluded` without
+touching any judgment cell) · `docs/plans/PLAN_scope_exclusion.md`
 
 **Cite:** `alrawi2019` (for the app–device–cloud coupling behind the companion-app rule)
 
 ---
 
-## Topic 7 · Term-level precision — closing the loop from the precision side
-*tex 749–789*
+## Topic 5 · Closing the loop — pruning and discovery, the two halves *(stage 9)*
+*tex 734–804 · absorbed automated term discovery from Topic 3 in the 2026-09-14 restructure*
 
 **Beats:** matched-term attribution recorded at collection is what makes this possible · join each
 settled judgment back to the term(s) that pulled the CVE in · per-term precision = confirmed-true
@@ -407,9 +430,17 @@ cameras, 0.044 over 1,802 rows) · **5 are keyword terms**, not brands (`smart d
 which is why 20 combinations span 19 terms · symmetry matters: the loop prunes either method's
 terms, and the keyword list is not immune to over-breadth just because it avoids brands · ⚠️ labels
 cover only the difference set → this is a **prioritised prune list**, not global per-term precision ·
-discovery (Topic 3) and pruning are two halves of one loop, deliberately asymmetric: discovery
-proposes and requires human acceptance, pruning removes on measured evidence · both write only
-candidate lists · both run *between* passes, never inside one
+**discovery, the other half (moved here from Topic 3 on 2026-09-14)** = three text surfaces mined
+separately: CPE **vendor** field · confirmed-Yes **descriptions** (n-grams, discriminativeness +
+real new-yield through the pipeline's own matcher) · CPE **product** field (single device nouns,
+precise inside a product name where useless in free text — the only surface several vendors were
+reachable on at all) · risk flags (mega-vendor / dictionary word / known FP bomb) **triage, never
+filter** · candidates never auto-included → one vetting pass accepted **41 terms (17 brand / 24
+phrase)**; product scan runs **47 tokens / 19 categories** · accepted product tokens enter as
+ordinary brand terms, since the underscore concession reaches CPE strings directly · the two
+halves are deliberately asymmetric: discovery proposes and requires human acceptance, pruning
+removes on measured evidence · both write only candidate lists · both run *between* passes, never
+inside one
 
 **How it connects:** this is the subsection that converts a recurring reviewer complaint ("your
 term list is arbitrary") into a measured maintenance procedure, and the asymmetry paragraph is the
@@ -419,14 +450,22 @@ so the two must agree numerically. The honest limit is already in the text and s
 difference-set-only labels mean a term's precision on the intersection is unmeasured, so a term
 that is noisy only where both methods agree cannot be caught by this pass.
 
-**Quote — the threshold and what it produces, tex** (`docs/home_iot_security_report.tex:763`):
+Discovery moved here from Topic 3 in the restructure, and the move fixed a real ordering error
+rather than just tidying: all three mining passes read **settled judgments** as their evidence
+(Tier-A vendors come off confirmed-Yes CVEs, the n-gram score is computed against the labelled
+Yes/No corpus), so describing them among the searches placed them upstream of the data they
+consume. They are stage 9 in the diagram for exactly that reason — they hang off the judgment
+store, not off the term lists. The asymmetry paragraph now closes a subsection that contains
+both halves, so it no longer has to reach across subsections to state its own subject.
+
+**Quote — the threshold and what it produces, tex** (`docs/home_iot_security_report.tex:745`):
 > We flag as prune candidates any term whose difference-set precision falls
 > at or below $0.10$ over at least 5 judged rows. In practice this turns a brand string that
 > collides with unrelated software, or an over-broad vendor entry that pulls in generic
 > hardware, into a concrete line item to remove from the term list rather than a recurring
 > disagreement to re-adjudicate.
 
-**Quote — the loop's asymmetry, tex** (`docs/home_iot_security_report.tex:788`):
+**Quote — the loop's asymmetry, tex** (`docs/home_iot_security_report.tex:796`):
 > Discovery
 > proposes terms a hand-compiled list is missing and requires a human to accept each one,
 > because accepting a brand is a scope judgment. Pruning identifies terms that have already
@@ -434,28 +473,158 @@ that is noisy only where both methods agree cannot be caught by this pass.
 > removal is measured rather than predicted.
 
 **Evidence:** `data/difference/term_precision.csv` (recomputed this session: 426 rows / 398 distinct
-terms / 20 `prune_candidate=Yes` over 19 terms / 15 vendor + 5 keyword) · `scripts/term_precision.py`
+terms / 20 `prune_candidate=Yes` over 19 terms / 15 vendor + 5 keyword) · `scripts/term_precision.py` ·
+`scripts/cpe_brand_mining.py` · `scripts/keyword_mining.py` · `scripts/cpe_product_scan.py` ·
+`data/cpe-product-tokens.csv` (47 tokens / 19 slugs) · `data/vendor-search/vendor_candidates.csv` ·
+`data/keyword-search/keyword_candidates.csv` ·
+`data/cpe-product-scan/product_candidates.csv` · commit `d4c09b3` (the 41 accepted mined terms)
 
 **Cite:** none
+
+---
+
+## Topic 6 · Recall — bounding what the terms never reached *(stage 10)*
+*tex 805–837 · split out of Topic 3 on 2026-09-14; previously the last two paragraphs of collection*
+
+**Beats:** review measures **precision** and says nothing about **recall** · a device-relevant CVE
+naming none of our terms never enters the corpus at all · vendor and keyword searches treated as
+two capture occasions of one CVE population → Chapman-corrected Lincoln–Petersen, **no additional
+labelling required** · pooled search-stage recall **0.603 (95% CI 0.556–0.648)**, 4,849 observed
+against N̂ **8,046** · ⚠️ **upper bound**, always in the same sentence as the figure: V and K are
+positively dependent (a CVE naming a brand often names the device type too), which biases N̂ down
+and recall up · three-source log-linear variant, **AIC-selected**, estimable for 21 of 22
+categories, exists precisely because the 2-source figure assumes away the dependence it most likely
+violates · structural gaps: **5 degenerate** (one list ⊆ the other → estimator returns an
+artifactual 1.0, excluded from the pool) · 1 category with no in-scope seed → no third set ·
+2 with an empty term list on one side → no recapture possible · per-category figures read as
+indicative, not precise · limitations returned to in §V-C
+
+**How it connects:** this is the section's most exposed claim and the one that discharges debt (c)
+of the three §III owes, which is why it is now its own subsection rather than the tail of
+collection. Standing alone it is harder to skim past, and the title states the job rather than the
+method. The upper-bound caveat is not optional framing — it is the difference between an honest
+coverage claim and an overclaim, and §V-C inherits it. Note the tension recorded below: 0.603 is
+simultaneously the paper's headline coverage figure and a number biased in the flattering
+direction, and there is no comfortable way to write that. The three-source variant is the
+mitigation, but its per-category intervals are too wide to headline and **there is no pooled
+3-source estimate in the CSV** — do not compute one on the fly.
+
+**Quote — recall's direction of bias, tex** (`docs/home_iot_security_report.tex:815`):
+> That figure should be read as an \emph{upper}
+> bound: the two searches are positively dependent rather than independent, since a CVE
+> naming a brand often also names the device type, and such dependence biases the estimated
+> population size downward and hence recall upward.
+
+**Evidence:** `data/difference/recall_estimate.csv` (POOLED row = `2src-chapman(sum)`, 4,849
+observed / N̂ 8,045.7 / CI 7,488.1–8,721.2 / recall 0.603 CI 0.556–0.648; 23 2-src rows incl.
+POOLED, 21 3-src rows; degenerate = fans/fridge/pet/robotvacuum/sensors) ·
+`scripts/recall_estimate.py` · `docs/RECALL_ESTIMATION_EXPLAINER.md`
+
+**Cite:** `chapman1951` · `fienberg1972` · `akaike1974`
+
+---
+
+## Topic 7 · Per-CVE extraction — CWE gaps, CPE gaps, CVSS version policy
+*tex 838–891 · moved after the pipeline block 2026-09-14: its denominators are post-review*
+
+**Beats:** CWE per CVE, `NVD-CWE-noinfo` / `NVD-CWE-Other` = no usable mapping · **118 of 1,676
+(7.0%)** unusable — the merged year-feed schema collapses all three cases, so they are reported
+together, not split · kept in the CVE-level analysis, excluded from the CWE analysis · remaining
+**1,558** CVEs → **155** distinct CWE ids pre-mapping · second, independent gap: **193 (11.5%)**
+carry no CPE at all → the population reviewers judged from text alone, and the ceiling on CPE
+expansion · both gaps are **standing limitations, not backlog** · churn vs the prior vintage: 0
+CWEs backfilled on 118 · 3 CPEs on 196 · 0 base-score changes · 0 v2 records re-scored · 0 newly
+rejected · all 3 real changes = first analysis, not reanalysis · CVSS 0–10, exploitability +
+impact · severity bands None/Low/Medium/High/Critical · corpus mixes v2.0, v3.x, **v4.0** ·
+version preference **v3.1 → v3.0 → v4.0 → v2.0**, deliberately putting v4.0 below v3 to keep the
+bulk of the distribution on one formula · resolves to **1,211 v3.1 · 330 v3.0 · 54 v4.0-only ·
+81 v2.0-only** · score + vector present for **1,676/1,676** · that completeness came from a
+**parser fix on our side**, not NVD: 57 previously unscored, 54 of them v4.0-only, 3 genuinely new ·
+vector strings not extracted at all before that pass · component-level extraction not performed
+(future work)
+
+**How it connects:** this subsection quietly sets up two later defences. The churn table is what
+lets §V-C say the corpus is bounded by NVD *practice* rather than by NVD *lag* — a reviewer will
+otherwise propose "just re-download" as a fix for the 7.0%/11.5% gaps, and the measured answer is
+that a six-week refresh moved 3 rows. The parser-fix attribution is the more interesting
+methodological point and is new to the paper as of this rewrite: a silent extraction gap is
+indistinguishable from missing upstream data unless you keep the superseded snapshot and diff it,
+which is the concrete argument for the retain-the-old-vintage discipline in Topic 3. RQ2's v2-only
+sensitivity check depends on the version-preference rule being stated here, so do not compress it.
+
+**Quote — the parser attribution, tex** (`docs/home_iot_security_report.tex:880`):
+> That completeness is
+> worth attributing correctly, because it came from a correction on our side rather than from
+> NVD: 57 CVEs in the analysis set had previously extracted as unscored, of which 54 were
+> scored only under v4.0 and were being missed by a metric reader that never inspected the
+> v4.0 block
+
+**Quote — what the vintage comparison measures, tex** (`docs/home_iot_security_report.tex:862`):
+> what the comparison
+> measures is first analysis, not reanalysis: on a fixed set of already-analyzed records, NVD
+> churn is close to nil
+
+**Evidence:** `data/nvd-snapshot/nvd_all.csv` (verified this session over the 1,676: version mix
+1211/330/81/54 · 118 no CWE · 193 no CPE · 0 missing vectors · 155 distinct CWEs) ·
+`data/nvd-snapshot/snapshot_churn.md` + `.csv` · `scripts/download_nvd.py:139` (the preference
+order, with its own comment explaining why v4.0 sits below v3) ·
+`data/difference/cvss_distribution.csv` (`n_scored == n_cves` everywhere)
+
+**Cite:** `ref-cvss`
+
+---
+
+## Topic 8 · CWE-888 mapping — why this view, and how far over-counting goes
+*tex 892–923*
+
+**Beats:** CWE = MITRE taxonomy, several organising views · CWE-888 Software Fault Patterns chosen
+for two reasons: comparability with the prior study, and a fault-centred, wider-coverage framing
+than CWE-699 · catalog pinned to **v4.12 (29 June 2023)** → mapping reproducible · **23 primary
+clusters**, 21 attributed, 2 empty (retained in the mapping, blank in results) · CWE in the view →
+map directly · CWE not in the view → map through parents; parents in two clusters → counts in both ·
+over-counting bounded and quantified over the **1,613** assignments carrying ≥1 CWE (1,571 resolve
+to ≥1 class; 42 resolve to none): **76 (4.7%)** single CWE spanning two classes · **220 (13.6%)**
+with ≥2 distinct CWEs, of which 123 resolve to one class and 97 span · union **173 (10.7%)**
+contribute to more than one class · large majority contribute to exactly one
+
+**How it connects:** the whole point of stating 4.7 / 13.6 / 10.7 rather than "some over-counting
+occurs" is that RQ1's percentages are computed over attributions, not CVEs, so a reviewer needs
+the inflation ceiling to read the table. §V-A owns the *threat* framing of the same mechanism —
+keep the arithmetic here and the "this is a modelling choice" argument there. One consistency trap:
+these are per-(category, CVE) **assignments**, not CVEs; the denominators differ from Topic 4's and
+a stray "CVEs" in this paragraph would make the two subsections look mutually inconsistent.
+
+**Quote — the mapping rule, tex** (`docs/home_iot_security_report.tex:908`):
+> When an identified CWE is itself part of the CWE-888 view, we mapped it directly to
+> its corresponding primary class. When it is not, we examined its parent CWEs and mapped
+> those instead, so a CWE whose parents fall under two different primary classes counts
+> toward both.
+
+**Evidence:** `data/difference/cwe888_cve_map.csv` (recomputed this session: 1,613 / 1,571 / 42 ·
+76 · 220 → 123/97 · 173 · 155 CWEs · 21 classes present) ·
+`data/difference/cwe888_distribution.csv` · `data/cwe/cwec_v4.12.xml.zip` (pinned catalog) ·
+`scripts/cwe888_analysis.py`
+
+**Cite:** `ref-cwe` · `ref-cwe888` · `ref-cwe699` · `ref-mcsoftware`
 
 ---
 
 ## Belongs in another section
 
 - **Reviewer model biases** (Codex over-excludes unfamiliar security brands, Gemini/Gemma
-  over-includes on function overlap) — §V-B Internal Validity already owns this, tex 1285–1313. It
-  is tempting to put it beside the Gemini-as-weaker-vote rule in Topic 6; don't, or §V-B loses its
+  over-includes on function overlap) — §V-B Internal Validity already owns this, tex 1413–1441. It
+  is tempting to put it beside the Gemini-as-weaker-vote rule in Topic 4; don't, or §V-B loses its
   evidence.
 - **What the SAREF alignment *found*** (7 exact / 17 coarse · generic superclass only for 6 of 24
   carrying 10.0% · `s4bldg:AudioVisualAppliance` covering five categories with 61.1%) — §V-A,
-  tex 1247–1272. Topic 2 now states only the procedure and points there; the de-duplication edit
+  tex 1354–1412. Topic 2 now states only the procedure and points there; the de-duplication edit
   is already applied.
 - **Facet κ table and the three named failures** (`supportLifetime` below chance ·
   `hasWebAdminUI`/`computeTier` failing both annotation and derivation · `capturesAV` failing both
-  gates) — §V-D, tex 1332–1425 incl. `tab:facet-kappa`.
+  gates) — §V-D, tex 1460–1555 incl. `tab:facet-kappa` at 1532.
 - **Per-category CVE counts, CWE-888 distributions, treemaps** — RQ1, incl. two
-  `BEGIN GENERATED` blocks (tex ~908 and ~954) that must never be hand-edited.
-- **Recall's consequences for generalisation** — §V-C External Validity, tex 1314–1331. Topic 3
+  `BEGIN GENERATED` blocks (tex ~1044 and ~1090) that must never be hand-edited.
+- **Recall's consequences for generalisation** — §V-C External Validity, tex 1442–1459. Topic 6
   states the estimate; §V-C states what it means for the claims.
 
 ## Tensions and open arguments
@@ -465,7 +634,7 @@ terms / 20 `prune_candidate=Yes` over 19 terms / 15 vendor + 5 keyword) · `scri
   a scope decision that removes them — but the tension is real and a reviewer will find it. The
   text now leads with the decomposition rather than the aggregate; keep it that way, and resist
   re-quoting 94.8% anywhere.
-- **Intersection precision (70.2%) vs the per-category FP narrative.** Topic 6 attributes
+- **Intersection precision (70.2%) vs the per-category FP narrative.** Topic 4 attributes
   `cameras`' 77.6% FP rate to an over-broad vendor list, while Topic 3 attributes the intersection
   failure in the same category to generic device *phrases* colliding with pro brands. Both are
   true and they are the same collision seen from two sides; if a reviewer reads them as competing
@@ -493,7 +662,7 @@ terms / 20 `prune_candidate=Yes` over 19 terms / 15 vendor + 5 keyword) · `scri
 
 ## Works cited
 
-Every key below is defined in `\begin{thebibliography}` (tex 1476+) and survived the full
+Every key below is defined in `\begin{thebibliography}` (tex 1603+) and survived the full
 bibliography pass of 2026-09-08. 48 cited = 48 defined, no dangling refs.
 
 Reference text and links below are transcribed from the `\bibitem` entries themselves (opened this
@@ -503,17 +672,17 @@ entry records no DOI or URL, the column says so rather than guessing one.
 
 | key | reference (as printed in the tex) | link | why §III cites it |
 |---|---|---|---|
-| `ref-nvd` | NIST, "National Vulnerability Database (NVD)" — tex 1476 | `https://nvd.nist.gov/` | The data source itself — cited once for what a CVE record is (tex 322) and once for the snapshot. Everything in §III is downstream of this one artifact. |
-| `ref-mcsoftware` | K. Goseva-Popstojanova and J. Tyo, "Experience report: Security vulnerability profiles of mission critical software: Empirical analysis of security related bug reports," IEEE ISSRE, 2017, pp. 152–163 — tex 1478 | no DOI/URL in the entry | The methodological ancestor. It is why the CWE-888 view is used at all, and the comparability argument in Topic 5 is entirely about staying commensurable with it. Cited twice: in the overview (tex 154) and at the point of choosing the view (tex 601). |
-| `ref-cwe888` | Common Weakness Enumeration, "CWE-888: Software Fault Pattern (SFP) Clusters" — tex 1482 | `https://cwe.mitre.org/data/definitions/888.html` | Defines the 23 primary clusters that RQ1's rows *are*. Cited where the view is first named (tex 155) and again where it is chosen over the alternative (tex 600). |
-| `ref-cwe` | Common Weakness Enumeration, "CWE" — tex 1487 | `https://cwe.mitre.org/data/index.html` | Establishes CWE as a community taxonomy maintained by MITRE before the paper starts reorganising it — needed so "view", "primary class" and "parent CWE" have a referent (tex 598). |
-| `ref-cwe699` | Common Weakness Enumeration, "CWE-699: Software Development" — tex 1485 | `https://cwe.mitre.org/data/definitions/699.html` | The rejected alternative. Cited only so the CWE-888 choice reads as a comparison rather than an assertion; it answers "why not the development view?" (tex 604). |
-| `ref-cvss` | FIRST, "Common Vulnerability Scoring System (CVSS): Specification Document" — tex 1489 | `https://www.first.org/cvss/` | Backs the 0–10 range, the exploitability/impact derivation and the severity bands (tex 571). Load-bearing for RQ2, whose bands are not the paper's own invention. |
-| `balta2013` | N. Balta-Ozkan, R. Davidson, M. Bicket, and L. Whitmarsh, "Social barriers to the adoption of smart homes," *Energy Policy*, vol. 63, pp. 363–374, 2013 — tex 1493 | no DOI/URL in the entry | One of the two anchors of the written definition (tex 176). Supplies the *residential deployment* framing, so criterion 3 and the consumer-ownership half of criterion 5 rest on prior work rather than on us. |
-| `alrawi2019` | O. Alrawi, C. Lever, M. Antonakakis, and F. Monrose, "SoK: Security evaluation of home-based IoT deployments," IEEE S&P, 2019, pp. 1362–1380 — tex 1496 | no DOI/URL in the entry | The most load-bearing citation in §III, cited three times for three different jobs: the other anchor of the definition (tex 176); the hub-in / router-out precedent, i.e. hubs are study subjects while routers are threat-model context (tex 207); and the four-component device–app–cloud–communication deployment model, which is what justifies the rubric rule that a companion-app CVE is in scope for its device (tex 676). |
-| `kumar2019` | D. Kumar, K. Shen, B. Case, D. Garg, G. Alperovich, D. Kuznetsov, R. Gupta, and Z. Durumeric, "All things considered: An analysis of IoT devices on home networks," USENIX Security, 2019, pp. 1169–1185 — tex 1502 | no DOI/URL in the entry | Cited at the entertainment / 4(b) boundary (tex 201) because it classifies devices seen on real home networks and separates computers, phones and routers from home IoT — external support for treating streaming and speaker hardware as device classes rather than general-purpose compute. |
-| `fernandes2016` | E. Fernandes, J. Jung, and A. Prakash, "Security analysis of emerging smart home applications," IEEE S&P, 2016, pp. 636–654 — tex 1547 | no DOI/URL in the entry | Paired with `kumar2019` at the same boundary (tex 201). It takes the smart-home *platform* — hub, apps, capabilities — as the unit of security analysis, which is the precedent for admitting a control surface under 4(b) rather than only end devices. |
-| `stanford_iot` | Stanford University, "Minimum security standards: Internet of Things (IoT) devices" — tex 1533 | `https://uit.stanford.edu/guide/securitystandards/iot` | Cited for the networking exclusion (tex 207): a widely used institutional IoT definition that explicitly excludes routers, switches and access points, so treating pure-transport gear as context rather than subject is not idiosyncratic to this study. |
+| `ref-nvd` | NIST, "National Vulnerability Database (NVD)" — tex 1606 | `https://nvd.nist.gov/` | The data source itself — cited once for what a CVE record is (tex 446) and once for the snapshot. Everything in §III is downstream of this one artifact. |
+| `ref-mcsoftware` | K. Goseva-Popstojanova and J. Tyo, "Experience report: Security vulnerability profiles of mission critical software: Empirical analysis of security related bug reports," IEEE ISSRE, 2017, pp. 152–163 — tex 1608 | no DOI/URL in the entry | The methodological ancestor. It is why the CWE-888 view is used at all, and the comparability argument in Topic 5 is entirely about staying commensurable with it. Cited twice: in the overview (tex 153) and at the point of choosing the view (tex 897). |
+| `ref-cwe888` | Common Weakness Enumeration, "CWE-888: Software Fault Pattern (SFP) Clusters" — tex 1612 | `https://cwe.mitre.org/data/definitions/888.html` | Defines the 23 primary clusters that RQ1's rows *are*. Cited where the view is first named (tex 154) and again where it is chosen over the alternative (tex 896). |
+| `ref-cwe` | Common Weakness Enumeration, "CWE" — tex 1617 | `https://cwe.mitre.org/data/index.html` | Establishes CWE as a community taxonomy maintained by MITRE before the paper starts reorganising it — needed so "view", "primary class" and "parent CWE" have a referent (tex 894). |
+| `ref-cwe699` | Common Weakness Enumeration, "CWE-699: Software Development" — tex 1615 | `https://cwe.mitre.org/data/definitions/699.html` | The rejected alternative. Cited only so the CWE-888 choice reads as a comparison rather than an assertion; it answers "why not the development view?" (tex 900). |
+| `ref-cvss` | FIRST, "Common Vulnerability Scoring System (CVSS): Specification Document" — tex 1619 | `https://www.first.org/cvss/` | Backs the 0–10 range, the exploitability/impact derivation and the severity bands (tex 867). Load-bearing for RQ2, whose bands are not the paper's own invention. |
+| `balta2013` | N. Balta-Ozkan, R. Davidson, M. Bicket, and L. Whitmarsh, "Social barriers to the adoption of smart homes," *Energy Policy*, vol. 63, pp. 363–374, 2013 — tex 1623 | no DOI/URL in the entry | One of the two anchors of the written definition (tex 291). Supplies the *residential deployment* framing, so criterion 3 and the consumer-ownership half of criterion 5 rest on prior work rather than on us. |
+| `alrawi2019` | O. Alrawi, C. Lever, M. Antonakakis, and F. Monrose, "SoK: Security evaluation of home-based IoT deployments," IEEE S&P, 2019, pp. 1362–1380 — tex 1626 | no DOI/URL in the entry | The most load-bearing citation in §III, cited three times for three different jobs: the other anchor of the definition (tex 291); the hub-in / router-out precedent, i.e. hubs are study subjects while routers are threat-model context (tex 322); and the four-component device–app–cloud–communication deployment model, which is what justifies the rubric rule that a companion-app CVE is in scope for its device (tex 631). |
+| `kumar2019` | D. Kumar, K. Shen, B. Case, D. Garg, G. Alperovich, D. Kuznetsov, R. Gupta, and Z. Durumeric, "All things considered: An analysis of IoT devices on home networks," USENIX Security, 2019, pp. 1169–1185 — tex 1632 | no DOI/URL in the entry | Cited at the entertainment / 4(b) boundary (tex 316) because it classifies devices seen on real home networks and separates computers, phones and routers from home IoT — external support for treating streaming and speaker hardware as device classes rather than general-purpose compute. |
+| `fernandes2016` | E. Fernandes, J. Jung, and A. Prakash, "Security analysis of emerging smart home applications," IEEE S&P, 2016, pp. 636–654 — tex 1677 | no DOI/URL in the entry | Paired with `kumar2019` at the same boundary (tex 316). It takes the smart-home *platform* — hub, apps, capabilities — as the unit of security analysis, which is the precedent for admitting a control surface under 4(b) rather than only end devices. |
+| `stanford_iot` | Stanford University, "Minimum security standards: Internet of Things (IoT) devices" — tex 1663 | `https://uit.stanford.edu/guide/securitystandards/iot` | Cited for the networking exclusion (tex 322): a widely used institutional IoT definition that explicitly excludes routers, switches and access points, so treating pure-transport gear as context rather than subject is not idiosyncratic to this study. |
 
 ### Added 2026-09-09 — external vocabularies and statistical methods
 
@@ -524,17 +693,17 @@ so the citation and the manifest cannot describe different documents.
 
 | key | reference (as printed in the tex) | link | why §III cites it |
 |---|---|---|---|
-| `saref` | ETSI, "SmartM2M; Smart Applications; Reference Ontology and oneM2M Mapping," ETSI TS 103 264 V3.2.1, Jan. 2024 — tex 1629 | `https://www.etsi.org/deliver/etsi_ts/103200_103299/103264/03.02.01_60/ts_103264v030201p.pdf` | The alignment target itself (tex 309). V3.2.1 is exactly the SAREF core version pinned in `external_sources.tsv` (retrieved 2026-08-04, sha `d3d859e57c7a0755`) — cite any other version and the manifest stops matching the citation. |
-| `saref4bldg` | ETSI, "SmartM2M; Extension to SAREF; Part 3: Building Domain," ETSI TS 103 410-3 V1.1.2, May 2020 — tex 1633 | `https://www.etsi.org/deliver/etsi_ts/103400_103499/10341003/01.01.02_60/ts_10341003v010102p.pdf` | Carries the load-bearing half of §V-A's replacement finding: `s4bldg:AudioVisualAppliance` is the single class that collapses five of our categories (61.1% of confirmed CVEs). That claim was previously made about a document the paper never cited. Pinned version v1.1.2 matches the manifest. |
-| `saref4ext` | ETSI, "SmartM2M; Extension to SAREF," TS 103 410 series — Part 1 Energy (V1.2.1), Part 4 Smart Cities (V2.1.1), Part 6 Smart Agriculture and Food Chain (V2.1.1), Part 7 Automotive (V2.1.1), Part 8 eHealth/Ageing-well (V2.1.1), Part 9 Wearables (V1.1.1) — tex 1637 | `https://saref.etsi.org/` | Covers the six remaining vocabularies §III claims to have searched (tex 309–310). One compound entry rather than six: they are cited at a single point, in a single sentence, and four of them contributed no alignment at all — but each part number and version is given so any one of them can be pulled individually. Each version matches the ontology serialization pinned in `external_sources.tsv`. |
-| `ssn2017` | Haller, Janowicz, Cox, Le Phuoc, Taylor, Lefrançois (Eds.), "Semantic Sensor Network Ontology," W3C Recommendation, 19 Oct. 2017 — tex 1636 | `https://www.w3.org/TR/2017/REC-vocab-ssn-20171019/` | The second alignment target (tex 311). Also the reason `sosa:System` does not exist — it is `ssn:System` — one of the four invented IRIs the manifest check caught. ⚠️ A 2023 Edition exists (`https://www.w3.org/TR/vocab-ssn-2023/`); we cite the 2017 Recommendation because that is the namespace document retrieved into the manifest. |
-| `chapman1951` | D. G. Chapman, *Some Properties of the Hypergeometric Distribution with Applications to Zoological Sample Censuses*, Univ. of California Publications in Statistics, vol. 1, no. 7, 1951 — tex 1641 | no DOI; Open Library `OL200768M` | Names the estimator the recall figure comes from (tex 495). Without it "Chapman-corrected Lincoln–Petersen" is an eponym with no referent, and the 0.603 has no method a reader can check. ⚠️ Page range deliberately omitted: catalogue records disagree (131–159 per Open Library, 131–160 in most secondary citations). |
-| `fienberg1972` | S. E. Fienberg, "The multiple recapture census for closed populations and incomplete $2^k$ contingency tables," *Biometrika*, vol. 59, no. 3, pp. 591–603, 1972 — tex 1645 | `https://doi.org/10.1093/biomet/59.3.591` | The three-source estimator (tex 505). This is the paper that makes log-linear modelling of multi-source capture–recapture standard practice, i.e. it is the authority for estimating V–K dependence rather than assuming independence — the exact objection the 2-source figure attracts. |
-| `akaike1974` | H. Akaike, "A new look at the statistical model identification," *IEEE Trans. Automatic Control*, vol. 19, no. 6, pp. 716–723, 1974 — tex 1648 | `https://doi.org/10.1109/TAC.1974.1100705` | Backs "AIC-selected" (tex 506). The weakest of the ten on its own — AIC needs no introduction — but the model-selection step is what turns "we fitted several models" into a stated rule, and a rule should have a source. |
-| `fleiss1971` | J. L. Fleiss, "Measuring nominal scale agreement among many raters," *Psychological Bulletin*, vol. 76, no. 5, pp. 378–382, 1971 — tex 1650 | PsycNet `1972-05083-001` | The κ we report is Fleiss', not Cohen's, specifically because there are three raters (tex 295, and again at §V-D's table, tex 1350). Cited in both places so the reader of the table alone can tell which κ it is. |
-| `landis1977` | J. R. Landis and G. G. Koch, "The measurement of observer agreement for categorical data," *Biometrics*, vol. 33, no. 1, pp. 159–174, 1977 — tex 1652 | `https://doi.org/10.2307/2529310` | Sources the word "conventional" in the κ bands (tex 296, 1402). The paper draws real consequences from the 0.60 and 0.40 cutoffs — four facets citable, the rest not — so the cutoffs need an origin outside this study. Note for the author: these bands are widely criticised as arbitrary; citing Landis–Koch makes that criticism *about the convention* rather than about you. |
-| `kruskal1952` | W. H. Kruskal and W. A. Wallis, "Use of ranks in one-criterion variance analysis," *JASA*, vol. 47, no. 260, pp. 583–621, 1952 — tex 1654 | `https://doi.org/10.1080/01621459.1952.10483441` | RQ2's omnibus test (tex 1119). Not §III, but the same defect class, and it was the paper's only uncited inferential statistic besides Dunn's. |
-| `dunn1964` | O. J. Dunn, "Multiple comparisons using rank sums," *Technometrics*, vol. 6, no. 3, pp. 241–252, 1964 — tex 1657 | `https://doi.org/10.1080/00401706.1964.10490181` | RQ2's post-hoc test (tex 1128). Matters more than it looks: the paper reports 136 Bonferroni-adjusted comparisons and 13 significant pairs, so the correction procedure is doing visible work on the result. |
+| `saref` | ETSI, "SmartM2M; Smart Applications; Reference Ontology and oneM2M Mapping," ETSI TS 103 264 V3.2.1, Jan. 2024 — tex 1755 | `https://www.etsi.org/deliver/etsi_ts/103200_103299/103264/03.02.01_60/ts_103264v030201p.pdf` | The alignment target itself (tex 424). V3.2.1 is exactly the SAREF core version pinned in `external_sources.tsv` (retrieved 2026-08-04, sha `d3d859e57c7a0755`) — cite any other version and the manifest stops matching the citation. |
+| `saref4bldg` | ETSI, "SmartM2M; Extension to SAREF; Part 3: Building Domain," ETSI TS 103 410-3 V1.1.2, May 2020 — tex 1759 | `https://www.etsi.org/deliver/etsi_ts/103400_103499/10341003/01.01.02_60/ts_10341003v010102p.pdf` | Carries the load-bearing half of §V-A's replacement finding: `s4bldg:AudioVisualAppliance` is the single class that collapses five of our categories (61.1% of confirmed CVEs). That claim was previously made about a document the paper never cited. Pinned version v1.1.2 matches the manifest. |
+| `saref4ext` | ETSI, "SmartM2M; Extension to SAREF," TS 103 410 series — Part 1 Energy (V1.2.1), Part 4 Smart Cities (V2.1.1), Part 6 Smart Agriculture and Food Chain (V2.1.1), Part 7 Automotive (V2.1.1), Part 8 eHealth/Ageing-well (V2.1.1), Part 9 Wearables (V1.1.1) — tex 1762 | `https://saref.etsi.org/` | Covers the six remaining vocabularies §III claims to have searched (tex 424–425). One compound entry rather than six: they are cited at a single point, in a single sentence, and four of them contributed no alignment at all — but each part number and version is given so any one of them can be pulled individually. Each version matches the ontology serialization pinned in `external_sources.tsv`. |
+| `ssn2017` | Haller, Janowicz, Cox, Le Phuoc, Taylor, Lefrançois (Eds.), "Semantic Sensor Network Ontology," W3C Recommendation, 19 Oct. 2017 — tex 1768 | `https://www.w3.org/TR/2017/REC-vocab-ssn-20171019/` | The second alignment target (tex 426). Also the reason `sosa:System` does not exist — it is `ssn:System` — one of the four invented IRIs the manifest check caught. ⚠️ A 2023 Edition exists (`https://www.w3.org/TR/vocab-ssn-2023/`); we cite the 2017 Recommendation because that is the namespace document retrieved into the manifest. |
+| `chapman1951` | D. G. Chapman, *Some Properties of the Hypergeometric Distribution with Applications to Zoological Sample Censuses*, Univ. of California Publications in Statistics, vol. 1, no. 7, 1951 — tex 1773 | no DOI; Open Library `OL200768M` | Names the estimator the recall figure comes from (tex 811). Without it "Chapman-corrected Lincoln–Petersen" is an eponym with no referent, and the 0.603 has no method a reader can check. ⚠️ Page range deliberately omitted: catalogue records disagree (131–159 per Open Library, 131–160 in most secondary citations). |
+| `fienberg1972` | S. E. Fienberg, "The multiple recapture census for closed populations and incomplete $2^k$ contingency tables," *Biometrika*, vol. 59, no. 3, pp. 591–603, 1972 — tex 1777 | `https://doi.org/10.1093/biomet/59.3.591` | The three-source estimator (tex 821). This is the paper that makes log-linear modelling of multi-source capture–recapture standard practice, i.e. it is the authority for estimating V–K dependence rather than assuming independence — the exact objection the 2-source figure attracts. |
+| `akaike1974` | H. Akaike, "A new look at the statistical model identification," *IEEE Trans. Automatic Control*, vol. 19, no. 6, pp. 716–723, 1974 — tex 1780 | `https://doi.org/10.1109/TAC.1974.1100705` | Backs "AIC-selected" (tex 822). The weakest of the ten on its own — AIC needs no introduction — but the model-selection step is what turns "we fitted several models" into a stated rule, and a rule should have a source. |
+| `fleiss1971` | J. L. Fleiss, "Measuring nominal scale agreement among many raters," *Psychological Bulletin*, vol. 76, no. 5, pp. 378–382, 1971 — tex 1782 | PsycNet `1972-05083-001` | The κ we report is Fleiss', not Cohen's, specifically because there are three raters (tex 410, and again at §V-D's table, tex 1476). Cited in both places so the reader of the table alone can tell which κ it is. |
+| `landis1977` | J. R. Landis and G. G. Koch, "The measurement of observer agreement for categorical data," *Biometrics*, vol. 33, no. 1, pp. 159–174, 1977 — tex 1784 | `https://doi.org/10.2307/2529310` | Sources the word "conventional" in the κ bands (tex 411, 1528). The paper draws real consequences from the 0.60 and 0.40 cutoffs — four facets citable, the rest not — so the cutoffs need an origin outside this study. Note for the author: these bands are widely criticised as arbitrary; citing Landis–Koch makes that criticism *about the convention* rather than about you. |
+| `kruskal1952` | W. H. Kruskal and W. A. Wallis, "Use of ranks in one-criterion variance analysis," *JASA*, vol. 47, no. 260, pp. 583–621, 1952 — tex 1786 | `https://doi.org/10.1080/01621459.1952.10483441` | RQ2's omnibus test (tex 1245). Not §III, but the same defect class, and it was the paper's only uncited inferential statistic besides Dunn's. |
+| `dunn1964` | O. J. Dunn, "Multiple comparisons using rank sums," *Technometrics*, vol. 6, no. 3, pp. 241–252, 1964 — tex 1789 | `https://doi.org/10.1080/00401706.1964.10490181` | RQ2's post-hoc test (tex 1254). Matters more than it looks: the paper reports 136 Bonferroni-adjusted comparisons and 13 significant pairs, so the correction procedure is doing visible work on the result. |
 
 ## Before you write this section
 
@@ -542,7 +711,7 @@ so the citation and the manifest cannot describe different documents.
    `saref` (TS 103 264 V3.2.1), `saref4bldg` (TS 103 410-3 V1.1.2), `saref4ext` (the remaining
    six TS 103 410 parts: 1 Energy V1.2.1 · 4 Smart Cities V2.1.1 · 6 Agriculture V2.1.1 ·
    7 Automotive V2.1.1 · 8 eHealth V2.1.1 · 9 Wearables V1.1.1) and `ssn2017` are in the
-   bibliography and cited at tex 309–311. Every TS number and version was read off the SAREF
+   bibliography and cited at tex 424–426. Every TS number and version was read off the SAREF
    portal page for the exact ontology version we pinned, so citation and manifest describe the
    same document.
 
@@ -563,27 +732,59 @@ so the citation and the manifest cannot describe different documents.
    systems and one SAREF4SYST class checked while resolving the `System` confusion, verified but
    unused; **8 used** in the alignment — S4AUTO and S4CITY were searched and yielded nothing in
    scope, which §III now records as a result rather than dropping them from the searched set.
-2. ✅ **RESOLVED 2026-09-09 — statistical citations.** `chapman1951` (tex 495), `fienberg1972` +
-   `akaike1974` (tex 505–506), `fleiss1971` + `landis1977` (tex 295–296, and again at §V-D
-   1350/1402), plus `kruskal1952` (tex 1119) and `dunn1964` (tex 1128) for RQ2, which had the
+2. ✅ **RESOLVED 2026-09-09 — statistical citations.** `chapman1951` (tex 811), `fienberg1972` +
+   `akaike1974` (tex 821–822), `fleiss1971` + `landis1977` (tex 410–411, and again at §V-D
+   1476/1528), plus `kruskal1952` (tex 1245) and `dunn1964` (tex 1254) for RQ2, which had the
    same defect. Bibliography is now 58 entries, 58 cited, no dangling refs.
-3. ⚠️ **Reviewer model identifiers.** The `\stub` at tex 643 asks for exact Claude and Codex model
+3. ⚠️ **Reviewer model identifiers.** The `\stub` at tex 598 asks for exact Claude and Codex model
    version strings. They were not captured at run time; the text already states this as a
    reproducibility limitation. Either resolve or delete the stub before submission — a red
    bracket in the PDF reads as an unfinished paper.
 4. ✅ **RESOLVED 2026-09-09 — `guardrails.md` re-synced.** The `sandia2020` / SAND2020-11401
-   entry was replaced with the verified `johnson2022sandia` = SAND2022-9315 record (tex 1577).
+   entry was replaced with the verified `johnson2022sandia` = SAND2022-9315 record (tex 1705).
    No bibliography blocker remains. Two stale manifest counts were fixed at the same time
    (`ontology/README.md` and the `homeiot-align.ttl` header both said 331 IRIs; the manifest
    holds 435). All four ontology gates re-run green afterwards.
-5. ⚠️ **Literal em-dashes at tex 798 and 801** (RQ1 prose, not §III) will fail a plain `pdflatex`
-   run without `inputenc`/`fontspec`. Cheap to convert to `---` while the file is open.
-6. 🔴 **The paper has still never been compiled** (`PLAN_paper_submission_fixes.md` §5.1). §III now
-   contains one new subsection, three new cross-references retargeted to
-   `\label{sec:method-ontology}`, and several new `\texttt{}`/math spans. Brace balance,
-   label/ref resolution and cite/bibitem coverage were checked programmatically this session and
-   are clean, but that is not a substitute for a build.
-7. **Do not re-run the pipeline for this section.** Every figure in §III was recomputed from
+5. ✅ **RESOLVED 2026-09-14 — literal em-dashes converted.** The two in RQ1 prose are now `---`.
+   A scan confirms no non-ASCII remains anywhere outside `%` comments, so the file is safe for a
+   plain `pdflatex` run with no `inputenc`/`fontspec`.
+6. ✅ **RESOLVED 2026-09-14 — the paper compiles.** First successful build in the project's
+   history, run after the §III restructure: **19 pages, 0 errors, 0 undefined references, 0
+   undefined citations, 0 overfull boxes.** Engine was `tectonic` 0.17.0 (installed via Homebrew;
+   no TeX toolchain was present). Four defects the build exposed that no static check had caught:
+
+   - **The walkthrough rendered as "a)"** — a bare `\paragraph` directly under `\section` gets
+     lettered by IEEEtran, so the lead-in appeared as a list item before III-A. Now `\paragraph*`.
+   - **A stale cross-reference the restructure created**: the review subsection pointed at
+     Section III-C for the tvOS scope exclusion, which the restructure had moved into III-D
+     itself. Now "described at the end of this section". *This is the class of error only a build
+     or a careful read catches — the `\ref` resolved fine, it just resolved to the wrong place.*
+   - **"described below"** in the vendor paragraph pointed at discovery, which had moved two
+     subsections away. Now an explicit `\ref{sec:method-precision}`.
+   - **`tab:facet-kappa` overflowed its column** by 1.9pt. Fixed with `\tabcolsep` 4pt.
+
+   ⚠️ **Engine caveat.** `tectonic` is XeTeX-based; the paper's header documents `pdflatex`. The
+   52 remaining warnings are all `TU/ptm` font-shape substitutions, an artifact of XeTeX asking
+   IEEEtran for Times in Unicode encoding — they would not appear under pdflatex. Conversely a
+   XeTeX build cannot confirm the pdflatex input-encoding behaviour, so the two literal em-dashes
+   formerly at tex 934/937 were converted to `---` regardless; **no non-ASCII remains outside
+   comments**. A pdflatex run is still worth doing once before submission.
+
+   Two `\stub` markers still render as red brackets (item 3 below) — deliberately left, since
+   resolving or deleting them is an author decision, not a build fix.
+
+7. 🔴 **Added 2026-09-14 — the framework figure is not in the build.** Topic 0's walkthrough is
+   live prose, but `docs/figures/pipeline.pdf` does not exist, so the `\begin{figure}` block at
+   tex 180–186 is commented out and the list stands alone — **confirmed to read correctly without
+   it in the 19-page build**, so this is a completeness gap, not a blocker.
+   Export the diagram to that path, uncomment the block, and add the `Figure~\ref{fig:pipeline}`
+   clause the comment flags. Two consistency obligations come with it: the list's numbering is
+   keyed to the drawing, so renumbering one renumbers the other; and the list repeats three
+   figures (208 phrases, 1,564/1,540 brands, 373,518 records) from Topic 3, so each of those now
+   has two homes in the tex. The four divergences between the drawing and the code are recorded under Topic 0 —
+   9.3 covering two scripts, box 4 showing three of four review directions, the missing
+   scope-exclusion step, and box 8's one-way arrow.
+8. **Do not re-run the pipeline for this section.** Every figure in §III was recomputed from
    `judgment_store.csv`, `nvd_all.csv`, `cwe888_cve_map.csv`, `term_precision.csv`,
    `recall_estimate.csv`, `facet_*.csv` and the four ontology gates on 2026-09-09, and all four
    gates were green at that time (`--check` 31/31 + byte-identical CSVs, `--self-test` all five

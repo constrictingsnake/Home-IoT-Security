@@ -590,6 +590,14 @@ held 0% of the category.
 
 ---
 
+### `generate_review_figures.py` — Stage 4 (report figures)
+The five Stage-4 figures in `docs/figures/` (`review_funnel`, `review_disagreement`,
+`review_precision`, `review_confidence`, `review_fp_by_category`). Every count is computed from
+`judgment_store.csv` at run time, never hand-typed, so a figure can't drift from the data the
+paper's §III-E prose quotes. See the script's docstring for what each figure shows.
+
+---
+
 ### Shell helpers
 
 **`run_gemini.sh`** — drives the Gemini reviewer over every category's blind review copy.

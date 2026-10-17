@@ -498,6 +498,7 @@ One line per script — full flag tables in `docs/SCRIPTS_REFERENCE.md`.
 | `make_codex_column2.py` | facets (F5) | `--emit` / `--merge` the Codex draft of the tagging sheet's column 2 (the human still settles every cell) |
 | `facet_store.py` | facets (F5) | Durable `(slug, facet)` verdict store; `--finalize` / `--extract` / `--status` / `--writeback`. Finalize before extract, always |
 | `facet_source_coverage.py` | facets (F5) | Measures whether a cell's cited vendors actually cover the category's CVEs; below the floor a cell drops to `HumanJudged` with its source retained |
+| `generate_review_figures.py` | 4 (report) | The five Stage-4 review figures for the paper (funnel, disagreement, precision, confidence, FP by category), computed from `judgment_store.csv` on every run |
 
 Retired scripts live in `scripts/_legacy/` (superseded-by table in `docs/SCRIPTS_REFERENCE.md`).
 
