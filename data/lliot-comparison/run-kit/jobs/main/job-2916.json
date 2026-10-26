@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2014-1564",
+  "description": "Mozilla Firefox before 32.0, Firefox ESR 31.x before 31.1, and Thunderbird 31.x before 31.1 do not properly initialize memory for GIF rendering, which allows remote attackers to obtain sensitive information from process memory via crafted web script that interacts with a CANVAS element associated with a malformed GIF image.",
+  "cpe_strings": "cpe:2.3:o:opensuse:evergreen:11.4:*:*:*:*:*:*:*|cpe:2.3:o:opensuse:opensuse:12.3:*:*:*:*:*:*:*|cpe:2.3:o:opensuse:opensuse:13.1:*:*:*:*:*:*:*|cpe:2.3:a:mozilla:firefox:*:*:*:*:*:*:*:*|cpe:2.3:a:mozilla:firefox:30.0:*:*:*:*:*:*:*|cpe:2.3:a:mozilla:firefox:31.0:*:*:*:*:*:*:*|cpe:2.3:a:mozilla:thunderbird:31.0:*:*:*:*:*:*:*"
+ }
+]

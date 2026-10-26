@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2022-46308",
+  "description": "SGUDA U-Lock central lock control service’s user management function has incorrect authorization. A remote attacker with general user privilege can exploit this vulnerability to call privileged APIs to access, modify and delete user information.",
+  "cpe_strings": "cpe:2.3:o:sguda:u-lock_firmware:-:*:*:*:*:*:*:*|cpe:2.3:h:sguda:u-lock:-:*:*:*:*:*:*:*"
+ }
+]

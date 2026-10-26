@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2019-7740",
+  "description": "An issue was discovered in Joomla! before 3.9.3. Inadequate parameter handling in JavaScript code (core.js writeDynaList) could lead to an XSS attack vector.",
+  "cpe_strings": "cpe:2.3:a:joomla:joomla\\!:*:*:*:*:*:*:*:*"
+ }
+]

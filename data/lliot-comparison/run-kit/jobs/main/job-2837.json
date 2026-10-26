@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2017-7648",
+  "description": "Foscam networked devices use the same hardcoded SSL private key across different customers' installations, which allows remote attackers to defeat cryptographic protection mechanisms by leveraging knowledge of this key from another installation.",
+  "cpe_strings": "cpe:2.3:h:foscam:c1:*:*:*:*:*:*:*:*|cpe:2.3:h:foscam:c1_lite:*:*:*:*:*:*:*:*|cpe:2.3:h:foscam:c2:*:*:*:*:*:*:*:*|cpe:2.3:h:foscam:fi9800xe:*:*:*:*:*:*:*:*|cpe:2.3:h:foscam:fi9826p:*:*:*:*:*:*:*:*|cpe:2.3:h:foscam:fi9828p:*:*:*:*:*:*:*:*|cpe:2.3:h:foscam:fi9851p:*:*:*:*:*:*:*:*|cpe:2.3:h:foscam:fi9853ep:*:*:*:*:*:*:*:*|cpe:2.3:h:foscam:fi9901ep:*:*:*:*:*:*:*:*|cpe:2.3:h:foscam:fi9903p:*:*:*:*:*:*:*:*|cpe:2.3:h:foscam:fi9928p:*:*:*:*:*:*:*:*|cpe:2.3:h:foscam:r2:*:*:*:*:*:*:*:*"
+ }
+]

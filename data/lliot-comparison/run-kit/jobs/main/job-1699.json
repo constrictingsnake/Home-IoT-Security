@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2022-47100",
+  "description": "A vulnerability in Sengled Smart bulb 0x0000024 allows attackers to arbitrarily perform a factory reset on the device via a crafted IEEE 802.15.4 frame.",
+  "cpe_strings": "cpe:2.3:o:sengled:es21-n1eaw_firmware:0x0000024:*:*:*:*:*:*:*|cpe:2.3:h:sengled:es21-n1eaw:-:*:*:*:*:*:*:*"
+ }
+]

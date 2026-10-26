@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2022-27992",
+  "description": "Zoo Management System v1.0 was discovered to contain a SQL injection vulnerability at /public_html/animals via the class_id parameter.",
+  "cpe_strings": "cpe:2.3:a:phpgurukul:zoo_management_system:1.0:*:*:*:*:*:*:*"
+ }
+]

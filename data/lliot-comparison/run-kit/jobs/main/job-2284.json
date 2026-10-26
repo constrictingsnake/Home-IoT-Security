@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2018-10544",
+  "description": "Meross MSS110 devices through 1.1.24 contain an unauthenticated admin.htm administrative interface.",
+  "cpe_strings": "cpe:2.3:o:meross:mss110_firmware:*:*:*:*:*:*:*:*|cpe:2.3:h:meross:mss110:-:*:*:*:*:*:*:*"
+ }
+]

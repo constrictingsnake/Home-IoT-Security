@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2024-52555",
+  "description": "In JetBrains WebStorm before 2024.3 code execution in Untrusted Project mode was possible via type definitions installer script",
+  "cpe_strings": "cpe:2.3:a:jetbrains:webstorm:*:*:*:*:*:*:*:*"
+ }
+]

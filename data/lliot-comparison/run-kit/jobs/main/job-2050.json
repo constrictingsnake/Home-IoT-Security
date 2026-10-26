@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2021-1723",
+  "description": "ASP.NET Core and Visual Studio Denial of Service Vulnerability",
+  "cpe_strings": "cpe:2.3:a:microsoft:asp.net_core:*:*:*:*:*:*:*:*|cpe:2.3:a:microsoft:visual_studio_2019:*:*:*:*:*:*:*:*|cpe:2.3:o:fedoraproject:fedora:32:*:*:*:*:*:*:*|cpe:2.3:o:fedoraproject:fedora:33:*:*:*:*:*:*:*"
+ }
+]

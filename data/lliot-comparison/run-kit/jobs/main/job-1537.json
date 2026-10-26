@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2017-13903",
+  "description": "An issue was discovered in certain Apple products. iOS before 11.2.1 is affected. tvOS before 11.2.1 is affected. The issue involves the \"HomeKit\" component. It allows remote attackers to modify the application state by leveraging incorrect message handling, as demonstrated by use of an Apple Watch to obtain an encryption key and unlock a door.",
+  "cpe_strings": "cpe:2.3:o:apple:iphone_os:*:*:*:*:*:*:*:*|cpe:2.3:o:apple:tvos:*:*:*:*:*:*:*:*"
+ }
+]

@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2017-11389",
+  "description": "Directory traversal vulnerability in Trend Micro Control Manager 6.0 allows remote code execution by attackers able to drop arbitrary files in a web-facing directory. Formerly ZDI-CAN-4684.",
+  "cpe_strings": "cpe:2.3:a:trendmicro:control_manager:6.0:*:*:*:*:*:*:*"
+ }
+]

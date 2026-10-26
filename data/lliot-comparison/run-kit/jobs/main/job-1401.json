@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2018-12323",
+  "description": "An issue was discovered on Momentum Axel 720P 5.1.8 devices. A password of EHLGVG is hard-coded for the root and admin accounts, which makes it easier for physically proximate attackers to login at the console.",
+  "cpe_strings": "cpe:2.3:h:apollotechnologiesinc:momentum_axel_720p:*:*:*:*:*:*:*:*|cpe:2.3:o:apollotechnologiesinc:momentum_axel_720p_firmware:5.1.8:*:*:*:*:*:*:*"
+ }
+]

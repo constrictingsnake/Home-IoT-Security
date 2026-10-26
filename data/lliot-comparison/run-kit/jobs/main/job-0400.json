@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2015-2943",
+  "description": "Honda Moto LINC 1.6.1 does not verify SSL certificates.",
+  "cpe_strings": "cpe:2.3:a:honda:moto_linc:1.6.1:*:*:*:*:*:*:*"
+ }
+]

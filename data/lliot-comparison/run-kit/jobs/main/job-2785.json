@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2020-2139",
+  "description": "An arbitrary file write vulnerability in Jenkins Cobertura Plugin 1.15 and earlier allows attackers able to control the coverage report file contents to overwrite any file on the Jenkins master file system.",
+  "cpe_strings": "cpe:2.3:a:jenkins:cobertura:*:*:*:*:*:jenkins:*:*"
+ }
+]

@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2018-7246",
+  "description": "A cleartext transmission of sensitive information vulnerability exists in Schneider Electric's 66074 MGE Network Management Card Transverse installed in MGE UPS and MGE STS. he integrated web server (Port 80/443/TCP) of the affected devices could allow remote attackers to discover an administrative account. If default on device, it is not using a SSL in settings and if multiple request of the page \"Access Control\" (IP-address device/ups/pas_cont.htm) account data will be sent in cleartext",
+  "cpe_strings": "cpe:2.3:h:schneider-electric:66074_mge_network_management_card_transverse:-:*:*:*:*:*:*:*|cpe:2.3:h:schneider-electric:mge_comet_ups:-:*:*:*:*:*:*:*|cpe:2.3:h:schneider-electric:mge_eps_6000:-:*:*:*:*:*:*:*|cpe:2.3:h:schneider-electric:mge_eps_7000:-:*:*:*:*:*:*:*|cpe:2.3:h:schneider-electric:mge_eps_8000:-:*:*:*:*:*:*:*|cpe:2.3:h:schneider-electric:mge_galaxy_3000:-:*:*:*:*:*:*:*|cpe:2.3:h:schneider-electric:mge_galaxy_4000:-:*:*:*:*:*:*:*|cpe:2.3:h:schneider-electric:mge_galaxy_5000:-:*:*:*:*:*:*:*|cpe:2.3:h:schneider-electric:mge_galaxy_6000:-:*:*:*:*:*:*:*|cpe:2.3:h:schneider-electric:mge_galaxy_9000:-:*:*:*:*:*:*:*|cpe:2.3:h:schneider-electric:mge_galaxy_pw:-:*:*:*:*:*:*:*"
+ }
+]

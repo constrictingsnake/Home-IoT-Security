@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2024-51558",
+  "description": "This vulnerability exists in the Wave 2.0 due to missing restrictions for excessive failed authentication attempts on its API based login. A remote attacker could exploit this vulnerability by conducting a brute force attack against legitimate user OTP, MPIN or password, which could lead to gain unauthorized access and compromise other user accounts.",
+  "cpe_strings": "cpe:2.3:a:63moons:aero:*:*:*:*:*:*:*:*|cpe:2.3:a:63moons:wave_2.0:*:*:*:*:*:*:*:*"
+ }
+]

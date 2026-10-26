@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2018-20823",
+  "description": "The gyroscope on Xiaomi Mi 5s devices allows attackers to cause a denial of service (resonance and false data) via a 20.4 kHz audio signal, aka a MEMS ultrasound attack.",
+  "cpe_strings": "cpe:2.3:o:mi:mi_5s_firmware:-:*:*:*:*:*:*:*|cpe:2.3:h:mi:mi_5s:-:*:*:*:*:*:*:*"
+ }
+]

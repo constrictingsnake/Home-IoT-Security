@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2016-9138",
+  "description": "PHP through 5.6.27 and 7.x through 7.0.12 mishandles property modification during __wakeup processing, which allows remote attackers to cause a denial of service or possibly have unspecified other impact via crafted serialized data, as demonstrated by Exception::__toString with DateInterval::__wakeup.",
+  "cpe_strings": "cpe:2.3:a:php:php:*:*:*:*:*:*:*:*|cpe:2.3:a:php:php:7.0.0:*:*:*:*:*:*:*|cpe:2.3:a:php:php:7.0.1:*:*:*:*:*:*:*|cpe:2.3:a:php:php:7.0.2:*:*:*:*:*:*:*|cpe:2.3:a:php:php:7.0.3:*:*:*:*:*:*:*|cpe:2.3:a:php:php:7.0.4:*:*:*:*:*:*:*|cpe:2.3:a:php:php:7.0.5:*:*:*:*:*:*:*|cpe:2.3:a:php:php:7.0.6:*:*:*:*:*:*:*|cpe:2.3:a:php:php:7.0.7:*:*:*:*:*:*:*|cpe:2.3:a:php:php:7.0.8:*:*:*:*:*:*:*|cpe:2.3:a:php:php:7.0.9:*:*:*:*:*:*:*|cpe:2.3:a:php:php:7.0.10:*:*:*:*:*:*:*|cpe:2.3:a:php:php:7.0.11:*:*:*:*:*:*:*|cpe:2.3:a:php:php:7.0.12:*:*:*:*:*:*:*"
+ }
+]

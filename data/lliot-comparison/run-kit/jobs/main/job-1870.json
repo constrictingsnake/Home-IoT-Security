@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2023-35717",
+  "description": "TP-Link Tapo C210 Password Recovery Authentication Bypass Vulnerability. This vulnerability allows network-adjacent attackers to bypass authentication on affected installations of TP-Link Tapo C210 IP cameras. Authentication is not required to exploit this vulnerability.\n\nThe specific flaw exists within the password recovery mechanism. The issue results from reliance upon the secrecy of the password derivation algorithm when generating a recovery password. An attacker can leverage this vulnerability to bypass authentication on the system.\n. Was ZDI-CAN-20484.",
+  "cpe_strings": "cpe:2.3:o:tp-link:tapo_c210_firmware:1.3.0:*:*:*:*:*:*:*|cpe:2.3:h:tp-link:tapo_c210:v2:*:*:*:*:*:*:*"
+ }
+]

@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2018-19121",
+  "description": "An issue has been found in libIEC61850 v1.3. It is a SEGV in Ethernet_receivePacket in ethernet_bsd.c.",
+  "cpe_strings": "cpe:2.3:a:mz-automation:libiec61850:1.3:*:*:*:*:*:*:*"
+ }
+]

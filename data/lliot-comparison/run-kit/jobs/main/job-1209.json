@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2017-0129",
+  "description": "Microsoft Lync for Mac 2011 fails to properly validate certificates, allowing remote attackers to alter server-client communications, aka \"Microsoft Lync for Mac Certificate Validation Vulnerability.\"",
+  "cpe_strings": "cpe:2.3:a:microsoft:lync_for_mac:2011:*:*:*:*:*:*:*"
+ }
+]

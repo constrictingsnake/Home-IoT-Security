@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2024-43602",
+  "description": "Azure CycleCloud Remote Code Execution Vulnerability",
+  "cpe_strings": "cpe:2.3:a:microsoft:azure_cyclecloud:*:*:*:*:*:*:*:*"
+ }
+]

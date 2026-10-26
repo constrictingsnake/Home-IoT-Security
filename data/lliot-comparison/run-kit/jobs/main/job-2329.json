@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2021-32934",
+  "description": "The affected ThroughTek P2P products (SDKs using versions before 3.1.5, any versions with nossl tag, device firmware not using AuthKey for IOTC conneciton, firmware using AVAPI module without enabling DTLS mechanism, and firmware using P2PTunnel or RDT module) do not sufficiently protect data transferred between the local device and ThroughTek servers. This can allow an attacker to access sensitive information, such as camera feeds.",
+  "cpe_strings": "cpe:2.3:a:throughtek:kalay_p2p_software_development_kit:*:*:*:*:*:*:*:*"
+ }
+]

@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2013-4802",
+  "description": "Cross-site scripting (XSS) vulnerability in HP Application Lifecycle Management (ALM) Quality Center before 11.51 allows remote attackers to inject arbitrary web script or HTML via unspecified vectors, aka ZDI-CAN-1565.",
+  "cpe_strings": "cpe:2.3:a:hp:application_lifecycle_management:*:*:*:*:*:*:*:*|cpe:2.3:a:hp:application_lifecycle_management:11.00:*:*:*:*:*:*:*"
+ }
+]

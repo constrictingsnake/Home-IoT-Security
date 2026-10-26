@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2016-6548",
+  "description": "The Zizai Tech Nut mobile app makes requests via HTTP instead of HTTPS. These requests contain the user's authenticated session token with the URL. An attacker can capture these requests and reuse the session token to gain full access the user's account.",
+  "cpe_strings": "cpe:2.3:a:nutspace:nut_mobile:-:*:*:*:*:*:*:*"
+ }
+]

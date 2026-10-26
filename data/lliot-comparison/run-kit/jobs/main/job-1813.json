@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2018-6906",
+  "description": "A persistent Cross Site Scripting (XSS) vulnerability in the Green Electronics RainMachine Mini-8 (2nd Generation) and Touch HD 12 web application allows an attacker to inject arbitrary JavaScript via the REST API.",
+  "cpe_strings": "cpe:2.3:a:rainmachine:rainmachine_web_application:-:*:*:*:*:*:*:*"
+ }
+]

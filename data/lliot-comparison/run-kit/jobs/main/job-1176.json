@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2023-27098",
+  "description": "TP-Link Tapo APK up to v2.12.703 uses hardcoded credentials for access to the login panel.",
+  "cpe_strings": "cpe:2.3:a:tp-link:tapo:*:*:*:*:*:android:*:*|cpe:2.3:h:tp-link:tapo_c200:-:*:*:*:*:*:*:*"
+ }
+]

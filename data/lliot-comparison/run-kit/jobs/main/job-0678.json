@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2023-31245",
+  "description": "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nDevices using Snap One OvrC cloud are sent to a web address when accessing a web management interface using a HTTP connection. Attackers could impersonate a device and supply malicious information about the device’s web server interface. By supplying malicious parameters, an attacker could redirect the user to arbitrary and dangerous locations on the web.\n\n\n\n\n\n\n\n\n\n\n\n\n\n",
+  "cpe_strings": "cpe:2.3:a:snapone:orvc:*:*:*:*:*:pro:*:*|cpe:2.3:h:control4:ca-1:-:*:*:*:*:*:*:*|cpe:2.3:h:control4:ca-10:-:*:*:*:*:*:*:*|cpe:2.3:h:control4:ea-1:-:*:*:*:*:*:*:*|cpe:2.3:h:control4:ea-3:-:*:*:*:*:*:*:*|cpe:2.3:h:control4:ea-5:-:*:*:*:*:*:*:*|cpe:2.3:h:snapone:an-110-rt-2l1w:-:*:*:*:*:*:*:*|cpe:2.3:h:snapone:an-110-rt-2l1w-wifi:-:*:*:*:*:*:*:*|cpe:2.3:h:snapone:an-310-rt-4l2w:-:*:*:*:*:*:*:*|cpe:2.3:h:snapone:ovrc-300-pro:-:*:*:*:*:*:*:*|cpe:2.3:h:snapone:pakedge_rk-1:-:*:*:*:*:*:*:*|cpe:2.3:h:snapone:pakedge_rt-3100:-:*:*:*:*:*:*:*|cpe:2.3:h:snapone:pakedge_wr-1:-:*:*:*:*:*:*:*"
+ }
+]

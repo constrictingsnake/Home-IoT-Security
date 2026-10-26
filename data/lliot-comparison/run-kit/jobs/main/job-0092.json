@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2022-32350",
+  "description": "Hospital's Patient Records Management System v1.0 is vulnerable to SQL Injection via /hprms/classes/Master.php?f=delete_room_type.",
+  "cpe_strings": "cpe:2.3:a:hospital\\'s_patient_records_management_system_project:hospital\\'s_patient_records_management_system:1.0:*:*:*:*:*:*:*"
+ }
+]

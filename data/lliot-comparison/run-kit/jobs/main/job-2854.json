@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2021-31875",
+  "description": "In mjs_json.c in Cesanta MongooseOS mJS 1.26, a maliciously formed JSON string can trigger an off-by-one heap-based buffer overflow in mjs_json_parse, which can potentially lead to redirection of control flow. NOTE: the original reporter disputes the significance of this finding because \"there isn’t very much of an opportunity to exploit this reliably for an information leak, so there isn’t any real security impact.\"",
+  "cpe_strings": "cpe:2.3:a:cesanta:mongooseos_mjs:1.26:*:*:*:*:*:*:*"
+ }
+]

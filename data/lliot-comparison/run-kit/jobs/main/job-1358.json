@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2022-21239",
+  "description": "Out-of-bounds read in software for the Intel QAT Driver for Windows before version 1.9.0-0008 may allow an authenticated user to potentially enable information disclosure via local access.",
+  "cpe_strings": "cpe:2.3:a:intel:quickassist_technology:*:*:*:*:*:windows:*:*"
+ }
+]

@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2023-5904",
+  "description": "Cross-site Scripting (XSS) - Stored in GitHub repository pkp/pkp-lib prior to 3.3.0-16.",
+  "cpe_strings": "cpe:2.3:a:sfu:pkp_web_application_library:*:*:*:*:*:*:*:*"
+ }
+]

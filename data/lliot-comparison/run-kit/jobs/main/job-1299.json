@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2018-5717",
+  "description": "Memory write mechanism in NCR S2 Dispenser controller before firmware version 0x0108 allows an unauthenticated user to upgrade or downgrade the firmware of the device, including to older versions with known vulnerabilities.",
+  "cpe_strings": "cpe:2.3:o:ncr:s2_dispenser_controller_firmware:*:*:*:*:*:*:*:*|cpe:2.3:h:ncr:s2_dispenser_controller:-:*:*:*:*:*:*:*"
+ }
+]

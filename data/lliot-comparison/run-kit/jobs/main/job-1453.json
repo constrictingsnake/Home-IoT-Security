@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2013-5188",
+  "description": "The Screen Lock implementation in Apple Mac OS X before 10.9, when hibernation and autologin are enabled, does not require a password for a transition out of hibernation, which allows physically proximate attackers to obtain access by visiting an unattended workstation in the hibernating state.",
+  "cpe_strings": "cpe:2.3:o:apple:mac_os_x:*:supplemental_update:*:*:*:*:*:*|cpe:2.3:o:apple:mac_os_x:10.8.0:*:*:*:*:*:*:*|cpe:2.3:o:apple:mac_os_x:10.8.1:*:*:*:*:*:*:*|cpe:2.3:o:apple:mac_os_x:10.8.2:*:*:*:*:*:*:*|cpe:2.3:o:apple:mac_os_x:10.8.3:*:*:*:*:*:*:*|cpe:2.3:o:apple:mac_os_x:10.8.4:*:*:*:*:*:*:*|cpe:2.3:o:apple:mac_os_x:10.8.5:*:*:*:*:*:*:*"
+ }
+]

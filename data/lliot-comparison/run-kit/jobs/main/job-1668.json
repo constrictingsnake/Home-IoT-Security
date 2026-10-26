@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2023-22448",
+  "description": "Improper access control for some Intel Unison software may allow a privileged user to potentially enable escalation of privilege via network access.",
+  "cpe_strings": "cpe:2.3:a:intel:unison_software:*:*:*:*:*:*:*:*|cpe:2.3:o:microsoft:windows:-:*:*:*:*:*:*:*|cpe:2.3:o:google:android:-:*:*:*:*:*:*:*|cpe:2.3:o:apple:iphone_os:-:*:*:*:*:*:*:*"
+ }
+]

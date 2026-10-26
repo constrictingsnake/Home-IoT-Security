@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2016-4927",
+  "description": "Insufficient validation of SSH keys in Junos Space before 15.2R2 allows man-in-the-middle (MITM) type of attacks while a Space device is communicating with managed devices.",
+  "cpe_strings": "cpe:2.3:o:juniper:junos_space:*:r1:*:*:*:*:*:*"
+ }
+]

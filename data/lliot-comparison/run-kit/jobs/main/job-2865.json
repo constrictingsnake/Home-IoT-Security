@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2013-4859",
+  "description": "INSTEON Hub 2242-222 lacks Web and API authentication",
+  "cpe_strings": "cpe:2.3:o:insteon:hub_firmware:2242-222:*:*:*:*:*:*:*|cpe:2.3:h:insteon:hub:-:*:*:*:*:*:*:*"
+ }
+]

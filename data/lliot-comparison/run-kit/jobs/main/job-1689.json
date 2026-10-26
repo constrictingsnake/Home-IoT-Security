@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2014-1280",
+  "description": "Video Driver in Apple iOS before 7.1 and Apple TV before 6.1 allows remote attackers to cause a denial of service (NULL pointer dereference and device hang) via a crafted video file with MPEG-4 encoding.",
+  "cpe_strings": "cpe:2.3:o:apple:tvos:*:*:*:*:*:*:*:*|cpe:2.3:o:apple:tvos:6.0:*:*:*:*:*:*:*|cpe:2.3:o:apple:tvos:6.0.1:*:*:*:*:*:*:*|cpe:2.3:o:apple:iphone_os:*:*:*:*:*:*:*:*|cpe:2.3:o:apple:iphone_os:7.0:*:*:*:*:*:*:*|cpe:2.3:o:apple:iphone_os:7.0.1:*:*:*:*:*:*:*|cpe:2.3:o:apple:iphone_os:7.0.2:*:*:*:*:*:*:*|cpe:2.3:o:apple:iphone_os:7.0.3:*:*:*:*:*:*:*|cpe:2.3:o:apple:iphone_os:7.0.4:*:*:*:*:*:*:*|cpe:2.3:o:apple:iphone_os:7.0.5:*:*:*:*:*:*:*"
+ }
+]

@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2022-42751",
+  "description": "CandidATS version 3.0.0 allows an external attacker to elevate privileges in the application. This is possible because the application suffers from CSRF. This allows to persuade an administrator to create a new account with administrative permissions.",
+  "cpe_strings": "cpe:2.3:a:auieo:candidats:3.0.0:-:*:*:*:*:*:*"
+ }
+]

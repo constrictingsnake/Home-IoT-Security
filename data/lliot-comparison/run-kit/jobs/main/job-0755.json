@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2023-34553",
+  "description": "An issue was discovered in WAFU Keyless Smart Lock v1.0 allows attackers to unlock a device via code replay attack.",
+  "cpe_strings": "cpe:2.3:o:wafucn:wafu_keyless_smart_lock_firmware:1.0:*:*:*:*:*:*:*|cpe:2.3:h:wafucn:wafu_keyless_smart_lock:-:*:*:*:*:*:*:*"
+ }
+]

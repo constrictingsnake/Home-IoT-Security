@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2017-12124",
+  "description": "An exploitable denial of service vulnerability exists in the web server functionality of Moxa EDR-810 V4.1 build 17030317. A specially crafted HTTP URI can cause a null pointer dereference resulting in the web server crashing. An attacker can send a crafted URI to trigger this vulnerability.",
+  "cpe_strings": "cpe:2.3:o:moxa:edr-810_firmware:4.1:*:*:*:*:*:*:*|cpe:2.3:h:moxa:edr-810:-:*:*:*:*:*:*:*"
+ }
+]

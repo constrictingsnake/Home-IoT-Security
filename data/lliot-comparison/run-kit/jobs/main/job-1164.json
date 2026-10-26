@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2022-42732",
+  "description": "A vulnerability has been identified in syngo Dynamics (All versions < VA40G HF01). syngo Dynamics application server hosts a web service using an operation with improper read access control that could allow files to be retrieved from any folder accessible to the account assigned to the website’s application pool.",
+  "cpe_strings": "cpe:2.3:a:siemens:syngo_dynamics_cardiovascular_imaging_and_information_system:*:*:*:*:*:*:*:*"
+ }
+]

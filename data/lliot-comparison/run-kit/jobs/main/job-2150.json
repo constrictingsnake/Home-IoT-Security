@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2024-2614",
+  "description": "Memory safety bugs present in Firefox 123, Firefox ESR 115.8, and Thunderbird 115.8. Some of these bugs showed evidence of memory corruption and we presume that with enough effort some of these could have been exploited to run arbitrary code. This vulnerability affects Firefox < 124, Firefox ESR < 115.9, and Thunderbird < 115.9.",
+  "cpe_strings": "cpe:2.3:a:mozilla:firefox:*:*:*:*:esr:*:*:*|cpe:2.3:a:mozilla:firefox:*:*:*:*:-:*:*:*|cpe:2.3:a:mozilla:thunderbird:*:*:*:*:*:*:*:*|cpe:2.3:o:debian:debian_linux:10.0:*:*:*:*:*:*:*"
+ }
+]

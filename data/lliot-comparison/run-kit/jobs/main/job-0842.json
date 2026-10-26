@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2018-6874",
+  "description": "CSRF exists in the Auth0 authentication service through 14591 if the Legacy Lock API flag is enabled.",
+  "cpe_strings": "cpe:2.3:a:auth0:auth0.js:*:*:*:*:*:*:*:*"
+ }
+]

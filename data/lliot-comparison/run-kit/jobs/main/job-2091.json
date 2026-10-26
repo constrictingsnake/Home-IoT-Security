@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2018-9280",
+  "description": "An issue was discovered on Eaton UPS 9PX 8000 SP devices. The appliance discloses the SNMP version 3 user's password. The web page displayed by the appliance contains the password in cleartext. Passwords of the read and write users could be retrieved by browsing the source code of the webpage.",
+  "cpe_strings": "cpe:2.3:o:eaton:9px_ups_firmware:-:*:*:*:*:*:*:*|cpe:2.3:h:eaton:9px_ups:-:*:*:*:*:*:*:*"
+ }
+]

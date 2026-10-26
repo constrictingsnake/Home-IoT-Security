@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2016-6242",
+  "description": "OpenBSD 5.8 and 5.9 allows local users to cause a denial of service (assertion failure and kernel panic) via a large ident value in a kevent system call.",
+  "cpe_strings": "cpe:2.3:o:openbsd:openbsd:5.8:*:*:*:*:*:*:*|cpe:2.3:o:openbsd:openbsd:5.9:*:*:*:*:*:*:*"
+ }
+]

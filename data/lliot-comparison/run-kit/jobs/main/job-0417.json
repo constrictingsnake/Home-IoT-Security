@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2022-47861",
+  "description": "Lead Management System v1.0 is vulnerable to SQL Injection via the id parameter in removeLead.php.",
+  "cpe_strings": "cpe:2.3:a:lead_management_system_project:lead_management_system:1.0:*:*:*:*:*:*:*"
+ }
+]

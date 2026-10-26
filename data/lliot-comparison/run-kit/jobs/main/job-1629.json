@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2018-11400",
+  "description": "In SimpliSafe Original, the Base Station fails to detect tamper attempts: it does not send a notification if a physically proximate attacker removes the battery and external power.",
+  "cpe_strings": "cpe:2.3:o:simplisafe:u9k-bs1000_firmware:-:*:*:*:*:*:*:*|cpe:2.3:h:simplisafe:u9k-bs1000:-:*:*:*:*:*:*:*"
+ }
+]

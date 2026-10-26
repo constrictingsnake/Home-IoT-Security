@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2021-44673",
+  "description": "A Remote Code Execution (RCE) vulnerability exists in Croogo 3.0.2via admin/file-manager/attachments, which lets a malicoius user upload a web shell script.",
+  "cpe_strings": "cpe:2.3:a:croogo:croogo:3.0.2:*:*:*:*:*:*:*"
+ }
+]

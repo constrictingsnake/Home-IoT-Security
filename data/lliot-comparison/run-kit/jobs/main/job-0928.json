@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2021-22960",
+  "description": "The parse function in llhttp < 2.1.4 and < 6.0.6. ignores chunk extensions when parsing the body of chunked requests. This leads to HTTP Request Smuggling (HRS) under certain conditions.",
+  "cpe_strings": "cpe:2.3:a:llhttp:llhttp:*:*:*:*:*:node.js:*:*|cpe:2.3:a:oracle:graalvm:20.3.4:*:*:*:enterprise:*:*:*|cpe:2.3:a:oracle:graalvm:21.3.0:*:*:*:enterprise:*:*:*|cpe:2.3:o:debian:debian_linux:11.0:*:*:*:*:*:*:*"
+ }
+]

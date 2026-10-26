@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2012-3407",
+  "description": "plow has local buffer overflow vulnerability",
+  "cpe_strings": "cpe:2.3:a:plow_project:plow:0.0.5:*:*:*:*:*:*:*"
+ }
+]

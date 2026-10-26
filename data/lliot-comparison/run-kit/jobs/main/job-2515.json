@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2023-4832",
+  "description": "Improper Neutralization of Special Elements used in an SQL Command ('SQL Injection') vulnerability in Aceka Company Management allows SQL Injection.\n\nThis issue affects Company Management: before 3072 .",
+  "cpe_strings": "cpe:2.3:a:acekaholding:company_management:*:*:*:*:*:*:*:*"
+ }
+]

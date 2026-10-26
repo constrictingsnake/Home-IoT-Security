@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2024-2455",
+  "description": "The Element Pack - Addon for Elementor Page Builder WordPress Plugin plugin for WordPress is vulnerable to Stored Cross-Site Scripting via the widget wrapper link URL in all versions up to, and including, 7.9.0 due to insufficient input sanitization and output escaping on user supplied attributes. This makes it possible for authenticated attackers with contributor-level and above permissions to inject arbitrary web scripts in pages that will execute whenever a user accesses an injected page.",
+  "cpe_strings": "cpe:2.3:a:bdthemes:element_pack:*:*:*:*:pro:wordpress:*:*"
+ }
+]

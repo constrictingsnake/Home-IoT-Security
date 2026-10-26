@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2020-7841",
+  "description": "Improper input validation vulnerability exists in TOBESOFT XPLATFORM which could cause arbitrary .hta file execution when the command string is begun with http://, https://, mailto://",
+  "cpe_strings": "cpe:2.3:a:tobesoft:xplatform:*:*:*:*:*:*:*:*"
+ }
+]

@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2020-7808",
+  "description": "In RAONWIZ K Upload v2018.0.2.51 and prior, automatic update processing without integrity check on update module(web.js) allows an attacker to modify arguments which causes downloading a random DLL and injection on it.",
+  "cpe_strings": "cpe:2.3:a:raonwiz:raon_k_upload:*:*:*:*:*:*:*:*|cpe:2.3:o:microsoft:windows_10:-:*:*:*:*:*:*:*|cpe:2.3:o:microsoft:windows_7:-:*:*:*:*:*:*:*|cpe:2.3:o:microsoft:windows_8:-:*:*:*:*:*:*:*"
+ }
+]

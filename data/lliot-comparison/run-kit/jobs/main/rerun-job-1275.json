@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2018-12072",
+  "description": "An issue was discovered in Cloud Media Popcorn A-200 03-05-130708-21-POP-411-000 firmware. It is configured to provide TELNET remote access (without a password) that pops a shell as root. If an attacker can connect to port 23 on the device, he can completely compromise it.",
+  "cpe_strings": "cpe:2.3:o:cloudmedia:popcorn_a-200_firmware:03-05-130708-21-pop-411-000_:*:*:*:*:*:*:*|cpe:2.3:h:cloudmedia:popcorn_a-200:*:*:*:*:*:*:*:*"
+ }
+]

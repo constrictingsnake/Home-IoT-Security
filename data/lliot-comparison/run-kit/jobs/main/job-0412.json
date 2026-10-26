@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2023-4432",
+  "description": "Cross-site Scripting (XSS) - Reflected in GitHub repository cockpit-hq/cockpit prior to 2.6.4.",
+  "cpe_strings": "cpe:2.3:a:agentejo:cockpit:*:*:*:*:*:*:*:*"
+ }
+]

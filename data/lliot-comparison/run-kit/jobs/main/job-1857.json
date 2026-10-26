@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2024-29236",
+  "description": "Improper neutralization of special elements used in an SQL command ('SQL Injection') vulnerability in AudioPattern.Delete webapi component in Synology Surveillance Station before 9.2.0-9289 and 9.2.0-11289 allows remote authenticated users to read database containing non-sensitive information and conduct limited denial-of-service attacks via unspecified vectors.",
+  "cpe_strings": "cpe:2.3:a:synology:surveillance_station:*:*:*:*:*:*:*:*|cpe:2.3:o:synology:diskstation_manager:6.2:*:*:*:*:*:*:*|cpe:2.3:o:synology:diskstation_manager:7.1:*:*:*:*:*:*:*|cpe:2.3:o:synology:diskstation_manager:7.2:*:*:*:*:*:*:*"
+ }
+]

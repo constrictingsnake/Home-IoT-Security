@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2023-23707",
+  "description": "Improper Neutralization of Input During Web Page Generation ('Cross-site Scripting'), Unrestricted Upload of File with Dangerous Type vulnerability in Awsm Innovations Embed Any Document – Embed PDF, Word, PowerPoint and Excel Files allows Stored XSS via upload of SVG and HTML files. This issue affects Embed Any Document – Embed PDF, Word, PowerPoint and Excel Files plugin <= 2.7.1 versions.",
+  "cpe_strings": "cpe:2.3:a:awsm:embed_any_document:*:*:*:*:*:wordpress:*:*"
+ }
+]

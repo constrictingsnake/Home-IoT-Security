@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2024-27837",
+  "description": "A downgrade issue was addressed with additional code-signing restrictions. This issue is fixed in macOS Sonoma 14.5. A local attacker may gain access to Keychain items.",
+  "cpe_strings": "cpe:2.3:o:apple:macos:*:*:*:*:*:*:*:*"
+ }
+]

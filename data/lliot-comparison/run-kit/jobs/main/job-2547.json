@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2024-50929",
+  "description": "Insecure permissions in Silicon Labs (SiLabs) Z-Wave Series 700 and 800 v7.21.1 allow attackers to arbitrarily change the device type in the controller's memory, leading to a Denial of Service (DoS).",
+  "cpe_strings": "cpe:2.3:a:silabs:z-wave_software_development_kit:*:*:*:*:*:*:*:*|cpe:2.3:h:silabs:efr32zg14p231f256gm32:-:*:*:*:*:*:*:*|cpe:2.3:h:silabs:efr32zg23a010f512gm40:-:*:*:*:*:*:*:*|cpe:2.3:h:silabs:efr32zg23a010f512gm48:-:*:*:*:*:*:*:*|cpe:2.3:h:silabs:efr32zg23a020f512gm40:-:*:*:*:*:*:*:*|cpe:2.3:h:silabs:efr32zg23a020f512gm48:-:*:*:*:*:*:*:*|cpe:2.3:h:silabs:efr32zg23b010f512im40:-:*:*:*:*:*:*:*|cpe:2.3:h:silabs:efr32zg23b010f512im48:-:*:*:*:*:*:*:*|cpe:2.3:h:silabs:efr32zg23b011f512im40:-:*:*:*:*:*:*:*|cpe:2.3:h:silabs:efr32zg23b020f512im40:-:*:*:*:*:*:*:*|cpe:2.3:h:silabs:efr32zg23b020f512im48:-:*:*:*:*:*:*:*|cpe:2.3:h:silabs:efr32zg23b021f512im40:-:*:*:*:*:*:*:*|cpe:2.3:h:silabs:zgm130s037hgn:-:*:*:*:*:*:*:*|cpe:2.3:h:silabs:zgm230sa27hgn:-:*:*:*:*:*:*:*|cpe:2.3:h:silabs:zgm230sb27hgn:-:*:*:*:*:*:*:*"
+ }
+]

@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2013-6117",
+  "description": "Dahua DVR 2.608.0000.0 and 2.608.GV00.0 allows remote attackers to bypass authentication and obtain sensitive information including user credentials, change user passwords, clear log files, and perform other actions via a request to TCP port 37777.",
+  "cpe_strings": "cpe:2.3:o:dahuasecurity:dvr_firmware:2.608.0000.0:*:*:*:*:*:*:*|cpe:2.3:o:dahuasecurity:dvr_firmware:2.608.gv00.0:*:*:*:*:*:*:*"
+ }
+]

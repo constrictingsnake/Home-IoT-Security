@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2024-34517",
+  "description": "The Cypher component in Neo4j 5.0.0 through 5.18 mishandles IMMUTABLE privileges in some situations where an attacker already has admin access.",
+  "cpe_strings": "cpe:2.3:a:neo4j:neo4j:*:*:*:*:*:community:*:*"
+ }
+]

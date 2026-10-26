@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2021-26475",
+  "description": "EPrints 3.4.2 exposes a reflected XSS opportunity in the via a cgi/cal URI.",
+  "cpe_strings": "cpe:2.3:a:eprints:eprints:3.4.2:*:*:*:*:*:*:*"
+ }
+]

@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2022-1108",
+  "description": "A potential vulnerability due to improper buffer validation in the SMI handler LenovoFlashDeviceInterface in Thinkpad X1 Fold Gen 1 could be exploited by an attacker with local access and elevated privileges to execute arbitrary code.",
+  "cpe_strings": "cpe:2.3:o:lenovo:thinkpad_x1_fold_gen_1_firmware:*:*:*:*:*:*:*:*|cpe:2.3:h:lenovo:thinkpad_x1_fold_gen_1:-:*:*:*:*:*:*:*"
+ }
+]

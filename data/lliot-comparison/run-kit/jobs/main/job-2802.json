@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2023-6640",
+  "description": "Malformed S2 Nonce Get Command Class packets can be sent to crash PC Controller v5.54.0 and earlier.",
+  "cpe_strings": "cpe:2.3:a:silabs:z-wave_pc-based_controller:*:*:*:*:*:*:*:*"
+ }
+]

@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2020-25753",
+  "description": "An issue was discovered on Enphase Envoy R3.x and D4.x devices with v3 software. The default admin password is set to the last 6 digits of the serial number. The serial number can be retrieved by an unauthenticated user at /info.xml.",
+  "cpe_strings": "cpe:2.3:o:enphase:envoy_firmware:d4.0:*:*:*:*:*:*:*|cpe:2.3:o:enphase:envoy_firmware:r3.0:*:*:*:*:*:*:*|cpe:2.3:h:enphase:envoy:-:*:*:*:*:*:*:*"
+ }
+]

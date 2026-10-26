@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2024-29244",
+  "description": "Shenzhen Libituo Technology Co., Ltd LBT-T300-mini v1.2.9 was discovered to contain a buffer overflow via the pin_code_3g parameter at /apply.cgi.",
+  "cpe_strings": "cpe:2.3:o:szlbt:lbt-t300-mini1_firmware:1.2.9:*:*:*:*:*:*:*|cpe:2.3:h:szlbt:lbt-t300-mini1:-:*:*:*:*:*:*:*"
+ }
+]

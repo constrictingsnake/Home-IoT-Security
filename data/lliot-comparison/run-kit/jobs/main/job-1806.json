@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2022-48422",
+  "description": "ONLYOFFICE Docs through 7.3 on certain Linux distributions allows local users to gain privileges via a Trojan horse libgcc_s.so.1 in the current working directory, which may be any directory in which an ONLYOFFICE document is located.",
+  "cpe_strings": "cpe:2.3:a:onlyoffice:document_server:*:*:*:*:*:*:*:*|cpe:2.3:o:linux:linux_kernel:-:*:*:*:*:*:*:*"
+ }
+]

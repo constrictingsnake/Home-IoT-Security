@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2023-0353",
+  "description": "Akuvox E11 uses a weak encryption algorithm for stored passwords and uses a hard-coded password for decryption which could allow the encrypted passwords to be decrypted from the configuration file.",
+  "cpe_strings": "cpe:2.3:o:akuvox:e11_firmware:-:*:*:*:*:*:*:*|cpe:2.3:h:akuvox:e11:-:*:*:*:*:*:*:*"
+ }
+]

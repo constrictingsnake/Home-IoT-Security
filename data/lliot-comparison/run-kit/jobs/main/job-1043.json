@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2014-1982",
+  "description": "The administrative interface in Allied Telesis AT-RG634A ADSL Broadband router 3.3+, iMG624A firmware 3.5, iMG616LH firmware 2.4, and iMG646BD firmware 3.5 allows remote attackers to gain privileges and execute arbitrary commands via a direct request to cli.html.",
+  "cpe_strings": "cpe:2.3:o:alliedtelesis:img646bd_firmware:3.5:*:*:*:*:*:*:*|cpe:2.3:h:alliedtelesis:img646bd:-:*:*:*:*:*:*:*|cpe:2.3:o:alliedtelesis:at-rg634a_firmware:3.3\\+:*:*:*:*:*:*:*|cpe:2.3:h:alliedtelesis:at-rg634a:-:*:*:*:*:*:*:*|cpe:2.3:o:alliedtelesis:img624a_firmware:3.5:*:*:*:*:*:*:*|cpe:2.3:h:alliedtelesis:img624a:-:*:*:*:*:*:*:*|cpe:2.3:o:alliedtelesis:img616lh_firmware:\\+2.4:*:*:*:*:*:*:*|cpe:2.3:h:alliedtelesis:img616lh:-:*:*:*:*:*:*:*"
+ }
+]

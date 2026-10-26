@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2024-12106",
+  "description": "In WhatsUp Gold versions released before 2024.0.2, an unauthenticated attacker can configure LDAP settings.",
+  "cpe_strings": "cpe:2.3:a:progress:whatsup_gold:*:*:*:*:*:*:*:*"
+ }
+]

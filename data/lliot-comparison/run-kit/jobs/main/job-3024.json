@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2019-13408",
+  "description": "A relative path traversal vulnerability found in Advan VD-1 firmware versions up to 230. It allows attackers to download arbitrary files via url cgibin/ExportSettings.cgi?Download=filepath, without any authentication.",
+  "cpe_strings": "cpe:2.3:o:androvideo:vd_1_firmware:*:*:*:*:*:*:*:*|cpe:2.3:h:androvideo:vd_1:-:*:*:*:*:*:*:*|cpe:2.3:o:geovision:gv-vr360_firmware:*:*:*:*:*:*:*:*|cpe:2.3:h:geovision:gv-vr360:-:*:*:*:*:*:*:*|cpe:2.3:o:geovision:gv-vd8700_firmware:*:*:*:*:*:*:*:*|cpe:2.3:h:geovision:gv-vd8700:-:*:*:*:*:*:*:*"
+ }
+]

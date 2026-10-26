@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2018-8470",
+  "description": "A security feature bypass vulnerability exists in Internet Explorer due to how scripts are handled that allows a universal cross-site scripting (UXSS) condition, aka \"Internet Explorer Security Feature Bypass Vulnerability.\" This affects Internet Explorer 11.",
+  "cpe_strings": "cpe:2.3:a:microsoft:internet_explorer:11:*:*:*:*:*:*:*|cpe:2.3:o:microsoft:windows_10:-:*:*:*:*:*:*:*|cpe:2.3:o:microsoft:windows_10:1607:*:*:*:*:*:*:*|cpe:2.3:o:microsoft:windows_10:1703:*:*:*:*:*:*:*|cpe:2.3:o:microsoft:windows_10:1709:*:*:*:*:*:*:*|cpe:2.3:o:microsoft:windows_10:1803:*:*:*:*:*:*:*|cpe:2.3:o:microsoft:windows_7:-:sp1:*:*:*:*:*:*|cpe:2.3:o:microsoft:windows_8.1:-:*:*:*:*:*:*:*|cpe:2.3:o:microsoft:windows_8.1:-:*:*:*:rt:*:*:*|cpe:2.3:o:microsoft:windows_server:2008:r2:sp1:*:*:*:x64:*|cpe:2.3:o:microsoft:windows_server:2012:r2:*:*:*:*:*:*|cpe:2.3:o:microsoft:windows_server:2016:*:*:*:*:*:*:*"
+ }
+]

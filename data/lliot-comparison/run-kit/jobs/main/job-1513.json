@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2023-31762",
+  "description": "Weak security in the transmitter of Digoo DG-HAMB Smart Home Security System v1.0 allows attackers to gain full access to the system via a code replay attack.",
+  "cpe_strings": "cpe:2.3:o:mydigoo:dg-hamb_firmware:1.0:*:*:*:*:*:*:*|cpe:2.3:h:mydigoo:dg-hamb:-:*:*:*:*:*:*:*"
+ }
+]

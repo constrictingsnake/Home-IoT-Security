@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2022-40278",
+  "description": "An issue was discovered in Samsung TizenRT through 3.0_GBM (and 3.1_PRE). createDB in security/provisioning/src/provisioningdatabasemanager.c has a missing sqlite3_free after sqlite3_exec, leading to a denial of service.",
+  "cpe_strings": "cpe:2.3:o:samsung:tizenrt:1.0:m1:*:*:*:*:*:*|cpe:2.3:o:samsung:tizenrt:1.1:*:*:*:*:*:*:*|cpe:2.3:o:samsung:tizenrt:2.0:gbm_m1:*:*:*:*:*:*|cpe:2.3:o:samsung:tizenrt:2.0:m2:*:*:*:*:*:*|cpe:2.3:o:samsung:tizenrt:3.0:gbm:*:*:*:*:*:*|cpe:2.3:o:samsung:tizenrt:3.1:pre:*:*:*:*:*:*"
+ }
+]

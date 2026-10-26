@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2018-18329",
+  "description": "A KERedirect Untrusted Pointer Dereference Privilege Escalation vulnerability in Trend Micro Antivirus for Mac (Consumer) 7.0 (2017) and above could allow a local attacker to escalate privileges on vulnerable installations. The issue results from the lack of proper validation function on 0x6F4E offset user-supplied buffer. An attacker must first obtain the ability to execute low-privileged code on the target system in order to exploit this vulnerability.",
+  "cpe_strings": "cpe:2.3:a:trendmicro:antivirus_for_mac_2017:*:*:*:*:*:*:*:*|cpe:2.3:a:trendmicro:antivirus_for_mac_2018:*:*:*:*:*:*:*:*|cpe:2.3:a:trendmicro:antivirus_for_mac_2019:*:*:*:*:*:*:*:*"
+ }
+]

@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2023-36160",
+  "description": "An issue was discovered in Qubo Smart Plug10A version HSP02_01_01_14_SYSTEM-10 A, allows local attackers to gain sensitive information and other unspecified impact via UART console.",
+  "cpe_strings": "cpe:2.3:o:quboworld:smart_plug_10a_firmware:hsp02_01_01_14_system-10_a:*:*:*:*:*:*:*|cpe:2.3:h:quboworld:smart_plug_10a:-:*:*:*:*:*:*:*"
+ }
+]

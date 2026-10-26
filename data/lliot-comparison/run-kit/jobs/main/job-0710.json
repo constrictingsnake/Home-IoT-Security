@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2023-7005",
+  "description": "A specially crafted message can be sent to the TTLock App that downgrades the encryption protocol used for communication, and can be utilized to compromise the lock, such as through revealing the unlockKey field.",
+  "cpe_strings": ""
+ }
+]

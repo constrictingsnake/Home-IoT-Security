@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2024-46959",
+  "description": "runofast Indoor Security Camera for Baby Monitor has a default password of password for the root account. This allows access to the /stream1 URI via the rtsp:// protocol to receive the video and audio stream.",
+  "cpe_strings": ""
+ }
+]

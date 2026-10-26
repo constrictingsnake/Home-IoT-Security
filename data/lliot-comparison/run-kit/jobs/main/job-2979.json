@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2017-5208",
+  "description": "Integer overflow in the wrestool program in icoutils before 0.31.1 allows remote attackers to cause a denial of service (memory corruption) via a crafted executable, which triggers a denial of service (application crash) or the possibility of execution of arbitrary code.",
+  "cpe_strings": "cpe:2.3:a:icoutils_project:icoutils:*:*:*:*:*:*:*:*|cpe:2.3:o:debian:debian_linux:8.0:*:*:*:*:*:*:*|cpe:2.3:o:redhat:enterprise_linux_desktop:7.0:*:*:*:*:*:*:*|cpe:2.3:o:redhat:enterprise_linux_server:7.0:*:*:*:*:*:*:*|cpe:2.3:o:redhat:enterprise_linux_server_aus:7.3:*:*:*:*:*:*:*|cpe:2.3:o:redhat:enterprise_linux_server_aus:7.4:*:*:*:*:*:*:*|cpe:2.3:o:redhat:enterprise_linux_server_aus:7.6:*:*:*:*:*:*:*|cpe:2.3:o:redhat:enterprise_linux_server_eus:7.3:*:*:*:*:*:*:*|cpe:2.3:o:redhat:enterprise_linux_server_eus:7.4:*:*:*:*:*:*:*|cpe:2.3:o:redhat:enterprise_linux_server_eus:7.5:*:*:*:*:*:*:*|cpe:2.3:o:redhat:enterprise_linux_server_eus:7.6:*:*:*:*:*:*:*|cpe:2.3:o:redhat:enterprise_linux_server_tus:7.3:*:*:*:*:*:*:*|cpe:2.3:o:redhat:enterprise_linux_server_tus:7.6:*:*:*:*:*:*:*|cpe:2.3:o:redhat:enterprise_linux_workstation:7.0:*:*:*:*:*:*:*"
+ }
+]

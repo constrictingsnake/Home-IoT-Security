@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2024-3130",
+  "description": "Hard-coded Credentials in CoolKit eWeLlink app are before 5.4.x on Android and IOS allows local attacker to unauthorized access to sensitive data via Decryption algorithm and key obtained after decompiling app\n\n",
+  "cpe_strings": ""
+ }
+]

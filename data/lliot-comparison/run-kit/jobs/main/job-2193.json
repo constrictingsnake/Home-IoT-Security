@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2020-21013",
+  "description": "emlog v6.0.0 contains a SQL injection via /admin/comment.php.",
+  "cpe_strings": "cpe:2.3:a:emlog:emlog:6.0.0:-:*:*:*:*:*:*"
+ }
+]

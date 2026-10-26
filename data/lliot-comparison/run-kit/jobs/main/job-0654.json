@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2023-30399",
+  "description": "Insecure permissions in the settings page of GARO Wallbox GLB/GTB/GTC before v189 allows attackers to redirect users to a crafted update package link via a man-in-the-middle attack.",
+  "cpe_strings": "cpe:2.3:o:garo:wallbox_glb_firmware:*:*:*:*:*:*:*:*|cpe:2.3:h:garo:wallbox_glb:-:*:*:*:*:*:*:*|cpe:2.3:o:garo:wallbox_gtb_firmware:*:*:*:*:*:*:*:*|cpe:2.3:h:garo:wallbox_gtb:-:*:*:*:*:*:*:*|cpe:2.3:o:garo:wallbox_gtc_firmware:*:*:*:*:*:*:*:*|cpe:2.3:h:garo:wallbox_gtc:-:*:*:*:*:*:*:*"
+ }
+]

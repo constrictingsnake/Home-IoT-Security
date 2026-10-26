@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2023-7089",
+  "description": "The Easy SVG Allow WordPress plugin through 1.0 does not sanitize uploaded SVG files, which could allow users with a role as low as Author to upload a malicious SVG containing XSS payloads.",
+  "cpe_strings": "cpe:2.3:a:benjaminzekavica:easy_svg_support:*:*:*:*:*:wordpress:*:*"
+ }
+]

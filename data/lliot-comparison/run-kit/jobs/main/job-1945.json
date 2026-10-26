@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2014-7004",
+  "description": "The PETA (aka com.peta.android) application 1.1 for Android does not verify X.509 certificates from SSL servers, which allows man-in-the-middle attackers to spoof servers and obtain sensitive information via a crafted certificate.",
+  "cpe_strings": "cpe:2.3:a:peta:peta:1.1:*:*:*:*:android:*:*"
+ }
+]

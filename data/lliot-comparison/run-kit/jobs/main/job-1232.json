@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2022-31363",
+  "description": "Cypress : https://www.infineon.com/ Cypress Bluetooth Mesh SDK BSA0107_05.01.00-BX8-AMESH-08 is affected by: Buffer Overflow. The impact is: execute arbitrary code (remote). The component is: affected function is pb_transport_handle_frag_. ¶¶ In Cypress Bluetooth Mesh SDK, there is an out-of-bound write vulnerability that can be triggered during mesh provisioning. Because there is no check for mismatched SegN and TotalLength in Transaction Start PDU.",
+  "cpe_strings": "cpe:2.3:a:infineon:cypress_bluetooth_mesh_software_development_kit:bsa0107_05.01.00-bx8-amesh-08:*:*:*:*:*:*:*"
+ }
+]

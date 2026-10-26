@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2019-9871",
+  "description": "Jector Smart TV FM-K75 devices allow remote code execution because there is an adb open port with root permission.",
+  "cpe_strings": "cpe:2.3:o:jector:fm-k75_firmware:-:*:*:*:*:*:*:*|cpe:2.3:h:jector:fm-k75:-:*:*:*:*:*:*:*"
+ }
+]

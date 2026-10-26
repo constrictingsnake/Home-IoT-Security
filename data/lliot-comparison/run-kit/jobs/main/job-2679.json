@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2023-48184",
+  "description": "QuickJS before 7414e5f has a quickjs.h JS_FreeValueRT use-after-free because of incorrect garbage collection of async functions with closures.",
+  "cpe_strings": "cpe:2.3:a:quickjs_project:quickjs:*:*:*:*:*:*:*:*"
+ }
+]

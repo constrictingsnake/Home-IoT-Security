@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2023-6181",
+  "description": "An oversight in BCB handling of reboot reason that allows for persistent code execution",
+  "cpe_strings": "cpe:2.3:o:google:chromecast_firmware:*:*:*:*:*:*:*:*|cpe:2.3:h:google:chromecast:-:*:*:*:*:*:*:*"
+ }
+]

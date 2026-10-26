@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2024-44258",
+  "description": "This issue was addressed with improved handling of symlinks. This issue is fixed in iOS 17.7.1 and iPadOS 17.7.1, iOS 18.1 and iPadOS 18.1, tvOS 18.1, visionOS 2.1. Restoring a maliciously crafted backup file may lead to modification of protected system files.",
+  "cpe_strings": "cpe:2.3:o:apple:ipados:*:*:*:*:*:*:*:*|cpe:2.3:o:apple:iphone_os:*:*:*:*:*:*:*:*|cpe:2.3:o:apple:tvos:*:*:*:*:*:*:*:*|cpe:2.3:o:apple:visionos:*:*:*:*:*:*:*:*"
+ }
+]

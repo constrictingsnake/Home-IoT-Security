@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2019-9284",
+  "description": "In Bluetooth, there is a possible out of bounds read due to a missing bounds check. This could lead to remote information disclosure, with no additional privileges required. User interaction is not needed for exploitation. Product: AndroidVersions: Android-10Android ID: A-111850706",
+  "cpe_strings": "cpe:2.3:o:google:android:10.0:*:*:*:*:*:*:*"
+ }
+]

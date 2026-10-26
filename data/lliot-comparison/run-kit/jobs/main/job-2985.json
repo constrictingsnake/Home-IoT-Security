@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2020-7550",
+  "description": "A CWE-119 Improper Restriction of Operations within the Bounds of a Memory Buffer vulnerability exists in IGSS Definition (Def.exe) version 14.0.0.20247 and prior that could cause Remote Code Execution when malicious CGF (Configuration Group File) file is imported to IGSS Definition.",
+  "cpe_strings": "cpe:2.3:a:schneider-electric:interactive_graphical_scada_system:*:*:*:*:*:*:*:*"
+ }
+]

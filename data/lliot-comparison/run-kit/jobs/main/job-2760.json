@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2024-7391",
+  "description": "ChargePoint Home Flex Bluetooth Low Energy Information Disclosure Vulnerability. This vulnerability allows network-adjacent attackers to disclose sensitive information on affected installations of ChargePoint Home Flex charging devices. User interaction is required to exploit this vulnerability.\n\nThe specific flaw exists within the Wi-Fi setup logic. By connecting to the device over Bluetooth Low Energy during the setup process, an attacker can obtain Wi-Fi credentials. An attacker can leverage this vulnerability to disclose credentials and gain access to the device owner's Wi-Fi network. Was ZDI-CAN-21454.",
+  "cpe_strings": "cpe:2.3:o:chargepoint:home_flex_firmware:5.5.3.13:*:*:*:*:*:*:*|cpe:2.3:h:chargepoint:home_flex:-:*:*:*:*:*:*:*"
+ }
+]

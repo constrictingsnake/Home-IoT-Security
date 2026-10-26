@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2024-48638",
+  "description": "D-Link DIR_882_FW130B06 and DIR_878 DIR_878_FW130B08 were discovered to contain a command injection vulnerability via the SubnetMask parameter in the SetGuestZoneRouterSettings function. This vulnerability allows attackers to execute arbitrary OS commands via a crafted POST request.",
+  "cpe_strings": "cpe:2.3:o:dlink:dir-882_firmware:1.30b06:*:*:*:*:*:*:*|cpe:2.3:h:dlink:dir-882:-:*:*:*:*:*:*:*|cpe:2.3:o:dlink:dir-878_firmware:1.30b08:-:*:*:*:*:*:*|cpe:2.3:h:dlink:dir-878:-:*:*:*:*:*:*:*"
+ }
+]

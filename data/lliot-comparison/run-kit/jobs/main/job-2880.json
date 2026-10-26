@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2018-17907",
+  "description": "When processing project files in Omron CX-Supervisor Versions 3.4.1.0 and prior and tampering with the value of an offset, an attacker can force the application to read a value outside of an array.",
+  "cpe_strings": "cpe:2.3:a:omron:cx-supervisor:*:*:*:*:*:*:*:*"
+ }
+]

@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2023-24044",
+  "description": "A Host Header Injection issue on the Login page of Plesk Obsidian through 18.0.49 allows attackers to redirect users to malicious websites via a Host request header. NOTE: the vendor's position is \"the ability to use arbitrary domain names to access the panel is an intended feature.\"",
+  "cpe_strings": "cpe:2.3:a:plesk:obsidian:*:*:*:*:*:*:*:*"
+ }
+]

@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2019-12780",
+  "description": "The Belkin Wemo Enabled Crock-Pot allows command injection in the Wemo UPnP API via the SmartDevURL argument to the SetSmartDevInfo action. A simple POST request to /upnp/control/basicevent1 can allow an attacker to execute commands without authentication.",
+  "cpe_strings": "cpe:2.3:o:belkin:crock-pot_smart_slow_cooker_with_wemo_firmware:-:*:*:*:*:*:*:*|cpe:2.3:h:belkin:crock-pot_smart_slow_cooker_with_wemo:-:*:*:*:*:*:*:*"
+ }
+]

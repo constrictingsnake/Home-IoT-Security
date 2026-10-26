@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2020-17563",
+  "description": "Path Traversal in FeiFeiCMS v4.0 allows remote attackers to delete arbitrary files by sending a crafted HTTP request to \" /index.php?s=/admin-tpl-del&id=\".",
+  "cpe_strings": "cpe:2.3:a:feifeicms:feifeicms:4.0:*:*:*:*:*:*:*"
+ }
+]

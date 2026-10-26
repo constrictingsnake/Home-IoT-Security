@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2023-21538",
+  "description": ".NET Denial of Service Vulnerability",
+  "cpe_strings": "cpe:2.3:a:microsoft:.net:6.0.0:-:*:*:*:*:*:*|cpe:2.3:a:microsoft:powershell:7.2:*:*:*:*:*:*:*|cpe:2.3:o:fedoraproject:fedora:36:*:*:*:*:*:*:*|cpe:2.3:o:fedoraproject:fedora:37:*:*:*:*:*:*:*"
+ }
+]

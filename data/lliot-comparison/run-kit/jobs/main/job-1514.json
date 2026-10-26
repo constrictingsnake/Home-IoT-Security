@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2018-20299",
+  "description": "An issue was discovered in several Bosch Smart Home cameras (360 degree indoor camera and Eyes outdoor camera) with firmware before 6.52.4. A malicious client could potentially succeed in the unauthorized execution of code on the device via the network interface, because there is a buffer overflow in the RCP+ parser of the web server.",
+  "cpe_strings": "cpe:2.3:o:bosch:360-indoor_camera_firmware:*:*:*:*:*:*:*:*|cpe:2.3:h:bosch:360-indoor_camera:-:*:*:*:*:*:*:*|cpe:2.3:o:bosch:eyes_outdoor_camera_firmware:*:*:*:*:*:*:*:*|cpe:2.3:h:bosch:eyes_outdoor_camera:-:*:*:*:*:*:*:*"
+ }
+]

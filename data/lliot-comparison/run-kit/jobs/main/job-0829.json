@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2019-3937",
+  "description": "Crestron AM-100 with firmware 1.6.0.2 and AM-101 with firmware 2.7.0.2 stores usernames, passwords, slideshow passcode, and other configuration options in cleartext in the file /tmp/scfgdndf. A local attacker can use this vulnerability to recover sensitive data.",
+  "cpe_strings": "cpe:2.3:o:crestron:am-100_firmware:1.6.0.2:*:*:*:*:*:*:*|cpe:2.3:h:crestron:am-100:-:*:*:*:*:*:*:*|cpe:2.3:o:crestron:am-101_firmware:2.7.0.2:*:*:*:*:*:*:*|cpe:2.3:h:crestron:am-101:-:*:*:*:*:*:*:*"
+ }
+]

@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2024-6509",
+  "description": "Marinus Pfund, member of the AXIS OS Bug Bounty Program, \nhas found the VAPIX API alwaysmulti.cgi was vulnerable for file globbing which could lead to resource exhaustion of the Axis device. \nAxis has released patched AXIS OS versions for the highlighted flaw. Please refer to the Axis security advisory for more information and solution.",
+  "cpe_strings": ""
+ }
+]

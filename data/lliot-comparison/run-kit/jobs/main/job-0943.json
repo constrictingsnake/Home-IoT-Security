@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2024-27711",
+  "description": "An issue in Eskooly Free Online School management Software v.3.0 and before allows a remote attacker to escalate privileges via the Sin-up process function in the account settings.",
+  "cpe_strings": "cpe:2.3:a:eskooly:eskooly:*:*:*:*:*:*:*:*"
+ }
+]

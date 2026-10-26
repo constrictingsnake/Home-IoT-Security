@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2014-9176",
+  "description": "Cross-site scripting (XSS) vulnerability in the InstaSqueeze Sexy Squeeze Pages plugin for WordPress allows remote attackers to inject arbitrary web script or HTML via the id parameter to lp/index.php.",
+  "cpe_strings": "cpe:2.3:a:instasqueeze:sexy_squeeze_pages:-:*:*:*:*:wordpress:*:*"
+ }
+]

@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2022-27847",
+  "description": "Cross-Site Request Forgery (CSRF) vulnerability in Yooslider Yoo Slider <= 2.0.0 on WordPress allows attackers to import templates.",
+  "cpe_strings": "cpe:2.3:a:yooslider:yoo_slider:*:*:*:*:*:*:*:*"
+ }
+]

@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2019-14238",
+  "description": "On STMicroelectronics STM32F7 devices, Proprietary Code Read Out Protection (PCROP) (a software IP protection method) can be defeated with a debug probe via the Instruction Tightly Coupled Memory (ITCM) bus.",
+  "cpe_strings": "cpe:2.3:o:st:stm32l0_firmware:-:*:*:*:*:*:*:*|cpe:2.3:h:st:stm32l0:-:*:*:*:*:*:*:*|cpe:2.3:o:st:stm32l1_firmware:-:*:*:*:*:*:*:*|cpe:2.3:h:st:stm32l1:-:*:*:*:*:*:*:*|cpe:2.3:o:st:stm32f4_firmware:-:*:*:*:*:*:*:*|cpe:2.3:h:st:stm32f4:-:*:*:*:*:*:*:*|cpe:2.3:o:st:stm32l4_firmware:-:*:*:*:*:*:*:*|cpe:2.3:h:st:stm32l4:-:*:*:*:*:*:*:*|cpe:2.3:o:st:stm32f7_firmware:-:*:*:*:*:*:*:*|cpe:2.3:h:st:stm32f7:-:*:*:*:*:*:*:*|cpe:2.3:o:st:stm32h7_firmware:-:*:*:*:*:*:*:*|cpe:2.3:h:st:stm32h7:-:*:*:*:*:*:*:*"
+ }
+]

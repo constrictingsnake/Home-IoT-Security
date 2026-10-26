@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2022-0935",
+  "description": "Host Header injection in password Reset in GitHub repository livehelperchat/livehelperchat prior to 3.97.",
+  "cpe_strings": "cpe:2.3:a:livehelperchat:live_helper_chat:*:*:*:*:*:*:*:*"
+ }
+]

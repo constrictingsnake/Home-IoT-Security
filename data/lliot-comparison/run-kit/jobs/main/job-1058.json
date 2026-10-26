@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2022-40008",
+  "description": "SWFTools commit 772e55a was discovered to contain a heap-buffer overflow via the function readU8 at /lib/ttf.c.",
+  "cpe_strings": "cpe:2.3:a:swftools:swftools:2021-12-16:*:*:*:*:*:*:*"
+ }
+]

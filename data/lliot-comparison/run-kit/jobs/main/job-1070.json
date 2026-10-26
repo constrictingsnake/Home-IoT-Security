@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2022-46314",
+  "description": "The IPC module has defects introduced in the design process. Successful exploitation of this vulnerability may affect system availability.",
+  "cpe_strings": "cpe:2.3:o:huawei:harmonyos:*:*:*:*:*:*:*:*"
+ }
+]

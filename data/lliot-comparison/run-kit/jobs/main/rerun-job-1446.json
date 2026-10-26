@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2015-9364",
+  "description": "2Checkout Add-on for iThemes Exchange before 1.1.0 for WordPress has XSS via add_query_arg() and remove_query_arg().",
+  "cpe_strings": "cpe:2.3:a:2checkout:ithemes_2checkout:*:*:*:*:*:wordpress:*:*"
+ }
+]

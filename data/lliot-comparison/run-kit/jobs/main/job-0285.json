@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2022-25929",
+  "description": "The package smoothie from 1.31.0 and before 1.36.1 are vulnerable to Cross-site Scripting (XSS) due to improper user input sanitization in strokeStyle and tooltipLabel properties. Exploiting this vulnerability is possible when the user can control these properties.",
+  "cpe_strings": "cpe:2.3:a:smoothiecharts:smoothie_charts:*:*:*:*:*:node.js:*:*"
+ }
+]

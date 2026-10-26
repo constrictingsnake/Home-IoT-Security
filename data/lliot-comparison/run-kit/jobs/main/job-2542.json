@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2022-36749",
+  "description": "RPi-Jukebox-RFID v2.3.0 was discovered to contain a command injection vulnerability via the component /htdocs/utils/Files.php. This vulnerability is exploited via a crafted payload injected into the file name of an uploaded file.",
+  "cpe_strings": "cpe:2.3:a:sourcefabric:rpi-jukebox-rfid:2.3.0:*:*:*:*:*:*:*"
+ }
+]

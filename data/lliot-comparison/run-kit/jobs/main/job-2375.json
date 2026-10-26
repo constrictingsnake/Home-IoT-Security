@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2022-2912",
+  "description": "The Craw Data WordPress plugin through 1.0.0 does not implement nonce checks, which could allow attackers to make a logged in admin change the url value performing unwanted crawls on third-party sites (SSRF).",
+  "cpe_strings": "cpe:2.3:a:craw-data_project:craw-data:*:*:*:*:*:wordpress:*:*"
+ }
+]

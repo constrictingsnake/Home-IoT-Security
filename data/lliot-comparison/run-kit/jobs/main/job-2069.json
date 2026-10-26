@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2020-17037",
+  "description": "Windows WalletService Elevation of Privilege Vulnerability",
+  "cpe_strings": "cpe:2.3:o:microsoft:windows_10:-:*:*:*:*:*:*:*|cpe:2.3:o:microsoft:windows_10:20h2:*:*:*:*:*:*:*|cpe:2.3:o:microsoft:windows_10:1709:*:*:*:*:*:*:*|cpe:2.3:o:microsoft:windows_10:1803:*:*:*:*:*:*:*|cpe:2.3:o:microsoft:windows_10:1809:*:*:*:*:*:*:*|cpe:2.3:o:microsoft:windows_10:1903:*:*:*:*:*:*:*|cpe:2.3:o:microsoft:windows_10:1909:*:*:*:*:*:*:*|cpe:2.3:o:microsoft:windows_10:2004:*:*:*:*:*:*:*"
+ }
+]

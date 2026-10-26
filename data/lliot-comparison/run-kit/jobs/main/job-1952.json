@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2023-49251",
+  "description": "A vulnerability has been identified in SIMATIC CN 4100 (All versions < V2.7). The \"intermediate installation\" system state of the affected application allows an attacker to add their own login credentials to the device. This allows an attacker to remotely login as root and take control of the device even after the affected device is fully set up.",
+  "cpe_strings": "cpe:2.3:o:siemens:simatic_cn_4100_firmware:*:*:*:*:*:*:*:*|cpe:2.3:h:siemens:simatic_cn_4100:-:*:*:*:*:*:*:*"
+ }
+]

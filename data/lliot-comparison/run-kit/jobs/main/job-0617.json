@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2024-47636",
+  "description": "Deserialization of Untrusted Data vulnerability in eyecix JobSearch wp-jobsearch allows Object Injection.This issue affects JobSearch: from n/a through <= 2.5.9.",
+  "cpe_strings": "cpe:2.3:a:eyecix:jobsearch_wp_job_board:*:*:*:*:*:wordpress:*:*"
+ }
+]

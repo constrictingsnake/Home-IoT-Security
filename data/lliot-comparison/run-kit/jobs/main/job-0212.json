@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2022-27133",
+  "description": "zbzcms v1.0 was discovered to contain an arbitrary file deletion vulnerability via /include/up.php.",
+  "cpe_strings": "cpe:2.3:a:zbzcms:zbzcms:1.0:*:*:*:*:*:*:*"
+ }
+]

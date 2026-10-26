@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2016-3049",
+  "description": "IBM OpenPages GRC Platform 7.1, 7.2, and 7.3 is vulnerable to HTML injection. A remote attacker could inject malicious HTML code, which when viewed, would be executed in the victim's Web browser within the security context of the hosting site. IBM X-Force ID: 114712.",
+  "cpe_strings": "cpe:2.3:a:ibm:openpages_grc_platform:7.1:*:*:*:*:*:*:*|cpe:2.3:a:ibm:openpages_grc_platform:7.2:*:*:*:*:*:*:*|cpe:2.3:a:ibm:openpages_grc_platform:7.3:*:*:*:*:*:*:*"
+ }
+]

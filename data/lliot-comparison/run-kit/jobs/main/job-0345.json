@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2013-3539",
+  "description": "Cross-site request forgery (CSRF) vulnerability in the command/user.cgi in Sony SNC CH140, SNC CH180, SNC CH240, SNC CH280, SNC DH140, SNC DH140T, SNC DH180, SNC DH240, SNC DH240T, SNC DH280, and possibly other camera models allows remote attackers to hijack the authentication of administrators for requests that add users.",
+  "cpe_strings": "cpe:2.3:h:ovislink:airlive_wl2600cam:-:*:*:*:*:*:*:*|cpe:2.3:h:sony:snc_ch140:-:*:*:*:*:*:*:*|cpe:2.3:h:sony:snc_ch180:-:*:*:*:*:*:*:*|cpe:2.3:h:sony:snc_ch240:-:*:*:*:*:*:*:*|cpe:2.3:h:sony:snc_ch280:-:*:*:*:*:*:*:*|cpe:2.3:h:sony:snc_dh140:-:*:*:*:*:*:*:*|cpe:2.3:h:sony:snc_dh140t:-:*:*:*:*:*:*:*|cpe:2.3:h:sony:snc_dh180:-:*:*:*:*:*:*:*|cpe:2.3:h:sony:snc_dh240:-:*:*:*:*:*:*:*|cpe:2.3:h:sony:snc_dh240t:-:*:*:*:*:*:*:*|cpe:2.3:h:sony:snc_dh280:-:*:*:*:*:*:*:*"
+ }
+]

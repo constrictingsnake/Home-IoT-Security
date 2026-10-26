@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2019-10664",
+  "description": "Domoticz before 4.10578 allows SQL Injection via the idx parameter in CWebServer::GetFloorplanImage in WebServer.cpp.",
+  "cpe_strings": "cpe:2.3:a:domoticz:domoticz:*:*:*:*:*:*:*:*"
+ }
+]

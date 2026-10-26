@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2021-45960",
+  "description": "In Expat (aka libexpat) before 2.4.3, a left shift by 29 (or more) places in the storeAtts function in xmlparse.c can lead to realloc misbehavior (e.g., allocating too few bytes, or only freeing memory).",
+  "cpe_strings": "cpe:2.3:a:libexpat_project:libexpat:*:*:*:*:*:*:*:*|cpe:2.3:a:tenable:nessus:*:*:*:*:*:*:*:*|cpe:2.3:o:debian:debian_linux:10.0:*:*:*:*:*:*:*|cpe:2.3:o:debian:debian_linux:11.0:*:*:*:*:*:*:*|cpe:2.3:a:siemens:sinema_remote_connect_server:*:*:*:*:*:*:*:*|cpe:2.3:a:netapp:active_iq_unified_manager:-:*:*:*:*:vmware_vsphere:*:*|cpe:2.3:a:netapp:hci_baseboard_management_controller:h610c:*:*:*:*:*:*:*|cpe:2.3:a:netapp:hci_baseboard_management_controller:h610s:*:*:*:*:*:*:*|cpe:2.3:a:netapp:hci_baseboard_management_controller:h615c:*:*:*:*:*:*:*|cpe:2.3:a:netapp:oncommand_workflow_automation:-:*:*:*:*:*:*:*|cpe:2.3:a:netapp:solidfire_\\&_hci_management_node:-:*:*:*:*:*:*:*"
+ }
+]

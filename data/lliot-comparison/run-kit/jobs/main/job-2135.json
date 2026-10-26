@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2024-43614",
+  "description": "Relative path traversal in Microsoft Defender for Endpoint allows an authorized attacker to perform spoofing locally.",
+  "cpe_strings": "cpe:2.3:a:microsoft:defender_for_endpoint:*:*:*:*:*:linux:*:*"
+ }
+]

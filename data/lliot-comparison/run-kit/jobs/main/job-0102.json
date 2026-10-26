@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2015-2887",
+  "description": "iBaby M3S has a password of admin for the backdoor admin account.",
+  "cpe_strings": "cpe:2.3:o:ibaby:m3s_baby_monitor_firmware:-:*:*:*:*:*:*:*|cpe:2.3:h:ibaby:m3s_baby_monitor:-:*:*:*:*:*:*:*"
+ }
+]

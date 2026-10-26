@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2023-22280",
+  "description": "MAHO-PBX NetDevancer Lite/Uni/Pro/Cloud prior to Ver.1.11.00, MAHO-PBX NetDevancer VSG Lite/Uni prior to Ver.1.11.00, and MAHO-PBX NetDevancer MobileGate Home/Office prior to Ver.1.11.00 allow a remote authenticated attacker with an administrative privilege to execute an arbitrary OS command.",
+  "cpe_strings": "cpe:2.3:o:ate-mahoroba:maho-pbx_netdevancer_firmware:*:*:*:*:lite:*:*:*|cpe:2.3:h:ate-mahoroba:maho-pbx_netdevancer:-:*:*:*:lite:*:*:*|cpe:2.3:o:ate-mahoroba:maho-pbx_netdevancer_vsg_firmware:*:*:*:*:lite:*:*:*|cpe:2.3:h:ate-mahoroba:maho-pbx_netdevancer_vsg:-:*:*:*:lite:*:*:*|cpe:2.3:o:ate-mahoroba:maho-pbx_netdevancer_mobilegate_firmware:*:*:*:*:home:*:*:*|cpe:2.3:h:ate-mahoroba:maho-pbx_netdevancer_mobilegate:-:*:*:*:home:*:*:*|cpe:2.3:o:ate-mahoroba:maho-pbx_netdevancer_firmware:*:*:*:*:uni:*:*:*|cpe:2.3:h:ate-mahoroba:maho-pbx_netdevancer:-:*:*:*:uni:*:*:*|cpe:2.3:o:ate-mahoroba:maho-pbx_netdevancer_firmware:*:*:*:*:pro:*:*:*|cpe:2.3:h:ate-mahoroba:maho-pbx_netdevancer:-:*:*:*:pro:*:*:*|cpe:2.3:o:ate-mahoroba:maho-pbx_netdevancer_firmware:*:*:*:*:cloud:*:*:*|cpe:2.3:h:ate-mahoroba:maho-pbx_netdevancer:-:*:*:*:cloud:*:*:*|cpe:2.3:o:ate-mahoroba:maho-pbx_netdevancer_vsg_firmware:*:*:*:*:uni:*:*:*|cpe:2.3:h:ate-mahoroba:maho-pbx_netdevancer_vsg:-:*:*:*:uni:*:*:*|cpe:2.3:o:ate-mahoroba:maho-pbx_netdevancer_mobilegate_firmware:*:*:*:*:office:*:*:*|cpe:2.3:h:ate-mahoroba:maho-pbx_netdevancer_mobilegate:-:*:*:*:office:*:*:*"
+ }
+]

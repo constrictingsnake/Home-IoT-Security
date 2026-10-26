@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2023-49837",
+  "description": "Uncontrolled Resource Consumption vulnerability in David Artiss Code Embed.This issue affects Code Embed: from n/a through 2.3.6.",
+  "cpe_strings": "cpe:2.3:a:davidartiss:code_embed:*:*:*:*:*:wordpress:*:*"
+ }
+]

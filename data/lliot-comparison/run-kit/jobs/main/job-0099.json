@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2023-46522",
+  "description": "TP-LINK device TL-WR886N V7.0_3.0.14_Build_221115_Rel.56908n.bin and TL-WDR7660 2.0.30 were discovered to contain a stack overflow via the function deviceInfoRegister.",
+  "cpe_strings": "cpe:2.3:o:tp-link:tl-wr886n_firmware:3.0.14:*:*:*:*:*:*:*|cpe:2.3:h:tp-link:tl-wr886n:7.0:*:*:*:*:*:*:*"
+ }
+]

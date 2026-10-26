@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2016-8564",
+  "description": "SQL injection vulnerability in Siemens Automation License Manager (ALM) before 5.3 SP3 Update 1 allows remote attackers to execute arbitrary SQL commands via crafted traffic to TCP port 4410.",
+  "cpe_strings": "cpe:2.3:a:siemens:automation_license_manager:*:sp3:*:*:*:*:*:*"
+ }
+]

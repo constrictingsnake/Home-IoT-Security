@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2023-5573",
+  "description": "Allocation of Resources Without Limits or Throttling in GitHub repository vriteio/vrite prior to 0.3.0.",
+  "cpe_strings": "cpe:2.3:a:vrite:vrite:*:*:*:*:*:*:*:*"
+ }
+]

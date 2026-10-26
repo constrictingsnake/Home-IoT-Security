@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2023-31187",
+  "description": "Avaya IX Workforce Engagement v15.2.7.1195 - CWE-522: Insufficiently Protected Credentials",
+  "cpe_strings": "cpe:2.3:a:avaya:ix_workforce_engagement:15.2.7.1195:*:*:*:*:*:*:*"
+ }
+]

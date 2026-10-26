@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2018-15768",
+  "description": "Dell OpenManage Network Manager versions prior to 6.5.0 enabled read/write access to the file system for MySQL users due to insecure default configuration setting for the embedded MySQL database.",
+  "cpe_strings": "cpe:2.3:a:dell:openmanage_network_manager:*:*:*:*:*:*:*:*"
+ }
+]

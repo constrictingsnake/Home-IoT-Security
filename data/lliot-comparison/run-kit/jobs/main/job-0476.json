@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2024-23958",
+  "description": "Autel MaxiCharger AC Elite Business C50 BLE Hardcoded Credentials Authentication Bypass Vulnerability. This vulnerability allows network-adjacent attackers to bypass authentication on affected installations of Autel MaxiCharger AC Elite Business C50 charging stations. Authentication is not required to exploit this vulnerability.\n\nThe specific flaw exists within the BLE AppAuthenRequest command handler. The handler uses hardcoded credentials as a fallback in case of an authentication request failure. An attacker can leverage this vulnerability to bypass authentication on the system.\n\nWas ZDI-CAN-23196",
+  "cpe_strings": "cpe:2.3:o:autel:maxicharger_ac_elite_business_c50_firmware:1.32.00:*:*:*:*:*:*:*|cpe:2.3:h:autel:maxicharger_ac_elite_business_c50:-:*:*:*:*:*:*:*"
+ }
+]

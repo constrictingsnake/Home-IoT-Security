@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2017-8224",
+  "description": "Wireless IP Camera (P2P) WIFICAM devices have a backdoor root account that can be accessed with TELNET.",
+  "cpe_strings": "cpe:2.3:o:wificam:wireless_ip_camera_\\(p2p\\)_firmware:-:*:*:*:*:*:*:*|cpe:2.3:h:wificam:wireless_ip_camera_\\(p2p\\):-:*:*:*:*:*:*:*"
+ }
+]

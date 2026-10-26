@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2024-44297",
+  "description": "The issue was addressed with improved bounds checks. This issue is fixed in iOS 17.7.1 and iPadOS 17.7.1, iOS 18.1 and iPadOS 18.1, macOS Sequoia 15.1, macOS Sonoma 14.7.1, macOS Ventura 13.7.1, tvOS 18.1, visionOS 2.1, watchOS 11.1. Processing a maliciously crafted message may lead to a denial-of-service.",
+  "cpe_strings": "cpe:2.3:o:apple:ipad_os:*:*:*:*:*:*:*:*|cpe:2.3:o:apple:iphone_os:*:*:*:*:*:*:*:*|cpe:2.3:o:apple:macos:*:*:*:*:*:*:*:*|cpe:2.3:o:apple:tvos:*:*:*:*:*:*:*:*|cpe:2.3:o:apple:visionos:*:*:*:*:*:*:*:*|cpe:2.3:o:apple:watchos:*:*:*:*:*:*:*:*"
+ }
+]

@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2015-4400",
+  "description": "Ring (formerly DoorBot) video doorbells allow remote attackers to obtain sensitive information about the wireless network configuration by pressing the set up button and leveraging an API in the GainSpan Wi-Fi module.",
+  "cpe_strings": "cpe:2.3:o:ring:ring_firmware:-:*:*:*:*:*:*:*|cpe:2.3:h:ring:ring:-:*:*:*:*:*:*:*"
+ }
+]

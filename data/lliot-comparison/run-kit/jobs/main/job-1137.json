@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2020-6095",
+  "description": "An exploitable denial of service vulnerability exists in the GstRTSPAuth functionality of GStreamer/gst-rtsp-server 1.14.5. A specially crafted RTSP setup request can cause a null pointer deference resulting in denial-of-service. An attacker can send a malicious packet to trigger this vulnerability.",
+  "cpe_strings": "cpe:2.3:a:gstreamer_project:gst-rtsp-server:1.14.5:*:*:*:*:*:*:*|cpe:2.3:a:opensuse:backports_sle:15.0:sp1:*:*:*:*:*:*|cpe:2.3:o:opensuse:leap:15.1:*:*:*:*:*:*:*"
+ }
+]

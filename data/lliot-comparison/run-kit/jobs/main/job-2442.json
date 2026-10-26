@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2021-24087",
+  "description": "Azure IoT CLI extension Elevation of Privilege Vulnerability",
+  "cpe_strings": "cpe:2.3:a:azure-iot-cli-extension:-:*:*:*:*:*:*:*:*"
+ }
+]

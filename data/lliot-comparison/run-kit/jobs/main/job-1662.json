@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2023-24009",
+  "description": "Auth. (subscriber+) Reflected Cross-site Scripting (XSS) vulnerability in Wpazure Themes Upfrontwp theme <= 1.1 versions.",
+  "cpe_strings": "cpe:2.3:a:wpazure:upfrontwp:*:*:*:*:*:wordpress:*:*"
+ }
+]

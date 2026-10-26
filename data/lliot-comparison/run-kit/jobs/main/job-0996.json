@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2021-37000",
+  "description": "Some Huawei wearables have a permission management vulnerability.",
+  "cpe_strings": "cpe:2.3:o:huawei:harmonyos:2.0.0:*:*:*:*:*:*:*"
+ }
+]

@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2017-17597",
+  "description": "Nearbuy Clone Script 3.2 has SQL Injection via the category_list.php search parameter.",
+  "cpe_strings": "cpe:2.3:a:nearbuy_clone_script_project:nearbuy_clone_script:3.2:*:*:*:*:*:*:*"
+ }
+]

@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2024-5754",
+  "description": "BT: Encryption procedure host vulnerability",
+  "cpe_strings": "cpe:2.3:o:zephyrproject:zephyr:*:*:*:*:*:*:*:*"
+ }
+]

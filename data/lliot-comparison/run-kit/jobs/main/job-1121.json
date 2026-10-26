@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2018-18417",
+  "description": "In the 3.1 version of Ekushey Project Manager CRM, Stored XSS has been discovered in the input and upload sections, as demonstrated by the name parameter to the index.php/admin/client/create URI.",
+  "cpe_strings": "cpe:2.3:a:creativeitem:ekushey_project_manager:3.1:*:*:*:*:*:*:*"
+ }
+]

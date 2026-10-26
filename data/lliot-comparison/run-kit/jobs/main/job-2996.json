@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2019-11550",
+  "description": "Citrix SD-WAN 10.2.x before 10.2.1 and NetScaler SD-WAN 10.0.x before 10.0.7 have Improper Certificate Validation.",
+  "cpe_strings": "cpe:2.3:a:citrix:netscaler_sd-wan:*:*:*:*:*:*:*:*|cpe:2.3:a:citrix:sd-wan:*:*:*:*:*:*:*:*"
+ }
+]

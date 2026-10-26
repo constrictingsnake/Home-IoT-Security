@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2022-45611",
+  "description": "An issue was discovered in Fresenius Kabi PharmaHelp 5.1.759.0 allows attackers to gain escalated privileges via via capture of user login information.",
+  "cpe_strings": "cpe:2.3:o:fresenius-kabi:pharmahelp_firmware:5.1.759.0:*:*:*:*:*:*:*|cpe:2.3:h:fresenius-kabi:pharmahelp:-:*:*:*:*:*:*:*"
+ }
+]

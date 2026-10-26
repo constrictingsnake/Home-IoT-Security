@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2018-8452",
+  "description": "An information disclosure vulnerability exists when the scripting engine does not properly handle objects in memory in Microsoft browsers, aka \"Scripting Engine Information Disclosure Vulnerability.\" This affects ChakraCore, Internet Explorer 11, Microsoft Edge.",
+  "cpe_strings": "cpe:2.3:a:microsoft:internet_explorer:11:*:*:*:*:*:*:*|cpe:2.3:o:microsoft:windows_10:-:*:*:*:*:*:*:*|cpe:2.3:o:microsoft:windows_10:1607:*:*:*:*:*:*:*|cpe:2.3:o:microsoft:windows_10:1703:*:*:*:*:*:*:*|cpe:2.3:o:microsoft:windows_10:1709:*:*:*:*:*:*:*|cpe:2.3:o:microsoft:windows_10:1803:*:*:*:*:*:*:*|cpe:2.3:o:microsoft:windows_7:*:sp1:*:*:*:*:*:*|cpe:2.3:o:microsoft:windows_8.1:*:*:*:*:*:*:*:*|cpe:2.3:o:microsoft:windows_rt_8.1:*:*:*:*:*:*:*:*|cpe:2.3:o:microsoft:windows_server_2008:r2:sp1:*:*:*:*:*:*|cpe:2.3:o:microsoft:windows_server_2012:r2:*:*:*:*:*:*:*|cpe:2.3:o:microsoft:windows_server_2016:-:*:*:*:*:*:*:*|cpe:2.3:a:microsoft:chakracore:-:*:*:*:*:*:*:*|cpe:2.3:a:microsoft:edge:-:*:*:*:*:*:*:*|cpe:2.3:o:microsoft:windows_10:*:*:*:*:*:*:*:*"
+ }
+]

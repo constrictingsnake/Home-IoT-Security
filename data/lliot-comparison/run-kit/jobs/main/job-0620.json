@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2022-22819",
+  "description": "NXP LPC55S66JBD64, LPC55S66JBD100, LPC55S66JEV98, LPC55S69JBD64, LPC55S69JBD100, and LPC55S69JEV98 microcontrollers (ROM version 1B) have a buffer overflow in parsing SB2 updates before the signature is verified. This can allow an attacker to achieve non-persistent code execution via a crafted unsigned update.",
+  "cpe_strings": "cpe:2.3:o:nxp:lpc55s66jbd64_firmware:-:*:*:*:*:*:*:*|cpe:2.3:h:nxp:lpc55s66jbd64:-:*:*:*:*:*:*:*|cpe:2.3:o:nxp:lpc55s66jbd100_firmware:-:*:*:*:*:*:*:*|cpe:2.3:h:nxp:lpc55s66jbd100:-:*:*:*:*:*:*:*|cpe:2.3:o:nxp:lpc55s66jev98_firmware:-:*:*:*:*:*:*:*|cpe:2.3:h:nxp:lpc55s66jev98:-:*:*:*:*:*:*:*|cpe:2.3:o:nxp:lpc55s69jbd64_firmware:-:*:*:*:*:*:*:*|cpe:2.3:h:nxp:lpc55s69jbd64:-:*:*:*:*:*:*:*|cpe:2.3:o:nxp:lpc55s69jbd100_firmware:-:*:*:*:*:*:*:*|cpe:2.3:h:nxp:lpc55s69jbd100:-:*:*:*:*:*:*:*|cpe:2.3:o:nxp:lpc55s69jev98_firmware:-:*:*:*:*:*:*:*|cpe:2.3:h:nxp:lpc55s69jev98:-:*:*:*:*:*:*:*"
+ }
+]

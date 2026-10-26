@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2020-17152",
+  "description": "Microsoft Dynamics 365 for Finance and Operations (on-premises) Remote Code Execution Vulnerability",
+  "cpe_strings": "cpe:2.3:a:microsoft:dynamics_365:*:*:*:*:*:finance_and_operations:*:*"
+ }
+]

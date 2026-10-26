@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2024-53082",
+  "description": "In the Linux kernel, the following vulnerability has been resolved:\n\nvirtio_net: Add hash_key_length check\n\nAdd hash_key_length check in virtnet_probe() to avoid possible out of\nbound errors when setting/reading the hash key.",
+  "cpe_strings": "cpe:2.3:o:linux:linux_kernel:*:*:*:*:*:*:*:*|cpe:2.3:o:linux:linux_kernel:6.12:rc1:*:*:*:*:*:*|cpe:2.3:o:linux:linux_kernel:6.12:rc2:*:*:*:*:*:*|cpe:2.3:o:linux:linux_kernel:6.12:rc3:*:*:*:*:*:*|cpe:2.3:o:linux:linux_kernel:6.12:rc4:*:*:*:*:*:*|cpe:2.3:o:linux:linux_kernel:6.12:rc5:*:*:*:*:*:*|cpe:2.3:o:linux:linux_kernel:6.12:rc6:*:*:*:*:*:*"
+ }
+]

@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2022-35003",
+  "description": "JPEGDEC commit be4843c was discovered to contain a global buffer overflow via ucDitherBuffer at /src/jpeg.inl.",
+  "cpe_strings": "cpe:2.3:a:bitbanksoftware:jpegdec:1.2.7:*:*:*:*:*:*:*"
+ }
+]

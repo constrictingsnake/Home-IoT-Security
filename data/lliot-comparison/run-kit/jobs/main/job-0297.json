@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2015-4551",
+  "description": "LibreOffice before 4.4.5 and Apache OpenOffice before 4.1.2 uses the stored LinkUpdateMode configuration information in OpenDocument Format files and templates when handling links, which might allow remote attackers to obtain sensitive information via a crafted document, which embeds data from local files into (1) Calc or (2) Writer.",
+  "cpe_strings": "cpe:2.3:a:libreoffice:libreoffice:*:*:*:*:*:*:*:*|cpe:2.3:o:canonical:ubuntu_linux:12.04:*:*:*:lts:*:*:*|cpe:2.3:o:canonical:ubuntu_linux:14.04:*:*:*:lts:*:*:*|cpe:2.3:o:canonical:ubuntu_linux:15.04:*:*:*:*:*:*:*|cpe:2.3:o:debian:debian_linux:7.0:*:*:*:*:*:*:*|cpe:2.3:o:debian:debian_linux:8.0:*:*:*:*:*:*:*|cpe:2.3:a:apache:openoffice:*:*:*:*:*:*:*:*"
+ }
+]

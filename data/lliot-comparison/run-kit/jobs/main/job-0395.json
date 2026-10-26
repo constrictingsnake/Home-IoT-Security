@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2023-0743",
+  "description": "Cross-site Scripting (XSS) - Generic in GitHub repository answerdev/answer prior to 1.0.4.",
+  "cpe_strings": "cpe:2.3:a:answer:answer:*:*:*:*:*:*:*:*"
+ }
+]

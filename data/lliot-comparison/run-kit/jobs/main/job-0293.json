@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2020-7515",
+  "description": "A CWE-321: Use of hard-coded cryptographic key stored in cleartext vulnerability exists in Easergy Builder V1.4.7.2 and prior which could allow an attacker to decrypt a password.",
+  "cpe_strings": "cpe:2.3:a:schneider-electric:easergy_builder:*:*:*:*:*:*:*:*"
+ }
+]

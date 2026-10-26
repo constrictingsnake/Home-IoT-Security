@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2016-8784",
+  "description": "Huawei CloudEngine 12800 V100R003C00, V100R003C10, V100R005C00, V100R005C10, V100R006C00 have a memory leak vulnerability. An unauthenticated attacker may send specific Label Distribution Protocol (LDP) packets to the devices. When the values of some parameters in the packet are abnormal, the LDP processing module does not release the memory to handle the packet, resulting in memory leak.",
+  "cpe_strings": "cpe:2.3:o:huawei:cloudengine_12800_firmware:v100r003c00:*:*:*:*:*:*:*|cpe:2.3:o:huawei:cloudengine_12800_firmware:v100r003c10:*:*:*:*:*:*:*|cpe:2.3:o:huawei:cloudengine_12800_firmware:v100r005c00:*:*:*:*:*:*:*|cpe:2.3:o:huawei:cloudengine_12800_firmware:v100r005c10:*:*:*:*:*:*:*|cpe:2.3:o:huawei:cloudengine_12800_firmware:v100r006c00:*:*:*:*:*:*:*|cpe:2.3:h:huawei:cloudengine_12800:-:*:*:*:*:*:*:*"
+ }
+]

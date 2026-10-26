@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2019-19106",
+  "description": "Improper implementation of Access Control in ABB Telephone Gateway TG/S 3.2 and Busch-Jaeger 6186/11 Telefon-Gateway allows an unauthorized user to access data marked as restricted, such as viewing or editing user profiles and application settings.",
+  "cpe_strings": "cpe:2.3:o:abb:tg\\/s3.2_firmware:-:*:*:*:*:*:*:*|cpe:2.3:h:abb:tg\\/s3.2:-:*:*:*:*:*:*:*|cpe:2.3:o:busch-jaeger:6186\\/11_firmware:-:*:*:*:*:*:*:*|cpe:2.3:h:busch-jaeger:6186\\/11:-:*:*:*:*:*:*:*"
+ }
+]

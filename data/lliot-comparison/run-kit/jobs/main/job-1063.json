@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2021-20992",
+  "description": "In Fibaro Home Center 2 and Lite devices in all versions provide a web based management interface over unencrypted HTTP protocol. Communication between the user and the device can be eavesdropped to hijack sessions, tokens and passwords.",
+  "cpe_strings": "cpe:2.3:o:fibaro:home_center_2_firmware:*:*:*:*:*:*:*:*|cpe:2.3:h:fibaro:home_center_2:-:*:*:*:*:*:*:*|cpe:2.3:o:fibaro:home_center_lite_firmware:*:*:*:*:*:*:*:*|cpe:2.3:h:fibaro:home_center_lite:-:*:*:*:*:*:*:*"
+ }
+]

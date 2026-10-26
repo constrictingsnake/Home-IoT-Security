@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2024-29840",
+  "description": "The Web interface of Evolution Controller Versions 2.04.560.31.03.2024 and below contains poorly configured access control on DESKTOP_EDIT_USER_GET_PIN_FIELDS, allowing for an unauthenticated attacker to return the pin value of any user\n\n",
+  "cpe_strings": "cpe:2.3:a:cs-technologies:evolution:*:*:*:*:*:*:*:*"
+ }
+]

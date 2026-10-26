@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2014-9707",
+  "description": "EmbedThis GoAhead 3.0.0 through 3.4.1 does not properly handle path segments starting with a . (dot), which allows remote attackers to conduct directory traversal attacks, cause a denial of service (heap-based buffer overflow and crash), or possibly execute arbitrary code via a crafted URI.",
+  "cpe_strings": "cpe:2.3:a:embedthis:goahead:3.0.0:*:*:*:*:*:*:*|cpe:2.3:a:embedthis:goahead:3.3.1:*:*:*:*:*:*:*|cpe:2.3:a:embedthis:goahead:3.3.2:*:*:*:*:*:*:*|cpe:2.3:a:embedthis:goahead:3.3.3:*:*:*:*:*:*:*|cpe:2.3:a:embedthis:goahead:3.3.4:*:*:*:*:*:*:*|cpe:2.3:a:embedthis:goahead:3.3.5:*:*:*:*:*:*:*|cpe:2.3:a:embedthis:goahead:3.3.6:*:*:*:*:*:*:*|cpe:2.3:a:embedthis:goahead:3.4.0:*:*:*:*:*:*:*"
+ }
+]

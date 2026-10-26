@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2020-9473",
+  "description": "The S. Siedle & Soehne SG 150-0 Smart Gateway before 1.2.4 has a passwordless ftp ssh user. By using an exploit chain, an attacker with access to the network can get root access on the gateway.",
+  "cpe_strings": "cpe:2.3:o:siedle:sg_150-0_firmware:*:*:*:*:*:*:*:*|cpe:2.3:h:siedle:sg_150-0:-:*:*:*:*:*:*:*"
+ }
+]

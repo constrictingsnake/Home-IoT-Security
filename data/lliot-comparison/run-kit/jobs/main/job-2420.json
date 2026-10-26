@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2019-5271",
+  "description": "There is an information leak vulnerability in Huawei smart speaker Myna. When the smart speaker is paired with the cloud through Wi-Fi, the speaker incorrectly processes some data. Attackers can exploit this vulnerability to read and modify specific configurations of speakers through a series of operations.",
+  "cpe_strings": "cpe:2.3:o:huawei:myna_firmware:9.0.1.9\\(h100sp6c00\\):*:*:*:*:*:*:*|cpe:2.3:o:huawei:myna_firmware:9.0.1.10\\(h100sp5c00\\):*:*:*:*:*:*:*|cpe:2.3:o:huawei:myna_firmware:9.0.1.10\\(h100sp8c00\\):*:*:*:*:*:*:*|cpe:2.3:o:huawei:myna_firmware:9.0.1.10\\(h100sp10c00\\):*:*:*:*:*:*:*|cpe:2.3:o:huawei:myna_firmware:9.0.1.10\\(h100sp11c00\\):*:*:*:*:*:*:*|cpe:2.3:o:huawei:myna_firmware:9.0.1.10\\(h100sp12c00\\):*:*:*:*:*:*:*|cpe:2.3:h:huawei:myna:-:*:*:*:*:*:*:*"
+ }
+]

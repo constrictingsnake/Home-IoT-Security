@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2021-32985",
+  "description": "AVEVA System Platform versions 2017 through 2020 R2 P01 does not properly verify that the source of data or communication is valid.",
+  "cpe_strings": "cpe:2.3:a:aveva:system_platform:*:*:*:*:*:*:*:*|cpe:2.3:a:aveva:system_platform:2020:-:*:*:*:*:*:*|cpe:2.3:a:aveva:system_platform:2020:r2:*:*:*:*:*:*|cpe:2.3:a:aveva:system_platform:2020:r2_p01:*:*:*:*:*:*"
+ }
+]

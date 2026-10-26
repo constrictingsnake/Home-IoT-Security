@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2021-22699",
+  "description": "Improper Input Validation vulnerability exists in Modicon M241/M251 logic controllers firmware prior to V5.1.9.1 that could cause denial of service when specific crafted requests are sent to the controller over HTTP.",
+  "cpe_strings": "cpe:2.3:o:schneider-electric:modicon_m241_firmware:*:*:*:*:*:*:*:*|cpe:2.3:h:schneider-electric:modicon_m241:-:*:*:*:*:*:*:*|cpe:2.3:o:schneider-electric:modicon_m251_firmware:*:*:*:*:*:*:*:*|cpe:2.3:h:schneider-electric:modicon_m251:-:*:*:*:*:*:*:*"
+ }
+]

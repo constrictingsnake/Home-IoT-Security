@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2023-33869",
+  "description": "\nEnphase Envoy versions D7.0.88 is vulnerable to a command injection exploit that may allow an attacker to execute root commands.\n\n\n\n\n",
+  "cpe_strings": "cpe:2.3:o:enphase:envoy_firmware:d7.0.88:*:*:*:*:*:*:*|cpe:2.3:h:enphase:envoy:-:*:*:*:*:*:*:*"
+ }
+]

@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2023-1820",
+  "description": "Heap buffer overflow in Browser History in Google Chrome prior to 112.0.5615.49 allowed a remote attacker who convinced a user to engage in specific UI interaction to potentially exploit heap corruption via a crafted HTML page. (Chromium security severity: Medium)",
+  "cpe_strings": "cpe:2.3:a:google:chrome:*:*:*:*:*:*:*:*|cpe:2.3:o:fedoraproject:fedora:36:*:*:*:*:*:*:*|cpe:2.3:o:fedoraproject:fedora:37:*:*:*:*:*:*:*|cpe:2.3:o:debian:debian_linux:11.0:*:*:*:*:*:*:*"
+ }
+]

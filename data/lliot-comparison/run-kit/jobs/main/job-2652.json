@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2017-6837",
+  "description": "WAVE.cpp in Audio File Library (aka audiofile) 0.3.6 allows remote attackers to cause a denial of service (crash) via vectors related to a large number of coefficients.",
+  "cpe_strings": "cpe:2.3:a:audiofile:audiofile:0.3.6:*:*:*:*:*:*:*"
+ }
+]

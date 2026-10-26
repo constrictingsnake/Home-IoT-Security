@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2013-4614",
+  "description": "English/pages_MacUS/wls_set_content.html on the Canon MG3100, MG5300, MG6100, MP495, MX340, MX870, MX890, MX920, and MX922 printers shows the Wi-Fi PSK passphrase in cleartext, which allows physically proximate attackers to obtain sensitive information by reading the screen of an unattended workstation.",
+  "cpe_strings": "cpe:2.3:h:canon:mg3100_printer:-:*:*:*:*:*:*:*|cpe:2.3:h:canon:mg5300_printer:-:*:*:*:*:*:*:*|cpe:2.3:h:canon:mg6100_printer:-:*:*:*:*:*:*:*|cpe:2.3:h:canon:mp340_printer:-:*:*:*:*:*:*:*|cpe:2.3:h:canon:mp495_printer:-:*:*:*:*:*:*:*|cpe:2.3:h:canon:mx870_printer:-:*:*:*:*:*:*:*|cpe:2.3:h:canon:mx890_printer:-:*:*:*:*:*:*:*|cpe:2.3:h:canon:mx920_printer:-:*:*:*:*:*:*:*|cpe:2.3:h:canon:mx922_printer:-:*:*:*:*:*:*:*"
+ }
+]

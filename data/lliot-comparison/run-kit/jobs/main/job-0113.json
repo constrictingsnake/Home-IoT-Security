@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2023-23305",
+  "description": "The GarminOS TVM component in CIQ API version 1.0.0 through 4.1.7 is vulnerable to various buffer overflows when loading binary resources. A malicious application embedding specially crafted resources could hijack the execution of the device's firmware.",
+  "cpe_strings": "cpe:2.3:a:garmin:connect-iq:*:*:*:*:*:*:*:*"
+ }
+]

@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2020-10601","home_iot":"No","categories":[],"confidence":"High","reasoning":"VISAM VBASE Editor and Web-Remote are industrial automation/HMI software rather than consumer devices for monitoring or controlling a private home."}]}

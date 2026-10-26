@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2017-9914",
+  "description": "XnView Classic for Windows Version 2.40 allows remote attackers to execute code via a crafted .bie file, related to a \"Read Access Violation on Block Data Move starting at Xjbig+0x000000000000121b.\"",
+  "cpe_strings": "cpe:2.3:a:xnview:xnview:2.40:*:*:*:*:*:*:*"
+ }
+]

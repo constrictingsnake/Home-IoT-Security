@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2013-0896",
+  "description": "Google Chrome before 25.0.1364.97 on Windows and Linux, and before 25.0.1364.99 on Mac OS X, does not properly manage memory during message handling for plug-ins, which allows remote attackers to cause a denial of service or possibly have unspecified other impact via unknown vectors.",
+  "cpe_strings": "cpe:2.3:o:opensuse:opensuse:12.1:*:*:*:*:*:*:*|cpe:2.3:o:opensuse:opensuse:12.2:*:*:*:*:*:*:*|cpe:2.3:a:google:chrome:*:*:*:*:*:*:*:*|cpe:2.3:o:linux:linux_kernel:-:*:*:*:*:*:*:*|cpe:2.3:o:microsoft:windows:-:*:*:*:*:*:*:*|cpe:2.3:o:apple:mac_os_x:-:*:*:*:*:*:*:*"
+ }
+]

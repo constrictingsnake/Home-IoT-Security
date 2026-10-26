@@ -9,12 +9,13 @@ Commands, in the order a researcher uses them:
   setup    create/sync the run dir: kit files (hash-checked) + this owner's job files
   smoke    one non-classification call: does the session see the kit's AGENTS.md, which tools
            does it have, is web search off? Prints the reply (it contains no CVE labels).
-  run      run every not-yet-done job in a set (pilot-single | pilot-batch | main | rerun);
+  run      run every not-yet-done job in a set (pilot-single | pilot-batch | pilot-rerun |
+           main | rerun);
            resumable, one retry on failure, appends to data/lliot-comparison/run_log_<owner>.csv
   collect  validate outputs and copy the valid ones into data/lliot-comparison/outputs/<owner>/
 
 BLINDNESS: nothing here prints a model label. Model output and event logs stay in the run dir
-(out/, logs/); do not open them — both researchers adjudicate these CVEs later.
+(out/, logs/); do not open them — the researcher adjudicates these CVEs later.
 
 Usage:
     python3 scripts/lliot_run.py setup   --owner A --run-dir ~/lliot-run
@@ -58,7 +59,7 @@ DISABLE = ["shell_tool", "unified_exec", "shell_snapshot", "code_mode_host", "mu
            "browser_use_external", "in_app_browser", "computer_use", "tool_suggest",
            "skill_search", "goals", "hooks"]
 TIMEOUT_S = 900
-SETS = ("pilot-single", "pilot-batch", "main", "rerun")
+SETS = ("pilot-single", "pilot-batch", "pilot-rerun", "main", "rerun")
 LOG_FIELDS = ["job", "set", "owner", "started", "finished", "seconds", "model", "effort",
               "delivery", "exit", "retries", "valid", "input_tokens", "cached_input_tokens",
               "output_tokens", "reasoning_output_tokens", "usage_note"]
@@ -306,7 +307,7 @@ def main():
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     sub = ap.add_subparsers(dest="cmd", required=True)
     s = sub.add_parser("setup")
-    s.add_argument("--owner", required=True, choices=["A", "B"])
+    s.add_argument("--owner", required=True, choices=["A"])  # one researcher since 2026-10-25
     s.add_argument("--run-dir", required=True)
     s = sub.add_parser("smoke")
     s.add_argument("--run-dir", required=True)

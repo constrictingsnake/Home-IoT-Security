@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2020-6848",
+  "description": "Axper Vision II 4 devices allow XSS via the DEVICE_NAME (aka Device Name) parameter to the configWebParams.cgi URI.",
+  "cpe_strings": "cpe:2.3:o:axper:vision_ii_firmware:4.1.53.166:*:*:*:*:*:*:*|cpe:2.3:h:axper:vision_ii:-:*:*:*:*:*:*:*"
+ }
+]

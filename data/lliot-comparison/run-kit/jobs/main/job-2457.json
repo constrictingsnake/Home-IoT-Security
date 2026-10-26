@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2020-19821",
+  "description": "A SQL injection vulnerability in admin.php of DOYOCMS 2.3 allows attackers to execute arbitrary SQL commands via the orders[] parameter.",
+  "cpe_strings": "cpe:2.3:a:wdoyo:doyocms:2.3:-:*:*:*:*:*:*"
+ }
+]

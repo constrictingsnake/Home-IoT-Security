@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2020-27253",
+  "description": "A flaw exists in the Ingress/Egress checks routine of FactoryTalk Linx Version 6.11 and prior. This vulnerability could allow a remote, unauthenticated attacker to specifically craft a malicious packet resulting in a denial-of-service condition on the device.",
+  "cpe_strings": "cpe:2.3:a:rockwellautomation:factorytalk_linx:*:*:*:*:*:*:*:*"
+ }
+]

@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2023-4537",
+  "description": "Comarch ERP XL client is vulnerable to MS SQL protocol downgrade request from a server side, what could lead to an unencrypted communication vulnerable to data interception and modification.\n\nThis issue affects ERP XL: from 2020.2.2 through 2023.2.",
+  "cpe_strings": "cpe:2.3:a:comarch:erp_xl:*:*:*:*:*:*:*:*"
+ }
+]

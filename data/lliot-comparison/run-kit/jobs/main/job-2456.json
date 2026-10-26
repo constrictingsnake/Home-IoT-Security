@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2024-54108",
+  "description": "Read/Write vulnerability in the image decoding module\nImpact: Successful exploitation of this vulnerability will affect availability.",
+  "cpe_strings": "cpe:2.3:o:huawei:harmonyos:5.0.0:*:*:*:*:*:*:*"
+ }
+]

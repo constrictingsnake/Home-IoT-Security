@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2015-3921",
+  "description": "Cross-site scripting (XSS) vulnerability in contact.php in Coppermine Photo Gallery before 1.5.36 allows remote authenticated users to inject arbitrary web script or HTML via the referer parameter.",
+  "cpe_strings": "cpe:2.3:a:coppermine-gallery:coppermine_photo_gallery:*:*:*:*:*:*:*:*"
+ }
+]

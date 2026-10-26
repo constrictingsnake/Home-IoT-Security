@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2019-0301",
+  "description": "Under certain conditions, it is possible to request the modification of role or privilege assignments through SAP Identity Management REST Interface Version 2, which would otherwise be restricted only for viewing.",
+  "cpe_strings": "cpe:2.3:a:sap:identity_management:2.0:*:*:*:*:*:*:*"
+ }
+]

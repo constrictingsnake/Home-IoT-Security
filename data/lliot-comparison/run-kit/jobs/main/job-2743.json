@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2020-6841",
+  "description": "D-Link DCH-M225 1.05b01 and earlier devices allow remote attackers to execute arbitrary OS commands via shell metacharacters in the spotifyConnect.php userName parameter.",
+  "cpe_strings": "cpe:2.3:o:dlink:dch-m225_firmware:*:*:*:*:*:*:*:*|cpe:2.3:h:dlink:dch-m225:-:*:*:*:*:*:*:*"
+ }
+]

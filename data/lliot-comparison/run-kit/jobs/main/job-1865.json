@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2020-10621",
+  "description": "Multiple issues exist that allow files to be uploaded and executed on the WebAccess/NMS (versions prior to 3.0.2).",
+  "cpe_strings": "cpe:2.3:a:advantech:webaccess\\/nms:*:*:*:*:*:*:*:*"
+ }
+]

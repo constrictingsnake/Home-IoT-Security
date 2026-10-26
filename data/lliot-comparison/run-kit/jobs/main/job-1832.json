@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2023-6998",
+  "description": "Improper privilege management vulnerability in CoolKit Technology eWeLink on Android and iOS allows application lockscreen bypass.This issue affects eWeLink before 5.2.0.",
+  "cpe_strings": "cpe:2.3:a:coolkit:ewelink:*:*:*:*:*:android:*:*|cpe:2.3:a:coolkit:ewelink:*:*:*:*:*:iphone_os:*:*"
+ }
+]

@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2023-7232",
+  "description": "The Backup and Restore WordPress  WordPress plugin through 1.45 does not protect some log files containing sensitive information such as site configuration etc, allowing unauthenticated users to access such data",
+  "cpe_strings": "cpe:2.3:a:wpbackitup:backup_and_restore_wordpress:*:*:*:*:*:wordpress:*:*"
+ }
+]

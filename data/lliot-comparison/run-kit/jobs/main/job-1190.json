@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2013-2057",
+  "description": "YaBB through 2.5.2: 'guestlanguage' Cookie Parameter Local File Include Vulnerability",
+  "cpe_strings": "cpe:2.3:a:yabb:yabb:*:*:*:*:*:*:*:*"
+ }
+]

@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2021-26990",
+  "description": "Cloud Manager versions prior to 3.9.4 are susceptible to a vulnerability that could allow a remote attacker to overwrite arbitrary system files.",
+  "cpe_strings": "cpe:2.3:a:netapp:cloud_manager:*:*:*:*:*:*:*:*"
+ }
+]

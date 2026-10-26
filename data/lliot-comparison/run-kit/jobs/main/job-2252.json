@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2017-3069",
+  "description": "Adobe Flash Player versions 25.0.0.148 and earlier have an exploitable memory corruption vulnerability in the BlendMode class. Successful exploitation could lead to arbitrary code execution.",
+  "cpe_strings": "cpe:2.3:a:adobe:flash_player_desktop_runtime:*:*:*:*:*:*:*:*|cpe:2.3:o:apple:mac_os_x:-:*:*:*:*:*:*:*|cpe:2.3:a:adobe:flash_player:*:*:*:*:*:edge:*:*|cpe:2.3:a:adobe:flash_player:*:*:*:*:*:internet_explorer:*:*|cpe:2.3:o:microsoft:windows_10:-:*:*:*:*:*:*:*|cpe:2.3:o:microsoft:windows_8.1:-:*:*:*:*:*:*:*|cpe:2.3:a:adobe:flash_player:*:*:*:*:*:chrome:*:*|cpe:2.3:o:google:chrome_os:-:*:*:*:*:*:*:*|cpe:2.3:o:linux:linux_kernel:-:*:*:*:*:*:*:*|cpe:2.3:o:microsoft:windows:-:*:*:*:*:*:*:*|cpe:2.3:o:redhat:enterprise_linux:6.0:*:*:*:*:*:*:*|cpe:2.3:o:redhat:enterprise_linux_desktop:6.0:*:*:*:*:*:*:*|cpe:2.3:o:redhat:enterprise_linux_workstation:6.0:*:*:*:*:*:*:*"
+ }
+]

@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2017-9435",
+  "description": "Dolibarr ERP/CRM before 5.0.3 is vulnerable to a SQL injection in user/index.php (search_supervisor and search_statut parameters).",
+  "cpe_strings": "cpe:2.3:a:dolibarr:dolibarr:*:*:*:*:*:*:*:*"
+ }
+]

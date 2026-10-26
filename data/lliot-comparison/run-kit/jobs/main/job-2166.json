@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2019-10415",
+  "description": "Jenkins Violation Comments to GitLab Plugin 2.28 and earlier stored credentials unencrypted in its global configuration file on the Jenkins master where they could be viewed by users with access to the master file system.",
+  "cpe_strings": "cpe:2.3:a:jenkins:violation_comments_to_gitlab:*:*:*:*:*:jenkins:*:*"
+ }
+]

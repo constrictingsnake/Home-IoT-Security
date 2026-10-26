@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2017-17751","home_iot":"No","categories":[],"confidence":"High","reasoning":"Bose SoundTouch devices are primarily networked audio systems, and the description does not identify a voice-assistant or smart-home-control role."}]}

@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2022-40840",
+  "description": "ndk design NdkAdvancedCustomizationFields 3.5.0 is vulnerable to Cross Site Scripting (XSS) via createPdf.php.",
+  "cpe_strings": "cpe:2.3:a:ndk-design:ndkadvancedcustomizationfields:*:*:*:*:*:prestashop:*:*"
+ }
+]

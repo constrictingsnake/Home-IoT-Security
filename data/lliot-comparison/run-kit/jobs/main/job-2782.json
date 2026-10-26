@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2022-46686",
+  "description": "Jenkins Custom Build Properties Plugin 2.79.vc095ccc85094 and earlier does not escape property values and build display names on the Custom Build Properties and Build Summary pages, resulting in a stored cross-site scripting (XSS) vulnerability exploitable by attackers able to set or change these values.",
+  "cpe_strings": "cpe:2.3:a:jenkins:custom_build_properties:*:*:*:*:*:jenkins:*:*"
+ }
+]

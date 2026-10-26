@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2022-29503",
+  "description": "A memory corruption vulnerability exists in the libpthread linuxthreads functionality of uClibC 0.9.33.2 and uClibC-ng 1.0.40. Thread allocation can lead to memory corruption. An attacker can create threads to trigger this vulnerability.",
+  "cpe_strings": "cpe:2.3:a:uclibc:uclibc:0.9.33.2:*:*:*:*:*:*:*|cpe:2.3:a:uclibc-ng_project:uclibc-ng:1.0.40:*:*:*:*:*:*:*|cpe:2.3:o:anker:eufy_homebase_2_firmware:2.1.8.8h:*:*:*:*:*:*:*|cpe:2.3:h:anker:eufy_homebase_2:-:*:*:*:*:*:*:*"
+ }
+]

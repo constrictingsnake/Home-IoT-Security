@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2023-39392",
+  "description": "Vulnerability of insecure signatures in the OsuLogin module. Successful exploitation of this vulnerability may cause OsuLogin to be maliciously modified and overwritten.",
+  "cpe_strings": "cpe:2.3:o:huawei:emui:12.0.1:*:*:*:*:*:*:*|cpe:2.3:o:huawei:emui:13.0.0:*:*:*:*:*:*:*|cpe:2.3:o:huawei:harmonyos:2.0.1:*:*:*:*:*:*:*|cpe:2.3:o:huawei:harmonyos:3.0.0:*:*:*:*:*:*:*|cpe:2.3:o:huawei:harmonyos:3.1.0:*:*:*:*:*:*:*"
+ }
+]

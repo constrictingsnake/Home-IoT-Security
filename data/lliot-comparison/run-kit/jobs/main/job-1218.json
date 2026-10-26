@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2023-39666",
+  "description": "D-Link DIR-842 fw_revA_1-02_eu_multi_20151008 was discovered to contain multiple buffer overflows in the fgets function via the acStack_120 and acStack_220 parameters.",
+  "cpe_strings": "cpe:2.3:o:dlink:dir-842_firmware:1.05b02:*:*:*:*:*:*:*|cpe:2.3:h:dlink:dir-842:-:*:*:*:*:*:*:*"
+ }
+]

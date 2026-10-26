@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2018-18007",
+  "description": "atbox.htm on D-Link DSL-2770L devices allows remote unauthenticated attackers to discover admin credentials.",
+  "cpe_strings": "cpe:2.3:o:dlink:dsl-2770l_firmware:me_1.01:*:*:*:*:*:*:*|cpe:2.3:o:dlink:dsl-2770l_firmware:me_1.02:*:*:*:*:*:*:*|cpe:2.3:o:dlink:dsl-2770l_firmware:me_1.06:*:*:*:*:*:*:*|cpe:2.3:h:dlink:dsl-2770l:-:*:*:*:*:*:*:*"
+ }
+]

@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2024-35340",
+  "description": "Tenda FH1206 V1.2.0.8(8155) was discovered to contain a command injection vulnerability via the cmdinput parameter at ip/goform/formexeCommand.",
+  "cpe_strings": "cpe:2.3:o:tenda:fh1206_firmware:1.2.0.8\\(8155\\):*:*:*:*:*:*:*|cpe:2.3:h:tenda:fh1206:-:*:*:*:*:*:*:*"
+ }
+]

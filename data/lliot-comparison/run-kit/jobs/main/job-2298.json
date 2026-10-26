@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2020-13124",
+  "description": "SABnzbd 2.3.9 and 3.0.0Alpha2 has a command injection vulnerability in the web configuration interface that permits an authenticated user to execute arbitrary Python commands on the underlying operating system.",
+  "cpe_strings": "cpe:2.3:a:sabnzbd:sabnzbd:2.3.9:*:*:*:*:*:*:*|cpe:2.3:a:sabnzbd:sabnzbd:3.0.0:alpha2:*:*:*:*:*:*"
+ }
+]

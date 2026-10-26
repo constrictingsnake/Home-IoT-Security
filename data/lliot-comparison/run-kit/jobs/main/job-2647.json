@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2023-45864",
+  "description": "A race condition issue discovered in Samsung Mobile Processor Exynos 9820, 980, 1080, 2100, 2200, 1280, and 1380 allows unintended modifications of values within certain areas.",
+  "cpe_strings": "cpe:2.3:o:samsung:exynos_9820_firmware:-:*:*:*:*:*:*:*|cpe:2.3:h:samsung:exynos_9820:-:*:*:*:*:*:*:*|cpe:2.3:o:samsung:exynos_980_firmware:-:*:*:*:*:*:*:*|cpe:2.3:h:samsung:exynos_980:-:*:*:*:*:*:*:*|cpe:2.3:o:samsung:exynos_1080_firmware:-:*:*:*:*:*:*:*|cpe:2.3:h:samsung:exynos_1080:-:*:*:*:*:*:*:*|cpe:2.3:o:samsung:exynos_2100_firmware:-:*:*:*:*:*:*:*|cpe:2.3:h:samsung:exynos_2100:-:*:*:*:*:*:*:*|cpe:2.3:o:samsung:exynos_2200_firmware:-:*:*:*:*:*:*:*|cpe:2.3:h:samsung:exynos_2200:-:*:*:*:*:*:*:*|cpe:2.3:o:samsung:exynos_1280_firmware:-:*:*:*:*:*:*:*|cpe:2.3:h:samsung:exynos_1280:-:*:*:*:*:*:*:*|cpe:2.3:o:samsung:exynos_1380_firmware:-:*:*:*:*:*:*:*|cpe:2.3:h:samsung:exynos_1380:-:*:*:*:*:*:*:*"
+ }
+]

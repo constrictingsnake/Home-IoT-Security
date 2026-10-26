@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2024-32632",
+  "description": "A value in ATCMD will be misinterpreted by printf, causing incorrect output and possibly out-of-bounds memory access",
+  "cpe_strings": "cpe:2.3:o:asrmicro:asr1803sc_firmware:*:*:*:*:*:*:*:*|cpe:2.3:h:asrmicro:asr1803sc:-:*:*:*:*:*:*:*|cpe:2.3:o:asrmicro:asr1607_firmware:*:*:*:*:*:*:*:*|cpe:2.3:h:asrmicro:asr1607:-:*:*:*:*:*:*:*|cpe:2.3:o:asrmicro:asr3603_firmware:*:*:*:*:*:*:*:*|cpe:2.3:h:asrmicro:asr3603:-:*:*:*:*:*:*:*|cpe:2.3:o:asrmicro:asr1806_firmware:*:*:*:*:*:*:*:*|cpe:2.3:h:asrmicro:asr1806:-:*:*:*:*:*:*:*|cpe:2.3:o:asrmicro:asr1803_firmware:*:*:*:*:*:*:*:*|cpe:2.3:h:asrmicro:asr1803:-:*:*:*:*:*:*:*|cpe:2.3:o:asrmicro:asr1606_firmware:*:*:*:*:*:*:*:*|cpe:2.3:h:asrmicro:asr1606:-:*:*:*:*:*:*:*|cpe:2.3:o:asrmicro:asr1603_firmware:*:*:*:*:*:*:*:*|cpe:2.3:h:asrmicro:asr1603:-:*:*:*:*:*:*:*|cpe:2.3:o:asrmicro:asr1602_firmware:*:*:*:*:*:*:*:*|cpe:2.3:h:asrmicro:asr1602:-:*:*:*:*:*:*:*|cpe:2.3:o:asrmicro:asr1605_firmware:*:*:*:*:*:*:*:*|cpe:2.3:h:asrmicro:asr1605:-:*:*:*:*:*:*:*|cpe:2.3:o:asrmicro:asr1609_firmware:*:*:*:*:*:*:*:*|cpe:2.3:h:asrmicro:asr1609:-:*:*:*:*:*:*:*|cpe:2.3:o:asrmicro:asr3607_firmware:*:*:*:*:*:*:*:*|cpe:2.3:h:asrmicro:asr3607:-:*:*:*:*:*:*:*|cpe:2.3:o:asrmicro:asr3605_firmware:*:*:*:*:*:*:*:*|cpe:2.3:h:asrmicro:asr3605:-:*:*:*:*:*:*:*|cpe:2.3:o:asrmicro:asr3602_firmware:*:*:*:*:*:*:*:*|cpe:2.3:h:asrmicro:asr3602:-:*:*:*:*:*:*:*"
+ }
+]

@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2019-3483",
+  "description": "Mitigates a potential information leakage issue in ArcSight Logger versions prior to 6.7.",
+  "cpe_strings": "cpe:2.3:a:hp:arcsight_logger:*:*:*:*:*:*:*:*"
+ }
+]

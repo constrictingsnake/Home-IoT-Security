@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2018-20007",
+  "description": "Yeelight Smart AI Speaker 3.3.10_0074 devices have improper access control over the UART interface, allowing physical attackers to obtain a root shell. The attacker can then exfiltrate the audio data, read cleartext Wi-Fi credentials in a log file, or access other sensitive device and user information.",
+  "cpe_strings": "cpe:2.3:o:yeelight:smart_ai_speaker_firmware:3.3.10_0074:*:*:*:*:*:*:*|cpe:2.3:h:yeelight:smart_ai_speaker:-:*:*:*:*:*:*:*"
+ }
+]

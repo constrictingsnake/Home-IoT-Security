@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2016-9207",
+  "description": "A vulnerability in the HTTP traffic server component of Cisco Expressway could allow an unauthenticated, remote attacker to initiate TCP connections to arbitrary hosts. This does not allow for full traffic proxy through the Expressway. Affected Products: This vulnerability affects Cisco Expressway Series Software and Cisco TelePresence Video Communication Server (VCS). More Information: CSCvc10834. Known Affected Releases: X8.7.2 X8.8.3. Known Fixed Releases: X8.9.",
+  "cpe_strings": "cpe:2.3:a:cisco:expressway:x8.7.2:*:*:*:*:*:*:*|cpe:2.3:a:cisco:expressway:x8.8.3:*:*:*:*:*:*:*"
+ }
+]

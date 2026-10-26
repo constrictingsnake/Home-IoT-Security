@@ -1,9 +1,11 @@
-# Plan — Does LLIoT's method work on our research question? (two-person, ChatGPT-based)
+# Plan — Does LLIoT's method work on our research question? (one researcher, ChatGPT-based)
 
-> **STATUS (2026-10-16): SET UP; A's half of the pilot done; waiting on B's pilot.** Kit,
-> scripts, sample (3,035 CVEs) and pilot jobs are built. A ran the smoke test and the 42 pilot
-> jobs (§ Pilot log). Next: B runs the smoke test and the same pilot, then the gate fixes job
-> size, and the Phase 0 commit records the pre-registration. **Deviation, disclosed:** the pilot
+> **STATUS (2026-10-25): GATE PASSED; main run in progress (single jobs, full sample).** Kit, scripts, sample
+> (3,035 CVEs) and pilot jobs are built. A ran the smoke test and the 42 pilot jobs (§ Pilot
+> log). **Changed 2026-10-25, before the Phase 0 commit: the study is one researcher (Aarav)
+> on one ChatGPT Plus plan**, run from a Claude Code session (§ One-researcher workflow). B's
+> pilot is replaced by A rerunning the 40 single pilot jobs (`pilot-rerun`) for the stability
+> read. Gate passed 2026-10-25 (§ Pilot log). Next: finish the main run, then the 5% reruns. **Deviation, disclosed:** the pilot
 > ran before the Phase 0 commit. Pilot outputs never enter the analysis, so no analysed label
 > predates the pre-registration. After that commit, changes to hypotheses, sample sizes, prompt or metrics are
 > dated amendments with a reason, never silent edits.
@@ -113,10 +115,10 @@ codex exec --ephemeral --ignore-user-config --ignore-rules --skip-git-repo-check
   - The repo's `AGENTS.md`, which tells Codex it is the pipeline's reviewer, is never on the
     path, because Codex looks for instructions from the git root down to the working dir.
   - `--ignore-user-config` drops `config.toml` (plugins, MCP servers, the `ultra` default).
-  - No global `~/.codex/AGENTS.md` exists on A's machine (checked 2026-10-16). B checks theirs.
+  - No global `~/.codex/AGENTS.md` exists on A's machine (checked 2026-10-16).
 - **Verified on A's account, 2026-10-16** (`lliot_run.py smoke`, plus a canary test):
   1. **`AGENTS.md` is loaded.** The session quotes its first heading. Delivery path:
-     `agents-md`. `--inline-instructions` is the fallback if B's smoke test says otherwise.
+     `agents-md`. `--inline-instructions` is the fallback if a later smoke test says otherwise.
   2. **No web search.** `-c web_search="disabled"`; the session reports no web tool.
   3. **No shell, file or code access, enforced by the setup, not just the prompt.** The read-only
      sandbox blocks writes but not reads, so with a shell the model could read
@@ -132,7 +134,7 @@ codex exec --ephemeral --ignore-user-config --ignore-rules --skip-git-repo-check
   logs every job.
 
 ### Model and effort
-- **Model: `gpt-5.6-sol` at `medium` reasoning effort**, for every job and both people, pinned
+- **Model: `gpt-5.6-sol` at `medium` reasoning effort**, for every job, pinned
   by `lliot_run.py` with `-m` and `-c model_reasoning_effort=medium`. Your local config defaults
   to `ultra`, so an unpinned run would burn quota without saying so. Chosen for **ChatGPT Plus**:
   - **Measured 2026-10-16 on A's Plus account:** every `gpt-6*` model (`gpt-6.1-sol`,
@@ -144,10 +146,8 @@ codex exec --ephemeral --ignore-user-config --ignore-rules --skip-git-repo-check
     cameras/babymonitor/doorbell boundaries aren't straightforward, and question (b) depends on
     them.
   - `medium` rather than `high`: quota is the binding constraint, and the pilot checks it is enough.
-  - **B must confirm the same model works on their account** (`lliot_run.py smoke`) before the
-    gate. If it doesn't, both switch together to a model that works for both, before any main job.
 - **Pilot check, decided at the gate and never mid-run.** The pilot measures usage per job.
-  - If ~1,550 jobs per person won't fit in a reasonable window, first switch to 20-CVE batches.
+  - If ~3,035 single jobs on one Plus plan won't fit in a reasonable window, first switch to 20-CVE batches.
   - Only if that still won't fit, drop to `gpt-5.6-terra`, and only after it matches
     `gpt-5.6-sol` on the 40 pilot CVEs at ≥ the measured rerun stability.
   - Record any change as an amendment. A mid-run switch voids the run.
@@ -194,65 +194,64 @@ singly and as 20-CVE jobs.
 2. Jobs carry only `cve_id, description, cpe_strings`. No stratum, year, pipeline label or LLIoT
    label. Rows are shuffled across strata, so every job mixes them.
 3. **Runners never open model outputs.** The driver and validator print pass/fail and counts only,
-   because both people adjudicate later.
+   because the researcher adjudicates later. When Claude drives the runs in-session, Claude
+   never opens `outputs/`, `out/` or `logs/` either: whatever it reads, the adjudicator sees.
+   Agreement figures come from `lliot_validate.py --agree`, which prints counts only.
 
-## Two-person concurrent workflow
+## One-researcher workflow
 
-Roles are **Researcher A = Aarav** and **Researcher B = Suhani**. The goal is that neither person
-waits on the other except at the four sync points.
+**Changed 2026-10-25, before the Phase 0 commit, so this is part of the pre-registration, not an
+amendment.** The plan was built for two researchers (A = Aarav, B = Suhani) on two Plus plans,
+with odd/even job assignment, cross-reruns and two blind adjudicators. It is now **one
+researcher, A = Aarav**, on one ChatGPT Plus plan, with `lliot_run.py` driven from a Claude Code
+session (long runs in the background). What that changes:
 
-### Ownership rule (no merge conflicts)
-Every output path carries its owner: `outputs/A/`, `outputs/B/`, `run_log_A.csv`,
-`run_log_B.csv`, `adjudication/A.csv`, `adjudication/B.csv`. Each script has one owner and one
-reviewer. Two people never write the same file, so both commit to `main` freely.
+| Was (two people) | Now (one) | Cost to the study |
+|---|---|---|
+| B reruns the 40 pilot singles; A-vs-B is the stability read | A reruns them (`pilot-rerun`, fresh ephemeral sessions) | Small: same model, effort and prompt either way; a second account added little independence |
+| Odd jobs A, even jobs B, two quotas | Every job owned by A, one quota | Quota halves. Batching would cut input ~12× (~31M vs ~2.7M tokens), but the gate rule decides, and it chose single (§ Pilot log), so the sample may need trimming |
+| 5% cross-reruns on the other person's plan | 5% reruns, same plan, later fresh sessions | Small, as above |
+| Two blind adjudicators, κ, reconciliation | One adjudicator + a **test–retest subsample** (below) | **Real.** No inter-rater check on the ground truth; see § Threats |
+| B recomputes headline numbers | Recomputed from raw files in a fresh Claude session | Arithmetic check only; it judges nothing, so no circularity |
+
+**Who must not be the second adjudicator.** Rejected alternatives, recorded so they aren't
+reopened: (1) the store's existing human verdicts, made with AI columns visible, which already
+contaminates AI-vs-human agreement; (2) Claude, a pipeline reviewer and the author of the rubric
+and facet definitions, the same circularity that flattered the 2-rater facet κ.
 
 ### Interface contract (as built)
 - `manifest.csv`: `cve_id, stratum, order, pilot, seed`, one row per sampled CVE; `order` is the shuffled position jobs are cut from
 - `strata.csv`: `stratum, population, sample, weight`, the reweighting table
-- `jobs.csv`: `job, set (pilot-single|pilot-batch|main|rerun), owner (A|B|both), rerun_of, n, cve_ids`
-- `outputs/<owner>/<set>/<job>.json`, matching `run-kit/schema.json`
-- `run_log_<owner>.csv`: `job, set, owner, started, finished, seconds, model, effort, delivery, exit, retries, valid, input_tokens, cached_input_tokens, output_tokens, reasoning_output_tokens, usage_note`
+- `jobs.csv`: `job, set (pilot-single|pilot-batch|pilot-rerun|main|rerun), owner (A), rerun_of, n, cve_ids`
+- `outputs/A/<set>/<job>.json`, matching `run-kit/schema.json`
+- `run_log_A.csv`: `job, set, owner, started, finished, seconds, model, effort, delivery, exit, retries, valid, input_tokens, cached_input_tokens, output_tokens, reasoning_output_tokens, usage_note`
 
-Each person builds against a 20-row fake of the other's file and never waits for the real one.
-
-### Assignment
-Odd jobs go to A and even jobs to B, each on their own ChatGPT plan, which doubles the quota.
-Every job mixes strata, so person is never confounded with stratum or category.
-**Work-stealing:** if one queue empties or a quota runs out, the other person runs from the
-**tail** of that queue. The driver records the actual runner.
+Every job mixes strata, so run order is never confounded with stratum or category.
 
 ### Phases
 ```
-            Researcher A                          Researcher B
-P0  ──── [together: pre-register, freeze schemas, pin LLIoT label extract] ───── SYNC 1
-P1  lliot_sample.py: status, strata,        lliot_run.py (driver) +
-    manifest, job files                     lliot_validate.py
-    ── swap & review each other's script ─────────────────────────────────────── SYNC 2
-P2  pilot: 40 CVEs, single + batched — BOTH people run the SAME jobs
-    ── gate: tool check, throughput, model/effort, batching, final sample ───── SYNC 3
-P3  run odd jobs                            run even jobs
-    meanwhile: lliot_compare.py             meanwhile: lliot_analyze.py
-    (merge with pipeline, build blind       (weights, bootstrap, confusion
-    adjudication sheets — counts only)      matrix, all metrics) on pilot + fake data
-P4  rerun 5% of B's jobs                     rerun 5% of A's jobs   (sampler pre-picks)
-P5  adjudicate full sheet, blind            adjudicate full sheet, blind
-    ── reconcile together; κ; unresolved rows stay Maybe ─────────────────────── SYNC 4
-P6  run lliot_analyze.py → results.md       independently recompute the headline
-                                            numbers from raw files; both sign off
+P0  pre-register, freeze schemas, pin LLIoT label extract
+P1  scripts built (lliot_build_prompt / sample / run / validate)
+P2  pilot: 40 CVEs single + 2 batched (done) + 40 single reruns (pilot-rerun)
+    ── gate: throughput, model/effort, batching, final sample; then the Phase 0 commit
+P3  run main jobs (unattended)   meanwhile: lliot_compare.py, lliot_analyze.py on pilot + fake data
+P4  run the 5% reruns
+P5  adjudicate the full sheet blind; ≥ 1 week later, re-adjudicate the test–retest subsample
+P6  lliot_analyze.py → results.md; headline numbers recomputed from raw files in a fresh session
 ```
 The analysis scripts are written during P3, while jobs run unattended, which keeps them off the
 critical path: P0 → P2 → P3 → P5.
 
-| Phase | A | B | Together |
-|---|---|---|---|
-| **0. Pre-register** | | | **Done except the commit:** LLIoT labels pinned in `data/external/lliot/` (MIT; slim extract committed, full table gitignored). After the gate: commit, then record the hash. |
-| **1. Build** | **Done** (built by Claude, 2026-10-16): `lliot_build_prompt.py`, `lliot_sample.py`, `lliot_run.py`, `lliot_validate.py` | | **Both review the scripts before the main run.** The cross-review that the build split would have given is still owed |
-| **2. Pilot** | Runs the 40 | Runs the **same** 40 | Tool list, plan usage before/after, minutes per job, batching call, first stability read |
-| **Gate** | | | Final sample from throughput (priority order above); amend if sizes change |
-| **3. Classify** | Odd jobs + `lliot_compare.py` | Even jobs + `lliot_analyze.py` | Glance at both run logs daily: progress and quota, never outputs |
-| **4. Stability** | Reruns B's 5% | Reruns A's 5% | Same prompt, other person's plan |
-| **5. Adjudicate** | Whole sheet, independently | Whole sheet, independently | κ (home-IoT and category separately); reconcile; unresolved rows stay `Maybe`, with no tie-breaker (decided 2026-10-16), and are reported as such |
-| **6. Analyse** | Runs the analysis | Recomputes headline numbers independently | Both sign off before the paper |
+| Phase | Status / what |
+|---|---|
+| **0. Pre-register** | **Done except the commit:** LLIoT labels pinned in `data/external/lliot/` (MIT; slim extract committed, full table gitignored). After the gate: commit, then record the hash. |
+| **1. Build** | **Done** (built by Claude, 2026-10-16; single-owner + `pilot-rerun` + `--agree`, 2026-10-25). The cross-review a second person would have given is not available; A reviews the scripts before the main run. |
+| **2. Pilot** | Pilot done 2026-10-16; `pilot-rerun` 2026-10-25. Gate inputs: rerun stability, single-vs-batch agreement, usage-meter readings. |
+| **Gate** | Final sample from throughput (priority order above); amend if sizes change |
+| **3. Classify** | `run --set main`; glance at the run log for progress and quota, never outputs |
+| **4. Stability** | `run --set rerun` (5%, same prompt and plan, fresh sessions) |
+| **5. Adjudicate** | Whole sheet, blind. Unresolved rows stay `Maybe`, no tie-breaker (decided 2026-10-16), reported as such. Then the test–retest pass. |
+| **6. Analyse** | Run the analysis; recompute the headline numbers independently from raw files |
 
 ### The adjudication sheet (P5)
 - **Rows:**
@@ -262,14 +261,19 @@ critical path: P0 → P2 → P3 → P5.
   - plus 150 agreement controls: 75 Yes-and-same-categories, 75 No (≥ 50 from U3). These catch
     errors both methods share.
 - **Shows only** `description`, `cpe_strings`, the rubric and all 24 scope notes. No model label,
-  no pipeline label, no stratum. Each annotator gets their own shuffled order.
+  no pipeline label, no stratum, in a shuffled order.
+- **Test–retest subsample (replaces inter-rater κ):** a stratified 100 adjudicated rows,
+  reshuffled and re-adjudicated blind **≥ 1 week** after the first pass, without access to the
+  first-pass sheet. Report test–retest κ on home IoT and on primary category separately. It
+  measures the adjudicator's consistency, **not** agreement between people, and is reported as
+  such. The first-pass label is the one scored; disagreements are listed, not silently resolved.
 - **Columns:**
   - `home_iot (Yes/No/Maybe)`
   - `categories` (ordered, first = primary)
   - `exclusion_reason` (for No: criterion 1–5 / not a device / insufficient info)
   - `notes`
 - **Prior-exposure flag:** rows already carrying a human verdict in the store are flagged.
-  Report with and without them, since both people saw those with AI columns visible.
+  Report with and without them, since those verdicts were made with AI columns visible.
 - **Judge by the written rules only.** Adjudicators see exactly the kit's `AGENTS.md`. When a
   call rests on a precedent that isn't in it (e.g. the recorded rulings Frigate NVR = In, pro
   cameras judged by consumer availability), tag `notes` with `precedent:<ruling>`. The model never
@@ -311,8 +315,11 @@ critical path: P0 → P2 → P3 → P5.
   both the pipeline's final labels and its Codex column alone.
 - **The pipeline's categories are incomplete as truth.** The design handles this by scoring only
   against humans, and it is also why R exists.
-- **Adjudicators are the study's own researchers**, and some rows overlap their earlier unblinded
-  review. κ and the prior-exposure split are the mitigation.
+- **One adjudicator, who is the study's own researcher**, and some rows overlap their earlier
+  unblinded review. With no second rater there is no inter-rater κ: ground truth is one person's
+  reading of the rubric, and an individual bias would pass into every precision, recall and
+  accuracy figure unseen. Test–retest κ and the prior-exposure split are the mitigation, and
+  they are weaker than the two-adjudicator design they replace (changed 2026-10-25).
 - **Category tail:** 3 categories have no confirmed CVEs and 5 have ≤ 3. Category accuracy there
   is unmeasured or family-level only, never a percentage on n=2.
 - **Not LLIoT's model, and not their prompt.** That's deliberate given the question. Say so.
@@ -329,21 +336,21 @@ data/external/lliot/          # pinned iot_cls.tsv + SHA-256 (used for stratific
 data/lliot-comparison/
   manifest.csv
   run-kit/                    # AGENTS.md + schema.json (generated), jobs/ (from lliot_sample.py)
-  outputs/{A,B}/              # validated JSON, copied back from each person's run dir
-  run_log_A.csv, run_log_B.csv
-  adjudication/{A,B,reconciled}.csv
+  outputs/A/                  # validated JSON, copied back from the run dir
+  run_log_A.csv
+  adjudication/{A,A_retest}.csv
   results.md
 scripts/lliot_build_prompt.py (done), lliot_sample.py, lliot_run.py, lliot_validate.py,
         lliot_compare.py, lliot_analyze.py
 ```
 
 ## Effort estimate
-- **P0:** half a day together.
-- **P1:** 1–2 days each, in parallel.
+- **P0:** half a day.
+- **P1:** done.
 - **P2:** half a day.
-- **P3:** ~1,550 jobs per person if run singly, or ~80 if batched at 20. Unattended, so mostly
+- **P3:** ~3,035 jobs if run singly, or ~152 if batched at 20, all on one plan. Unattended, so mostly
   wall-clock time. The pilot measures it.
-- **P5:** ~800 rows × ~1 min ≈ 13–14 h **per person**, in parallel, plus reconciliation.
+- **P5:** ~800 rows × ~1 min ≈ 13–14 h, plus ~2 h for the test–retest 100.
   Category labelling makes rows a little slower than a Yes/No call.
 - **P6:** 1 day.
 
@@ -389,15 +396,27 @@ confirmed counts above. Pilot: 40 CVEs (Y 10, U3 8, U1 6, N 6, U2 4, M 2, R 2, X
 
 - **Single vs batched agreement, same 40 CVEs:** home IoT **36/40 (90%)**; primary category
   14/14 where both gave one.
-- Usage-meter readings were not recorded for A's pilot. B records them (README), and A records
-  them on the first main-run day.
+- Usage-meter readings were not recorded for the pilot or its rerun; A records them on the first
+  main-run day.
+- Agreement figures are now reproducible counts-only: `lliot_validate.py --agree
+  outputs/A/pilot-single outputs/A/pilot-batch` gives the 36/40 and 14/14 above.
 
-**B (Suhani):** pending.
+**A, pilot rerun (2026-10-25):** the 40 single jobs again, fresh sessions (`pilot-rerun`),
+replacing B's pilot. 40/40 valid, 0 retries, ~4.4 s/job, ~10,440 input tokens/job.
+- **Rerun stability (single vs single):** home IoT **39/40 (97.5%)**; primary category **15/16
+  (93.8%)** where both gave one. Both clear H5's thresholds (90% / 85%) on the pilot.
+- **Gate rule applied:** batched-vs-single agreement (90%) is **below** rerun stability (97.5%),
+  so the pre-registered rule says **run singly** (`--size 1`). Note the margin is 4 vs 1
+  disagreements on n=40; the rule is followed as written, not re-argued after seeing the data.
 
-**Gate inputs still needed:**
-- B's single-vs-single agreement with A on the same 40 CVEs (the rerun stability).
-- B's usage-meter readings.
-- The rule: batch at 20 only if the 90% above is ≥ that stability.
+**Quota measurement (2026-10-25), first 100 main jobs:** 100/100 valid, 0 retries, ~4.3 s/job,
+~10,500 input tokens/job. ChatGPT usage page: 5-hour limit 94% → 86% left (**~8% per 100 jobs**,
+so ~1,250 jobs per 5-hour window); weekly 98% → 97% left (**~1% per 100**, rounded, so the
+remaining ~3,087 jobs need roughly 15–45% of a week).
+- **Gate decision: the full sample (3,035 + 152 reruns) runs, untrimmed**, at `--size 1`,
+  across ~3 five-hour windows, each run capped with `--limit` below the 5-hour cap.
+- **Deviation, disclosed:** these 100 main jobs ran before the Phase 0 commit, to measure quota.
+  Their prompt, model and job files are the pre-registered ones, and no output was opened.
 
 ## Pre-registration
 - Commit hash: `TBD`
@@ -405,8 +424,9 @@ confirmed counts above. Pilot: 40 CVEs (Y 10, U3 8, U1 6, N 6, U2 4, M 2, R 2, X
 - Schema (`run-kit/schema.json`) SHA-256: `d69a99b032842c42bf4879f3d9643252d34db8d8ebbd2139d768fce28fd37692`
   - Both as generated 2026-10-16. Rerun `lliot_build_prompt.py --check` at Phase 0. A changed
     hash means the rubric or scope notes moved, which needs an amendment.
-- Codex CLI version: 0.151.0 (A; B records theirs) · model: `gpt-5.6-sol` · reasoning effort: `medium` (confirm at the gate)
-- Job granularity (single / batched-20): `TBD` (set at the gate)
+- Codex CLI version: 0.151.0 · model: `gpt-5.6-sol` · reasoning effort: `medium` (confirm at the gate)
+- Job granularity: **single** (gate rule, 2026-10-25: batched 90% < rerun stability 97.5%). Cut 2026-10-25: 3,035 main jobs + 152 reruns.
 - Seed: `20261016`
 - Tie-breaker: none. Unresolved rows stay `Maybe`.
+- Researchers: one (A = Aarav), one ChatGPT Plus plan; one adjudicator + test–retest subsample of 100 (2026-10-25)
 - Job preamble (`run-kit/job_preamble.txt`) SHA-256: `35c9e30ec3ad3c1eb56881ae58def20151a7e3308cbe17024819fc3e79e69fbf`

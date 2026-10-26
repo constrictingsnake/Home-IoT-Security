@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2024-48786",
+  "description": "An issue in SWITCHBOT INC SwitchBot (com.theswitchbot.switchbot) 5.0.4 allows a remote attacker to obtain sensitive information via the firmware update process.",
+  "cpe_strings": ""
+ }
+]

@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2017-14070",
+  "description": "Cross Site Scripting (XSS) exists in NexusPHP 1.5.beta5.20120707 via the PATH_INFO to ipsearch.php, related to PHP_SELF.",
+  "cpe_strings": "cpe:2.3:a:nexusphp:nexusphp:1.5:beta5.20120707:*:*:*:*:*:*"
+ }
+]

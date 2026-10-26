@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2021-32466",
+  "description": "An uncontrolled search path element privilege escalation vulnerability in Trend Micro HouseCall for Home Networks version 5.3.1225 and below could allow an attacker to escalate privileges by placing a custom crafted file in a specific directory to load a malicious library. Please note that an attacker must first obtain the ability to execute low-privileged code on the target system to exploit this vulnerability.",
+  "cpe_strings": "cpe:2.3:a:trendmicro:housecall_for_home_networks:*:*:*:*:*:*:*:*|cpe:2.3:o:microsoft:windows:-:*:*:*:*:*:*:*"
+ }
+]

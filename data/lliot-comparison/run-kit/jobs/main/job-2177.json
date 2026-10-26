@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2020-15384",
+  "description": "Brocade SANNav before version 2.1.1 contains an information disclosure vulnerability. Successful exploitation of internal server information in the initial login response header.",
+  "cpe_strings": "cpe:2.3:a:broadcom:sannav:*:*:*:*:*:*:*:*"
+ }
+]

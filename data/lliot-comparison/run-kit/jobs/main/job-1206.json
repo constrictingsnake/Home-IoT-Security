@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2019-16733",
+  "description": "processCommandSetUid() in libcommon.so in Petwant PF-103 firmware 4.22.2.42 and Petalk AI 3.2.2.30 allows remote attackers to execute arbitrary system commands as the root user.",
+  "cpe_strings": "cpe:2.3:o:skymee:petalk_ai_firmware:3.2.2.30:*:*:*:*:*:*:*|cpe:2.3:h:skymee:petalk_ai:-:*:*:*:*:*:*:*|cpe:2.3:o:petwant:pf-103_firmware:4.22.2.42:*:*:*:*:*:*:*|cpe:2.3:h:petwant:pf-103:-:*:*:*:*:*:*:*"
+ }
+]

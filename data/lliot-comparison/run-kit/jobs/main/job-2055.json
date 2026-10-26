@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2021-27574",
+  "description": "An issue was discovered in Emote Remote Mouse through 4.0.0.0. It uses cleartext HTTP to check, and request, updates. Thus, attackers can machine-in-the-middle a victim to download a malicious binary in place of the real update, with no SSL errors or warnings.",
+  "cpe_strings": "cpe:2.3:a:remotemouse:emote_remote_mouse:*:*:*:*:*:*:*:*"
+ }
+]

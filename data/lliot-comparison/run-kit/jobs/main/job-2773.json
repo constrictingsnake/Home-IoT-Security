@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2023-3953",
+  "description": "\nA CWE-119: Improper Restriction of Operations within the Bounds of a Memory\nBuffer vulnerability exists that could cause memory corruption when an authenticated user\nopens a tampered log file from GP-Pro EX.",
+  "cpe_strings": "cpe:2.3:a:schneider-electric:pro-face_gp-pro_ex:*:*:*:*:*:*:*:*"
+ }
+]

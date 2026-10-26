@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2022-46359",
+  "description": "Potential vulnerabilities have been identified in HP Security Manager which may allow escalation of privilege, arbitrary code execution, and information disclosure.",
+  "cpe_strings": "cpe:2.3:a:hp:security_manager:*:*:*:*:*:*:*:*"
+ }
+]

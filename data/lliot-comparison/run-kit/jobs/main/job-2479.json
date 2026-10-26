@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2021-42300",
+  "description": "Azure Sphere Tampering Vulnerability",
+  "cpe_strings": "cpe:2.3:a:microsoft:azure_sphere:*:*:*:*:*:*:*:*"
+ }
+]

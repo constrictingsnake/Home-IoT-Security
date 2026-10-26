@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2021-21955",
+  "description": "An authentication bypass vulnerability exists in the get_aes_key_info_by_packetid() function of the home_security binary of Anker Eufy Homebase 2 2.1.6.9h. Generic network sniffing can lead to password recovery. An attacker can sniff network traffic to trigger this vulnerability.",
+  "cpe_strings": "cpe:2.3:o:anker:eufy_homebase_2_firmware:2.1.6.9h:*:*:*:*:*:*:*|cpe:2.3:h:anker:eufy_homebase_2:-:*:*:*:*:*:*:*"
+ }
+]

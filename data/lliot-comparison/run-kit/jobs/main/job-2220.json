@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2023-52180",
+  "description": "Improper Neutralization of Special Elements used in an SQL Command ('SQL Injection') vulnerability in Really Simple Plugins Recipe Maker For Your Food Blog from Zip Recipes.This issue affects Recipe Maker For Your Food Blog from Zip Recipes: from n/a through 8.1.0.",
+  "cpe_strings": "cpe:2.3:a:really-simple-plugins:recipe_maker_for_your_food_blog_from_zip_recipes:*:*:*:*:*:wordpress:*:*"
+ }
+]

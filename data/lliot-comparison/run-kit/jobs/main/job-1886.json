@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2018-10750",
+  "description": "An issue was discovered on D-Link DSL-3782 EU 1.01 devices. An authenticated user can pass a long buffer as a 'staticGet' parameter to the '/userfs/bin/tcapi' binary (in the Diagnostics component) using the 'staticGet <node_name attr>' function and cause memory corruption. Furthermore, it is possible to redirect the flow of the program and execute arbitrary code.",
+  "cpe_strings": "cpe:2.3:o:d-link:dsl-3782_firmware:1.01:*:*:*:*:*:*:*|cpe:2.3:h:dlink:dsl-3782:-:*:*:*:*:*:*:*"
+ }
+]

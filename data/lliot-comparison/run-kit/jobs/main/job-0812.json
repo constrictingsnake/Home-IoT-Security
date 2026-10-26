@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2024-47906",
+  "description": "Excessive binary privileges in Ivanti Connect Secure before version 22.7R2.3 (Not Applicable to 9.1Rx) and Ivanti Policy Secure before version 22.7R1.2 (Not Applicable to 9.1Rx) allows a local authenticated attacker to escalate privileges.",
+  "cpe_strings": "cpe:2.3:a:ivanti:connect_secure:*:*:*:*:*:*:*:*|cpe:2.3:a:ivanti:connect_secure:22.7:-:*:*:*:*:*:*|cpe:2.3:a:ivanti:connect_secure:22.7:r1:*:*:*:*:*:*|cpe:2.3:a:ivanti:connect_secure:22.7:r1.1:*:*:*:*:*:*|cpe:2.3:a:ivanti:connect_secure:22.7:r1.2:*:*:*:*:*:*|cpe:2.3:a:ivanti:connect_secure:22.7:r1.3:*:*:*:*:*:*|cpe:2.3:a:ivanti:connect_secure:22.7:r1.4:*:*:*:*:*:*|cpe:2.3:a:ivanti:connect_secure:22.7:r1.5:*:*:*:*:*:*|cpe:2.3:a:ivanti:connect_secure:22.7:r2:*:*:*:*:*:*|cpe:2.3:a:ivanti:connect_secure:22.7:r2.1:*:*:*:*:*:*|cpe:2.3:a:ivanti:connect_secure:22.7:r2.2:*:*:*:*:*:*|cpe:2.3:a:ivanti:policy_secure:*:*:*:*:*:*:*:*|cpe:2.3:a:ivanti:policy_secure:22.7:r1:*:*:*:*:*:*|cpe:2.3:a:ivanti:policy_secure:22.7:r1.1:*:*:*:*:*:*"
+ }
+]

@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2024-32684",
+  "description": "Missing Authorization vulnerability in Wpmet Wp Ultimate Review.This issue affects Wp Ultimate Review: from n/a through 2.2.5.",
+  "cpe_strings": "cpe:2.3:a:wpmet:wp_ultimate_review:*:*:*:*:*:wordpress:*:*"
+ }
+]

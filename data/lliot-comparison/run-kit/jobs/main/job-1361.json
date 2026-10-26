@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2016-2360",
+  "description": "Milesight IP security cameras through 2016-11-14 have a default root password in /etc/shadow that is the same across different customers' installations.",
+  "cpe_strings": "cpe:2.3:o:milesight:ip_security_camera_firmware:*:*:*:*:*:*:*:*|cpe:2.3:h:milesight:ip_security_camera:-:*:*:*:*:*:*:*"
+ }
+]

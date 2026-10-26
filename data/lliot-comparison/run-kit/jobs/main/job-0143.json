@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2014-8389",
+  "description": "cgi-bin/mft/wireless_mft.cgi in AirLive BU-2015 with firmware 1.03.18 16.06.2014, AirLive BU-3026 with firmware 1.43 21.08.2014, AirLive MD-3025 with firmware 1.81 21.08.2014, AirLive WL-2000CAM with firmware LM.1.6.18 14.10.2011, and AirLive POE-200CAM v2 with firmware LM.1.6.17.01 uses hard-coded credentials in the embedded Boa web server, which allows remote attackers to obtain user credentials via crafted HTTP requests.",
+  "cpe_strings": "cpe:2.3:o:airlive:bu-3026_firmware:1.43_21.08.2014:*:*:*:*:*:*:*|cpe:2.3:h:airlive:bu-3026:-:*:*:*:*:*:*:*|cpe:2.3:o:airlive:md-3025_firmware:1.81_21.08.2014:*:*:*:*:*:*:*|cpe:2.3:h:airlive:md-3025:-:*:*:*:*:*:*:*|cpe:2.3:o:airlive:wl-2000cam_firmware:lm.1.6.18_14.10.2011:*:*:*:*:*:*:*|cpe:2.3:h:airlive:wl-2000cam:-:*:*:*:*:*:*:*|cpe:2.3:o:airlive:poe-200cam_v2_firmware:lm.1.6.17.01:*:*:*:*:*:*:*|cpe:2.3:h:airlive:poe-200cam_v2:-:*:*:*:*:*:*:*|cpe:2.3:o:airlive:bu-2015_firmware:1.03.18_16.06.2014:*:*:*:*:*:*:*|cpe:2.3:h:airlive:bu-2015:-:*:*:*:*:*:*:*"
+ }
+]

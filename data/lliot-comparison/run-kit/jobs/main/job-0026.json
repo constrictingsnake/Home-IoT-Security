@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2020-28249",
+  "description": "Joplin 1.2.6 for Desktop allows XSS via a LINK element in a note.",
+  "cpe_strings": "cpe:2.3:a:joplin_project:joplin:1.2.6:*:*:*:*:*:*:*"
+ }
+]

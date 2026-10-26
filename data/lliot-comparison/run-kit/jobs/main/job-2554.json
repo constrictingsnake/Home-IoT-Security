@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2022-21964",
+  "description": "Remote Desktop Licensing Diagnoser Information Disclosure Vulnerability",
+  "cpe_strings": "cpe:2.3:o:microsoft:windows_10:1607:*:*:*:*:*:x64:*|cpe:2.3:o:microsoft:windows_10:1607:*:*:*:*:*:x86:*"
+ }
+]

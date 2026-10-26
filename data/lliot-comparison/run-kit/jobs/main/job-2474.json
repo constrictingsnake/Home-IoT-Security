@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2024-29231",
+  "description": "Improper validation of array index vulnerability in UserPrivilege.Enum webapi component in Synology Surveillance Station before 9.2.0-9289 and 9.2.0-11289 allows remote authenticated users to obtain non-sensitive information and conduct limited denial-of-service attacks via unspecified vectors.",
+  "cpe_strings": "cpe:2.3:a:synology:surveillance_station:*:*:*:*:*:*:*:*|cpe:2.3:o:synology:diskstation_manager:6.2:*:*:*:*:*:*:*|cpe:2.3:o:synology:diskstation_manager:7.1:*:*:*:*:*:*:*|cpe:2.3:o:synology:diskstation_manager:7.2:*:*:*:*:*:*:*"
+ }
+]

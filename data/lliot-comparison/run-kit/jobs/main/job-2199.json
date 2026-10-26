@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2023-48419",
+  "description": "An attacker in the wifi vicinity of a target Google Home can spy on the victim, resulting in Elevation of Privilege \n",
+  "cpe_strings": "cpe:2.3:o:google:nest_audio_firmware:*:*:*:*:*:*:*:*|cpe:2.3:h:google:nest_audio:-:*:*:*:*:*:*:*|cpe:2.3:o:google:nest_mini_firmware:*:*:*:*:*:*:*:*|cpe:2.3:h:google:nest_mini:-:*:*:*:*:*:*:*|cpe:2.3:o:google:home_mini_firmware:*:*:*:*:*:*:*:*|cpe:2.3:h:google:home_mini:-:*:*:*:*:*:*:*|cpe:2.3:o:google:home_firmware:*:*:*:*:*:*:*:*|cpe:2.3:h:google:home:-:*:*:*:*:*:*:*"
+ }
+]

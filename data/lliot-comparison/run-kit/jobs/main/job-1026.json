@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2024-32956",
+  "description": "Improper Neutralization of Input During Web Page Generation ('Cross-site Scripting') vulnerability in Rometheme RTMKit rometheme-for-elementor.This issue affects RTMKit: from n/a through <= 1.4.1.",
+  "cpe_strings": ""
+ }
+]

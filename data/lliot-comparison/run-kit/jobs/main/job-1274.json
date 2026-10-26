@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2014-2312",
+  "description": "The main function in android_main.cpp in thermald allows local users to write to arbitrary files via a symlink attack on /tmp/thermald.pid.",
+  "cpe_strings": "cpe:2.3:a:intel:thermald:*:*:*:*:*:*:*:*"
+ }
+]

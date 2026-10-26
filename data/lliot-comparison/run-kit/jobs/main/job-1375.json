@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2019-20329",
+  "description": "OpenLambda 2019-09-10 allows DNS rebinding attacks against the OL server for the REST API on TCP port 5000.",
+  "cpe_strings": "cpe:2.3:a:openlambda_project:openlambda:2019-09-10:*:*:*:*:*:*:*"
+ }
+]

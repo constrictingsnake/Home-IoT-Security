@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2023-42647",
+  "description": "In Ifaa service, there is a possible way to write permission usage records of an app due to a missing permission check. This could lead to local information disclosure with no additional execution privileges needed",
+  "cpe_strings": "cpe:2.3:o:google:android:10.0:-:*:*:*:*:*:*|cpe:2.3:o:google:android:11.0:-:*:*:*:*:*:*|cpe:2.3:o:google:android:12.0:-:*:*:*:*:*:*|cpe:2.3:o:google:android:13.0:-:*:*:*:*:*:*|cpe:2.3:h:unisoc:s8000:-:*:*:*:*:*:*:*|cpe:2.3:h:unisoc:sc7731e:-:*:*:*:*:*:*:*|cpe:2.3:h:unisoc:sc9832e:-:*:*:*:*:*:*:*|cpe:2.3:h:unisoc:sc9863a:-:*:*:*:*:*:*:*|cpe:2.3:h:unisoc:t310:-:*:*:*:*:*:*:*|cpe:2.3:h:unisoc:t606:-:*:*:*:*:*:*:*|cpe:2.3:h:unisoc:t610:-:*:*:*:*:*:*:*|cpe:2.3:h:unisoc:t612:-:*:*:*:*:*:*:*|cpe:2.3:h:unisoc:t616:-:*:*:*:*:*:*:*|cpe:2.3:h:unisoc:t618:-:*:*:*:*:*:*:*|cpe:2.3:h:unisoc:t760:-:*:*:*:*:*:*:*|cpe:2.3:h:unisoc:t770:-:*:*:*:*:*:*:*|cpe:2.3:h:unisoc:t820:-:*:*:*:*:*:*:*"
+ }
+]

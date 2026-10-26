@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2022-41881",
+  "description": "Netty project is an event-driven asynchronous network application framework. In versions prior to 4.1.86.Final, a StackOverflowError can be raised when parsing a malformed crafted message due to an infinite recursion. This issue is patched in version 4.1.86.Final. There is no workaround, except using a custom HaProxyMessageDecoder.",
+  "cpe_strings": "cpe:2.3:a:netty:netty:*:*:*:*:*:*:*:*|cpe:2.3:o:debian:debian_linux:10.0:*:*:*:*:*:*:*|cpe:2.3:o:debian:debian_linux:11.0:*:*:*:*:*:*:*"
+ }
+]

@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2018-12666",
+  "description": "SV3C L-SERIES HD CAMERA V2.3.4.2103-S50-NTD-B20170508B devices improperly identifies users only by the authentication level sent in the cookies, which allow remote attackers to bypass authentication and gain administrator access by setting the authLevel cookie to 255.",
+  "cpe_strings": "cpe:2.3:o:sv3c:h.264_poe_ip_camera_firmware:v2.3.4.2103-s50-ntd-b20170508b:*:*:*:*:*:*:*|cpe:2.3:h:sv3c:sv-b01poe-1080p-l:-:*:*:*:*:*:*:*|cpe:2.3:h:sv3c:sv-b11vpoe-1080p-l:-:*:*:*:*:*:*:*|cpe:2.3:h:sv3c:sv-d02poe-1080p-l:-:*:*:*:*:*:*:*|cpe:2.3:o:sv3c:h.264_poe_ip_camera_firmware:v2.3.4.2103-s50-ntd-b20170823b:*:*:*:*:*:*:*"
+ }
+]

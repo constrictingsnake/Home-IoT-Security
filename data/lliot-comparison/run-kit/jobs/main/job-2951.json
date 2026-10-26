@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2021-33889",
+  "description": "OpenThread wpantund through 2021-07-02 has a stack-based Buffer Overflow because of an inconsistency in the integer data type for metric_len.",
+  "cpe_strings": "cpe:2.3:a:openthread:wpantund:*:*:*:*:*:*:*:*"
+ }
+]

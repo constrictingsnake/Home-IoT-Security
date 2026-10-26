@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2020-25873",
+  "description": "A directory traversal vulnerability in the component system/manager/class/web/database.php was discovered in Baijiacms V4 which allows attackers to arbitrarily delete folders on the server via the \"id\" parameter.",
+  "cpe_strings": "cpe:2.3:a:baijiacms_project:baijiacms:4:*:*:*:*:*:*:*"
+ }
+]

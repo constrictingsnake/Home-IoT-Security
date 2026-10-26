@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2023-30106",
+  "description": "Sourcecodester Medicine Tracker System in PHP 1.0.0 is vulnerable to Cross Site Scripting (XSS) via page=about.",
+  "cpe_strings": "cpe:2.3:a:medicine_tracker_system_project:medicine_tracker_system:1.0:*:*:*:*:*:*:*"
+ }
+]

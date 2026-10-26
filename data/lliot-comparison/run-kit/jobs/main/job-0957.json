@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2024-41624",
+  "description": "Incorrect access control in Himalaya Xiaoya nano smart speaker rom_version 1.6.96 allows a remote attacker to have an unspecified impact.",
+  "cpe_strings": ""
+ }
+]

@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2019-15599",
+  "description": "A Code Injection exists in tree-kill on Windows which allows a remote code execution when an attacker is able to control the input into the command.",
+  "cpe_strings": "cpe:2.3:a:tree-kill_project:tree-kill:1.2.1:*:*:*:*:node.js:*:*"
+ }
+]

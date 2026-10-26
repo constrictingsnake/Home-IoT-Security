@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2016-9073",
+  "description": "WebExtensions can bypass security checks to load privileged URLs and potentially escape the WebExtension sandbox. This vulnerability affects Firefox < 50.",
+  "cpe_strings": "cpe:2.3:a:mozilla:firefox:*:*:*:*:*:*:*:*"
+ }
+]

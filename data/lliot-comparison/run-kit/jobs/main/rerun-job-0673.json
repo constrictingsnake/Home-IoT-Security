@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2019-3934",
+  "description": "Crestron AM-100 with firmware 1.6.0.2 and AM-101 with firmware 2.7.0.2 allows anyone to bypass the presentation code sending a crafted HTTP POST request to login.cgi. A remote, unauthenticated attacker can use this vulnerability to download the current slide image without knowing the access code.",
+  "cpe_strings": "cpe:2.3:o:crestron:am-100_firmware:1.6.0.2:*:*:*:*:*:*:*|cpe:2.3:h:crestron:am-100:-:*:*:*:*:*:*:*|cpe:2.3:o:crestron:am-101_firmware:2.7.0.2:*:*:*:*:*:*:*|cpe:2.3:h:crestron:am-101:-:*:*:*:*:*:*:*"
+ }
+]

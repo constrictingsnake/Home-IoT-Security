@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2021-40597",
+  "description": "The firmware of EDIMAX IC-3140W Version 3.11 is hardcoded with Administrator username and password.",
+  "cpe_strings": "cpe:2.3:o:edimax:ic-3140w_firmware:3.11:*:*:*:*:*:*:*|cpe:2.3:h:edimax:ic-3140w:-:*:*:*:*:*:*:*"
+ }
+]

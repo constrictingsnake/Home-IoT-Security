@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2019-14457",
+  "description": "VIVOTEK IP Camera devices with firmware before 0x20x have a stack-based buffer overflow via a crafted HTTP header.",
+  "cpe_strings": "cpe:2.3:h:vivotek:camera:-:*:*:*:*:*:*:*"
+ }
+]

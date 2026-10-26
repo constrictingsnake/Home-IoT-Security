@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2022-30603",
+  "description": "An OS command injection vulnerability exists in the web interface /action/iperf functionality of Abode Systems, Inc. iota All-In-One Security Kit 6.9X and 6.9Z. A specially-crafted HTTP request can lead to arbitrary command execution. An attacker can make an authenticated HTTP request to trigger this vulnerability.",
+  "cpe_strings": "cpe:2.3:o:goabode:iota_all-in-one_security_kit_firmware:6.9z:*:*:*:*:*:*:*|cpe:2.3:h:goabode:iota_all-in-one_security_kit:-:*:*:*:*:*:*:*|cpe:2.3:o:goabode:iota_all-in-one_security_kit_firmware:6.9x:*:*:*:*:*:*:*"
+ }
+]

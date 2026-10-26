@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2021-0520",
+  "description": "In several functions of MemoryFileSystem.cpp and related files, there is a possible use after free due to a race condition. This could lead to local escalation of privilege with no additional execution privileges needed. User interaction is not needed for exploitation.Product: AndroidVersions: Android-11 Android-10Android ID: A-176237595",
+  "cpe_strings": "cpe:2.3:o:google:android:10.0:*:*:*:*:*:*:*|cpe:2.3:o:google:android:11.0:*:*:*:*:*:*:*"
+ }
+]

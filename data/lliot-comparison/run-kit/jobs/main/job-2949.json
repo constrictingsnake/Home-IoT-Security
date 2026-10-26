@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2019-16199",
+  "description": "eQ-3 Homematic CCU2 before 2.47.18 and CCU3 before 3.47.18 allow Remote Code Execution by unauthenticated attackers with access to the web interface via an HTTP POST request to certain URLs related to the ReGa core process.",
+  "cpe_strings": "cpe:2.3:o:eq-3:homematic_ccu2_firmware:*:*:*:*:*:*:*:*|cpe:2.3:h:eq-3:homematic_ccu2:-:*:*:*:*:*:*:*|cpe:2.3:o:eq-3:homematic_ccu3_firmware:*:*:*:*:*:*:*:*|cpe:2.3:h:eq-3:homematic_ccu3:-:*:*:*:*:*:*:*"
+ }
+]

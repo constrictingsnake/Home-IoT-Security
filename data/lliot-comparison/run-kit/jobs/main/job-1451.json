@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2023-24678",
+  "description": "A vulnerability in Centralite Pearl Thermostat 0x04075010 allows attackers to cause a Denial of Service (DoS) via a crafted Zigbee message.",
+  "cpe_strings": "cpe:2.3:o:centralite:pearl_firmware:0x04075010:*:*:*:*:*:*:*|cpe:2.3:h:centralite:pearl:-:*:*:*:*:*:*:*"
+ }
+]

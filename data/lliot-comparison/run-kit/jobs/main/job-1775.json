@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2017-9966",
+  "description": "A privilege escalation vulnerability exists in Schneider Electric's Pelco VideoXpert Enterprise versions 2.0 and prior. By replacing certain files, an unauthorized user can obtain system privileges and the inserted code would execute at an elevated privilege level.",
+  "cpe_strings": "cpe:2.3:a:schneider-electric:pelco_videoxpert:*:*:*:*:enterprise:*:*:*"
+ }
+]

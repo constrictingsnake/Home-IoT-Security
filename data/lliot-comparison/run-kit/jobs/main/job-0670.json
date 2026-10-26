@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2019-5043",
+  "description": "An exploitable denial-of-service vulnerability exists in the Weave daemon of the Nest Cam IQ Indoor, version 4620002. A set of TCP connections can cause unrestricted resource allocation, resulting in a denial of service. An attacker can connect multiple times to trigger this vulnerability.",
+  "cpe_strings": "cpe:2.3:o:google:nest_cam_iq_indoor_firmware:4620002:*:*:*:*:*:*:*|cpe:2.3:h:google:nest_cam_iq_indoor:-:*:*:*:*:*:*:*"
+ }
+]

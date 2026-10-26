@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2024-35527",
+  "description": "An arbitrary file upload vulnerability in /fileupload/upload.cfm in Daemon PTY Limited FarCry Core framework before 7.2.14 allows attackers to execute arbitrary code via uploading a crafted .cfm file.",
+  "cpe_strings": ""
+ }
+]

@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2022-44542",
+  "description": "lesspipe before 2.06 allows attackers to execute code via Perl Storable (pst) files, because of deserialized object destructor execution via a key/value pair in a hash.",
+  "cpe_strings": "cpe:2.3:a:lesspipe_project:lesspipe:*:*:*:*:*:*:*:*"
+ }
+]

@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2024-43282",
+  "description": "Improper Neutralization of Special Elements used in an SQL Command ('SQL Injection') vulnerability in Themeum Tutor LMS.This issue affects Tutor LMS: from n/a through 2.7.2.",
+  "cpe_strings": "cpe:2.3:a:themeum:tutor_lms:*:*:*:*:*:wordpress:*:*"
+ }
+]

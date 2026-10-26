@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2021-24734",
+  "description": "The Compact WP Audio Player WordPress plugin before 1.9.7 does not escape some of its shortcodes attributes, which could allow users with a role as low as Contributor to perform Stored Cross-Site Scripting attacks.",
+  "cpe_strings": "cpe:2.3:a:tipsandtricks-hq:compact_wp_audio_player:*:*:*:*:*:wordpress:*:*"
+ }
+]

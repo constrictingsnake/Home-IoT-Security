@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2024-39350",
+  "description": "A vulnerability regarding authentication bypass by spoofing is found in the RTSP functionality. This allows man-in-the-middle attackers to obtain privileges without consent via unspecified vectors. The following models with Synology Camera Firmware versions before 1.0.7-0298 may be affected: BC500 and TC500.",
+  "cpe_strings": "cpe:2.3:o:synology:tc500_firmware:*:*:*:*:*:*:*:*|cpe:2.3:h:synology:tc500:-:*:*:*:*:*:*:*|cpe:2.3:o:synology:bc500_firmware:*:*:*:*:*:*:*:*|cpe:2.3:h:synology:bc500:-:*:*:*:*:*:*:*"
+ }
+]

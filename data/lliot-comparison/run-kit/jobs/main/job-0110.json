@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2020-23310",
+  "description": "There is an Assertion 'context_p->next_scanner_info_p->type == SCANNER_TYPE_FUNCTION' failed at js-parser-statm.c:733 in parser_parse_function_statement in JerryScript 2.2.0.",
+  "cpe_strings": "cpe:2.3:a:jerryscript:jerryscript:2.2.0:*:*:*:*:*:*:*"
+ }
+]

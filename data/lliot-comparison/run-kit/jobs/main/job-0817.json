@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2017-9312",
+  "description": "Improperly implemented option-field processing in the TCP/IP stack on Allen-Bradley L30ERMS safety devices v30 and earlier causes a denial of service. When a crafted TCP packet is received, the device reboots immediately.",
+  "cpe_strings": "cpe:2.3:o:rockwellautomation:allen-bradley_l30erms_firmware:*:*:*:*:*:*:*:*|cpe:2.3:h:rockwellautomation:allen-bradley_l30erms:-:*:*:*:*:*:*:*"
+ }
+]

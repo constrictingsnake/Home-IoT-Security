@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2014-9265",
+  "description": "Stack-based buffer overflow in the BackupToAvi method in the CNC_Ctrl ActiveX control in Samsung SmartViewer allows remote attackers to execute arbitrary code via unspecified vectors.",
+  "cpe_strings": "cpe:2.3:a:samsung:smartviewer:-:*:*:*:*:*:*:*"
+ }
+]

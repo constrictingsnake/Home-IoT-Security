@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2024-48530",
+  "description": "An issue in the Instructor Appointment Availability module of eSoft Planner 3.24.08271-USA allows attackers to cause a Denial of Service (DoS) via a crafted POST request.",
+  "cpe_strings": "cpe:2.3:a:esoftplanner:esoft_planner:3.24.08271-usa:*:*:*:*:*:*:*"
+ }
+]

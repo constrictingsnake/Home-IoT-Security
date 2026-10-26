@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2015-5859",
+  "description": "The CFNetwork HTTPProtocol component in Apple iOS before 9 and OS X before 10.11 does not properly recognize the HSTS preload list during a Safari private-browsing session, which makes it easier for remote attackers to obtain sensitive information by sniffing the network.",
+  "cpe_strings": "cpe:2.3:o:apple:mac_os_x:*:*:*:*:*:*:*:*|cpe:2.3:o:apple:iphone_os:*:*:*:*:*:*:*:*"
+ }
+]

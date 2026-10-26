@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2022-27588",
+  "description": "We have already fixed this vulnerability in the following versions of QVR: QVR 5.1.6 build 20220401 and later",
+  "cpe_strings": "cpe:2.3:a:qnap:qvr:*:*:*:*:*:*:*:*"
+ }
+]

@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2022-38390",
+  "description": "Multiple IBM Business Automation Workflow versions are vulnerable to cross-site scripting. This vulnerability allows users to embed arbitrary JavaScript code in the Web UI thus altering the intended functionality potentially leading to credentials disclosure within a trusted session.  IBM X-Force ID:  233978.",
+  "cpe_strings": "cpe:2.3:a:ibm:business_automation_workflow:*:*:*:*:traditional:*:*:*|cpe:2.3:a:ibm:business_automation_workflow:20.0.0.1:*:*:*:traditional:*:*:*|cpe:2.3:a:ibm:business_automation_workflow:20.0.0.2:*:*:*:traditional:*:*:*|cpe:2.3:a:ibm:business_automation_workflow:22.0.1:*:*:*:traditional:*:*:*"
+ }
+]

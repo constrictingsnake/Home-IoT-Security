@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2023-6217",
+  "description": "\nIn Progress MOVEit Transfer versions released before 2022.0.9 (14.0.9), 2022.1.10 (14.1.10), 2023.0.7 (15.0.7), a reflected cross-site scripting (XSS) vulnerability has been identified when MOVEit Gateway is used in conjunction with MOVEit Transfer.  \n\nAn attacker could craft a malicious payload targeting the system which comprises a MOVEit Gateway and MOVEit Transfer deployment.  If a MOVEit user interacts with the crafted payload, the attacker would be able to execute malicious JavaScript within the context of the victim’s browser.\n",
+  "cpe_strings": "cpe:2.3:a:progress:moveit_transfer:*:*:*:*:*:*:*:*"
+ }
+]

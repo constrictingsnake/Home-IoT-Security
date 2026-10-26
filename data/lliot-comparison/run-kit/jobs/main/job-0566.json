@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2019-3986",
+  "description": "Blink XT2 Sync Module firmware prior to 2.13.11 allows remote attackers to execute arbitrary commands on the device due to improperly sanitized input when configuring the devices wifi configuration via the encryption parameter.",
+  "cpe_strings": "cpe:2.3:o:amazon:blink_xt2_sync_module_firmware:*:*:*:*:*:*:*:*|cpe:2.3:h:amazon:blink_xt2_sync_module:-:*:*:*:*:*:*:*"
+ }
+]

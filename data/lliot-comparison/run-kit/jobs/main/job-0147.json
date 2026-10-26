@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2015-5149",
+  "description": "Directory traversal vulnerability in Zoho ManageEngine SupportCenter Plus 7.90 allows remote authenticated users to write to arbitrary files via a .. (dot dot) in the component parameter in the Request component to workorder/Attachment.jsp.",
+  "cpe_strings": "cpe:2.3:a:zohocorp:manageengine_supportcenter_plus:7.90:*:*:*:*:*:*:*"
+ }
+]

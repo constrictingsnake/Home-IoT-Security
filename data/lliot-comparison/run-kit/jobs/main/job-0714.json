@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2017-11460",
+  "description": "Cross-site scripting (XSS) vulnerability in the DataArchivingService servlet in SAP NetWeaver Portal 7.4 allows remote attackers to inject arbitrary web script or HTML via the responsecode parameter to shp/shp_result.jsp, aka SAP Security Note 2308535.",
+  "cpe_strings": "cpe:2.3:a:sap:netweaver_portal:7.4:*:*:*:*:*:*:*"
+ }
+]

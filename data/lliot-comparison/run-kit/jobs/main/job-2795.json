@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2022-24400",
+  "description": "A flaw in the TETRA authentication procecure allows a MITM adversary that can predict the MS challenge RAND2 to set session key DCK to zero.",
+  "cpe_strings": "cpe:2.3:a:midnightblue:tetra\\:burst:-:*:*:*:*:*:*:*"
+ }
+]

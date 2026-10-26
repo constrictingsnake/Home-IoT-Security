@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2018-17872",
+  "description": "Verba Collaboration Compliance and Quality Management Platform before 9.2.1.5545 has Insecure Permissions.",
+  "cpe_strings": "cpe:2.3:a:verint:collaboration_compliance:*:*:*:*:*:*:*:*|cpe:2.3:a:verint:quality_management_platform:*:*:*:*:*:*:*:*"
+ }
+]

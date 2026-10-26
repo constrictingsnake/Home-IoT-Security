@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2017-5131",
+  "description": "An integer overflow in Skia in Google Chrome prior to 62.0.3202.62 allowed a remote attacker to potentially exploit heap corruption via a crafted HTML page, aka an out-of-bounds write.",
+  "cpe_strings": "cpe:2.3:a:google:chrome:*:*:*:*:*:*:*:*|cpe:2.3:o:debian:debian_linux:8.0:*:*:*:*:*:*:*|cpe:2.3:o:debian:debian_linux:9.0:*:*:*:*:*:*:*"
+ }
+]

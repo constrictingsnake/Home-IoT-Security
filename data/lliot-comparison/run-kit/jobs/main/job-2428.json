@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2023-41827",
+  "description": "An improper export vulnerability was reported in the Motorola OTA update application, that could allow a malicious, local application to inject an HTML-based message on screen UI.",
+  "cpe_strings": ""
+ }
+]

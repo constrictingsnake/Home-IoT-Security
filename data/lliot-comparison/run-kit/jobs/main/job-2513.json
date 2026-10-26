@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2024-41367",
+  "description": "RPi-Jukebox-RFID v2.7.0 was discovered to contain a remote code execution (RCE) vulnerability via htdocs\\api\\playlist\\appendFileToPlaylist.php",
+  "cpe_strings": "cpe:2.3:a:sourcefabric:phoniebox:2.7.0:*:*:*:*:*:*:*"
+ }
+]

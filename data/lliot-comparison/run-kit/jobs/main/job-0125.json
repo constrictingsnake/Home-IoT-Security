@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2017-14262",
+  "description": "On Samsung NVR devices, remote attackers can read the MD5 password hash of the 'admin' account via certain szUserName JSON data to cgi-bin/main-cgi, and login to the device with that hash in the szUserPasswd parameter.",
+  "cpe_strings": "cpe:2.3:o:samsung:srn_1670d_firmware:-:*:*:*:*:*:*:*|cpe:2.3:h:samsung:srn_1670d:-:*:*:*:*:*:*:*|cpe:2.3:o:samsung:srn_1000_firmware:-:*:*:*:*:*:*:*|cpe:2.3:h:samsung:srn_1000:-:*:*:*:*:*:*:*|cpe:2.3:o:samsung:srn_472s_firmware:-:*:*:*:*:*:*:*|cpe:2.3:h:samsung:srn_472s:-:*:*:*:*:*:*:*|cpe:2.3:o:samsung:srn_470d_firmware:-:*:*:*:*:*:*:*|cpe:2.3:h:samsung:srn_470d:-:*:*:*:*:*:*:*"
+ }
+]

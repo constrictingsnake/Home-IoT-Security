@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2019-16732",
+  "description": "Unencrypted HTTP communications for firmware upgrades in Petalk AI and PF-103 allow man-in-the-middle attackers to run arbitrary code as the root user.",
+  "cpe_strings": "cpe:2.3:o:skymee:petalk_ai_firmware:3.2.2.30:*:*:*:*:*:*:*|cpe:2.3:h:skymee:petalk_ai:-:*:*:*:*:*:*:*|cpe:2.3:o:petwant:pf-103_firmware:4.22.2.42:*:*:*:*:*:*:*|cpe:2.3:h:petwant:pf-103:-:*:*:*:*:*:*:*"
+ }
+]

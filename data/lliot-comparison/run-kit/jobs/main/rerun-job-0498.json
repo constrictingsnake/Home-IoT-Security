@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2013-2251",
+  "description": "Apache Struts 2.0.0 through 2.3.15 allows remote attackers to execute arbitrary OGNL expressions via a parameter with a crafted (1) action:, (2) redirect:, or (3) redirectAction: prefix.",
+  "cpe_strings": "cpe:2.3:a:apache:archiva:*:*:*:*:*:*:*:*|cpe:2.3:a:apache:archiva:1.2:-:*:*:*:*:*:*|cpe:2.3:a:apache:archiva:1.2.2:*:*:*:*:*:*:*|cpe:2.3:a:apache:struts:*:*:*:*:*:*:*:*|cpe:2.3:a:fujitsu:interstage_business_process_manager_analytics:12.0:*:*:*:*:*:*:*|cpe:2.3:o:microsoft:windows_server_2003:-:*:*:*:*:*:*:*|cpe:2.3:o:microsoft:windows_server_2008:-:*:*:*:*:*:*:*|cpe:2.3:o:redhat:enterprise_linux:*:*:*:*:*:*:*:*|cpe:2.3:a:fujitsu:interstage_business_process_manager_analytics:12.1:*:*:*:*:*:*:*|cpe:2.3:o:microsoft:windows_server_2012:-:*:*:*:*:*:*:*|cpe:2.3:o:oracle:solaris:11:*:*:*:*:*:*:*|cpe:2.3:a:oracle:siebel_apps_-_e-billing:6.1:*:*:*:*:*:*:*|cpe:2.3:a:oracle:siebel_apps_-_e-billing:6.1.1:*:*:*:*:*:*:*|cpe:2.3:a:oracle:siebel_apps_-_e-billing:6.2:*:*:*:*:*:*:*"
+ }
+]

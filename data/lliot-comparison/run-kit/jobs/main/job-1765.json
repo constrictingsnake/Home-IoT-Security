@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2024-47351",
+  "description": "Improper Limitation of a Pathname to a Restricted Directory ('Path Traversal') vulnerability in The CSSIgniter Team MaxSlider maxslider allows Path Traversal.This issue affects MaxSlider: from n/a through <= 1.2.3.",
+  "cpe_strings": ""
+ }
+]

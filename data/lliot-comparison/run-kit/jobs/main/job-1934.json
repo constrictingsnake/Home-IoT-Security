@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2013-2748",
+  "description": "Belkin Wemo Switch before WeMo_US_2.00.2176.PVT could allow remote attackers to upload arbitrary files onto the system.",
+  "cpe_strings": "cpe:2.3:o:belkin:wemo_switch_firmware:*:*:*:*:*:*:*:*|cpe:2.3:h:belkin:wemo_switch:-:*:*:*:*:*:*:*"
+ }
+]

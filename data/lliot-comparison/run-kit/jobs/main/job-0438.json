@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2020-10208",
+  "description": "Command Injection in EntoneWebEngine in Amino Communications AK45x series, AK5xx series, AK65x series, Aria6xx series, Aria7/AK7Xx series and Kami7B allows authenticated remote attackers to execute arbitrary commands with root user privileges.",
+  "cpe_strings": "cpe:2.3:o:amino:ak45x_firmware:-:*:*:*:*:*:*:*|cpe:2.3:h:amino:ak45x:-:*:*:*:*:*:*:*|cpe:2.3:o:amino:ak5xx_firmware:-:*:*:*:*:*:*:*|cpe:2.3:h:amino:ak5xx:-:*:*:*:*:*:*:*|cpe:2.3:o:amino:ak65x_firmware:-:*:*:*:*:*:*:*|cpe:2.3:h:amino:ak65x:-:*:*:*:*:*:*:*|cpe:2.3:o:amino:aria6xx_firmware:-:*:*:*:*:*:*:*|cpe:2.3:h:amino:aria6xx:-:*:*:*:*:*:*:*|cpe:2.3:o:amino:aria7xx_firmware:-:*:*:*:*:*:*:*|cpe:2.3:h:amino:aria7xx:-:*:*:*:*:*:*:*|cpe:2.3:o:amino:kami7b_firmware:-:*:*:*:*:*:*:*|cpe:2.3:h:amino:kami7b:-:*:*:*:*:*:*:*"
+ }
+]

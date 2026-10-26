@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2015-2886",
+  "description": "iBaby M6 allows remote attackers to obtain sensitive information, related to the ibabycloud.com service.",
+  "cpe_strings": "cpe:2.3:o:ibaby:m6_baby_monitor_firmware:-:*:*:*:*:*:*:*|cpe:2.3:h:ibaby:m6_baby_monitor:-:*:*:*:*:*:*:*"
+ }
+]

@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2023-35888",
+  "description": "IBM Security Verify Governance 10.0.2 could allow a remote attacker to obtain sensitive information, caused by the failure to properly enable HTTP Strict Transport Security. An attacker could exploit this vulnerability to obtain sensitive information using man in the middle techniques.  IBM X-Force ID:  258375.",
+  "cpe_strings": "cpe:2.3:a:ibm:security_verify_governance:10.0.2:*:*:*:*:*:*:*"
+ }
+]

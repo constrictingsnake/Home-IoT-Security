@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2022-46480",
+  "description": "Incorrect Session Management and Credential Re-use in the Bluetooth LE stack of the Ultraloq UL3 2nd Gen Smart Lock Firmware 02.27.0012 allows an attacker to sniff the unlock code and unlock the device whilst within Bluetooth range.",
+  "cpe_strings": "cpe:2.3:o:u-tec:ultraloq_ul3_bt_firmware:02.27.0012:*:*:*:*:*:*:*|cpe:2.3:h:u-tec:ultraloq_ul3_bt:2nd_gen:*:*:*:*:*:*:*"
+ }
+]

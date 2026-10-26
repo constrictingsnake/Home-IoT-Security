@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2020-25198",
+  "description": "The built-in WEB server for MOXA NPort IAW5000A-I/O firmware version 2.1 or lower has incorrectly implemented protections from session fixation, which may allow an attacker to gain access to a session and hijack it by stealing the user’s cookies.",
+  "cpe_strings": "cpe:2.3:o:moxa:nport_iaw5000a-i\\/o_firmware:*:*:*:*:*:*:*:*|cpe:2.3:h:moxa:nport_iaw5000a-i\\/o:-:*:*:*:*:*:*:*"
+ }
+]

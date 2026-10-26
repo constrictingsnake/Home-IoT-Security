@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2020-28715",
+  "description": "An issue was discovered in kdmserver service in LeEco LeTV X43 version V2401RCN02C080080B04121S, allows attackers to execute arbitrary code, escalate privileges, and cause a denial of service (DoS).",
+  "cpe_strings": "cpe:2.3:o:leeco:letv_x43_firmware:v2401rcn02c080080b04121s:*:*:*:*:*:*:*|cpe:2.3:h:leeco:letv_x43:-:*:*:*:*:*:*:*"
+ }
+]

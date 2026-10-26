@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2024-23837",
+  "description": "LibHTP is a security-aware parser for the HTTP protocol. Crafted traffic can cause excessive processing time of HTTP headers, leading to denial of service. This issue is addressed in 0.5.46.",
+  "cpe_strings": "cpe:2.3:a:oisf:libhtp:*:*:*:*:*:*:*:*|cpe:2.3:o:fedoraproject:fedora:38:*:*:*:*:*:*:*|cpe:2.3:o:fedoraproject:fedora:39:*:*:*:*:*:*:*"
+ }
+]

@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2022-25577",
+  "description": "ALF-BanCO v8.2.5 and below was discovered to use a hardcoded password to encrypt the SQLite database containing the user's data. Attackers who are able to gain remote or local access to the system are able to read and modify the data.",
+  "cpe_strings": "cpe:2.3:a:alf-banco:alf-banco:*:*:*:*:*:*:*:*"
+ }
+]

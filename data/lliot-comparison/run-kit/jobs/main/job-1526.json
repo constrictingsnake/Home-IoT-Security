@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2024-51524",
+  "description": "Permission control vulnerability in the Wi-Fi module\nImpact: Successful exploitation of this vulnerability may affect service confidentiality.",
+  "cpe_strings": "cpe:2.3:o:huawei:harmonyos:5.0.0:*:*:*:*:*:*:*"
+ }
+]

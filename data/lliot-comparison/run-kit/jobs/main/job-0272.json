@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2023-26943",
+  "description": "Weak encryption mechanisms in RFID Tags in Yale Keyless Lock v1.0 allows attackers to create a cloned tag via physical proximity to the original.",
+  "cpe_strings": "cpe:2.3:o:assaabloy:yale_keyless_smart_lock_firmware:1.0:*:*:*:*:*:*:*|cpe:2.3:h:assaabloy:yale_keyless_smart_lock:-:*:*:*:*:*:*:*"
+ }
+]

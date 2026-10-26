@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2023-52445",
+  "description": "In the Linux kernel, the following vulnerability has been resolved:\n\nmedia: pvrusb2: fix use after free on context disconnection\n\nUpon module load, a kthread is created targeting the\npvr2_context_thread_func function, which may call pvr2_context_destroy\nand thus call kfree() on the context object. However, that might happen\nbefore the usb hub_event handler is able to notify the driver. This\npatch adds a sanity check before the invalid read reported by syzbot,\nwithin the context disconnection call stack.",
+  "cpe_strings": "cpe:2.3:o:linux:linux_kernel:*:*:*:*:*:*:*:*"
+ }
+]

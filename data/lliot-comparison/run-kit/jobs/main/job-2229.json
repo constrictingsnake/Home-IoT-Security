@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2023-29779",
+  "description": "Sengled Dimmer Switch V0.0.9 contains a denial of service (DOS) vulnerability, which allows a remote attacker to send malicious Zigbee messages to a vulnerable device and cause crashes. After receiving the malicious command, the device will keep reporting its status and finally drain its battery after receiving the 'Set_short_poll_interval' command.",
+  "cpe_strings": "cpe:2.3:o:sengled:e1e-g7f_firmware:0.0.9:*:*:*:*:*:*:*|cpe:2.3:h:sengled:e1e-g7f:-:*:*:*:*:*:*:*"
+ }
+]

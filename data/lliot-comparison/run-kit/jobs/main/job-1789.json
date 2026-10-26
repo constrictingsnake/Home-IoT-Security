@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2022-44502",
+  "description": "Adobe Illustrator versions 26.5.1 (and earlier), and 27.0 (and earlier) are affected by an out-of-bounds read vulnerability that could lead to disclosure of sensitive memory. An attacker could leverage this vulnerability to bypass mitigations such as ASLR. Exploitation of this issue requires user interaction in that a victim must open a malicious file.",
+  "cpe_strings": "cpe:2.3:a:adobe:illustrator:*:*:*:*:*:*:*:*|cpe:2.3:a:adobe:illustrator:27.0:*:*:*:*:*:*:*|cpe:2.3:o:apple:macos:-:*:*:*:*:*:*:*|cpe:2.3:o:microsoft:windows:-:*:*:*:*:*:*:*"
+ }
+]

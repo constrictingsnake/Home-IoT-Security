@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2015-2247",
+  "description": "Unspecified vulnerability in Boosted Boards skateboards allows physically proximate attackers to modify skateboard movement, cause human injury, or cause physical damage via vectors related to an \"injection attack\" that blocks and hijacks a Bluetooth signal.",
+  "cpe_strings": "cpe:2.3:a:boosted:boosted_boards:-:*:*:*:*:*:*:*"
+ }
+]

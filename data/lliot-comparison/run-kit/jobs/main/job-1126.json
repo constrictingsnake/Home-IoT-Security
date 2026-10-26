@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2023-0343",
+  "description": "Akuvox E11 contains a function that encrypts messages which are then forwarded. The IV vector and the key are static, and this may allow an attacker to decrypt messages.",
+  "cpe_strings": "cpe:2.3:o:akuvox:e11_firmware:*:*:*:*:*:*:*:*|cpe:2.3:h:akuvox:e11:-:*:*:*:*:*:*:*"
+ }
+]

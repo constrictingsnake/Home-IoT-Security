@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2024-28066",
+  "description": "In Unify CP IP Phone firmware 1.10.4.3, Weak Credentials are used (a hardcoded root password).",
+  "cpe_strings": "cpe:2.3:o:mitel:6940w_firmware:*:*:*:*:*:*:*:*|cpe:2.3:h:mitel:6940w:-:*:*:*:*:*:*:*|cpe:2.3:o:mitel:6930w_firmware:*:*:*:*:*:*:*:*|cpe:2.3:h:mitel:6930w:-:*:*:*:*:*:*:*|cpe:2.3:o:mitel:6920w_firmware:*:*:*:*:*:*:*:*|cpe:2.3:h:mitel:6920w:-:*:*:*:*:*:*:*|cpe:2.3:o:mitel:6970_firmware:*:*:*:*:*:*:*:*|cpe:2.3:h:mitel:6970:-:*:*:*:*:*:*:*|cpe:2.3:o:mitel:6915_firmware:*:*:*:*:*:*:*:*|cpe:2.3:h:mitel:6915:-:*:*:*:*:*:*:*|cpe:2.3:o:mitel:6910_firmware:*:*:*:*:*:*:*:*|cpe:2.3:h:mitel:6910:-:*:*:*:*:*:*:*|cpe:2.3:o:mitel:6905_firmware:*:*:*:*:*:*:*:*|cpe:2.3:h:mitel:6905:-:*:*:*:*:*:*:*|cpe:2.3:o:mitel:openscape_cp710_firmware:*:*:*:*:*:*:*:*|cpe:2.3:h:mitel:openscape_cp710:-:*:*:*:*:*:*:*|cpe:2.3:o:mitel:openscape_cp410_firmware:*:*:*:*:*:*:*:*|cpe:2.3:h:mitel:openscape_cp410:-:*:*:*:*:*:*:*|cpe:2.3:o:mitel:openscape_cp210_firmware:*:*:*:*:*:*:*:*|cpe:2.3:h:mitel:openscape_cp210:-:*:*:*:*:*:*:*|cpe:2.3:o:mitel:openscape_cp110_firmware:*:*:*:*:*:*:*:*|cpe:2.3:h:mitel:openscape_cp110:-:*:*:*:*:*:*:*|cpe:2.3:o:mitel:openscape_cpx10_firmware:*:*:*:*:*:*:*:*|cpe:2.3:h:mitel:openscape_cpx10:-:*:*:*:*:*:*:*|cpe:2.3:o:mitel:openscape_dect_firmware:*:*:*:*:*:*:*:*|cpe:2.3:h:mitel:openscape_dect:-:*:*:*:*:*:*:*|cpe:2.3:o:mitel:700d_dect_firmware:*:*:*:*:*:*:*:*|cpe:2.3:h:mitel:700d_dect:-:*:*:*:*:*:*:*"
+ }
+]

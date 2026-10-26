@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2019-19163",
+  "description": "A Vulnerability in the firmware of COMMAX WallPad(CDP-1020MB) allow an unauthenticated adjacent attacker to execute arbitrary code, because of a using the old version of MySQL.",
+  "cpe_strings": "cpe:2.3:a:commax:cdp-1020mb_firmware:*:*:*:*:*:*:*:*"
+ }
+]

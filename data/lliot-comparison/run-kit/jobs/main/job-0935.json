@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2024-32355",
+  "description": "TOTOLINK X5000R V9.1.0cu.2350_B20230313 was discovered to contain a command injection vulnerability via the 'password' parameter in the setSSServer function.",
+  "cpe_strings": "cpe:2.3:o:totolink:x5000r_firmware:9.1.0cu.2350_b20230313:*:*:*:*:*:*:*|cpe:2.3:h:totolink:x5000r:-:*:*:*:*:*:*:*"
+ }
+]

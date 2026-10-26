@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2023-30854",
+  "description": "AVideo is an open source video platform. Prior to version 12.4, an OS Command Injection vulnerability in an authenticated endpoint `/plugin/CloneSite/cloneClient.json.php` allows attackers to achieve Remote Code Execution. This issue is fixed in version 12.4.",
+  "cpe_strings": "cpe:2.3:a:wwbn:avideo:*:*:*:*:*:*:*:*"
+ }
+]

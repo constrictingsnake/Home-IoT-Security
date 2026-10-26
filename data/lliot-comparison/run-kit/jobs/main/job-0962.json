@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2021-38783",
+  "description": "There is a Out-of-Bound Write in the Allwinner R818 SoC Android Q SDK V1.0 camera driver \"/dev/cedar_dev\" through iotcl cmd IOCTL_SET_PROC_INFO and IOCTL_COPY_PROC_INFO, which could cause a system crash or EoP.",
+  "cpe_strings": "cpe:2.3:a:allwinnertech:android_q_sdk:1.0:*:*:*:*:*:*:*|cpe:2.3:h:allwinnertech:r818:-:*:*:*:*:*:*:*"
+ }
+]

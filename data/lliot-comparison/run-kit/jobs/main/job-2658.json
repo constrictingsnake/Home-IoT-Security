@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2022-26065",
+  "description": "Delta Electronics DIAEnergie (All versions prior to 1.8.02.004) has a blind SQL injection vulnerability exists in GetLatestDemandNode. This allows an attacker to inject arbitrary SQL queries, retrieve and modify database contents, and execute system commands.",
+  "cpe_strings": "cpe:2.3:a:deltaww:diaenergie:*:*:*:*:*:*:*:*"
+ }
+]

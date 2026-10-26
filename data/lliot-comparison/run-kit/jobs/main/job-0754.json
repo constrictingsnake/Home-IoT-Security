@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2021-36603",
+  "description": "Cross Site Scripting (XSS) in Tasmota firmware 6.5.0 allows remote attackers to inject JavaScript code via a crafted string in the field \"Friendly Name 1\".",
+  "cpe_strings": "cpe:2.3:o:tasmota_project:tasmota:6.5.0:*:*:*:*:*:*:*"
+ }
+]

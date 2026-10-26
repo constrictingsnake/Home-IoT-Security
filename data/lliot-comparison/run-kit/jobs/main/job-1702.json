@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2014-8006",
+  "description": "The Disaster Recovery (DRA) feature on the Cisco ISB8320-E High-Definition IP-Only DVR allows remote attackers to bypass authentication by establishing a TELNET session during a recovery boot, aka Bug ID CSCup85422.",
+  "cpe_strings": "cpe:2.3:h:cisco:isb8320-e_high-definition_ip-only_dvr:-:*:*:*:*:*:*:*"
+ }
+]

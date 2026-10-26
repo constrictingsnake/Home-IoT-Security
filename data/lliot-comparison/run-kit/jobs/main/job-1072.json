@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2019-12390",
+  "description": "Anviz access control devices expose private Information (pin code and name) by allowing remote attackers to query this information without credentials via port tcp/5010.",
+  "cpe_strings": "cpe:2.3:o:anviz:anviz_firmware:-:*:*:*:*:*:*:*"
+ }
+]

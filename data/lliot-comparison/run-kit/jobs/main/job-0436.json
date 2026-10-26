@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2024-44589",
+  "description": "Stack overflow vulnerability in the Login function in the HNAP service in D-Link DCS-960L with firmware 1.09 allows attackers to execute of arbitrary code.",
+  "cpe_strings": "cpe:2.3:o:dlink:dcs-960l_firmware:1.09:*:*:*:*:*:*:*|cpe:2.3:h:dlink:dcs-960l:-:*:*:*:*:*:*:*"
+ }
+]

@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2023-0352",
+  "description": "The Akuvox E11 password recovery webpage can be accessed without authentication, and an attacker could download the device key file. An attacker could then use this page to reset the password back to the default.",
+  "cpe_strings": "cpe:2.3:o:akuvox:e11_firmware:-:*:*:*:*:*:*:*|cpe:2.3:h:akuvox:e11:-:*:*:*:*:*:*:*"
+ }
+]

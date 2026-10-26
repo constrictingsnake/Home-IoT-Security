@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2022-32117",
+  "description": "Jerryscript v2.4.0 was discovered to contain a stack buffer overflow via the function jerryx_print_unhandled_exception in /util/print.c.",
+  "cpe_strings": "cpe:2.3:a:jerryscript:jerryscript:2.4.0:*:*:*:*:*:*:*"
+ }
+]

@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2013-4860",
+  "description": "Radio Thermostat CT80 And CT50 with firmware 1.4.64 and earlier does not restrict access to the API, which allows remote attackers to change the operation mode, wifi connection settings, temperature thresholds, and other settings via unspecified vectors.",
+  "cpe_strings": "cpe:2.3:o:radiothermostat:ct50_firmware:*:*:*:*:*:*:*:*|cpe:2.3:h:radiothermostat:ct50:-:*:*:*:*:*:*:*|cpe:2.3:o:radiothermostat:ct80_firmware:*:*:*:*:*:*:*:*|cpe:2.3:h:radiothermostat:ct80:-:*:*:*:*:*:*:*"
+ }
+]

@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2024-32090",
+  "description": "Cross-Site Request Forgery (CSRF) vulnerability in andy_moyle Church Admin church-admin.This issue affects Church Admin: from n/a through <= 4.0.27.",
+  "cpe_strings": "cpe:2.3:a:church_admin_project:church_admin:*:*:*:*:*:wordpress:*:*"
+ }
+]

@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2017-18701",
+  "description": "Certain NETGEAR devices are affected by reflected XSS. This affects R6700 before 1.0.1.36 and R6900 before 1.0.1.34.",
+  "cpe_strings": "cpe:2.3:o:netgear:r6700_firmware:*:*:*:*:*:*:*:*|cpe:2.3:h:netgear:r6700:-:*:*:*:*:*:*:*|cpe:2.3:o:netgear:r6900_firmware:*:*:*:*:*:*:*:*|cpe:2.3:h:netgear:r6900:-:*:*:*:*:*:*:*"
+ }
+]

@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2015-2880",
+  "description": "TRENDnet WiFi Baby Cam TV-IP743SIC has a password of admin for the backdoor root account.",
+  "cpe_strings": "cpe:2.3:h:trendnet:tv-ip743sic:-:*:*:*:*:*:*:*"
+ }
+]

@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2013-6950",
+  "description": "The Belkin WeMo Home Automation firmware before 3949 does not use SSL for the distribution feed, which allows man-in-the-middle attackers to install arbitrary firmware by spoofing a distribution server.",
+  "cpe_strings": "cpe:2.3:a:belkin:wemo_home_automation_firmware:2769:*:*:*:*:*:*:*"
+ }
+]

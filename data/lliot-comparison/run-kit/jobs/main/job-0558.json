@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2023-28421",
+  "description": "Exposure of Sensitive Information to an Unauthorized Actor vulnerability in Winwar Media WordPress Email Marketing Plugin – WP Email Capture.This issue affects WordPress Email Marketing Plugin – WP Email Capture: from n/a through 3.10.",
+  "cpe_strings": "cpe:2.3:a:winwar:wp_email_capture:*:*:*:*:*:wordpress:*:*"
+ }
+]

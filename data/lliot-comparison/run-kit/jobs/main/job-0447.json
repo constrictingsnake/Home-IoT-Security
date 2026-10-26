@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2017-8951",
+  "description": "A Disclosure of Sensitive Information vulnerability in HPE SiteScope version v11.2x, v11.3x was found.",
+  "cpe_strings": "cpe:2.3:a:hp:sitescope:11.20:*:*:*:*:*:*:*|cpe:2.3:a:hp:sitescope:11.21:*:*:*:*:*:*:*|cpe:2.3:a:hp:sitescope:11.22:*:*:*:*:*:*:*|cpe:2.3:a:hp:sitescope:11.23:*:*:*:*:*:*:*|cpe:2.3:a:hp:sitescope:11.24:*:*:*:*:*:*:*|cpe:2.3:a:hp:sitescope:11.24.391:*:*:*:*:*:*:*|cpe:2.3:a:hp:sitescope:11.30:*:*:*:*:*:*:*|cpe:2.3:a:hp:sitescope:11.30.521:*:*:*:*:*:*:*|cpe:2.3:a:hp:sitescope:11.31:*:*:*:*:*:*:*|cpe:2.3:a:hp:sitescope:11.32:*:*:*:*:*:*:*|cpe:2.3:a:hp:sitescope:11.33:*:*:*:*:*:*:*"
+ }
+]

@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2014-9191",
+  "description": "The CodeWrights HART Device Type Manager (DTM) library in Emerson HART DTM before 1.4.181 allows physically proximate attackers to cause a denial of service (DTM outage and FDT Frame application hang) by transmitting crafted response packets on the 4-20 mA current loop.",
+  "cpe_strings": "cpe:2.3:a:codewrights:hart_device_type_manager:*:*:*:*:*:*:*:*"
+ }
+]

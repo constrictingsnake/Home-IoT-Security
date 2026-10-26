@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2020-19962",
+  "description": "A stored cross-site scripting (XSS) vulnerability in the getClientIp function in /lib/tinwin.class.php of Chaoji CMS 2.39, allows attackers to execute arbitrary web scripts.",
+  "cpe_strings": "cpe:2.3:a:chaoji_cms_project:chaoji_cms:2.39:*:*:*:*:*:*:*"
+ }
+]

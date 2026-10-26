@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2023-46894",
+  "description": "An issue discovered in esptool 4.6.2 allows attackers to view sensitive information via weak cryptographic algorithm.",
+  "cpe_strings": "cpe:2.3:a:espressif:esptool:4.6.2:*:*:*:*:*:*:*"
+ }
+]

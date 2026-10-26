@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2024-44262",
+  "description": "This issue was addressed with improved redaction of sensitive information. This issue is fixed in visionOS 2.1. A user may be able to view sensitive user information.",
+  "cpe_strings": "cpe:2.3:o:apple:visionos:*:*:*:*:*:*:*:*"
+ }
+]

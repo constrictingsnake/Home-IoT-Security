@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2020-27185",
+  "description": "Cleartext transmission of sensitive information via Moxa Service in NPort IA5000A series serial devices. Successfully exploiting the vulnerability could enable attackers to read authentication data, device configuration, and other sensitive data transmitted over Moxa Service.",
+  "cpe_strings": "cpe:2.3:o:moxa:nport_ia5150a_firmware:*:*:*:*:*:*:*:*|cpe:2.3:h:moxa:nport_ia5150a:-:*:*:*:*:*:*:*|cpe:2.3:o:moxa:nport_ia5250a_firmware:*:*:*:*:*:*:*:*|cpe:2.3:h:moxa:nport_ia5250a:-:*:*:*:*:*:*:*|cpe:2.3:o:moxa:nport_ia5450a_firmware:*:*:*:*:*:*:*:*|cpe:2.3:h:moxa:nport_ia5450a:-:*:*:*:*:*:*:*"
+ }
+]

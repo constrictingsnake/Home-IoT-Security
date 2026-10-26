@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2022-36468",
+  "description": "H3C B5 Mini B5MiniV100R005 was discovered to contain a stack overflow via the function Asp_SetTimingtimeWifiAndLed.",
+  "cpe_strings": "cpe:2.3:o:h3c:b5_mini_firmware:b5miniv100r005:*:*:*:*:*:*:*|cpe:2.3:h:h3c:b5_mini:-:*:*:*:*:*:*:*"
+ }
+]

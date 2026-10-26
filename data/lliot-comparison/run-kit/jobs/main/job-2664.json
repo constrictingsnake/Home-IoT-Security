@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2017-16767",
+  "description": "Cross-site scripting (XSS) vulnerability in User Profile in Synology Surveillance Station before 8.1.2-5469 allows remote authenticated users to inject arbitrary web script or HTML via the userDesc parameter.",
+  "cpe_strings": "cpe:2.3:a:synology:surveillance_station:*:*:*:*:*:*:*:*"
+ }
+]

@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2011-5310",
+  "description": "Directory traversal vulnerability in pages.php in Wikipad 1.6.0 allows remote attackers to read arbitrary files via a .. (dot dot) in the id parameter.",
+  "cpe_strings": "cpe:2.3:a:cherry-design:wikipad:1.6.0:*:*:*:*:*:*:*"
+ }
+]

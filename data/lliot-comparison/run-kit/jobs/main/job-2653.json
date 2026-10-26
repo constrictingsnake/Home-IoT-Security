@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2023-29912",
+  "description": "H3C Magic R200 R200V100R004 was discovered to contain a stack overflow via the DelvsList interface at /goform/aspForm.",
+  "cpe_strings": "cpe:2.3:o:h3c:magic_r200_firmware:r200v100r004:*:*:*:*:*:*:*|cpe:2.3:o:h3c:magic_r200_firmware:-:*:*:*:*:*:*:*"
+ }
+]

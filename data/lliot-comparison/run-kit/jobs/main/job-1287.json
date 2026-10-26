@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2020-35566",
+  "description": "An issue was discovered in MB connect line mymbCONNECT24, mbCONNECT24 and Helmholz myREX24 and myREX24.virtual in all versions through v2.11.2. An attacker can read arbitrary JSON files via Local File Inclusion.",
+  "cpe_strings": "cpe:2.3:a:mbconnectline:mbconnect24:*:*:*:*:*:*:*:*|cpe:2.3:a:mbconnectline:mymbconnect24:*:*:*:*:*:*:*:*|cpe:2.3:a:helmholz:myrex24:*:*:*:*:*:*:*:*|cpe:2.3:a:helmholz:myrex24.virtual:*:*:*:*:*:*:*:*"
+ }
+]

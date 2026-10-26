@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2018-17108",
+  "description": "The SBIbuddy (aka com.sbi.erupee) application 1.41 and 1.42 for Android might allow attackers to perform Account Takeover attacks by intercepting a security-question response during the initial configuration of the application.",
+  "cpe_strings": "cpe:2.3:a:sbi:sbi_buddy:1.41:*:*:*:*:android:*:*|cpe:2.3:a:sbi:sbi_buddy:1.42:*:*:*:*:android:*:*"
+ }
+]

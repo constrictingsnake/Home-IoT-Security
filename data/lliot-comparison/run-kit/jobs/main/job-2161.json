@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2024-53807",
+  "description": "Improper Neutralization of Special Elements used in an SQL Command ('SQL Injection') vulnerability in brandtoss WP Mailster wp-mailster allows Blind SQL Injection.This issue affects WP Mailster: from n/a through <= 1.8.16.0.",
+  "cpe_strings": "cpe:2.3:a:wpmailster:wp_mailster:*:*:*:*:*:wordpress:*:*"
+ }
+]

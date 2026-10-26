@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2024-37606",
+  "description": "A Stack overflow vulnerability in D-Link DCS-932L REVB_FIRMWARE_2.18.01 allows attackers to cause a Denial of Service (DoS) via a crafted HTTP request.",
+  "cpe_strings": "cpe:2.3:o:dlink:dcs-932l_firmware:2.18.01:*:*:*:*:*:*:*|cpe:2.3:h:dlink:dcs-932l:-:*:*:*:*:*:*:*"
+ }
+]

@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2024-49078",
+  "description": "Windows Mobile Broadband Driver Elevation of Privilege Vulnerability",
+  "cpe_strings": "cpe:2.3:o:microsoft:windows_10_1809:*:*:*:*:*:*:x64:*|cpe:2.3:o:microsoft:windows_10_1809:*:*:*:*:*:*:x86:*|cpe:2.3:o:microsoft:windows_10_21h2:*:*:*:*:*:*:*:*|cpe:2.3:o:microsoft:windows_10_22h2:*:*:*:*:*:*:*:*|cpe:2.3:o:microsoft:windows_11_22h2:*:*:*:*:*:*:*:*|cpe:2.3:o:microsoft:windows_11_23h2:*:*:*:*:*:*:*:*|cpe:2.3:o:microsoft:windows_11_24h2:*:*:*:*:*:*:*:*|cpe:2.3:o:microsoft:windows_server_2019:*:*:*:*:*:*:*:*|cpe:2.3:o:microsoft:windows_server_2022_23h2:*:*:*:*:*:*:*:*|cpe:2.3:o:microsoft:windows_server_2025:*:*:*:*:*:*:*:*"
+ }
+]

@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2021-36444",
+  "description": "Cross Site Request Forgery (CSRF) vulnerability in imcat 5.4 allows remote attackers to gain escalated privileges via flaws one time token generation on the add administrator page.",
+  "cpe_strings": "cpe:2.3:a:txjia:imcat:5.4:*:*:*:*:*:*:*"
+ }
+]

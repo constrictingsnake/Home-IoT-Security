@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2020-16201",
+  "description": "Delta Industrial Automation CNCSoft ScreenEditor, Versions 1.01.23 and prior. Multiple out-of-bounds read vulnerabilities may be exploited by processing specially crafted project files, which may allow an attacker to read information.",
+  "cpe_strings": "cpe:2.3:a:deltaww:cncsoft_screeneditor:*:*:*:*:*:*:*:*"
+ }
+]

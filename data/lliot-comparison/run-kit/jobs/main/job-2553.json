@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2016-6188",
+  "description": "Memory leak in SOGo 2.3.7 allows remote attackers to cause a denial of service (memory consumption) via a large number of attempts to upload a large attachment, related to temporary files.",
+  "cpe_strings": "cpe:2.3:a:alinto:sogo:2.3.7:*:*:*:*:*:*:*"
+ }
+]

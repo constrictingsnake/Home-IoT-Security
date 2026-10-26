@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2019-9631",
+  "description": "Poppler 0.74.0 has a heap-based buffer over-read in the CairoRescaleBox.cc downsample_row_box_filter function.",
+  "cpe_strings": "cpe:2.3:a:freedesktop:poppler:0.74.0:*:*:*:*:*:*:*|cpe:2.3:o:fedoraproject:fedora:28:*:*:*:*:*:*:*|cpe:2.3:o:fedoraproject:fedora:29:*:*:*:*:*:*:*|cpe:2.3:o:fedoraproject:fedora:30:*:*:*:*:*:*:*|cpe:2.3:o:debian:debian_linux:8.0:*:*:*:*:*:*:*"
+ }
+]

@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2023-39842",
+  "description": "Missing encryption in the RFID tag of Digoo DG-HAMB Smart Home Security System v1.0 allows attackers to create a cloned tag via brief physical proximity to the original device.",
+  "cpe_strings": "cpe:2.3:o:mydigoo:dg-hamb_smart_home_security_system_firmware:1.0:*:*:*:*:*:*:*|cpe:2.3:h:mydigoo:dg-hamb_smart_home_security_system:-:*:*:*:*:*:*:*"
+ }
+]

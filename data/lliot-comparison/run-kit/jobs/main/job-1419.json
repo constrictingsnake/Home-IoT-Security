@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2023-50124",
+  "description": "Flient Smart Door Lock v1.0 is vulnerable to Use of Default Credentials. Due to default credentials on a debug interface, in combination with certain design choices, an attacker can unlock the Flient Smart Door Lock by replacing the fingerprint that is stored on the scanner.",
+  "cpe_strings": "cpe:2.3:o:flient:smart_lock_advanced_firmware:1.0:*:*:*:*:*:*:*|cpe:2.3:h:flient:smart_lock_advanced:-:*:*:*:*:*:*:*"
+ }
+]

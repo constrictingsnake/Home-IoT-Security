@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2024-45740",
+  "description": "In Splunk Enterprise versions below 9.2.3 and 9.1.6 and Splunk Cloud Platform versions below 9.2.2403, a low-privileged user that does not hold the \"admin\" or \"power\" Splunk roles could craft a malicious payload through Scheduled Views that could result in execution of unauthorized JavaScript code in the browser of a user.",
+  "cpe_strings": "cpe:2.3:a:splunk:splunk:*:*:*:*:enterprise:*:*:*|cpe:2.3:a:splunk:splunk_cloud_platform:*:*:*:*:*:*:*:*"
+ }
+]

@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2023-38988",
+  "description": "An issue in the delete function in the OaNotifyController class of jeesite v1.2.6 allows authenticated attackers to arbitrarily delete notifications created by Administrators.",
+  "cpe_strings": "cpe:2.3:a:jeesite:jeesite:1.2.6:*:*:*:*:*:*:*"
+ }
+]

@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2021-45937",
+  "description": "wolfSSL wolfMQTT 1.9 has a heap-based buffer overflow in MqttClient_DecodePacket (called from MqttClient_WaitType and MqttClient_Connect).",
+  "cpe_strings": "cpe:2.3:a:wolfssl:wolfmqtt:1.9:*:*:*:*:*:*:*"
+ }
+]

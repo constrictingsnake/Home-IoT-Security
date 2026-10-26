@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2023-0355",
+  "description": "Akuvox E11 uses a hard-coded cryptographic key, which could allow an attacker to decrypt sensitive information.",
+  "cpe_strings": "cpe:2.3:o:akuvox:e11_firmware:-:*:*:*:*:*:*:*|cpe:2.3:h:akuvox:e11:-:*:*:*:*:*:*:*"
+ }
+]

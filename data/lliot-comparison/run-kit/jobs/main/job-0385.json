@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2017-7457",
+  "description": "XML External Entity via \".AOP\" files used by Moxa MX-AOPC Server 1.5 result in remote file disclosure.",
+  "cpe_strings": "cpe:2.3:a:moxa:mx-aopc_server:1.5:*:*:*:*:*:*:*"
+ }
+]

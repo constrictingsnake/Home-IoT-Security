@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2016-10616",
+  "description": "openframe-image is an Openframe extension which adds support for images via fbi. openframe-image downloads data resources over HTTP, which leaves it vulnerable to MITM attacks.",
+  "cpe_strings": "cpe:2.3:a:openframe-image_project:openframe-image:*:*:*:*:*:node.js:*:*"
+ }
+]

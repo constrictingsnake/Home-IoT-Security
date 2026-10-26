@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2021-46328",
+  "description": "Moddable SDK v11.5.0 was discovered to contain a heap-buffer-overflow via the component __libc_start_main.",
+  "cpe_strings": "cpe:2.3:a:moddable:moddable_sdk:11.5.0:*:*:*:*:*:*:*"
+ }
+]

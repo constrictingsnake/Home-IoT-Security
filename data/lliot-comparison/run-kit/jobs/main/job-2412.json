@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2020-35970",
+  "description": "An issue was discovered in YzmCMS 5.8. There is a SSRF vulnerability in the background collection management that allows arbitrary file read.",
+  "cpe_strings": "cpe:2.3:a:yzmcms:yzmcms:5.8:*:*:*:*:*:*:*"
+ }
+]

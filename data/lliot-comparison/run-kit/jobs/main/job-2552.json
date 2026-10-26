@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2023-45574",
+  "description": "Buffer Overflow vulnerability in D-Link device DI-7003GV2.D1 v.23.08.25D1 and before, DI-7100G+V2.D1 v.23.08.23D1 and before, DI-7100GV2.D1 v.23.08.23D1, DI-7200G+V2.D1 v.23.08.23D1 and before, DI-7200GV2.E1 v.23.08.23E1 and before, DI-7300G+V2.D1 v.23.08.23D1, and DI-7400G+V2.D1 v.23.08.23D1 and before allows a remote attacker to execute arbitrary code via the fn parameter of the file.data function.",
+  "cpe_strings": "cpe:2.3:o:dlink:di-7003g_firmware:*:*:*:*:*:*:*:*|cpe:2.3:h:dlink:di-7003g:v2.d1:*:*:*:*:*:*:*|cpe:2.3:o:dlink:di-7100g\\+_firmware:*:*:*:*:*:*:*:*|cpe:2.3:h:dlink:di-7100g\\+:v2.d1:*:*:*:*:*:*:*|cpe:2.3:o:dlink:di-7100g_firmware:*:*:*:*:*:*:*:*|cpe:2.3:h:dlink:di-7100g:v2.d1:*:*:*:*:*:*:*|cpe:2.3:o:dlink:di-7200g\\+_firmware:*:*:*:*:*:*:*:*|cpe:2.3:h:dlink:di-7200g\\+:v2.d1:*:*:*:*:*:*:*|cpe:2.3:o:dlink:di-7200g_firmware:*:*:*:*:*:*:*:*|cpe:2.3:h:dlink:di-7200g:v2.e1:*:*:*:*:*:*:*|cpe:2.3:o:dlink:di-7300g\\+_firmware:*:*:*:*:*:*:*:*|cpe:2.3:h:dlink:di-7300g\\+:v2.d1:*:*:*:*:*:*:*|cpe:2.3:o:dlink:di-7400g\\+_firmware:*:*:*:*:*:*:*:*|cpe:2.3:h:dlink:di-7400g\\+:v2.d1:*:*:*:*:*:*:*"
+ }
+]

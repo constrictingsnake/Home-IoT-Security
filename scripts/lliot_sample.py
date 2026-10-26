@@ -7,8 +7,8 @@ Two steps, run in order:
            plan's strata, draw the seeded sample, pick the 40 pilot CVEs.
            -> data/lliot-comparison/manifest.csv   (cve_id, stratum, order, pilot, seed)
            -> data/lliot-comparison/strata.csv     (stratum, population, sample) — the weights
-  jobs     Cut the manifest into job files once the pilot gate has fixed the job size, assign
-           owners (odd jobs A, even jobs B), pick the 5% cross-reruns.
+  jobs     Cut the manifest into job files once the pilot gate has fixed the job size, and pick
+           the 5% reruns. One researcher (A) owns every job (amended 2026-10-25).
            -> data/lliot-comparison/run-kit/jobs/{main,pilot}/*.json
            -> data/lliot-comparison/jobs.csv        (job, set, owner, rerun_of, n, cve_ids)
 
@@ -266,12 +266,16 @@ def cmd_jobs(args):
     for i, c in enumerate(pilot, 1):
         name = f"pilot-single-{i:02d}"
         write_job(os.path.join(pdir, name + ".json"), job_payload([c], pop_rows))
-        rows.append([name, "pilot-single", "both", "", 1, c])
+        rows.append([name, "pilot-single", "A", "", 1, c])
+        # pilot rerun: the same single job again, fresh session, for the gate's stability read
+        rname = f"pilot-rerun-{i:02d}"
+        write_job(os.path.join(pdir, rname + ".json"), job_payload([c], pop_rows))
+        rows.append([rname, "pilot-rerun", "A", name, 1, c])
     for b in range(0, len(pilot), 20):
         chunk = pilot[b:b + 20]
         name = f"pilot-batch-{b // 20 + 1:02d}"
         write_job(os.path.join(pdir, name + ".json"), job_payload(chunk, pop_rows))
-        rows.append([name, "pilot-batch", "both", "", len(chunk), "|".join(chunk)])
+        rows.append([name, "pilot-batch", "A", "", len(chunk), "|".join(chunk)])
 
     if not args.pilot_only:
         if args.size not in (1, 20):
@@ -283,22 +287,19 @@ def cmd_jobs(args):
         os.makedirs(mdir, exist_ok=True)
         order = [r["cve_id"] for r in man]
         jobs = [order[i:i + args.size] for i in range(0, len(order), args.size)]
-        owner_of = {}
+        names = []
         for j, chunk in enumerate(jobs, 1):
             name = f"job-{j:04d}"
-            owner = "A" if j % 2 else "B"
-            owner_of[name] = owner
+            names.append(name)
             write_job(os.path.join(mdir, name + ".json"), job_payload(chunk, pop_rows))
-            rows.append([name, "main", owner, "", len(chunk), "|".join(chunk)])
-        # cross-reruns: 5% of each owner's jobs, rerun by the other owner
+            rows.append([name, "main", "A", "", len(chunk), "|".join(chunk)])
+        # reruns: 5% of the main jobs, rerun later in a fresh session (same plan, one researcher)
         rng = random.Random(SEED + 1)
-        for owner, other in (("A", "B"), ("B", "A")):
-            mine = sorted(n for n, o in owner_of.items() if o == owner)
-            for name in sorted(rng.sample(mine, max(1, round(RERUN_SHARE * len(mine))))):
-                src = next(r for r in rows if r[0] == name)
-                rows.append([f"rerun-{name}", "rerun", other, name, src[4], src[5]])
-                write_job(os.path.join(mdir, f"rerun-{name}.json"),
-                          json.load(open(os.path.join(mdir, name + ".json"), encoding="utf-8")))
+        for name in sorted(rng.sample(names, max(1, round(RERUN_SHARE * len(names))))):
+            src = next(r for r in rows if r[0] == name)
+            rows.append([f"rerun-{name}", "rerun", "A", name, src[4], src[5]])
+            write_job(os.path.join(mdir, f"rerun-{name}.json"),
+                      json.load(open(os.path.join(mdir, name + ".json"), encoding="utf-8")))
 
     with open(os.path.join(OUT, "jobs.csv"), "w", newline="", encoding="utf-8") as fh:
         w = csv.writer(fh)
@@ -314,7 +315,7 @@ def main():
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     sub = ap.add_subparsers(dest="cmd", required=True)
     sub.add_parser("sample", help="draw the stratified sample and the pilot set")
-    j = sub.add_parser("jobs", help="cut job files and assign owners")
+    j = sub.add_parser("jobs", help="cut job files and pick the reruns")
     j.add_argument("--size", type=int, help="CVEs per main job: 1 or 20 (set at the pilot gate)")
     j.add_argument("--pilot-only", action="store_true", help="write only the pilot job files")
     args = ap.parse_args()

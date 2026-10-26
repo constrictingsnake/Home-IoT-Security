@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2024-29808",
+  "description": "The image_id parameter of the AJAX call to the editimage_bwg action of admin-ajax.php is vulnerable to reflected Cross Site Scripting. The value of the image_id parameter is embedded within an existing JavaScript within the response allowing arbitrary JavaScript to be inserted and executed. The attacker must target a an authenticated user with permissions to access this component to exploit this issue.",
+  "cpe_strings": "cpe:2.3:a:10web:photo_gallery:*:*:*:*:*:wordpress:*:*"
+ }
+]

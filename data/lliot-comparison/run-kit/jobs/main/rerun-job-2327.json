@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2016-6549",
+  "description": "The Zizai Tech Nut device allows unauthenticated Bluetooth pairing, which enables unauthenticated connected applications to write data to the device name attribute.",
+  "cpe_strings": "cpe:2.3:a:nutspace:nut_mobile:-:*:*:*:*:*:*:*"
+ }
+]

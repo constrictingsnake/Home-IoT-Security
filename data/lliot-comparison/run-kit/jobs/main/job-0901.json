@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2023-39171",
+  "description": "SENEC Storage Box V1,V2 and V3 accidentially expose a management UI accessible with publicly known admin credentials.",
+  "cpe_strings": "cpe:2.3:o:enbw:senec_storage_box_firmware:*:*:*:*:*:*:*:*|cpe:2.3:h:enbw:senec_storage_box:v1:*:*:*:*:*:*:*|cpe:2.3:h:enbw:senec_storage_box:v2:*:*:*:*:*:*:*|cpe:2.3:h:enbw:senec_storage_box:v3:*:*:*:*:*:*:*"
+ }
+]

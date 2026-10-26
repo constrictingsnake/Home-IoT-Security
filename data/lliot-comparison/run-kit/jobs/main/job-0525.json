@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2016-6138",
+  "description": "Directory traversal vulnerability in SAP TREX 7.10 Revision 63 allows remote attackers to read arbitrary files via unspecified vectors, aka SAP Security Note 2203591.",
+  "cpe_strings": "cpe:2.3:a:sap:trex:7.10:revision_63:*:*:*:*:*:*"
+ }
+]

@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2022-26582",
+  "description": "PAX A930 device with PayDroid_7.1.1_Virgo_V04.3.26T1_20210419 can allow an attacker to gain root access through command injection in systool client. The attacker must have shell access to the device in order to exploit this vulnerability.",
+  "cpe_strings": "cpe:2.3:o:paxtechnology:paydroid:7.1.1_virgo_v04.3.26t1_20210419:*:*:*:*:*:*:*|cpe:2.3:h:paxtechnology:a930:-:*:*:*:*:*:*:*"
+ }
+]

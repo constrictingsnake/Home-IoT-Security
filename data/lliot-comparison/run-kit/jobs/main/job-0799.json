@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2013-6714",
+  "description": "The FlashCopy Manager for VMware component in IBM Tivoli Storage FlashCopy Manager 3.1 through 4.1.0.1 does not properly check authorization for backup and restore operations, which allows local users to obtain sensitive VM data or cause a denial of service (data overwrite or disk consumption) via unspecified GUI actions.",
+  "cpe_strings": "cpe:2.3:a:ibm:tivoli_storage_flashcopy_manager:3.1.0:*:*:*:*:*:*:*|cpe:2.3:a:ibm:tivoli_storage_flashcopy_manager:3.1.1:*:*:*:*:*:*:*|cpe:2.3:a:ibm:tivoli_storage_flashcopy_manager:3.2.0:*:*:*:*:*:*:*|cpe:2.3:a:ibm:tivoli_storage_flashcopy_manager:3.2.1:*:*:*:*:*:*:*|cpe:2.3:a:ibm:tivoli_storage_flashcopy_manager:4.1.0:*:*:*:*:*:*:*|cpe:2.3:a:ibm:tivoli_storage_flashcopy_manager:4.1.0.1:*:*:*:*:*:*:*"
+ }
+]

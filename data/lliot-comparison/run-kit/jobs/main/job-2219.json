@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2020-3332",
+  "description": "A vulnerability in the web-based management interface of Cisco Small Business RV110W, RV130, RV130W, and RV215W Series Routers could allow an authenticated, remote attacker to inject arbitrary shell commands that are executed by an affected device. The vulnerability is due to insufficient input validation of user-supplied data. An attacker could exploit this vulnerability by sending a crafted request to the web-based management interface of an affected device. A successful exploit could allow the attacker to execute arbitrary shell commands or scripts with root privileges on the affected device.",
+  "cpe_strings": "cpe:2.3:o:cisco:rv110w_wireless-n_vpn_firewall_firmware:*:*:*:*:*:*:*:*|cpe:2.3:h:cisco:rv110w_wireless-n_vpn_firewall:-:*:*:*:*:*:*:*|cpe:2.3:o:cisco:rv130_vpn_router_firmware:*:*:*:*:*:*:*:*|cpe:2.3:h:cisco:rv130_vpn_router:-:*:*:*:*:*:*:*|cpe:2.3:o:cisco:rv130w_wireless-n_multifunction_vpn_router_firmware:*:*:*:*:*:*:*:*|cpe:2.3:h:cisco:rv130w_wireless-n_multifunction_vpn_router:-:*:*:*:*:*:*:*|cpe:2.3:o:cisco:rv215w_wireless-n_vpn_router_firmware:*:*:*:*:*:*:*:*|cpe:2.3:h:cisco:rv215w_wireless-n_vpn_router:-:*:*:*:*:*:*:*"
+ }
+]

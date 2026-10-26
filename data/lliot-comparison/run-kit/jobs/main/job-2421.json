@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2021-3190",
+  "description": "The async-git package before 1.13.2 for Node.js allows OS Command Injection via shell metacharacters, as demonstrated by git.reset and git.tag.",
+  "cpe_strings": "cpe:2.3:a:async-git_project:async-git:*:*:*:*:*:node.js:*:*"
+ }
+]

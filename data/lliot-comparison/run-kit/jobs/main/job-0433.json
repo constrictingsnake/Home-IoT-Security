@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2021-40170",
+  "description": "An RF replay attack vulnerability in the SecuritasHome home alarm system, version HPGW-G 0.0.2.23F BG_U-ITR-F1-BD_BL.A30.20181117, allows an attacker to trigger arbitrary system functionality by replaying previously recorded signals. This lets an adversary, among other things, disarm an armed system.",
+  "cpe_strings": "cpe:2.3:o:securitashome:securitashome_alarm_system_firmware:hpgw-g_0.0.2.23f_bg_u-itr-f1-bd_bl.a30.20181117:*:*:*:*:*:*:*|cpe:2.3:h:securitashome:securitashome_alarm_system:-:*:*:*:*:*:*:*"
+ }
+]

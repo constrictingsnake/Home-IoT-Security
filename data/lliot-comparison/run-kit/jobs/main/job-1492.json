@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2023-27446",
+  "description": "Cross-Site Request Forgery (CSRF) vulnerability in Fluenx DeepL API translation plugin <= 2.1.4 versions.",
+  "cpe_strings": "cpe:2.3:a:fluenx:deepl_pro_api_translation:*:*:*:*:*:wordpress:*:*"
+ }
+]

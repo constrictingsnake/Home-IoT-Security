@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2024-46041",
+  "description": "IoT Haat Smart Plug IH-IN-16A-S v5.16.1 is vulnerable to Authentication Bypass by Capture-replay.",
+  "cpe_strings": ""
+ }
+]

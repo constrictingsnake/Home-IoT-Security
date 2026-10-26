@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2019-17216",
+  "description": "An issue was discovered on V-Zug Combi-Steam MSLQ devices before Ethernet R07 and before WLAN R05. Password authentication uses MD5 to hash passwords. Cracking is possible with minimal effort.",
+  "cpe_strings": "cpe:2.3:o:vzug:combi-stream_mslq_firmware:*:*:*:*:*:*:*:*|cpe:2.3:h:vzug:combi-stream_mslq:-:*:*:*:*:*:*:*"
+ }
+]

@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2018-7779",
+  "description": "In Schneider Electric Wiser for KNX V2.1.0 and prior, homeLYnk V2.0.1 and prior; and spaceLYnk V2.1.0 and prior, weak and unprotected FTP access could allow an attacker unauthorized access.",
+  "cpe_strings": "cpe:2.3:o:schneider-electric:homelynk_firmware:*:*:*:*:*:*:*:*|cpe:2.3:h:schneider-electric:homelynk:-:*:*:*:*:*:*:*|cpe:2.3:o:schneider-electric:spacelynk_firmware:*:*:*:*:*:*:*:*|cpe:2.3:h:schneider-electric:spacelynk:-:*:*:*:*:*:*:*|cpe:2.3:o:schneider-electric:wiser_for_knx_firmware:*:*:*:*:*:*:*:*|cpe:2.3:h:schneider-electric:wiser_for_knx:-:*:*:*:*:*:*:*"
+ }
+]

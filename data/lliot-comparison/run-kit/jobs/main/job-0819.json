@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2013-6952",
+  "description": "The Belkin WeMo Home Automation firmware before 3949 has a hardcoded GPG key, which makes it easier for remote attackers to spoof firmware updates and execute arbitrary code via crafted signed data.",
+  "cpe_strings": "cpe:2.3:a:belkin:wemo_home_automation_firmware:2769:*:*:*:*:*:*:*"
+ }
+]

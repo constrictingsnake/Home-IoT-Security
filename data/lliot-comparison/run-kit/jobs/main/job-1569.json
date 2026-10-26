@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2017-12084",
+  "description": "A backdoor vulnerability exists in remote control functionality of Circle with Disney running firmware 2.0.1. A specific set of network packets can remotely start an SSH server on the device, resulting in a persistent backdoor. An attacker can send an API call to enable the SSH server.",
+  "cpe_strings": "cpe:2.3:o:meetcircle:circle_with_disney_firmware:2.0.1:*:*:*:*:*:*:*|cpe:2.3:h:meetcircle:circle_with_disney:-:*:*:*:*:*:*:*"
+ }
+]

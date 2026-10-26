@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2015-2874",
+  "description": "Seagate GoFlex Satellite, Seagate Wireless Mobile Storage, Seagate Wireless Plus Mobile Storage, and LaCie FUEL devices with firmware before 3.4.1.105 have a default password of root for the root account, which allows remote attackers to obtain administrative access via a TELNET session.",
+  "cpe_strings": "cpe:2.3:h:seagate:wireless_mobile_storage:*:*:*:*:*:*:*:*|cpe:2.3:h:seagate:wireless_plus_mobile_storage:*:*:*:*:*:*:*:*|cpe:2.3:h:lacie:lac9000436u:*:*:*:*:*:*:*:*|cpe:2.3:h:lacie:lac9000464u:*:*:*:*:*:*:*:*|cpe:2.3:o:lacie:lac9000436u_firmware:*:*:*:*:*:*:*:*|cpe:2.3:o:lacie:lac9000464u_firmware:*:*:*:*:*:*:*:*|cpe:2.3:h:seagate:goflex_sattelite:*:*:*:*:*:*:*:*"
+ }
+]

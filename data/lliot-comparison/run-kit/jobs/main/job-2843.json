@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2023-0346",
+  "description": "Akuvox E11 cloud login is performed through an unencrypted HTTP connection. An attacker could gain access to the Akuvox cloud and device if the MAC address of a device if known.",
+  "cpe_strings": "cpe:2.3:o:akuvox:e11_firmware:-:*:*:*:*:*:*:*|cpe:2.3:h:akuvox:e11:-:*:*:*:*:*:*:*"
+ }
+]

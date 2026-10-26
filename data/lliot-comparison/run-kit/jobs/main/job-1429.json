@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2018-12735",
+  "description": "SAJ Solar Inverter allows remote attackers to obtain potentially sensitive information via a direct request for the inverter_info.htm or english_main.htm URI.",
+  "cpe_strings": "cpe:2.3:a:saj-electric:saj_solar_inverter:-:*:*:*:*:*:*:*"
+ }
+]

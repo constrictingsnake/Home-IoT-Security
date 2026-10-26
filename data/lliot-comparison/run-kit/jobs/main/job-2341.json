@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2024-31061",
+  "description": "Cross Site Scripting vulnerability in Insurance Mangement System v.1.0.0 and before allows a remote attacker to execute arbitrary code via the Last Name input field.",
+  "cpe_strings": "cpe:2.3:a:munyweki:insurance_management_system:*:*:*:*:*:*:*:*"
+ }
+]

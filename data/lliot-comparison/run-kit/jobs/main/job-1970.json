@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2021-23624",
+  "description": "This affects the package dotty before 0.1.2. A type confusion vulnerability can lead to a bypass of CVE-2021-25912 when the user-provided keys used in the path parameter are arrays.",
+  "cpe_strings": "cpe:2.3:a:dotty_project:dotty:*:*:*:*:*:*:*:*"
+ }
+]

@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2024-39874",
+  "description": "A vulnerability has been identified in SINEMA Remote Connect Server (All versions < V3.2 SP1). The affected application does not properly implement brute force protection against user credentials in its Client Communication component. This could allow an attacker to learn user credentials that are vulnerable to brute force attacks.",
+  "cpe_strings": "cpe:2.3:a:siemens:sinema_remote_connect_server:*:*:*:*:*:*:*:*|cpe:2.3:a:siemens:sinema_remote_connect_server:3.2:-:*:*:*:*:*:*|cpe:2.3:a:siemens:sinema_remote_connect_server:3.2:hf1:*:*:*:*:*:*"
+ }
+]

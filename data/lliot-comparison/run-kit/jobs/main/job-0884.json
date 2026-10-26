@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2023-32409",
+  "description": "The issue was addressed with improved bounds checks. This issue is fixed in watchOS 9.5, tvOS 16.5, macOS Ventura 13.4, iOS 15.7.8 and iPadOS 15.7.8, Safari 16.5, iOS 16.5 and iPadOS 16.5. A remote attacker may be able to break out of Web Content sandbox. Apple is aware of a report that this issue may have been actively exploited.",
+  "cpe_strings": "cpe:2.3:a:apple:safari:*:*:*:*:*:*:*:*|cpe:2.3:o:apple:ipados:*:*:*:*:*:*:*:*|cpe:2.3:o:apple:iphone_os:*:*:*:*:*:*:*:*|cpe:2.3:o:apple:macos:*:*:*:*:*:*:*:*|cpe:2.3:o:apple:tvos:*:*:*:*:*:*:*:*|cpe:2.3:o:apple:watchos:*:*:*:*:*:*:*:*"
+ }
+]

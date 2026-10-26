@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2024-44459",
+  "description": "A memory allocation issue in vernemq v2.0.1 allows attackers to cause a Denial of Service (DoS) via excessive memory consumption.",
+  "cpe_strings": "cpe:2.3:a:octavolabs:vernemq:2.0.1:*:*:*:*:*:*:*"
+ }
+]

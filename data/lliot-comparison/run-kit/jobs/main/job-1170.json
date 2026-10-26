@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2022-23928",
+  "description": "Potential vulnerabilities have been identified in the system BIOS of certain HP PC products which may allow Escalation of Privilege, Arbitrary Code Execution, Unauthorized Code Execution, Denial of Service, and Information Disclosure.",
+  "cpe_strings": "cpe:2.3:o:hp:pc_bios:*:*:*:*:*:*:*:*"
+ }
+]

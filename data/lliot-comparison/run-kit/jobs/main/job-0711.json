@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2015-7304",
+  "description": "Cross-site scripting (XSS) vulnerability in the amoCRM module 7.x-1.x before 7.x-1.2 for Drupal allows remote attackers to inject arbitrary web script or HTML via unspecified HTTP POST data.",
+  "cpe_strings": "cpe:2.3:a:drupaljedi:amocrm:7.x-1.0:*:*:*:*:drupal:*:*|cpe:2.3:a:drupaljedi:amocrm:7.x-1.1:*:*:*:*:drupal:*:*"
+ }
+]

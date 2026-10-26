@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2024-51330",
+  "description": "An issue in UltiMaker Cura v.4.41 and 5.8.1 and before allows a local attacker to execute arbitrary code via Inter-process communication (IPC) mechanism between Cura application and CuraEngine processes, localhost network stack, printing settings and G-code processing and transmission components, Ultimaker 3D Printers.",
+  "cpe_strings": "cpe:2.3:a:ultimaker:ultimaker_cura:*:*:*:*:*:*:*:*"
+ }
+]

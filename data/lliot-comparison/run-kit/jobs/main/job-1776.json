@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2013-4329",
+  "description": "The xenlight library (libxl) in Xen 4.0.x through 4.2.x, when IOMMU is disabled, provides access to a busmastering-capable PCI passthrough device before the IOMMU setup is complete, which allows local HVM guest domains to gain privileges or cause a denial of service via a DMA instruction.",
+  "cpe_strings": "cpe:2.3:o:xen:xen:4.0.0:*:*:*:*:*:*:*|cpe:2.3:o:xen:xen:4.0.1:*:*:*:*:*:*:*|cpe:2.3:o:xen:xen:4.0.2:*:*:*:*:*:*:*|cpe:2.3:o:xen:xen:4.0.3:*:*:*:*:*:*:*|cpe:2.3:o:xen:xen:4.0.4:*:*:*:*:*:*:*|cpe:2.3:o:xen:xen:4.1.0:*:*:*:*:*:*:*|cpe:2.3:o:xen:xen:4.1.1:*:*:*:*:*:*:*|cpe:2.3:o:xen:xen:4.1.2:*:*:*:*:*:*:*|cpe:2.3:o:xen:xen:4.1.3:*:*:*:*:*:*:*|cpe:2.3:o:xen:xen:4.1.4:*:*:*:*:*:*:*|cpe:2.3:o:xen:xen:4.1.5:*:*:*:*:*:*:*|cpe:2.3:o:xen:xen:4.2.0:*:*:*:*:*:*:*|cpe:2.3:o:xen:xen:4.2.1:*:*:*:*:*:*:*|cpe:2.3:o:xen:xen:4.2.2:*:*:*:*:*:*:*|cpe:2.3:o:xen:xen:4.2.3:*:*:*:*:*:*:*"
+ }
+]

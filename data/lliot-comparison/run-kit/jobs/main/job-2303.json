@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2024-26296",
+  "description": "Vulnerabilities in the ClearPass Policy Manager web-based management interface allow remote authenticated users to run arbitrary commands on the underlying host. A successful exploit could allow an attacker to execute arbitrary commands as root on the underlying operating system leading to complete system compromise.\n\n",
+  "cpe_strings": "cpe:2.3:a:arubanetworks:clearpass_policy_manager:*:*:*:*:*:*:*:*|cpe:2.3:a:arubanetworks:clearpass_policy_manager:6.9.13:-:*:*:*:*:*:*|cpe:2.3:a:arubanetworks:clearpass_policy_manager:6.9.13:cumulative_hotfix_patch_2:*:*:*:*:*:*|cpe:2.3:a:arubanetworks:clearpass_policy_manager:6.9.13:cumulative_hotfix_patch_3:*:*:*:*:*:*|cpe:2.3:a:arubanetworks:clearpass_policy_manager:6.9.13:cumulative_hotfix_patch_4:*:*:*:*:*:*|cpe:2.3:a:arubanetworks:clearpass_policy_manager:6.10.8:-:*:*:*:*:*:*|cpe:2.3:a:arubanetworks:clearpass_policy_manager:6.10.8:cumulative_hotfix_patch_2:*:*:*:*:*:*|cpe:2.3:a:arubanetworks:clearpass_policy_manager:6.10.8:cumulative_hotfix_patch_5:*:*:*:*:*:*|cpe:2.3:a:arubanetworks:clearpass_policy_manager:6.10.8:cumulative_hotfix_patch_6:*:*:*:*:*:*|cpe:2.3:a:arubanetworks:clearpass_policy_manager:6.12.0:*:*:*:*:*:*:*"
+ }
+]

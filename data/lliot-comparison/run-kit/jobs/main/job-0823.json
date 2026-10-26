@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2017-1000471",
+  "description": "EmbedThis GoAhead Webserver version 4.0.0 is vulnerable to a NULL pointer dereference in the CGI handler resulting in memory corruption or denial of service.",
+  "cpe_strings": "cpe:2.3:a:embedthis:goahead:4.0.0:*:*:*:*:*:*:*"
+ }
+]

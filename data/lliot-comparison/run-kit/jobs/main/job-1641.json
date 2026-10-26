@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2024-23786",
+  "description": "Cross-site scripting vulnerability in Energy Management Controller with Cloud Services JH-RVB1 /JH-RV11 Ver.B0.1.9.1 and earlier allows a network-adjacent unauthenticated attacker to execute an arbitrary script on the web browser of the user who is accessing the management page of the affected product.",
+  "cpe_strings": "cpe:2.3:o:sharp:jh-rvb1_firmware:*:*:*:*:*:*:*:*|cpe:2.3:h:sharp:jh-rvb1:-:*:*:*:*:*:*:*|cpe:2.3:o:sharp:jh-rv11_firmware:*:*:*:*:*:*:*:*|cpe:2.3:h:sharp:jh-rv11:-:*:*:*:*:*:*:*"
+ }
+]

@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2021-37384",
+  "description": "RCE (Remote Code Execution) vulnerability was found in some Furukawa ONU models, this vulnerability allows remote unauthenticated users to send arbitrary commands to the device via web interface.",
+  "cpe_strings": "cpe:2.3:o:furukawa:423-41w\\/ac_firmware:*:*:*:*:*:*:*:*|cpe:2.3:h:furukawa:423-41w\\/ac:-:*:*:*:*:*:*:*|cpe:2.3:o:furukawa:ld421-21w_firmware:*:*:*:*:*:*:*:*|cpe:2.3:h:furukawa:ld421-21w:-:*:*:*:*:*:*:*|cpe:2.3:o:furukawa:ld420-10r_firmware:*:*:*:*:*:*:*:*|cpe:2.3:h:furukawa:ld420-10r:-:*:*:*:*:*:*:*|cpe:2.3:o:furukawa:ld421-21wv_firmware:*:*:*:*:*:*:*:*|cpe:2.3:h:furukawa:ld421-21wv:-:*:*:*:*:*:*:*"
+ }
+]

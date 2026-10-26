@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2013-2441",
+  "description": "Unspecified vulnerability in the Agile EDM component in Oracle Supply Chain Products Suite 6.1.1.0, 6.1.2.0, and 6.1.2.2 allows remote authenticated users to affect integrity via unknown vectors related to Java Client.",
+  "cpe_strings": "cpe:2.3:a:oracle:supply_chain_products_suite:6.1.1.0:*:*:*:*:*:*:*|cpe:2.3:a:oracle:supply_chain_products_suite:6.1.2.0:*:*:*:*:*:*:*|cpe:2.3:a:oracle:supply_chain_products_suite:6.1.2.2:*:*:*:*:*:*:*"
+ }
+]

@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2023-47506",
+  "description": "Improper Neutralization of Special Elements used in an SQL Command ('SQL Injection') vulnerability in Master slider Master Slider Pro allows SQL Injection.This issue affects Master Slider Pro: from n/a through 3.6.5.",
+  "cpe_strings": "cpe:2.3:a:masterslider:master_slider:*:*:*:*:pro:wordpress:*:*"
+ }
+]

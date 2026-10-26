@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2023-29720",
+  "description": "SofaWiki <=3.8.9 is vulnerable to Cross Site Scripting (XSS) via index.php.",
+  "cpe_strings": "cpe:2.3:a:sofawiki_project:sofawiki:*:*:*:*:*:*:*:*"
+ }
+]

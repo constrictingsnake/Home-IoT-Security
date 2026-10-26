@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2016-4845",
+  "description": "Cross-site request forgery (CSRF) vulnerability on I-O DATA DEVICE HVL-A2.0, HVL-A3.0, HVL-A4.0, HVL-AT1.0S, HVL-AT2.0, HVL-AT3.0, HVL-AT4.0, HVL-AT2.0A, HVL-AT3.0A, and HVL-AT4.0A devices with firmware before 2.04 allows remote attackers to hijack the authentication of arbitrary users for requests that delete content.",
+  "cpe_strings": "cpe:2.3:o:iodata:hvl-a2.0_firmware:2.03:*:*:*:*:*:*:*|cpe:2.3:o:iodata:hvl-a3.0_firmware:2.03:*:*:*:*:*:*:*|cpe:2.3:o:iodata:hvl-a4.0_firmware:2.03:*:*:*:*:*:*:*|cpe:2.3:o:iodata:hvl-at1.0s_firmware:2.03:*:*:*:*:*:*:*|cpe:2.3:o:iodata:hvl-at2.0_firmware:2.03:*:*:*:*:*:*:*|cpe:2.3:o:iodata:hvl-at2.0a_firmware:2.03:*:*:*:*:*:*:*|cpe:2.3:o:iodata:hvl-at3.0_firmware:2.03:*:*:*:*:*:*:*|cpe:2.3:o:iodata:hvl-at3.0a_firmware:2.03:*:*:*:*:*:*:*|cpe:2.3:o:iodata:hvl-at4.0_firmware:2.03:*:*:*:*:*:*:*|cpe:2.3:o:iodata:hvl-at4.0a_firmware:2.03:*:*:*:*:*:*:*|cpe:2.3:h:iodata:hvl-a:-:*:*:*:*:*:*:*|cpe:2.3:h:iodata:hvl-at:-:*:*:*:*:*:*:*|cpe:2.3:h:iodata:hvl-ata:-:*:*:*:*:*:*:*"
+ }
+]

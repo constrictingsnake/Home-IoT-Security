@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2023-27217",
+  "description": "A stack-based buffer overflow in the ChangeFriendlyName() function of Belkin Smart Outlet V2 F7c063 firmware_2.00.11420.OWRT.PVT_SNSV2 allows attackers to cause a Denial of Service (DoS) via a crafted UPNP request.",
+  "cpe_strings": "cpe:2.3:o:belkin:f7c063_firmware:2.00.11420.owrt.pvt_snsv2:*:*:*:*:*:*:*|cpe:2.3:h:belkin:f7c063:-:*:*:*:*:*:*:*"
+ }
+]

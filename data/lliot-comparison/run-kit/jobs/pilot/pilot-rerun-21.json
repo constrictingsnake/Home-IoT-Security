@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2024-52548",
+  "description": "An attacker who can execute arbitrary Operating Systems commands, can bypass code signing enforcements in the kernel, and execute arbitrary native code. This vulnerability has been resolved in firmware version 2.800.0000000.8.R.20241111.",
+  "cpe_strings": ""
+ }
+]

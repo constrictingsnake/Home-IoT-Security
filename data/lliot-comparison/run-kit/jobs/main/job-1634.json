@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2024-39831",
+  "description": "in OpenHarmony v4.1.0 allow a local attacker with high privileges arbitrary code execution in pre-installed apps through use after free.",
+  "cpe_strings": "cpe:2.3:o:openatom:openharmony:*:*:*:*:-:*:*:*"
+ }
+]

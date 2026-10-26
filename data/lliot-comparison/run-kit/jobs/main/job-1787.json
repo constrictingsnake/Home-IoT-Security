@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2021-36198",
+  "description": "Successful exploitation of this vulnerability could allow an unauthorized user to access sensitive data.",
+  "cpe_strings": "cpe:2.3:a:johnsoncontrols:kantech_entrapass:*:*:*:*:-:*:*:*"
+ }
+]

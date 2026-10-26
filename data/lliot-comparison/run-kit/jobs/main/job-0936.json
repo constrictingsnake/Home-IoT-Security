@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2019-8743",
+  "description": "Multiple memory corruption issues were addressed with improved memory handling. This issue is fixed in watchOS 6.1. Processing maliciously crafted web content may lead to arbitrary code execution.",
+  "cpe_strings": "cpe:2.3:o:apple:watchos:*:*:*:*:*:*:*:*"
+ }
+]

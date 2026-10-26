@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2014-6952",
+  "description": "The Manga Facts (aka app.mangafacts.ar) application 1.0 for Android does not verify X.509 certificates from SSL servers, which allows man-in-the-middle attackers to spoof servers and obtain sensitive information via a crafted certificate.",
+  "cpe_strings": "cpe:2.3:a:manga_facts_project:manga_facts:1:*:*:*:*:android:*:*"
+ }
+]

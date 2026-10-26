@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2010-5110",
+  "description": "DCTStream.cc in Poppler before 0.13.3 allows remote attackers to cause a denial of service (crash) via a crafted PDF file.",
+  "cpe_strings": "cpe:2.3:a:freedesktop:poppler:*:*:*:*:*:*:*:*|cpe:2.3:a:freedesktop:poppler:0.13.0:*:*:*:*:*:*:*|cpe:2.3:a:freedesktop:poppler:0.13.1:*:*:*:*:*:*:*"
+ }
+]

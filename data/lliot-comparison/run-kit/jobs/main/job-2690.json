@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2024-45436",
+  "description": "extractFromZipFile in model.go in Ollama before 0.1.47 can extract members of a ZIP archive outside of the parent directory.",
+  "cpe_strings": "cpe:2.3:a:ollama:ollama:*:*:*:*:*:*:*:*"
+ }
+]

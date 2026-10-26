@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2022-1411",
+  "description": "Unrestructed file upload in GitHub repository yetiforcecompany/yetiforcecrm prior to 6.4.0. Attacker can send malicious files to the victims is able to retrieve the stored data from the web application without that data being made safe to render in the browser and steals victim's cookie leads to account takeover.",
+  "cpe_strings": "cpe:2.3:a:yetiforce:yetiforce_customer_relationship_management:*:*:*:*:*:*:*:*"
+ }
+]

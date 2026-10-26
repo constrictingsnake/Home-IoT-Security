@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2021-22806",
+  "description": "A CWE-669: Incorrect Resource Transfer Between Spheres vulnerability exists that could cause data exfiltration and unauthorized access when accessing a malicious website. Affected Product: spaceLYnk (V2.6.1 and prior), Wiser for KNX (V2.6.1 and prior), fellerLYnk (V2.6.1 and prior)",
+  "cpe_strings": "cpe:2.3:o:schneider-electric:spacelynk_firmware:*:*:*:*:*:*:*:*|cpe:2.3:h:schneider-electric:spacelynk:-:*:*:*:*:*:*:*|cpe:2.3:o:schneider-electric:wiser_for_knx_firmware:*:*:*:*:*:*:*:*|cpe:2.3:h:schneider-electric:wiser_for_knx:-:*:*:*:*:*:*:*|cpe:2.3:o:schneider-electric:fellerlynk_firmware:*:*:*:*:*:*:*:*|cpe:2.3:h:schneider-electric:fellerlynk:-:*:*:*:*:*:*:*"
+ }
+]

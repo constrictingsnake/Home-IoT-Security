@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2014-2989",
+  "description": "Cross-site request forgery (CSRF) vulnerability in Open Assessment Technologies TAO 2.5.6 allows remote attackers to hijack the authentication of administrators for requests that create administrative accounts via a request to Users/add.",
+  "cpe_strings": "cpe:2.3:a:open_assessment_technologies_:tao:2.5.6:*:*:*:*:*:*:*"
+ }
+]

@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2020-15990",
+  "description": "Use after free in autofill in Google Chrome prior to 86.0.4240.75 allowed a remote attacker who had compromised the renderer process to potentially perform a sandbox escape via a crafted HTML page.",
+  "cpe_strings": "cpe:2.3:a:google:chrome:*:*:*:*:*:*:*:*|cpe:2.3:o:debian:debian_linux:10.0:*:*:*:*:*:*:*|cpe:2.3:o:fedoraproject:fedora:31:*:*:*:*:*:*:*|cpe:2.3:o:fedoraproject:fedora:32:*:*:*:*:*:*:*|cpe:2.3:o:fedoraproject:fedora:33:*:*:*:*:*:*:*|cpe:2.3:a:opensuse:backports_sle:15.0:sp2:*:*:*:*:*:*"
+ }
+]

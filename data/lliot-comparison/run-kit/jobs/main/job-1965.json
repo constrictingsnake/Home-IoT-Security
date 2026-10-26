@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2021-31610",
+  "description": "The Bluetooth Classic implementation on AB32VG1 devices does not properly handle the reception of continuous unsolicited LMP responses, allowing attackers in radio range to trigger a denial of service (either restart or deadlock the device) by flooding a device with LMP_AU_rand data.",
+  "cpe_strings": "cpe:2.3:o:mi:mi_true_wireless_earbuds_basic_2_firmware:-:*:*:*:*:*:*:*|cpe:2.3:h:mi:mi_true_wireless_earbuds_basic_2:-:*:*:*:*:*:*:*|cpe:2.3:o:bluetrum:ab5376t_firmware:-:*:*:*:*:*:*:*|cpe:2.3:h:bluetrum:ab5376t:-:*:*:*:*:*:*:*|cpe:2.3:o:bluetrum:bt8896a_firmware:-:*:*:*:*:*:*:*|cpe:2.3:h:bluetrum:bt8896a:-:*:*:*:*:*:*:*"
+ }
+]

@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2023-47217",
+  "description": "in OpenHarmony v3.2.2 and prior versions allow a local attacker cause DOS through buffer overflow.",
+  "cpe_strings": "cpe:2.3:o:openatom:openharmony:*:*:*:*:-:*:*:*"
+ }
+]

@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2018-6402",
+  "description": "Ecobee Ecobee4 4.2.0.171 devices can be forced to deauthenticate and connect to an unencrypted Wi-Fi network with the same SSID, even if the device settings specify use of encryption such as WPA2, as long as the competing network has a stronger signal. An attacker must be able to set up a nearby SSID, similar to an \"Evil Twin\" attack.",
+  "cpe_strings": "cpe:2.3:o:ecobee:ecobee4_firmware:4.2.0.171:*:*:*:*:*:*:*|cpe:2.3:h:ecobee:ecobee4:-:*:*:*:*:*:*:*"
+ }
+]

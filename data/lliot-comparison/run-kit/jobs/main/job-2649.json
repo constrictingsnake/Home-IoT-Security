@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2017-2881",
+  "description": "An exploitable vulnerability exists in the torlist update functionality of Circle with Disney running firmware 2.0.1. Specially crafted network packets can cause the product to run an attacker-supplied shell script. An attacker can intercept and alter network traffic to trigger this vulnerability.",
+  "cpe_strings": "cpe:2.3:o:meetcircle:circle_with_disney_firmware:2.0.1:*:*:*:*:*:*:*|cpe:2.3:h:meetcircle:circle_with_disney:-:*:*:*:*:*:*:*"
+ }
+]

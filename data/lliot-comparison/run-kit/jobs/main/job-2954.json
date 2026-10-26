@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2017-9828",
+  "description": "'/cgi-bin/admin/testserver.cgi' of the web service in most of the VIVOTEK Network Cameras is vulnerable to shell command injection, which allows remote attackers to execute any shell command as root via a crafted HTTP request. This vulnerability is already verified on VIVOTEK Network Camera IB8369/FD8164/FD816BA; most others have similar firmware that may be affected. An attack uses shell metacharacters in the senderemail parameter.",
+  "cpe_strings": "cpe:2.3:o:vivotek:network_camera_ib8369_firmware:ib8369-vvtk-0102a:*:*:*:*:*:*:*|cpe:2.3:h:vivotek:network_camera_ib8369:-:*:*:*:*:*:*:*|cpe:2.3:o:vivotek:network_camera_fd8164_firmware:fd8164-_vvtk-0200b:*:*:*:*:*:*:*|cpe:2.3:h:vivotek:network_camera_fd8164:-:*:*:*:*:*:*:*|cpe:2.3:o:vivotek:network_camera_fd816ba_firmware:fd816ba-vvtk-010101.:*:*:*:*:*:*:*|cpe:2.3:h:vivotek:network_camera_fd816ba:-:*:*:*:*:*:*:*"
+ }
+]

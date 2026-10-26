@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2021-21662",
+  "description": "A missing permission check in Jenkins XebiaLabs XL Deploy Plugin 10.0.1 and earlier allows attackers with Overall/Read permission to enumerate credentials ID of credentials stored in Jenkins.",
+  "cpe_strings": "cpe:2.3:a:jenkins:xebialabs_xl_deploy:*:*:*:*:*:jenkins:*:*"
+ }
+]

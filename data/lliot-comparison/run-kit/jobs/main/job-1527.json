@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2015-8269",
+  "description": "The API on Fisher-Price Smart Toy Bear devices allows remote attackers to obtain sensitive information or modify data by leveraging presence in an 802.11 network's coverage area and entering an account number.",
+  "cpe_strings": "cpe:2.3:h:fisher-price:smart_toy_bear:*:*:*:*:*:*:*:*"
+ }
+]

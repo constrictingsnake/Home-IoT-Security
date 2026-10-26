@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2017-7749",
+  "description": "A use-after-free vulnerability when using an incorrect URL during the reloading of a docshell. This results in a potentially exploitable crash. This vulnerability affects Firefox < 54, Firefox ESR < 52.2, and Thunderbird < 52.2.",
+  "cpe_strings": "cpe:2.3:o:debian:debian_linux:8.0:*:*:*:*:*:*:*|cpe:2.3:o:debian:debian_linux:9.0:*:*:*:*:*:*:*|cpe:2.3:o:redhat:enterprise_linux:6.0:*:*:*:*:*:*:*|cpe:2.3:o:redhat:enterprise_linux:7.0:*:*:*:*:*:*:*|cpe:2.3:o:redhat:enterprise_linux_desktop:6.0:*:*:*:*:*:*:*|cpe:2.3:o:redhat:enterprise_linux_desktop:7.0:*:*:*:*:*:*:*|cpe:2.3:o:redhat:enterprise_linux_server:6.0:*:*:*:*:*:*:*|cpe:2.3:o:redhat:enterprise_linux_server:7.0:*:*:*:*:*:*:*|cpe:2.3:o:redhat:enterprise_linux_server_aus:7.3:*:*:*:*:*:*:*|cpe:2.3:o:redhat:enterprise_linux_server_aus:7.4:*:*:*:*:*:*:*|cpe:2.3:o:redhat:enterprise_linux_server_eus:7.3:*:*:*:*:*:*:*|cpe:2.3:o:redhat:enterprise_linux_server_eus:7.4:*:*:*:*:*:*:*|cpe:2.3:o:redhat:enterprise_linux_server_eus:7.5:*:*:*:*:*:*:*|cpe:2.3:o:redhat:enterprise_linux_workstation:6.0:*:*:*:*:*:*:*|cpe:2.3:o:redhat:enterprise_linux_workstation:7.0:*:*:*:*:*:*:*|cpe:2.3:a:mozilla:firefox:*:*:*:*:*:*:*:*|cpe:2.3:a:mozilla:thunderbird:*:*:*:*:*:*:*:*"
+ }
+]

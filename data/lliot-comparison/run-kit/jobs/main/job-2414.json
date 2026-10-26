@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2019-17101",
+  "description": "Improper Neutralization of Special Elements used in a Command ('Command Injection') vulnerability in firmware versions prior to x.xx of Netatmo Smart Indoor Camera allows an attacker to execute commands on the device. This issue affects: Netatmo Smart Indoor Camera version and prior versions.",
+  "cpe_strings": "cpe:2.3:o:netatmo:smart_indoor_camera_firmware:*:*:*:*:*:*:*:*|cpe:2.3:h:netatmo:smart_indoor_camera:-:*:*:*:*:*:*:*"
+ }
+]

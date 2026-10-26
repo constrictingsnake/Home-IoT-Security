@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2013-4709",
+  "description": "Buffer overflow in the PPP Access Concentrator (PPPAC) on the SEIL/x86 with firmware before 2.82, SEIL/X1 with firmware before 4.32, SEIL/X2 with firmware before 4.32, SEIL/B1 with firmware before 4.32, SEIL/Turbo with firmware before 2.16, and SEIL/neu 2FE Plus with firmware before 2.16 allows remote attackers to execute arbitrary code via a crafted L2TP message.",
+  "cpe_strings": "cpe:2.3:o:iij:seil_x2_firmware:1.00:*:*:*:*:*:*:*|cpe:2.3:o:iij:seil_x2_firmware:4.31:*:*:*:*:*:*:*|cpe:2.3:h:iij:seil\\/x2:*:*:*:*:*:*:*:*|cpe:2.3:o:iij:seil\\%2fturbo_firmware:2.05:*:*:*:*:*:*:*|cpe:2.3:o:iij:seil\\%2fturbo_firmware:2.15:*:*:*:*:*:*:*|cpe:2.3:h:iij:seil\\/turbo:*:*:*:*:*:*:*:*|cpe:2.3:o:iij:seil\\%2fneu_2fe_plus_firmware:2.05:*:*:*:*:*:*:*|cpe:2.3:o:iij:seil\\%2fneu_2fe_plus_firmware:2.15:*:*:*:*:*:*:*|cpe:2.3:h:iij:seil\\/neu_2fe_plus:*:*:*:*:*:*:*:*|cpe:2.3:o:iij:seil\\%2fb1_firmware:1.00:*:*:*:*:*:*:*|cpe:2.3:o:iij:seil\\%2fb1_firmware:4.31:*:*:*:*:*:*:*|cpe:2.3:h:iij:seil\\/b1:*:*:*:*:*:*:*:*|cpe:2.3:o:iij:seil\\%2fx86_firmware:1.00:*:*:*:*:*:*:*|cpe:2.3:o:iij:seil\\%2fx86_firmware:2.81:*:*:*:*:*:*:*|cpe:2.3:h:iij:seil\\/x86:*:*:*:*:*:*:*:*|cpe:2.3:o:iij:seil\\%2fx1_firmware:1.00:*:*:*:*:*:*:*|cpe:2.3:o:iij:seil\\%2fx1_firmware:4.31:*:*:*:*:*:*:*|cpe:2.3:h:iij:seil\\/x1:*:*:*:*:*:*:*:*"
+ }
+]

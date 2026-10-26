@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2021-3625","home_iot":"No","categories":[],"confidence":"High","reasoning":"The vulnerability affects the generic Zephyr RTOS USB DFU implementation rather than a specifically identified residential home IoT device or product."}]}

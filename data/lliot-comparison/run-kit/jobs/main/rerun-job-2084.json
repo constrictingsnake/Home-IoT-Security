@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2023-33740",
+  "description": "Incorrect access control in luowice v3.5.18 allows attackers to access cloud source code information via modification fo the Verify parameter in a warning message.",
+  "cpe_strings": "cpe:2.3:a:luowice:luowice:3.5.18:*:*:*:*:android:*:*|cpe:2.3:o:google:android:*:*:*:*:*:*:*:*"
+ }
+]

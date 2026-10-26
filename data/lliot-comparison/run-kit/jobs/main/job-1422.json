@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2021-40692",
+  "description": "Insufficient capability checks made it possible for teachers to download users outside of their courses.",
+  "cpe_strings": "cpe:2.3:a:moodle:moodle:*:*:*:*:*:*:*:*"
+ }
+]

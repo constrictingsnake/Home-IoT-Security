@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2024-48202",
+  "description": "icecms <=3.4.7 has a File Upload vulnerability in FileUtils.java,uploadFile.",
+  "cpe_strings": "cpe:2.3:a:thecosy:icecms:*:*:*:*:*:*:*:*"
+ }
+]

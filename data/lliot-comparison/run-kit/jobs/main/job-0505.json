@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2023-0348",
+  "description": "Akuvox E11 allows direct SIP calls. No access control is enforced by the SIP servers, which could allow an attacker to contact any device within Akuvox to call any other device.",
+  "cpe_strings": "cpe:2.3:o:akuvox:e11_firmware:-:*:*:*:*:*:*:*|cpe:2.3:h:akuvox:e11:-:*:*:*:*:*:*:*"
+ }
+]

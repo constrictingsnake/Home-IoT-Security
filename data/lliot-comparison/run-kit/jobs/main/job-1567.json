@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2014-7859",
+  "description": "Stack-based buffer overflow in login_mgr.cgi in D-Link firmware DNR-320L and DNS-320LW before 1.04b08, DNR-322L before 2.10 build 03, DNR-326 before 2.10 build 03, and DNS-327L before 1.04b01 allows remote attackers to execute arbitrary code by crafting malformed \"Host\" and \"Referer\" header values.",
+  "cpe_strings": "cpe:2.3:o:d-link:dns-322l_firmware:*:*:*:*:*:*:*:*|cpe:2.3:h:dlink:dns-322l:-:*:*:*:*:*:*:*|cpe:2.3:o:d-link:dns-320lw_firmware:*:*:*:*:*:*:*:*|cpe:2.3:h:dlink:dns-320lw:-:*:*:*:*:*:*:*|cpe:2.3:o:d-link:dnr-326_firmware:*:*:*:*:*:*:*:*|cpe:2.3:h:dlink:dnr-326:-:*:*:*:*:*:*:*|cpe:2.3:o:d-link:dns-327l_firmware:*:*:*:*:*:*:*:*|cpe:2.3:h:dlink:dns-327l:-:*:*:*:*:*:*:*|cpe:2.3:o:d-link:dnr-320l_firmware:*:*:*:*:*:*:*:*|cpe:2.3:h:dlink:dnr-320l:-:*:*:*:*:*:*:*"
+ }
+]

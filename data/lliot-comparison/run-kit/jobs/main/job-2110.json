@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2023-35181",
+  "description": "The SolarWinds Access Rights Manager was susceptible to Privilege Escalation Vulnerability. This vulnerability allows users to abuse incorrect folder permission resulting in Privilege Escalation.",
+  "cpe_strings": "cpe:2.3:a:solarwinds:access_rights_manager:*:*:*:*:*:*:*:*"
+ }
+]

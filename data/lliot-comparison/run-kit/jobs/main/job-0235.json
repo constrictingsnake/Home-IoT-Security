@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2015-3943",
+  "description": "Advantech WebAccess before 8.1 allows remote attackers to read sensitive cleartext information about e-mail project accounts via unspecified vectors.",
+  "cpe_strings": "cpe:2.3:a:advantech:webaccess:*:*:*:*:*:*:*:*"
+ }
+]

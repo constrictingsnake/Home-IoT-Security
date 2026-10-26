@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2015-8997",
+  "description": "In TrustZone a time-of-check time-of-use race condition could potentially exist in a listener routine in all Android releases from CAF using the Linux kernel.",
+  "cpe_strings": "cpe:2.3:o:google:android:*:*:*:*:*:*:*:*"
+ }
+]

@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2020-13886",
+  "description": "Intelbras TIP 200 60.61.75.15, TIP 200 LITE 60.61.75.15, and TIP 300 65.61.75.22 devices allow cgi-bin/cgiServer.exx?page=../ Directory Traversal.",
+  "cpe_strings": "cpe:2.3:o:intelbras:tip200_firmware:60.61.75.15:*:*:*:*:*:*:*|cpe:2.3:h:intelbras:tip200:-:*:*:*:*:*:*:*|cpe:2.3:o:intelbras:tip200lite_firmware:60.61.75.15:*:*:*:*:*:*:*|cpe:2.3:h:intelbras:tip200lite:-:*:*:*:*:*:*:*|cpe:2.3:o:intelbras:tip300_firmware:65.61.75.22:*:*:*:*:*:*:*|cpe:2.3:h:intelbras:tip300:-:*:*:*:*:*:*:*"
+ }
+]

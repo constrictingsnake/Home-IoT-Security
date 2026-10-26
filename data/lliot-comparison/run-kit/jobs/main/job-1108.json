@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2024-50432",
+  "description": "Improper Neutralization of Input During Web Page Generation ('Cross-site Scripting') vulnerability in PickPlugins Post Grid and Gutenberg Blocks post-grid allows Cross-Site Scripting (XSS).This issue affects Post Grid and Gutenberg Blocks: from n/a through <= 2.2.93.",
+  "cpe_strings": ""
+ }
+]

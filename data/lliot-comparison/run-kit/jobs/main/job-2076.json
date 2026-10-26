@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2017-18599",
+  "description": "The Pinfinity theme before 2.0 for WordPress has XSS via the s parameter.",
+  "cpe_strings": "cpe:2.3:a:pinfinity_project:pinfinity:*:*:*:*:*:wordpress:*:*"
+ }
+]

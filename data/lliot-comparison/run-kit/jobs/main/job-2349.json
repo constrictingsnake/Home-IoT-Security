@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2014-4645",
+  "description": "Cross-site scripting (XSS) vulnerability in dhcpinfo.html in D-link DSL-2760U-E1 allows remote attackers to inject arbitrary web script or HTML via a hostname.",
+  "cpe_strings": "cpe:2.3:h:dlink:dsl-2760u-e1:-:*:*:*:*:*:*:*"
+ }
+]

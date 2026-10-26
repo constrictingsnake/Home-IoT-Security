@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2022-25809",
+  "description": "Improper Neutralization of audio output from 3rd and 4th Generation Amazon Echo Dot devices allows arbitrary voice command execution on these devices via a malicious skill (in the case of remote attackers) or by pairing a malicious Bluetooth device (in the case of physically proximate attackers), aka an \"Alexa versus Alexa (AvA)\" attack.",
+  "cpe_strings": "cpe:2.3:o:amazon:echo_dot_firmware:-:*:*:*:*:*:*:*|cpe:2.3:h:amazon:echo_dot:3.0:*:*:*:*:*:*:*|cpe:2.3:h:amazon:echo_dot:4.0:*:*:*:*:*:*:*"
+ }
+]

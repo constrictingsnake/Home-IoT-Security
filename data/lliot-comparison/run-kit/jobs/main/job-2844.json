@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2017-13205",
+  "description": "An information disclosure vulnerability in the Android media framework (libmpeg2). Product: Android. Versions: 7.0, 7.1.1, 7.1.2, 8.0, 8.1. Android ID: A-64550583.",
+  "cpe_strings": "cpe:2.3:o:google:android:6.0:*:*:*:*:*:*:*|cpe:2.3:o:google:android:6.0.1:*:*:*:*:*:*:*|cpe:2.3:o:google:android:7.0:*:*:*:*:*:*:*|cpe:2.3:o:google:android:7.1.1:*:*:*:*:*:*:*|cpe:2.3:o:google:android:7.1.2:*:*:*:*:*:*:*|cpe:2.3:o:google:android:8.0:*:*:*:*:*:*:*|cpe:2.3:o:google:android:8.1:*:*:*:*:*:*:*"
+ }
+]

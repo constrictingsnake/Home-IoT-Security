@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2017-16853",
+  "description": "The DynamicMetadataProvider class in saml/saml2/metadata/impl/DynamicMetadataProvider.cpp in OpenSAML-C in OpenSAML before 2.6.1 fails to properly configure itself with the MetadataFilter plugins and does not perform critical security checks such as signature verification, enforcement of validity periods, and other checks specific to deployments, aka CPPOST-105.",
+  "cpe_strings": "cpe:2.3:a:shibboleth:opensaml:*:*:*:*:*:*:*:*|cpe:2.3:o:debian:debian_linux:8.0:*:*:*:*:*:*:*|cpe:2.3:o:debian:debian_linux:9.0:*:*:*:*:*:*:*"
+ }
+]

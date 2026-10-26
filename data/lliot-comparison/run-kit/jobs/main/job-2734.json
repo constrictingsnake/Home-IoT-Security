@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2022-25051",
+  "description": "An Off-by-one Error occurs in cmr113_decode of rtl_433 21.12 when decoding a crafted file.",
+  "cpe_strings": "cpe:2.3:a:rtl_433_project:rtl_433:21.12:*:*:*:*:*:*:*"
+ }
+]

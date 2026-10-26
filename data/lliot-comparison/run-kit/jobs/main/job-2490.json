@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2019-7236",
+  "description": "An issue was discovered in idreamsoft iCMS 7.0.13. editor/editor.admincp.php allows admincp.php?app=editor&do=fileManager dir=../ Directory Traversal.",
+  "cpe_strings": "cpe:2.3:a:idreamsoft:icms:7.0.13:*:*:*:*:*:*:*"
+ }
+]

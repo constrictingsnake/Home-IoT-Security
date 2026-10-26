@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2017-8414",
+  "description": "An issue was discovered on D-Link DCS-1100 and DCS-1130 devices. The binary orthrus in /sbin folder of the device handles all the UPnP connections received by the device. It seems that the binary performs a sprintf operation at address 0x0000A3E4 with the value in the command line parameter \"-f\" and stores it on the stack. Since there is no length check, this results in corrupting the registers for the function sub_A098 which results in memory corruption.",
+  "cpe_strings": "cpe:2.3:o:dlink:dcs-1100_firmware:-:*:*:*:*:*:*:*|cpe:2.3:h:dlink:dcs-1100:-:*:*:*:*:*:*:*|cpe:2.3:o:dlink:dcs-1130_firmware:-:*:*:*:*:*:*:*|cpe:2.3:h:dlink:dcs-1130:-:*:*:*:*:*:*:*"
+ }
+]

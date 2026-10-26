@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2023-43338",
+  "description": "Cesanta mjs v2.20.0 was discovered to contain a function pointer hijacking vulnerability via the function mjs_get_ptr(). This vulnerability allows attackers to execute arbitrary code via a crafted input.",
+  "cpe_strings": "cpe:2.3:a:cesanta:mjs:2.20.0:*:*:*:*:*:*:*"
+ }
+]

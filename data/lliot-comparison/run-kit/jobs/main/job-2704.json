@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2021-21671",
+  "description": "Jenkins 2.299 and earlier, LTS 2.289.1 and earlier does not invalidate the previous session on login.",
+  "cpe_strings": "cpe:2.3:a:jenkins:jenkins:*:*:*:*:-:*:*:*|cpe:2.3:a:jenkins:jenkins:*:*:*:*:lts:*:*:*"
+ }
+]

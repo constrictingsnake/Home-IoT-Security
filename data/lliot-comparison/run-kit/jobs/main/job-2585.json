@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2023-3513",
+  "description": "Improper Privilege Control in RazerCentralSerivce Named Pipe in Razer RazerCentral <=7.11.0.558 on Windows allows a malicious actor with local access to gain SYSTEM privilege via communicating with the named pipe as a low-privilege user and triggering an insecure .NET deserialization.",
+  "cpe_strings": "cpe:2.3:a:razer:razer_central:*:*:*:*:*:windows:*:*"
+ }
+]

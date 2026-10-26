@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2015-8281",
+  "description": "Web Viewer 1.0.0.193 on Samsung SRN-1670D devices allows attackers to bypass filesystem encryption via XOR calculations.",
+  "cpe_strings": "cpe:2.3:a:samsung:web_viewer:*:*:*:*:*:*:*:*"
+ }
+]

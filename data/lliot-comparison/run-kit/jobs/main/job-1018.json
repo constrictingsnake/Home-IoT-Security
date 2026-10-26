@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2024-29949",
+  "description": "There is a command injection vulnerability in some Hikvision NVRs. This could allow an authenticated user with administrative rights to execute arbitrary commands.",
+  "cpe_strings": ""
+ }
+]

@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2021-1069",
+  "description": "NVIDIA SHIELD TV, all versions prior to 8.2.2, contains a vulnerability in the NVHost function, which may lead to abnormal reboot due to a null pointer reference, causing data loss.",
+  "cpe_strings": "cpe:2.3:a:nvidia:shield_experience:*:*:*:*:*:*:*:*|cpe:2.3:o:google:android:9.0:*:*:*:*:*:*:*|cpe:2.3:o:nvidia:linux_for_tegra:*:*:*:*:*:*:*:*|cpe:2.3:h:nvidia:jetson_agx_xavier:-:*:*:*:*:*:*:*|cpe:2.3:h:nvidia:jetson_nano:-:*:*:*:*:*:*:*|cpe:2.3:h:nvidia:jetson_nano_2gb:-:*:*:*:*:*:*:*|cpe:2.3:h:nvidia:jetson_tx1:-:*:*:*:*:*:*:*|cpe:2.3:h:nvidia:jetson_tx2:-:*:*:*:*:*:*:*|cpe:2.3:h:nvidia:jetson_xavier_nx:-:*:*:*:*:*:*:*"
+ }
+]

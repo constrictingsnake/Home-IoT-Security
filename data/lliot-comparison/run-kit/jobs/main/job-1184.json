@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2016-8565",
+  "description": "Siemens Automation License Manager (ALM) before 5.3 SP3 allows remote attackers to write to files, rename files, create directories, or delete directories via crafted packets.",
+  "cpe_strings": "cpe:2.3:a:siemens:automation_license_manager:*:sp3:*:*:*:*:*:*"
+ }
+]

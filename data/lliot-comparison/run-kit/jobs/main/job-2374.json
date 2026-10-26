@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2020-9285",
+  "description": "Some versions of Sonos One (1st and 2nd generation) allow partial or full memory access via attacker controlled hardware that can be attached to the Mini-PCI Express slot on the motherboard that hosts the WiFi card on the device.",
+  "cpe_strings": "cpe:2.3:o:sonos:one_firmware:-:*:*:*:*:*:*:*|cpe:2.3:h:sonos:one:-:*:*:*:*:*:*:*"
+ }
+]

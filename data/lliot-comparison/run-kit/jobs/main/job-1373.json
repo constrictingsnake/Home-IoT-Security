@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2023-25509",
+  "description": "NVIDIA DGX-1 SBIOS contains a vulnerability in Bds, which may lead to code execution, denial of service, and escalation of privileges.",
+  "cpe_strings": "cpe:2.3:o:nvidia:sbios:*:*:*:*:*:*:*:*|cpe:2.3:h:nvidia:dgx-1:-:*:*:*:*:*:*:*"
+ }
+]

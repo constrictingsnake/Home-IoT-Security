@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2019-1374",
+  "description": "An information disclosure vulnerability exists in the way Windows Error Reporting (WER) handles objects in memory, aka 'Windows Error Reporting Information Disclosure Vulnerability'.",
+  "cpe_strings": "cpe:2.3:o:microsoft:windows_10:1607:*:*:*:*:*:*:*|cpe:2.3:o:microsoft:windows_10:1709:*:*:*:*:*:*:*|cpe:2.3:o:microsoft:windows_10:1803:*:*:*:*:*:*:*|cpe:2.3:o:microsoft:windows_10:1809:*:*:*:*:*:*:*|cpe:2.3:o:microsoft:windows_10:1903:*:*:*:*:*:*:*|cpe:2.3:o:microsoft:windows_server_2016:-:*:*:*:*:*:*:*|cpe:2.3:o:microsoft:windows_server_2016:1803:*:*:*:*:*:*:*|cpe:2.3:o:microsoft:windows_server_2016:1903:*:*:*:*:*:*:*|cpe:2.3:o:microsoft:windows_server_2019:-:*:*:*:*:*:*:*"
+ }
+]

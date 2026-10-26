@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2018-14654",
+  "description": "The Gluster file system through version 4.1.4 is vulnerable to abuse of the 'features/index' translator. A remote attacker with access to mount volumes could exploit this via the 'GF_XATTROP_ENTRY_IN_KEY' xattrop to create arbitrary, empty files on the target server.",
+  "cpe_strings": "cpe:2.3:a:redhat:gluster_storage:*:*:*:*:*:*:*:*|cpe:2.3:o:redhat:enterprise_linux_server:6.0:*:*:*:*:*:*:*|cpe:2.3:o:redhat:enterprise_linux_server:7.0:*:*:*:*:*:*:*|cpe:2.3:o:redhat:enterprise_linux_virtualization:4.0:*:*:*:*:*:*:*|cpe:2.3:a:redhat:virtualization:4.0:*:*:*:*:*:*:*|cpe:2.3:a:redhat:virtualization_host:4.0:*:*:*:*:*:*:*|cpe:2.3:o:debian:debian_linux:9.0:*:*:*:*:*:*:*"
+ }
+]

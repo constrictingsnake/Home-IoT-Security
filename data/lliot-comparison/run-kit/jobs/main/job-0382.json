@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2022-37204",
+  "description": "Final CMS 5.1.0 is vulnerable to SQL Injection.",
+  "cpe_strings": "cpe:2.3:a:jflyfox:jfinal_cms:5.1.0:*:*:*:*:*:*:*"
+ }
+]

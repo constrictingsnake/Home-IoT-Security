@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2023-20102",
+  "description": "A vulnerability in the web-based management interface of Cisco Secure Network Analytics could allow an authenticated, remote attacker to execute arbitrary code on the underlying operating system. This vulnerability is due to insufficient sanitization of user-provided data that is parsed into system memory. An attacker could exploit this vulnerability by sending a crafted HTTP request to an affected device. A successful exploit could allow the attacker to execute arbitrary code on the underlying operating system as the administrator user.",
+  "cpe_strings": "cpe:2.3:a:cisco:secure_network_analytics:*:*:*:*:*:*:*:*|cpe:2.3:o:cisco:stealthwatch_management_console_2200_firmware:-:*:*:*:*:*:*:*|cpe:2.3:h:cisco:stealthwatch_management_console_2200:-:*:*:*:*:*:*:*"
+ }
+]

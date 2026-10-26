@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2019-15498",
+  "description": "cgi-bin/cmh/webcam.sh in Vera Edge Home Controller 1.7.4452 allows remote unauthenticated users to execute arbitrary OS commands via --output argument injection in the username parameter to /cgi-bin/cmh/webcam.sh.",
+  "cpe_strings": "cpe:2.3:o:getvera:vera_edge_firmware:1.7.4452:*:*:*:*:*:*:*|cpe:2.3:h:getvera:vera_edge:-:*:*:*:*:*:*:*"
+ }
+]

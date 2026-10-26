@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2023-33283",
+  "description": "Marval MSM through 14.19.0.12476 uses a static encryption key for secrets. An attacker that gains access to encrypted secrets can decrypt them by using this key.",
+  "cpe_strings": "cpe:2.3:a:marvalglobal:msm:*:*:*:*:*:*:*:*"
+ }
+]

@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2022-42824",
+  "description": "A logic issue was addressed with improved state management. This issue is fixed in tvOS 16.1, macOS Ventura 13, watchOS 9.1, Safari 16.1, iOS 16.1 and iPadOS 16. Processing maliciously crafted web content may disclose sensitive user information.",
+  "cpe_strings": "cpe:2.3:a:apple:safari:*:*:*:*:*:*:*:*|cpe:2.3:o:apple:ipados:*:*:*:*:*:*:*:*|cpe:2.3:o:apple:iphone_os:*:*:*:*:*:*:*:*|cpe:2.3:o:apple:macos:*:*:*:*:*:*:*:*|cpe:2.3:o:apple:tvos:*:*:*:*:*:*:*:*|cpe:2.3:o:apple:watchos:*:*:*:*:*:*:*:*|cpe:2.3:o:fedoraproject:fedora:35:*:*:*:*:*:*:*|cpe:2.3:o:fedoraproject:fedora:36:*:*:*:*:*:*:*|cpe:2.3:o:fedoraproject:fedora:37:*:*:*:*:*:*:*|cpe:2.3:o:debian:debian_linux:10.0:*:*:*:*:*:*:*|cpe:2.3:o:debian:debian_linux:11.0:*:*:*:*:*:*:*"
+ }
+]

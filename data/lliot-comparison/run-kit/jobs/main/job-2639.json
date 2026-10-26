@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2024-12082",
+  "description": "in OpenHarmony v4.0.0 and prior versions allow a local attacker cause information leak through out-of-bounds Read.",
+  "cpe_strings": "cpe:2.3:o:openatom:openharmony:*:*:*:*:*:*:*:*"
+ }
+]

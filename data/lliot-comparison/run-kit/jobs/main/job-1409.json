@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2024-52049",
+  "description": "A LogServer link following vulnerability in Trend Micro Apex One could allow a local attacker to escalate privileges on affected installations. This vulnerability is similar to, but not identical to CVE-2024-52048.\n\nPlease note: an attacker must first obtain the ability to execute low-privileged code on the target system in order to exploit this vulnerability.",
+  "cpe_strings": "cpe:2.3:a:trendmicro:apex_one:*:*:*:*:saas:windows:*:*|cpe:2.3:a:trendmicro:apex_one:*:*:*:*:on-premises:windows:*:*"
+ }
+]

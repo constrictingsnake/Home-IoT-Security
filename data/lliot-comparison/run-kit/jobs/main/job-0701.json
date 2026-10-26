@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2023-52198",
+  "description": "Improper Neutralization of Input During Web Page Generation ('Cross-site Scripting') vulnerability in Michiel van Eerd Private Google Calendars allows Stored XSS.This issue affects Private Google Calendars: from n/a through 20231125.",
+  "cpe_strings": "cpe:2.3:a:michielvaneerd:private_google_calendars:*:*:*:*:*:wordpress:*:*"
+ }
+]

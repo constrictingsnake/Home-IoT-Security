@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2024-25753",
+  "description": "Stack Based Buffer Overflow vulnerability in Tenda AC9 v.3.0 with firmware version v.15.03.06.42_multi allows a remote attacker to execute arbitrary code via the formSetDeviceName function.",
+  "cpe_strings": "cpe:2.3:o:tenda:ac9_firmware:5.03.06.42_multi:*:*:*:*:*:*:*|cpe:2.3:h:tenda:ac9:-:*:*:*:*:*:*:*"
+ }
+]

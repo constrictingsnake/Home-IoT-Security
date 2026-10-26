@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2024-51513",
+  "description": "Vulnerability of processes not being fully terminated in the VPN module\nImpact: Successful exploitation of this vulnerability will affect power consumption.",
+  "cpe_strings": "cpe:2.3:o:huawei:harmonyos:5.0.0:*:*:*:*:*:*:*"
+ }
+]

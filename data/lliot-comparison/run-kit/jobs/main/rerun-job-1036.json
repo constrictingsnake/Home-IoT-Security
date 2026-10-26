@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2019-13165",
+  "description": "Some Xerox printers (such as the Phaser 3320 V53.006.16.000) were affected by a buffer overflow vulnerability in the request parser of the IPP service. This would allow an unauthenticated attacker to cause a Denial of Service (DoS) and potentially execute arbitrary code on the device.",
+  "cpe_strings": "cpe:2.3:o:xerox:phaser_3320_firmware:v53.006.16.000:*:*:*:*:*:*:*|cpe:2.3:h:xerox:phaser_3320:-:*:*:*:*:*:*:*"
+ }
+]

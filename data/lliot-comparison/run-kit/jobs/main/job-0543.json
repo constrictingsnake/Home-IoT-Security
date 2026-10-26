@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2022-36551",
+  "description": "A Server Side Request Forgery (SSRF) in the Data Import module in Heartex - Label Studio Community Edition versions 1.5.0 and earlier allows an authenticated user to access arbitrary files on the system. Furthermore, self-registration is enabled by default in these versions of Label Studio enabling a remote attacker to create a new account and then exploit the SSRF.",
+  "cpe_strings": "cpe:2.3:a:heartex:label_studio:*:*:*:*:community:*:*:*"
+ }
+]

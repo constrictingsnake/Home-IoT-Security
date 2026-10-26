@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2020-22051",
+  "description": "A Denial of Service vulnerability exists in FFmpeg 4.2 due to a memory leak in the filter_frame function in vf_tile.c.",
+  "cpe_strings": "cpe:2.3:a:ffmpeg:ffmpeg:4.2:-:*:*:*:*:*:*"
+ }
+]

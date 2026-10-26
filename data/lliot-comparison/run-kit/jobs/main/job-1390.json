@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2019-17293",
+  "description": "SugarCRM before 8.0.4 and 9.x before 9.0.2 allows SQL injection in the pmse_Project module by a Regular user.",
+  "cpe_strings": "cpe:2.3:a:sugarcrm:sugarcrm:*:*:*:*:enterprise:*:*:*|cpe:2.3:a:sugarcrm:sugarcrm:*:*:*:*:professional:*:*:*|cpe:2.3:a:sugarcrm:sugarcrm:*:*:*:*:ultimate:*:*:*"
+ }
+]

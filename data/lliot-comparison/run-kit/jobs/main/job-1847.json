@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2023-42655",
+  "description": "In sim service, there is a possible way to write permission usage records of an app due to a missing permission check. This could lead to local escalation of privilege with System execution privileges needed",
+  "cpe_strings": "cpe:2.3:o:google:android:11.0:-:*:*:*:*:*:*|cpe:2.3:h:unisoc:s8000:-:*:*:*:*:*:*:*|cpe:2.3:h:unisoc:t760:-:*:*:*:*:*:*:*|cpe:2.3:h:unisoc:t770:-:*:*:*:*:*:*:*|cpe:2.3:h:unisoc:t820:-:*:*:*:*:*:*:*"
+ }
+]

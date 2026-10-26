@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2018-15480",
+  "description": "An issue was discovered in myStrom WiFi Switch V1 before 2.66, WiFi Switch V2 before 3.80, WiFi Switch EU before 3.80, WiFi Bulb before 2.58, WiFi LED Strip before 3.80, WiFi Button before 2.73, and WiFi Button Plus before 2.73. The cloud API had a hidden parameter, which allowed an authenticated user to reconfigure the server URL for a device registered to their account. In combination with an insecure device registration vulnerability, this allowed an attacker to reconfigure a maliciously registered device to their own rogue replica of the myStrom API and issue commands to the device, including firmware update commands.",
+  "cpe_strings": "cpe:2.3:o:mystrom:wifi_switch_firmware:*:*:*:*:*:*:*:*|cpe:2.3:h:mystrom:wifi_switch:v1:*:*:*:*:*:*:*|cpe:2.3:h:mystrom:wifi_switch:v2:*:*:*:*:*:*:*|cpe:2.3:o:mystrom:wifi_button_plus_firmware:*:*:*:*:*:*:*:*|cpe:2.3:h:mystrom:wifi_button_plus:-:*:*:*:*:*:*:*|cpe:2.3:o:mystrom:wifi_button_firmware:*:*:*:*:*:*:*:*|cpe:2.3:h:mystrom:wifi_button:-:*:*:*:*:*:*:*|cpe:2.3:o:mystrom:wifi_switch_eu_firmware:*:*:*:*:*:*:*:*|cpe:2.3:h:mystrom:wifi_switch_eu:-:*:*:*:*:*:*:*|cpe:2.3:o:mystrom:wifi_bulb_firmware:*:*:*:*:*:*:*:*|cpe:2.3:h:mystrom:wifi_bulb:-:*:*:*:*:*:*:*|cpe:2.3:o:mystrom:wifi_led_strip_firmware:*:*:*:*:*:*:*:*|cpe:2.3:h:mystrom:wifi_led_strip:-:*:*:*:*:*:*:*"
+ }
+]

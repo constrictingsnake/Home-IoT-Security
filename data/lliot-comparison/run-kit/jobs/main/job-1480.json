@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2018-1000176",
+  "description": "An exposure of sensitive information vulnerability exists in Jenkins Email Extension Plugin 2.61 and older in src/main/resources/hudson/plugins/emailext/ExtendedEmailPublisher/global.groovy and ExtendedEmailPublisherDescriptor.java that allows attackers with control of a Jenkins administrator's web browser (e.g. malicious extension) to retrieve the configured SMTP password.",
+  "cpe_strings": "cpe:2.3:a:jenkins:email_extension:*:*:*:*:*:jenkins:*:*"
+ }
+]

@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2023-31761",
+  "description": "Weak security in the transmitter of Blitzwolf BW-IS22 Smart Home Security Alarm v1.0 allows attackers to gain full access to the system via a code replay attack.",
+  "cpe_strings": "cpe:2.3:o:blitzwolf:bw-is22_firmware:1.0:*:*:*:*:*:*:*|cpe:2.3:h:blitzwolf:bw-is22:-:*:*:*:*:*:*:*"
+ }
+]

@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2020-3318",
+  "description": "Multiple vulnerabilities in Cisco Firepower Management Center (FMC) Software and Cisco Firepower User Agent Software could allow an attacker to access a sensitive part of an affected system with a high-privileged account. For more information about these vulnerabilities, see the Details section of this advisory.",
+  "cpe_strings": "cpe:2.3:a:cisco:secure_firewall_management_center:2.0.3:*:*:*:*:*:*:*|cpe:2.3:a:cisco:secure_firewall_management_center:2.1.0:*:*:*:*:*:*:*|cpe:2.3:a:cisco:secure_firewall_management_center:2.1.1:*:*:*:*:*:*:*|cpe:2.3:a:cisco:secure_firewall_management_center:2.2.0:*:*:*:*:*:*:*|cpe:2.3:a:cisco:secure_firewall_management_center:2.3.0:*:*:*:*:*:*:*|cpe:2.3:a:cisco:secure_firewall_management_center:5.0.0:*:*:*:*:*:*:*|cpe:2.3:a:cisco:secure_firewall_management_center:6.0.0:*:*:*:*:*:*:*|cpe:2.3:a:cisco:secure_firewall_management_center:6.1.0:*:*:*:*:*:*:*|cpe:2.3:a:cisco:secure_firewall_management_center:6.2.0:*:*:*:*:*:*:*|cpe:2.3:a:cisco:secure_firewall_management_center:6.2.3:*:*:*:*:*:*:*|cpe:2.3:a:cisco:secure_firewall_management_center:6.3.0:*:*:*:*:*:*:*|cpe:2.3:a:cisco:secure_firewall_management_center:6.4.0:*:*:*:*:*:*:*|cpe:2.3:a:cisco:secure_firewall_management_center:6.5.0:*:*:*:*:*:*:*"
+ }
+]

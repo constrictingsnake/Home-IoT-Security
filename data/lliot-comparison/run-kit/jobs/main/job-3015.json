@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2013-7127",
+  "description": "Apple Safari 6.0.5 on Mac OS X 10.7.5 and 10.8.5 stores cleartext credentials in LastSession.plist, which allows local users to obtain sensitive information by reading this file.",
+  "cpe_strings": "cpe:2.3:a:apple:safari:6.0.5:*:*:*:*:*:*:*|cpe:2.3:o:apple:mac_os_x:10.7.5:*:*:*:*:*:*:*|cpe:2.3:o:apple:mac_os_x:10.8.5:*:*:*:*:*:*:*"
+ }
+]

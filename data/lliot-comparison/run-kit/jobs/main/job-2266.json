@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2023-0068",
+  "description": "The Product GTIN (EAN, UPC, ISBN) for WooCommerce WordPress plugin through 1.1.1 does not validate and escape some of its shortcode attributes before outputting them back in a page/post where the shortcode is embed, which could allow users with the contributor role and above to perform Stored Cross-Site Scripting attacks.",
+  "cpe_strings": "cpe:2.3:a:product_gtin_\\(ean\\,_upc\\,_isbn\\)_for_woocommerce_project:product_gtin_\\(ean\\,_upc\\,_isbn\\)_for_woocommerce:*:*:*:*:*:wordpress:*:*"
+ }
+]

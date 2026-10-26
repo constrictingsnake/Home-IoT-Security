@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2019-0240",
+  "description": "SAP Business Objects Mobile for Android (before 6.3.5) application allows an attacker to provide malicious input in the form of a SAP BI link, preventing legitimate users from accessing the application by crashing it.",
+  "cpe_strings": "cpe:2.3:a:sap:businessobjects_mobile:*:*:*:*:*:android:*:*"
+ }
+]

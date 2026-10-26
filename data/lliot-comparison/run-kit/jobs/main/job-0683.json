@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2020-9438",
+  "description": "Tinxy Door Lock with firmware before 3.2 allow attackers to unlock a door by replaying an Unlock request that occurred when the attacker was previously authorized. In other words, door-access revocation is mishandled.",
+  "cpe_strings": "cpe:2.3:o:tinxy:smart_wifi_door_lock_firmware:*:*:*:*:*:*:*:*|cpe:2.3:h:tinxy:smart_wifi_door_lock:-:*:*:*:*:*:*:*"
+ }
+]

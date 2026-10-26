@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2020-36517",
+  "description": "An information leak in Nabu Casa Home Assistant Operating System and Home Assistant Supervised 2022.03 allows a DNS operator to gain knowledge about internal network resources via the hardcoded DNS resolver configuration.",
+  "cpe_strings": "cpe:2.3:a:home-assistant:home-assistant:2022.03:*:*:*:*:*:*:*"
+ }
+]

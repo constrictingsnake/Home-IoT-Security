@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2020-11701",
+  "description": "An issue was discovered in ProVide (formerly zFTPServer) through 13.1. CSRF exists in the User Web Interface, as demonstrated by granting filesystem access to the public for uploading and deleting files and directories.",
+  "cpe_strings": "cpe:2.3:a:provideserver:provide_ftp_server:*:*:*:*:*:windows:*:*"
+ }
+]

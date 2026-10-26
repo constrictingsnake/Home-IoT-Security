@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2021-4045",
+  "description": "TP-Link Tapo C200 IP camera, on its 1.1.15 firmware version and below, is affected by an unauthenticated RCE vulnerability, present in the uhttpd binary running by default as root. The exploitation of this vulnerability allows an attacker to take full control of the camera.",
+  "cpe_strings": "cpe:2.3:o:tp-link:tapo_c200_firmware:*:*:*:*:*:*:*:*|cpe:2.3:h:tp-link:tapo_c200:-:*:*:*:*:*:*:*"
+ }
+]

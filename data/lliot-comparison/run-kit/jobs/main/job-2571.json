@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2017-1000454",
+  "description": "CMS Made Simple 2.1.6, 2.2, 2.2.1 are vulnerable to Smarty Template Injection in some core components, resulting in local file read before 2.2, and local file inclusion since 2.2.1",
+  "cpe_strings": "cpe:2.3:a:cmsmadesimple:cms_made_simple:*:*:*:*:*:*:*:*"
+ }
+]

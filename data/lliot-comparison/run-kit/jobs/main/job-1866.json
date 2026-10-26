@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2020-28144",
+  "description": "Certain Moxa Inc products are affected by an improper restriction of operations in EDR-G903 Series Firmware Version 5.5 or lower, EDR-G902 Series Firmware Version 5.5 or lower, and EDR-810 Series Firmware Version 5.6 or lower. Crafted requests sent to the device may allow remote arbitrary code execution.",
+  "cpe_strings": "cpe:2.3:o:moxa:edr-g903_firmware:*:*:*:*:*:*:*:*|cpe:2.3:h:moxa:edr-g903:-:*:*:*:*:*:*:*|cpe:2.3:o:moxa:edr-g903-t_firmware:*:*:*:*:*:*:*:*|cpe:2.3:h:moxa:edr-g903-t:-:*:*:*:*:*:*:*|cpe:2.3:o:moxa:edr-g902_firmware:*:*:*:*:*:*:*:*|cpe:2.3:h:moxa:edr-g902:-:*:*:*:*:*:*:*|cpe:2.3:o:moxa:edr-g902-t_firmware:*:*:*:*:*:*:*:*|cpe:2.3:h:moxa:edr-g902-t:-:*:*:*:*:*:*:*|cpe:2.3:o:moxa:edr-810-2gsfp_firmware:*:*:*:*:*:*:*:*|cpe:2.3:h:moxa:edr-810-2gsfp:-:*:*:*:*:*:*:*|cpe:2.3:o:moxa:edr-810-2gsfp-t_firmware:*:*:*:*:*:*:*:*|cpe:2.3:h:moxa:edr-810-2gsfp-t:-:*:*:*:*:*:*:*|cpe:2.3:o:moxa:edr-810-vpn-2gsfp_firmware:*:*:*:*:*:*:*:*|cpe:2.3:h:moxa:edr-810-vpn-2gsfp:-:*:*:*:*:*:*:*|cpe:2.3:o:moxa:edr-810-vpn-2gsfp-t_firmware:*:*:*:*:*:*:*:*|cpe:2.3:h:moxa:edr-810-vpn-2gsfp-t:-:*:*:*:*:*:*:*"
+ }
+]

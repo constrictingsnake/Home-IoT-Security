@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2023-6376",
+  "description": "Henschen & Associates court document management software does not sufficiently randomize file names of cached documents, allowing a remote, unauthenticated attacker to access restricted documents.\n\n\n",
+  "cpe_strings": "cpe:2.3:a:henschen:court_document_management:*:*:*:*:*:*:*:*"
+ }
+]

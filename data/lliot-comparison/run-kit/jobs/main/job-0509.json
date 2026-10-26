@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2019-15068",
+  "description": "A broken access control vulnerability in Smart Battery A4, a multifunctional portable charger, firmware version ?<= r1.7.9 allows an attacker to get/reset administrator’s password without any authentication.",
+  "cpe_strings": "cpe:2.3:o:gigastone:smart_battery_a4_firmware:*:*:*:*:*:*:*:*|cpe:2.3:h:gigastone:smart_battery_a4:-:*:*:*:*:*:*:*"
+ }
+]

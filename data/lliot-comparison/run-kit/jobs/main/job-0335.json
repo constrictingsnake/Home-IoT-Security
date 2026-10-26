@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2021-36797",
+  "description": "In Victron Energy Venus OS through 2.72, root access is granted by default to anyone with physical access to the device. NOTE: the vendor disagrees with the reporter's opinion about an alleged \"security best practices\" violation",
+  "cpe_strings": "cpe:2.3:o:victronenergy:venus_os:*:*:*:*:*:*:*:*"
+ }
+]

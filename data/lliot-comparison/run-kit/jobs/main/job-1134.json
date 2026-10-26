@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2018-9169",
+  "description": "Z-BlogPHP 1.5.1 has XSS via the zb_users/plugin/AppCentre/plugin_edit.php app_id parameter. The component must be accessed directly by an administrator, or through CSRF.",
+  "cpe_strings": "cpe:2.3:a:zblogcn:z-blogphp:1.5.1:*:*:*:*:*:*:*"
+ }
+]

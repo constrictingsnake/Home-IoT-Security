@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2023-4831",
+  "description": "Improper Neutralization of Special Elements used in an SQL Command ('SQL Injection') vulnerability in Ncode Ncep allows SQL Injection.This issue affects Ncep: before 20230914 .\n\n",
+  "cpe_strings": "cpe:2.3:a:weather:ncode_ncep:*:*:*:*:*:*:*:*"
+ }
+]

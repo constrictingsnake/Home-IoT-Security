@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2018-15820",
+  "description": "EasyIO EasyIO-30P devices before 2.0.5.27 allow XSS via the dev.htm GDN parameter.",
+  "cpe_strings": "cpe:2.3:o:easyio:easyio_30p_firmware:*:*:*:*:*:*:*:*|cpe:2.3:h:easyio:easyio_30p:-:*:*:*:*:*:*:*"
+ }
+]

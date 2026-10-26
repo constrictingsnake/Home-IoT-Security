@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2024-25442",
+  "description": "An issue in the HuginBase::PanoramaMemento::loadPTScript function of Hugin v2022.0.0 allows attackers to cause a heap buffer overflow via parsing a crafted image.",
+  "cpe_strings": "cpe:2.3:a:hugin_project:hugin:2022.0.0:*:*:*:*:*:*:*"
+ }
+]

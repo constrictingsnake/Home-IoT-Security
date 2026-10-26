@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2023-5842",
+  "description": "Cross-site Scripting (XSS) - Stored in GitHub repository dolibarr/dolibarr prior to 16.0.5.",
+  "cpe_strings": "cpe:2.3:a:dolibarr:dolibarr_erp\\/crm:*:*:*:*:*:*:*:*"
+ }
+]

@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2022-31219",
+  "description": "Vulnerabilities in the Drive Composer allow a low privileged attacker to create and write to a file anywhere on the file system as SYSTEM with arbitrary content as long as the file does not already exist. The Drive Composer installer file allows a low-privileged user to run a \"repair\" operation on the product.",
+  "cpe_strings": "cpe:2.3:a:abb:automation_builder:*:*:*:*:*:*:*:*|cpe:2.3:a:abb:drive_composer:*:*:*:*:entry:*:*:*|cpe:2.3:a:abb:drive_composer:*:*:*:*:pro:*:*:*|cpe:2.3:a:abb:mint_workbench:*:*:*:*:*:*:*:*"
+ }
+]

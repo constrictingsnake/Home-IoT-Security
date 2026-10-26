@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2015-3610",
+  "description": "The Siemens HomeControl for Room Automation application before 2.0.1 for Android does not verify X.509 certificates from SSL servers, which allows man-in-the-middle attackers to spoof servers and obtain sensitive information or modify data via a crafted certificate.",
+  "cpe_strings": "cpe:2.3:a:siemens:homecontrol_for_room_automation:*:*:*:*:*:android:*:*"
+ }
+]

@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2018-2469",
+  "description": "Under certain conditions SAP Adaptive Server Enterprise (ASE), versions 15.7 and 16.0, allows an attacker to access information which would otherwise be restricted.",
+  "cpe_strings": "cpe:2.3:a:sap:adaptive_server_enterprise:15.7:*:*:*:*:*:*:*|cpe:2.3:a:sap:adaptive_server_enterprise:16.0:*:*:*:*:*:*:*"
+ }
+]

@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2024-29962",
+  "description": "Brocade SANnav OVA before v2.3.1 and v2.3.0a have an insecure file permission setting that makes files world-readable. This could allow a local user without the required privileges to access sensitive information or a Java binary.\n\n",
+  "cpe_strings": "cpe:2.3:a:broadcom:brocade_sannav:*:*:*:*:*:*:*:*"
+ }
+]

@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2023-50129",
+  "description": "Missing encryption in the NFC tags of the Flient Smart Door Lock v1.0 allows attackers to create a cloned tag via brief physical proximity to the original tags, which results in an attacker gaining access to the perimeter.",
+  "cpe_strings": "cpe:2.3:o:flient:smart_lock_advanced_firmware:1.0:*:*:*:*:*:*:*|cpe:2.3:h:flient:smart_lock_advanced:-:*:*:*:*:*:*:*"
+ }
+]

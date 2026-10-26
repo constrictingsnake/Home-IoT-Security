@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2016-6444",
+  "description": "A vulnerability in Cisco Meeting Server could allow an unauthenticated, remote attacker to conduct a cross-site request forgery (CSRF) attack against a Web Bridge user. More Information: CSCvb03308. Known Affected Releases: 1.8, 1.9, 2.0.",
+  "cpe_strings": "cpe:2.3:a:cisco:meeting_server:1.8.15:*:*:*:*:*:*:*|cpe:2.3:a:cisco:meeting_server:1.8_base:*:*:*:*:*:*:*|cpe:2.3:a:cisco:meeting_server:1.9.0:*:*:*:*:*:*:*|cpe:2.3:a:cisco:meeting_server:1.9.2:*:*:*:*:*:*:*|cpe:2.3:a:cisco:meeting_server:2.0.0:*:*:*:*:*:*:*|cpe:2.3:a:cisco:meeting_server:2.0.1:*:*:*:*:*:*:*|cpe:2.3:a:cisco:meeting_server:2.0.3:*:*:*:*:*:*:*|cpe:2.3:a:cisco:meeting_server:2.0.4:*:*:*:*:*:*:*|cpe:2.3:a:cisco:meeting_server:2.0.5:*:*:*:*:*:*:*"
+ }
+]

@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2024-51679",
+  "description": "Cross-Site Request Forgery (CSRF) vulnerability in gentlesource Appointmind appointmind allows Stored XSS.This issue affects Appointmind: from n/a through <= 4.0.0.",
+  "cpe_strings": "cpe:2.3:a:appointmind:appointmind:*:*:*:*:*:wordpress:*:*"
+ }
+]

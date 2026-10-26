@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2023-36371",
+  "description": "An issue in the GDKfree component of MonetDB Server v11.45.17 and v11.46.0 allows attackers to cause a Denial of Service (DoS) via crafted SQL statements.",
+  "cpe_strings": "cpe:2.3:a:monetdb:monetdb:11.45.17:*:*:*:*:*:*:*|cpe:2.3:a:monetdb:monetdb:11.46.0:*:*:*:*:*:*:*"
+ }
+]

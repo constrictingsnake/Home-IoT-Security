@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2016-4588",
+  "description": "WebKit in Apple tvOS before 9.2.2 allows remote attackers to execute arbitrary code or cause a denial of service (memory corruption) via a crafted web site.",
+  "cpe_strings": "cpe:2.3:a:apple:webkit:*:*:*:*:*:*:*:*|cpe:2.3:o:apple:tvos:*:*:*:*:*:*:*:*"
+ }
+]

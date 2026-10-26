@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2024-25692",
+  "description": "There is a cross-site-request forgery vulnerability in Esri Portal for ArcGIS Versions 11.1 and below that may in some cases allow a remote, unauthenticated attacker to trick an authorized user into executing unwanted actions via a crafted form. The impact to Confidentiality and Integrity vectors is limited and of low severity.",
+  "cpe_strings": "cpe:2.3:a:esri:portal_for_arcgis:*:*:*:*:*:*:*:*|cpe:2.3:o:linux:linux_kernel:-:*:*:*:*:*:*:*|cpe:2.3:o:microsoft:windows:-:*:*:*:*:*:*:*"
+ }
+]

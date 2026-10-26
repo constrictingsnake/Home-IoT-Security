@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2020-12280",
+  "description": "iSmartgate PRO 1.5.9 is vulnerable to CSRF that allows remote attackers to open/close a specified garage door/gate via /isg/opendoor.php.",
+  "cpe_strings": "cpe:2.3:o:gogogate:ismartgate_pro_firmware:1.5.9:*:*:*:*:*:*:*|cpe:2.3:h:gogogate:ismartgate_pro:-:*:*:*:*:*:*:*"
+ }
+]

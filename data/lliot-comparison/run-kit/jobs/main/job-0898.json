@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2023-32373",
+  "description": "A use-after-free issue was addressed with improved memory management. This issue is fixed in watchOS 9.5, tvOS 16.5, macOS Ventura 13.4, iOS 15.7.6 and iPadOS 15.7.6, Safari 16.5, iOS 16.5 and iPadOS 16.5. Processing maliciously crafted web content may lead to arbitrary code execution. Apple is aware of a report that this issue may have been actively exploited.",
+  "cpe_strings": "cpe:2.3:a:apple:safari:*:*:*:*:*:*:*:*|cpe:2.3:o:apple:ipados:*:*:*:*:*:*:*:*|cpe:2.3:o:apple:iphone_os:*:*:*:*:*:*:*:*|cpe:2.3:o:apple:macos:*:*:*:*:*:*:*:*|cpe:2.3:o:apple:tvos:*:*:*:*:*:*:*:*|cpe:2.3:o:apple:watchos:*:*:*:*:*:*:*:*|cpe:2.3:o:redhat:enterprise_linux:6.0:*:*:*:*:*:*:*|cpe:2.3:o:redhat:enterprise_linux:7.0:*:*:*:*:*:*:*|cpe:2.3:o:redhat:enterprise_linux:8.0:*:*:*:*:*:*:*|cpe:2.3:o:redhat:enterprise_linux:9.0:*:*:*:*:*:*:*|cpe:2.3:a:webkitgtk:webkitgtk\\+:*:*:*:*:*:*:*:*"
+ }
+]

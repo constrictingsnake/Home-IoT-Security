@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2019-14023",
+  "description": "String format issue will occur while processing HLOS data as there is no user input validation to ensure inputs are properly NULL terminated before string copy in Snapdragon Auto, Snapdragon Consumer IOT, Snapdragon Industrial IOT, Snapdragon Mobile, Snapdragon Voice & Music in MDM9607, Nicobar, Rennell, SA6155P, SDX55, SM6150, SM7150, SM8150, SM8250, SXR2130",
+  "cpe_strings": "cpe:2.3:o:qualcomm:mdm9607_firmware:-:*:*:*:*:*:*:*|cpe:2.3:h:qualcomm:mdm9607:-:*:*:*:*:*:*:*|cpe:2.3:o:qualcomm:nicobar_firmware:-:*:*:*:*:*:*:*|cpe:2.3:h:qualcomm:nicobar:-:*:*:*:*:*:*:*|cpe:2.3:o:qualcomm:rennell_firmware:-:*:*:*:*:*:*:*|cpe:2.3:h:qualcomm:rennell:-:*:*:*:*:*:*:*|cpe:2.3:o:qualcomm:sa6155p_firmware:-:*:*:*:*:*:*:*|cpe:2.3:h:qualcomm:sa6155p:-:*:*:*:*:*:*:*|cpe:2.3:o:qualcomm:sdx55_firmware:-:*:*:*:*:*:*:*|cpe:2.3:h:qualcomm:sdx55:-:*:*:*:*:*:*:*|cpe:2.3:o:qualcomm:sm6150_firmware:-:*:*:*:*:*:*:*|cpe:2.3:h:qualcomm:sm6150:-:*:*:*:*:*:*:*|cpe:2.3:o:qualcomm:sm7150_firmware:-:*:*:*:*:*:*:*|cpe:2.3:h:qualcomm:sm7150:-:*:*:*:*:*:*:*|cpe:2.3:o:qualcomm:sm8150_firmware:-:*:*:*:*:*:*:*|cpe:2.3:h:qualcomm:sm8150:-:*:*:*:*:*:*:*|cpe:2.3:o:qualcomm:sm8250_firmware:-:*:*:*:*:*:*:*|cpe:2.3:h:qualcomm:sm8250:-:*:*:*:*:*:*:*|cpe:2.3:o:qualcomm:sxr2130_firmware:-:*:*:*:*:*:*:*|cpe:2.3:h:qualcomm:sxr2130:-:*:*:*:*:*:*:*"
+ }
+]

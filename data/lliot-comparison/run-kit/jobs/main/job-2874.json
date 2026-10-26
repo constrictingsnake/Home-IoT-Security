@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2023-36647",
+  "description": "A hard-coded cryptographic private key used to sign JWT authentication tokens in ProLion CryptoSpike 3.0.15P2 allows remote attackers to impersonate arbitrary users and roles in web management and REST API endpoints via crafted JWT tokens.",
+  "cpe_strings": "cpe:2.3:a:prolion:cryptospike:3.0.15:p2:*:*:*:*:*:*"
+ }
+]

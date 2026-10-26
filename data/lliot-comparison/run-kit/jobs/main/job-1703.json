@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2019-9775",
+  "description": "An issue was discovered in GNU LibreDWG 0.7 and 0.7.1645. There is an out-of-bounds read in the function dwg_dxf_BLOCK_CONTROL at dwg.spec.",
+  "cpe_strings": "cpe:2.3:a:gnu:libredwg:0.7:*:*:*:*:*:*:*|cpe:2.3:a:gnu:libredwg:0.7.1645:*:*:*:*:*:*:*|cpe:2.3:a:opensuse:backports_sle:15.0:sp1:*:*:*:*:*:*|cpe:2.3:o:opensuse:leap:15.1:*:*:*:*:*:*:*"
+ }
+]

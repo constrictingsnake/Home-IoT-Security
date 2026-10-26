@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2020-21405",
+  "description": "An issue was discovered in H96 Smart TV Box H96 Pro Plus allows attackers to corrupt files via calls to the saveDeepColorAttr service.unk",
+  "cpe_strings": "cpe:2.3:o:h96tvbox:h96_pro_plus_firmware:-:*:*:*:*:*:*:*|cpe:2.3:h:h96tvbox:h96_pro_plus:-:*:*:*:*:*:*:*"
+ }
+]

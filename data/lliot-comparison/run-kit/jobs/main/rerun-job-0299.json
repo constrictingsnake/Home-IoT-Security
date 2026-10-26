@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2019-19846",
+  "description": "In Joomla! before 3.9.14, the lack of validation of configuration parameters used in SQL queries caused various SQL injection vectors.",
+  "cpe_strings": "cpe:2.3:a:joomla:joomla\\!:*:*:*:*:*:*:*:*"
+ }
+]

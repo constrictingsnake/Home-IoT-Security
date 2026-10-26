@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2023-28512",
+  "description": "IBM Watson CP4D Data Stores 4.6.0, 4.6.1, and 4.6.2 could allow an attacker with specific knowledge about the system to manipulate data due to improper input validation.  IBM X-Force ID:  250396.",
+  "cpe_strings": "cpe:2.3:a:ibm:watson_cp4d_data_stores:4.6.0:*:*:*:*:*:*:*|cpe:2.3:a:ibm:watson_cp4d_data_stores:4.6.1:*:*:*:*:*:*:*|cpe:2.3:a:ibm:watson_cp4d_data_stores:4.6.2:*:*:*:*:*:*:*"
+ }
+]

@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2018-1000019",
+  "description": "OpenEMR version 5.0.0 contains a OS Command Injection vulnerability in fax_dispatch.php that can result in OS command injection by an authenticated attacker with any role. This vulnerability appears to have been fixed in 5.0.0 Patch 2 or higher.",
+  "cpe_strings": "cpe:2.3:a:open-emr:openemr:5.0.0:*:*:*:*:*:*:*"
+ }
+]

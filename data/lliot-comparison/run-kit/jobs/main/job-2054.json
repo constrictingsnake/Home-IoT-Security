@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2017-15974",
+  "description": "tPanel 2009 allows SQL injection for Authentication Bypass via 'or 1=1 or ''=' to login.php.",
+  "cpe_strings": "cpe:2.3:a:datacomponents:tpanel:2009:*:*:*:*:*:*:*"
+ }
+]

@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2021-38258",
+  "description": "NXP MCUXpresso SDK v2.7.0 was discovered to contain a buffer overflow in the function USB_HostProcessCallback().",
+  "cpe_strings": "cpe:2.3:a:nxp:mcuxpresso_software_development_kit:2.7.0:*:*:*:*:*:*:*"
+ }
+]

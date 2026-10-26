@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2023-21061",
+  "description": "Product: AndroidVersions: Android kernelAndroid ID: A-229255400References: N/A",
+  "cpe_strings": "cpe:2.3:o:google:android:-:*:*:*:*:*:*:*"
+ }
+]

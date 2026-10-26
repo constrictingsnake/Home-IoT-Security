@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2019-19223",
+  "description": "A Broken Access Control vulnerability in the D-Link DSL-2680 web administration interface (Firmware EU_1.03) allows an attacker to reboot the router by submitting a reboot.html GET request without being authenticated on the admin interface.",
+  "cpe_strings": "cpe:2.3:o:dlink:dsl-2680_firmware:1.03:*:*:*:*:*:*:*|cpe:2.3:h:dlink:dsl-2680:-:*:*:*:*:*:*:*"
+ }
+]

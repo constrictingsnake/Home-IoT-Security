@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2017-17751",
+  "description": "Bose SoundTouch devices allows remote attackers to achieve remote control via a crafted web site that uses the WebSocket Protocol.",
+  "cpe_strings": "cpe:2.3:a:bose:soundtouch:-:*:*:*:*:android:*:*|cpe:2.3:a:bose:soundtouch:-:*:*:*:*:iphone_os:*:*"
+ }
+]

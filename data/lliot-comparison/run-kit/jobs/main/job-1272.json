@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2023-6065",
+  "description": "The Quttera Web Malware Scanner WordPress plugin before 3.4.2.1 doesn't restrict access to detailed scan logs, which allows a malicious actor to discover local paths and portions of the site's code",
+  "cpe_strings": "cpe:2.3:a:quttera:quttera_web_malware_scanner:*:*:*:*:*:wordpress:*:*"
+ }
+]

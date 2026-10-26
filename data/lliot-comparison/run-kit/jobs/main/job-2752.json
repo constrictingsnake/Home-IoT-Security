@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2020-12244",
+  "description": "An issue has been found in PowerDNS Recursor 4.1.0 through 4.3.0 where records in the answer section of a NXDOMAIN response lacking an SOA were not properly validated in SyncRes::processAnswer, allowing an attacker to bypass DNSSEC validation.",
+  "cpe_strings": "cpe:2.3:a:powerdns:recursor:*:*:*:*:*:*:*:*|cpe:2.3:o:fedoraproject:fedora:31:*:*:*:*:*:*:*|cpe:2.3:o:fedoraproject:fedora:32:*:*:*:*:*:*:*|cpe:2.3:o:debian:debian_linux:10.0:*:*:*:*:*:*:*|cpe:2.3:a:opensuse:backports_sle:15.0:sp1:*:*:*:*:*:*|cpe:2.3:o:opensuse:leap:15.1:*:*:*:*:*:*:*"
+ }
+]

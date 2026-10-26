@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2022-22748",
+  "description": "Malicious websites could have confused Firefox into showing the wrong origin when asking to launch a program and handling an external URL protocol. This vulnerability affects Firefox ESR < 91.5, Firefox < 96, and Thunderbird < 91.5.",
+  "cpe_strings": "cpe:2.3:a:mozilla:firefox:*:*:*:*:*:*:*:*|cpe:2.3:a:mozilla:firefox_esr:*:*:*:*:*:*:*:*|cpe:2.3:a:mozilla:thunderbird:*:*:*:*:*:*:*:*"
+ }
+]

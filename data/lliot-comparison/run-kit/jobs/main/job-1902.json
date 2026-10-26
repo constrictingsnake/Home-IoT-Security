@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2021-4149",
+  "description": "A vulnerability was found in btrfs_alloc_tree_b in fs/btrfs/extent-tree.c in the Linux kernel due to an improper lock operation in btrfs. In this flaw, a user with a local privilege may cause a denial of service (DOS) due to a deadlock problem.",
+  "cpe_strings": "cpe:2.3:o:linux:linux_kernel:*:*:*:*:*:*:*:*|cpe:2.3:o:linux:linux_kernel:5.15:-:*:*:*:*:*:*|cpe:2.3:o:linux:linux_kernel:5.15:rc1:*:*:*:*:*:*|cpe:2.3:o:linux:linux_kernel:5.15:rc2:*:*:*:*:*:*|cpe:2.3:o:linux:linux_kernel:5.15:rc3:*:*:*:*:*:*|cpe:2.3:o:linux:linux_kernel:5.15:rc4:*:*:*:*:*:*|cpe:2.3:o:linux:linux_kernel:5.15:rc5:*:*:*:*:*:*|cpe:2.3:o:debian:debian_linux:9.0:*:*:*:*:*:*:*"
+ }
+]

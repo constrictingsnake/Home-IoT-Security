@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2024-4214",
+  "description": "Improper Neutralization of Script-Related HTML Tags in a Web Page (Basic XSS vulnerability in Bill Minozzi Car Dealer allows Code Injection.This issue affects Car Dealer: from n/a through 4.15.",
+  "cpe_strings": ""
+ }
+]

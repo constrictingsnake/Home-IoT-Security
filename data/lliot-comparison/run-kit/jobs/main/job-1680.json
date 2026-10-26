@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2017-16348",
+  "description": "An exploitable denial of service vulnerability exists in Insteon Hub running firmware version 1012. Leftover demo functionality allows for arbitrarily rebooting the device without authentication. An attacker can send a UDP packet to trigger this vulnerability.",
+  "cpe_strings": "cpe:2.3:o:insteon:insteon_hub_firmware:1012:*:*:*:*:*:*:*|cpe:2.3:h:insteon:insteon_hub:-:*:*:*:*:*:*:*"
+ }
+]

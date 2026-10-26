@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2024-48774",
+  "description": "An issue in Fermax Asia Pacific Pte Ltd com.fermax.vida 2.4.6 allows a remote attacker to obtain sensitve information via the firmware update process.",
+  "cpe_strings": ""
+ }
+]

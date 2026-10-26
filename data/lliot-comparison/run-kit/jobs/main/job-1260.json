@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2024-44097",
+  "description": "According to the researcher: \"The TLS connections are encrypted against tampering or eavesdropping. However, the application does not validate the server certificate properly while initializing the TLS connection. This allows for a network attacker to intercept the connection and read the data. The attacker could the either send the client a malicious response, or forward the (possibly modified) data to the real server.\"",
+  "cpe_strings": "cpe:2.3:o:google:nest_doorbell_\\(battery\\)_firmware:*:*:*:*:*:*:*:*|cpe:2.3:h:google:nest_doorbell_\\(battery\\):-:*:*:*:*:*:*:*|cpe:2.3:o:google:nest_cam_\\(outdoor_or_indoor\\,_battery\\)_firmware:*:*:*:*:*:*:*:*|cpe:2.3:h:google:nest_cam_\\(outdoor_or_indoor\\,_battery\\):-:*:*:*:*:*:*:*|cpe:2.3:o:google:nest_cam_with_floodlight_firmware:*:*:*:*:*:*:*:*|cpe:2.3:h:google:nest_cam_with_floodlight:-:*:*:*:*:*:*:*|cpe:2.3:o:google:nest_cam_\\(indoor\\,_wired\\)_firmware:*:*:*:*:*:*:*:*|cpe:2.3:h:google:nest_cam_\\(indoor\\,_wired\\):-:*:*:*:*:*:*:*"
+ }
+]

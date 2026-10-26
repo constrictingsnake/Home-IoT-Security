@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2024-29883",
+  "description": "CreateWiki is Miraheze's MediaWiki extension for requesting & creating wikis. Suppression of wiki requests does not work as intended, and always restricts visibility to those with the `(createwiki)` user right regardless of the settings one sets on a given wiki request. This may expose information to users who are not supposed to be able to access it.",
+  "cpe_strings": "cpe:2.3:a:miraheze:createwiki:*:*:*:*:*:*:*:*"
+ }
+]

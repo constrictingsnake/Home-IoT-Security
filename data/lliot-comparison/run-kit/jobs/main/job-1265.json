@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2022-31875",
+  "description": "Trendnet IP-110wn camera fw_tv-ip110wn_v2(1.2.2.68) has an xss vulnerability via the proname parameter in /admin/scheprofile.cgi",
+  "cpe_strings": "cpe:2.3:o:trendnet:tv-ip110wn_firmware:1.2.2.68:*:*:*:*:*:*:*|cpe:2.3:h:trendnet:tv-ip110wn:-:*:*:*:*:*:*:*"
+ }
+]

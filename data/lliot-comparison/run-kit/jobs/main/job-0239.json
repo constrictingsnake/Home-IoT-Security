@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2023-4472",
+  "description": "Objectplanet Opinio version 7.22 and prior uses a cryptographically weak pseudo-random number generator (PRNG) coupled to a predictable seed, which could lead to an unauthenticated account takeover of any user on the application.",
+  "cpe_strings": "cpe:2.3:a:objectplanet:opinio:*:*:*:*:*:*:*:*"
+ }
+]

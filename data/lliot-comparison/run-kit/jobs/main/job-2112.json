@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2019-6559",
+  "description": "Moxa IKS and EDS allow remote authenticated users to cause a denial of service via a specially crafted packet, which may cause the switch to crash.",
+  "cpe_strings": "cpe:2.3:o:moxa:iks-g6824a_firmware:*:*:*:*:*:*:*:*|cpe:2.3:h:moxa:iks-g6824a:-:*:*:*:*:*:*:*|cpe:2.3:o:moxa:eds-405a_firmware:*:*:*:*:*:*:*:*|cpe:2.3:h:moxa:eds-405a:-:*:*:*:*:*:*:*|cpe:2.3:o:moxa:eds-408a_firmware:*:*:*:*:*:*:*:*|cpe:2.3:h:moxa:eds-408a:-:*:*:*:*:*:*:*|cpe:2.3:o:moxa:eds-510a_firmware:*:*:*:*:*:*:*:*|cpe:2.3:h:moxa:eds-510a:-:*:*:*:*:*:*:*"
+ }
+]

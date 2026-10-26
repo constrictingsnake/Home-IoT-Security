@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2017-1000032",
+  "description": "Cross-Site scripting (XSS) vulnerabilities in Cacti 0.8.8b allow remote attackers to inject arbitrary web script or HTML via the parent_id parameter to tree.php and drp_action parameter to data_sources.php.",
+  "cpe_strings": "cpe:2.3:a:cacti:cacti:0.8.8b:*:*:*:*:*:*:*"
+ }
+]

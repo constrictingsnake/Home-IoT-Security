@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2018-13232",
+  "description": "The sell function of a smart contract implementation for ENTER (ENTR) (Contract Name: EnterCoin), an Ethereum token, has an integer overflow in which \"amount * sellPrice\" can be zero, consequently reducing a seller's assets.",
+  "cpe_strings": "cpe:2.3:a:entercoin_project:entercoin:-:*:*:*:*:*:*:*"
+ }
+]

@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2015-1709",
+  "description": "Microsoft Internet Explorer 7 through 11 allows remote attackers to execute arbitrary code or cause a denial of service (memory corruption) via a crafted web site, aka \"Internet Explorer Memory Corruption Vulnerability.\"",
+  "cpe_strings": "cpe:2.3:a:microsoft:internet_explorer:7:*:*:*:*:*:*:*|cpe:2.3:a:microsoft:internet_explorer:8:*:*:*:*:*:*:*|cpe:2.3:a:microsoft:internet_explorer:9:*:*:*:*:*:*:*|cpe:2.3:a:microsoft:internet_explorer:10:*:*:*:*:*:*:*|cpe:2.3:a:microsoft:internet_explorer:11:-:*:*:*:*:*:*"
+ }
+]

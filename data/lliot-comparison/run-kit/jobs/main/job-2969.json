@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2019-15069",
+  "description": "An unsafe authentication interface was discovered in Smart Battery A4, a multifunctional portable charger, firmware version ?<= r1.7.9 . An attacker can bypass authentication without modifying device file and gain web page management privilege.",
+  "cpe_strings": "cpe:2.3:o:gigastone:smart_battery_a4_firmware:*:*:*:*:*:*:*:*|cpe:2.3:h:gigastone:smart_battery_a4:-:*:*:*:*:*:*:*"
+ }
+]

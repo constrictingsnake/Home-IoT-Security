@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2020-21600",
+  "description": "libde265 v1.0.4 contains a heap buffer overflow in the put_weighted_pred_avg_16_fallback function, which can be exploited via a crafted a file.",
+  "cpe_strings": "cpe:2.3:a:struktur:libde265:1.0.4:*:*:*:*:*:*:*"
+ }
+]

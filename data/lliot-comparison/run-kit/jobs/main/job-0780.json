@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2014-0656",
+  "description": "Cisco Context Directory Agent (CDA) allows remote authenticated users to trigger the omission of certain user-interface data via crafted field values, aka Bug ID CSCuj45353.",
+  "cpe_strings": "cpe:2.3:a:cisco:context_directory_agent:-:*:*:*:*:*:*:*"
+ }
+]

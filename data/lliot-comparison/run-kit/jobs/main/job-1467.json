@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2024-0421",
+  "description": "The MapPress Maps for WordPress plugin before 2.88.16 is affected by an IDOR as it does not ensure that posts to be retrieve via an AJAX action is a public map, allowing unauthenticated users to read arbitrary private and draft posts.",
+  "cpe_strings": "cpe:2.3:a:mappresspro:mappress_maps_for_wordpress:*:*:*:*:*:wordpress:*:*"
+ }
+]

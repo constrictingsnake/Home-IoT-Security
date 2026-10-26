@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2017-2842",
+  "description": "In the web management interface in Foscam C1 Indoor HD Camera running application firmware 2.52.2.37, a specially crafted HTTP request can allow for a user to inject arbitrary data in the \"msmtprc\" configuration file resulting in command execution. An attacker can simply send an HTTP request to the device to trigger this vulnerability.",
+  "cpe_strings": "cpe:2.3:o:foscam:c1_indoor_hd_camera_firmware:2.52.2.37:*:*:*:*:*:*:*|cpe:2.3:h:foscam:c1_indoor_hd_camera:-:*:*:*:*:*:*:*"
+ }
+]

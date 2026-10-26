@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2022-36635",
+  "description": "ZKteco ZKBioSecurity V5000 4.1.3 was discovered to contain a SQL injection vulnerability via the component /baseOpLog.do.",
+  "cpe_strings": "cpe:2.3:a:zkteco:zkbiosecurity_v5000:4.1.3:*:*:*:*:*:*:*"
+ }
+]

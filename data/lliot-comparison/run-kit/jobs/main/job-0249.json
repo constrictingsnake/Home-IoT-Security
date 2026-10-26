@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2012-6356",
+  "description": "IBM Maximo Asset Management 7.5, Maximo Asset Management Essentials 7.5, and SmartCloud Control Desk 7.5 allow remote authenticated users to gain privileges via vectors related to an import operation.",
+  "cpe_strings": "cpe:2.3:a:ibm:maximo_asset_management:7.5.0.0:*:*:*:*:*:*:*|cpe:2.3:a:ibm:maximo_asset_management_essentials:7.5.0.0:*:*:*:*:*:*:*|cpe:2.3:a:ibm:smartcloud_control_desk:7.5.0.0:*:*:*:*:*:*:*"
+ }
+]

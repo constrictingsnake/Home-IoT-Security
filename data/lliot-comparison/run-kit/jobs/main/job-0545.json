@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2018-17178",
+  "description": "An issue was discovered on Neato Botvac Connected 2.2.0 devices. They execute unauthenticated manual drive commands (sent to /bin/webserver on port 8081) if they already have an active session. Commands like forward, back, arc-left, arc-right, pivot-left, and pivot-right are executed even though the web socket replies with { \"message\" : \"invalid authorization header\" }. Without an active session, commands are still interpreted, but (except for eco-on and eco-off) have no effect, since without active driving, a driving direction does not change anything.",
+  "cpe_strings": "cpe:2.3:o:neatorobotics:botvac_d4_connected_firmware:2.2.0:*:*:*:*:*:*:*|cpe:2.3:h:neatorobotics:botvac_d4_connected:-:*:*:*:*:*:*:*|cpe:2.3:o:neatorobotics:botvac_d6_connected_firmware:2.2.0:*:*:*:*:*:*:*|cpe:2.3:h:neatorobotics:botvac_d6_connected:-:*:*:*:*:*:*:*|cpe:2.3:o:neatorobotics:botvac_d5_connected_firmware:2.2.0:*:*:*:*:*:*:*|cpe:2.3:h:neatorobotics:botvac_d5_connected:-:*:*:*:*:*:*:*|cpe:2.3:o:neatorobotics:botvac_d7_connected_firmware:2.2.0:*:*:*:*:*:*:*|cpe:2.3:h:neatorobotics:botvac_d7_connected:-:*:*:*:*:*:*:*|cpe:2.3:o:neatorobotics:botvac_d3_connected_firmware:2.2.0:*:*:*:*:*:*:*|cpe:2.3:h:neatorobotics:botvac_d3_connected:-:*:*:*:*:*:*:*"
+ }
+]

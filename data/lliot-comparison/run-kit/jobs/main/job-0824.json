@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2023-1935",
+  "description": "ROC800-Series RTU devices are vulnerable to an authentication bypass, which could allow an attacker to gain unauthorized access to data or control of the device and cause a denial-of-service condition.",
+  "cpe_strings": "cpe:2.3:o:emerson:roc809_firmware:*:*:*:*:*:*:*:*|cpe:2.3:h:emerson:roc809:*:*:*:*:*:*:*:*|cpe:2.3:o:emerson:roc827_firmware:*:*:*:*:*:*:*:*|cpe:2.3:h:emerson:roc827:*:*:*:*:*:*:*:*|cpe:2.3:o:emerson:roc809l_firmware:*:*:*:*:*:*:*:*|cpe:2.3:h:emerson:roc809l:-:*:*:*:*:*:*:*|cpe:2.3:o:emerson:roc827l_firmware:*:*:*:*:*:*:*:*|cpe:2.3:h:emerson:roc827l:-:*:*:*:*:*:*:*|cpe:2.3:o:emerson:dl8000_firmware:*:*:*:*:*:*:*:*|cpe:2.3:h:emerson:dl8000:*:*:*:*:*:*:*:*"
+ }
+]

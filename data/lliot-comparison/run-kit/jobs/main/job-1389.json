@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2024-29057",
+  "description": "Microsoft Edge (Chromium-based) Spoofing Vulnerability",
+  "cpe_strings": "cpe:2.3:a:microsoft:edge:*:*:*:*:*:*:*:*"
+ }
+]

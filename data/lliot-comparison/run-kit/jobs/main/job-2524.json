@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2017-14167",
+  "description": "Integer overflow in the load_multiboot function in hw/i386/multiboot.c in QEMU (aka Quick Emulator) allows local guest OS users to execute arbitrary code on the host via crafted multiboot header address values, which trigger an out-of-bounds write.",
+  "cpe_strings": "cpe:2.3:a:qemu:qemu:*:*:*:*:*:*:*:*|cpe:2.3:o:debian:debian_linux:8.0:*:*:*:*:*:*:*|cpe:2.3:o:debian:debian_linux:9.0:*:*:*:*:*:*:*"
+ }
+]

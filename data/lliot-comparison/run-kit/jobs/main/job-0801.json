@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2023-43862",
+  "description": "D-Link DIR-619L B1 2.02 is vulnerable to Buffer Overflow via formLanguageChange function.",
+  "cpe_strings": "cpe:2.3:o:dlink:dir-619l_firmware:2.02:*:*:*:*:*:*:*|cpe:2.3:h:dlink:dir-619l:b1:*:*:*:*:*:*:*"
+ }
+]

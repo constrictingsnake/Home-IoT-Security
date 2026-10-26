@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2021-46047",
+  "description": "A Pointer Dereference Vulnerability exists in GPAC 1.0.1 via the gf_hinter_finalize function.",
+  "cpe_strings": "cpe:2.3:a:gpac:gpac:1.0.1:*:*:*:*:*:*:*"
+ }
+]

@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2019-20481",
+  "description": "In MIELE XGW 3000 ZigBee Gateway before 2.4.0, the Password Change Function does not require knowledge of the old password. This can be exploited in conjunction with CVE-2019-20480.",
+  "cpe_strings": "cpe:2.3:o:miele:xgw_3000_zigbee_gateway_firmware:*:*:*:*:*:*:*:*|cpe:2.3:h:miele:xgw_3000_zigbee_gateway:-:*:*:*:*:*:*:*"
+ }
+]

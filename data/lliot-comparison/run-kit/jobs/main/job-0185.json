@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2024-0623",
+  "description": "The VK Block Patterns plugin for WordPress is vulnerable to Cross-Site Request Forgery in all versions up to, and including, 1.31.1.1. This is due to missing or incorrect nonce validation on the vbp_clear_patterns_cache() function. This makes it possible for unauthenticated attackers to clear the patterns cache via a forged request granted they can trick a site administrator into performing an action such as clicking on a link.",
+  "cpe_strings": "cpe:2.3:a:vektor-inc:vk_block_patterns:*:*:*:*:*:wordpress:*:*"
+ }
+]

@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2024-43992",
+  "description": "Improper Neutralization of Input During Web Page Generation (XSS or 'Cross-site Scripting') vulnerability in Latepoint LatePoint allows Stored XSS.This issue affects LatePoint: from n/a through 4.9.91.",
+  "cpe_strings": "cpe:2.3:a:latepoint:latepoint:*:*:*:*:*:wordpress:*:*"
+ }
+]

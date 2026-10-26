@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2021-46526",
+  "description": "Cesanta MJS v2.20.0 was discovered to contain a global buffer overflow via snquote at src/mjs_json.c.",
+  "cpe_strings": "cpe:2.3:a:cesanta:mjs:2.20.0:*:*:*:*:*:*:*"
+ }
+]

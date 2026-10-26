@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2019-18653",
+  "description": "A Cross Site Scripting (XSS) issue exists in Avast AntiVirus (Free, Internet Security, and Premiere Edition) 19.3.2369 build 19.3.4241.440 in the Network Notification Popup, allowing an attacker to execute JavaScript code via an SSID Name.",
+  "cpe_strings": "cpe:2.3:a:avast:antivirus:19.3.2369:*:*:*:free:*:*:*|cpe:2.3:a:avast:antivirus:19.3.2369:*:*:*:internet_security:*:*:*|cpe:2.3:a:avast:antivirus:19.3.2369:*:*:*:premiere:*:*:*|cpe:2.3:o:microsoft:windows:-:*:*:*:*:*:*:*"
+ }
+]

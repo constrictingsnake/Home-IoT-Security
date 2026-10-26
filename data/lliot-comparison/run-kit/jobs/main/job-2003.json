@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2022-28013",
+  "description": "Attendance and Payroll System v1.0 was discovered to contain a SQL injection vulnerability via the component \\admin\\schedule_employee_edit.php.",
+  "cpe_strings": "cpe:2.3:a:attendance_and_payroll_system_project:attendance_and_payroll_system:1.0:*:*:*:*:*:*:*"
+ }
+]

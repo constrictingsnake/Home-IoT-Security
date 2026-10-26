@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2017-15228",
+  "description": "Irssi before 1.0.5, when installing themes with unterminated colour formatting sequences, may access data beyond the end of the string.",
+  "cpe_strings": "cpe:2.3:a:irssi:irssi:*:*:*:*:*:*:*:*"
+ }
+]

@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2020-23306",
+  "description": "There is a stack-overflow at ecma-regexp-object.c:535 in ecma_regexp_match in JerryScript 2.2.0.",
+  "cpe_strings": "cpe:2.3:a:jerryscript:jerryscript:2.2.0:*:*:*:*:*:*:*"
+ }
+]

@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2023-31908",
+  "description": "Jerryscript 3.0 (commit 05dbbd1) was discovered to contain a heap-buffer-overflow via the component ecma_builtin_typedarray_prototype_sort.",
+  "cpe_strings": "cpe:2.3:a:jerryscript:jerryscript:3.0:*:*:*:*:*:*:*"
+ }
+]

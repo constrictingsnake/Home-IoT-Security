@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2024-35431",
+  "description": "ZKTeco ZKBio CVSecurity 6.1.1 is vulnerable to Directory Traversal via photoBase64. An unauthenticated user can download local files from the server. NOTE: Third parties have indicated other versions are also vulnerable including up to 6.4.1.",
+  "cpe_strings": "cpe:2.3:a:zkteco:zkbio_cvsecurity:6.1.1:*:*:*:*:*:*:*"
+ }
+]

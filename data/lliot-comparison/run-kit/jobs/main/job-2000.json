@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2017-7851",
+  "description": "D-Link DCS-936L devices with firmware before 1.05.07 have an inadequate CSRF protection mechanism that requires the device's IP address to be a substring of the HTTP Referer header.",
+  "cpe_strings": "cpe:2.3:o:d-link:dcs-936l:*:*:*:*:*:*:*:*|cpe:2.3:h:dlink:dcs-936l:-:*:*:*:*:*:*:*"
+ }
+]

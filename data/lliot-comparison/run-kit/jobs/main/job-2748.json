@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2021-36232",
+  "description": "Improper Authorization in multiple functions in MIK.starlight 7.9.5.24363 allows an authenticated attacker to escalate privileges.",
+  "cpe_strings": "cpe:2.3:a:unit4:mik.starlight:7.9.5.24363:*:*:*:*:*:*:*"
+ }
+]

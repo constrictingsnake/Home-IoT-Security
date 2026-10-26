@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2020-13469",
+  "description": "The flash memory readout protection in Gigadevice GD32VF103 devices allows physical attackers to extract firmware via the debug interface by utilizing the CPU.",
+  "cpe_strings": "cpe:2.3:o:gigadevice:gd32vf103_firmware:-:*:*:*:*:*:*:*|cpe:2.3:h:gigadevice:gd32vf103:-:*:*:*:*:*:*:*"
+ }
+]

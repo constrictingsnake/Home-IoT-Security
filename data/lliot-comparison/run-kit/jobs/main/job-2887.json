@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2013-1485",
+  "description": "Unspecified vulnerability in the Java Runtime Environment (JRE) component in Oracle Java SE 7 Update 13 and earlier allows remote attackers to affect integrity via unknown vectors related to Libraries.",
+  "cpe_strings": "cpe:2.3:a:oracle:jre:1.7.0:*:*:*:*:*:*:*|cpe:2.3:a:oracle:jre:1.7.0:update1:*:*:*:*:*:*|cpe:2.3:a:oracle:jre:1.7.0:update10:*:*:*:*:*:*|cpe:2.3:a:oracle:jre:1.7.0:update11:*:*:*:*:*:*|cpe:2.3:a:oracle:jre:1.7.0:update2:*:*:*:*:*:*|cpe:2.3:a:oracle:jre:1.7.0:update3:*:*:*:*:*:*|cpe:2.3:a:oracle:jre:1.7.0:update4:*:*:*:*:*:*|cpe:2.3:a:oracle:jre:1.7.0:update5:*:*:*:*:*:*|cpe:2.3:a:oracle:jre:1.7.0:update6:*:*:*:*:*:*|cpe:2.3:a:oracle:jre:1.7.0:update7:*:*:*:*:*:*|cpe:2.3:a:oracle:jre:1.7.0:update9:*:*:*:*:*:*|cpe:2.3:a:oracle:jdk:1.7.0:*:*:*:*:*:*:*|cpe:2.3:a:oracle:jdk:1.7.0:update1:*:*:*:*:*:*|cpe:2.3:a:oracle:jdk:1.7.0:update10:*:*:*:*:*:*|cpe:2.3:a:oracle:jdk:1.7.0:update11:*:*:*:*:*:*|cpe:2.3:a:oracle:jdk:1.7.0:update2:*:*:*:*:*:*|cpe:2.3:a:oracle:jdk:1.7.0:update3:*:*:*:*:*:*|cpe:2.3:a:oracle:jdk:1.7.0:update4:*:*:*:*:*:*|cpe:2.3:a:oracle:jdk:1.7.0:update5:*:*:*:*:*:*|cpe:2.3:a:oracle:jdk:1.7.0:update6:*:*:*:*:*:*|cpe:2.3:a:oracle:jdk:1.7.0:update7:*:*:*:*:*:*|cpe:2.3:a:oracle:jdk:1.7.0:update9:*:*:*:*:*:*"
+ }
+]

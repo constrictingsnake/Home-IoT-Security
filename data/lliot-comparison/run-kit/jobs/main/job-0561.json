@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2024-41623",
+  "description": "An issue in D3D Security D3D IP Camera (D8801) v.V9.1.17.1.4-20180428 allows a local attacker to execute arbitrary code via a crafted payload",
+  "cpe_strings": "cpe:2.3:o:d3dsecurity:d8801_firmware:9.1.17.1.4-20180428:*:*:*:*:*:*:*|cpe:2.3:h:d3dsecurity:d8801:-:*:*:*:*:*:*:*"
+ }
+]

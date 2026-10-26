@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2023-26578",
+  "description": "Arbitrary file upload to web root in the IDAttend’s IDWeb application 3.1.013 allows authenticated attackers to upload dangerous files to web root such as ASP or ASPX, gaining command execution on the affected server.  ",
+  "cpe_strings": "cpe:2.3:a:idattend:idweb:3.1.013:*:*:*:*:*:*:*"
+ }
+]

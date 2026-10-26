@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2023-1518",
+  "description": "CP Plus KVMS Pro versions 2.01.0.T.190521 and prior are vulnerable to \nsensitive credentials being leaked because they are insufficiently \nprotected.   \n\n",
+  "cpe_strings": "cpe:2.3:a:cpplusworld:kvms_pro:*:*:*:*:*:*:*:*"
+ }
+]

@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2024-0692",
+  "description": "The SolarWinds Security Event Manager was susceptible to Remote Code Execution Vulnerability. This vulnerability allows an unauthenticated user to abuse SolarWinds’ service, resulting in remote code execution.",
+  "cpe_strings": "cpe:2.3:a:solarwinds:security_event_manager:*:*:*:*:*:*:*:*"
+ }
+]

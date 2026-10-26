@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2023-51629",
+  "description": "D-Link DCS-8300LHV2 ONVIF Hardcoded PIN Authentication Bypass Vulnerability. This vulnerability allows network-adjacent attackers to bypass authentication on affected installations of D-Link DCS-8300LHV2 IP cameras. Authentication is not required to exploit this vulnerability.\n\nThe specific flaw exists within the configuration of the ONVIF API. The issue results from the use of a hardcoded PIN. An attacker can leverage this vulnerability to bypass authentication on the system. Was ZDI-CAN-21492.",
+  "cpe_strings": "cpe:2.3:o:dlink:dcs-8300lhv2_firmware:*:*:*:*:*:*:*:*|cpe:2.3:h:dlink:dcs-8300lhv2:-:*:*:*:*:*:*:*"
+ }
+]

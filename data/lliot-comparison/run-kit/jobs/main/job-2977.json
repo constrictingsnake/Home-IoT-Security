@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2023-39841",
+  "description": "Missing encryption in the RFID tag of Etekcity 3-in-1 Smart Door Lock v1.0 allows attackers to create a cloned tag via brief physical proximity to the original device.",
+  "cpe_strings": "cpe:2.3:o:etekcity:3-in-1_smart_door_lock_firmware:1.0:*:*:*:*:*:*:*|cpe:2.3:h:etekcity:3-in-1_smart_door_lock:-:*:*:*:*:*:*:*"
+ }
+]

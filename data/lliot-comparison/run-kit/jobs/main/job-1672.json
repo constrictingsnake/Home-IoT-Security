@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2024-34481",
+  "description": "drupal-wiki.com Drupal Wiki before 8.31.1 allows XSS via comments, captions, and image titles of a Wiki page.",
+  "cpe_strings": "cpe:2.3:a:kontextwork:drupal_wiki:*:*:*:*:*:*:*:*"
+ }
+]

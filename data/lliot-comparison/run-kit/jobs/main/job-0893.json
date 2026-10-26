@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2019-9860",
+  "description": "Due to unencrypted signal communication and predictability of rolling codes, an attacker can \"desynchronize\" an ABUS Secvest wireless remote control (FUBE50014 or FUBE50015) relative to its controlled Secvest wireless alarm system FUAA50000 3.01.01, so that sent commands by the remote control are not accepted anymore.",
+  "cpe_strings": "cpe:2.3:o:abus:secvest_wireless_alarm_system_fuaa50000_firmware:3.01.01:*:*:*:*:*:*:*|cpe:2.3:h:abus:secvest_wireless_alarm_system_fuaa50000:-:*:*:*:*:*:*:*|cpe:2.3:o:abus:secvest_wireless_remote_control_fube50014_firmware:-:*:*:*:*:*:*:*|cpe:2.3:h:abus:secvest_wireless_remote_control_fube50014:-:*:*:*:*:*:*:*|cpe:2.3:o:abus:secvest_wireless_remote_control_fube50015_firmware:-:*:*:*:*:*:*:*|cpe:2.3:h:abus:secvest_wireless_remote_control_fube50015:-:*:*:*:*:*:*:*"
+ }
+]

@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2019-16398",
+  "description": "On Keeper K5 20.1.0.25 and 20.1.0.63 devices, remote code execution can occur by inserting an SD card containing a file named zskj_script_run.sh that executes a reverse shell.",
+  "cpe_strings": "cpe:2.3:o:keeper:k5_firmware:20.1.0.25:*:*:*:*:*:*:*|cpe:2.3:o:keeper:k5_firmware:20.1.0.63:*:*:*:*:*:*:*|cpe:2.3:h:keeper:k5:-:*:*:*:*:*:*:*"
+ }
+]

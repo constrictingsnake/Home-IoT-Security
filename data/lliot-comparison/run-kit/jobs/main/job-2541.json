@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2023-24503",
+  "description": "Electra Central AC unit – Adjacent attacker may cause the unit to load unauthorized FW.",
+  "cpe_strings": "cpe:2.3:a:electra-air:smart_kit_for_split_ac:osk201:*:*:*:*:*:*:*"
+ }
+]

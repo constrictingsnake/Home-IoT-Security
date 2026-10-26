@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2023-45955",
+  "description": "An issue discovered in Nanoleaf Light strip v3.5.10 allows attackers to cause a denial of service via crafted write binding attribute commands.",
+  "cpe_strings": "cpe:2.3:o:nanoleaf:lightstrip_firmware:3.5.10:*:*:*:*:*:*:*|cpe:2.3:h:nanoleaf:lightstrip:-:*:*:*:*:*:*:*"
+ }
+]

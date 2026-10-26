@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2015-6033",
+  "description": "Qolsys IQ Panel (aka QOL) before 1.5.1 does not verify the digital signatures of software updates, which allows man-in-the-middle attackers to bypass intended access restrictions via a modified update.",
+  "cpe_strings": "cpe:2.3:a:qolsys:iq_panel:*:*:*:*:*:android:*:*"
+ }
+]

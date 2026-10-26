@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2022-43192",
+  "description": "An arbitrary file upload vulnerability in the component /dede/file_manage_control.php of Dedecms v5.7.101 allows attackers to execute arbitrary code via a crafted PHP file. This vulnerability is related to an incomplete fix for CVE-2022-40886.",
+  "cpe_strings": "cpe:2.3:a:dedecms:dedecms:5.7.101:*:*:*:*:*:*:*"
+ }
+]

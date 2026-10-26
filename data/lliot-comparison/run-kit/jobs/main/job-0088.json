@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2024-9549",
+  "description": "A vulnerability was found in D-Link DIR-605L 2.13B01 BETA and classified as critical. This issue affects the function formEasySetupWizard/formEasySetupWizard2 of the file /goform/formEasySetupWizard. The manipulation of the argument curTime leads to buffer overflow. The attack may be initiated remotely. The exploit has been disclosed to the public and may be used.",
+  "cpe_strings": "cpe:2.3:o:dlink:dir-605l_firmware:2.13b01:*:*:*:*:*:*:*|cpe:2.3:h:dlink:dir-605l:-:*:*:*:*:*:*:*"
+ }
+]

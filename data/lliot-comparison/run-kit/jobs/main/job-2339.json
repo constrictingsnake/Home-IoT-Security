@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2022-28657",
+  "description": "Apport does not disable python crash handler before entering chroot",
+  "cpe_strings": "cpe:2.3:a:apport_project:apport:*:*:*:*:*:*:*:*|cpe:2.3:o:canonical:ubuntu_linux:18.04:*:*:*:esm:*:*:*|cpe:2.3:o:canonical:ubuntu_linux:20.04:*:*:*:lts:*:*:*|cpe:2.3:o:canonical:ubuntu_linux:21.10:*:*:*:-:*:*:*|cpe:2.3:o:canonical:ubuntu_linux:22.04:*:*:*:lts:*:*:*"
+ }
+]

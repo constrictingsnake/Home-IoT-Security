@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2024-7392",
+  "description": "ChargePoint Home Flex Bluetooth Low Energy Denial-of-Service Vulnerability. This vulnerability allows network-adjacent attackers to create a denial-of-service condition on affected installations of ChargePoint Home Flex charging devices. Authentication is not required to exploit this vulnerability.\n\nThe specific flaw exists within the connection handling of the Bluetooth Low Energy interface. The issue results from limiting the number of active connections to the product. An attacker can leverage this vulnerability to create a denial-of-service condition on the system. Was ZDI-CAN-21455.",
+  "cpe_strings": "cpe:2.3:o:chargepoint:home_flex_firmware:5.5.3.13:*:*:*:*:*:*:*|cpe:2.3:h:chargepoint:home_flex:-:*:*:*:*:*:*:*"
+ }
+]

@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2021-42557",
+  "description": "In Jeedom through 4.1.19, a bug allows a remote attacker to bypass API access and retrieve users credentials.",
+  "cpe_strings": "cpe:2.3:a:jeedom:jeedom:*:*:*:*:*:*:*:*"
+ }
+]

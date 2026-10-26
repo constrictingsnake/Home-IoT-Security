@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2021-31612",
+  "description": "The Bluetooth Classic implementation on Zhuhai Jieli AC690X devices does not properly handle the reception of an oversized LMP packet greater than 17 bytes during the LMP auto rate procedure, allowing attackers in radio range to trigger a deadlock via a crafted LMP packet.",
+  "cpe_strings": "cpe:2.3:o:zh-jieli:ac6901_firmware:-:*:*:*:*:*:*:*|cpe:2.3:h:zh-jieli:ac6901:-:*:*:*:*:*:*:*|cpe:2.3:o:zh-jieli:ac690n_firmware:-:*:*:*:*:*:*:*|cpe:2.3:h:zh-jieli:ac690n:-:*:*:*:*:*:*:*|cpe:2.3:o:zh-jieli:ac692n_firmware:-:*:*:*:*:*:*:*|cpe:2.3:h:zh-jieli:ac692n:-:*:*:*:*:*:*:*|cpe:2.3:o:zh-jieli:ac6902_firmware:-:*:*:*:*:*:*:*|cpe:2.3:h:zh-jieli:ac6902:-:*:*:*:*:*:*:*|cpe:2.3:o:zh-jieli:ac6903_firmware:-:*:*:*:*:*:*:*|cpe:2.3:h:zh-jieli:ac6903:-:*:*:*:*:*:*:*|cpe:2.3:o:zh-jieli:ac6905_firmware:-:*:*:*:*:*:*:*|cpe:2.3:h:zh-jieli:ac6905:-:*:*:*:*:*:*:*|cpe:2.3:o:zh-jieli:ac6904_firmware:-:*:*:*:*:*:*:*|cpe:2.3:h:zh-jieli:ac6904:-:*:*:*:*:*:*:*|cpe:2.3:o:zh-jieli:ac6907_firmware:-:*:*:*:*:*:*:*|cpe:2.3:h:zh-jieli:ac6907:-:*:*:*:*:*:*:*|cpe:2.3:o:zh-jieli:ac6908_firmware:-:*:*:*:*:*:*:*|cpe:2.3:h:zh-jieli:ac6908:-:*:*:*:*:*:*:*|cpe:2.3:o:zh-jieli:ac6997_firmware:-:*:*:*:*:*:*:*|cpe:2.3:h:zh-jieli:ac6997:-:*:*:*:*:*:*:*|cpe:2.3:o:zh-jieli:ac6998_firmware:-:*:*:*:*:*:*:*|cpe:2.3:h:zh-jieli:ac6998:-:*:*:*:*:*:*:*|cpe:2.3:o:zh-jieli:ac6999_firmware:-:*:*:*:*:*:*:*|cpe:2.3:h:zh-jieli:ac6999:-:*:*:*:*:*:*:*"
+ }
+]

@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2019-3998",
+  "description": "Authentication bypass using an alternate path or channel in SimpliSafe SS3 firmware 1.4 allows a local, unauthenticated attacker to modify the Wi-Fi network the base station connects to.",
+  "cpe_strings": "cpe:2.3:o:simplisafe:simplisafe_ss3_firmware:1.4:*:*:*:*:*:*:*|cpe:2.3:h:simplisafe:simplisafe_ss3:-:*:*:*:*:*:*:*"
+ }
+]

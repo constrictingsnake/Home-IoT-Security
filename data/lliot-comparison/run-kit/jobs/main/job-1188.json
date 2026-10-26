@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2024-45177",
+  "description": "An issue was discovered in za-internet C-MOR Video Surveillance 5.2401 and 6.00PL01. Due to improper input validation, the C-MOR web interface is vulnerable to persistent cross-site scripting (XSS) attacks. It was found out that the camera configuration is vulnerable to a persistent cross-site scripting attack due to insufficient user input validation.",
+  "cpe_strings": "cpe:2.3:a:c-mor:c-mor_video_surveillance:5.2401:*:*:*:*:*:*:*|cpe:2.3:a:c-mor:c-mor_video_surveillance:6.00:patch_level_01:*:*:*:*:*:*"
+ }
+]

@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2020-25079",
+  "description": "An issue was discovered on D-Link DCS-2530L before 1.06.01 Hotfix and DCS-2670L through 2.02 devices. cgi-bin/ddns_enc.cgi allows authenticated command injection.",
+  "cpe_strings": "cpe:2.3:o:dlink:dcs-4703e_firmware:*:*:*:*:*:*:*:*|cpe:2.3:h:dlink:dcs-4703e:-:*:*:*:*:*:*:*|cpe:2.3:o:dlink:dcs-4705e_firmware:*:*:*:*:*:*:*:*|cpe:2.3:h:dlink:dcs-4705e:-:*:*:*:*:*:*:*|cpe:2.3:o:dlink:dcs-4802e_firmware:*:*:*:*:*:*:*:*|cpe:2.3:h:dlink:dcs-4802e:-:*:*:*:*:*:*:*|cpe:2.3:o:dlink:dcs-p703_firmware:*:*:*:*:*:*:*:*|cpe:2.3:h:dlink:dcs-p703:-:*:*:*:*:*:*:*|cpe:2.3:o:dlink:dcs-4603_firmware:*:*:*:*:*:*:*:*|cpe:2.3:h:dlink:dcs-4603:-:*:*:*:*:*:*:*|cpe:2.3:o:dlink:dcs-4622_firmware:*:*:*:*:*:*:*:*|cpe:2.3:h:dlink:dcs-4622:-:*:*:*:*:*:*:*|cpe:2.3:o:dlink:dcs-4701e_firmware:*:*:*:*:*:*:*:*|cpe:2.3:h:dlink:dcs-4701e:-:*:*:*:*:*:*:*|cpe:2.3:o:dlink:dcs-2530l_firmware:*:*:*:*:*:*:*:*|cpe:2.3:h:dlink:dcs-2530l:-:*:*:*:*:*:*:*|cpe:2.3:o:dlink:dcs-2670l_firmware:*:*:*:*:*:*:*:*|cpe:2.3:h:dlink:dcs-2670l:-:*:*:*:*:*:*:*"
+ }
+]

@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2024-34792",
+  "description": "Improper Neutralization of Special Elements used in a Command ('Command Injection') vulnerability in dexta Dextaz Ping allows Command Injection.This issue affects Dextaz Ping: from n/a through 0.65.",
+  "cpe_strings": "cpe:2.3:a:dextaz_ping_project:dextaz_ping:*:*:*:*:*:wordpress:*:*"
+ }
+]

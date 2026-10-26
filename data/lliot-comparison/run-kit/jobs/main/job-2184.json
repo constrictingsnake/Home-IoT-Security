@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2020-14791",
+  "description": "Vulnerability in the MySQL Server product of Oracle MySQL (component: InnoDB). Supported versions that are affected are 8.0.21 and prior. Difficult to exploit vulnerability allows high privileged attacker with network access via multiple protocols to compromise MySQL Server. Successful attacks of this vulnerability can result in unauthorized ability to cause a partial denial of service (partial DOS) of MySQL Server. CVSS 3.1 Base Score 2.2 (Availability impacts). CVSS Vector: (CVSS:3.1/AV:N/AC:H/PR:H/UI:N/S:U/C:N/I:N/A:L).",
+  "cpe_strings": "cpe:2.3:a:oracle:mysql:*:*:*:*:*:*:*:*|cpe:2.3:a:netapp:active_iq_unified_manager:*:*:*:*:*:windows:*:*|cpe:2.3:a:netapp:active_iq_unified_manager:*:*:*:*:*:vmware_vsphere:*:*|cpe:2.3:a:netapp:oncommand_insight:-:*:*:*:*:*:*:*|cpe:2.3:a:netapp:oncommand_workflow_automation:-:*:*:*:*:*:*:*|cpe:2.3:a:netapp:snapcenter_server:-:*:*:*:*:*:*:*|cpe:2.3:o:fedoraproject:fedora:31:*:*:*:*:*:*:*|cpe:2.3:o:fedoraproject:fedora:32:*:*:*:*:*:*:*|cpe:2.3:o:fedoraproject:fedora:33:*:*:*:*:*:*:*"
+ }
+]

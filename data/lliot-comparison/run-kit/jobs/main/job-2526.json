@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2024-55099",
+  "description": "A SQL Injection vulnerability was found in /admin/index.php in phpgurukul Online Nurse Hiring System v1.0, which allows remote attackers to execute arbitrary SQL commands to get unauthorized database access via the username parameter.",
+  "cpe_strings": "cpe:2.3:a:phpgurukul:online_nurse_hiring_system:1.0:*:*:*:*:*:*:*"
+ }
+]

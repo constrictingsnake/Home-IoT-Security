@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2020-28030",
+  "description": "In Wireshark 3.2.0 to 3.2.7, the GQUIC dissector could crash. This was addressed in epan/dissectors/packet-gquic.c by correcting the implementation of offset advancement.",
+  "cpe_strings": "cpe:2.3:a:wireshark:wireshark:*:*:*:*:*:*:*:*|cpe:2.3:o:debian:debian_linux:9.0:*:*:*:*:*:*:*|cpe:2.3:o:fedoraproject:fedora:32:*:*:*:*:*:*:*|cpe:2.3:o:fedoraproject:fedora:33:*:*:*:*:*:*:*"
+ }
+]

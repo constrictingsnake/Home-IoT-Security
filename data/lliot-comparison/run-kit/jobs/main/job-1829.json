@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2022-25962",
+  "description": "All versions of the package vagrant.js are vulnerable to Command Injection via the boxAdd function due to improper input sanitization.\n\n",
+  "cpe_strings": "cpe:2.3:a:vagrant.js_project:vagrant.js:*:*:*:*:*:node.js:*:*"
+ }
+]

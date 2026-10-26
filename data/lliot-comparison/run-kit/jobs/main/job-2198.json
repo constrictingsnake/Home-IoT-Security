@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2024-31336",
+  "description": "In PVRSRVBridgeRGXKickTA3D2 of server_rgxta3d_bridge.c, there is a possible arbitrary code execution due to improper input validation. This could lead to local escalation of privilege in the kernel with no additional execution privileges needed. User interaction is not needed for exploitation.",
+  "cpe_strings": "cpe:2.3:o:google:android:-:*:*:*:*:*:*:*"
+ }
+]

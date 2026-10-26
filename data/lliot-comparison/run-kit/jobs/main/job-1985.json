@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2020-14472",
+  "description": "On Draytek Vigor3900, Vigor2960, and Vigor 300B devices before 1.5.1.1, there are some command-injection vulnerabilities in the mainfunction.cgi file.",
+  "cpe_strings": "cpe:2.3:o:draytek:vigor300b_firmware:*:*:*:*:*:*:*:*|cpe:2.3:h:draytek:vigor300b:-:*:*:*:*:*:*:*|cpe:2.3:o:draytek:vigor2960_firmware:*:*:*:*:*:*:*:*|cpe:2.3:h:draytek:vigor2960:-:*:*:*:*:*:*:*|cpe:2.3:o:draytek:vigor3900_firmware:*:*:*:*:*:*:*:*|cpe:2.3:h:draytek:vigor3900:-:*:*:*:*:*:*:*"
+ }
+]

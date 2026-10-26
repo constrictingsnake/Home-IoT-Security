@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2022-40799",
+  "description": "Data Integrity Failure in 'Backup Config' in D-Link DNR-322L <= 2.60B15 allows an authenticated attacker to execute OS level commands on the device.",
+  "cpe_strings": "cpe:2.3:o:dlink:dnr-322l_firmware:*:*:*:*:*:*:*:*|cpe:2.3:h:dlink:dnr-322l:-:*:*:*:*:*:*:*"
+ }
+]

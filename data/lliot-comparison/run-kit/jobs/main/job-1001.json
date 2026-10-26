@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2024-29038",
+  "description": "tpm2-tools is the source repository for the Trusted Platform Module (TPM2.0) tools. A malicious attacker can generate arbitrary quote data which is not detected by `tpm2 checkquote`. This issue was patched in version 5.7.",
+  "cpe_strings": "cpe:2.3:a:tpm2-tools_project:tpm2-tools:*:*:*:*:*:*:*:*"
+ }
+]

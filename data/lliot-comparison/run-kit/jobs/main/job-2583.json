@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2024-39290",
+  "description": "Insufficiently protected credentials issue exists in AIPHONE IX SYSTEM and IXG SYSTEM. A network-adjacent unauthenticated attacker may obtain sensitive information such as a username and its password in the address book.",
+  "cpe_strings": ""
+ }
+]

@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2024-49632",
+  "description": "Improper Neutralization of Input During Web Page Generation ('Cross-site Scripting') vulnerability in Senthil Vel CWD 3D Image Gallery cwd-3d-image-gallery allows Reflection Injection.This issue affects CWD 3D Image Gallery: from n/a through <= 1.0.",
+  "cpe_strings": "cpe:2.3:a:coralwebdesign:cwd_3d_image_gallery:*:*:*:*:*:wordpress:*:*"
+ }
+]

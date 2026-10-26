@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2018-15720",
+  "description": "Logitech Harmony Hub before version 4.15.206 contained two hard-coded accounts in the XMPP server that gave remote users access to the local API.",
+  "cpe_strings": "cpe:2.3:o:logitech:harmony_hub_firmware:*:*:*:*:*:*:*:*|cpe:2.3:h:logitech:harmony_hub:-:*:*:*:*:*:*:*"
+ }
+]

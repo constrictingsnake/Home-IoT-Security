@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2024-39202",
+  "description": "D-Link DIR-823X firmware - 240126 was discovered to contain a remote command execution (RCE) vulnerability via the dhcpd_startip parameter at /goform/set_lan_settings.",
+  "cpe_strings": "cpe:2.3:o:dlink:dir-823x_ax3000_firmware:240126:*:*:*:*:*:*:*|cpe:2.3:h:dlink:dir-823x_ax3000:-:*:*:*:*:*:*:*"
+ }
+]

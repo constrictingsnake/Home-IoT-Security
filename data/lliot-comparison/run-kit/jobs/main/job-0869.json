@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2022-30304",
+  "description": "An improper neutralization of input during web page generation vulnerability [CWE-79] in FortiAnalyzer versions prior to 7.2.1, 7.0.4 and 6.4.8 may allow a remote unauthenticated attacker to perform a stored cross site scripting (XSS) attack via the URL parameter observed in the FortiWeb attack event logview in FortiAnalyzer.",
+  "cpe_strings": "cpe:2.3:a:fortinet:fortianalyzer:*:*:*:*:*:*:*:*|cpe:2.3:a:fortinet:fortianalyzer:7.2.0:*:*:*:*:*:*:*|cpe:2.3:a:fortinet:fortianalyzer:7.2.1:*:*:*:*:*:*:*"
+ }
+]

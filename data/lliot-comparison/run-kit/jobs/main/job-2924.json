@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2021-38300",
+  "description": "arch/mips/net/bpf_jit.c in the Linux kernel before 5.4.10 can generate undesirable machine code when transforming unprivileged cBPF programs, allowing execution of arbitrary code within the kernel context. This occurs because conditional branches can exceed the 128 KB limit of the MIPS architecture.",
+  "cpe_strings": "cpe:2.3:o:linux:linux_kernel:*:*:*:*:*:*:*:*|cpe:2.3:a:netapp:cloud_backup:-:*:*:*:*:*:*:*|cpe:2.3:o:netapp:h410c_firmware:-:*:*:*:*:*:*:*|cpe:2.3:h:netapp:h410c:-:*:*:*:*:*:*:*|cpe:2.3:o:netapp:h300s_firmware:-:*:*:*:*:*:*:*|cpe:2.3:h:netapp:h300s:-:*:*:*:*:*:*:*|cpe:2.3:o:netapp:h500s_firmware:-:*:*:*:*:*:*:*|cpe:2.3:h:netapp:h500s:-:*:*:*:*:*:*:*|cpe:2.3:o:netapp:h700s_firmware:-:*:*:*:*:*:*:*|cpe:2.3:h:netapp:h700s:-:*:*:*:*:*:*:*|cpe:2.3:o:netapp:h300e_firmware:-:*:*:*:*:*:*:*|cpe:2.3:h:netapp:h300e:-:*:*:*:*:*:*:*|cpe:2.3:o:netapp:h500e_firmware:-:*:*:*:*:*:*:*|cpe:2.3:h:netapp:h500e:-:*:*:*:*:*:*:*|cpe:2.3:o:netapp:h700e_firmware:-:*:*:*:*:*:*:*|cpe:2.3:h:netapp:h700e:-:*:*:*:*:*:*:*|cpe:2.3:o:netapp:h410s_firmware:-:*:*:*:*:*:*:*|cpe:2.3:h:netapp:h410s:-:*:*:*:*:*:*:*|cpe:2.3:o:debian:debian_linux:9.0:*:*:*:*:*:*:*|cpe:2.3:o:debian:debian_linux:10.0:*:*:*:*:*:*:*"
+ }
+]

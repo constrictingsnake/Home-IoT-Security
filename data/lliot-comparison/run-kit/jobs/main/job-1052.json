@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2024-21878",
+  "description": "Improper Neutralization of Special Elements used in a Command ('Command Injection') vulnerability in Enphase IQ Gateway (formerly known as Envoy) allows OS Command Injection. This vulnerability is present in an internal script.This issue affects Envoy: from 4.x up to and including 8.x and is currently unpatched.",
+  "cpe_strings": "cpe:2.3:o:enphase:iq_gateway_firmware:*:*:*:*:*:*:*:*|cpe:2.3:h:enphase:iq_gateway:-:*:*:*:*:*:*:*"
+ }
+]

@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2020-23302",
+  "description": "There is a heap-use-after-free at ecma-helpers-string.c:772 in ecma_ref_ecma_string in JerryScript 2.2.0",
+  "cpe_strings": "cpe:2.3:a:jerryscript:jerryscript:2.2.0:*:*:*:*:*:*:*"
+ }
+]

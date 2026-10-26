@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2022-29952",
+  "description": "Bently Nevada condition monitoring equipment through 2022-04-29 mishandles authentication. It utilizes the TDI command and data protocols (60005/TCP, 60007/TCP) for communications between the monitoring controller and System 1 and/or Bently Nevada Monitor Configuration (BNMC) software. These protocols provide configuration management and historical data related functionality. Neither protocol has any authentication features, allowing any attacker capable of communicating with the ports in question to invoke (a subset of) desired functionality.",
+  "cpe_strings": "cpe:2.3:o:bakerhughes:bently_nevada_3701\\/40_firmware:*:*:*:*:*:*:*:*|cpe:2.3:h:bakerhughes:bently_nevada_3701\\/40:-:*:*:*:*:*:*:*|cpe:2.3:o:bakerhughes:bently_nevada_3701\\/44_firmware:*:*:*:*:*:*:*:*|cpe:2.3:h:bakerhughes:bently_nevada_3701\\/44:-:*:*:*:*:*:*:*|cpe:2.3:o:bakerhughes:bently_nevada_3701\\/46_firmware:*:*:*:*:*:*:*:*|cpe:2.3:h:bakerhughes:bently_nevada_3701\\/46:-:*:*:*:*:*:*:*|cpe:2.3:o:bakerhughes:bently_nevada_60m100_firmware:-:*:*:*:*:*:*:*|cpe:2.3:h:bakerhughes:bently_nevada_60m100:-:*:*:*:*:*:*:*"
+ }
+]

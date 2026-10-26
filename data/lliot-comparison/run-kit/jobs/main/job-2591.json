@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2023-2204",
+  "description": "A vulnerability was found in Campcodes Retro Basketball Shoes Online Store 1.0. It has been declared as critical. Affected by this vulnerability is an unknown functionality of the file faqs.php. The manipulation of the argument id leads to sql injection. The attack can be launched remotely. The exploit has been disclosed to the public and may be used. The identifier VDB-226969 was assigned to this vulnerability.",
+  "cpe_strings": "cpe:2.3:a:campcodes:retro_basketball_shoes_online_store:1.0:*:*:*:*:*:*:*"
+ }
+]

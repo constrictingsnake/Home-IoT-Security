@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2024-32848",
+  "description": "An unspecified SQL injection in Ivanti EPM before 2022 SU6, or the 2024 September update allows a remote authenticated attacker with admin privileges to achieve remote code execution.",
+  "cpe_strings": "cpe:2.3:a:ivanti:endpoint_manager:*:*:*:*:*:*:*:*|cpe:2.3:a:ivanti:endpoint_manager:2022:-:*:*:*:*:*:*|cpe:2.3:a:ivanti:endpoint_manager:2022:su1:*:*:*:*:*:*|cpe:2.3:a:ivanti:endpoint_manager:2022:su2:*:*:*:*:*:*|cpe:2.3:a:ivanti:endpoint_manager:2022:su3:*:*:*:*:*:*|cpe:2.3:a:ivanti:endpoint_manager:2022:su4:*:*:*:*:*:*|cpe:2.3:a:ivanti:endpoint_manager:2022:su5:*:*:*:*:*:*|cpe:2.3:a:ivanti:endpoint_manager:2024:-:*:*:*:*:*:*"
+ }
+]

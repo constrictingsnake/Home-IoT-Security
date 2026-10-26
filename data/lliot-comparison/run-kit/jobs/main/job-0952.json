@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2016-3440",
+  "description": "Unspecified vulnerability in Oracle MySQL 5.7.11 and earlier allows remote authenticated users to affect availability via vectors related to Server: Optimizer.",
+  "cpe_strings": "cpe:2.3:a:oracle:mysql:*:*:*:*:*:*:*:*"
+ }
+]

@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2017-2876",
+  "description": "An exploitable buffer overflow vulnerability exists in the Multi-Camera interface used by the Foscam C1 Indoor HD Camera running application firmware 2.52.2.43. A specially crafted request on port 10000 can cause a buffer overflow resulting in overwriting arbitrary data.",
+  "cpe_strings": "cpe:2.3:o:foscam:c1_firmware:2.52.2.43:*:*:*:*:*:*:*|cpe:2.3:h:foscam:c1:-:*:*:*:*:*:*:*"
+ }
+]

@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2023-7007",
+  "description": "Sciener server does not validate connection requests from the GatewayG2, allowing an impersonation attack that provides the attacker the unlockKey field.",
+  "cpe_strings": ""
+ }
+]

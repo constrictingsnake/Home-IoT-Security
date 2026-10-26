@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2019-7677",
+  "description": "XSS exists in Enphase Envoy R3.*.* via the profileName parameter to the /home URI on TCP port 8888.",
+  "cpe_strings": "cpe:2.3:a:enphase:envoy:*:*:*:*:*:*:*:*"
+ }
+]

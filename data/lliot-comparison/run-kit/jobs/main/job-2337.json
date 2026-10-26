@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2020-10176",
+  "description": "ASSA ABLOY Yale WIPC-301W 2.x.2.29 through 2.x.2.43_p1 devices allow Eval Injection of commands.",
+  "cpe_strings": "cpe:2.3:o:assaabloy:yale_wipc-301w_firmware:*:*:*:*:*:*:*:*|cpe:2.3:o:assaabloy:yale_wipc-301w_firmware:2.x.2.43:-:*:*:*:*:*:*|cpe:2.3:o:assaabloy:yale_wipc-301w_firmware:2.x.2.43:p1:*:*:*:*:*:*|cpe:2.3:h:assaabloy:yale_wipc-301w:-:*:*:*:*:*:*:*"
+ }
+]

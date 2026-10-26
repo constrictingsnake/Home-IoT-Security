@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2023-47703",
+  "description": "IBM Security Guardium Key Lifecycle Manager 4.3 could allow a remote attacker to obtain sensitive information when a detailed technical error message is returned in the browser.  This information could be used in further attacks against the system.  IBM X-Force ID:  271197.",
+  "cpe_strings": "cpe:2.3:a:ibm:security_guardium_key_lifecycle_manager:*:*:*:*:*:*:*:*|cpe:2.3:o:ibm:aix:-:*:*:*:*:*:*:*|cpe:2.3:o:linux:linux_kernel:-:*:*:*:*:*:*:*|cpe:2.3:o:microsoft:windows:-:*:*:*:*:*:*:*"
+ }
+]

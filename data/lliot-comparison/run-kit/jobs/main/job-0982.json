@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2018-6414",
+  "description": "A buffer overflow vulnerability in the web server of some Hikvision IP Cameras allows an attacker to send a specially crafted message to affected devices. Due to the insufficient input validation, successful exploit can corrupt memory and lead to arbitrary code execution or crash the process.",
+  "cpe_strings": "cpe:2.3:h:hikvision:ip_cameras:-:*:*:*:*:*:*:*"
+ }
+]

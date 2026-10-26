@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2020-12983",
+  "description": "An out of bounds write vulnerability in the AMD Graphics Driver for Windows 10 may lead to escalation of privileges or denial of service.",
+  "cpe_strings": "cpe:2.3:a:amd:radeon_pro_software:*:*:*:*:enterprise:*:*:*|cpe:2.3:a:amd:radeon_software:*:*:*:*:*:*:*:*|cpe:2.3:o:microsoft:windows_10:-:*:*:*:*:*:x64:*|cpe:2.3:o:microsoft:windows_10:-:*:*:*:*:*:x86:*"
+ }
+]

@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2021-26474",
+  "description": "Various Vembu products allow an attacker to execute a (non-blind) http-only Cross Site Request Forgery (Other products or versions of products in this family may be affected too.)",
+  "cpe_strings": "cpe:2.3:a:vembu:bdr_suite:*:*:*:*:*:*:*:*|cpe:2.3:a:vembu:offsite_dr:4.2.0:*:*:*:*:*:*:*|cpe:2.3:a:vembu:offsite_dr:4.2.0.1:*:*:*:*:*:*:*"
+ }
+]

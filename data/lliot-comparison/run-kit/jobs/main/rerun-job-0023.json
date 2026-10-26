@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2023-49654",
+  "description": "Missing permission checks in Jenkins MATLAB Plugin 2.11.0 and earlier allow attackers to have Jenkins parse an XML file from the Jenkins controller file system.",
+  "cpe_strings": "cpe:2.3:a:jenkins:matlab:*:*:*:*:*:jenkins:*:*"
+ }
+]

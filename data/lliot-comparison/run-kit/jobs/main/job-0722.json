@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2020-20739",
+  "description": "im_vips2dz in /libvips/libvips/deprecated/im_vips2dz.c in libvips before 8.8.2 has an uninitialized variable which may cause the leakage of remote server path or stack address.",
+  "cpe_strings": "cpe:2.3:a:libvips:libvips:*:*:*:*:*:*:*:*|cpe:2.3:o:debian:debian_linux:9.0:*:*:*:*:*:*:*|cpe:2.3:o:fedoraproject:fedora:32:*:*:*:*:*:*:*"
+ }
+]

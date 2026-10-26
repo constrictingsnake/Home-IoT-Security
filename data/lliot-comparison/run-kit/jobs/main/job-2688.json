@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2023-25021",
+  "description": "Auth. (admin+) Stored Cross-Site Scripting (XSS) vulnerability in FareHarbor FareHarbor for WordPress plugin <= 3.6.6 versions.",
+  "cpe_strings": "cpe:2.3:a:fareharbor:fareharbor:*:*:*:*:*:wordpress:*:*"
+ }
+]

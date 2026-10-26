@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2022-23995",
+  "description": "Unprotected component vulnerability in StBedtimeModeAlarmReceiver in Wear OS 3.0 prior to Firmware update Feb-2022 Release allows untrusted applications to change bedtime mode without a proper permission.",
+  "cpe_strings": "cpe:2.3:o:samsung:wear_os:*:*:*:*:*:*:*:*"
+ }
+]

@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2024-24525",
+  "description": "An issue in EpointWebBuilder 5.1.0-sp1, 5.2.1-sp1, 5.4.1 and 5.4.2 allows a remote attacker to execute arbitrary code via the infoid parameter of the URL.",
+  "cpe_strings": "cpe:2.3:a:epoint:epointwebbuilder:5.1.0:sp1:*:*:*:*:*:*|cpe:2.3:a:epoint:epointwebbuilder:5.2.1:sp1:*:*:*:*:*:*|cpe:2.3:a:epoint:epointwebbuilder:5.4.1:-:*:*:*:*:*:*|cpe:2.3:a:epoint:epointwebbuilder:5.4.2:-:*:*:*:*:*:*"
+ }
+]

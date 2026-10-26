@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2023-30528",
+  "description": "Jenkins WSO2 Oauth Plugin 1.0 and earlier does not mask the WSO2 Oauth client secret on the global configuration form, increasing the potential for attackers to observe and capture it.",
+  "cpe_strings": "cpe:2.3:a:jenkins:wso2_oauth:*:*:*:*:*:jenkins:*:*"
+ }
+]

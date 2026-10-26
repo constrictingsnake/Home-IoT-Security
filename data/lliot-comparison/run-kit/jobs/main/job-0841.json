@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2023-7072",
+  "description": "The Post Grid Combo – 36+ Gutenberg Blocks plugin for WordPress is vulnerable to Sensitive Information Exposure in all versions up to, and including, 2.2.68 via the 'get_posts' REST API Endpoint. This makes it possible for unauthenticated attackers to extract sensitive data including full draft posts and password protected posts, as well as the password for password-protected posts.",
+  "cpe_strings": "cpe:2.3:a:pickplugins:post_grid_combo:*:*:*:*:*:wordpress:*:*"
+ }
+]

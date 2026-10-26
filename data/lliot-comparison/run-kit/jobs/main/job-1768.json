@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2019-9582",
+  "description": "eQ-3 Homematic CCU2 outdated base software packages allows Denial of Service. CCU2 affected versions: 2.35.16, 2.41.5, 2.41.8, 2.41.9, 2.45.6, 2.45.7, 2.47.10, 2.47.12, 2.47.15.",
+  "cpe_strings": "cpe:2.3:o:eq-3:homematic_ccu2_firmware:2.35.16:*:*:*:*:*:*:*|cpe:2.3:o:eq-3:homematic_ccu2_firmware:2.41.5:*:*:*:*:*:*:*|cpe:2.3:o:eq-3:homematic_ccu2_firmware:2.41.8:*:*:*:*:*:*:*|cpe:2.3:o:eq-3:homematic_ccu2_firmware:2.41.9:*:*:*:*:*:*:*|cpe:2.3:o:eq-3:homematic_ccu2_firmware:2.45.6:*:*:*:*:*:*:*|cpe:2.3:o:eq-3:homematic_ccu2_firmware:2.45.7:*:*:*:*:*:*:*|cpe:2.3:o:eq-3:homematic_ccu2_firmware:2.47.10:*:*:*:*:*:*:*|cpe:2.3:o:eq-3:homematic_ccu2_firmware:2.47.12:*:*:*:*:*:*:*|cpe:2.3:o:eq-3:homematic_ccu2_firmware:2.47.15:*:*:*:*:*:*:*|cpe:2.3:h:eq-3:homematic_ccu2:-:*:*:*:*:*:*:*"
+ }
+]

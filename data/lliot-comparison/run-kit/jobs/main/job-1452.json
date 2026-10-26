@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2023-4204",
+  "description": "NPort IAW5000A-I/O Series firmware version v2.2 and prior is affected by a hardcoded credential vulnerabilitywhich poses a potential risk to the security and integrity of the affected device. This vulnerability is attributed to the presence of a hardcoded key, which could potentially facilitate firmware manipulation.\n\n",
+  "cpe_strings": "cpe:2.3:o:moxa:nport_iaw5000a-i\\/o_firmware:*:*:*:*:*:*:*:*|cpe:2.3:h:moxa:nport_iaw5000a-i\\/o:-:*:*:*:*:*:*:*"
+ }
+]

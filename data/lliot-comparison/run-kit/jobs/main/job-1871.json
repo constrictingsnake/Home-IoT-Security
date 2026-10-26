@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2018-17533",
+  "description": "Teltonika RUT9XX routers with firmware before 00.05.01.1 are prone to cross-site scripting vulnerabilities in hotspotlogin.cgi due to insufficient user input sanitization.",
+  "cpe_strings": "cpe:2.3:o:teltonika:rut900_firmware:*:*:*:*:*:*:*:*|cpe:2.3:h:teltonika:rut900:-:*:*:*:*:*:*:*|cpe:2.3:o:teltonika:rut950_firmware:*:*:*:*:*:*:*:*|cpe:2.3:h:teltonika:rut950:-:*:*:*:*:*:*:*|cpe:2.3:o:teltonika:rut955_firmware:*:*:*:*:*:*:*:*|cpe:2.3:h:teltonika:rut955:-:*:*:*:*:*:*:*"
+ }
+]

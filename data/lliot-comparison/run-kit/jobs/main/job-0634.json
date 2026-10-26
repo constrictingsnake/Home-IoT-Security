@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2016-4276",
+  "description": "Adobe Flash Player before 18.0.0.375 and 19.x through 23.x before 23.0.0.162 on Windows and OS X and before 11.2.202.635 on Linux allows attackers to execute arbitrary code or cause a denial of service (memory corruption) via unspecified vectors, a different vulnerability than CVE-2016-4274, CVE-2016-4275, CVE-2016-4280, CVE-2016-4281, CVE-2016-4282, CVE-2016-4283, CVE-2016-4284, CVE-2016-4285, CVE-2016-6922, and CVE-2016-6924.",
+  "cpe_strings": "cpe:2.3:a:adobe:flash_player:*:*:*:*:*:*:*:*|cpe:2.3:o:linux:linux_kernel:-:*:*:*:*:*:*:*|cpe:2.3:o:microsoft:windows_10:-:*:*:*:*:*:*:*|cpe:2.3:o:microsoft:windows_8.1:-:*:*:*:*:*:*:*|cpe:2.3:a:adobe:flash_player:*:*:*:*:*:edge:*:*|cpe:2.3:a:adobe:flash_player:*:*:*:*:*:internet_explorer:*:*|cpe:2.3:o:apple:mac_os_x:-:*:*:*:*:*:*:*|cpe:2.3:o:microsoft:windows:-:*:*:*:*:*:*:*|cpe:2.3:a:adobe:flash_player_desktop_runtime:*:*:*:*:*:*:*:*|cpe:2.3:a:adobe:flash_player:*:*:*:*:esr:*:*:*|cpe:2.3:a:adobe:flash_player:*:*:*:*:*:chrome:*:*|cpe:2.3:o:google:chrome_os:-:*:*:*:*:*:*:*"
+ }
+]

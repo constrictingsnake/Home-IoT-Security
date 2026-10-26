@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2018-15613",
+  "description": "A cross-site scripting (XSS) vulnerability in the Runtime Config component of Avaya Aura Orchestration Designer could result in malicious content being returned to the user. Affected versions of Avaya Aura Orchestration Designer include all versions up to 7.2.1.",
+  "cpe_strings": "cpe:2.3:a:avaya:aura_orchestration_designer:*:*:*:*:*:*:*:*"
+ }
+]

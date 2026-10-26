@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2018-6012",
+  "description": "The 'Weather Service' feature of the Green Electronics RainMachine Mini-8 (2nd generation) allows an attacker to inject arbitrary Python code via the 'Add new weather data source' upload function.",
+  "cpe_strings": "cpe:2.3:o:rainmachine:mini-8_firmware:*:*:*:*:*:*:*:*|cpe:2.3:h:rainmachine:mini-8:-:*:*:*:*:*:*:*"
+ }
+]

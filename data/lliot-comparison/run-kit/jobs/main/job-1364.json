@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2022-40703",
+  "description": "CWE-302 Authentication Bypass by Assumed-Immutable Data in AliveCor Kardia App version 5.17.1-754993421 and prior\n\n on Android allows an unauthenticated attacker with physical access to the Android device containing the app to bypass application authentication and alter information in the app.",
+  "cpe_strings": "cpe:2.3:a:alivecor:kardia:*:*:*:*:*:android:*:*"
+ }
+]

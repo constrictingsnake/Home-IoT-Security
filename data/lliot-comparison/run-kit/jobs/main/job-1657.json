@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2024-9614",
+  "description": "The Constant Contact Forms by MailMunch plugin for WordPress is vulnerable to Reflected Cross-Site Scripting due to the use of add_query_arg without appropriate escaping on the URL in all versions up to, and including, 2.1.2. This makes it possible for unauthenticated attackers to inject arbitrary web scripts in pages that execute if they can successfully trick a user into performing an action such as clicking on a link.",
+  "cpe_strings": "cpe:2.3:a:mailmunch:constant_contact_forms:*:*:*:*:*:wordpress:*:*"
+ }
+]

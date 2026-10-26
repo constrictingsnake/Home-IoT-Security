@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2020-13527",
+  "description": "An authentication bypass vulnerability exists in the Web Manager functionality of Lantronix XPort EDGE 3.0.0.0R11, 3.1.0.0R9, 3.4.0.0R12 and 4.2.0.0R7. A specially crafted HTTP request can cause increased privileges. An attacker can send an HTTP request to trigger this vulnerability.",
+  "cpe_strings": "cpe:2.3:o:lantronix:xport_edge_firmware:3.0.0.0:r11:*:*:*:*:*:*|cpe:2.3:o:lantronix:xport_edge_firmware:3.1.0.0:r9:*:*:*:*:*:*|cpe:2.3:o:lantronix:xport_edge_firmware:3.4.0.0:r12:*:*:*:*:*:*|cpe:2.3:o:lantronix:xport_edge_firmware:4.2.0.0:r7:*:*:*:*:*:*|cpe:2.3:h:lantronix:xport_edge:-:*:*:*:*:*:*:*|cpe:2.3:o:lantronix:sgx_firmware:8.7.0.0:r1:*:*:*:*:*:*|cpe:2.3:o:lantronix:sgx_firmware:8.9.0.0:r4:*:*:*:*:*:*|cpe:2.3:h:lantronix:sgx:-:*:*:*:*:*:*:*"
+ }
+]

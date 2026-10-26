@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2023-38438",
+  "description": "In vowifiservice, there is a possible missing permission check.This could lead to local information disclosure with no additional execution privileges",
+  "cpe_strings": "cpe:2.3:o:google:android:11.0:*:*:*:*:*:*:*|cpe:2.3:h:unisoc:sc7731e:-:*:*:*:*:*:*:*|cpe:2.3:h:unisoc:sc9832e:-:*:*:*:*:*:*:*|cpe:2.3:h:unisoc:sc9863a:-:*:*:*:*:*:*:*|cpe:2.3:h:unisoc:t606:-:*:*:*:*:*:*:*|cpe:2.3:h:unisoc:t610:-:*:*:*:*:*:*:*|cpe:2.3:h:unisoc:t612:-:*:*:*:*:*:*:*|cpe:2.3:h:unisoc:t616:-:*:*:*:*:*:*:*|cpe:2.3:h:unisoc:t618:-:*:*:*:*:*:*:*"
+ }
+]

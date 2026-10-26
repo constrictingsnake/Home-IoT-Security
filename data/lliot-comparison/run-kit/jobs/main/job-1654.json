@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2022-33189",
+  "description": "An OS command injection vulnerability exists in the XCMD setAlexa functionality of Abode Systems, Inc. iota All-In-One Security Kit 6.9Z. A specially-crafted XCMD can lead to arbitrary command execution. An attacker can send a malicious XML payload to trigger this vulnerability.",
+  "cpe_strings": "cpe:2.3:o:goabode:iota_all-in-one_security_kit_firmware:6.9z:*:*:*:*:*:*:*|cpe:2.3:h:goabode:iota_all-in-one_security_kit:-:*:*:*:*:*:*:*"
+ }
+]

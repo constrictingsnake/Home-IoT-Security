@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2019-17006",
+  "description": "In Network Security Services (NSS) before 3.46, several cryptographic primitives had missing length checks. In cases where the application calling the library did not perform a sanity check on the inputs it could result in a crash due to a buffer overflow.",
+  "cpe_strings": "cpe:2.3:o:siemens:ruggedcom_rox_mx5000_firmware:*:*:*:*:*:*:*:*|cpe:2.3:h:siemens:ruggedcom_rox_mx5000:-:*:*:*:*:*:*:*|cpe:2.3:o:siemens:ruggedcom_rox_rx1400_firmware:*:*:*:*:*:*:*:*|cpe:2.3:h:siemens:ruggedcom_rox_rx1400:-:*:*:*:*:*:*:*|cpe:2.3:o:siemens:ruggedcom_rox_rx1500_firmware:*:*:*:*:*:*:*:*|cpe:2.3:h:siemens:ruggedcom_rox_rx1500:-:*:*:*:*:*:*:*|cpe:2.3:o:siemens:ruggedcom_rox_rx1501_firmware:*:*:*:*:*:*:*:*|cpe:2.3:h:siemens:ruggedcom_rox_rx1501:-:*:*:*:*:*:*:*|cpe:2.3:o:siemens:ruggedcom_rox_rx1510_firmware:*:*:*:*:*:*:*:*|cpe:2.3:h:siemens:ruggedcom_rox_rx1510:-:*:*:*:*:*:*:*|cpe:2.3:o:siemens:ruggedcom_rox_rx1511_firmware:*:*:*:*:*:*:*:*|cpe:2.3:h:siemens:ruggedcom_rox_rx1511:-:*:*:*:*:*:*:*|cpe:2.3:o:siemens:ruggedcom_rox_rx1512_firmware:*:*:*:*:*:*:*:*|cpe:2.3:h:siemens:ruggedcom_rox_rx1512:-:*:*:*:*:*:*:*|cpe:2.3:o:siemens:ruggedcom_rox_rx5000_firmware:*:*:*:*:*:*:*:*|cpe:2.3:h:siemens:ruggedcom_rox_rx5000:-:*:*:*:*:*:*:*|cpe:2.3:a:mozilla:network_security_services:*:*:*:*:*:*:*:*|cpe:2.3:a:netapp:hci_management_node:-:*:*:*:*:*:*:*|cpe:2.3:a:netapp:solidfire:-:*:*:*:*:*:*:*|cpe:2.3:h:netapp:hci_compute_node:-:*:*:*:*:*:*:*|cpe:2.3:h:netapp:hci_storage_node:-:*:*:*:*:*:*:*"
+ }
+]

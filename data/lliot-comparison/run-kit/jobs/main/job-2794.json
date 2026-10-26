@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2018-14901",
+  "description": "The EPSON iPrint application 6.6.3 for Android contains hard-coded API and Secret keys for the Dropbox, Box, Evernote and OneDrive services.",
+  "cpe_strings": "cpe:2.3:a:epson:iprint:6.6.3:*:*:*:*:android:*:*"
+ }
+]

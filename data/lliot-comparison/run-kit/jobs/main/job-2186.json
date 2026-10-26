@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2016-3677",
+  "description": "The Huawei Wear App application before 15.0.0.307 for Android does not validate SSL certificates, which allows local users to have unspecified impact via unknown vectors, aka HWPSIRT-2016-03008.",
+  "cpe_strings": "cpe:2.3:a:huawei:hilink_app:-:*:*:*:*:*:*:*|cpe:2.3:a:huawei:wear_app:-:*:*:*:*:*:*:*"
+ }
+]

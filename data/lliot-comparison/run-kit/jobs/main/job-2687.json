@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2023-6322",
+  "description": "A stack-based buffer overflow vulnerability exists in the message parsing functionality of the Roku Indoor Camera SE version 3.0.2.4679 and Wyze Cam v3 version 4.36.11.5859. A specially crafted message can lead to stack-based buffer overflow. An attacker can make authenticated requests to trigger this vulnerability.",
+  "cpe_strings": "cpe:2.3:o:wyze:cam_v3_firmware:4.36.11.5859:*:*:*:*:*:*:*|cpe:2.3:h:wyze:cam_v3:-:*:*:*:*:*:*:*|cpe:2.3:o:roku:indoor_camera_se_firmware:3.0.2.4679:*:*:*:*:*:*:*|cpe:2.3:h:roku:indoor_camera_se:-:*:*:*:*:*:*:*|cpe:2.3:a:throughtek:kalay_platform:-:*:*:*:*:*:*:*"
+ }
+]

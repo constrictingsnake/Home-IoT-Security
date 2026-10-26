@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2022-25581",
+  "description": "Classcms v2.5 and below contains an arbitrary file upload via the component \\class\\classupload. This vulnerability allows attackers to execute code injection via a crafted .txt file.",
+  "cpe_strings": "cpe:2.3:a:classcms:classcms:*:*:*:*:*:*:*:*"
+ }
+]

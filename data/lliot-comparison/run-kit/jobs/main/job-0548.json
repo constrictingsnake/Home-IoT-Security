@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2023-38904",
+  "description": "A Cross Site Scripting (XSS) vulnerability in Netlify CMS v.2.10.192 allows a remote attacker to execute arbitrary code via a crafted payload to the body parameter of the new post function.",
+  "cpe_strings": "cpe:2.3:a:decapcms:netlify_cms:2.10.192:*:*:*:*:*:*:*"
+ }
+]

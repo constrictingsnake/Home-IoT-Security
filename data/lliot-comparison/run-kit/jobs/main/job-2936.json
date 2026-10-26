@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2013-4672",
+  "description": "The management console on the Symantec Web Gateway (SWG) appliance before 5.1.1 has an incorrect sudoers file, which allows local users to bypass intended access restrictions via a command.",
+  "cpe_strings": "cpe:2.3:a:symantec:web_gateway:*:*:*:*:*:*:*:*|cpe:2.3:a:symantec:web_gateway:5.0:*:*:*:*:*:*:*|cpe:2.3:a:symantec:web_gateway:5.0.1:*:*:*:*:*:*:*|cpe:2.3:a:symantec:web_gateway:5.0.2:*:*:*:*:*:*:*|cpe:2.3:a:symantec:web_gateway:5.0.3:*:*:*:*:*:*:*|cpe:2.3:a:symantec:web_gateway:5.0.3.18:*:*:*:*:*:*:*|cpe:2.3:h:symantec:web_gateway_appliance_8450:-:*:*:*:*:*:*:*|cpe:2.3:h:symantec:web_gateway_appliance_8490:-:*:*:*:*:*:*:*"
+ }
+]

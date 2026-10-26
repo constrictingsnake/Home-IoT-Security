@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2020-6991",
+  "description": "In Moxa EDS-G516E Series firmware, Version 5.2 or lower, weak password requirements may allow an attacker to gain access using brute force.",
+  "cpe_strings": "cpe:2.3:o:moxa:eds-g516e_firmware:*:*:*:*:*:*:*:*|cpe:2.3:h:moxa:eds-g516e:-:*:*:*:*:*:*:*|cpe:2.3:o:moxa:eds-510e_firmware:*:*:*:*:*:*:*:*|cpe:2.3:h:moxa:eds-510e:-:*:*:*:*:*:*:*"
+ }
+]

@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2019-20791",
+  "description": "OpenThread before 2019-12-13 has a stack-based buffer overflow in MeshCoP::Commissioner::GeneratePskc.",
+  "cpe_strings": "cpe:2.3:o:google:openthread:*:*:*:*:*:*:*:*"
+ }
+]

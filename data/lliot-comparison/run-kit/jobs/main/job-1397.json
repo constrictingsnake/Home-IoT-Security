@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2014-3427",
+  "description": "CRLF injection vulnerability in Yealink VoIP Phones with firmware 28.72.0.2 allows remote attackers to inject arbitrary HTTP headers and conduct HTTP response splitting attacks via the model parameter to servlet.",
+  "cpe_strings": "cpe:2.3:o:yealink:voip_phone_firmware:28.72.0.2:*:*:*:*:*:*:*"
+ }
+]

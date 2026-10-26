@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2023-45956",
+  "description": "An issue discovered in Govee LED Strip v3.00.42 allows attackers to cause a denial of service via crafted Move and MoveWithOnoff commands.",
+  "cpe_strings": "cpe:2.3:o:govee:led_strip_firmware:3.00.42:*:*:*:*:*:*:*|cpe:2.3:h:govee:led_strip:-:*:*:*:*:*:*:*"
+ }
+]

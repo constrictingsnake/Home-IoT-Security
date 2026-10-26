@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2024-26299",
+  "description": "A vulnerability in the web-based management interface of ClearPass Policy Manager could allow an authenticated remote attacker to conduct a stored cross-site scripting (XSS) attack against an administrative user of the interface. A successful exploit allows an attacker to execute arbitrary script code in a victim's browser in the context of the affected interface.\n\n",
+  "cpe_strings": "cpe:2.3:a:arubanetworks:clearpass_policy_manager:*:*:*:*:*:*:*:*|cpe:2.3:a:arubanetworks:clearpass_policy_manager:6.9.13:-:*:*:*:*:*:*|cpe:2.3:a:arubanetworks:clearpass_policy_manager:6.9.13:cumulative_hotfix_patch_2:*:*:*:*:*:*|cpe:2.3:a:arubanetworks:clearpass_policy_manager:6.9.13:cumulative_hotfix_patch_3:*:*:*:*:*:*|cpe:2.3:a:arubanetworks:clearpass_policy_manager:6.9.13:cumulative_hotfix_patch_4:*:*:*:*:*:*|cpe:2.3:a:arubanetworks:clearpass_policy_manager:6.10.8:-:*:*:*:*:*:*|cpe:2.3:a:arubanetworks:clearpass_policy_manager:6.10.8:cumulative_hotfix_patch_2:*:*:*:*:*:*|cpe:2.3:a:arubanetworks:clearpass_policy_manager:6.10.8:cumulative_hotfix_patch_5:*:*:*:*:*:*|cpe:2.3:a:arubanetworks:clearpass_policy_manager:6.10.8:cumulative_hotfix_patch_6:*:*:*:*:*:*|cpe:2.3:a:arubanetworks:clearpass_policy_manager:6.12.0:*:*:*:*:*:*:*"
+ }
+]

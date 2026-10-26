@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2020-9754",
+  "description": "NAVER Whale browser mobile app before 1.10.6.2 allows the attacker to bypass its browser unlock function via incognito mode.",
+  "cpe_strings": "cpe:2.3:a:navercorp:whale:*:*:*:*:*:*:*:*"
+ }
+]

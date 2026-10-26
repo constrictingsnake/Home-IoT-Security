@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2013-3978",
+  "description": "The Meeting Server in IBM Sametime 8.5.2 through 8.5.2.1 and 9.x through 9.0.0.1 does not send the appropriate HTTP response headers to prevent unwanted caching by a web browser, which allows remote attackers to obtain sensitive information by leveraging an unattended workstation.",
+  "cpe_strings": "cpe:2.3:a:ibm:sametime:8.5.2.0:*:*:*:*:*:*:*|cpe:2.3:a:ibm:sametime:8.5.2.1:*:*:*:*:*:*:*|cpe:2.3:a:ibm:sametime:9.0.0.0:*:*:*:*:*:*:*|cpe:2.3:a:ibm:sametime:9.0.0.1:*:*:*:*:*:*:*"
+ }
+]

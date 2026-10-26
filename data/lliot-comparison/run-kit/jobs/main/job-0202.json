@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2023-49235",
+  "description": "An issue was discovered in libremote_dbg.so on TRENDnet TV-IP1314PI 5.5.3 200714 devices. Filtering of debug information is mishandled during use of popen. Consequently, an attacker can bypass validation and execute a shell command.",
+  "cpe_strings": "cpe:2.3:o:trendnet:tv-ip1314pi_firmware:5.5.3:200714:*:*:*:*:*:*|cpe:2.3:h:trendnet:tv-ip1314pi:-:*:*:*:*:*:*:*"
+ }
+]

@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2021-31698",
+  "description": "Quectel EG25-G devices through 202006130814 allow executing arbitrary code remotely by using an AT command to place shell metacharacters in quectel_handle_fumo_cfg input in atfwd_daemon.",
+  "cpe_strings": "cpe:2.3:o:quectel:eg25-g_firmware:*:*:*:*:*:*:*:*|cpe:2.3:h:quectel:eg25-g:-:*:*:*:*:*:*:*"
+ }
+]

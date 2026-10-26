@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2021-26607",
+  "description": "An Improper input validation in execDefaultBrowser method of NEXACRO17 allows a remote attacker to execute arbitrary command on affected systems.",
+  "cpe_strings": "cpe:2.3:a:tobesoft:nexacro:*:*:*:*:*:*:*:*|cpe:2.3:o:microsoft:windows:-:*:*:*:*:*:*:*"
+ }
+]

@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2016-11021",
+  "description": "setSystemCommand on D-Link DCS-930L devices before 2.12 allows a remote attacker to execute code via an OS command in the SystemCommand parameter.",
+  "cpe_strings": "cpe:2.3:o:dlink:dcs-930l_firmware:*:*:*:*:*:*:*:*|cpe:2.3:h:dlink:dcs-930l:-:*:*:*:*:*:*:*"
+ }
+]

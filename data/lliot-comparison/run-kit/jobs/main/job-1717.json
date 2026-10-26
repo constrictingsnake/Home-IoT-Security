@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2021-20473",
+  "description": "IBM Sterling File Gateway User Interface 2.2.0.0 through 6.1.1.0 does not invalidate session after logout which could allow an authenticated user to impersonate another user on the system. IBM X-Force ID: 196944.",
+  "cpe_strings": "cpe:2.3:a:ibm:sterling_file_gateway:*:*:*:*:*:*:*:*"
+ }
+]

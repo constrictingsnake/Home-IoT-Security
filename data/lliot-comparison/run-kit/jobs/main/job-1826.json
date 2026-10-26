@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2023-31162",
+  "description": "An Improper Input Validation vulnerability in the Schweitzer Engineering Laboratories Real-Time Automation Controller (SEL RTAC) Web Interface could allow a remote authenticated attacker to arbitrarily alter the content of a configuration file.\n\nSee SEL Service Bulletin dated 2022-11-15 for more details.",
+  "cpe_strings": "cpe:2.3:o:selinc:sel-2241_rtac_module_firmware:*:*:*:*:*:*:*:*|cpe:2.3:h:selinc:sel-2241_rtac_module:-:*:*:*:*:*:*:*|cpe:2.3:o:selinc:sel-3350_firmware:*:*:*:*:*:*:*:*|cpe:2.3:h:selinc:sel-3350:-:*:*:*:*:*:*:*|cpe:2.3:o:selinc:sel-3505_firmware:*:*:*:*:*:*:*:*|cpe:2.3:h:selinc:sel-3505:-:*:*:*:*:*:*:*|cpe:2.3:o:selinc:sel-3505-3_firmware:*:*:*:*:*:*:*:*|cpe:2.3:h:selinc:sel-3505-3:-:*:*:*:*:*:*:*|cpe:2.3:o:selinc:sel-3530_firmware:*:*:*:*:*:*:*:*|cpe:2.3:h:selinc:sel-3530:-:*:*:*:*:*:*:*|cpe:2.3:o:selinc:sel-3530-4_firmware:*:*:*:*:*:*:*:*|cpe:2.3:h:selinc:sel-3530-4:-:*:*:*:*:*:*:*|cpe:2.3:o:selinc:sel-3532_firmware:*:*:*:*:*:*:*:*|cpe:2.3:h:selinc:sel-3532:-:*:*:*:*:*:*:*|cpe:2.3:o:selinc:sel-3555_firmware:*:*:*:*:*:*:*:*|cpe:2.3:h:selinc:sel-3555:-:*:*:*:*:*:*:*|cpe:2.3:o:selinc:sel-3560e_firmware:*:*:*:*:*:*:*:*|cpe:2.3:h:selinc:sel-3560e:-:*:*:*:*:*:*:*|cpe:2.3:o:selinc:sel-3560s_firmware:*:*:*:*:*:*:*:*|cpe:2.3:h:selinc:sel-3560s:-:*:*:*:*:*:*:*"
+ }
+]

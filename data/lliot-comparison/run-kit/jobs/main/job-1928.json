@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2015-6130",
+  "description": "Integer underflow in Uniscribe in Microsoft Windows 7 SP1 and Windows Server 2008 R2 SP1 allows remote attackers to execute arbitrary code via a crafted font, aka \"Windows Integer Underflow Vulnerability.\"",
+  "cpe_strings": "cpe:2.3:o:microsoft:windows_7:*:sp1:x64:*:*:*:*:*|cpe:2.3:o:microsoft:windows_7:*:sp1:x86:*:*:*:*:*|cpe:2.3:o:microsoft:windows_server_2008:r2:sp1:*:*:*:*:*:*"
+ }
+]

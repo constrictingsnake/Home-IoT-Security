@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2023-28698",
+  "description": "Wade Graphic Design FANTSY has a vulnerability of insufficient authorization check. An unauthenticated remote user can exploit this vulnerability by modifying URL parameters to gain administrator privileges to perform arbitrary system operation or disrupt service.",
+  "cpe_strings": "cpe:2.3:a:wddgroup:fantsy:2.1.8:*:*:*:*:*:*:*"
+ }
+]

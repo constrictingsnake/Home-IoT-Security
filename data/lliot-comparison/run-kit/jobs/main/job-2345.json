@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2023-22321",
+  "description": "\n\n\nDatakit CrossCadWare_x64.dll contains an out-of-bounds read past the end of an allocated buffer while parsing a specially crafted SLDPRT file. This vulnerability could allow an attacker to disclose sensitive information. \n\n \n\n",
+  "cpe_strings": "cpe:2.3:a:datakit:crosscadware:*:*:*:*:*:*:*:*"
+ }
+]

@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2024-26679",
+  "description": "In the Linux kernel, the following vulnerability has been resolved:\n\ninet: read sk->sk_family once in inet_recv_error()\n\ninet_recv_error() is called without holding the socket lock.\n\nIPv6 socket could mutate to IPv4 with IPV6_ADDRFORM\nsocket option and trigger a KCSAN warning.",
+  "cpe_strings": "cpe:2.3:o:linux:linux_kernel:*:*:*:*:*:*:*:*|cpe:2.3:o:linux:linux_kernel:6.8:rc1:*:*:*:*:*:*|cpe:2.3:o:linux:linux_kernel:6.8:rc2:*:*:*:*:*:*|cpe:2.3:o:linux:linux_kernel:6.8:rc3:*:*:*:*:*:*|cpe:2.3:o:debian:debian_linux:10.0:*:*:*:*:*:*:*"
+ }
+]

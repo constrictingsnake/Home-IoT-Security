@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2024-35398",
+  "description": "TOTOLINK CP900L v4.1.5cu.798_B20221228 was discovered to contain a stack overflow via the desc parameter in the function setMacFilterRules.",
+  "cpe_strings": "cpe:2.3:o:totolink:cp900l_firmware:4.1.5cu.798_b20221228:*:*:*:*:*:*:*|cpe:2.3:h:totolink:cp900l:-:*:*:*:*:*:*:*"
+ }
+]

@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2018-4289",
+  "description": "An information disclosure issue was addressed by removing the vulnerable code. This issue affected versions prior to macOS High Sierra 10.13.6.",
+  "cpe_strings": "cpe:2.3:o:apple:mac_os_x:*:*:*:*:*:*:*:*"
+ }
+]

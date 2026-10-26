@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2022-32830",
+  "description": "An out-of-bounds read issue was addressed with improved bounds checking. This issue is fixed in tvOS 15.6, iOS 15.6 and iPadOS 15.6. Processing a maliciously crafted image may lead to disclosure of user information.",
+  "cpe_strings": "cpe:2.3:o:apple:ipados:*:*:*:*:*:*:*:*|cpe:2.3:o:apple:iphone_os:*:*:*:*:*:*:*:*|cpe:2.3:o:apple:tvos:*:*:*:*:*:*:*:*"
+ }
+]

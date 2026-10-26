@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2014-5396",
+  "description": "The web interface in Schrack Technik microControl with firmware before 1.7.0 (937) has a hardcoded password of not for the \"user\" account, which makes it easier for remote attackers to obtain access via unspecified vectors.",
+  "cpe_strings": "cpe:2.3:o:schrack:technik_microcontrol_firmware:*:*:*:*:*:*:*:*|cpe:2.3:h:schrack:technik_microcontrol:-:*:*:*:*:*:*:*"
+ }
+]

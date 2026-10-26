@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2023-0864","home_iot":"Yes","categories":["ev-charging"],"confidence":"High","reasoning":"ABB Terra AC wallboxes are connected EV chargers deployed in residential garages and driveways, placing the affected firmware in the home EV-charging category."}]}

@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2020-11114",
+  "description": "u'Bluetooth devices does not properly restrict the L2CAP payload length allowing users in radio range to cause a buffer overflow via a crafted Link Layer packet(Equivalent to CVE-2019-17060,CVE-2019-17061 and CVE-2019-17517 in Sweyntooth paper)' in Snapdragon Compute, Snapdragon Consumer IOT, Snapdragon Industrial IOT, Snapdragon IoT, Snapdragon Mobile, Snapdragon Voice & Music in AR9344",
+  "cpe_strings": "cpe:2.3:o:qualcomm:ar9344_firmware:-:*:*:*:*:*:*:*|cpe:2.3:h:qualcomm:ar9344:-:*:*:*:*:*:*:*"
+ }
+]

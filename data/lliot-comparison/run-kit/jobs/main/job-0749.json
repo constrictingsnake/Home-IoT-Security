@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2021-24284",
+  "description": "The Kaswara Modern VC Addons WordPress plugin through 3.0.1 allows unauthenticated arbitrary file upload via the 'uploadFontIcon' AJAX action. The supplied zipfile being unzipped in the wp-content/uploads/kaswara/fonts_icon directory with no checks for malicious files such as PHP.",
+  "cpe_strings": "cpe:2.3:a:kaswara_project:kaswara:*:*:*:*:*:wordpress:*:*"
+ }
+]

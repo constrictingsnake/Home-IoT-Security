@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2013-6965",
+  "description": "The registration component in Cisco WebEx Training Center provides the training-session URL before e-mail confirmation is completed, which allows remote attackers to bypass intended access restrictions and join an audio conference by entering credential fields from this URL, aka Bug ID CSCul36183.",
+  "cpe_strings": "cpe:2.3:a:cisco:webex_training_center:-:*:*:*:*:*:*:*"
+ }
+]

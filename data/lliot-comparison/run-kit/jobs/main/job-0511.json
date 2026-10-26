@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2022-27257",
+  "description": "A PHP Local File Inclusion vulneraility in the default Redbasic theme for Hubzilla before version 7.2 allows remote attackers to include arbitrary php files via the schema parameter.",
+  "cpe_strings": "cpe:2.3:a:hubzilla:hubzilla:*:*:*:*:*:*:*:*"
+ }
+]

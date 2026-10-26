@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2020-3803",
+  "description": "Adobe Acrobat and Reader versions 2020.006.20034 and earlier, 2017.011.30158 and earlier, 2017.011.30158 and earlier, 2015.006.30510 and earlier, and 2015.006.30510 and earlier have an insecure library loading (dll hijacking) vulnerability. Successful exploitation could lead to privilege escalation.",
+  "cpe_strings": "cpe:2.3:a:adobe:acrobat_dc:*:*:*:*:classic:*:*:*|cpe:2.3:a:adobe:acrobat_dc:*:*:*:*:continuous:*:*:*|cpe:2.3:a:adobe:acrobat_reader_dc:*:*:*:*:classic:*:*:*|cpe:2.3:a:adobe:acrobat_reader_dc:*:*:*:*:continuous:*:*:*|cpe:2.3:o:apple:macos:-:*:*:*:*:*:*:*|cpe:2.3:o:microsoft:windows:-:*:*:*:*:*:*:*"
+ }
+]

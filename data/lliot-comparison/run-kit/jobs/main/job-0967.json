@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2023-37722",
+  "description": "Tenda F1202 V1.0BR_V1.2.0.20(408), FH1202_V1.2.0.19_EN were discovered to contain a stack overflow in the page parameter in the function fromSafeUrlFilter.",
+  "cpe_strings": "cpe:2.3:o:tenda:f1202_firmware:1.2.0.20\\(408\\):*:*:*:*:*:*:*|cpe:2.3:h:tenda:f1202:-:*:*:*:*:*:*:*|cpe:2.3:o:tenda:fh1202_firmware:1.2.0.19_en:*:*:*:*:*:*:*|cpe:2.3:h:tenda:fh1202:-:*:*:*:*:*:*:*|cpe:2.3:o:tenda:f1202_firmware:1.0br:*:*:*:*:*:*:*|cpe:2.3:o:tenda:4g300_firmware:-:*:*:*:*:*:*:*|cpe:2.3:h:tenda:4g300:-:*:*:*:*:*:*:*"
+ }
+]

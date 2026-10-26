@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2012-6451",
+  "description": "Lorex LNC116 and LNC104 IP Cameras have a Remote Authentication Bypass Vulnerability",
+  "cpe_strings": "cpe:2.3:o:lorextechnology:lnc116_firmware:*:*:*:*:*:*:*:*|cpe:2.3:h:lorextechnology:lnc116:-:*:*:*:*:*:*:*|cpe:2.3:o:lorextechnology:lnc104_firmware:*:*:*:*:*:*:*:*|cpe:2.3:h:lorextechnology:lnc104:-:*:*:*:*:*:*:*"
+ }
+]

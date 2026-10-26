@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2023-36940",
+  "description": "Cross Site Scripting (XSS) vulnerability in PHPGurukul Online Fire Reporting System Using PHP and MySQL v.1.2 allows attackers to execute arbitrary code via a crafted payload injected into the search field.",
+  "cpe_strings": "cpe:2.3:a:phpgurukul:online_fire_reporting_system:1.2:*:*:*:*:*:*:*"
+ }
+]

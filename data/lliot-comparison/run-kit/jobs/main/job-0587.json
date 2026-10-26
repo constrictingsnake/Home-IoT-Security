@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2013-3540",
+  "description": "Cross-site request forgery (CSRF) vulnerability in cgi-bin/admin/usrgrp.cgi in AirLive POE2600HD, POE250HD, POE200HD, OD-325HD, OD-2025HD, OD-2060HD, POE100HD, and possibly other camera models allows remote attackers to hijack the authentication of administrators for requests that add users.",
+  "cpe_strings": "cpe:2.3:h:ovislink:airlive_od-2025hd:-:*:*:*:*:*:*:*|cpe:2.3:h:ovislink:airlive_od-2060hd:-:*:*:*:*:*:*:*|cpe:2.3:h:ovislink:airlive_poe100hd:-:*:*:*:*:*:*:*|cpe:2.3:h:ovislink:airlive_poe200hd:-:*:*:*:*:*:*:*|cpe:2.3:h:ovislink:airlive_poe250hd:-:*:*:*:*:*:*:*|cpe:2.3:h:ovislink:airlive_poe2600hd:-:*:*:*:*:*:*:*"
+ }
+]

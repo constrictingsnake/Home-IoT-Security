@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2015-2049",
+  "description": "Unrestricted file upload vulnerability in D-Link DCS-931L with firmware 1.04 and earlier allows remote authenticated users to execute arbitrary code by uploading a file with an executable extension.",
+  "cpe_strings": "cpe:2.3:o:dlink:dcs-931l_firmware:*:*:*:*:*:*:*:*|cpe:2.3:h:dlink:dcs-931l:-:*:*:*:*:*:*:*"
+ }
+]

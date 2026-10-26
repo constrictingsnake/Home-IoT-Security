@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2023-25070",
+  "description": "Cleartext transmission of sensitive information exists in SkyBridge MB-A100/110 firmware Ver. 4.2.0 and earlier. If the telnet connection is enabled, a remote unauthenticated attacker may eavesdrop on or alter the administrator's communication to the product.",
+  "cpe_strings": "cpe:2.3:o:seiko-sol:skybridge_mb-a110_firmware:*:*:*:*:*:*:*:*|cpe:2.3:h:seiko-sol:skybridge_mb-a110:-:*:*:*:*:*:*:*|cpe:2.3:o:seiko-sol:skybridge_mb-a100_firmware:*:*:*:*:*:*:*:*|cpe:2.3:h:seiko-sol:skybridge_mb-a100:-:*:*:*:*:*:*:*"
+ }
+]

@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2024-37339",
+  "description": "Microsoft SQL Server Native Scoring Remote Code Execution Vulnerability",
+  "cpe_strings": "cpe:2.3:a:microsoft:sql_2016_azure_connect_feature_pack:*:*:*:*:*:*:*:*|cpe:2.3:a:microsoft:sql_server_2016:*:*:*:*:*:*:x64:*|cpe:2.3:a:microsoft:sql_server_2017:*:*:*:*:*:*:x64:*|cpe:2.3:a:microsoft:sql_server_2019:*:*:*:*:*:*:x64:*|cpe:2.3:a:microsoft:sql_server_2022:*:*:*:*:*:*:x64:*"
+ }
+]

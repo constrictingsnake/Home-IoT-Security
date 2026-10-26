@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2024-4882",
+  "description": "The user may be redirected to an arbitrary site in Sitefinity 15.1.8321.0 and previous versions.",
+  "cpe_strings": ""
+ }
+]

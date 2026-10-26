@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2023-45952",
+  "description": "An arbitrary file upload vulnerability in the component ajax_link.php of lylme_spage v1.7.0 allows attackers to execute arbitrary code via uploading a crafted file.",
+  "cpe_strings": "cpe:2.3:a:lylme:lylme_spage:1.7.0:*:*:*:*:*:*:*"
+ }
+]

@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2020-28055",
+  "description": "A vulnerability in the TCL Android Smart TV series V8-R851T02-LF1 V295 and below and V8-T658T01-LF1 V373 and below by TCL Technology Group Corporation allows a local unprivileged attacker, such as a malicious App, to read & write to the /data/vendor/tcl, /data/vendor/upgrade, and /var/TerminalManager directories within the TV file system. An attacker, such as a malicious APK or local unprivileged user could perform fake system upgrades by writing to the /data/vendor/upgrage folder.",
+  "cpe_strings": "cpe:2.3:o:tcl:32s330_firmware:*:*:*:*:*:*:*:*|cpe:2.3:h:tcl:32s330:-:*:*:*:*:*:*:*|cpe:2.3:o:tcl:40s330_firmware:*:*:*:*:*:*:*:*|cpe:2.3:h:tcl:40s330:-:*:*:*:*:*:*:*|cpe:2.3:o:tcl:43s434_firmware:*:*:*:*:*:*:*:*|cpe:2.3:h:tcl:43s434:-:*:*:*:*:*:*:*|cpe:2.3:o:tcl:50s434_firmware:*:*:*:*:*:*:*:*|cpe:2.3:h:tcl:50s434:-:*:*:*:*:*:*:*|cpe:2.3:o:tcl:55s434_firmware:*:*:*:*:*:*:*:*|cpe:2.3:h:tcl:55s434:-:*:*:*:*:*:*:*|cpe:2.3:o:tcl:65s434_firmware:*:*:*:*:*:*:*:*|cpe:2.3:h:tcl:65s434:-:*:*:*:*:*:*:*|cpe:2.3:o:tcl:75s434_firmware:*:*:*:*:*:*:*:*|cpe:2.3:h:tcl:75s434:-:*:*:*:*:*:*:*"
+ }
+]

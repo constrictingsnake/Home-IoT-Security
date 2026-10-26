@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2024-29948",
+  "description": "There is an out-of-bounds read vulnerability in some Hikvision NVRs. An authenticated attacker could exploit this vulnerability by sending specially crafted messages to a vulnerable device, causing a service abnormality.",
+  "cpe_strings": ""
+ }
+]

@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2024-11837",
+  "description": "Improper Neutralization of Special Elements used in an N1QL Command ('N1QL Injection') vulnerability in PlexTrac  allows N1QL Injection.This issue affects PlexTrac: from 1.61.3 before 2.8.1.",
+  "cpe_strings": "cpe:2.3:a:plextrac:plextrac:*:*:*:*:*:*:*:*"
+ }
+]

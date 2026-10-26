@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2022-29945",
+  "description": "DJI drone devices sold in 2017 through 2022 broadcast unencrypted information about the drone operator's physical location via the AeroScope protocol.",
+  "cpe_strings": "cpe:2.3:o:dji:mavic_3_firmware:-:*:*:*:*:*:*:*|cpe:2.3:h:dji:mavic_3:-:*:*:*:*:*:*:*|cpe:2.3:o:dji:rc_pro_firmware:-:*:*:*:*:*:*:*|cpe:2.3:h:dji:rc_pro:-:*:*:*:*:*:*:*|cpe:2.3:o:dji:air_2s_firmware:-:*:*:*:*:*:*:*|cpe:2.3:h:dji:air_2s:-:*:*:*:*:*:*:*|cpe:2.3:o:dji:air_2_firmware:-:*:*:*:*:*:*:*|cpe:2.3:h:dji:air_2:-:*:*:*:*:*:*:*|cpe:2.3:o:dji:mini_2_firmware:-:*:*:*:*:*:*:*|cpe:2.3:h:dji:mini_2:-:*:*:*:*:*:*:*|cpe:2.3:o:dji:mini_se_firmware:-:*:*:*:*:*:*:*|cpe:2.3:h:dji:mini_se:-:*:*:*:*:*:*:*|cpe:2.3:o:dji:fpv_firmware:-:*:*:*:*:*:*:*|cpe:2.3:h:dji:fpv:-:*:*:*:*:*:*:*|cpe:2.3:o:dji:fhantom_4_pro_firmware:-:*:*:*:*:*:*:*|cpe:2.3:h:dji:fhantom_4_pro:-:*:*:*:*:*:*:*|cpe:2.3:h:dji:fhantom_4_pro:2.0:*:*:*:*:*:*:*|cpe:2.3:o:dji:inspire_2_firmware:-:*:*:*:*:*:*:*|cpe:2.3:h:dji:inspire_2:-:*:*:*:*:*:*:*|cpe:2.3:o:dji:zenmuse_x7_firmware:-:*:*:*:*:*:*:*|cpe:2.3:h:dji:zenmuse_x7:-:*:*:*:*:*:*:*|cpe:2.3:o:dji:zenmuse_x5s_firmware:-:*:*:*:*:*:*:*|cpe:2.3:h:dji:zenmuse_x5s:-:*:*:*:*:*:*:*"
+ }
+]

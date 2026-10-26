@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2021-38827",
+  "description": "Xiongmai Camera XM-JPR2-LX V4.02.R12.A6420987.10002.147502.00000 is vulnerable to account takeover.",
+  "cpe_strings": "cpe:2.3:o:xiongmaitech:xm-jpr2-lx_firmware:*:*:*:*:*:*:*:*|cpe:2.3:h:xiongmaitech:xm-jpr2-lx:-:*:*:*:*:*:*:*"
+ }
+]

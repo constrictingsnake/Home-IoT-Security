@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2014-6685",
+  "description": "The Tsushima Travel Guide (aka com.netjapan.ntsushima) application 1.9 for Android does not verify X.509 certificates from SSL servers, which allows man-in-the-middle attackers to spoof servers and obtain sensitive information via a crafted certificate.",
+  "cpe_strings": "cpe:2.3:a:netjapan:tsushima_travel_guide:1.9:*:*:*:*:android:*:*"
+ }
+]

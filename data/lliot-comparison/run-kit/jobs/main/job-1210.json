@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2021-21952",
+  "description": "An authentication bypass vulnerability exists in the CMD_DEVICE_GET_RSA_KEY_REQUEST functionality of the home_security binary of Anker Eufy Homebase 2 2.1.6.9h. A specially-crafted set of network packets can lead to increased privileges.",
+  "cpe_strings": "cpe:2.3:o:anker:eufy_homebase_2_firmware:2.1.6.9h:*:*:*:*:*:*:*|cpe:2.3:h:anker:eufy_homebase_2:-:*:*:*:*:*:*:*"
+ }
+]

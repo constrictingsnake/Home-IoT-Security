@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2018-12638",
+  "description": "An issue was discovered in the Bose Soundtouch app 18.1.4 for iOS. There is no frontend input validation of the device name. A malicious device name can execute JavaScript on the registered Bose User Account if a speaker has been connected to the app.",
+  "cpe_strings": "cpe:2.3:a:bose:soundtouch:18.1.4:*:*:*:*:iphone_os:*:*"
+ }
+]

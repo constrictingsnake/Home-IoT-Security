@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2018-18600",
+  "description": "The remote upgrade feature in Guardzilla GZ180 devices allow command injection via a crafted new firmware version parameter.",
+  "cpe_strings": "cpe:2.3:o:guardzilla:180_outdoor_firmware:-:*:*:*:*:*:*:*|cpe:2.3:h:guardzilla:180_outdoor:-:*:*:*:*:*:*:*|cpe:2.3:o:guardzilla:180_indoor_firmware:-:*:*:*:*:*:*:*|cpe:2.3:h:guardzilla:180_indoor:-:*:*:*:*:*:*:*"
+ }
+]

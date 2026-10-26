@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2023-3762",
+  "description": "A vulnerability was found in Intergard SGS 8.7.0. It has been classified as problematic. This affects an unknown part. The manipulation leads to cleartext storage of sensitive information in memory. It is possible to initiate the attack remotely. The exploit has been disclosed to the public and may be used. The associated identifier of this vulnerability is VDB-234447. NOTE: The vendor was contacted early about this disclosure but did not respond in any way.",
+  "cpe_strings": "cpe:2.3:a:intergard:smartgard_silver_with_matrix_keyboard:8.7.0:*:*:*:*:*:*:*"
+ }
+]

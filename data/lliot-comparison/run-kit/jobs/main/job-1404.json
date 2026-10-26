@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2023-47229",
+  "description": "Auth. (contributor+) Stored Cross-Site Scripting (XSS) vulnerability in Vyas Dipen Top 25 Social Icons plugin <= 3.1 versions.",
+  "cpe_strings": "cpe:2.3:a:vyasdipen:top_25_social_icons:*:*:*:*:*:wordpress:*:*"
+ }
+]

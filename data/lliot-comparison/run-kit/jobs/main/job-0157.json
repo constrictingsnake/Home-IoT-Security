@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2023-0896",
+  "description": "A default password was reported in Lenovo Smart Clock Essential with Alexa Built In that could allow unauthorized device access to an attacker with local network access. ",
+  "cpe_strings": "cpe:2.3:o:lenovo:smart_clock_essential_with_alexa_built_in_firmware:*:*:*:*:*:*:*:*|cpe:2.3:h:lenovo:smart_clock_essential_with_alexa_built_in:-:*:*:*:*:*:*:*"
+ }
+]

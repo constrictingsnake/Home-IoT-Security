@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2023-24349",
+  "description": "D-Link N300 WI-FI Router DIR-605L v2.13B01 was discovered to contain a stack overflow via the curTime parameter at /goform/formSetRoute.",
+  "cpe_strings": "cpe:2.3:o:dlink:dir-605l_firmware:2.13b01:*:*:*:*:*:*:*|cpe:2.3:h:dlink:dir-605l:-:*:*:*:*:*:*:*"
+ }
+]

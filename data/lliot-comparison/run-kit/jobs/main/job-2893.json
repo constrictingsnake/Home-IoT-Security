@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2024-27767",
+  "description": "\nCWE-287: Improper Authentication may allow Authentication Bypass\n\n",
+  "cpe_strings": "cpe:2.3:a:unitronics:unilogic:*:*:*:*:*:*:*:*"
+ }
+]

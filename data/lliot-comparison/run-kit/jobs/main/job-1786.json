@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2023-31907",
+  "description": "Jerryscript 3.0.0 was discovered to contain a heap-buffer-overflow via the component scanner_literal_is_created at /jerry-core/parser/js/js-scanner-util.c.",
+  "cpe_strings": "cpe:2.3:a:jerryscript:jerryscript:3.0.0:*:*:*:*:*:*:*"
+ }
+]

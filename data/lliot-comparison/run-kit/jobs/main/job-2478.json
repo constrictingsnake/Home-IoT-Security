@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2013-1594",
+  "description": "An Information Disclosure vulnerability exists via a GET request in Vivotek PT7135 IP Camera 0300a and 0400a due to wireless keys and 3rd party credentials stored in clear text.",
+  "cpe_strings": "cpe:2.3:o:vivotek:pt7135_firmware:0300a:*:*:*:*:*:*:*|cpe:2.3:o:vivotek:pt7135_firmware:0400a:*:*:*:*:*:*:*|cpe:2.3:h:vivotek:pt7135:-:*:*:*:*:*:*:*"
+ }
+]

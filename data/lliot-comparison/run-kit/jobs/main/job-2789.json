@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2023-24121",
+  "description": "Jensen of Scandinavia Eagle 1200AC V15.03.06.33_en was discovered to contain a stack overflow via the security_5g parameter at /goform/WifiBasicSet.",
+  "cpe_strings": "cpe:2.3:o:heimgardtechnologies:eagle_1200ac_firmware:15.03.06.33:*:*:*:*:*:*:*|cpe:2.3:h:heimgardtechnologies:eagle_1200ac:-:*:*:*:*:*:*:*"
+ }
+]

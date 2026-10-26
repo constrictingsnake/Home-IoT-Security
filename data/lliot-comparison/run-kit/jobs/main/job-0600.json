@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2020-0906",
+  "description": "A remote code execution vulnerability exists in Microsoft Excel software when the software fails to properly handle objects in memory, aka 'Microsoft Excel Remote Code Execution Vulnerability'. This CVE ID is unique from CVE-2020-0979.",
+  "cpe_strings": "cpe:2.3:a:microsoft:excel:2010:sp2:*:*:*:*:*:*|cpe:2.3:a:microsoft:excel:2013:sp1:*:*:*:*:*:*|cpe:2.3:a:microsoft:excel:2013:sp1:*:*:rt:*:*:*|cpe:2.3:a:microsoft:excel:2016:*:*:*:*:*:*:*|cpe:2.3:a:microsoft:office:2010:sp2:*:*:*:*:*:*|cpe:2.3:a:microsoft:office:2013:sp1:*:*:*:*:*:*|cpe:2.3:a:microsoft:office:2013:sp1:*:*:rt:*:*:*|cpe:2.3:a:microsoft:office:2016:*:*:*:*:*:*:*|cpe:2.3:a:microsoft:office:2019:*:*:*:*:-:*:*|cpe:2.3:a:microsoft:office_365_proplus:-:*:*:*:*:*:*:*"
+ }
+]

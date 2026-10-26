@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2017-16770",
+  "description": "File and directory information exposure vulnerability in SYNO.SurveillanceStation.PersonalSettings.Photo in Synology Surveillance Station before 8.1.2-5469 allows remote authenticated users to obtain other user's sensitive files via the filename parameter.",
+  "cpe_strings": "cpe:2.3:a:synology:surveillance_station:*:*:*:*:*:*:*:*"
+ }
+]

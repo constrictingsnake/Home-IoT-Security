@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2016-2357",
+  "description": "Milesight IP security cameras through 2016-11-14 have a hardcoded SSL private key under the /etc/config directory.",
+  "cpe_strings": "cpe:2.3:o:milesight:ip_security_camera_firmware:*:*:*:*:*:*:*:*|cpe:2.3:h:milesight:ip_security_camera:-:*:*:*:*:*:*:*"
+ }
+]

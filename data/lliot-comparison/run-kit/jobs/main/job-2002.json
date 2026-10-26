@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2020-23308",
+  "description": "There is an Assertion 'context_p->stack_top_uint8 == LEXER_EXPRESSION_START' at js-parser-expr.c:3565 in parser_parse_expression in JerryScript 2.2.0.",
+  "cpe_strings": "cpe:2.3:a:jerryscript:jerryscript:2.2.0:*:*:*:*:*:*:*"
+ }
+]

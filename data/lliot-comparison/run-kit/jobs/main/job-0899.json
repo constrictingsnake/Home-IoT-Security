@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2023-38721",
+  "description": "The IBM i 7.2, 7.3, 7.4, and 7.5 product Facsimile Support for i contains a local privilege escalation vulnerability.   A malicious actor could gain access to a command line with elevated privileges allowing root access to the host operating system.  IBM X-Force ID:  262173.",
+  "cpe_strings": "cpe:2.3:o:ibm:i:7.2:*:*:*:*:*:*:*|cpe:2.3:o:ibm:i:7.3:*:*:*:*:*:*:*|cpe:2.3:o:ibm:i:7.4:*:*:*:*:*:*:*|cpe:2.3:o:ibm:i:7.5:*:*:*:*:*:*:*"
+ }
+]

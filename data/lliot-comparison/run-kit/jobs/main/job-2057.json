@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2024-32928",
+  "description": "The libcurl CURLOPT_SSL_VERIFYPEER option was disabled on a subset of requests made by Nest production devices which enabled a potential man-in-the-middle attack on requests to Google cloud services by any host the traffic was routed through.",
+  "cpe_strings": "cpe:2.3:o:google:nest_mini_firmware:-:*:*:*:*:*:*:*|cpe:2.3:h:google:nest_mini:-:*:*:*:*:*:*:*|cpe:2.3:a:haxx:libcurl:-:*:*:*:*:*:*:*"
+ }
+]

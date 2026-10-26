@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2023-31024",
+  "description": "NVIDIA DGX A100 BMC contains a vulnerability in the host KVM daemon, where an unauthenticated attacker may cause stack memory corruption by sending a specially crafted network packet. A successful exploit of this vulnerability may lead to arbitrary code execution, denial of service, information disclosure, and data tampering.",
+  "cpe_strings": "cpe:2.3:o:nvidia:dgx_a100_firmware:*:*:*:*:bmc:*:*:*|cpe:2.3:h:nvidia:dgx_a100:-:*:*:*:*:*:*:*"
+ }
+]

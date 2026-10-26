@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2014-8362",
+  "description": "Vivint Sky Control Panel 1.1.1.9926 allows remote attackers to enable and disable the alarm system and modify other security settings via the Web-enabled interface.",
+  "cpe_strings": "cpe:2.3:o:vivint:sky_control_panel_firmware:1.1.1.9926:*:*:*:*:*:*:*|cpe:2.3:h:vivint:sky_control_panel:-:*:*:*:*:*:*:*"
+ }
+]

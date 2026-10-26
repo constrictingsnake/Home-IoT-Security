@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2021-42527",
+  "description": "Adobe Premiere Elements 20210809.daily.2242976 (and earlier) is affected by a memory corruption vulnerability due to insecure handling of a malicious file, potentially resulting in arbitrary code execution in the context of the current user. User interaction is required to exploit this vulnerability.",
+  "cpe_strings": "cpe:2.3:a:adobe:premiere_elements:*:*:*:*:*:*:*:*|cpe:2.3:o:apple:macos:-:*:*:*:*:*:*:*|cpe:2.3:o:microsoft:windows:-:*:*:*:*:*:*:*"
+ }
+]

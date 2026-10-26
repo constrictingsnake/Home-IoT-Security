@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2023-31436",
+  "description": "qfq_change_class in net/sched/sch_qfq.c in the Linux kernel before 6.2.13 allows an out-of-bounds write because lmax can exceed QFQ_MIN_LMAX.",
+  "cpe_strings": "cpe:2.3:o:linux:linux_kernel:*:*:*:*:*:*:*:*"
+ }
+]

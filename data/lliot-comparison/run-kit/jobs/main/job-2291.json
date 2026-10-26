@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2021-44266",
+  "description": "GUnet Open eClass (aka openeclass) before 3.12.2 allows XSS via the modules/auth/formuser.php auth parameter.",
+  "cpe_strings": "cpe:2.3:a:gunet:open_eclass_platform:*:*:*:*:*:*:*:*"
+ }
+]

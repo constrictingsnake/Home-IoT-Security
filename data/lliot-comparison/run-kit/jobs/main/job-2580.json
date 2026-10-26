@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2023-3212",
+  "description": "A NULL pointer dereference issue was found in the gfs2 file system in the Linux kernel. It occurs on corrupt gfs2 file systems when the evict code tries to reference the journal descriptor structure after it has been freed and set to NULL. A privileged local user could use this flaw to cause a kernel panic.",
+  "cpe_strings": "cpe:2.3:o:linux:linux_kernel:*:*:*:*:*:*:*:*|cpe:2.3:o:linux:linux_kernel:6.4:rc1:*:*:*:*:*:*|cpe:2.3:o:fedoraproject:fedora:38:*:*:*:*:*:*:*|cpe:2.3:o:redhat:enterprise_linux:8.0:*:*:*:*:*:*:*|cpe:2.3:o:redhat:enterprise_linux:9.0:*:*:*:*:*:*:*|cpe:2.3:o:debian:debian_linux:10.0:*:*:*:*:*:*:*|cpe:2.3:o:debian:debian_linux:11.0:*:*:*:*:*:*:*|cpe:2.3:o:debian:debian_linux:12.0:*:*:*:*:*:*:*|cpe:2.3:o:netapp:h300s_firmware:-:*:*:*:*:*:*:*|cpe:2.3:h:netapp:h300s:-:*:*:*:*:*:*:*|cpe:2.3:o:netapp:h500s_firmware:-:*:*:*:*:*:*:*|cpe:2.3:h:netapp:h500s:-:*:*:*:*:*:*:*|cpe:2.3:o:netapp:h700s_firmware:-:*:*:*:*:*:*:*|cpe:2.3:h:netapp:h700s:-:*:*:*:*:*:*:*|cpe:2.3:o:netapp:h410s_firmware:-:*:*:*:*:*:*:*|cpe:2.3:h:netapp:h410s:-:*:*:*:*:*:*:*|cpe:2.3:o:netapp:h410c_firmware:-:*:*:*:*:*:*:*|cpe:2.3:h:netapp:h410c:-:*:*:*:*:*:*:*"
+ }
+]

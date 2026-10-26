@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2019-18980",
+  "description": "On Signify Philips Taolight Smart Wi-Fi Wiz Connected LED Bulb 9290022656 devices, an unprotected API lets remote users control the bulb's operation. Anyone can turn the bulb on or off, or change its color or brightness remotely. There is no authentication or encryption to use the control API. The only requirement is that the attacker have network access to the bulb.",
+  "cpe_strings": "cpe:2.3:o:philips:taolight_smart_wi-fi_wiz_connected_led_bulb_9290022656_firmware:-:*:*:*:*:*:*:*|cpe:2.3:h:philips:taolight_smart_wi-fi_wiz_connected_led_bulb_9290022656:-:*:*:*:*:*:*:*"
+ }
+]

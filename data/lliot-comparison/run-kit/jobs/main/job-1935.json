@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2017-13199",
+  "description": "In Bitmap.ccp if Bitmap.nativeCreate fails an out of memory exception is not thrown leading to a java.io.IOException later on. This could lead to a remote denial of service of a critical system process with no additional execution privileges needed. User interaction is not needed for exploitation. Product: Android. Versions: 8.0, 8.1. Android ID: A-33846679.",
+  "cpe_strings": "cpe:2.3:o:google:android:8.0:*:*:*:*:*:*:*|cpe:2.3:o:google:android:8.1:*:*:*:*:*:*:*"
+ }
+]

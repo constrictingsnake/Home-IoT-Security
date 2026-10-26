@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2016-6190",
+  "description": "SOGo before 2.3.12 and 3.x before 3.1.1 does not restrict access to the UID and DTSTAMP attributes, which allows remote authenticated users to obtain sensitive information about appointments with the \"View the Date & Time\" restriction, as demonstrated by correlating UIDs and DTSTAMPs between all users.",
+  "cpe_strings": "cpe:2.3:a:inverse-inc:sogo:*:*:*:*:*:*:*:*|cpe:2.3:a:inverse-inc:sogo:3.0.0:*:*:*:*:*:*:*|cpe:2.3:a:inverse-inc:sogo:3.0.0:beta_1:*:*:*:*:*:*|cpe:2.3:a:inverse-inc:sogo:3.0.0:beta_2:*:*:*:*:*:*|cpe:2.3:a:inverse-inc:sogo:3.0.0:beta_3:*:*:*:*:*:*|cpe:2.3:a:inverse-inc:sogo:3.0.0:beta_4:*:*:*:*:*:*|cpe:2.3:a:inverse-inc:sogo:3.0.0:beta_5:*:*:*:*:*:*|cpe:2.3:a:inverse-inc:sogo:3.0.1:*:*:*:*:*:*:*|cpe:2.3:a:inverse-inc:sogo:3.0.2:*:*:*:*:*:*:*|cpe:2.3:a:inverse-inc:sogo:3.1.0:*:*:*:*:*:*:*"
+ }
+]

@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2020-27211",
+  "description": "Nordic Semiconductor nRF52840 devices through 2020-10-19 have improper protection against physical side channels. The flash read-out protection (APPROTECT) can be bypassed by injecting a fault during the boot phase.",
+  "cpe_strings": "cpe:2.3:o:nordicsemi:nrf52840_firmware:*:*:*:*:*:*:*:*|cpe:2.3:h:nordicsemi:nrf52840:-:*:*:*:*:*:*:*"
+ }
+]

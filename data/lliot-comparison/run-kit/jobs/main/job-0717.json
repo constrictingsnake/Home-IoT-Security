@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2021-26594",
+  "description": "In Directus 8.x through 8.8.1, an attacker can switch to the administrator role (via the PATCH method) without any control by the back end. NOTE: This vulnerability only affects products that are no longer supported by the maintainer",
+  "cpe_strings": "cpe:2.3:a:rangerstudio:directus:*:*:*:*:*:*:*:*"
+ }
+]

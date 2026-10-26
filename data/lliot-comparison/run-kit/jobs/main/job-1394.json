@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2023-37832",
+  "description": "A lack of rate limiting in Elenos ETG150 FM transmitter v3.12 allows attackers to obtain user credentials via brute force and cause other unspecified impacts.",
+  "cpe_strings": "cpe:2.3:o:elenos:etg150_firmware:3.12:*:*:*:*:*:*:*|cpe:2.3:h:elenos:etg150:-:*:*:*:*:*:*:*"
+ }
+]

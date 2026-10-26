@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2017-16237",
+  "description": "In Vir.IT eXplorer Anti-Virus before 8.5.42, the driver file (VIAGLT64.SYS) contains an Arbitrary Write vulnerability because of not validating input values from IOCtl 0x8273007C.",
+  "cpe_strings": "cpe:2.3:a:tgsoft:vir.it_explorer:*:*:*:*:*:*:*:*"
+ }
+]

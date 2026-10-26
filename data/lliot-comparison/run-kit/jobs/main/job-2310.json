@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2018-11824",
+  "description": "A stack-based buffer overflow can occur in a firmware routine in Snapdragon Mobile, Snapdragon Wear in version MDM9206, MDM9607, MDM9650, SD 210/SD 212/SD 205, SD 835, SD 845, SD 850, SDA660",
+  "cpe_strings": "cpe:2.3:o:qualcomm:mdm9206_firmware:-:*:*:*:*:*:*:*|cpe:2.3:h:qualcomm:mdm9206:-:*:*:*:*:*:*:*|cpe:2.3:o:qualcomm:mdm9607_firmware:-:*:*:*:*:*:*:*|cpe:2.3:h:qualcomm:mdm9607:-:*:*:*:*:*:*:*|cpe:2.3:o:qualcomm:mdm9650_firmware:-:*:*:*:*:*:*:*|cpe:2.3:h:qualcomm:mdm9650:-:*:*:*:*:*:*:*|cpe:2.3:o:qualcomm:sd_210_firmware:-:*:*:*:*:*:*:*|cpe:2.3:h:qualcomm:sd_210:-:*:*:*:*:*:*:*|cpe:2.3:o:qualcomm:sd_212_firmware:-:*:*:*:*:*:*:*|cpe:2.3:h:qualcomm:sd_212:-:*:*:*:*:*:*:*|cpe:2.3:o:qualcomm:sd_205_firmware:-:*:*:*:*:*:*:*|cpe:2.3:h:qualcomm:sd_205:-:*:*:*:*:*:*:*|cpe:2.3:o:qualcomm:sd_835_firmware:-:*:*:*:*:*:*:*|cpe:2.3:h:qualcomm:sd_835:-:*:*:*:*:*:*:*|cpe:2.3:o:qualcomm:sd_845_firmware:-:*:*:*:*:*:*:*|cpe:2.3:h:qualcomm:sd_845:-:*:*:*:*:*:*:*|cpe:2.3:o:qualcomm:sd_850_firmware:-:*:*:*:*:*:*:*|cpe:2.3:h:qualcomm:sd_850:-:*:*:*:*:*:*:*|cpe:2.3:o:qualcomm:sda660_firmware:-:*:*:*:*:*:*:*|cpe:2.3:h:qualcomm:sda660:-:*:*:*:*:*:*:*"
+ }
+]

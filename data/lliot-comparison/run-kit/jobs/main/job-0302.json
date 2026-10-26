@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2023-33236",
+  "description": "MXsecurity version 1.0 is vulnearble to hardcoded credential vulnerability. This vulnerability has been reported that can be exploited to craft arbitrary JWT tokens and subsequently bypass authentication for web-based APIs.\n",
+  "cpe_strings": "cpe:2.3:a:moxa:mxsecurity:1.0:*:*:*:*:*:*:*"
+ }
+]

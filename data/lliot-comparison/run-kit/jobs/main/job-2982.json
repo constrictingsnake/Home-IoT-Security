@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2023-45253",
+  "description": "An issue was discovered in Huddly HuddlyCameraService before version 8.0.7, not including version 7.99, allows attackers to manipulate files and escalate privileges via RollingFileAppender.DeleteFile method performed by the log4net library.",
+  "cpe_strings": "cpe:2.3:a:huddly:huddlycameraservices:*:*:*:*:*:*:*:*|cpe:2.3:o:microsoft:windows:-:*:*:*:*:*:*:*"
+ }
+]

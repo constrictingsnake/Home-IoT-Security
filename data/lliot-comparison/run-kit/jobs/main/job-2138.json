@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2023-40602",
+  "description": "URL Redirection to Untrusted Site ('Open Redirect') vulnerability in Doofinder Doofinder WP & WooCommerce Search.This issue affects Doofinder WP & WooCommerce Search: from n/a through 1.5.49.",
+  "cpe_strings": "cpe:2.3:a:doofinder:doofinder:*:*:*:*:*:wordpress:*:*"
+ }
+]

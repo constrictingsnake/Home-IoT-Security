@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2020-8163",
+  "description": "The is a code injection vulnerability in versions of Rails prior to 5.0.1 that wouldallow an attacker who controlled the `locals` argument of a `render` call to perform a RCE.",
+  "cpe_strings": "cpe:2.3:a:rubyonrails:rails:*:*:*:*:*:*:*:*|cpe:2.3:o:debian:debian_linux:9.0:*:*:*:*:*:*:*"
+ }
+]

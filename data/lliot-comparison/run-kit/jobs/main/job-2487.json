@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2019-9103",
+  "description": "An issue was discovered on Moxa MGate MB3170 and MB3270 devices before 4.1, MB3280 and MB3480 devices before 3.1, MB3660 devices before 2.3, and MB3180 devices before 2.1. An attacker can access sensitive information (e.g., conduct username disclosure attacks) on the built-in WEB-service without authorization.",
+  "cpe_strings": "cpe:2.3:o:moxa:mb3170_firmware:*:*:*:*:*:*:*:*|cpe:2.3:h:moxa:mb3170:-:*:*:*:*:*:*:*|cpe:2.3:o:moxa:mb3270_firmware:*:*:*:*:*:*:*:*|cpe:2.3:h:moxa:mb3270:-:*:*:*:*:*:*:*|cpe:2.3:o:moxa:mb3180_firmware:*:*:*:*:*:*:*:*|cpe:2.3:h:moxa:mb3180:-:*:*:*:*:*:*:*|cpe:2.3:o:moxa:mb3280_firmware:*:*:*:*:*:*:*:*|cpe:2.3:h:moxa:mb3280:-:*:*:*:*:*:*:*|cpe:2.3:o:moxa:mb3480_firmware:*:*:*:*:*:*:*:*|cpe:2.3:h:moxa:mb3480:-:*:*:*:*:*:*:*|cpe:2.3:o:moxa:mb3660_firmware:*:*:*:*:*:*:*:*|cpe:2.3:h:moxa:mb3660:-:*:*:*:*:*:*:*"
+ }
+]

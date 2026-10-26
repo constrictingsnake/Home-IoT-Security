@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2021-33725",
+  "description": "A vulnerability has been identified in SINEC NMS (All versions < V1.0 SP2 Update 1). The affected system allows to delete arbitrary files or directories under a user controlled path and does not correctly check if the relative path is still within the intended target directory.",
+  "cpe_strings": "cpe:2.3:a:siemens:sinec_nms:*:*:*:*:*:*:*:*|cpe:2.3:a:siemens:sinec_nms:1.0:-:*:*:*:*:*:*|cpe:2.3:a:siemens:sinec_nms:1.0:sp1:*:*:*:*:*:*|cpe:2.3:a:siemens:sinec_nms:1.0:sp2:*:*:*:*:*:*"
+ }
+]

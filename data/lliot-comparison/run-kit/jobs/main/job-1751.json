@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2020-14993",
+  "description": "A stack-based buffer overflow on DrayTek Vigor2960, Vigor3900, and Vigor300B devices before 1.5.1.1 allows remote attackers to execute arbitrary code via the formuserphonenumber parameter in an authusersms action to mainfunction.cgi.",
+  "cpe_strings": "cpe:2.3:o:draytek:vigor300b_firmware:*:*:*:*:*:*:*:*|cpe:2.3:h:draytek:vigor300b:-:*:*:*:*:*:*:*|cpe:2.3:o:draytek:vigor2960_firmware:*:*:*:*:*:*:*:*|cpe:2.3:h:draytek:vigor2960:-:*:*:*:*:*:*:*|cpe:2.3:o:draytek:vigor3900_firmware:*:*:*:*:*:*:*:*|cpe:2.3:h:draytek:vigor3900:-:*:*:*:*:*:*:*"
+ }
+]

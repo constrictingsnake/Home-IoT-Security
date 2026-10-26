@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2017-12412",
+  "description": "ccn-lite-ccnb2xml in CCN-lite before 2.0.0 allows context-dependent attackers to have unspecified impact via a crafted file, which triggers infinite recursion and a stack overflow.",
+  "cpe_strings": "cpe:2.3:a:ccn-lite:ccn-lite:*:*:*:*:*:*:*:*"
+ }
+]

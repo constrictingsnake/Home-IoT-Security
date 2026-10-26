@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2018-17176",
+  "description": "A replay issue was discovered on Neato Botvac Connected 2.2.0 devices. Manual control mode requires authentication, but once recorded, the authentication (always transmitted in cleartext) can be replayed to /bin/webserver on port 8081. There are no nonces, and timestamps are not checked at all.",
+  "cpe_strings": "cpe:2.3:o:neatorobotics:botvac_d4_connected_firmware:2.2.0:*:*:*:*:*:*:*|cpe:2.3:h:neatorobotics:botvac_d4_connected:-:*:*:*:*:*:*:*|cpe:2.3:o:neatorobotics:botvac_d6_connected_firmware:2.2.0:*:*:*:*:*:*:*|cpe:2.3:h:neatorobotics:botvac_d6_connected:-:*:*:*:*:*:*:*|cpe:2.3:o:neatorobotics:botvac_d7_connected_firmware:2.2.0:*:*:*:*:*:*:*|cpe:2.3:h:neatorobotics:botvac_d7_connected:-:*:*:*:*:*:*:*"
+ }
+]

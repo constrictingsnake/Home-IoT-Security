@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2023-51392",
+  "description": "Ember ZNet between v7.2.0 and v7.4.0 used software AES-CCM instead of integrated hardware cryptographic accelerators, potentially increasing risk of electromagnetic and differential power analysis sidechannel attacks.",
+  "cpe_strings": "cpe:2.3:a:silabs:emberznet:*:*:*:*:*:*:*:*"
+ }
+]

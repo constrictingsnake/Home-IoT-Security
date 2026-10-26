@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2024-11981",
+  "description": "Certain models of routers from Billion Electric has an Authentication Bypass vulnerability, allowing unautheticated attackers to retrive contents of arbitrary web pages.",
+  "cpe_strings": ""
+ }
+]

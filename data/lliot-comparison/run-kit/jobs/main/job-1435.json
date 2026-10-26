@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2013-2356",
+  "description": "HP System Management Homepage (SMH) before 7.2.1 allows remote attackers to obtain sensitive information via unspecified vectors, a different vulnerability than CVE-2013-2363.",
+  "cpe_strings": "cpe:2.3:a:hp:system_management_homepage:*:*:*:*:*:*:*:*|cpe:2.3:a:hp:system_management_homepage:7.0:*:*:*:*:*:*:*|cpe:2.3:a:hp:system_management_homepage:7.1:*:*:*:*:*:*:*"
+ }
+]

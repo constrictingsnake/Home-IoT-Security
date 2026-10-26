@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2023-35862",
+  "description": "libcoap 4.3.1 contains a buffer over-read via the function coap_parse_oscore_conf_mem at coap_oscore.c.",
+  "cpe_strings": "cpe:2.3:a:libcoap:libcoap:4.3.1:*:*:*:*:*:*:*"
+ }
+]

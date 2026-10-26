@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2023-32224",
+  "description": "D-Link DSL-224 firmware version 3.0.10 CWE-307: Improper Restriction of Excessive Authentication Attempts",
+  "cpe_strings": "cpe:2.3:o:dlink:dsl-224_firmware:3.0.10:*:*:*:*:*:*:*|cpe:2.3:h:dlink:dsl-224:-:*:*:*:*:*:*:*"
+ }
+]

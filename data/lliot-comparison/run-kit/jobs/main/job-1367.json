@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2021-30072",
+  "description": "An issue was discovered in prog.cgi on D-Link DIR-878 1.30B08 devices. Because strcat is misused, there is a stack-based buffer overflow that does not require authentication.",
+  "cpe_strings": "cpe:2.3:o:dlink:dir-878_firmware:*:*:*:*:*:*:*:*|cpe:2.3:h:dlink:dir-878:ax:*:*:*:*:*:*:*"
+ }
+]

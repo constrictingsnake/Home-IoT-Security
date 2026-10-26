@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2024-34373",
+  "description": "Improper Neutralization of Input During Web Page Generation ('Cross-site Scripting') vulnerability in POSIMYTH The Plus Addons for Elementor Page Builder Lite the-plus-addons-for-elementor-page-builder.This issue affects The Plus Addons for Elementor Page Builder Lite: from n/a through <= 5.4.2.",
+  "cpe_strings": "cpe:2.3:a:posimyth:the_plus_addons_for_elementor:*:*:*:*:free:wordpress:*:*"
+ }
+]

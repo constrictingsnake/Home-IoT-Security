@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2020-10601",
+  "description": "VISAM VBASE Editor version 11.5.0.2 and VBASE Web-Remote Module allow weak hashing algorithm and insecure permissions which may allow a local attacker to bypass the password-protected mechanism through brute-force attacks, cracking techniques, or overwriting the password hash.",
+  "cpe_strings": "cpe:2.3:a:visam:vbase_editor:11.5.0.2:*:*:*:*:*:*:*|cpe:2.3:a:visam:vbase_web-remote:*:*:*:*:*:*:*:*"
+ }
+]

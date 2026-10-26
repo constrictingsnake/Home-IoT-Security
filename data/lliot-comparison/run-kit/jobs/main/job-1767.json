@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2022-40903",
+  "description": "Aiphone GT-DMB-N 3-in-1 Video Entrance Station with NFC Reader 1.0.3 does not mitigate against repeated failed access attempts, which allows an attacker to gain administrative privileges.",
+  "cpe_strings": "cpe:2.3:o:aiphone:gt-dmb-n_firmware:*:*:*:*:*:*:*:*|cpe:2.3:h:aiphone:gt-dmb-n:-:*:*:*:*:*:*:*|cpe:2.3:o:aiphone:gt-dmb_firmware:*:*:*:*:*:*:*:*|cpe:2.3:h:aiphone:gt-dmb:-:*:*:*:*:*:*:*|cpe:2.3:o:aiphone:gt-dmb-lvn_firmware:*:*:*:*:*:*:*:*|cpe:2.3:h:aiphone:gt-dmb-lvn:-:*:*:*:*:*:*:*|cpe:2.3:o:aiphone:gt-db-vn_firmware:*:*:*:*:*:*:*:*|cpe:2.3:h:aiphone:gt-db-vn:-:*:*:*:*:*:*:*"
+ }
+]

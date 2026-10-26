@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2019-11229",
+  "description": "models/repo_mirror.go in Gitea before 1.7.6 and 1.8.x before 1.8-RC3 mishandles mirror repo URL settings, leading to remote code execution.",
+  "cpe_strings": "cpe:2.3:a:gitea:gitea:*:*:*:*:*:*:*:*|cpe:2.3:a:gitea:gitea:1.8.0:rc1:*:*:*:*:*:*|cpe:2.3:a:gitea:gitea:1.8.0:rc2:*:*:*:*:*:*"
+ }
+]

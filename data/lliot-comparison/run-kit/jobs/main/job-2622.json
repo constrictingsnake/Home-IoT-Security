@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2016-1965",
+  "description": "Mozilla Firefox before 45.0 and Firefox ESR 38.x before 38.7 mishandle a navigation sequence that returns to the original page, which allows remote attackers to spoof the address bar via vectors involving the history.back method and the location.protocol property.",
+  "cpe_strings": "cpe:2.3:a:mozilla:firefox:*:*:*:*:*:*:*:*|cpe:2.3:a:mozilla:firefox:38.0:*:*:*:*:*:*:*|cpe:2.3:a:mozilla:firefox:38.0.1:*:*:*:*:*:*:*|cpe:2.3:a:mozilla:firefox:38.0.5:*:*:*:*:*:*:*|cpe:2.3:a:mozilla:firefox:38.1.0:*:*:*:*:*:*:*|cpe:2.3:a:mozilla:firefox:38.1.1:*:*:*:*:*:*:*|cpe:2.3:a:mozilla:firefox:38.2.0:*:*:*:*:*:*:*|cpe:2.3:a:mozilla:firefox:38.2.1:*:*:*:*:*:*:*|cpe:2.3:a:mozilla:firefox:38.3.0:*:*:*:*:*:*:*|cpe:2.3:a:mozilla:firefox:38.4.0:*:*:*:*:*:*:*|cpe:2.3:a:mozilla:firefox:38.5.0:*:*:*:*:*:*:*|cpe:2.3:a:mozilla:firefox:38.5.1:*:*:*:*:*:*:*|cpe:2.3:a:mozilla:firefox:38.6.0:*:*:*:*:*:*:*|cpe:2.3:a:mozilla:firefox:38.6.1:*:*:*:*:*:*:*|cpe:2.3:o:opensuse:opensuse:13.1:*:*:*:*:*:*:*|cpe:2.3:o:oracle:linux:5.0:*:*:*:*:*:*:*|cpe:2.3:o:oracle:linux:6:*:*:*:*:*:*:*|cpe:2.3:o:oracle:linux:7:*:*:*:*:*:*:*"
+ }
+]

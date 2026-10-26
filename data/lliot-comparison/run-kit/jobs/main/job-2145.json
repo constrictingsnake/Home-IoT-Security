@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2021-21501",
+  "description": "Improper configuration will cause ServiceComb ServiceCenter Directory Traversal problem in ServcieCenter 1.x.x versions and fixed in 2.0.0.",
+  "cpe_strings": "cpe:2.3:a:apache:servicecomb:*:*:*:*:*:*:*:*"
+ }
+]

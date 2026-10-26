@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2013-1598",
+  "description": "A Command Injection vulnerability exists in Vivotek PT7135 IP Cameras 0300a and 0400a via the system.ntp parameter to the farseer.out binary file, which cold let a malicious user execute arbitrary code.",
+  "cpe_strings": "cpe:2.3:o:vivotek:pt7135_firmware:0300a:*:*:*:*:*:*:*|cpe:2.3:o:vivotek:pt7135_firmware:0400a:*:*:*:*:*:*:*|cpe:2.3:h:vivotek:pt7135:-:*:*:*:*:*:*:*"
+ }
+]

@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2022-25826",
+  "description": "Information Exposure vulnerability in Galaxy S3 Plugin prior to version 2.2.03.22012751 allows attacker to access password information of connected WiFiAp in the log",
+  "cpe_strings": "cpe:2.3:a:samsung:galaxy_watch_3_plugin:*:*:*:*:*:android:*:*"
+ }
+]

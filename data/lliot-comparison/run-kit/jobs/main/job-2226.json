@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2017-9144",
+  "description": "In ImageMagick 7.0.5-5, a crafted RLE image can trigger a crash because of incorrect EOF handling in coders/rle.c.",
+  "cpe_strings": "cpe:2.3:a:imagemagick:imagemagick:7.0.5-5:*:*:*:*:*:*:*|cpe:2.3:o:debian:debian_linux:8.0:*:*:*:*:*:*:*|cpe:2.3:o:debian:debian_linux:9.0:*:*:*:*:*:*:*"
+ }
+]

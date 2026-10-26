@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2018-4093",
+  "description": "An issue was discovered in certain Apple products. iOS before 11.2.5 is affected. macOS before 10.13.3 is affected. tvOS before 11.2.5 is affected. watchOS before 4.2.2 is affected. The issue involves the \"Kernel\" component. It allows attackers to bypass intended memory-read restrictions via a crafted app.",
+  "cpe_strings": "cpe:2.3:a:apple:apple_tv:*:*:*:*:*:*:*:*|cpe:2.3:o:apple:iphone_os:*:*:*:*:*:*:*:*|cpe:2.3:o:apple:mac_os_x:*:*:*:*:*:*:*:*|cpe:2.3:o:apple:watchos:*:*:*:*:*:*:*:*"
+ }
+]

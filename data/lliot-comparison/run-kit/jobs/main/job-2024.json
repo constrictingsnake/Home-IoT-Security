@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2018-6479",
+  "description": "An issue was discovered on Netwave IP Camera devices. An unauthenticated attacker can crash a device by sending a POST request with a huge body size to the / URI.",
+  "cpe_strings": "cpe:2.3:o:seasofsolutions:ip_camera_firmware:-:*:*:*:*:*:*:*|cpe:2.3:h:seasofsolutions:ip_camera:-:*:*:*:*:*:*:*"
+ }
+]

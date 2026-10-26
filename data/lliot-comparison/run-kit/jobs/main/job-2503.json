@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2019-19799",
+  "description": "Zoho ManageEngine Applications Manager before 14600 allows a remote unauthenticated attacker to disclose license related information via WieldFeedServlet servlet.",
+  "cpe_strings": "cpe:2.3:a:zohocorp:manageengine_applications_manager:*:*:*:*:*:*:*:*|cpe:2.3:a:zohocorp:manageengine_applications_manager:14.5:-:*:*:*:*:*:*|cpe:2.3:a:zohocorp:manageengine_applications_manager:14.5:build14500:*:*:*:*:*:*|cpe:2.3:a:zohocorp:manageengine_applications_manager:14.5:build14510:*:*:*:*:*:*|cpe:2.3:a:zohocorp:manageengine_applications_manager:14.5:build14520:*:*:*:*:*:*|cpe:2.3:a:zohocorp:manageengine_applications_manager:14.5:build14530:*:*:*:*:*:*|cpe:2.3:a:zohocorp:manageengine_applications_manager:14.5:build14540:*:*:*:*:*:*|cpe:2.3:a:zohocorp:manageengine_applications_manager:14.5:build14560:*:*:*:*:*:*|cpe:2.3:a:zohocorp:manageengine_applications_manager:14.5:build14570:*:*:*:*:*:*|cpe:2.3:a:zohocorp:manageengine_applications_manager:14.5:build14580:*:*:*:*:*:*|cpe:2.3:a:zohocorp:manageengine_applications_manager:14.5:build14590:*:*:*:*:*:*"
+ }
+]

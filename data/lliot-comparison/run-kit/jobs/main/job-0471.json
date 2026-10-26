@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2022-30506",
+  "description": "An arbitrary file upload vulnerability was discovered in MCMS 5.2.7, allowing an attacker to execute arbitrary code through a crafted ZIP file.",
+  "cpe_strings": "cpe:2.3:a:mingsoft:mcms:5.2.7:*:*:*:*:*:*:*"
+ }
+]

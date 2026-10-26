@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2013-3234",
+  "description": "The rose_recvmsg function in net/rose/af_rose.c in the Linux kernel before 3.9-rc7 does not initialize a certain data structure, which allows local users to obtain sensitive information from kernel stack memory via a crafted recvmsg or recvfrom system call.",
+  "cpe_strings": "cpe:2.3:o:linux:linux_kernel:*:rc6:*:*:*:*:*:*|cpe:2.3:o:linux:linux_kernel:3.9:rc1:*:*:*:*:*:*|cpe:2.3:o:linux:linux_kernel:3.9:rc2:*:*:*:*:*:*|cpe:2.3:o:linux:linux_kernel:3.9:rc3:*:*:*:*:*:*|cpe:2.3:o:linux:linux_kernel:3.9:rc4:*:*:*:*:*:*|cpe:2.3:o:linux:linux_kernel:3.9:rc5:*:*:*:*:*:*"
+ }
+]

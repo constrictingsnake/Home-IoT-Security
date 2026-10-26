@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2018-17014",
+  "description": "An issue was discovered on TP-Link TL-WR886N 6.0 2.3.4 and TL-WR886N 7.0 1.1.0 devices. Authenticated attackers can crash router services (e.g., inetd, HTTP, DNS, and UPnP) via long JSON data for ip_mac_bind name.",
+  "cpe_strings": "cpe:2.3:o:tp-link:tl-wr886n_firmware:6.0_2.3.4:*:*:*:*:*:*:*|cpe:2.3:o:tp-link:tl-wr886n_firmware:7.0_1.1.0:*:*:*:*:*:*:*|cpe:2.3:h:tp-link:tl-wr886n:-:*:*:*:*:*:*:*"
+ }
+]

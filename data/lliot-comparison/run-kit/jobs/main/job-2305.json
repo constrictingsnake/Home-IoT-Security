@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2022-27089",
+  "description": "In Fujitsu PlugFree Network <= 7.3.0.3, an Unquoted service path in PFNService.exe software allows a local attacker to potentially escalate privileges to system level.",
+  "cpe_strings": "cpe:2.3:a:fujitsu:plugfree_network:*:*:*:*:*:*:*:*"
+ }
+]

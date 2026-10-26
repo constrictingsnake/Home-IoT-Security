@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2024-22768",
+  "description": "Improper Input Validation in Hitron Systems DVR HVR-4781 1.03~4.02 allows an attacker to cause network attack in case of using defalut admin ID/PW.\n",
+  "cpe_strings": "cpe:2.3:o:hitron:hvr-4781_firmware:*:*:*:*:*:*:*:*|cpe:2.3:h:hitron:hvr-4781:-:*:*:*:*:*:*:*"
+ }
+]

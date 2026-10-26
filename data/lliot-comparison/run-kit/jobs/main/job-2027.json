@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2022-37801",
+  "description": "Tenda AC1206 V15.03.06.23 was discovered to contain a stack overflow via the list parameter at the function formSetQosBand.",
+  "cpe_strings": "cpe:2.3:o:tenda:ac1206_firmware:15.03.06.23:*:*:*:*:*:*:*|cpe:2.3:h:tenda:ac1206:-:*:*:*:*:*:*:*"
+ }
+]

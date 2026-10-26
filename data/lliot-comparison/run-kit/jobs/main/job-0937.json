@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2021-25904",
+  "description": "An issue was discovered in the av-data crate before 0.3.0 for Rust. A raw pointer is dereferenced, leading to a read of an arbitrary memory address, sometimes causing a segfault.",
+  "cpe_strings": "cpe:2.3:a:av-data_project:av-data:*:*:*:*:*:rust:*:*"
+ }
+]

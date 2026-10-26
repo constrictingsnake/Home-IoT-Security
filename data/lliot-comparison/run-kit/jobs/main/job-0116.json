@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2022-32999",
+  "description": "The cloudlabeling package in PyPI v0.0.1 was discovered to contain a code execution backdoor via the request package. This vulnerability allows attackers to access sensitive user information and digital currency keys, as well as escalate privileges.",
+  "cpe_strings": "cpe:2.3:a:pypi:cloudlabeling:0.0.1:*:*:*:*:pypi:*:*"
+ }
+]

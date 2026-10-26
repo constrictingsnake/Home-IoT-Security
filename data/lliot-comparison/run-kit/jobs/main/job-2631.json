@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2023-49809",
+  "description": "Mattermost fails to handle a null request body in the /add endpoint, allowing a simple member to send a request with null request body to that endpoint and make it crash. After a few repetitions, the plugin is disabled. \n\n",
+  "cpe_strings": "cpe:2.3:a:mattermost:mattermost_server:*:*:*:*:*:*:*:*"
+ }
+]

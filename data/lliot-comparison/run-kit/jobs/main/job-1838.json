@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2016-1000",
+  "description": "Use-after-free vulnerability in Adobe Flash Player before 18.0.0.333 and 19.x through 21.x before 21.0.0.182 on Windows and OS X and before 11.2.202.577 on Linux, Adobe AIR before 21.0.0.176, Adobe AIR SDK before 21.0.0.176, and Adobe AIR SDK & Compiler before 21.0.0.176 allows attackers to execute arbitrary code via unspecified vectors, a different vulnerability than CVE-2016-0987, CVE-2016-0988, CVE-2016-0990, CVE-2016-0991, CVE-2016-0994, CVE-2016-0995, CVE-2016-0996, CVE-2016-0997, CVE-2016-0998, and CVE-2016-0999.",
+  "cpe_strings": "cpe:2.3:a:adobe:flash_player:*:*:*:*:*:chrome:*:*|cpe:2.3:o:apple:mac_os_x:-:*:*:*:*:*:*:*|cpe:2.3:o:google:chrome_os:-:*:*:*:*:*:*:*|cpe:2.3:o:linux:linux_kernel:-:*:*:*:*:*:*:*|cpe:2.3:o:microsoft:windows:-:*:*:*:*:*:*:*|cpe:2.3:a:adobe:air:*:*:*:*:*:*:*:*|cpe:2.3:o:google:android:-:*:*:*:*:*:*:*|cpe:2.3:a:adobe:air_sdk:*:*:*:*:*:*:*:*|cpe:2.3:o:samsung:x14j_firmware:t-ms14jakucb-1102.5:*:*:*:*:*:*:*|cpe:2.3:o:apple:iphone_os:-:*:*:*:*:*:*:*|cpe:2.3:a:adobe:flash_player:*:*:*:*:*:*:*:*|cpe:2.3:a:adobe:flash_player_desktop_runtime:*:*:*:*:*:*:*:*|cpe:2.3:a:adobe:flash_player:*:*:*:*:*:edge:*:*|cpe:2.3:o:microsoft:windows_10:-:*:*:*:*:*:*:*|cpe:2.3:a:adobe:flash_player:*:*:*:*:*:internet_explorer:*:*|cpe:2.3:o:microsoft:windows_8.1:-:*:*:*:*:*:*:*|cpe:2.3:a:adobe:air_desktop_runtime:*:*:*:*:*:*:*:*|cpe:2.3:a:adobe:air_sdk_\\&_compiler:*:*:*:*:*:*:*:*"
+ }
+]

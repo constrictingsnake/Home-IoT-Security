@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2017-5198",
+  "description": "SolarWinds LEM (aka SIEM) before 6.3.1 has an incorrect sudo configuration, which allows local users to obtain root access by editing /usr/local/contego/scripts/hostname.sh.",
+  "cpe_strings": "cpe:2.3:a:solarwinds:log_and_event_manager:*:*:*:*:*:*:*:*"
+ }
+]

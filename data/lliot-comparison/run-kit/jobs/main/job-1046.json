@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2018-13732",
+  "description": "The mintToken function of a smart contract implementation for RiptideCoin (RIPT), an Ethereum token, has an integer overflow that allows the owner of the contract to set the balance of an arbitrary user to any value.",
+  "cpe_strings": "cpe:2.3:a:riptidecoin_project:riptidecoin:-:*:*:*:*:*:*:*"
+ }
+]

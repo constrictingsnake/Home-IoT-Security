@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2020-24699",
+  "description": "The Chamber Dashboard Business Directory plugin 3.2.8 for WordPress allows XSS.",
+  "cpe_strings": "cpe:2.3:a:chamber_dashboard_business_directory_project:chamber_dashboard_business_directory:3.2.8:*:*:*:*:wordpress:*:*"
+ }
+]

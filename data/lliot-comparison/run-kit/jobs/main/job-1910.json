@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2023-38471",
+  "description": "A vulnerability was found in Avahi. A reachable assertion exists in the dbus_set_host_name function.",
+  "cpe_strings": "cpe:2.3:a:avahi:avahi:*:*:*:*:*:*:*:*|cpe:2.3:o:redhat:enterprise_linux:8.0:*:*:*:*:*:*:*|cpe:2.3:o:redhat:enterprise_linux:9.0:*:*:*:*:*:*:*"
+ }
+]

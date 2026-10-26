@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2022-32227",
+  "description": "A cleartext transmission of sensitive information exists in Rocket.Chat <v5, <v4.8.2 and <v4.7.5 relating to Oauth tokens by having the permission \"view-full-other-user-info\", this could cause an oauth token leak in the product.",
+  "cpe_strings": "cpe:2.3:a:rocket.chat:rocket.chat:*:*:*:*:*:*:*:*"
+ }
+]

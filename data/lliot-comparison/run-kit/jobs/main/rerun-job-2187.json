@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2014-3898",
+  "description": "Cross-site scripting (XSS) vulnerability in Fujitsu ServerView Operations Manager 5.00.09 through 6.30.05 allows remote attackers to inject arbitrary web script or HTML via unspecified vectors.",
+  "cpe_strings": "cpe:2.3:a:fujitsu:serverview_operations_manager:5.00.09:*:*:*:*:*:*:*|cpe:2.3:a:fujitsu:serverview_operations_manager:6.30.05:*:*:*:*:*:*:*"
+ }
+]

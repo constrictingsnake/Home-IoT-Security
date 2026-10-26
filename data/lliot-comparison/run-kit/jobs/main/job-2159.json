@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2017-6341",
+  "description": "Dahua DHI-HCVR7216A-S3 devices with NVR Firmware 3.210.0001.10 2016-06-06, Camera Firmware 2.400.0000.28.R 2016-03-29, and SmartPSS Software 1.16.1 2017-01-19 send cleartext passwords in response to requests from the Web Page, Mobile Application, and Desktop Application interfaces, which allows remote attackers to obtain sensitive information by sniffing the network, a different vulnerability than CVE-2013-6117.",
+  "cpe_strings": "cpe:2.3:o:dahuasecurity:camera_firmware:2.400.0000.28.r:*:*:*:*:*:*:*|cpe:2.3:o:dahuasecurity:nvr_firmware:3.210.0001.10:*:*:*:*:*:*:*|cpe:2.3:o:dahuasecurity:smartpss_firmware:1.16.1:*:*:*:*:*:*:*|cpe:2.3:h:dahuasecurity:dhi-hcvr7216a-s3:-:*:*:*:*:*:*:*"
+ }
+]

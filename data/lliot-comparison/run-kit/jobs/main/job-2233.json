@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2023-31890",
+  "description": "An XML Deserialization vulnerability in glazedlists v1.11.0 allows an attacker to execute arbitrary code via the BeanXMLByteCoder.decode() parameter.",
+  "cpe_strings": "cpe:2.3:a:glazedlists:glazed_lists:1.11.0:*:*:*:*:*:*:*"
+ }
+]

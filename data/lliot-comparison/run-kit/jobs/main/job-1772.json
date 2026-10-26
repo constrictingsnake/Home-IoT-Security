@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2022-22506",
+  "description": "IBM Robotic Process Automation 21.0.2 contains a vulnerability that could allow user ids may be exposed across tenants.  IBM X-Force ID:  227293.",
+  "cpe_strings": "cpe:2.3:a:ibm:robotic_process_automation:21.0.2:*:*:*:*:*:*:*"
+ }
+]

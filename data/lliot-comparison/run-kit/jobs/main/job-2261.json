@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2017-6282",
+  "description": "NVIDIA Tegra kernel driver contains a vulnerability in NVMAP where an attacker has the ability to write an arbitrary value to an arbitrary location which may lead to an escalation of privileges. This issue is rated as high.",
+  "cpe_strings": "cpe:2.3:o:nvidia:shield_tv_firmware:*:*:*:*:*:*:*:*|cpe:2.3:h:nvidia:shield_tv:-:*:*:*:*:*:*:*|cpe:2.3:o:google:android:-:*:*:*:*:*:*:*"
+ }
+]

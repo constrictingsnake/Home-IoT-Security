@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2023-5397",
+  "description": "Server receiving a malformed message to create a new connection could lead to an attacker performing remote code execution or causing a failure. See Honeywell Security Notification for recommendations on upgrading and versioning.\n\n",
+  "cpe_strings": ""
+ }
+]

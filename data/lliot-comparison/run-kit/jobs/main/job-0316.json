@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2014-7993",
+  "description": "Cisco-Meraki MS, MR, and MX devices with firmware before 2014-09-24 allow remote attackers to obtain sensitive credential information by leveraging unspecified HTTP handler access on the local network, aka Cisco-Meraki defect ID 00302012.",
+  "cpe_strings": "cpe:2.3:a:cisco:meraki_mx_firmware:*:*:*:*:*:*:*:*|cpe:2.3:h:cisco:meraki_mx:*:*:*:*:*:*:*:*|cpe:2.3:a:cisco:meraki_mr_firmware:*:*:*:*:*:*:*:*|cpe:2.3:h:cisco:meraki_mr:*:*:*:*:*:*:*:*|cpe:2.3:a:cisco:meraki_ms_firmware:*:*:*:*:*:*:*:*|cpe:2.3:h:cisco:meraki_ms:*:*:*:*:*:*:*:*"
+ }
+]

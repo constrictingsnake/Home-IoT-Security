@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2021-34123",
+  "description": "An issue was discovered on atasm, version 1.09. A stack-buffer-overflow vulnerability in function aprintf() in asm.c allows attackers to execute arbitrary code on the system via a crafted file.",
+  "cpe_strings": "cpe:2.3:a:atasm_project:atasm:1.09:*:*:*:*:*:*:*"
+ }
+]

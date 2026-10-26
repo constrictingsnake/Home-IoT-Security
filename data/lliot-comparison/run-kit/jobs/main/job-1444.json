@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2019-15480",
+  "description": "Domoticz 4.10717 has XSS via item.Name.",
+  "cpe_strings": "cpe:2.3:a:domoticz:domoticz:4.10717:*:*:*:*:*:*:*"
+ }
+]

@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2019-9483",
+  "description": "Amazon Ring Doorbell before 3.4.7 mishandles encryption, which allows attackers to obtain audio and video data, or insert spoofed video that does not correspond to the actual person at the door.",
+  "cpe_strings": "cpe:2.3:o:amazon:ring_video_doorbell_firmware:*:*:*:*:*:*:*:*|cpe:2.3:h:amazon:ring_video_doorbell:-:*:*:*:*:*:*:*"
+ }
+]

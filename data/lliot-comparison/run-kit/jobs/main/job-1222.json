@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2023-4615",
+  "description": "This vulnerability allows remote attackers to disclose sensitive information on affected installations of LG LED Assistant. Authentication is not required to exploit this vulnerability. The specific flaw exists within the /api/download/updateFile endpoint. The issue results from the lack of proper validation of a user-supplied path prior to using it in file operations. An attacker can leverage this vulnerability to disclose information in the context of the current user.",
+  "cpe_strings": "cpe:2.3:a:lg:lg_led_assistant:2.1.45:*:*:*:*:*:*:*"
+ }
+]

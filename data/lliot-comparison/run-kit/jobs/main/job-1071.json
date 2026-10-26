@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2023-41270",
+  "description": "Improper Restriction of Excessive Authentication Attempts vulnerability in Samsung Smart TV UE40D7000 version T-GAPDEUC-1033.2 and before allows attackers to cause a denial of service via WPS attack tools.",
+  "cpe_strings": "cpe:2.3:o:samsung:ue40d7000_firmware:*:*:*:*:*:*:*:*|cpe:2.3:h:samsung:ue40d7000:-:*:*:*:*:*:*:*"
+ }
+]

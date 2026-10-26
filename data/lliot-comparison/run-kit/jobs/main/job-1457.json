@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2018-17990",
+  "description": "An issue was discovered on D-Link DSL-3782 devices with firmware 1.01. An OS command injection vulnerability in Acl.asp allows a remote authenticated attacker to execute arbitrary OS commands via the ScrIPaddrEndTXT parameter.",
+  "cpe_strings": "cpe:2.3:o:dlink:dsl-3782_firmware:1.01:*:*:*:*:*:*:*|cpe:2.3:h:dlink:dsl-3782:-:*:*:*:*:*:*:*"
+ }
+]

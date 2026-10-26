@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2021-24068",
+  "description": "Microsoft Excel Remote Code Execution Vulnerability",
+  "cpe_strings": "cpe:2.3:a:microsoft:excel:2010:sp2:*:*:*:*:*:*|cpe:2.3:a:microsoft:excel:2013:sp1:*:*:*:*:*:*|cpe:2.3:a:microsoft:excel:2013:sp1:*:*:rt:*:*:*|cpe:2.3:a:microsoft:office_web_apps:2013:sp1:*:*:*:*:*:*"
+ }
+]

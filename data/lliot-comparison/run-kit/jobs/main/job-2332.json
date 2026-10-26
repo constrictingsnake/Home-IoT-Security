@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2023-3874",
+  "description": "A vulnerability, which was classified as critical, was found in Campcodes Beauty Salon Management System 1.0. Affected is an unknown function of the file /admin/admin-profile.php. The manipulation of the argument adminname leads to sql injection. It is possible to launch the attack remotely. The exploit has been disclosed to the public and may be used. The identifier of this vulnerability is VDB-235236.",
+  "cpe_strings": "cpe:2.3:a:campcodes:beauty_salon_management_system:1.0:*:*:*:*:*:*:*"
+ }
+]

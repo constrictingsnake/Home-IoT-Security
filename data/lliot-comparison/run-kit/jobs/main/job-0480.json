@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2023-37758",
+  "description": "D-LINK DIR-815 v1.01 was discovered to contain a buffer overflow via the component /web/captcha.cgi.",
+  "cpe_strings": "cpe:2.3:o:dlink:dir-815_firmware:1.0.1:*:*:*:*:*:*:*|cpe:2.3:h:dlink:dir-815:-:*:*:*:*:*:*:*"
+ }
+]

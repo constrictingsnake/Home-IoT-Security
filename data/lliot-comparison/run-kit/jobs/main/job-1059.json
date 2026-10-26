@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2014-9455",
+  "description": "SQL injection vulnerability in showads.php in CTS Projects & Software ClassAd 3.0 allows remote attackers to execute arbitrary SQL commands via the catid parameter.",
+  "cpe_strings": "cpe:2.3:a:cts_projects\\&software:classad:3.0:*:*:*:*:*:*:*"
+ }
+]

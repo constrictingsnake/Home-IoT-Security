@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2018-18471",
+  "description": "/api/2.0/rest/aggregator/xml in Axentra firmware, used by NETGEAR Stora, Seagate GoFlex Home, and MEDION LifeCloud, has an XXE vulnerability that can be chained with an SSRF bug to gain remote command execution as root. It can be triggered by anyone who knows the IP address of the affected device.",
+  "cpe_strings": "cpe:2.3:o:axentra:hipserv:-:*:*:*:*:*:*:*|cpe:2.3:h:medion:lifecloud:-:*:*:*:*:*:*:*|cpe:2.3:h:netgear:stora:-:*:*:*:*:*:*:*|cpe:2.3:h:seagate:goflex_home:-:*:*:*:*:*:*:*"
+ }
+]

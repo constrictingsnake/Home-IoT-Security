@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2024-11021",
+  "description": "Webopac from Grand Vice info has Stored Cross-site Scripting vulnerability. Remote attackers with regular privileges can inject arbitrary JavaScript code into the server. When users visit the compromised page, the code is automatically executed in their browser.",
+  "cpe_strings": "cpe:2.3:a:vice:webopac:*:*:*:*:*:*:*:*"
+ }
+]

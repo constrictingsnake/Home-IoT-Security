@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2021-30619",
+  "description": "Chromium: CVE-2021-30619 UI Spoofing in Autofill",
+  "cpe_strings": "cpe:2.3:o:fedoraproject:fedora:35:*:*:*:*:*:*:*|cpe:2.3:a:microsoft:edge:*:*:*:*:*:*:*:*|cpe:2.3:a:microsoft:edge_chromium:*:*:*:*:*:*:*:*"
+ }
+]

@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2022-23318",
+  "description": "A heap-buffer-overflow in pcf2bdf, versions >= 1.05 allows an attacker to trigger unsafe memory access via a specially crafted PCF font file. This out-of-bound read may lead to an application crash, information disclosure via program memory or other context-dependent impact.",
+  "cpe_strings": "cpe:2.3:a:pcf2bdf_project:pcf2bdf:1.04:*:*:*:*:*:*:*|cpe:2.3:a:pcf2bdf_project:pcf2bdf:1.05:*:*:*:*:*:*:*"
+ }
+]

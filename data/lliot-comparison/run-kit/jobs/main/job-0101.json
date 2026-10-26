@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2020-9489",
+  "description": "A carefully crafted or corrupt file may trigger a System.exit in Tika's OneNote Parser. Crafted or corrupted files can also cause out of memory errors and/or infinite loops in Tika's ICNSParser, MP3Parser, MP4Parser, SAS7BDATParser, OneNoteParser and ImageParser. Apache Tika users should upgrade to 1.24.1 or later. The vulnerabilities in the MP4Parser were partially fixed by upgrading the com.googlecode:isoparser:1.1.22 dependency to org.tallison:isoparser:1.9.41.2. For unrelated security reasons, we upgraded org.apache.cxf to 3.3.6 as part of the 1.24.1 release.",
+  "cpe_strings": "cpe:2.3:a:apache:tika:1.24:*:*:*:*:*:*:*|cpe:2.3:a:oracle:flexcube_private_banking:12.0.0:*:*:*:*:*:*:*|cpe:2.3:a:oracle:flexcube_private_banking:12.1.0:*:*:*:*:*:*:*|cpe:2.3:a:oracle:primavera_unifier:*:*:*:*:*:*:*:*|cpe:2.3:a:oracle:primavera_unifier:16.1:*:*:*:*:*:*:*|cpe:2.3:a:oracle:primavera_unifier:16.2:*:*:*:*:*:*:*|cpe:2.3:a:oracle:primavera_unifier:18.8:*:*:*:*:*:*:*|cpe:2.3:a:oracle:primavera_unifier:19.12:*:*:*:*:*:*:*|cpe:2.3:a:oracle:webcenter_portal:12.2.1.3.0:*:*:*:*:*:*:*|cpe:2.3:a:oracle:webcenter_portal:12.2.1.4.0:*:*:*:*:*:*:*|cpe:2.3:o:oracle:communications_messaging_server:8.1:*:*:*:*:*:*:*"
+ }
+]

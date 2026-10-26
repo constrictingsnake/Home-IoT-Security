@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2021-3998",
+  "description": "A flaw was found in glibc. The realpath() function can mistakenly return an unexpected value, potentially leading to information leakage and disclosure of sensitive data.",
+  "cpe_strings": "cpe:2.3:a:gnu:glibc:*:*:*:*:*:*:*:*|cpe:2.3:a:netapp:ontap_select_deploy_administration_utility:-:*:*:*:*:*:*:*|cpe:2.3:o:netapp:h300s_firmware:-:*:*:*:*:*:*:*|cpe:2.3:h:netapp:h300s:-:*:*:*:*:*:*:*|cpe:2.3:o:netapp:h500s_firmware:-:*:*:*:*:*:*:*|cpe:2.3:h:netapp:h500s:-:*:*:*:*:*:*:*|cpe:2.3:o:netapp:h700s_firmware:-:*:*:*:*:*:*:*|cpe:2.3:h:netapp:h700s:-:*:*:*:*:*:*:*|cpe:2.3:o:netapp:h410s_firmware:-:*:*:*:*:*:*:*|cpe:2.3:h:netapp:h410s:-:*:*:*:*:*:*:*|cpe:2.3:o:netapp:h410c_firmware:-:*:*:*:*:*:*:*|cpe:2.3:h:netapp:h410c:-:*:*:*:*:*:*:*"
+ }
+]

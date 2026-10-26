@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2021-28088",
+  "description": "Cross-site scripting (XSS) in modules/content/admin/content.php in ImpressCMS profile 1.4.2 allows remote attackers to inject arbitrary web script or HTML parameters through the \"Display Name\" field.",
+  "cpe_strings": "cpe:2.3:a:impresscms:impresscms:1.4.2:*:*:*:*:*:*:*"
+ }
+]

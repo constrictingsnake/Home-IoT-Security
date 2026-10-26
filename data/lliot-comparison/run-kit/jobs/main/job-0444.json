@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2021-27823",
+  "description": "An information disclosure vulnerability was discovered in /index.class.php (via port 8181) on NetWave System 1.0 which allows unauthenticated attackers to exfiltrate sensitive information from the system.",
+  "cpe_strings": "cpe:2.3:a:mediateknet:netwave_system:1.0:*:*:*:*:*:*:*"
+ }
+]

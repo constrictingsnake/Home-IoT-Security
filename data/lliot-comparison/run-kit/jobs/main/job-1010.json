@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2021-43327",
+  "description": "An issue was discovered on Renesas RX65 and RX65N devices. With a VCC glitch, an attacker can extract the security ID key from the device. Then, the protected firmware can be extracted.",
+  "cpe_strings": "cpe:2.3:o:renesas:rx65n_firmware:-:*:*:*:*:*:*:*|cpe:2.3:h:renesas:rx65n:-:*:*:*:*:*:*:*|cpe:2.3:o:renesas:rx65_firmware:-:*:*:*:*:*:*:*|cpe:2.3:h:renesas:rx65:-:*:*:*:*:*:*:*"
+ }
+]

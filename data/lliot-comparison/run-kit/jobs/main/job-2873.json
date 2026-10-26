@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2018-11838",
+  "description": "Possible double free issue in WLAN due to lack of checking memory free condition. in Snapdragon Auto, Snapdragon Compute, Snapdragon Consumer Electronics Connectivity, Snapdragon Consumer IOT, Snapdragon Industrial IOT, Snapdragon Mobile, Snapdragon Voice & Music in APQ8053, MDM9640, SDA660, SDM636, SDM660, SDX20",
+  "cpe_strings": "cpe:2.3:o:qualcomm:apq8053_firmware:-:*:*:*:*:*:*:*|cpe:2.3:h:qualcomm:apq8053:-:*:*:*:*:*:*:*|cpe:2.3:o:qualcomm:mdm9640_firmware:-:*:*:*:*:*:*:*|cpe:2.3:h:qualcomm:mdm9640:-:*:*:*:*:*:*:*|cpe:2.3:o:qualcomm:sda660_firmware:-:*:*:*:*:*:*:*|cpe:2.3:h:qualcomm:sda660:-:*:*:*:*:*:*:*|cpe:2.3:o:qualcomm:sdm636_firmware:-:*:*:*:*:*:*:*|cpe:2.3:h:qualcomm:sdm636:-:*:*:*:*:*:*:*|cpe:2.3:o:qualcomm:sdm660_firmware:-:*:*:*:*:*:*:*|cpe:2.3:h:qualcomm:sdm660:-:*:*:*:*:*:*:*|cpe:2.3:o:qualcomm:sdx20_firmware:-:*:*:*:*:*:*:*|cpe:2.3:h:qualcomm:sdx20:-:*:*:*:*:*:*:*"
+ }
+]

@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2023-30897",
+  "description": "A vulnerability has been identified in SIMATIC WinCC (All versions < V7.5.2.13). Affected applications fail to set proper access rights for their installation folder if a non-default installation path was chosen during installation.\n\nThis could allow an authenticated local attacker to inject arbitrary code and escalate privileges.",
+  "cpe_strings": "cpe:2.3:a:siemens:wincc:*:*:*:*:*:*:*:*"
+ }
+]

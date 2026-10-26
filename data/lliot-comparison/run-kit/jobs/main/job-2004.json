@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2015-0699",
+  "description": "SQL injection vulnerability in the Interactive Voice Response (IVR) component in Cisco Unified Communications Manager (UCM) 10.5(1.98991.13) allows remote attackers to execute arbitrary SQL commands via unspecified vectors, aka Bug ID CSCut21563.",
+  "cpe_strings": "cpe:2.3:a:cisco:unified_communications_domain_manager:10.5\\(1.98991.13\\):*:*:*:*:*:*:*"
+ }
+]

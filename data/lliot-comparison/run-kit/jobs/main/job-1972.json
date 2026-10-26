@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2024-4162",
+  "description": "A buffer error in Panasonic KW Watcher versions 1.00 through 2.83 may allow attackers malicious read access to memory.",
+  "cpe_strings": ""
+ }
+]

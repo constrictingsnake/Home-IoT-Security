@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2018-16270",
+  "description": "Samsung Galaxy Gear series before build RE2 includes the hcidump utility with no privilege or permission restriction. This allows an unprivileged process to dump Bluetooth HCI packets to an arbitrary file path.",
+  "cpe_strings": "cpe:2.3:o:samsung:galaxy_gear_firmware:*:*:*:*:*:*:*:*|cpe:2.3:h:samsung:galaxy_gear:-:*:*:*:*:*:*:*|cpe:2.3:o:samsung:gear_2_firmware:*:*:*:*:*:*:*:*|cpe:2.3:h:samsung:gear_2:-:*:*:*:*:*:*:*|cpe:2.3:o:samsung:gear_live_firmware:*:*:*:*:*:*:*:*|cpe:2.3:h:samsung:gear_live:-:*:*:*:*:*:*:*|cpe:2.3:o:samsung:gear_s_firmware:*:*:*:*:*:*:*:*|cpe:2.3:h:samsung:gear_s:-:*:*:*:*:*:*:*|cpe:2.3:o:samsung:gear_s2_firmware:*:*:*:*:*:*:*:*|cpe:2.3:h:samsung:gear_s2:-:*:*:*:*:*:*:*|cpe:2.3:o:samsung:gear_s3_firmware:*:*:*:*:*:*:*:*|cpe:2.3:h:samsung:gear_s3:-:*:*:*:*:*:*:*|cpe:2.3:o:samsung:gear_sport_firmware:*:*:*:*:*:*:*:*|cpe:2.3:h:samsung:gear_sport:-:*:*:*:*:*:*:*|cpe:2.3:o:samsung:gear_fit_firmware:*:*:*:*:*:*:*:*|cpe:2.3:h:samsung:gear_fit:-:*:*:*:*:*:*:*|cpe:2.3:o:samsung:gear_fit_2_firmware:*:*:*:*:*:*:*:*|cpe:2.3:h:samsung:gear_fit_2:-:*:*:*:*:*:*:*|cpe:2.3:o:samsung:gear_fit_2_pro_firmware:*:*:*:*:*:*:*:*|cpe:2.3:h:samsung:gear_fit_2_pro:-:*:*:*:*:*:*:*"
+ }
+]

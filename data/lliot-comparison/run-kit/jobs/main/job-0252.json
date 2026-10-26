@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2018-12927",
+  "description": "Northern Electric & Power (NEP) inverter devices allow remote attackers to obtain potentially sensitive information via a direct request for the nep/status/index/1 URI.",
+  "cpe_strings": "cpe:2.3:o:northernnep:northern_electric_\\&_power_inverter_firmware:-:*:*:*:*:*:*:*|cpe:2.3:h:northernnep:northern_electric_\\&_power_inverter:-:*:*:*:*:*:*:*"
+ }
+]

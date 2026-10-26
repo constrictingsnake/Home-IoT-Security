@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2024-20458",
+  "description": "A vulnerability in the web-based management interface of Cisco ATA 190 Series Analog Telephone Adapter firmware could allow an unauthenticated, remote attacker to view or delete the configuration or change the firmware on an affected device.\n\nThis vulnerability is due to a lack of authentication on specific HTTP endpoints. An attacker could exploit this vulnerability by browsing to a specific URL. A successful exploit could allow the attacker to view or delete the configuration or change the firmware.",
+  "cpe_strings": "cpe:2.3:o:cisco:ata_191_firmware:*:*:*:*:*:*:*:*|cpe:2.3:h:cisco:ata_191:-:*:*:*:on-premises:*:*:*|cpe:2.3:h:cisco:ata_191:-:*:*:*:multiplatform:*:*:*|cpe:2.3:o:cisco:ata_192_firmware:*:*:*:*:*:*:*:*|cpe:2.3:h:cisco:ata_192:-:*:*:*:multiplatform:*:*:*"
+ }
+]

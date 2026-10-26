@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2023-41661",
+  "description": "Auth. (admin+) Stored Cross-Site Scripting (XSS) vulnerability in PressPage Entertainment Inc. Smarty for WordPress plugin <= 3.1.35 versions.",
+  "cpe_strings": "cpe:2.3:a:smarty:smarty:*:*:*:*:*:wordpress:*:*"
+ }
+]

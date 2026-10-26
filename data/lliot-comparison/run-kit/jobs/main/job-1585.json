@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2019-9862",
+  "description": "An issue was discovered on ABUS Secvest wireless alarm system FUAA50000 3.01.01 in conjunction with Secvest remote control FUBE50014 or FUBE50015. Because \"encrypted signal transmission\" is missing, an attacker is able to eavesdrop sensitive data as cleartext (for instance, the current rolling code state).",
+  "cpe_strings": "cpe:2.3:o:abus:secvest_wireless_alarm_system_fuaa50000_firmware:3.01.01:*:*:*:*:*:*:*|cpe:2.3:h:abus:secvest_wireless_alarm_system_fuaa50000:-:*:*:*:*:*:*:*|cpe:2.3:o:abus:secvest_wireless_remote_control_fube50014_firmware:-:*:*:*:*:*:*:*|cpe:2.3:h:abus:secvest_wireless_remote_control_fube50014:-:*:*:*:*:*:*:*|cpe:2.3:o:abus:secvest_wireless_remote_control_fube50015_firmware:-:*:*:*:*:*:*:*|cpe:2.3:h:abus:secvest_wireless_remote_control_fube50015:-:*:*:*:*:*:*:*"
+ }
+]

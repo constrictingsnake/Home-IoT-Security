@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2020-21406",
+  "description": "An issue was discovered in RK Smart TV Box MAX and V88 SmartTV box that allows attackers to cause a denial of service via the switchNextDisplayInterface service.",
+  "cpe_strings": "cpe:2.3:o:v88_smart_tv_box_project:v88_smart_tv_box_firmware:-:*:*:*:*:*:*:*|cpe:2.3:h:v88_smart_tv_box_project:v88_smart_tv_box:-:*:*:*:*:*:*:*|cpe:2.3:o:rk_max_smart_tv_box_project:rk_max_smart_tv_box_firmware:-:*:*:*:*:*:*:*|cpe:2.3:h:rk_max_smart_tv_box_project:rk_max_smart_tv_box:-:*:*:*:*:*:*:*"
+ }
+]

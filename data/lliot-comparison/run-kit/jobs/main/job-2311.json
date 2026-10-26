@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2023-34597",
+  "description": "A vulnerability in Fibaro Motion Sensor firmware v3.4 allows attackers to cause a Denial of Service (DoS) via a crafted Z-Wave message.",
+  "cpe_strings": "cpe:2.3:o:fibaro:fgms-001_firmware:3.4:*:*:*:*:*:*:*|cpe:2.3:h:fibaro:fgms-001:-:*:*:*:*:*:*:*"
+ }
+]

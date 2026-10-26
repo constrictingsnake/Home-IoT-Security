@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2013-6827",
+  "description": "Absolute path traversal vulnerability in admin/viewmsg.php in PineApp Mail-SeCure allows remote attackers to read arbitrary files via a full pathname in the msg parameter.",
+  "cpe_strings": "cpe:2.3:a:pineapp:mail-secure:-:*:*:*:*:*:*:*"
+ }
+]

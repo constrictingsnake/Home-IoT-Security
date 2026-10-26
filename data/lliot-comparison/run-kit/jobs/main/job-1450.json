@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2020-8105",
+  "description": "OS Command Injection vulnerability in the wirelessConnect handler of Abode iota All-In-One Security Kit allows an attacker to inject commands and gain root access. This issue affects: Abode iota All-In-One Security Kit versions prior to 1.0.2.23_6.9V_dev_t2_homekit_RF_2.0.19_s2_kvsABODE oz.",
+  "cpe_strings": "cpe:2.3:o:goabode:iota_all-in-one_security_kit_firmware:*:*:*:*:*:*:*:*|cpe:2.3:h:goabode:iota_all-in-one_security_kit:-:*:*:*:*:*:*:*"
+ }
+]

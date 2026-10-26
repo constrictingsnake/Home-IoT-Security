@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2021-1261",
+  "description": "Multiple vulnerabilities in Cisco SD-WAN products could allow an authenticated attacker to perform command injection attacks against an affected device, which could allow the attacker to take certain actions with root privileges on the device. For more information about these vulnerabilities, see the Details section of this advisory.",
+  "cpe_strings": "cpe:2.3:o:cisco:sd-wan_firmware:18.2.0:*:*:*:*:*:*:*|cpe:2.3:o:cisco:sd-wan_firmware:18.3.0:*:*:*:*:*:*:*|cpe:2.3:o:cisco:sd-wan_firmware:18.3.8:*:*:*:*:*:*:*|cpe:2.3:o:cisco:sd-wan_firmware:18.4.6:*:*:*:*:*:*:*|cpe:2.3:o:cisco:sd-wan_firmware:19.2.3:*:*:*:*:*:*:*|cpe:2.3:o:cisco:sd-wan_firmware:19.2.99:*:*:*:*:*:*:*|cpe:2.3:o:cisco:sd-wan_firmware:20.1.0:*:*:*:*:*:*:*|cpe:2.3:o:cisco:sd-wan_vsmart_controller_firmware:*:*:*:*:*:*:*:*|cpe:2.3:h:cisco:vedge_100_router:-:*:*:*:*:*:*:*|cpe:2.3:h:cisco:vedge_1000_router:-:*:*:*:*:*:*:*|cpe:2.3:h:cisco:vedge_100b_router:-:*:*:*:*:*:*:*|cpe:2.3:h:cisco:vedge_100m_router:-:*:*:*:*:*:*:*|cpe:2.3:h:cisco:vedge_100wm_router:-:*:*:*:*:*:*:*|cpe:2.3:h:cisco:vedge_2000_router:-:*:*:*:*:*:*:*|cpe:2.3:h:cisco:vedge_5000_router:-:*:*:*:*:*:*:*|cpe:2.3:h:cisco:vedge_cloud_router:-:*:*:*:*:*:*:*|cpe:2.3:a:cisco:catalyst_sd-wan_manager:-:*:*:*:*:*:*:*|cpe:2.3:a:cisco:sd-wan_vbond_orchestrator:-:*:*:*:*:*:*:*"
+ }
+]

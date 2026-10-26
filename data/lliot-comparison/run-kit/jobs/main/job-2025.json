@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2021-27845",
+  "description": "A Divide-by-zero vulnerability exists in JasPer Image Coding Toolkit 2.0 in jasper/src/libjasper/jpc/jpc_enc.c",
+  "cpe_strings": "cpe:2.3:a:jasper_project:jasper:*:*:*:*:*:*:*:*"
+ }
+]

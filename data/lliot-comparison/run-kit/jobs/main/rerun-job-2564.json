@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2020-27892",
+  "description": "The Zigbee protocol implementation on Texas Instruments CC2538 devices with Z-Stack 3.0.1 does not properly process a ZCL Discover Commands Received Response message or a ZCL Discover Commands Generated Response message. It crashes in zclParseInDiscCmdsRspCmd().",
+  "cpe_strings": "cpe:2.3:a:ti:z-stack:3.0.1:*:*:*:*:*:*:*|cpe:2.3:h:ti:cc2538:-:*:*:*:*:*:*:*"
+ }
+]

@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2016-10115",
+  "description": "NETGEAR Arlo base stations with firmware 1.7.5_6178 and earlier, Arlo Q devices with firmware 1.8.0_5551 and earlier, and Arlo Q Plus devices with firmware 1.8.1_6094 and earlier have a default password of 12345678, which makes it easier for remote attackers to obtain access after a factory reset or in a factory configuration.",
+  "cpe_strings": "cpe:2.3:o:netgear:arlo_base_station_firmware:*:*:*:*:*:*:*:*|cpe:2.3:h:netgear:vmb30x0:-:*:*:*:*:*:*:*|cpe:2.3:h:netgear:vmk3xx0:-:*:*:*:*:*:*:*|cpe:2.3:h:netgear:vms3xx0:-:*:*:*:*:*:*:*|cpe:2.3:o:netgear:arlo_q_camera_firmware:*:*:*:*:*:*:*:*|cpe:2.3:h:netgear:vmc3040:-:*:*:*:*:*:*:*|cpe:2.3:o:netgear:arlo_q_plus_camera_firmware:*:*:*:*:*:*:*:*|cpe:2.3:h:netgear:vmc3040s:-:*:*:*:*:*:*:*"
+ }
+]

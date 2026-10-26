@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2021-46201",
+  "description": "An SQL Injection vulnerability exists in Sourcecodester Online Resort Management System 1.0 via the id parameterv in /orms/ node.",
+  "cpe_strings": "cpe:2.3:a:online_resort_management_system_project:online_resort_management_system:1.0:*:*:*:*:*:*:*"
+ }
+]

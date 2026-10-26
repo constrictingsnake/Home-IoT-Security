@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2020-13093",
+  "description": "iSpyConnect.com Agent DVR before 2.7.1.0 allows directory traversal.",
+  "cpe_strings": "cpe:2.3:a:ispyconnect:agent_dvr:*:*:*:*:*:*:*:*"
+ }
+]

@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2022-24939",
+  "description": "\n A malformed packet containing an invalid destination address, causes a stack overflow in the Ember ZNet stack. This causes an assert which leads to a reset, immediately clearing the error.\n\n",
+  "cpe_strings": "cpe:2.3:a:silabs:gecko_software_development_kit:-:*:*:*:*:*:*:*|cpe:2.3:a:silabs:zigbee_emberznet:-:*:*:*:*:*:*:*"
+ }
+]

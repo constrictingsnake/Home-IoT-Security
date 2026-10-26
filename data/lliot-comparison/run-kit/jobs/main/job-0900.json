@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2023-33304",
+  "description": "A use of hard-coded credentials vulnerability in Fortinet FortiClient Windows 7.0.0 - 7.0.9 and 7.2.0 - 7.2.1 allows an attacker to bypass system protections via the use of static credentials.",
+  "cpe_strings": "cpe:2.3:a:fortinet:forticlient:*:*:*:*:*:windows:*:*|cpe:2.3:a:fortinet:forticlient:7.2.0:*:*:*:*:windows:*:*|cpe:2.3:a:fortinet:forticlient:7.2.1:*:*:*:*:windows:*:*"
+ }
+]

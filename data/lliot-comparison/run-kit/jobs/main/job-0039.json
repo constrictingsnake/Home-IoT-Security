@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2015-3109",
+  "description": "Adobe Photoshop CC before 16.0 (aka 2015.0.0) allows attackers to execute arbitrary code or cause a denial of service (memory corruption) via unspecified vectors.",
+  "cpe_strings": "cpe:2.3:a:adobe:photoshop_cc:*:*:*:*:*:*:*:*|cpe:2.3:o:apple:mac_os_x:*:*:*:*:*:*:*:*|cpe:2.3:o:microsoft:windows:*:*:*:*:*:*:*:*"
+ }
+]

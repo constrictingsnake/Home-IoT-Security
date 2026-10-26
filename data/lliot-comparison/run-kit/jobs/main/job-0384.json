@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2020-21991",
+  "description": "AVE DOMINAplus <=1.10.x suffers from an authentication bypass vulnerability due to missing control check when directly calling the autologin GET parameter in changeparams.php script. Setting the autologin value to 1 allows an unauthenticated attacker to permanently disable the authentication security control and access the management interface with admin privileges without providing credentials.",
+  "cpe_strings": "cpe:2.3:a:ave:dominaplus:*:*:*:*:*:*:*:*|cpe:2.3:o:ave:53ab-wbs_firmware:1.10.62:*:*:*:*:*:*:*|cpe:2.3:h:ave:53ab-wbs:-:*:*:*:*:*:*:*|cpe:2.3:o:ave:ts01_firmware:1.0.65:*:*:*:*:*:*:*|cpe:2.3:h:ave:ts01:-:*:*:*:*:*:*:*|cpe:2.3:o:ave:ts03x-v_firmware:1.10.45a:*:*:*:*:*:*:*|cpe:2.3:h:ave:ts03x-v:-:*:*:*:*:*:*:*|cpe:2.3:o:ave:ts04x-v_firmware:1.10.45a:*:*:*:*:*:*:*|cpe:2.3:h:ave:ts04x-v:-:*:*:*:*:*:*:*|cpe:2.3:o:ave:ts05_firmware:1.10.36:*:*:*:*:*:*:*|cpe:2.3:h:ave:ts05:-:*:*:*:*:*:*:*|cpe:2.3:o:ave:ts05n-v_firmware:-:*:*:*:*:*:*:*|cpe:2.3:h:ave:ts05n-v:-:*:*:*:*:*:*:*"
+ }
+]

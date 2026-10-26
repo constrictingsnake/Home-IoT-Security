@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2020-7496",
+  "description": "A CWE-88: Argument Injection or Modification vulnerability exists in EcoStruxure Operator Terminal Expert 3.1 Service Pack 1 and prior (formerly known as Vijeo XD)which could cause unauthorized write access when opening the project file.",
+  "cpe_strings": "cpe:2.3:a:se:ecostruxure_operator_terminal_expert:*:*:*:*:*:*:*:*|cpe:2.3:a:se:ecostruxure_operator_terminal_expert:3.1:-:*:*:*:*:*:*|cpe:2.3:a:se:ecostruxure_operator_terminal_expert:3.1:sp1:*:*:*:*:*:*"
+ }
+]

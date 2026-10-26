@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2022-26300",
+  "description": "EOS v2.1.0 was discovered to contain a heap-buffer-overflow via the function txn_test_gen_plugin.",
+  "cpe_strings": "cpe:2.3:a:eosio_project:eos:2.1.0:*:*:*:*:*:*:*"
+ }
+]

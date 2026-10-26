@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2020-8101",
+  "description": "Improper Neutralization of Special Elements used in a Command ('Command Injection') vulnerability in HTTP interface of ADT LifeShield DIY HD Video Doorbell allows an attacker on the same network to execute commands on the device. This issue affects: ADT LifeShield DIY HD Video Doorbell version 1.0.02R09 and prior versions.",
+  "cpe_strings": "cpe:2.3:o:adt:lifeshield_diy_hd_video_doorbell_firmware:*:*:*:*:*:*:*:*|cpe:2.3:h:adt:lifeshield_diy_hd_video_doorbell:-:*:*:*:*:*:*:*"
+ }
+]

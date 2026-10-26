@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2023-0344",
+  "description": "Akuvox E11 appears to be using a custom version of dropbear SSH server. This server allows an insecure option that by default is not in the official dropbear SSH server.",
+  "cpe_strings": "cpe:2.3:o:akuvox:e11_firmware:-:*:*:*:*:*:*:*|cpe:2.3:h:akuvox:e11:-:*:*:*:*:*:*:*"
+ }
+]

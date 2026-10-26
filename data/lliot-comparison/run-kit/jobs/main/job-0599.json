@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2021-45408",
+  "description": "Open Redirect vulnerability exists in SeedDMS 6.0.15 in out.Login.php, which llows remote malicious users to redirect users to malicious sites using the \"referuri\" parameter.",
+  "cpe_strings": "cpe:2.3:a:seeddms:seeddms:6.0.15:*:*:*:*:*:*:*"
+ }
+]

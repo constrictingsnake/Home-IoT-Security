@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2022-40071",
+  "description": "Tenda AC21 V 16.03.08.15 is vulnerable to Buffer Overflow via /bin/httpd, formSetDeviceName.",
+  "cpe_strings": "cpe:2.3:o:tenda:ac21_firmware:16.03.08.15:*:*:*:*:*:*:*|cpe:2.3:h:tenda:ac21:-:*:*:*:*:*:*:*"
+ }
+]

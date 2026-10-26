@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2023-43612",
+  "description": "in OpenHarmony v3.2.2 and prior versions allow a local attacker arbitrary file read and write through improper preservation of permissions.",
+  "cpe_strings": "cpe:2.3:o:openatom:openharmony:*:*:*:*:-:*:*:*"
+ }
+]

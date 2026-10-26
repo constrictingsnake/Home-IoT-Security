@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2023-2704",
+  "description": "The BP Social Connect plugin for WordPress is vulnerable to authentication bypass in versions up to, and including, 1.5. This is due to insufficient verification on the user being supplied during a Facebook login through the plugin. This makes it possible for unauthenticated attackers to log in as any existing user on the site, such as an administrator, if they have access to the email.",
+  "cpe_strings": "cpe:2.3:a:vibethemes:bp_social_connect:*:*:*:*:*:wordpress:*:*"
+ }
+]

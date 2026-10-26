@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2023-33768",
+  "description": "Incorrect signature verification of the firmware during the Device Firmware Update process of Belkin Wemo Smart Plug WSP080 v1.2 allows attackers to cause a Denial of Service (DoS) via a crafted firmware file.",
+  "cpe_strings": "cpe:2.3:o:belkin:wemo_smart_plug_wsp080_firmware:1.2:*:*:*:*:*:*:*|cpe:2.3:h:belkin:wemo_smart_plug_wsp080:-:*:*:*:*:*:*:*"
+ }
+]

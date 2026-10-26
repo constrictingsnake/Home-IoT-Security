@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2023-21393",
+  "description": "In Settings, there is a possible way for the user to change SIM due to a missing permission check. This could lead to local escalation of privilege with no additional execution privileges needed. User interaction is not needed for exploitation.",
+  "cpe_strings": "cpe:2.3:o:google:android:*:*:*:*:*:*:*:*"
+ }
+]

@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2016-2014",
+  "description": "HPE Network Node Manager i (NNMi) 9.20, 9.23, 9.24, 9.25, 10.00, and 10.01 allows remote authenticated users to modify data or cause a denial of service via unspecified vectors.",
+  "cpe_strings": "cpe:2.3:a:hp:network_node_manager_i:9.20:*:*:*:*:*:*:*|cpe:2.3:a:hp:network_node_manager_i:9.23:*:*:*:*:*:*:*|cpe:2.3:a:hp:network_node_manager_i:9.24:*:*:*:*:*:*:*|cpe:2.3:a:hp:network_node_manager_i:9.25:*:*:*:*:*:*:*|cpe:2.3:a:hp:network_node_manager_i:10.00:*:*:*:*:*:*:*|cpe:2.3:a:hp:network_node_manager_i:10.01:*:*:*:*:*:*:*"
+ }
+]

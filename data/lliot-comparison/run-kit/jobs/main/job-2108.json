@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2021-39701",
+  "description": "In serviceConnection of ControlsProviderLifecycleManager.kt, there is a possible way to keep service running in foreground without notification or permission due to improper input validation. This could lead to local escalation of privilege with no additional execution privileges needed. User interaction is needed for exploitation.Product: AndroidVersions: Android-11 Android-12Android ID: A-212286849",
+  "cpe_strings": "cpe:2.3:o:google:android:11.0:*:*:*:*:*:*:*|cpe:2.3:o:google:android:12.0:*:*:*:*:*:*:*"
+ }
+]

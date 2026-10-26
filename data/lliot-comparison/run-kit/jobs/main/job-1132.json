@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2021-21209",
+  "description": "Inappropriate implementation in storage in Google Chrome prior to 90.0.4430.72 allowed a remote attacker to leak cross-origin data via a crafted HTML page.",
+  "cpe_strings": "cpe:2.3:a:google:chrome:*:*:*:*:*:*:*:*|cpe:2.3:o:debian:debian_linux:10.0:*:*:*:*:*:*:*|cpe:2.3:o:fedoraproject:fedora:32:*:*:*:*:*:*:*|cpe:2.3:o:fedoraproject:fedora:33:*:*:*:*:*:*:*|cpe:2.3:o:fedoraproject:fedora:34:*:*:*:*:*:*:*"
+ }
+]

@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2023-1176",
+  "description": "Absolute Path Traversal in GitHub repository mlflow/mlflow prior to 2.2.2.",
+  "cpe_strings": "cpe:2.3:a:lfprojects:mlflow:*:*:*:*:*:*:*:*"
+ }
+]

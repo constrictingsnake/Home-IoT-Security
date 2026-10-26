@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2024-23625",
+  "description": "A command injection vulnerability exists in D-Link DAP-1650 devices when handling UPnP SUBSCRIBE messages. An unauthenticated attacker can exploit this vulnerability to gain command execution on the device as root.\n",
+  "cpe_strings": "cpe:2.3:o:dlink:dap-1650_firmware:-:*:*:*:*:*:*:*|cpe:2.3:h:dlink:dap-1650:-:*:*:*:*:*:*:*"
+ }
+]

@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2021-27113",
+  "description": "An issue was discovered in D-Link DIR-816 A2 1.10 B05 devices. An HTTP request parameter is used in command string construction within the handler function of the /goform/addRouting route. This could lead to Command Injection via Shell Metacharacters.",
+  "cpe_strings": "cpe:2.3:o:dlink:dir-816_firmware:1.10b05:*:*:*:*:*:*:*|cpe:2.3:h:dlink:dir-816:a2:*:*:*:*:*:*:*"
+ }
+]

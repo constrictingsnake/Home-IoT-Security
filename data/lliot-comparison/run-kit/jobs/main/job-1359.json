@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2023-36259",
+  "description": "Cross Site Scripting (XSS) vulnerability in Craft CMS Audit Plugin before version 3.0.2 allows attackers to execute arbitrary code during user creation.",
+  "cpe_strings": "cpe:2.3:a:craftcms:craft_cms:*:*:*:*:*:*:*:*"
+ }
+]

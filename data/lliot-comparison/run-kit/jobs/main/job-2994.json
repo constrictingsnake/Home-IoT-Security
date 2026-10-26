@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2020-15827",
+  "description": "In JetBrains ToolBox version 1.17 before 1.17.6856, the set of signature verifications omitted the jetbrains-toolbox.exe file.",
+  "cpe_strings": "cpe:2.3:a:jetbrains:toolbox:*:*:*:*:*:*:*:*"
+ }
+]

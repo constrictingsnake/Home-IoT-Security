@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2013-4067",
+  "description": "IBM InfoSphere Information Server 8.0, 8.1, 8.5 through FP3, 8.7, and 9.1 allows remote attackers to hijack sessions and read cookie values, or conduct phishing attacks to capture credentials, via unspecified vectors.",
+  "cpe_strings": "cpe:2.3:a:ibm:infosphere_information_server:8.0:*:*:*:*:*:*:*|cpe:2.3:a:ibm:infosphere_information_server:8.1:*:*:*:*:*:*:*|cpe:2.3:a:ibm:infosphere_information_server:8.5:*:*:*:*:*:*:*|cpe:2.3:a:ibm:infosphere_information_server:8.5.0.1:*:*:*:*:*:*:*|cpe:2.3:a:ibm:infosphere_information_server:8.5.0.2:*:*:*:*:*:*:*|cpe:2.3:a:ibm:infosphere_information_server:8.5.0.3:*:*:*:*:*:*:*|cpe:2.3:a:ibm:infosphere_information_server:8.7:*:*:*:*:*:*:*|cpe:2.3:a:ibm:infosphere_information_server:9.1:*:*:*:*:*:*:*"
+ }
+]

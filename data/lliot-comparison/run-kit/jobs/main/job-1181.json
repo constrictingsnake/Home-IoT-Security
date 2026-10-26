@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2015-5286",
+  "description": "OpenStack Image Service (Glance) before 2014.2.4 (juno) and 2015.1.x before 2015.1.2 (kilo) allows remote authenticated users to bypass the storage quota and cause a denial of service (disk consumption) by deleting images that are being uploaded using a token that expires during the process.  NOTE: this vulnerability exists because of an incomplete fix for CVE-2014-9623.",
+  "cpe_strings": "cpe:2.3:a:openstack:image_registry_and_delivery_service_\\(glance\\):*:*:*:*:*:*:*:*|cpe:2.3:a:openstack:image_registry_and_delivery_service_\\(glance\\):2015.1.0:*:*:*:*:*:*:*|cpe:2.3:a:openstack:image_registry_and_delivery_service_\\(glance\\):2015.1.1:*:*:*:*:*:*:*"
+ }
+]

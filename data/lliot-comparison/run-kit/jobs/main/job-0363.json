@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2016-1563",
+  "description": "NetApp Clustered Data ONTAP 8.3.1 does not properly verify X.509 certificates from TLS servers, which allows man-in-the-middle attackers to spoof servers and obtain sensitive information via a crafted certificate.",
+  "cpe_strings": "cpe:2.3:o:netapp:clustered_data_ontap:8.3.1:*:*:*:*:*:*:*"
+ }
+]

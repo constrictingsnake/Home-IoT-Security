@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2023-23303",
+  "description": "The `Toybox.Ant.GenericChannel.enableEncryption` API method in CIQ API version 3.2.0 through 4.1.7 does not validate its parameter, which can result in buffer overflows when copying various attributes. A malicious application could call the API method with specially crafted object and hijack the execution of the device's firmware.",
+  "cpe_strings": "cpe:2.3:a:garmin:connect-iq:*:*:*:*:*:*:*:*"
+ }
+]

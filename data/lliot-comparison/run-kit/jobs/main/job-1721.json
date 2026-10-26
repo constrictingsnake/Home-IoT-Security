@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2013-3690",
+  "description": "Cross-site request forgery (CSRF) vulnerability in cgi-bin/users.cgi in Brickcom FB-100Ap, WCB-100Ap, MD-100Ap, WFB-100Ap, OB-100Ae, OSD-040E, and possibly other camera models with firmware 3.1.0.8 and earlier, allows remote attackers to hijack the authentication of administrators for requests that add users.",
+  "cpe_strings": "cpe:2.3:o:brickcom:100ap_device_firmware:3.1.0.8:*:*:*:*:*:*:*|cpe:2.3:h:brickcom:fb-100ap:-:*:*:*:*:*:*:*|cpe:2.3:h:brickcom:md-100ap:-:*:*:*:*:*:*:*|cpe:2.3:h:brickcom:ob-100ae:-:*:*:*:*:*:*:*|cpe:2.3:h:brickcom:osd-040e:-:*:*:*:*:*:*:*|cpe:2.3:h:brickcom:wcb-100ap:-:*:*:*:*:*:*:*|cpe:2.3:h:brickcom:wfb-100ap:-:*:*:*:*:*:*:*"
+ }
+]

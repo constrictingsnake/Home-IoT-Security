@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2013-1823",
+  "description": "Cross-site scripting (XSS) vulnerability in the Notifications form in Red Hat Subscription Asset Manager before 1.2.1 allows remote attackers to inject arbitrary web script or HTML via the username field.",
+  "cpe_strings": "cpe:2.3:a:redhat:subscription_asset_manager:*:*:*:*:*:*:*:*|cpe:2.3:a:redhat:subscription_asset_manager:1.0.0:*:*:*:*:*:*:*|cpe:2.3:a:redhat:subscription_asset_manager:1.1.0:*:*:*:*:*:*:*"
+ }
+]

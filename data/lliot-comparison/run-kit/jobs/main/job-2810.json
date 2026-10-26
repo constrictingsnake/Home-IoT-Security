@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2024-43983",
+  "description": "Improper Neutralization of Input During Web Page Generation (XSS or 'Cross-site Scripting') vulnerability in Podlove Podlove Podcast Publisher allows Stored XSS.This issue affects Podlove Podcast Publisher: from n/a through 4.1.13.",
+  "cpe_strings": "cpe:2.3:a:podlove:podlove_podcast_publisher:*:*:*:*:*:wordpress:*:*"
+ }
+]

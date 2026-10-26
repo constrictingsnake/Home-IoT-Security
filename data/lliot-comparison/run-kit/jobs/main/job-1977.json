@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2022-23488",
+  "description": "BigBlueButton is an open source web conferencing system. Versions prior to 2.4-rc-6 are vulnerable to Insertion of Sensitive Information Into Sent Data. The moderators-only webcams lock setting is not enforced on the backend, which allows an attacker to subscribe to viewers' webcams, even when the lock setting is applied. (The required streamId was being sent to all users even with lock setting applied). This issue is fixed in version 2.4-rc-6.  There are no workarounds.",
+  "cpe_strings": "cpe:2.3:a:bigbluebutton:bigbluebutton:*:*:*:*:*:*:*:*|cpe:2.3:a:bigbluebutton:bigbluebutton:2.4:alpha1:*:*:*:*:*:*|cpe:2.3:a:bigbluebutton:bigbluebutton:2.4:alpha2:*:*:*:*:*:*|cpe:2.3:a:bigbluebutton:bigbluebutton:2.4:beta1:*:*:*:*:*:*|cpe:2.3:a:bigbluebutton:bigbluebutton:2.4:beta2:*:*:*:*:*:*|cpe:2.3:a:bigbluebutton:bigbluebutton:2.4:beta3:*:*:*:*:*:*|cpe:2.3:a:bigbluebutton:bigbluebutton:2.4:beta4:*:*:*:*:*:*|cpe:2.3:a:bigbluebutton:bigbluebutton:2.4:rc1:*:*:*:*:*:*|cpe:2.3:a:bigbluebutton:bigbluebutton:2.4:rc2:*:*:*:*:*:*|cpe:2.3:a:bigbluebutton:bigbluebutton:2.4:rc3:*:*:*:*:*:*|cpe:2.3:a:bigbluebutton:bigbluebutton:2.4:rc4:*:*:*:*:*:*|cpe:2.3:a:bigbluebutton:bigbluebutton:2.4:rc5:*:*:*:*:*:*"
+ }
+]

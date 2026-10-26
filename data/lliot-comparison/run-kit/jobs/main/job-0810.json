@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2020-27671",
+  "description": "An issue was discovered in Xen through 4.14.x allowing x86 HVM and PVH guest OS users to cause a denial of service (data corruption), cause a data leak, or possibly gain privileges because coalescing of per-page IOMMU TLB flushes is mishandled.",
+  "cpe_strings": "cpe:2.3:o:xen:xen:*:*:*:*:*:*:*:*|cpe:2.3:o:opensuse:leap:15.1:*:*:*:*:*:*:*|cpe:2.3:o:opensuse:leap:15.2:*:*:*:*:*:*:*|cpe:2.3:o:debian:debian_linux:10.0:*:*:*:*:*:*:*|cpe:2.3:o:fedoraproject:fedora:31:*:*:*:*:*:*:*"
+ }
+]

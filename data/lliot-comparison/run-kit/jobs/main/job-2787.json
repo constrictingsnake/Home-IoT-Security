@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2023-21072",
+  "description": "In rtt_unpack_xtlv_cbfn of dhd_rtt.c, there is a possible out of bounds write due to a buffer overflow. This could lead to local escalation of privilege with System execution privileges needed. User interaction is not needed for exploitation.Product: AndroidVersions: Android kernelAndroid ID: A-257290781References: N/A",
+  "cpe_strings": "cpe:2.3:o:google:android:-:*:*:*:*:*:*:*"
+ }
+]

@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2024-9553",
+  "description": "A vulnerability classified as critical has been found in D-Link DIR-605L 2.13B01 BETA. This affects the function formdumpeasysetup of the file /goform/formdumpeasysetup. The manipulation of the argument curTime leads to buffer overflow. It is possible to initiate the attack remotely. The exploit has been disclosed to the public and may be used.",
+  "cpe_strings": "cpe:2.3:o:dlink:dir-605l_firmware:2.13b01:*:*:*:*:*:*:*|cpe:2.3:h:dlink:dir-605l:-:*:*:*:*:*:*:*"
+ }
+]

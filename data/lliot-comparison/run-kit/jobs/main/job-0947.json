@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2023-34724",
+  "description": "An issue was discovered in TECHView LA5570 Wireless Gateway 1.0.19_T53, allows physical attackers to gain escalated privileges via the UART interface.",
+  "cpe_strings": "cpe:2.3:o:jaycar:la5570_firmware:1.0.19_t53:*:*:*:*:*:*:*|cpe:2.3:h:jaycar:la5570:-:*:*:*:*:*:*:*"
+ }
+]

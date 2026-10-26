@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2016-2230",
+  "description": "OpenELEC and RasPlex devices have a hardcoded password for the root account, which makes it easier for remote attackers to obtain access via an SSH session.",
+  "cpe_strings": "cpe:2.3:o:openelec:openelec:*:*:*:*:*:*:*:*"
+ }
+]

@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2017-9349",
+  "description": "In Wireshark 2.2.0 to 2.2.6 and 2.0.0 to 2.0.12, the DICOM dissector has an infinite loop. This was addressed in epan/dissectors/packet-dcm.c by validating a length value.",
+  "cpe_strings": "cpe:2.3:a:wireshark:wireshark:*:*:*:*:*:*:*:*|cpe:2.3:o:debian:debian_linux:8.0:*:*:*:*:*:*:*"
+ }
+]

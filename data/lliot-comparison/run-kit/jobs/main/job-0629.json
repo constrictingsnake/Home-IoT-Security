@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2017-12577",
+  "description": "An issue was discovered on the PLANEX CS-QR20 1.30. A hardcoded account / password (\"admin:password\") is used in the Android application that allows attackers to use a hidden API URL \"/goform/SystemCommand\" to execute any command with root permission.",
+  "cpe_strings": "cpe:2.3:o:planex:cs-qr20_firmware:1.30:*:*:*:*:*:*:*|cpe:2.3:h:planex:cs-qr20:-:*:*:*:*:*:*:*|cpe:2.3:a:planex:smacam_night_vision:-:*:*:*:*:android:*:*"
+ }
+]

@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2020-16245",
+  "description": "Advantech iView, Versions 5.7 and prior. The affected product is vulnerable to path traversal vulnerabilities that could allow an attacker to create/download arbitrary files, limit system availability, and remotely execute code.",
+  "cpe_strings": "cpe:2.3:a:advantech:iview:*:*:*:*:*:*:*:*"
+ }
+]

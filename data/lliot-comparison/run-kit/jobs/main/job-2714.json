@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2021-42852",
+  "description": "A command injection vulnerability was reported in some Lenovo Personal Cloud Storage devices that could allow an authenticated user to execute operating system commands by sending a crafted packet to the device.",
+  "cpe_strings": "cpe:2.3:o:lenovo:a1_firmware:*:*:*:*:*:*:*:*|cpe:2.3:h:lenovo:a1:-:*:*:*:*:*:*:*|cpe:2.3:o:lenovo:t1_firmware:*:*:*:*:*:*:*:*|cpe:2.3:h:lenovo:t1:-:*:*:*:*:*:*:*|cpe:2.3:o:lenovo:x1_firmware:*:*:*:*:*:*:*:*|cpe:2.3:h:lenovo:x1:-:*:*:*:*:*:*:*|cpe:2.3:o:lenovo:t2_firmware:*:*:*:*:*:*:*:*|cpe:2.3:h:lenovo:t2:-:*:*:*:*:*:*:*|cpe:2.3:o:lenovo:t2pro_firmware:*:*:*:*:*:*:*:*|cpe:2.3:h:lenovo:t2pro:-:*:*:*:*:*:*:*"
+ }
+]

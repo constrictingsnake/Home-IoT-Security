@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2018-17177",
+  "description": "An issue was discovered on Neato Botvac Connected 2.2.0 and Botvac 85 1.2.1 devices. Static encryption is used for the copying of so-called \"black box\" logs (event logs and core dumps) to a USB stick. These logs are RC4-encrypted with a 9-character password of *^JEd4W!I that is obfuscated by hiding it within a custom /bin/rc4_crypt binary.",
+  "cpe_strings": "cpe:2.3:o:neatorobotics:botvac_d4_connected_firmware:2.2.0:*:*:*:*:*:*:*|cpe:2.3:h:neatorobotics:botvac_d4_connected:-:*:*:*:*:*:*:*|cpe:2.3:o:neatorobotics:botvac_d6_connected_firmware:2.2.0:*:*:*:*:*:*:*|cpe:2.3:h:neatorobotics:botvac_d6_connected:-:*:*:*:*:*:*:*|cpe:2.3:o:neatorobotics:botvac_d5_connected_firmware:2.2.0:*:*:*:*:*:*:*|cpe:2.3:h:neatorobotics:botvac_d5_connected:-:*:*:*:*:*:*:*|cpe:2.3:o:neatorobotics:botvac_d7_connected_firmware:2.2.0:*:*:*:*:*:*:*|cpe:2.3:h:neatorobotics:botvac_d7_connected:-:*:*:*:*:*:*:*|cpe:2.3:o:neatorobotics:botvac_d3_connected_firmware:2.2.0:*:*:*:*:*:*:*|cpe:2.3:h:neatorobotics:botvac_d3_connected:-:*:*:*:*:*:*:*|cpe:2.3:o:neatorobotics:botvac_85_firmware:1.2.1:*:*:*:*:*:*:*|cpe:2.3:h:neatorobotics:botvac_85_connected:-:*:*:*:*:*:*:*"
+ }
+]

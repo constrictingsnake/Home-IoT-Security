@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2023-25594",
+  "description": " A vulnerability in the web-based management interface of ClearPass Policy Manager allows an attacker with read-only privileges to perform actions that change the state of the ClearPass Policy Manager instance. Successful exploitation of this vulnerability allows an attacker to complete state-changing actions in the web-based management interface that should not be allowed by their current level of authorization on the platform.",
+  "cpe_strings": "cpe:2.3:a:arubanetworks:clearpass_policy_manager:*:*:*:*:*:*:*:*|cpe:2.3:a:arubanetworks:clearpass_policy_manager:6.11.0:*:*:*:*:*:*:*|cpe:2.3:a:arubanetworks:clearpass_policy_manager:6.11.1:*:*:*:*:*:*:*"
+ }
+]

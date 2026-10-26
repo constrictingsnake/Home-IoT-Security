@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2015-5918",
+  "description": "GasGauge in Apple watchOS before 2 allows local users to gain privileges or cause a denial of service (memory corruption) via unspecified vectors, a different vulnerability than CVE-2015-5919.",
+  "cpe_strings": "cpe:2.3:o:apple:watch_os:*:*:*:*:*:*:*:*"
+ }
+]

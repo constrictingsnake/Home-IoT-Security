@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2019-5037",
+  "description": "An exploitable denial-of-service vulnerability exists in the Weave certificate loading functionality of Nest Cam IQ Indoor camera, version 4620002. A specially crafted weave packet can cause an integer overflow and an out-of-bounds read on unmapped memory to occur, resulting in a denial of service. An attacker can send a specially crafted packet to trigger.",
+  "cpe_strings": "cpe:2.3:o:google:nest_cam_iq_indoor_firmware:4620002:*:*:*:*:*:*:*|cpe:2.3:h:google:nest_cam_iq_indoor:-:*:*:*:*:*:*:*"
+ }
+]

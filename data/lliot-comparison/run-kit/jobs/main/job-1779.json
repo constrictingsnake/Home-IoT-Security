@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2022-36566",
+  "description": "Rengine v1.3.0 was discovered to contain a command injection vulnerability via the scan engine function.",
+  "cpe_strings": "cpe:2.3:a:yogeshojha:rengine:1.3.0:*:*:*:*:*:*:*"
+ }
+]

@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2023-45118",
+  "description": "Online Examination System v1.0 is vulnerable to multiple Authenticated SQL Injection vulnerabilities. The 'fdid' parameter of the /update.php resource does not validate the characters received and they are sent unfiltered to the database.",
+  "cpe_strings": "cpe:2.3:a:projectworlds:online_examination_system:1.0:*:*:*:*:*:*:*"
+ }
+]

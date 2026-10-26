@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2019-20086",
+  "description": "GoPro GPMF-parser 1.2.3 has a heap-based buffer over-read in GPMF_Next in GPMF_parser.c.",
+  "cpe_strings": "cpe:2.3:a:gopro:gpmf-parser:1.2.3:*:*:*:*:*:*:*"
+ }
+]

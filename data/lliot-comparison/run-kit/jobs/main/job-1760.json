@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2022-38700",
+  "description": "OpenHarmony-v3.1.1 and prior versions have a permission bypass vulnerability. LAN attackers can bypass permission control and get control of camera service.",
+  "cpe_strings": "cpe:2.3:a:openharmony:openharmony:3.1.1:*:*:*:*:*:*:*"
+ }
+]

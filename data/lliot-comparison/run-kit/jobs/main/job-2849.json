@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2018-19418",
+  "description": "Foxit PDF ActiveX before 5.5.1 allows remote code execution via command injection because of the lack of a security permission control.",
+  "cpe_strings": "cpe:2.3:a:foxitsoftware:pdf_activex:*:*:*:*:*:*:*:*|cpe:2.3:o:microsoft:windows:-:*:*:*:*:*:*:*"
+ }
+]

@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2013-5912",
+  "description": "VhttpdMgr in Thomson Reuters Velocity Analytics Vhayu Analytic Server 6.94 build 2995 allows remote attackers to execute arbitrary code via a URL in the fileName parameter during an importFile action.",
+  "cpe_strings": "cpe:2.3:a:thomsonreuters:velocity_analytics_vhayu_analytic_server:6.94:*:*:*:*:*:*:*"
+ }
+]

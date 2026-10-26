@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2013-3686",
+  "description": "cgi-bin/operator/param in AirLive WL2600CAM and possibly other camera models allows remote attackers to obtain the administrator password via a list action.",
+  "cpe_strings": "cpe:2.3:h:ovislink:airlive_wl2600cam:-:*:*:*:*:*:*:*"
+ }
+]

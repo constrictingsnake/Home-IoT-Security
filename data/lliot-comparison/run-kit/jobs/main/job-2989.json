@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2018-18442",
+  "description": "D-Link DCS-825L devices with firmware 1.08 do not employ a suitable mechanism to prevent denial-of-service (DoS) attacks. An attacker can harm the device availability (i.e., live-online video/audio streaming) by using the hping3 tool to perform an IPv4 flood attack. Verified attacks includes SYN flooding, UDP flooding, ICMP flooding, and SYN-ACK flooding.",
+  "cpe_strings": "cpe:2.3:o:d-link:dcs-825l_firmware:1.08:*:*:*:*:*:*:*|cpe:2.3:h:dlink:dcs-825l:-:*:*:*:*:*:*:*"
+ }
+]

@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2016-9284",
+  "description": "getUsersByJSON in framework/modules/users/controllers/usersController.php in Exponent CMS v2.4.0 allows remote attackers to read user information via users/getUsersByJSON/sort/ and a trailing string.",
+  "cpe_strings": "cpe:2.3:a:exponentcms:exponent_cms:2.4.0:*:*:*:*:*:*:*"
+ }
+]

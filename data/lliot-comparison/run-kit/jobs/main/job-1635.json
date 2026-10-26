@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2021-3666",
+  "description": "body-parser-xml is vulnerable to Improperly Controlled Modification of Object Prototype Attributes ('Prototype Pollution')",
+  "cpe_strings": "cpe:2.3:a:xml_body_parser_project:xml_body_parser:*:*:*:*:*:node.js:*:*"
+ }
+]

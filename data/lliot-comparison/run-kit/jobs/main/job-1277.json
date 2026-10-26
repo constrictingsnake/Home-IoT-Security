@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2022-25478",
+  "description": "Vulnerability in Realtek RtsPer driver for PCIe Card Reader (RtsPer.sys) before 10.0.22000.21355 and Realtek RtsUer driver for USB Card Reader (RtsUer.sys) before 10.0.22000.31274 provides read and write access to the PCI configuration space of the device.",
+  "cpe_strings": "cpe:2.3:a:realtek:rtsper:*:*:*:*:*:*:*:*|cpe:2.3:a:realtek:rtsuer:*:*:*:*:*:*:*:*"
+ }
+]

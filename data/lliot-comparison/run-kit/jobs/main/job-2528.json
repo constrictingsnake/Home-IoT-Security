@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2018-16806",
+  "description": "A Pektron Passive Keyless Entry and Start (PKES) system, as used on the Tesla Model S and possibly other vehicles, relies on the DST40 cipher, which makes it easier for attackers to obtain access via an approach involving a 5.4 TB precomputation, followed by wake-frame reception and two challenge/response operations, to clone a key fob within a few seconds.",
+  "cpe_strings": "cpe:2.3:o:pektron:passive_keyless_entry_and_start_system_firmware:-:*:*:*:*:*:*:*|cpe:2.3:h:pektron:passive_keyless_entry_and_start_system:-:*:*:*:*:*:*:*"
+ }
+]

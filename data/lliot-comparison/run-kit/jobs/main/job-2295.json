@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2018-16546",
+  "description": "Amcrest networked devices use the same hardcoded SSL private key across different customers' installations, which allows remote attackers to defeat cryptographic protection mechanisms by leveraging knowledge of this key from another installation, as demonstrated by Amcrest_IPC-HX1X3X-LEXUS_Eng_N_AMCREST_V2.420.AC01.3.R.20180206.",
+  "cpe_strings": "cpe:2.3:o:amcrest:amcrest_ipc-hx1x3x-lexus_eng_n_amcrest:v2.420.ac01.3.r.20180206:*:*:*:*:*:*:*"
+ }
+]

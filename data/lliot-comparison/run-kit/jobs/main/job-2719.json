@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2024-44382",
+  "description": "D-Link DI_8004W 16.07.26A1 contains a command execution vulnerability in the jhttpd upgrade_filter_asp function.",
+  "cpe_strings": "cpe:2.3:o:dlink:di_8004w_firmware:16.07.26a1:*:*:*:*:*:*:*|cpe:2.3:h:dlink:di_8004w:-:*:*:*:*:*:*:*"
+ }
+]

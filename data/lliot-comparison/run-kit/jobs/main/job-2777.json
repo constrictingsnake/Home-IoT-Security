@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2019-20466",
+  "description": "An issue was discovered on Sannce Smart HD Wifi Security Camera EAN 2 950004 595317 devices. A local attacker with the \"default\" account is capable of reading the /etc/passwd file, which contains a weakly hashed root password. By taking this hash and cracking it, the attacker can obtain root rights on the device.",
+  "cpe_strings": "cpe:2.3:o:sannce:smart_hd_wifi_security_camera_ean_2_950004_595317_firmware:-:*:*:*:*:*:*:*|cpe:2.3:h:sannce:smart_hd_wifi_security_camera_ean_2_950004_595317:-:*:*:*:*:*:*:*"
+ }
+]

@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2023-24501",
+  "description": "Electra Central AC unit – Hardcoded Credentials in unspecified code used by the unit.",
+  "cpe_strings": "cpe:2.3:o:electra-air:central_ac_unit_firmware:v4:*:*:*:*:*:*:*|cpe:2.3:o:electra-air:central_ac_unit_firmware:v5:*:*:*:*:*:*:*|cpe:2.3:h:electra-air:central_ac_unit:-:*:*:*:*:*:*:*"
+ }
+]

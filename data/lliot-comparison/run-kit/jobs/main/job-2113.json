@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2021-21940",
+  "description": "A heap-based buffer overflow vulnerability exists in the pushMuxer processRtspInfo functionality of Anker Eufy Homebase 2 2.1.6.9h. A specially-crafted network packet can lead to a heap buffer overflow. An attacker can send a malicious packet to trigger this vulnerability.",
+  "cpe_strings": "cpe:2.3:o:anker:eufy_homebase_2_firmware:2.1.6.9h:*:*:*:*:*:*:*|cpe:2.3:h:anker:eufy_homebase_2:-:*:*:*:*:*:*:*"
+ }
+]

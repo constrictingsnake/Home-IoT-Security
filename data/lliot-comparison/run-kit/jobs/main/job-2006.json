@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2024-29241",
+  "description": "Missing authorization vulnerability in System webapi component in Synology Surveillance Station before 9.2.0-9289 and 9.2.0-11289 allows remote authenticated users to obtain non-sensitive information, write sensitive configurations in DSM, and reboot or shutdown NAS via unspecified vectors.",
+  "cpe_strings": "cpe:2.3:a:synology:surveillance_station:*:*:*:*:*:*:*:*|cpe:2.3:o:synology:diskstation_manager:6.2:*:*:*:*:*:*:*|cpe:2.3:o:synology:diskstation_manager:7.1:*:*:*:*:*:*:*|cpe:2.3:o:synology:diskstation_manager:7.2:*:*:*:*:*:*:*"
+ }
+]

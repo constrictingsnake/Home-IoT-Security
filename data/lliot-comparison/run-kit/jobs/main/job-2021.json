@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2017-0797",
+  "description": "A elevation of privilege vulnerability in the MediaTek accessory detector driver. Product: Android. Versions: Android kernel. Android ID: A-62459766. References: M-ALPS03353854.",
+  "cpe_strings": "cpe:2.3:o:google:android:*:*:*:*:*:*:*:*"
+ }
+]

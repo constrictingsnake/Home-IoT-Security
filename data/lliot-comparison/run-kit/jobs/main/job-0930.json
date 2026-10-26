@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2017-18642",
+  "description": "Syska Smart Bulb devices through 2017-08-06 receive RGB parameters over cleartext Bluetooth Low Energy (BLE), leading to sniffing, reverse engineering, and replay attacks.",
+  "cpe_strings": "cpe:2.3:o:syska:smartlight_rainbow_led_smart_bulb_firmware:*:*:*:*:*:*:*:*|cpe:2.3:h:syska:smartlight_rainbow_led_smart_bulb:-:*:*:*:*:*:*:*"
+ }
+]

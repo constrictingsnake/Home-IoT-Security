@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2021-46007",
+  "description": "totolink a3100r V5.9c.4577 is vulnerable to os command injection. The backend of a page is executing the \"ping\" command, and the input field does not adequately filter special symbols. This can lead to command injection attacks.",
+  "cpe_strings": "cpe:2.3:o:totolink:ar3100r_firmware:5.9c.4577:*:*:*:*:*:*:*|cpe:2.3:h:totolink:ar3100r:-:*:*:*:*:*:*:*"
+ }
+]

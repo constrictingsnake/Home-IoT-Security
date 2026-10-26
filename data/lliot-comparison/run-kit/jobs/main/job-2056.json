@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2015-7731",
+  "description": "SAP Mobile Platform 3.0 SP05 ClientHub allows attackers to obtain the keystream and other sensitive information via the DataVault, aka SAP Security Note 2094830.",
+  "cpe_strings": "cpe:2.3:a:sap:mobile_platform:3.0:05:*:*:*:*:*:*"
+ }
+]

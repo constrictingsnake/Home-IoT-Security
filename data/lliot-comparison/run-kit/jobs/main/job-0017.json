@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2024-8316",
+  "description": "In Progress Telerik UI for WPF versions prior to 2024 Q3 (2024.3.924), a code execution attack is possible through an insecure deserialization vulnerability.",
+  "cpe_strings": "cpe:2.3:a:telerik:ui_for_wpf:*:*:*:*:*:*:*:*"
+ }
+]

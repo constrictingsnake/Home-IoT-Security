@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2017-9497",
+  "description": "The Comcast firmware on Motorola MX011ANM (firmware version MX011AN_2.9p6s1_PROD_sey) devices allows physically proximate attackers to execute arbitrary commands as root by pulling up the diagnostics menu on the set-top box, and then posting to a Web Inspector route.",
+  "cpe_strings": "cpe:2.3:o:cisco:mx011anm_firmware:mx011an_2.9p6s1_prod_sey:*:*:*:*:*:*:*|cpe:2.3:h:motorola:mx011anm:-:*:*:*:*:*:*:*"
+ }
+]

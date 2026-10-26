@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2022-32140",
+  "description": "Multiple CODESYS products are affected to a buffer overflow.A low privileged remote attacker may craft a request, which can cause a buffer copy without checking the size of the service, resulting in a denial-of-service condition. User Interaction is not required.",
+  "cpe_strings": "cpe:2.3:a:codesys:plcwinnt:*:*:*:*:*:*:*:*|cpe:2.3:a:codesys:runtime_toolkit:*:*:*:*:*:*:x86:*"
+ }
+]

@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2018-19588",
+  "description": "Alarm.com ADC-V522IR 0100b9 devices have Incorrect Access Control.",
+  "cpe_strings": "cpe:2.3:o:alarm:adc-v522ir_firmware:0100b9:*:*:*:*:*:*:*|cpe:2.3:h:alarm:adc-v522ir:-:*:*:*:*:*:*:*"
+ }
+]

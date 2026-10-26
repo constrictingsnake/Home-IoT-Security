@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2013-0879",
+  "description": "Google Chrome before 25.0.1364.97 on Windows and Linux, and before 25.0.1364.99 on Mac OS X, does not properly implement web audio nodes, which allows remote attackers to cause a denial of service (memory corruption) or possibly have unspecified other impact via unknown vectors.",
+  "cpe_strings": "cpe:2.3:a:google:chrome:*:*:*:*:*:*:*:*|cpe:2.3:o:linux:linux_kernel:-:*:*:*:*:*:*:*|cpe:2.3:o:microsoft:windows:-:*:*:*:*:*:*:*|cpe:2.3:o:apple:iphone_os:-:*:*:*:*:*:*:*|cpe:2.3:o:apple:mac_os_x:-:*:*:*:*:*:*:*"
+ }
+]

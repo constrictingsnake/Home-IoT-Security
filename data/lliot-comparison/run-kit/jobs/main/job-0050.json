@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2022-45214",
+  "description": "A cross-site scripting (XSS) vulnerability in Sanitization Management System v1.0.0 allows attackers to execute arbitrary web scripts or HTML via a crafted payload injected into the username parameter at /php-sms/classes/Login.php.",
+  "cpe_strings": "cpe:2.3:a:sanitization_management_system_project:sanitization_management_system:1.0:*:*:*:*:*:*:*"
+ }
+]

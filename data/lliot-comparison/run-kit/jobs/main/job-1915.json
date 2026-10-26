@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2019-8747",
+  "description": "A memory corruption vulnerability was addressed with improved locking. This issue is fixed in watchOS 6.1. An application may be able to execute arbitrary code with kernel privileges.",
+  "cpe_strings": "cpe:2.3:o:apple:watchos:*:*:*:*:*:*:*:*"
+ }
+]

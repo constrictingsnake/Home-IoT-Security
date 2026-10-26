@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2014-9517",
+  "description": "Cross-site scripting (XSS) vulnerability in D-link IP camera DCS-2103 with firmware before 1.20 allows remote attackers to inject arbitrary web script or HTML via the QUERY_STRING to vb.htm.",
+  "cpe_strings": "cpe:2.3:o:dlink:dcs-2103_firmware:*:*:*:*:*:*:*:*|cpe:2.3:h:dlink:dcs-2103:-:*:*:*:*:*:*:*"
+ }
+]

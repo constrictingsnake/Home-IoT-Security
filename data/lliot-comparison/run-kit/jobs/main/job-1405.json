@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2023-39992",
+  "description": "Unauth. Reflected Cross-Site Scripting (XSS) vulnerability in vCita.Com Online Booking & Scheduling Calendar for WordPress by vcita plugin <= 4.3.2 versions.",
+  "cpe_strings": "cpe:2.3:a:vcita:online_booking_\\&_scheduling_calendar:*:*:*:*:*:wordpress:*:*"
+ }
+]

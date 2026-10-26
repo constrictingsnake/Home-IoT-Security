@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2021-21941",
+  "description": "A use-after-free vulnerability exists in the pushMuxer CreatePushThread functionality of Anker Eufy Homebase 2 2.1.6.9h. A specially-crafted set of network packets can lead to remote code execution.",
+  "cpe_strings": "cpe:2.3:o:anker:eufy_homebase_2_firmware:2.1.6.9h:*:*:*:*:*:*:*|cpe:2.3:h:anker:eufy_homebase_2:-:*:*:*:*:*:*:*"
+ }
+]

@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2023-23022",
+  "description": "Cross site scripting (XSS) vulnerability in sourcecodester oretnom23 employee's payroll management system 1.0, allows attackers to execute arbitrary code via the code, title, from_date and to_date inputs in file Main.php.",
+  "cpe_strings": "cpe:2.3:a:oretnom23:employees_payroll_management_system:1.0:*:*:*:*:*:*:*"
+ }
+]

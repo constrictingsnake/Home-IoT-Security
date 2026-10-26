@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2017-6260",
+  "description": "NVIDIA Windows GPU Display Driver contains a vulnerability in the kernel mode layer helper function where an incorrect calculation of string length may lead to denial of service.",
+  "cpe_strings": "cpe:2.3:a:nvidia:gpu_driver:-:*:*:*:*:*:*:*|cpe:2.3:o:microsoft:windows:-:*:*:*:*:*:*:*"
+ }
+]

@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2021-27581",
+  "description": "The Blog module in Kentico CMS 5.5 R2 build 5.5.3996 allows SQL injection via the tagname parameter.",
+  "cpe_strings": "cpe:2.3:a:kentico:kentico_cms:5.5:r2:build_5.5.3996:*:*:*:*:*"
+ }
+]

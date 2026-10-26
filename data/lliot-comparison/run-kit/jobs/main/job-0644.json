@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2024-35858",
+  "description": "In the Linux kernel, the following vulnerability has been resolved:\n\nnet: bcmasp: fix memory leak when bringing down interface\n\nWhen bringing down the TX rings we flush the rings but forget to\nreclaimed the flushed packets. This leads to a memory leak since we\ndo not free the dma mapped buffers. This also leads to tx control\nblock corruption when bringing down the interface for power\nmanagement.",
+  "cpe_strings": "cpe:2.3:o:linux:linux_kernel:*:*:*:*:*:*:*:*|cpe:2.3:o:linux:linux_kernel:6.9:rc1:*:*:*:*:*:*|cpe:2.3:o:linux:linux_kernel:6.9:rc2:*:*:*:*:*:*|cpe:2.3:o:linux:linux_kernel:6.9:rc3:*:*:*:*:*:*|cpe:2.3:o:linux:linux_kernel:6.9:rc4:*:*:*:*:*:*|cpe:2.3:o:linux:linux_kernel:6.9:rc5:*:*:*:*:*:*"
+ }
+]

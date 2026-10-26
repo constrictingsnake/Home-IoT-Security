@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2022-27210",
+  "description": "A cross-site request forgery (CSRF) vulnerability in Jenkins Kubernetes Continuous Deploy Plugin 2.3.1 and earlier allows attackers to connect to an attacker-specified SSH server using attacker-specified credentials IDs obtained through another method, capturing credentials stored in Jenkins.",
+  "cpe_strings": "cpe:2.3:a:jenkins:kubernetes_continuous_deploy:*:*:*:*:*:jenkins:*:*"
+ }
+]

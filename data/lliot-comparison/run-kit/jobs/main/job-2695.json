@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2021-27952",
+  "description": "Hardcoded default root credentials exist on the ecobee3 lite 4.5.81.200 device. This allows a threat actor to gain access to the password-protected bootloader environment through the serial console.",
+  "cpe_strings": "cpe:2.3:o:ecobee:ecobee3_lite_firmware:4.5.81.200:*:*:*:*:*:*:*|cpe:2.3:h:ecobee:ecobee3_lite:-:*:*:*:*:*:*:*"
+ }
+]

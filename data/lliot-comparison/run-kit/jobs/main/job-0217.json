@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2023-21463",
+  "description": "Improper access control vulnerability in MyFiles application prior to versions 12.2.09.0 in Android 11, 13.1.03.501 in Android 12 and 14.1.03.0 in Android 13 allows local attacker to get sensitive information of secret mode in Samsung Internet application with specific conditions.",
+  "cpe_strings": "cpe:2.3:a:samsung:myfiles:*:*:*:*:*:*:*:*|cpe:2.3:o:google:android:11.0:*:*:*:*:*:*:*|cpe:2.3:o:google:android:12.0:*:*:*:*:*:*:*|cpe:2.3:o:google:android:13.0:*:*:*:*:*:*:*"
+ }
+]

@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2021-27223",
+  "description": "A denial-of-service issue existed in one of modules that was incorporated in Kaspersky Anti-Virus products for home and Kaspersky Endpoint Security. A local user could cause Windows crash by running a specially crafted binary module. The fix was delivered automatically. Credits: (Straghkov Denis, Kurmangaleev Shamil, Fedotov Andrey, Kuts Daniil, Mishechkin Maxim, Akolzin Vitaliy) @ ISPRAS",
+  "cpe_strings": "cpe:2.3:a:kaspersky:anti-virus:*:*:*:*:*:*:*:*|cpe:2.3:a:kaspersky:endpoint_security:*:*:*:*:*:*:*:*|cpe:2.3:a:kaspersky:internet_security:*:*:*:*:*:*:*:*|cpe:2.3:a:kaspersky:security_cloud:*:*:*:*:*:*:*:*|cpe:2.3:a:kaspersky:small_office_security:*:*:*:*:*:*:*:*|cpe:2.3:a:kaspersky:total_security:*:*:*:*:*:*:*:*"
+ }
+]

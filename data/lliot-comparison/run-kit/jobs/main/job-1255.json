@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2022-41733",
+  "description": "\nIBM InfoSphere Information Server 11.7 could allow a remote attacked to cause some of the components to be unusable until the process is restarted. IBM X-Force ID: 237583.\n\n",
+  "cpe_strings": "cpe:2.3:a:ibm:infosphere_information_server:*:*:*:*:*:*:*:*|cpe:2.3:o:linux:linux_kernel:-:*:*:*:*:*:*:*|cpe:2.3:o:microsoft:windows:-:*:*:*:*:*:*:*"
+ }
+]

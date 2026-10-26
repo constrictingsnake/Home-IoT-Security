@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2017-7627",
+  "description": "The \"Smart related articles\" extension 1.1 for Joomla! does not prevent direct requests to dialog.php (there is a missing _JEXEC check).",
+  "cpe_strings": "cpe:2.3:a:smart_related_articles_project:smart_related_articles:1.1:*:*:*:*:joomla\\!:*:*"
+ }
+]

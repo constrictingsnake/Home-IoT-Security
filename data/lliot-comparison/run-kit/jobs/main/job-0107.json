@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2020-9550",
+  "description": "Rubetek SmartHome 2020 devices use unencrypted 433 MHz communication between controllers and beacons, allowing an attacker to sniff and spoof beacon requests remotely.",
+  "cpe_strings": "cpe:2.3:o:rubetek:smarthome_firmware:2020:*:*:*:*:*:*:*|cpe:2.3:h:rubetek:smarthome:-:*:*:*:*:*:*:*"
+ }
+]

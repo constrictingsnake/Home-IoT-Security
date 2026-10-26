@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2018-1149",
+  "description": "cgi_system in NUUO's NVRMini2 3.8.0 and below allows remote attackers to execute arbitrary code via crafted HTTP requests.",
+  "cpe_strings": "cpe:2.3:o:nuuo:nvrmini2_firmware:*:*:*:*:*:*:*:*|cpe:2.3:h:nuuo:nvrmini2:-:*:*:*:*:*:*:*"
+ }
+]

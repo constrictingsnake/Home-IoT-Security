@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2020-6007",
+  "description": "Philips Hue Bridge model 2.X prior to and including version 1935144020 contains a Heap-based Buffer Overflow when handling a long ZCL string during the commissioning phase, resulting in a remote code execution.",
+  "cpe_strings": "cpe:2.3:o:philips:hue_bridge_v2_firmware:*:*:*:*:*:*:*:*|cpe:2.3:h:philips:hue_bridge_v2:-:*:*:*:*:*:*:*"
+ }
+]

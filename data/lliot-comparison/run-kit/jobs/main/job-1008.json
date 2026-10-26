@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2015-2889",
+  "description": "Summer Baby Zoom Wifi Monitor & Internet Viewing System allows remote attackers to gain privileges via manual entry of a Settings URL.",
+  "cpe_strings": "cpe:2.3:o:summerinfant:baby_zoom_wifi_monitor_firmware:-:*:*:*:*:*:*:*|cpe:2.3:h:summerinfant:baby_zoom_wifi_monitor:-:*:*:*:*:*:*:*"
+ }
+]

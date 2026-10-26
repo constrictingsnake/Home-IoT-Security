@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2021-24655",
+  "description": "The WP User Manager WordPress plugin before 2.6.3 does not ensure that the user ID to reset the password of is related to the reset key given. As a result, any authenticated user can reset the password (to an arbitrary value) of any user knowing only their ID, and gain access to their account.",
+  "cpe_strings": "cpe:2.3:a:wpusermanager:wp_user_manager:*:*:*:*:*:wordpress:*:*"
+ }
+]

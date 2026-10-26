@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2020-13786",
+  "description": "D-Link DIR-865L Ax 1.20B01 Beta devices allow CSRF.",
+  "cpe_strings": "cpe:2.3:o:dlink:dir-865l_firmware:1.20b01:*:*:*:*:*:*:*|cpe:2.3:h:dlink:dir-865l:ax:*:*:*:*:*:*:*"
+ }
+]

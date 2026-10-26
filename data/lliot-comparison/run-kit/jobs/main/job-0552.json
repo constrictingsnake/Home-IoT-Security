@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2024-36203",
+  "description": "Adobe Experience Manager versions 6.5.20 and earlier are affected by a stored Cross-Site Scripting (XSS) vulnerability that could be abused by an attacker to inject malicious scripts into vulnerable form fields. Malicious JavaScript may be executed in a victim’s browser when they browse to the page containing the vulnerable field.",
+  "cpe_strings": "cpe:2.3:a:adobe:experience_manager:*:*:*:*:*:*:*:*|cpe:2.3:a:adobe:experience_manager:*:*:*:*:aem_cloud_service:*:*:*"
+ }
+]

@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2023-31595",
+  "description": "IC Realtime ICIP-P2012T 2.420 is vulnerable to Incorrect Access Control via unauthenticated port access.",
+  "cpe_strings": "cpe:2.3:o:icrealtime:icip-p2012t_firmware:2.420:*:*:*:*:*:*:*|cpe:2.3:h:icrealtime:icip-p2012t:-:*:*:*:*:*:*:*"
+ }
+]

@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2021-22640",
+  "description": "An attacker can decrypt the Ovarro TBox login password by communication capture and brute force attacks.",
+  "cpe_strings": "cpe:2.3:a:ovarro:twinsoft:*:*:*:*:*:*:*:*|cpe:2.3:o:ovarro:tbox_lt2-530_firmware:*:*:*:*:*:*:*:*|cpe:2.3:h:ovarro:tbox_lt2-530:-:*:*:*:*:*:*:*|cpe:2.3:o:ovarro:tbox_lt2-532_firmware:*:*:*:*:*:*:*:*|cpe:2.3:h:ovarro:tbox_lt2-532:-:*:*:*:*:*:*:*|cpe:2.3:o:ovarro:tbox_lt2-540_firmware:*:*:*:*:*:*:*:*|cpe:2.3:h:ovarro:tbox_lt2-540:-:*:*:*:*:*:*:*|cpe:2.3:o:ovarro:tbox_ms-cpu32_firmware:*:*:*:*:*:*:*:*|cpe:2.3:h:ovarro:tbox_ms-cpu32:-:*:*:*:*:*:*:*|cpe:2.3:o:ovarro:tbox_ms-cpu32-s2_firmware:*:*:*:*:*:*:*:*|cpe:2.3:h:ovarro:tbox_ms-cpu32-s2:-:*:*:*:*:*:*:*|cpe:2.3:o:ovarro:tbox_rm2_firmware:*:*:*:*:*:*:*:*|cpe:2.3:h:ovarro:tbox_rm2:-:*:*:*:*:*:*:*|cpe:2.3:o:ovarro:tbox_tg2_firmware:*:*:*:*:*:*:*:*|cpe:2.3:h:ovarro:tbox_tg2:-:*:*:*:*:*:*:*"
+ }
+]

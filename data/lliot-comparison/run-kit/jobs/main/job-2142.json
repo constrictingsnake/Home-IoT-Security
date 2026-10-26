@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2019-9734",
+  "description": "Aquarius CMS through 4.3.5 writes POST and GET parameters (including passwords) to a log file due to an overwriting of configuration parameters under certain circumstances.",
+  "cpe_strings": "cpe:2.3:a:aquaverde:aquarius_cms:*:*:*:*:*:*:*:*"
+ }
+]

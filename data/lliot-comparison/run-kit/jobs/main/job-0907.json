@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2022-30620",
+  "description": "On Cellinx Camera with guest enabled, attacker with web access can elevate privileges to administrative: \"1\" to \"0\" privileges by changing the following cookie values from \"is_admin\", \"showConfig\". Administrative Privileges which allows changing various configuration in the camera.",
+  "cpe_strings": "cpe:2.3:o:cellinx:cellinx_nvt_-_ip_ptz_camera_firmware:3.2.0:*:*:*:*:*:*:*|cpe:2.3:o:cellinx:cellinx_nvt_-_ip_ptz_camera_firmware:3.2.1:*:*:*:*:*:*:*|cpe:2.3:h:cellinx:cellinx_nvt_-_ip_ptz_camera:-:*:*:*:*:*:*:*"
+ }
+]

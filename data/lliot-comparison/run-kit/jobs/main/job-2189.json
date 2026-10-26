@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2021-26926",
+  "description": "A flaw was found in jasper before 2.0.25. An out of bounds read issue was found in jp2_decode function whic may lead to disclosure of information or program crash.",
+  "cpe_strings": "cpe:2.3:a:jasper_project:jasper:*:*:*:*:*:*:*:*|cpe:2.3:o:fedoraproject:fedora:32:*:*:*:*:*:*:*|cpe:2.3:o:fedoraproject:fedora:33:*:*:*:*:*:*:*|cpe:2.3:o:fedoraproject:fedora:34:*:*:*:*:*:*:*"
+ }
+]

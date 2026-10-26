@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2020-35722",
+  "description": "CSRF in Web Compliance Manager in Quest Policy Authority 8.1.2.200 allows remote attackers to force user modification/creation via a specially crafted link to the submitUser.jsp file. NOTE: This vulnerability only affects products that are no longer supported by the maintainer",
+  "cpe_strings": "cpe:2.3:a:quest:policy_authority_for_unified_communications:8.1.2.200:*:*:*:*:*:*:*"
+ }
+]

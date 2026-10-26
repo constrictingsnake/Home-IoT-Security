@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2014-3764",
+  "description": "Cross-site scripting (XSS) vulnerability in the web-based device management interface in Palo Alto Networks PAN-OS before 5.0.15, 5.1.x before 5.1.10, and 6.0.x before 6.0.6 allows remote attackers to inject arbitrary web script or HTML via unspecified vectors, aka Ref ID 64563.",
+  "cpe_strings": "cpe:2.3:o:paloaltonetworks:pan-os:*:*:*:*:*:*:*:*|cpe:2.3:o:paloaltonetworks:pan-os:5.1:*:*:*:*:*:*:*|cpe:2.3:o:paloaltonetworks:pan-os:5.1.1:*:*:*:*:*:*:*|cpe:2.3:o:paloaltonetworks:pan-os:5.1.2:*:*:*:*:*:*:*|cpe:2.3:o:paloaltonetworks:pan-os:5.1.3:*:*:*:*:*:*:*|cpe:2.3:o:paloaltonetworks:pan-os:5.1.4:*:*:*:*:*:*:*|cpe:2.3:o:paloaltonetworks:pan-os:5.1.5:*:*:*:*:*:*:*|cpe:2.3:o:paloaltonetworks:pan-os:5.1.6:*:*:*:*:*:*:*|cpe:2.3:o:paloaltonetworks:pan-os:5.1.7:*:*:*:*:*:*:*|cpe:2.3:o:paloaltonetworks:pan-os:5.1.8:*:*:*:*:*:*:*|cpe:2.3:o:paloaltonetworks:pan-os:5.1.9:*:*:*:*:*:*:*|cpe:2.3:o:paloaltonetworks:pan-os:6.0:*:*:*:*:*:*:*|cpe:2.3:o:paloaltonetworks:pan-os:6.0.1:*:*:*:*:*:*:*|cpe:2.3:o:paloaltonetworks:pan-os:6.0.2:*:*:*:*:*:*:*|cpe:2.3:o:paloaltonetworks:pan-os:6.0.3:*:*:*:*:*:*:*|cpe:2.3:o:paloaltonetworks:pan-os:6.0.4:*:*:*:*:*:*:*|cpe:2.3:o:paloaltonetworks:pan-os:6.0.5:*:*:*:*:*:*:*"
+ }
+]

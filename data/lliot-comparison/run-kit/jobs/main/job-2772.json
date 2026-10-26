@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2023-35931",
+  "description": "Shescape is a simple shell escape library for JavaScript. An attacker may be able to get read-only access to environment variables. This bug has been patched in version 1.7.1.\n\n\n",
+  "cpe_strings": "cpe:2.3:a:shescape_project:shescape:*:*:*:*:*:node.js:*:*"
+ }
+]

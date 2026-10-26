@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2021-38244",
+  "description": "A regular expression denial of service (ReDoS) vulnerability exits in cbioportal 3.6.21 and older via a POST request to /ProteinArraySignificanceTest.json.",
+  "cpe_strings": "cpe:2.3:a:cbioportal_project:cbioportal:*:*:*:*:*:*:*:*"
+ }
+]

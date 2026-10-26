@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2020-3620","home_iot":"Maybe","categories":["smartspeakers"],"confidence":"Low","reasoning":"The vulnerable Qualcomm platform layer includes Snapdragon Consumer IoT and Voice & Music chipsets that may power smart speakers, but the description and generic chipset CPEs do not identify a specific home device."}]}

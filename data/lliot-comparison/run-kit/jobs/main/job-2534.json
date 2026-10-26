@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2022-29110",
+  "description": "Microsoft Excel Remote Code Execution Vulnerability",
+  "cpe_strings": "cpe:2.3:a:microsoft:excel:2013:sp1:*:*:*:*:x64:*|cpe:2.3:a:microsoft:excel:2013:sp1:*:*:*:*:x86:*|cpe:2.3:a:microsoft:excel:2013:sp1:*:*:rt:*:*:*|cpe:2.3:a:microsoft:excel:2016:*:*:*:*:*:x64:*|cpe:2.3:a:microsoft:excel:2016:*:*:*:*:*:x86:*|cpe:2.3:a:microsoft:office_web_apps_server:2013:sp1:*:*:*:*:*:*"
+ }
+]

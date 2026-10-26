@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2018-10108",
+  "description": "D-Link DIR-815 REV. B (with firmware through DIR-815_REVB_FIRMWARE_PATCH_2.07.B01) devices have XSS in the Treturn parameter to /htdocs/webinc/js/bsc_sms_inbox.php.",
+  "cpe_strings": "cpe:2.3:o:dlink:dir-815_firmware:*:*:*:*:*:*:*:*|cpe:2.3:h:dlink:dir-815:-:*:*:*:*:*:*:*"
+ }
+]

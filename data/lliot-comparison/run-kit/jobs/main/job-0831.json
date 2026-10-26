@@ -1,0 +1,7 @@
+[
+ {
+  "cve_id": "CVE-2016-4592",
+  "description": "WebKit in Apple iOS before 9.3.3, Safari before 9.1.2, and tvOS before 9.2.2 allows remote attackers to cause a denial of service (memory consumption) via a crafted web site.",
+  "cpe_strings": "cpe:2.3:a:apple:webkit:-:*:*:*:*:*:*:*|cpe:2.3:a:apple:safari:*:*:*:*:*:*:*:*|cpe:2.3:o:apple:iphone_os:*:*:*:*:*:*:*:*|cpe:2.3:o:apple:tvos:*:*:*:*:*:*:*:*|cpe:2.3:a:webkitgtk:webkitgtk\\+:*:*:*:*:*:*:*:*"
+ }
+]
