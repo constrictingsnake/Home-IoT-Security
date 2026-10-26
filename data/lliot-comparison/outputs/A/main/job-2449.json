@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2018-11315","home_iot":"Yes","categories":["thermostat"],"confidence":"High","reasoning":"The affected Radio Thermostat CT50 and CT80 are network-connected residential thermostats whose API controls a home's target temperature."}]}

@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2019-9103","home_iot":"No","categories":[],"confidence":"High","reasoning":"The affected Moxa MGate devices are industrial Modbus gateways used for industrial automation, not consumer home IoT devices."}]}

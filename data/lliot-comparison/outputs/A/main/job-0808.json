@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2017-9857","home_iot":"Yes","categories":["home-power"],"confidence":"High","reasoning":"The affected SMA Sunny Boy network-connected solar inverters include residential home-energy equipment whose settings can be remotely monitored and controlled."}]}

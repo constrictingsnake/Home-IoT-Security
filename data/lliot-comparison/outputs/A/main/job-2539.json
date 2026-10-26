@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2022-41477","home_iot":"No","categories":[],"confidence":"High","reasoning":"WeBid is web-based auction software, not a networked residential sensor, appliance, or home-control device."}]}

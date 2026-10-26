@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2022-48947","home_iot":"No","categories":[],"confidence":"High","reasoning":"This is a generic Linux kernel Bluetooth L2CAP vulnerability with no indication that it specifically affects a qualifying home IoT device."}]}

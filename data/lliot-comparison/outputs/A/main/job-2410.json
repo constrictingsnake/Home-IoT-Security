@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2018-11228","home_iot":"Maybe","categories":["hub"],"confidence":"Low","reasoning":"The affected Crestron TSW touch panels can control residential automation systems, but these models are also widely deployed as commercial AV and room-control panels."}]}

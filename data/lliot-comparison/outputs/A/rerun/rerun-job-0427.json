@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2019-10584","home_iot":"Yes","categories":["smartspeakers"],"confidence":"Low","reasoning":"The affected Snapdragon Voice & Music and QCS405 platforms are used in networked consumer smart speakers, although the vulnerability spans many non-home chipset families as well."}]}

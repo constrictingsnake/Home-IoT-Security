@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2023-33120","home_iot":"Yes","categories":["smartspeakers"],"confidence":"Low","reasoning":"The affected CPEs include Qualcomm Smart Audio and Smart Display platforms used in consumer smart speakers/displays, although the vulnerable ADSP component is shared across many non-home product classes."}]}

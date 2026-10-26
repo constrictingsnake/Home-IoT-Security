@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2013-2165","home_iot":"No","categories":[],"confidence":"High","reasoning":"The vulnerability affects Red Hat JBoss enterprise server platforms and the RichFaces web application framework, not a consumer home IoT device."}]}

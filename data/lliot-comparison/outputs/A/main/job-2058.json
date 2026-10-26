@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2024-47078","home_iot":"No","categories":[],"confidence":"High","reasoning":"Meshtastic firmware powers general-purpose off-grid mesh communication nodes, not devices whose primary function is monitoring, automating, or controlling a private home."}]}

@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2019-14823","home_iot":"No","categories":[],"confidence":"High","reasoning":"The flaw affects the general-purpose JSS CryptoManager certificate-validation library and Red Hat Enterprise Linux systems, not a consumer home IoT device."}]}

@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2023-5879","home_iot":"Yes","categories":["doorlock"],"confidence":"High","reasoning":"The vulnerable Aladdin Connect companion app stores credentials used to control Genie residential smart garage-door openers, which are included in the doorlock category."}]}

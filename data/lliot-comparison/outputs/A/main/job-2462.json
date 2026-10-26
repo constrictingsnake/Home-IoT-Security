@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2018-6972","home_iot":"No","categories":[],"confidence":"High","reasoning":"The affected VMware ESXi, Workstation, and Fusion products are general-purpose virtualization software for servers and computers, not home IoT devices."}]}

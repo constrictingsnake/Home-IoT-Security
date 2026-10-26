@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2023-0355","home_iot":"Yes","categories":["doorbell"],"confidence":"High","reasoning":"The Akuvox E11 is a network-connected video door phone used as a smart doorbell, and the vulnerability affects its firmware and hardware."}]}

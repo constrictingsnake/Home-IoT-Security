@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2021-45582","home_iot":"No","categories":[],"confidence":"High","reasoning":"The affected NETGEAR Orbi models are mesh routers and satellites that provide network transport rather than home monitoring, automation, or control."}]}

@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2023-21629","home_iot":"Maybe","categories":["smartspeakers"],"confidence":"Low","reasoning":"The affected Qualcomm modem firmware spans many general-purpose and automotive platforms but also lists Smart Audio and Smart Display chipsets that may power consumer smart speakers or displays."}]}

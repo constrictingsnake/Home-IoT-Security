@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2022-22065","home_iot":"Maybe","categories":["smartspeakers"],"confidence":"Low","reasoning":"The vulnerable Qualcomm WLAN layer includes Snapdragon Consumer IoT and Voice & Music platforms that may power smart speakers, but the description and chipset CPEs do not identify a specific qualifying home device."}]}

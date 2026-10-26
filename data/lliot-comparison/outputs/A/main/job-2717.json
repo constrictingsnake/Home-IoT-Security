@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2018-10825","home_iot":"Yes","categories":["babymonitor"],"confidence":"High","reasoning":"Mimo Baby 2 is a dedicated consumer baby-monitoring device that uses BLE to report a baby's position and temperature."}]}

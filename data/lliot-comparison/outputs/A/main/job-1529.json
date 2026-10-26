@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2019-7729","home_iot":"Yes","categories":["cameras"],"confidence":"High","reasoning":"The vulnerability affects the Android companion app for Bosch consumer smart security cameras and can expose cached camera footage."}]}

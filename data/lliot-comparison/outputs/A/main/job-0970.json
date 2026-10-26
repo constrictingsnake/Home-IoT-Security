@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2023-40591","home_iot":"No","categories":[],"confidence":"High","reasoning":"go-ethereum is general-purpose Ethereum node software rather than a consumer home-monitoring or automation device."}]}

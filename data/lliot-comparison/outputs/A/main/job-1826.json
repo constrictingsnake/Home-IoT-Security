@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2023-31162","home_iot":"No","categories":[],"confidence":"High","reasoning":"SEL Real-Time Automation Controllers are industrial utility and substation automation equipment, not consumer devices intended for home monitoring or control."}]}

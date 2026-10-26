@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2023-21652","home_iot":"No","categories":[],"confidence":"High","reasoning":"The CVE affects a broad range of Qualcomm mobile, automotive, networking, audio, and XR chipsets at the HLOS layer, with no specific residential home-automation device identified."}]}

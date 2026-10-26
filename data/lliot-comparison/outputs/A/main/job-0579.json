@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2021-3437","home_iot":"No","categories":[],"confidence":"High","reasoning":"The vulnerability affects HP OMEN Gaming Hub software on general-purpose gaming desktops and laptops, which are explicitly outside the home IoT device class."}]}

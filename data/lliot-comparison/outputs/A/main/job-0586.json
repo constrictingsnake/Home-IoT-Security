@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2016-7823","home_iot":"Yes","categories":["cameras"],"confidence":"High","reasoning":"Buffalo WNC01WH is a consumer network camera, and the vulnerability affects its device firmware."}]}

@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2019-5065","home_iot":"Maybe","categories":["hub"],"confidence":"Low","reasoning":"Blynk Library is a shared IoT software layer that can run home-automation controllers but is not tied by the description or CPE to a specific residential device."}]}

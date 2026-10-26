@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2020-9475","home_iot":"Maybe","categories":["hub"],"confidence":"Low","reasoning":"The SG 150-0 is a network gateway bridging Siedle door-communication equipment, but the supplied details do not establish whether it is intended primarily for private homes rather than professional building installations."}]}

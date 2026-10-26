@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2023-40983","home_iot":"No","categories":[],"confidence":"High","reasoning":"Webmin is general-purpose server administration software, not a consumer home IoT device or its dedicated control software."}]}

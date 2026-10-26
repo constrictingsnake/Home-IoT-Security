@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2022-47758","home_iot":"Yes","categories":["lighting"],"confidence":"High","reasoning":"Nanoleaf firmware runs on consumer connected smart-lighting products, and the missing TLS verification enables code execution through DNS hijacking."}]}

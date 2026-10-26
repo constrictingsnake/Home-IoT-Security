@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2020-9321","home_iot":"No","categories":[],"confidence":"High","reasoning":"Traefik and Traefik Enterprise are general-purpose reverse-proxy software, not residential home IoT devices."}]}

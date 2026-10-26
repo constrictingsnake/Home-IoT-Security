@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2018-4087","home_iot":"No","categories":[],"confidence":"High","reasoning":"This affects iOS, watchOS, and tvOS, and tvOS CVEs are explicitly excluded while phones and watches are general-purpose or wearable devices outside scope."}]}

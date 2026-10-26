@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2014-4462","home_iot":"No","categories":[],"confidence":"High","reasoning":"The vulnerability affects iOS and Apple tvOS, and the category rules explicitly exclude phones and tvOS CVEs."}]}

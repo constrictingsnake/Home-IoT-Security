@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2014-9191","home_iot":"No","categories":[],"confidence":"High","reasoning":"The affected HART DTM library communicates with industrial field devices over a 4–20 mA current loop, which is an industrial control context rather than consumer home IoT."}]}

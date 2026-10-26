@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2024-3497","home_iot":"No","categories":[],"confidence":"High","reasoning":"The affected device is a networked printer, which is general office/peripheral equipment rather than a home-monitoring, automation, or control device."}]}

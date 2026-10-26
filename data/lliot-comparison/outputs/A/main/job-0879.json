@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2024-42097","home_iot":"No","categories":[],"confidence":"High","reasoning":"This vulnerability affects the general-purpose Linux kernel ALSA sound subsystem, not a specific home IoT device or product line."}]}

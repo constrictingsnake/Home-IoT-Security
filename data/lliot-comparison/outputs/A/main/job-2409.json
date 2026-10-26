@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2016-1371","home_iot":"No","categories":[],"confidence":"High","reasoning":"The vulnerability affects ClamAV antivirus software on general-purpose Linux systems, not a residential home IoT device."}]}

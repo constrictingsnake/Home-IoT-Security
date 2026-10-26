@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2019-6604","home_iot":"No","categories":[],"confidence":"High","reasoning":"F5 BIG-IP hardware and traffic-management modules are enterprise networking infrastructure, not consumer home-monitoring or automation devices."}]}

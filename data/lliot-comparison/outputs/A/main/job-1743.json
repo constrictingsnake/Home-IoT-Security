@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2017-13098","home_iot":"No","categories":[],"confidence":"High","reasoning":"The vulnerability affects the general-purpose Bouncy Castle Java cryptography library rather than a specific home IoT device or product."}]}

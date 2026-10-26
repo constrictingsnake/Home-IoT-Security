@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2016-10296","home_iot":"No","categories":[],"confidence":"High","reasoning":"This vulnerability affects generic Android/Linux kernel components and does not identify any special-purpose residential home IoT device."}]}

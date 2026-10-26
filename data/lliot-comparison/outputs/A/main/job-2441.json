@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2019-16924","home_iot":"Yes","categories":["doorlock"],"confidence":"High","reasoning":"The vulnerable Nulock companion app exposes credentials used to control a consumer Bluetooth smart lock."}]}

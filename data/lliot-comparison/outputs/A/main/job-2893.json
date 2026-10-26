@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2024-27767","home_iot":"No","categories":[],"confidence":"High","reasoning":"Unitronics UniLogic is industrial PLC/HMI programming software rather than a consumer home IoT device or its dedicated companion software."}]}

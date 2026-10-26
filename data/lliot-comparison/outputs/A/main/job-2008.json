@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2024-47695","home_iot":"No","categories":[],"confidence":"High","reasoning":"This is a generic Linux kernel RDMA client bug and does not identify any consumer home IoT device or home-control function."}]}

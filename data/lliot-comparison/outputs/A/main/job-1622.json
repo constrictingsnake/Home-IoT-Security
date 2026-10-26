@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2017-15638","home_iot":"No","categories":[],"confidence":"High","reasoning":"The vulnerability affects general-purpose SUSE/openSUSE firewall software on desktop and server operating systems, not a special-purpose home IoT device."}]}

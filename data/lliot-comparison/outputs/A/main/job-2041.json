@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2023-34139","home_iot":"No","categories":[],"confidence":"High","reasoning":"The affected Zyxel USG FLEX and VPN devices are network security gateways/firewalls, which are general networking infrastructure rather than home-automation or monitoring devices."}]}

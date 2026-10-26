@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2017-18294","home_iot":"No","categories":[],"confidence":"High","reasoning":"The affected Qualcomm SoCs target mobile, wearable, automotive, and cellular modem platforms rather than a specified residential home-automation device."}]}

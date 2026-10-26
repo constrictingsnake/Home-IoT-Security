@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2021-41737","home_iot":"No","categories":[],"confidence":"High","reasoning":"The vulnerability affects the Faust audio signal-processing language/compiler when parsing a crafted input file, not a home IoT device."}]}

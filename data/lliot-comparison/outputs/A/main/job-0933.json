@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2017-17435","home_iot":"Maybe","categories":["doorlock"],"confidence":"Low","reasoning":"The VT20i is a consumer BLE-connected smart safe with remotely controlled locking, but a gun-safe lock is only an uncertain fit for the residential smart-lock category."}]}

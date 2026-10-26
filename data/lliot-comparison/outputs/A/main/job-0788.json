@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2019-10581","home_iot":"Maybe","categories":["smartspeakers"],"confidence":"Low","reasoning":"The flaw spans broad Qualcomm mobile, automotive, industrial, consumer-IoT, and Voice & Music platforms, so it may affect smart speakers but no specific home device is identified."}]}

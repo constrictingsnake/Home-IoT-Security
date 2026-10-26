@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2024-22768","home_iot":"Maybe","categories":["cameras"],"confidence":"Low","reasoning":"The affected Hitron HVR-4781 is a networked DVR that may support home surveillance, but the description and CPE do not establish whether it is a consumer home product or professional surveillance equipment."}]}

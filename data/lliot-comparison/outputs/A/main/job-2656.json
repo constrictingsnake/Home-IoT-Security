@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2022-34537","home_iot":"Maybe","categories":["cameras"],"confidence":"Low","reasoning":"The affected MEGApix IP camera is a networked security camera, but the description and CPE do not establish whether it is intended for consumer homes or primarily professional surveillance."}]}

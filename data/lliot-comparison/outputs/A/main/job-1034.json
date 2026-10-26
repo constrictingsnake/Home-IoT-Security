@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2023-36940","home_iot":"No","categories":[],"confidence":"High","reasoning":"The affected product is a PHP/MySQL web-based fire reporting system, not a consumer home IoT alarm or embedded monitoring device."}]}

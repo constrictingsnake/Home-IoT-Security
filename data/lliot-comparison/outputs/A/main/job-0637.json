@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2020-0349","home_iot":"No","categories":[],"confidence":"High","reasoning":"This vulnerability affects the general-purpose Android 11 operating system's NFC component, not a special-purpose home IoT device."}]}

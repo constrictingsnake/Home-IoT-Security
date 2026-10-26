@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2019-3997","home_iot":"Yes","categories":["alarms"],"confidence":"High","reasoning":"SimpliSafe SS3 is a consumer home security and alarm system, and the flaw permits a rogue keypad to pair with an armed system."}]}

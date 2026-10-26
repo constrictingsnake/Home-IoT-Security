@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2015-5746","home_iot":"No","categories":[],"confidence":"High","reasoning":"The vulnerability affects Apple iOS on general-purpose phones or tablets, which are explicitly outside the home IoT device class."}]}

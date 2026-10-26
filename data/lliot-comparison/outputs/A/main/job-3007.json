@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2016-5051","home_iot":"Yes","categories":["lighting"],"confidence":"High","reasoning":"The vulnerable Lightify Home companion app exposes a PSK used with OSRAM's consumer smart-lighting system."}]}

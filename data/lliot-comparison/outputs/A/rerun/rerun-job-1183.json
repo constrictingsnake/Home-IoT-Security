@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2019-9836","home_iot":"No","categories":[],"confidence":"High","reasoning":"The vulnerability affects AMD EPYC server processors and their virtualization security firmware, which are general enterprise computing components rather than home IoT devices."}]}

@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2024-50928","home_iot":"Maybe","categories":["hub"],"confidence":"Low","reasoning":"The flaw affects a shared Z-Wave SDK and controller chipset layer commonly used in smart-home hubs, but the description and CPEs do not identify a specific residential end product."}]}

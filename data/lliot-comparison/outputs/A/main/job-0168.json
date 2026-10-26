@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2019-2302","home_iot":"Maybe","categories":["smartspeakers"],"confidence":"Low","reasoning":"The flaw affects Qualcomm chipsets used across mobile, automotive, industrial, consumer-IoT, and voice/music products, so smart-speaker exposure is plausible but no specific home device is identified."}]}

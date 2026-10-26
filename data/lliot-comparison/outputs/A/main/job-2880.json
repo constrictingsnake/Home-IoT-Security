@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2018-17907","home_iot":"No","categories":[],"confidence":"High","reasoning":"Omron CX-Supervisor is industrial automation/SCADA software for processing project files, not a consumer home IoT device."}]}

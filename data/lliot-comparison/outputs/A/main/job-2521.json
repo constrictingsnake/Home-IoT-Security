@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2019-12780","home_iot":"Yes","categories":["appliances"],"confidence":"High","reasoning":"The affected Belkin Wemo-enabled Crock-Pot is a network-connected consumer smart kitchen appliance controlled through a UPnP API."}]}

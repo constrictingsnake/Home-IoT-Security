@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2020-29023","home_iot":"No","categories":[],"confidence":"High","reasoning":"Secomea GateManager is an industrial remote-access management appliance rather than a consumer device for monitoring or controlling a private home."}]}

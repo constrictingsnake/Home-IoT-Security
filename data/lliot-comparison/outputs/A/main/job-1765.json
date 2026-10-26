@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2024-47351","home_iot":"No","categories":[],"confidence":"High","reasoning":"MaxSlider is a software component affected by path traversal, with no indication that it is a home IoT device or device-specific companion software."}]}

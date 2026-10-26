@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2024-23357","home_iot":"Maybe","categories":["hub","smartspeakers"],"confidence":"Low","reasoning":"The affected Qualcomm portfolio includes Home Hub, Smart Audio, and Smart Display platforms that may underpin consumer home-control devices, but the flaw spans a broad shared chipset layer rather than clearly identified residential products."}]}

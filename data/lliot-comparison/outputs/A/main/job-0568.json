@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2024-39561","home_iot":"No","categories":[],"confidence":"High","reasoning":"The affected Juniper SRX4600 and SRX5000 Series devices are enterprise-grade network security gateways running Junos OS, not consumer home-automation devices."}]}

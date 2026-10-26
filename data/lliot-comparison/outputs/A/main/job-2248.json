@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2014-9200","home_iot":"No","categories":[],"confidence":"High","reasoning":"The affected Schneider Electric DTM development and industrial communication software targets automation and field devices, not consumer home IoT equipment."}]}

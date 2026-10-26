@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2019-7698","home_iot":"No","categories":[],"confidence":"High","reasoning":"The vulnerability affects the general-purpose Bento4 MP4 processing library/tooling, not a home IoT device or device-specific control component."}]}

@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2023-46894","home_iot":"No","categories":[],"confidence":"High","reasoning":"Espressif esptool is a general-purpose firmware flashing utility, not itself a home IoT device or a companion component tied to a specific home IoT product."}]}

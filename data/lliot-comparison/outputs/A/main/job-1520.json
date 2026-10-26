@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2015-4407","home_iot":"Maybe","categories":["cameras"],"confidence":"Low","reasoning":"The affected Hikvision DS-76xx/DS-77xx network video recorders could support home security cameras, but the description and CPEs do not establish whether these models are consumer-home rather than professional surveillance equipment."}]}

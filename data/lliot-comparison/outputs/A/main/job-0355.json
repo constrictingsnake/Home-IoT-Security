@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2020-7808","home_iot":"No","categories":[],"confidence":"High","reasoning":"The vulnerability affects RAONWIZ K Upload software running on general-purpose Windows computers, not a special-purpose home IoT device."}]}

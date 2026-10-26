@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2020-0050","home_iot":"No","categories":[],"confidence":"High","reasoning":"The vulnerability affects the Android operating system's NFC server, a general-purpose mobile computing platform rather than a home IoT device."}]}

@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2024-47023","home_iot":"No","categories":[],"confidence":"High","reasoning":"The CPE identifies the general-purpose Android operating system, and the description does not tie the vulnerability to any home IoT device or function."}]}

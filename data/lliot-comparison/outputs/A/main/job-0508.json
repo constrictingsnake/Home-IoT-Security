@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2013-4684","home_iot":"No","categories":[],"confidence":"High","reasoning":"Juniper SRX devices running Junos are enterprise network security gateways, not consumer home-automation devices."}]}

@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2017-10718","home_iot":"No","categories":[],"confidence":"High","reasoning":"The affected networked endoscope camera is inspection equipment intended for industrial, automotive, and clinical settings, not a residential security camera or other home-monitoring device."}]}

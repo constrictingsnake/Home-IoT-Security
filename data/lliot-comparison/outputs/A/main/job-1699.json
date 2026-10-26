@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2022-47100","home_iot":"Yes","categories":["lighting"],"confidence":"High","reasoning":"The affected Sengled Smart bulb is a consumer Zigbee-connected lighting device."}]}

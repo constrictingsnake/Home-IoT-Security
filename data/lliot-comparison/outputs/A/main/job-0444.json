@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2021-27823","home_iot":"Maybe","categories":["cameras"],"confidence":"Low","reasoning":"NetWave System is associated with network camera interfaces, but the description and CPE do not clearly establish that the affected product is a consumer home security camera."}]}

@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2022-2572","home_iot":"No","categories":[],"confidence":"High","reasoning":"Octopus Server is general deployment/automation server software, not a consumer home IoT device or its dedicated service."}]}

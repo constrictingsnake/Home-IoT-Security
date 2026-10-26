@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2021-24087","home_iot":"No","categories":[],"confidence":"High","reasoning":"The vulnerability affects an Azure IoT command-line software extension, not a consumer home IoT device or its dedicated companion service."}]}

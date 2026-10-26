@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2019-10580","home_iot":"No","categories":[],"confidence":"High","reasoning":"The vulnerability affects generic Qualcomm Snapdragon chipsets and firmware spanning automotive, mobile, wearable, industrial, and broad IoT platforms, rather than a specific residential home-monitoring or control device."}]}

@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2023-33768","home_iot":"Yes","categories":["smartplugs"],"confidence":"High","reasoning":"The vulnerability affects firmware for a Belkin Wemo consumer smart plug, which is a networked home-control device."}]}

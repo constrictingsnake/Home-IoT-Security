@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2022-22931","home_iot":"No","categories":[],"confidence":"High","reasoning":"The vulnerability affects Apache James mail-server mailbox and Sieve repositories, which are general server software rather than a home IoT device."}]}

@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2019-13120","home_iot":"Maybe","categories":["sensors"],"confidence":"Low","reasoning":"The vulnerability affects a generic FreeRTOS MQTT software layer that could run on consumer home sensors, but no particular residential device or product class is identified."}]}

@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2020-36445","home_iot":"No","categories":[],"confidence":"High","reasoning":"The vulnerability affects a general-purpose Rust crate rather than a home IoT device or device-specific software."}]}

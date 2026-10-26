@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2017-6837","home_iot":"No","categories":[],"confidence":"High","reasoning":"The vulnerability affects a general-purpose audio file library, not a networked residential device for monitoring or controlling the home."}]}

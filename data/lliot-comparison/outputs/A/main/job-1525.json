@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2019-20086","home_iot":"No","categories":[],"confidence":"High","reasoning":"The vulnerability affects GoPro's telemetry metadata parser software, not a qualifying home-monitoring, automation, or control device."}]}

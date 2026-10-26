@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2016-5799","home_iot":"No","categories":[],"confidence":"High","reasoning":"Moxa OnCell G3000-series products are industrial cellular networking gateways rather than consumer devices that monitor or control a private home."}]}

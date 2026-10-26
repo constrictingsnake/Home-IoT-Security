@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2023-22448","home_iot":"No","categories":[],"confidence":"High","reasoning":"Intel Unison is general-purpose PC and phone integration software on Windows, Android, and iOS, not software for a special-purpose home monitoring or control device."}]}

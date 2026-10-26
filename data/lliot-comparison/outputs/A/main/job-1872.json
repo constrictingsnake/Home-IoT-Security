@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2021-27425","home_iot":"Maybe","categories":["hub"],"confidence":"Low","reasoning":"Mongoose OS is an embedded IoT operating system that could run on home-control hubs, but the description and CPE do not identify a specific residential device or deployment."}]}

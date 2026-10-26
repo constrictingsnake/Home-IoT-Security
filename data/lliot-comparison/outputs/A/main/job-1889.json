@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2015-8281","home_iot":"Maybe","categories":["cameras"],"confidence":"Low","reasoning":"The Samsung SRN-1670D is a network video recorder that could serve surveillance cameras, but the description does not establish whether it is intended for consumer homes rather than professional deployments."}]}

@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2024-51513","home_iot":"No","categories":[],"confidence":"High","reasoning":"The vulnerability affects the VPN module in Huawei HarmonyOS, a general-purpose operating system, and does not identify any qualifying home IoT device or home-control function."}]}

@@ -1,11 +1,11 @@
 # Plan — Does LLIoT's method work on our research question? (one researcher, ChatGPT-based)
 
-> **STATUS (2026-10-25): GATE PASSED; main run in progress (single jobs, full sample).** Kit, scripts, sample
+> **STATUS (2026-10-26): P3 + P4 DONE — 3,035/3,035 main + 152/152 reruns valid; stability 97.4%. Next: P5 adjudication sheet (`lliot_compare.py`, not yet written).** Kit, scripts, sample
 > (3,035 CVEs) and pilot jobs are built. A ran the smoke test and the 42 pilot jobs (§ Pilot
 > log). **Changed 2026-10-25, before the Phase 0 commit: the study is one researcher (Aarav)
 > on one ChatGPT Plus plan**, run from a Claude Code session (§ One-researcher workflow). B's
 > pilot is replaced by A rerunning the 40 single pilot jobs (`pilot-rerun`) for the stability
-> read. Gate passed 2026-10-25 (§ Pilot log). Next: finish the main run, then the 5% reruns. **Deviation, disclosed:** the pilot
+> read. Gate passed 2026-10-25; main run and reruns finished 2026-10-26 (§ Pilot log). **Deviation, disclosed:** the pilot
 > ran before the Phase 0 commit. Pilot outputs never enter the analysis, so no analysed label
 > predates the pre-registration. After that commit, changes to hypotheses, sample sizes, prompt or metrics are
 > dated amendments with a reason, never silent edits.
@@ -418,8 +418,25 @@ remaining ~3,087 jobs need roughly 15–45% of a week).
 - **Deviation, disclosed:** these 100 main jobs ran before the Phase 0 commit, to measure quota.
   Their prompt, model and job files are the pre-registered ones, and no output was opened.
 
+**Main run log (2026-10-25/26):**
+- Jobs 1–1,000: 2 workers, 0 failures.
+- After the 5-hour reset, a 1,100-job batch got 407 **HTTP 429 Too Many Requests** (spread
+  evenly, 2–3 s each, no output). A one-worker retry recovered only 142 of them (steady ~35%
+  success). Quota was not the cause: 43% of the 5-hour and 91% of the weekly limit were left.
+  Usage for the 835 successful jobs in that window: ~57% of 5-hour, ~9% weekly.
+- A 429'd job never reaches the model and leaves no output, and throttling is by timing, not
+  CVE content, so retrying them introduces no selection bias.
+- State at pause: **1,835 / 3,035 main jobs valid**; 265 failed (to retry) + 935 not started +
+  152 reruns = 1,352 jobs left, about one 5-hour window at ~7% per 100.
+- Resumed 2026-10-26 after adding 429 backoff to `lliot_run.py` (`BACKOFF_S` 60/120/240/480 s,
+  not counted as the job's one retry; driver only, no pre-registered hash changes). 20-job test
+  clean, then the remaining 1,180 at 1 worker, 14:44–16:09: 0 failures, 0 backoff waits.
+- **Main run complete: 3,035 / 3,035 valid.** Reruns: **152 / 152 valid.**
+- **M5 stability (P4, 5% reruns):** home IoT **148/152 (97.4%)**; primary category **24/25
+  (96.0%)** where both gave one. H5 thresholds (90% / 85%) met; consistent with the pilot's 97.5%.
+
 ## Pre-registration
-- Commit hash: `TBD`
+- Commit hash: `559bcf1` (2026-10-25)
 - Prompt (`run-kit/AGENTS.md`) SHA-256: `8d5c8319d48bf99c41590a042f0482af5167641a4ed86edc6de228d32cf5713b`
 - Schema (`run-kit/schema.json`) SHA-256: `d69a99b032842c42bf4879f3d9643252d34db8d8ebbd2139d768fce28fd37692`
   - Both as generated 2026-10-16. Rerun `lliot_build_prompt.py --check` at Phase 0. A changed

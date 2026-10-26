@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2023-35143","home_iot":"No","categories":[],"confidence":"High","reasoning":"This vulnerability affects a Jenkins server plugin for Maven artifact repositories, which is general-purpose software rather than a home IoT device."}]}

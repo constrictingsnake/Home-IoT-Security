@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2013-1954","home_iot":"No","categories":[],"confidence":"High","reasoning":"The vulnerability affects VLC media-player software processing a crafted movie, not a qualifying home IoT device or home-control surface."}]}

@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2024-21625","home_iot":"No","categories":[],"confidence":"High","reasoning":"The vulnerability affects the SideQuest desktop application for managing VR applications, while desktop software and VR headsets are excluded general computing or entertainment products rather than home IoT devices."}]}

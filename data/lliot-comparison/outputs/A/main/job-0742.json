@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2024-22473","home_iot":"No","categories":[],"confidence":"Low","reasoning":"The affected Gecko SDK and Virtual Secure Vault devices are generic embedded-development components, with no specific residential home-control product identified."}]}

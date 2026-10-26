@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2023-50124","home_iot":"Yes","categories":["doorlock"],"confidence":"High","reasoning":"The vulnerability explicitly affects a consumer smart door lock whose debug interface can be exploited to unlock it."}]}

@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2016-10642","home_iot":"No","categories":[],"confidence":"High","reasoning":"This vulnerability affects a Node.js package that installs CMake Linux binaries, which is general development software rather than a home IoT device."}]}

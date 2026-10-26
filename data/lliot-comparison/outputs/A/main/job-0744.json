@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2019-9861","home_iot":"Yes","categories":["alarms"],"confidence":"High","reasoning":"The affected ABUS Secvest FUAA50000 is a consumer wireless home alarm system whose RFID keys can be cloned to disable it."}]}

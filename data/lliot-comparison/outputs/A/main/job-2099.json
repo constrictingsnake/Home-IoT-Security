@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2017-16778","home_iot":"No","categories":[],"confidence":"High","reasoning":"The Fermax Outdoor Panel is a shared building access-control/intercom panel, and the description does not establish the network connectivity or private-home deployment required for home IoT."}]}

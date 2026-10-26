@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2024-38593","home_iot":"No","categories":[],"confidence":"High","reasoning":"This is a generic Linux kernel Ethernet PHY driver flaw and does not identify any qualifying residential home IoT device."}]}

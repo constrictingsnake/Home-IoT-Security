@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2020-10592","home_iot":"No","categories":[],"confidence":"High","reasoning":"The vulnerability affects Tor networking software and OpenSUSE operating-system packages, not a special-purpose home IoT device."}]}

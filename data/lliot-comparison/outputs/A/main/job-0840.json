@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2022-34734","home_iot":"No","categories":[],"confidence":"High","reasoning":"The vulnerability affects Microsoft ODBC software on general-purpose Windows PCs and servers, not a special-purpose home IoT device."}]}

@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2023-34086","home_iot":"No","categories":[],"confidence":"High","reasoning":"The affected Intel NUC kits, mini PCs, boards, and compute element are general-purpose computers rather than special-purpose home monitoring or automation devices."}]}

@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2021-46965","home_iot":"No","categories":[],"confidence":"High","reasoning":"This is a generic Linux kernel MTD driver vulnerability with no description or CPE evidence tying it to a home IoT device."}]}

@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2023-29582","home_iot":"No","categories":[],"confidence":"High","reasoning":"Yasm is a general-purpose assembler program, not a networked consumer device for home monitoring, automation, or control."}]}

@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2024-48798","home_iot":"Maybe","categories":["babymonitor","cameras"],"confidence":"Low","reasoning":"Hubble Connected's app is associated with connected baby monitors and home cameras, but the description does not identify which device receives the vulnerable firmware update."}]}

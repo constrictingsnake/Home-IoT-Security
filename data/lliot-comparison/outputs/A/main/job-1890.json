@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2019-6837","home_iot":"Yes","categories":["hub"],"confidence":"Low","reasoning":"The affected U.motion KNX servers and touch controllers are dedicated building-automation hubs that can control residential KNX systems, although the description does not establish exclusively home deployment."}]}

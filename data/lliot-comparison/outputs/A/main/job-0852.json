@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2022-33727","home_iot":"No","categories":[],"confidence":"High","reasoning":"The vulnerability affects Android mobile-device Bluetooth selection, and phones are general-purpose computing devices rather than home IoT devices."}]}

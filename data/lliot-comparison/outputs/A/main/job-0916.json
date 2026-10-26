@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2019-14021","home_iot":"Maybe","categories":["cameras"],"confidence":"Low","reasoning":"The flaw affects broad Qualcomm platforms including Consumer IoT chips that may power home cameras, but no specific residential device or home-control function is identified."}]}

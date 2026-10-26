@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2021-37000","home_iot":"No","categories":[],"confidence":"High","reasoning":"The vulnerability affects Huawei wearables, which are excluded consumer wearable devices rather than home-monitoring or home-control IoT."}]}

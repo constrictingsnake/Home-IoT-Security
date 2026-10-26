@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2024-39202","home_iot":"No","categories":[],"confidence":"High","reasoning":"The affected D-Link DIR-823X is a consumer Wi-Fi router, which provides network transport but is not itself a home-control hub or other qualifying home IoT device."}]}

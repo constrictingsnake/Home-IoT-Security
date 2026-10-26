@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2024-42470","home_iot":"Yes","categories":["hub"],"confidence":"High","reasoning":"The vulnerable openHAB CometVisu add-on is part of a home-automation controller platform used to monitor and control home IoT devices."}]}

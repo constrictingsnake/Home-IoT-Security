@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2023-20734","home_iot":"Yes","categories":["streaming"],"confidence":"Low","reasoning":"The affected MediaTek VCU platforms include MT9xxx chipsets used in smart televisions, which qualify as streaming home-control surfaces, although the vulnerability also spans Android and other non-home-IoT platforms."}]}

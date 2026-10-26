@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2018-11401","home_iot":"Yes","categories":["alarms"],"confidence":"High","reasoning":"SimpliSafe Original is a consumer home security/alarm system, and the vulnerability prevents it from notifying the homeowner of RF interference."}]}

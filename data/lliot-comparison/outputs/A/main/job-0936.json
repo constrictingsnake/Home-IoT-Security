@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2019-8743","home_iot":"No","categories":[],"confidence":"High","reasoning":"The vulnerability affects Apple watchOS on a wrist wearable, which is explicitly excluded from the home IoT device classes."}]}

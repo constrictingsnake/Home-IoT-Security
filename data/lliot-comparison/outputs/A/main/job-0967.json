@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2023-37722","home_iot":"No","categories":[],"confidence":"High","reasoning":"The affected Tenda F1202/FH1202/4G300 products are routers, which provide network transport but are not home-control hubs or other qualifying home IoT devices."}]}

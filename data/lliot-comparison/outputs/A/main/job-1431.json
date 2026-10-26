@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2022-45794","home_iot":"No","categories":[],"confidence":"High","reasoning":"The affected Omron CJ-series and CS-series PLCs are industrial automation controllers rather than consumer devices intended for residential home monitoring or control."}]}

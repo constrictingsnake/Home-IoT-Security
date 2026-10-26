@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2019-14261","home_iot":"Yes","categories":["alarms"],"confidence":"High","reasoning":"The affected ABUS Secvest device is a consumer wireless home alarm system whose central unit communicates with motion detectors and remote controls."}]}

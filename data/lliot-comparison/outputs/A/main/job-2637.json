@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2020-29323","home_iot":"No","categories":[],"confidence":"High","reasoning":"The affected D-Link DIR-885L-MFC is a router, which provides network transport rather than home monitoring, automation, or control."}]}

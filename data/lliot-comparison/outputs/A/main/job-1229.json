@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2017-6343","home_iot":"No","categories":[],"confidence":"Low","reasoning":"The affected Dahua 16-channel HCVR and SmartPSS stack appears to be professional surveillance equipment, with no indication that it is a consumer home DVR/NVR."}]}

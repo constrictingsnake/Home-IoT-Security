@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2022-25826","home_iot":"No","categories":[],"confidence":"High","reasoning":"The affected Android plugin supports a Samsung wrist wearable, which is excluded as a general personal wearable rather than a home-monitoring or home-control IoT device."}]}

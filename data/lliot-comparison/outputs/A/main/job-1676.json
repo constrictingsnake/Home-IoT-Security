@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2022-29945","home_iot":"No","categories":[],"confidence":"High","reasoning":"The affected DJI drones and their controllers are recreational aerial devices, not embedded systems whose primary purpose is monitoring, automating, or controlling a private home."}]}

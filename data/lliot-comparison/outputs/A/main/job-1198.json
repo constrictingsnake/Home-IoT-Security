@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2021-33045","home_iot":"Yes","categories":["doorbell","cameras"],"confidence":"Low","reasoning":"The affected Dahua lines include network cameras and VTO video door stations used in residential surveillance and entry systems, though many listed NVR/XVR products also serve commercial deployments."}]}

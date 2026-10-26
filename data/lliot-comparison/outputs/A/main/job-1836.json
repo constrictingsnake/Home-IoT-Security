@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2017-11173","home_iot":"No","categories":[],"confidence":"High","reasoning":"The vulnerability affects the general-purpose rack-cors Ruby software and Debian Linux, not a residential IoT device or home-control product."}]}

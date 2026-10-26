@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2013-1606","home_iot":"Maybe","categories":["cameras"],"confidence":"Low","reasoning":"The affected Ubiquiti AirCam is a networked security camera that could be deployed at home, but the description does not establish whether it is a consumer residential rather than professional surveillance product."}]}

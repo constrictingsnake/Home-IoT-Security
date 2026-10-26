@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2024-22269","home_iot":"No","categories":[],"confidence":"High","reasoning":"The vulnerability affects VMware desktop virtualization software and a virtual Bluetooth device on general-purpose computers, not a home IoT device."}]}

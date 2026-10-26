@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2023-35802","home_iot":"No","categories":[],"confidence":"High","reasoning":"The affected Extreme Networks AP devices are enterprise wireless access points providing network transport, not consumer home-control or monitoring devices."}]}

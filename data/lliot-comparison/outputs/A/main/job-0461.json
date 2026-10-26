@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2014-1272","home_iot":"No","categories":[],"confidence":"High","reasoning":"The vulnerability affects iOS and Apple TV/tvOS, and the scope rules explicitly exclude tvOS CVEs while phones are general-purpose devices."}]}

@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2018-15820","home_iot":"No","categories":[],"confidence":"High","reasoning":"EasyIO-30P is a commercial building-automation controller rather than a consumer device intended for private-home monitoring or control."}]}

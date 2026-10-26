@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2023-4249","home_iot":"Maybe","categories":["cameras"],"confidence":"Low","reasoning":"The affected products are networked IP security cameras that could be used in a home, but the description and CPEs do not establish whether they are consumer-oriented rather than professional surveillance equipment."}]}

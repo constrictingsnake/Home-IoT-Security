@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2019-16258","home_iot":"Yes","categories":["hub"],"confidence":"High","reasoning":"The homee Brain Cube is a consumer smart-home hub that controls connected home devices, and the vulnerability affects its bootloader."}]}

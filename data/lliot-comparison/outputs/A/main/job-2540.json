@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2023-52705","home_iot":"No","categories":[],"confidence":"High","reasoning":"This is a generic Linux kernel NILFS2 filesystem vulnerability and does not identify any residential IoT device or home-control function."}]}

@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2019-9871","home_iot":"Yes","categories":["streaming"],"confidence":"High","reasoning":"The affected Jector FM-K75 is explicitly a network-connected smart TV, which qualifies as a streaming home-control surface."}]}

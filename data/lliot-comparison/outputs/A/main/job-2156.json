@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2023-25825","home_iot":"No","categories":[],"confidence":"High","reasoning":"ZoneMinder is general-purpose Linux CCTV software rather than a consumer home security camera or dedicated home DVR/NVR device."}]}

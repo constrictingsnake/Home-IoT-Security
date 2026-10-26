@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2019-12942","home_iot":"Yes","categories":["doorlock"],"confidence":"High","reasoning":"TTLock is a consumer connected smart-lock system, and the flaw improperly permits guest access when its cloud connection is unavailable."}]}

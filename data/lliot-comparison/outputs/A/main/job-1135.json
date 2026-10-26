@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2023-38988","home_iot":"No","categories":[],"confidence":"High","reasoning":"Jeesite is general-purpose application software, and the notification-deletion flaw does not affect a home IoT device."}]}

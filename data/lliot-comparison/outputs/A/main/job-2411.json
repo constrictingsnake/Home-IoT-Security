@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2022-4882","home_iot":"No","categories":[],"confidence":"High","reasoning":"Kaltura mwEmbed is web-based media-player software, not a special-purpose consumer device for monitoring or controlling a home."}]}

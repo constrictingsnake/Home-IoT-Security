@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2021-36182","home_iot":"No","categories":[],"confidence":"High","reasoning":"Fortinet FortiWeb is an enterprise web application firewall, not a consumer home-monitoring or automation device."}]}

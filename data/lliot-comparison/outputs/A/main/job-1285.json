@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2024-29159","home_iot":"No","categories":[],"confidence":"High","reasoning":"HDF5 is a general-purpose data file library, and the description and CPE do not identify any affected home IoT device."}]}

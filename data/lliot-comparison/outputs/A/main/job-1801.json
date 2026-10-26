@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2020-35473","home_iot":"No","categories":[],"confidence":"High","reasoning":"The vulnerability affects the general Bluetooth Core Specification shared across many device classes, not a specific home IoT device or product category."}]}

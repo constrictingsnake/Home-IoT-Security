@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2020-8792","home_iot":"Yes","categories":["doorlock"],"confidence":"High","reasoning":"The vulnerable companion app provisions and controls a consumer Bluetooth fingerprint padlock, which is a residential smart-lock product."}]}

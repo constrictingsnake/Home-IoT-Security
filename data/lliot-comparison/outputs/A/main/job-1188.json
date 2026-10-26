@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2024-45177","home_iot":"Maybe","categories":["cameras"],"confidence":"Low","reasoning":"C-MOR is networked video-surveillance software with camera configuration, but the description and application CPE do not establish whether it is deployed as a consumer home system or primarily as professional VMS software."}]}

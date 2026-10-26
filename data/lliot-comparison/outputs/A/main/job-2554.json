@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2022-21964","home_iot":"No","categories":[],"confidence":"High","reasoning":"The vulnerability affects Microsoft Windows 10 Remote Desktop licensing software on general-purpose PCs, not a special-purpose home IoT device."}]}

@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2022-29952","home_iot":"No","categories":[],"confidence":"High","reasoning":"Bently Nevada condition-monitoring controllers are industrial machinery-monitoring equipment, not consumer devices intended to monitor or control a private home."}]}

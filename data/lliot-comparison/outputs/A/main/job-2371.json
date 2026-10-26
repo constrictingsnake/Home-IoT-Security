@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2023-20573","home_iot":"No","categories":[],"confidence":"High","reasoning":"The vulnerability affects AMD EPYC server processors and SEV-SNP virtual-machine guests, which are general enterprise computing infrastructure rather than home IoT devices."}]}

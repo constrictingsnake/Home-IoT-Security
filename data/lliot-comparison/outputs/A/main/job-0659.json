@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2024-8212","home_iot":"Yes","categories":["cameras"],"confidence":"High","reasoning":"The affected D-Link lineup includes consumer DNR network video recorders used with home security cameras, which qualify as home DVR/NVR devices."}]}

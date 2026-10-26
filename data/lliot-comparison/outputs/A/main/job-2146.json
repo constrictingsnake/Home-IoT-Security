@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2023-34974","home_iot":"No","categories":[],"confidence":"High","reasoning":"QNAP QTS and QuTS hero are general-purpose NAS operating systems, not embedded devices whose primary function is monitoring, automating, or controlling a home."}]}

@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2013-6952","home_iot":"Yes","categories":["smartplugs","lighting"],"confidence":"Low","reasoning":"Belkin WeMo Home Automation firmware serves consumer connected home-control products, notably smart plugs/switches and lighting, but the affected product line is not specified precisely."}]}

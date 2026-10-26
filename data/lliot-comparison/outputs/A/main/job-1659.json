@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2013-6948","home_iot":"Yes","categories":["smartplugs"],"confidence":"High","reasoning":"Belkin WeMo Home Automation firmware is used by consumer connected home-control devices, particularly WeMo smart plugs and outlets."}]}

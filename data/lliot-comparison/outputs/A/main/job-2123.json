@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2018-14654","home_iot":"No","categories":[],"confidence":"High","reasoning":"Gluster is a distributed server file system used on enterprise Linux and virtualization platforms, not a consumer home IoT device."}]}

@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2023-4641","home_iot":"No","categories":[],"confidence":"High","reasoning":"The flaw affects general-purpose shadow-utils and Red Hat Enterprise Linux systems, not a consumer home IoT device."}]}

@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2022-0017","home_iot":"No","categories":[],"confidence":"High","reasoning":"The vulnerability affects Palo Alto Networks GlobalProtect VPN software on Windows PCs, which is general IT software rather than a home IoT device."}]}

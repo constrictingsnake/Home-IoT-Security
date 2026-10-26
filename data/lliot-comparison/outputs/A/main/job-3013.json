@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2021-31448","home_iot":"No","categories":[],"confidence":"High","reasoning":"The vulnerability affects Foxit PDF reader software on Windows, which is general-purpose computing software rather than a home IoT device."}]}

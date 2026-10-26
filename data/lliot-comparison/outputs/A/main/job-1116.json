@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2013-4866","home_iot":"No","categories":[],"confidence":"High","reasoning":"The affected connected consumer toilet is a home IoT appliance, but toilets do not belong to any of the 24 defined categories."}]}

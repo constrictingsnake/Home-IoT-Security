@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2022-24939","home_iot":"Maybe","categories":["hub"],"confidence":"Low","reasoning":"EmberZNet is a shared Zigbee stack used in home-IoT hubs and controllers, but the description does not identify a specific residential device or deployment."}]}

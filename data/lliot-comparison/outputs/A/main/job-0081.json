@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2022-35003","home_iot":"No","categories":[],"confidence":"High","reasoning":"JPEGDEC is a general-purpose JPEG decoding software library, and the description does not identify any affected home IoT device."}]}

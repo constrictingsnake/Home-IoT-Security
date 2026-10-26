@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2016-4592","home_iot":"No","categories":[],"confidence":"High","reasoning":"The vulnerability affects general-purpose WebKit, Safari, iOS, and tvOS software, and tvOS CVEs are explicitly excluded from the streaming category."}]}

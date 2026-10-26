@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2019-12586","home_iot":"No","categories":[],"confidence":"Low","reasoning":"The affected Espressif SDK and EAP implementation are generic embedded software used across many device classes, and the supplied description and CPEs do not identify a qualifying residential home-IoT product."}]}

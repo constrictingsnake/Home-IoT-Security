@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2019-8387","home_iot":"Yes","categories":["cameras"],"confidence":"High","reasoning":"The description and CPE identify a networked IP camera appliance, which fits the consumer security-camera category."}]}

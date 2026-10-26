@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2020-11735","home_iot":"No","categories":[],"confidence":"High","reasoning":"The vulnerability affects the general-purpose wolfSSL cryptographic library rather than a specific consumer home IoT device or product line."}]}

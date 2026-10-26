@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2017-15873","home_iot":"No","categories":[],"confidence":"High","reasoning":"The vulnerability affects generic BusyBox and Linux distributions, with no specific residential IoT device or home-control function identified."}]}

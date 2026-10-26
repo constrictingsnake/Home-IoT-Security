@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2021-21501","home_iot":"No","categories":[],"confidence":"High","reasoning":"Apache ServiceComb ServiceCenter is general service-registry software rather than a consumer home IoT device or its dedicated control component."}]}

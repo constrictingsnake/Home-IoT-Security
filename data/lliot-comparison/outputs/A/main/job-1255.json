@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2022-41733","home_iot":"No","categories":[],"confidence":"High","reasoning":"IBM InfoSphere Information Server is enterprise data-integration software running on general-purpose Linux or Windows systems, not a consumer home IoT device."}]}

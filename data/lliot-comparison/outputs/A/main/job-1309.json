@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2023-46345","home_iot":"No","categories":[],"confidence":"High","reasoning":"Catdoc xls2csv is general-purpose document conversion software, not a networked home IoT device or its companion service."}]}

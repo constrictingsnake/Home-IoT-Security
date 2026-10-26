@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2017-8411","home_iot":"Yes","categories":["cameras"],"confidence":"High","reasoning":"The D-Link DCS-1130 is a consumer network security camera whose firmware records video clips to an SMB folder."}]}

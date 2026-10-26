@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2020-12702","home_iot":"Maybe","categories":["smartplugs","lighting"],"confidence":"Low","reasoning":"eWeLink is a consumer smart-home provisioning app commonly used with smart plugs, switches, and lighting, but the description does not identify which paired device types are affected."}]}

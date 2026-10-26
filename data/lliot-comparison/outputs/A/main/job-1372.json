@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2023-44199","home_iot":"No","categories":[],"confidence":"High","reasoning":"The affected Juniper MX Series systems are enterprise/service-provider routers running Junos OS, not consumer home-automation devices."}]}

@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2021-40223","home_iot":"No","categories":[],"confidence":"High","reasoning":"Rittal CMC PU III is a monitoring controller for data-center and industrial IT infrastructure, not a consumer device intended to monitor or control a private home."}]}

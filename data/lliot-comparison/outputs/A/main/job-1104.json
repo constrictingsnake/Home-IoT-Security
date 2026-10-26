@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2015-9059","home_iot":"No","categories":[],"confidence":"High","reasoning":"Picocom is general-purpose serial terminal software, not a residential IoT device or its dedicated companion software."}]}

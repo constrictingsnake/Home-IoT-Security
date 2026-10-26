@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2022-46156","home_iot":"No","categories":[],"confidence":"High","reasoning":"Grafana Synthetic Monitoring Agent is general network-monitoring software for probing remote targets, not a consumer home IoT device or its companion service."}]}

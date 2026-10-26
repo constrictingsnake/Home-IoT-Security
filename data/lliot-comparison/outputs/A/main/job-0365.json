@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2022-32781","home_iot":"No","categories":[],"confidence":"High","reasoning":"The affected Apple operating systems run on general-purpose computers, phones, and tablets, which are explicitly outside the home IoT device class."}]}

@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2018-4089","home_iot":"No","categories":[],"confidence":"High","reasoning":"The vulnerability affects general-purpose Apple operating systems, Safari, and tvOS, which is explicitly excluded from the streaming category by the scope rules."}]}

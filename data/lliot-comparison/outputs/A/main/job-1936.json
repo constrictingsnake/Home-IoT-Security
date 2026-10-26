@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2023-47802","home_iot":"Maybe","categories":["cameras"],"confidence":"Low","reasoning":"The Synology BC500 and TC500 are networked security cameras that could be deployed at homes, but the description does not establish whether these surveillance-oriented models are primarily consumer rather than commercial devices."}]}

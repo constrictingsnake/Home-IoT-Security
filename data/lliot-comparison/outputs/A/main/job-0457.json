@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2024-39874","home_iot":"No","categories":[],"confidence":"High","reasoning":"Siemens SINEMA Remote Connect Server is an industrial remote-access application rather than a consumer device for residential monitoring, automation, or control."}]}

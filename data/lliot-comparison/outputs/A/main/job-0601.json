@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2018-10988","home_iot":"Yes","categories":["robotvacuum"],"confidence":"High","reasoning":"The Diqee Diqee360 is a network-connected consumer robotic vacuum cleaner, and the vulnerability affects its onboard firmware update process."}]}

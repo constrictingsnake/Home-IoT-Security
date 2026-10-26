@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2020-14044","home_iot":"No","categories":[],"confidence":"High","reasoning":"Codiad is a server-hosted web IDE, not a special-purpose home monitoring, automation, or control device."}]}

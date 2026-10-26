@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2019-0867","home_iot":"No","categories":[],"confidence":"High","reasoning":"The vulnerability affects Microsoft Azure DevOps Server and Team Foundation Server, which are enterprise software-development platforms rather than home IoT devices."}]}

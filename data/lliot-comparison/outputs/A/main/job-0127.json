@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2017-16346","home_iot":"Yes","categories":["hub"],"confidence":"High","reasoning":"The vulnerability directly affects the firmware of an Insteon Hub, a consumer smart-home automation hub."}]}

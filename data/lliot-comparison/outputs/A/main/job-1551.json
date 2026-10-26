@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2019-7738","home_iot":"No","categories":[],"confidence":"High","reasoning":"C.P.Sub is a web application, and the described CSRF vulnerability does not affect a home IoT device."}]}

@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2019-12439","home_iot":"No","categories":[],"confidence":"High","reasoning":"Bubblewrap is a general-purpose Linux sandboxing utility, not a residential home IoT device or device-specific component."}]}

@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2019-12727","home_iot":"Yes","categories":["cameras"],"confidence":"High","reasoning":"Ubiquiti airCam is a network-connected IP surveillance camera, and the vulnerability directly affects its RTSP streaming service."}]}

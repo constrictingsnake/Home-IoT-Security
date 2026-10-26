@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2022-26724","home_iot":"No","categories":[],"confidence":"High","reasoning":"This vulnerability affects tvOS, which is explicitly excluded from the streaming category by the scope rules."}]}

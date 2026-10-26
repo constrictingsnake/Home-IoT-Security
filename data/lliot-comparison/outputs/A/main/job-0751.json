@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2024-21918","home_iot":"No","categories":[],"confidence":"High","reasoning":"Rockwell Automation Arena is industrial simulation software requiring a user to open a malicious file, not a residential IoT device or its companion software."}]}

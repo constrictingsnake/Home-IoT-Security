@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2023-39842","home_iot":"Yes","categories":["alarms"],"confidence":"High","reasoning":"The affected Digoo DG-HAMB is a consumer smart home security and alarm system whose RFID tag is vulnerable to cloning."}]}

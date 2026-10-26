@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2024-6164","home_iot":"No","categories":[],"confidence":"High","reasoning":"This vulnerability affects a WordPress content-layout plugin running on a web server, not a home IoT device."}]}

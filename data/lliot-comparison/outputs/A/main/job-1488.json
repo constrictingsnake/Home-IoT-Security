@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2022-39065","home_iot":"Yes","categories":["hub","lighting"],"confidence":"High","reasoning":"The affected IKEA TRÅDFRI Gateway is a residential Zigbee smart-home hub that controls connected smart lighting."}]}

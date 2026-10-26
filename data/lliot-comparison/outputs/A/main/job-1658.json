@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2023-7007","home_iot":"Yes","categories":["doorlock","hub"],"confidence":"High","reasoning":"Sciener GatewayG2 is a consumer smart-lock gateway, and the flaw exposes a key used to unlock connected residential locks."}]}

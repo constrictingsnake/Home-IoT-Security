@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2019-10415","home_iot":"No","categories":[],"confidence":"High","reasoning":"This vulnerability affects a Jenkins software-development plugin on a server, not a consumer home IoT device."}]}

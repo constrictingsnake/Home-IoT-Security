@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2024-37861","home_iot":"No","categories":[],"confidence":"High","reasoning":"ROS2/Nav2 is general robotics navigation software, and the description does not identify a consumer home IoT device or qualifying residential function."}]}

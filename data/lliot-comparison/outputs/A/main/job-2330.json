@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2019-18863","home_iot":"No","categories":[],"confidence":"High","reasoning":"The affected Mitel 6800/6900 devices are business SIP desk phones used for communication, not special-purpose residential home-monitoring or automation devices."}]}

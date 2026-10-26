@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2023-39665","home_iot":"No","categories":[],"confidence":"High","reasoning":"The D-Link DIR-868L is a consumer wireless router, which provides network transport but is not itself a qualifying home-control hub or other listed home IoT device."}]}

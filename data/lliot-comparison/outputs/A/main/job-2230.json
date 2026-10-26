@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2020-11164","home_iot":"Maybe","categories":["cameras","smartspeakers","hub"],"confidence":"Low","reasoning":"The affected Qualcomm platforms include generic Consumer IoT chipsets that may power home cameras, smart displays, or hubs, but the description does not identify any specific residential device or deployment."}]}

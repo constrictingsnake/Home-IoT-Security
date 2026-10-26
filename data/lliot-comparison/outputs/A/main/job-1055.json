@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2024-12897","home_iot":"Maybe","categories":["cameras"],"confidence":"Low","reasoning":"The Intelbras VIP models are network surveillance cameras that could serve residential security, but the description does not establish whether they are consumer home cameras or primarily professional surveillance equipment."}]}

@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2021-35113","home_iot":"Maybe","categories":["cameras","smartspeakers"],"confidence":"Low","reasoning":"The flaw affects shared Qualcomm chipset firmware spanning mobile, automotive, industrial, and consumer-IoT platforms, which may be used in home cameras or smart displays/speakers but does not identify a qualifying end device."}]}

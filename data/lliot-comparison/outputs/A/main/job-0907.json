@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2022-30620","home_iot":"Maybe","categories":["cameras"],"confidence":"Low","reasoning":"The affected product is a networked IP PTZ camera, but the description and CPE do not establish whether it is intended for consumer home security or professional surveillance."}]}

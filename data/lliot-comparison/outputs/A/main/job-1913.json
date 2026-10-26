@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2021-25386","home_iot":"No","categories":[],"confidence":"High","reasoning":"The vulnerability affects Android's media extraction software on general-purpose devices, with no indication of a qualifying home IoT product or home-control function."}]}

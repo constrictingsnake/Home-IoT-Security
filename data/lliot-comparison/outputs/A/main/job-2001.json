@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2020-7470","home_iot":"Yes","categories":["sensors","smartplugs"],"confidence":"High","reasoning":"Sonoff TH10 and TH16 are consumer Wi-Fi temperature/humidity monitoring switches that automate power to connected home appliances."}]}

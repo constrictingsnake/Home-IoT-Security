@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2017-10140","home_iot":"No","categories":[],"confidence":"High","reasoning":"The vulnerability affects Postfix mail-server software, which is general-purpose IT infrastructure rather than a consumer home IoT device."}]}

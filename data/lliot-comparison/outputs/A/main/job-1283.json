@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2021-47506","home_iot":"No","categories":[],"confidence":"High","reasoning":"This is a generic Linux kernel NFS server vulnerability and does not identify any consumer home IoT device or home-control function."}]}

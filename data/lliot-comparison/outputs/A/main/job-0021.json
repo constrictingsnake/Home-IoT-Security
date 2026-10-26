@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2018-3918","home_iot":"Yes","categories":["hub","cameras"],"confidence":"High","reasoning":"The affected Samsung SmartThings Hub is a consumer smart-home hub, and the vulnerable sync operation directly manages connected cameras."}]}

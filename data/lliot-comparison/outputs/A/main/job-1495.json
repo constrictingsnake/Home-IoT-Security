@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2013-5755","home_iot":"No","categories":[],"confidence":"High","reasoning":"The affected Yealink SIP-T38G is an IP desk phone for communications, not a special-purpose device for monitoring, automating, or controlling a home."}]}

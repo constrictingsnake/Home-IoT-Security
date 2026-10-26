@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2018-20161","home_iot":"Yes","categories":["cameras","hub"],"confidence":"High","reasoning":"Blink Sync Module is a consumer home security-camera hub, and the flaw disrupts its connected cameras and video recording."}]}

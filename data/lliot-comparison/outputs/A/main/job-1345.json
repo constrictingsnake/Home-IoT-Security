@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2023-30528","home_iot":"No","categories":[],"confidence":"High","reasoning":"This vulnerability affects a Jenkins OAuth plugin, which is enterprise server software rather than a consumer home IoT device."}]}

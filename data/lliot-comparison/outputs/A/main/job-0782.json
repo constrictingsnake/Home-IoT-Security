@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2024-29948","home_iot":"Maybe","categories":["cameras"],"confidence":"Low","reasoning":"The affected Hikvision NVRs could include home video-recording systems, but the description does not identify whether the vulnerable models are consumer devices or enterprise surveillance equipment."}]}

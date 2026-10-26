@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2023-33443","home_iot":"Yes","categories":["cameras"],"confidence":"High","reasoning":"The affected BESDER BES--6024PB-I50H1 is consumer video-surveillance hardware managed through VideoPlayTool, fitting the home security-camera/DVR category."}]}

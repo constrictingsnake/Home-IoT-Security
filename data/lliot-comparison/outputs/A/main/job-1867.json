@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2013-2792","home_iot":"No","categories":[],"confidence":"High","reasoning":"SEL RTAC master devices are industrial electric-power automation controllers using DNP3, not consumer devices intended for residential home monitoring or control."}]}

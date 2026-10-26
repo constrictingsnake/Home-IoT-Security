@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2022-31875","home_iot":"Yes","categories":["cameras"],"confidence":"High","reasoning":"The Trendnet TV-IP110WN is a consumer wireless IP security camera, and the vulnerability affects its firmware web interface."}]}

@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2020-6804","home_iot":"Yes","categories":["hub"],"confidence":"High","reasoning":"Mozilla WebThings Gateway is smart-home hub software used to connect and control residential IoT devices."}]}

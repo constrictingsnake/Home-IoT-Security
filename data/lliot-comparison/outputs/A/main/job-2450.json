@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2024-46041","home_iot":"Yes","categories":["smartplugs"],"confidence":"High","reasoning":"The affected product is explicitly a consumer IoT smart plug, which is a home automation device."}]}

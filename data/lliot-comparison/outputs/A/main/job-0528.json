@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2022-25741","home_iot":"Maybe","categories":["cameras","smartspeakers"],"confidence":"Low","reasoning":"The vulnerable Qualcomm WLAN components span mobile, automotive, industrial, and consumer-IoT platforms, which could include home cameras or smart speakers but do not identify a specific residential device."}]}

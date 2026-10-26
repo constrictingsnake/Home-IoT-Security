@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2023-5904","home_iot":"No","categories":[],"confidence":"High","reasoning":"The affected PKP web application library is general-purpose publishing software, not a consumer home IoT device or its companion service."}]}

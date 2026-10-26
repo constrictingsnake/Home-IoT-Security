@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2017-2469","home_iot":"No","categories":[],"confidence":"High","reasoning":"The vulnerability affects Safari, iOS, and tvOS, all of which are excluded software or general-purpose platforms, with tvOS CVEs explicitly out of scope."}]}

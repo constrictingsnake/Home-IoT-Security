@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2022-23610","home_iot":"No","categories":[],"confidence":"High","reasoning":"Wire-server is backend software for an enterprise-oriented messaging and SAML SSO service, not a residential home-monitoring or automation device."}]}

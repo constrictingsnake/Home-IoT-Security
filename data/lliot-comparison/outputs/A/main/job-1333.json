@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2020-3143","home_iot":"No","categories":[],"confidence":"High","reasoning":"The affected Cisco TelePresence and Webex room endpoints are enterprise videoconferencing equipment, not consumer devices for monitoring, automating, or controlling a private home."}]}

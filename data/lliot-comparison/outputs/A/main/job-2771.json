@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2017-7488","home_iot":"No","categories":[],"confidence":"High","reasoning":"Authconfig is general-purpose authentication configuration software, not a consumer home IoT device or its device-specific software."}]}

@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2024-49401","home_iot":"No","categories":[],"confidence":"High","reasoning":"The vulnerability affects Samsung Android Settings Suggestions on general-purpose mobile devices, which are explicitly outside the home IoT device class."}]}

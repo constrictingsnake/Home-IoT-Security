@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2023-28576","home_iot":"No","categories":[],"confidence":"High","reasoning":"The affected Qualcomm chipsets and firmware are general-purpose mobile, wireless, XR, and audio components, with no identified residential home-monitoring or automation device."}]}

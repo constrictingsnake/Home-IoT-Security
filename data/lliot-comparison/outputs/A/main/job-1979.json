@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2024-26025","home_iot":"No","categories":[],"confidence":"High","reasoning":"Intel Advisor and the oneAPI Base Toolkit are general-purpose software development tools, not consumer home IoT devices or their dedicated components."}]}

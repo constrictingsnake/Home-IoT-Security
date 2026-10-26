@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2022-35909","home_iot":"No","categories":[],"confidence":"High","reasoning":"Jellyfin is media-server software, not a special-purpose home monitoring, automation, or control device."}]}

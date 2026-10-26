@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2021-33103","home_iot":"No","categories":[],"confidence":"High","reasoning":"The vulnerability affects BIOS code on general-purpose Intel Core, Xeon, and workstation processors, not a special-purpose residential home IoT device."}]}

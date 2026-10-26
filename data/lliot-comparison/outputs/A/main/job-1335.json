@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2024-5405","home_iot":"No","categories":[],"confidence":"High","reasoning":"WinNMP is a general-purpose Windows web-development stack, and this XSS vulnerability does not affect a home IoT device."}]}

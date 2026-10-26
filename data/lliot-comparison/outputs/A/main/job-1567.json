@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2014-7859","home_iot":"Yes","categories":["cameras"],"confidence":"High","reasoning":"The affected D-Link DNR models are consumer network video recorders used with home surveillance cameras, even though the listed DNS models are general-purpose network storage devices."}]}

@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2021-42852","home_iot":"No","categories":[],"confidence":"High","reasoning":"Lenovo Personal Cloud Storage devices are network-attached storage systems for general data storage, not devices whose primary purpose is monitoring, automating, or controlling the home."}]}

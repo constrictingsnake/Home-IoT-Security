@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2021-32934","home_iot":"Maybe","categories":["cameras"],"confidence":"Low","reasoning":"The vulnerable ThroughTek P2P SDK is used in connected devices that can expose camera feeds, including possible consumer home cameras, but the description does not identify a specific residential product."}]}

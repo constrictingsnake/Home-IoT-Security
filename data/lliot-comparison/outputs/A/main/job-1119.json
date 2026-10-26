@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2020-2229","home_iot":"No","categories":[],"confidence":"High","reasoning":"The vulnerability affects Jenkins automation server software, which is general IT infrastructure rather than a consumer home IoT device."}]}

@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2021-43298","home_iot":"No","categories":[],"confidence":"High","reasoning":"The affected GoAhead embedded web-server software is a general-purpose component, and the description and CPE identify no specific home IoT device or qualifying product category."}]}

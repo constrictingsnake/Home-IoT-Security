@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2014-7993","home_iot":"No","categories":[],"confidence":"High","reasoning":"Cisco Meraki MS switches, MR access points, and MX security appliances are general enterprise networking equipment, not special-purpose home-monitoring or automation devices."}]}

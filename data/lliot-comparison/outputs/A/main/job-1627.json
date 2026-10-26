@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2023-52481","home_iot":"No","categories":[],"confidence":"High","reasoning":"This is a generic Linux kernel vulnerability affecting ARM Cortex-A520 systems, with no indication of a specific home IoT device or product category."}]}

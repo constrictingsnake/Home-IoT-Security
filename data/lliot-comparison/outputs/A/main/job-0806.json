@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2019-16398","home_iot":"Yes","categories":["robotvacuum"],"confidence":"High","reasoning":"The Keeper K5 is a network-connected consumer robot vacuum, and the vulnerability affects its firmware."}]}

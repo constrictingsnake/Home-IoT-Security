@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2014-1849","home_iot":"Yes","categories":["cameras"],"confidence":"High","reasoning":"The vulnerability explicitly affects a network-connected Foscam IP camera, a consumer home security camera."}]}

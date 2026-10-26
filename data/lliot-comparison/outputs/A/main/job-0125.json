@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2017-14262","home_iot":"No","categories":[],"confidence":"High","reasoning":"The affected Samsung SRN models are professional network video recorders, which fall under the explicit enterprise NVR exclusion rather than consumer home cameras."}]}

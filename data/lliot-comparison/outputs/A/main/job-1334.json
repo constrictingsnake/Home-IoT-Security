@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2017-14906","home_iot":"No","categories":[],"confidence":"High","reasoning":"The vulnerability affects Android and generic Qualcomm mobile/IoT chipset crypto APIs, not a specific consumer home-automation device in any listed category."}]}

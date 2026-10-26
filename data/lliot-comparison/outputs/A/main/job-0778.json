@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2020-9954","home_iot":"No","categories":[],"confidence":"High","reasoning":"The vulnerability affects Apple general-computing, wearable, and tvOS platforms, and tvOS CVEs are explicitly excluded from the streaming category."}]}

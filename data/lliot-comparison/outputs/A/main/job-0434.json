@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2021-28798","home_iot":"No","categories":[],"confidence":"High","reasoning":"The vulnerability affects general-purpose QNAP NAS operating systems, which are network storage systems rather than devices for monitoring, automating, or controlling a home."}]}

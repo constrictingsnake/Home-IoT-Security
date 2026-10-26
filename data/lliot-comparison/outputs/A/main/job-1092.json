@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2020-24504","home_iot":"No","categories":[],"confidence":"High","reasoning":"The affected Intel E810 Ethernet adapters and Linux drivers are general-purpose data-center/networking hardware, not consumer home-automation devices."}]}

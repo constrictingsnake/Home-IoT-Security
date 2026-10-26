@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2024-31336","home_iot":"No","categories":[],"confidence":"High","reasoning":"This is a local Android kernel graphics-driver vulnerability in a general-purpose mobile operating system, not a home IoT device or home-control appliance."}]}

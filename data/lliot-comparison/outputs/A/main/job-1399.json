@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2019-15745","home_iot":"Yes","categories":["smartplugs"],"confidence":"High","reasoning":"The vulnerability directly affects a consumer Eques Elf smart plug and permits local-network attackers to control its power state."}]}

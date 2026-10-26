@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2017-16311","home_iot":"Yes","categories":["hub"],"confidence":"High","reasoning":"The affected Insteon Hub is a consumer smart-home controller, and the CPE explicitly identifies its hub hardware and firmware."}]}

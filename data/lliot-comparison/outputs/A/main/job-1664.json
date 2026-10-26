@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2023-50201","home_iot":"No","categories":[],"confidence":"High","reasoning":"The affected D-Link G416 is a router, which provides network transport but is explicitly excluded from the smart-home hub category."}]}

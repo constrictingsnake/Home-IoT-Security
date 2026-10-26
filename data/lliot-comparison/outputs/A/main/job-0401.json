@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2021-35104","home_iot":"Maybe","categories":["smartspeakers"],"confidence":"Low","reasoning":"The flaw spans generic Qualcomm platforms, but the named Consumer IoT and Voice & Music lines could power qualifying smart speakers without identifying a specific home-control device."}]}

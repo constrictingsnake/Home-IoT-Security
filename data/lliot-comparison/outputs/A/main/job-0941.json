@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2024-48776","home_iot":"Maybe","categories":["smartplugs","lighting","sensors"],"confidence":"Low","reasoning":"The Shelly home-control app handles firmware updates for consumer smart-home products such as plugs, lighting controls, and sensors, but the description does not identify which device line is affected."}]}

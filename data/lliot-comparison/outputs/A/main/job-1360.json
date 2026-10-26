@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2021-32622","home_iot":"No","categories":[],"confidence":"High","reasoning":"Matrix-React-SDK is general-purpose chat/VoIP web software and does not represent a special-purpose home monitoring, automation, or control device."}]}

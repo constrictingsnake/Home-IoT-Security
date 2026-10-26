@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2018-8115","home_iot":"No","categories":[],"confidence":"High","reasoning":"The affected Windows Host Compute Service Shim is general-purpose container infrastructure software, not a residential home IoT device."}]}

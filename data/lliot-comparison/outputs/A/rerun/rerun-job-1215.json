@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2019-4614","home_iot":"No","categories":[],"confidence":"High","reasoning":"IBM MQ and MQ Appliance are enterprise messaging infrastructure, not consumer devices for monitoring or controlling a private home."}]}

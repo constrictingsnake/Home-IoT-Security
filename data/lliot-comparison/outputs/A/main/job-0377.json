@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2022-30621","home_iot":"Maybe","categories":["cameras"],"confidence":"Low","reasoning":"The affected Cellinx NVT IP PTZ camera is network-connected surveillance equipment, but the description and CPE do not establish whether it is intended for consumer homes or professional deployments."}]}

@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2024-12094","home_iot":"Yes","categories":["doorlock"],"confidence":"Low","reasoning":"The vulnerable Tinxy companion app stores credentials for the vendor's consumer smart-device ecosystem, which includes residential smart locks, but the description does not identify a specific controlled product."}]}

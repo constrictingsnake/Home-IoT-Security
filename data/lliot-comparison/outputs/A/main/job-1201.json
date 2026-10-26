@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2023-31595","home_iot":"Maybe","categories":["cameras"],"confidence":"Low","reasoning":"The ICIP-P2012T is a network surveillance camera that could be deployed at a residence, but the description and CPE do not establish whether it is a consumer home camera or primarily professional surveillance equipment."}]}

@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2024-5684","home_iot":"Yes","categories":["ev-charging"],"confidence":"High","reasoning":"The affected Volkswagen ID. Charger Connect and Pro are network-connected EV wallboxes intended for residential vehicle charging."}]}

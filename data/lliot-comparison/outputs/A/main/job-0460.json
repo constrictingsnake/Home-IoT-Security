@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2018-0229","home_iot":"No","categories":[],"confidence":"High","reasoning":"The affected Cisco AnyConnect, ASA, and Firepower products are enterprise VPN, firewall, and industrial security infrastructure rather than consumer home-automation devices."}]}

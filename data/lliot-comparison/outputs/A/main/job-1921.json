@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2021-22707","home_iot":"Yes","categories":["ev-charging"],"confidence":"High","reasoning":"The affected EVlink Smart Wallbox is a networked consumer wallbox suitable for private-home EV charging, even though the same vulnerability also affects commercial City and Parking models."}]}

@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2024-37339","home_iot":"No","categories":[],"confidence":"High","reasoning":"The vulnerability affects Microsoft SQL Server software on x64 systems, which is general-purpose enterprise IT rather than a home IoT device."}]}

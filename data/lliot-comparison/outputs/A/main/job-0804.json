@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2020-7131","home_iot":"No","categories":[],"confidence":"High","reasoning":"The affected HP maintenance entities are components of enterprise NonStop server systems on a dedicated Maintenance LAN, not consumer home IoT devices."}]}

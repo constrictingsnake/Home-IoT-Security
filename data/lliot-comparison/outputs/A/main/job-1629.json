@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2018-11400","home_iot":"Yes","categories":["alarms"],"confidence":"High","reasoning":"The affected SimpliSafe Original Base Station is a consumer home security alarm hub, and the flaw prevents tamper notifications."}]}

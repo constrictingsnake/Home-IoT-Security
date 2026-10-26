@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2024-39947","home_iot":"Maybe","categories":["cameras"],"confidence":"Low","reasoning":"The affected Dahua NVR4xxx recorders are networked surveillance appliances that may be used in homes, but the broad multi-channel product range is also substantially aimed at professional and commercial deployments."}]}

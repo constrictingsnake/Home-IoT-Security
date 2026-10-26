@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2020-27892","home_iot":"Maybe","categories":["hub"],"confidence":"Low","reasoning":"The flaw affects a generic Zigbee SoC and protocol stack that may power a home Zigbee controller, but the description does not identify a residential end product or deployment."}]}

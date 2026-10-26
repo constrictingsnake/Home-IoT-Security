@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2018-14771","home_iot":"Maybe","categories":["cameras"],"confidence":"Low","reasoning":"The affected VIVOTEK network camera could serve as a home security camera, but the generic camera CPE and description do not establish consumer residential deployment rather than professional surveillance."}]}

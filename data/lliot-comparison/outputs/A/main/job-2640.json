@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2022-32508","home_iot":"Yes","categories":["hub"],"confidence":"High","reasoning":"Nuki Bridge v1 and v2 are consumer smart-home bridges that connect and control Nuki devices."}]}

@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2019-5700","home_iot":"Yes","categories":["streaming"],"confidence":"High","reasoning":"NVIDIA Shield TV is a consumer streaming box, and the vulnerability affects its Shield TV Experience bootloader software."}]}

@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2020-3614","home_iot":"Maybe","categories":["smartspeakers"],"confidence":"Low","reasoning":"The flaw spans generic Qualcomm chipsets used across mobile, automotive, industrial, and consumer IoT products, with the Voice & Music/QCS405 platform plausibly appearing in smart speakers but no specific home device identified."}]}

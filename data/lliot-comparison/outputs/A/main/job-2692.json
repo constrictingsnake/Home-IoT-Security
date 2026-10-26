@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2024-22039","home_iot":"No","categories":[],"confidence":"High","reasoning":"The affected Siemens Cerberus PRO, Desigo, and Sinteso products are professional commercial-building fire-safety panels, engineering tools, and cloud distribution systems, which are explicitly outside the home alarm category."}]}

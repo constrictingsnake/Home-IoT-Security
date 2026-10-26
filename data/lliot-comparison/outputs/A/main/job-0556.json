@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2021-35067","home_iot":"Yes","categories":["doorlock"],"confidence":"High","reasoning":"The Meross MSG100 is a network-connected consumer smart garage-door opener, which is explicitly included in the doorlock category."}]}

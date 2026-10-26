@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2022-33231","home_iot":"Maybe","categories":["hub"],"confidence":"Low","reasoning":"The affected Qualcomm list includes a Home Hub 100 platform that could underpin a smart-home hub, but it primarily names broadly used component platforms and does not identify a consumer home-control device."}]}

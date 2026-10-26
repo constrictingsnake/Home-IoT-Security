@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2023-43755","home_iot":"Maybe","categories":["cameras"],"confidence":"Low","reasoning":"The affected Zavio products are networked IP surveillance cameras that could be used in homes, but the description and CPEs do not establish whether these models are consumer devices rather than primarily professional surveillance equipment."}]}

@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2021-45769","home_iot":"No","categories":[],"confidence":"High","reasoning":"libiec61850 is an IEC 61850 industrial power-system communication library rather than a consumer residential home IoT device."}]}

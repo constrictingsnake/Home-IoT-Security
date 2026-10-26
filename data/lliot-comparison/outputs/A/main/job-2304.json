@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2021-38524","home_iot":"No","categories":[],"confidence":"High","reasoning":"The affected NETGEAR products are Wi-Fi routers and mesh networking equipment, which provide network transport but are explicitly excluded from the smart-home hub category."}]}

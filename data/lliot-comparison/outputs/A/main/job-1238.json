@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2021-29785","home_iot":"No","categories":[],"confidence":"High","reasoning":"IBM Security SOAR is enterprise security-orchestration software, and the generic Linux kernel CPE does not identify any home IoT device."}]}

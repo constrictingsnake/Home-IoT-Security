@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2024-29231","home_iot":"No","categories":[],"confidence":"High","reasoning":"Synology Surveillance Station on DiskStation Manager is general NAS surveillance-management software rather than a consumer home camera or DVR device."}]}

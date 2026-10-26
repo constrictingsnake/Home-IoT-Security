@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2023-1378","home_iot":"No","categories":[],"confidence":"High","reasoning":"This vulnerability affects restaurant website and ordering software, not a connected residential sensor, appliance, or home-control device."}]}

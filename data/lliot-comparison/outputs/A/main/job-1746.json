@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2012-6077","home_iot":"No","categories":[],"confidence":"High","reasoning":"W3 Total Cache is a WordPress caching plugin, not a residential connected sensor, appliance, or home-control device."}]}

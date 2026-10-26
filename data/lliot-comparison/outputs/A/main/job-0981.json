@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2018-14458","home_iot":"No","categories":[],"confidence":"High","reasoning":"libgig is a general-purpose software library for Gigasampler files, not a home IoT device or device-specific component."}]}

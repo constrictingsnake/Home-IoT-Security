@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2023-51392","home_iot":"Maybe","categories":["hub"],"confidence":"Low","reasoning":"Ember ZNet is a Zigbee networking stack used in home-automation coordinators and devices, but the description does not identify a specific residential product or deployment."}]}

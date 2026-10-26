@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2023-23305","home_iot":"No","categories":[],"confidence":"High","reasoning":"Garmin Connect IQ targets wearable devices such as smartwatches, which are explicitly outside the home IoT device scope."}]}

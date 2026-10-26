@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2018-20332","home_iot":"Maybe","categories":["streaming"],"confidence":"Low","reasoning":"OpenWebif runs on consumer Enigma2 television set-top boxes, but the description does not establish that the affected receivers provide streaming or smart-home control functions rather than only broadcast-media functions."}]}

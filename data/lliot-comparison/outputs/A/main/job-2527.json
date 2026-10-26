@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2021-22818","home_iot":"Yes","categories":["ev-charging"],"confidence":"High","reasoning":"The affected EVlink Smart Wallbox EVB1A is a network-managed EV wallbox plausibly intended for residential charging, even though other listed EVlink models target public or commercial parking."}]}

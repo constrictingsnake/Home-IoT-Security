@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2022-32506","home_iot":"Yes","categories":["doorlock","hub"],"confidence":"High","reasoning":"The affected Nuki Smart Locks are residential connected locks, while the Nuki Bridges are their smart-home connectivity hubs."}]}

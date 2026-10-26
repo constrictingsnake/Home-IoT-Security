@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2018-0661","home_iot":"Yes","categories":["cameras"],"confidence":"High","reasoning":"The affected I-O DATA TS-WRLP, TS-WRLP/E, and TS-WRLA products are network cameras vulnerable to attacks from the local network."}]}

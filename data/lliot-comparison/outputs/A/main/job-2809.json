@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2022-20047","home_iot":"Yes","categories":["streaming"],"confidence":"Low","reasoning":"The affected MediaTek video-decoder platforms include smart-TV chipsets used in streaming televisions, although the vulnerable component is also shared with general Android devices."}]}

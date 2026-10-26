@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2019-14238","home_iot":"No","categories":[],"confidence":"High","reasoning":"The affected STM32 microcontrollers are general-purpose embedded components used across many applications, and the description does not identify any residential home IoT product or function."}]}

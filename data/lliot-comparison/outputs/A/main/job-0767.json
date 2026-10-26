@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2016-4613","home_iot":"No","categories":[],"confidence":"High","reasoning":"The affected products are general-purpose Apple software and tvOS, which is explicitly excluded from the streaming category by the scope rules."}]}

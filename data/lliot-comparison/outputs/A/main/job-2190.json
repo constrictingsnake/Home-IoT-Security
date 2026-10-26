@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2024-23967","home_iot":"No","categories":[],"confidence":"High","reasoning":"The affected MaxiCharger AC Elite Business C50 is a commercial EV charger rather than residential home EVSE."}]}

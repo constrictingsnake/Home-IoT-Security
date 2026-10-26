@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2023-52312","home_iot":"No","categories":[],"confidence":"High","reasoning":"PaddlePaddle is a general-purpose machine-learning software framework, not a consumer home IoT device or device-specific component."}]}

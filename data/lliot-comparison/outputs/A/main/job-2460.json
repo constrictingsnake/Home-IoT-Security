@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2024-28066","home_iot":"No","categories":[],"confidence":"High","reasoning":"The affected Mitel Unify/OpenScape devices are business IP and DECT telephones used for communication, not special-purpose systems for monitoring or controlling a home."}]}

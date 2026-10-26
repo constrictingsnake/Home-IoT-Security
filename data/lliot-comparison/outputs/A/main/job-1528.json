@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2022-46308","home_iot":"Yes","categories":["doorlock"],"confidence":"High","reasoning":"The affected SGUDA U-Lock is a network-connected residential smart lock whose control service permits unauthorized privileged user-management actions."}]}

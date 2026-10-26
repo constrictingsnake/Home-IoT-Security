@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2023-32830","home_iot":"Yes","categories":["streaming"],"confidence":"High","reasoning":"The TVAPI flaw affects Android-based MediaTek television platforms, which are in-scope streaming TVs and home-control surfaces."}]}

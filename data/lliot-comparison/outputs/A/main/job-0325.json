@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2018-7851","home_iot":"No","categories":[],"confidence":"High","reasoning":"The affected Schneider Electric Modicon products are industrial PLC and remote I/O systems, which are explicitly outside the scope of consumer home IoT."}]}

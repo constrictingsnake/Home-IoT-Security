@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2018-19121","home_iot":"No","categories":[],"confidence":"High","reasoning":"libIEC61850 is an industrial power-system communication library rather than a consumer home IoT device or product."}]}

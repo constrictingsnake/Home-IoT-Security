@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2020-15115","home_iot":"No","categories":[],"confidence":"High","reasoning":"The vulnerability affects etcd, a general-purpose distributed key-value store and Fedora software, not a residential home IoT device."}]}

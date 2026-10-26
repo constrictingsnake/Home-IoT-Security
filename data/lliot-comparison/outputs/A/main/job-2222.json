@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2017-7719","home_iot":"No","categories":[],"confidence":"High","reasoning":"This vulnerability affects a WordPress event-calendar plugin, not a connected residential sensor, appliance, or home-control device."}]}

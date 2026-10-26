@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2021-26335","home_iot":"No","categories":[],"confidence":"High","reasoning":"The affected AMD EPYC processors and Secure Processor firmware are general-purpose server computing components, not residential home-automation or monitoring devices."}]}

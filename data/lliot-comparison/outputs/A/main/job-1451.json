@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2023-24678","home_iot":"Yes","categories":["thermostat"],"confidence":"High","reasoning":"The Centralite Pearl is a residential smart thermostat controlled over Zigbee."}]}

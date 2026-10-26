@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2020-25194","home_iot":"No","categories":[],"confidence":"High","reasoning":"The MOXA NPort IAW5000A-I/O is an industrial wireless device server and I/O gateway, not a consumer home-monitoring or automation device."}]}

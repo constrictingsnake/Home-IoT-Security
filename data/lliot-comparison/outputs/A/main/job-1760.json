@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2022-38700","home_iot":"No","categories":[],"confidence":"High","reasoning":"The vulnerability affects OpenHarmony's generic camera service, not a specifically identified residential IoT camera or other qualifying home device."}]}

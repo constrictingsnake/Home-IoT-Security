@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2016-4960","home_iot":"No","categories":[],"confidence":"High","reasoning":"The affected NVIDIA GeForce, NVS, and Quadro graphics products and their Windows service are general-purpose PC/workstation components, not home-monitoring or automation devices."}]}

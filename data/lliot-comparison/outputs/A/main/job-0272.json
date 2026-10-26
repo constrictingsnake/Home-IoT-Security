@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2023-26943","home_iot":"Yes","categories":["doorlock"],"confidence":"High","reasoning":"The vulnerability affects RFID tags used by a Yale Keyless Smart Lock, a consumer residential smart-lock product."}]}

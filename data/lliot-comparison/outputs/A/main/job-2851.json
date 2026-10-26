@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2020-10387","home_iot":"No","categories":[],"confidence":"High","reasoning":"PHPKB is server-side knowledge-base software, not a special-purpose consumer home IoT device."}]}

@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2018-7580","home_iot":"Yes","categories":["hub","lighting"],"confidence":"High","reasoning":"The vulnerability freezes the consumer Philips Hue smart-lighting hub, disrupting both its bridge functions and control of connected lights."}]}

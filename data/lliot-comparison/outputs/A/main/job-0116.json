@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2022-32999","home_iot":"No","categories":[],"confidence":"High","reasoning":"The vulnerability affects a malicious Python package on PyPI, not a special-purpose consumer home IoT device or its companion service."}]}

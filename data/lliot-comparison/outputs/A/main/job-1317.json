@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2019-14052","home_iot":"Maybe","categories":["smartspeakers"],"confidence":"Low","reasoning":"The vulnerability affects broadly deployed Qualcomm platforms, including Consumer IoT and Voice & Music chipsets that may power smart speakers, but no specific residential device is identified."}]}

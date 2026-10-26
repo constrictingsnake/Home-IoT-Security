@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2023-0349","home_iot":"Yes","categories":["doorbell"],"confidence":"High","reasoning":"The Akuvox E11 is a networked video doorphone/doorbell, and the vulnerability exposes its camera feed without authentication."}]}

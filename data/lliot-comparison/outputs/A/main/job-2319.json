@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2022-25635","home_iot":"Maybe","categories":["lighting","hub"],"confidence":"Low","reasoning":"The vulnerable Bluetooth Mesh SDK may be embedded in consumer mesh lighting or home-control hubs, but the description and CPEs identify only a shared software layer rather than a specific home IoT device."}]}

@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2020-9059","home_iot":"Yes","categories":["doorlock"],"confidence":"High","reasoning":"The vulnerability explicitly affects a Z-Wave residential smart door lock, the Schlage BE468, and can cause it to fail open after battery exhaustion."}]}

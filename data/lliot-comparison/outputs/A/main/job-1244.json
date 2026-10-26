@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2017-14604","home_iot":"No","categories":[],"confidence":"High","reasoning":"The vulnerability affects the GNOME Nautilus desktop file manager on general-purpose Linux systems, not a home IoT device."}]}

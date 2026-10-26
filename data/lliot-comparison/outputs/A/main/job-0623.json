@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2015-4400","home_iot":"Yes","categories":["doorbell"],"confidence":"High","reasoning":"The vulnerability affects a Ring consumer Wi-Fi video doorbell, which is a residential home IoT device."}]}

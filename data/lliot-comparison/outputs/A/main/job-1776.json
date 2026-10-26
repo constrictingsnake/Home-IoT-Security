@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2013-4329","home_iot":"No","categories":[],"confidence":"High","reasoning":"The vulnerability affects the Xen virtualization platform used for general-purpose computing infrastructure, not a consumer home IoT device."}]}

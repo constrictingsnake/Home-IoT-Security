@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2024-7339","home_iot":"Maybe","categories":["cameras"],"confidence":"Low","reasoning":"The affected products are networked 4- and 8-channel surveillance DVRs that could serve a home camera system, but the description and CPEs do not establish consumer residential rather than professional deployment."}]}

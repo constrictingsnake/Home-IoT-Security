@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2018-16869","home_iot":"No","categories":[],"confidence":"High","reasoning":"The vulnerability affects the general-purpose Nettle cryptographic library and does not identify any residential IoT device or home-control function."}]}

@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2019-12390","home_iot":"No","categories":[],"confidence":"High","reasoning":"Anviz access-control devices are commercial physical-access systems, which are explicitly outside the residential smart-lock category."}]}

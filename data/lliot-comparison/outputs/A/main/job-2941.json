@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2014-4481","home_iot":"No","categories":[],"confidence":"High","reasoning":"The vulnerability affects Apple phone, desktop, and Apple TV operating systems, while tvOS CVEs are explicitly excluded and the other platforms are general-purpose computing devices."}]}

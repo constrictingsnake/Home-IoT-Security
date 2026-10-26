@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2024-54111","home_iot":"No","categories":[],"confidence":"High","reasoning":"The vulnerability affects HarmonyOS generally and does not identify any special-purpose home IoT device or qualifying home-control function."}]}

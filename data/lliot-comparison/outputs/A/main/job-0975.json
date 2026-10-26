@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2021-34147","home_iot":"No","categories":[],"confidence":"High","reasoning":"The CVE affects a generic Cypress Bluetooth chip and embedded connectivity stack rather than a specifically identified residential home-automation device."}]}

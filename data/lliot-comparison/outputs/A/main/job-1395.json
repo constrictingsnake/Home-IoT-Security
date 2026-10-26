@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2021-25326","home_iot":"No","categories":[],"confidence":"High","reasoning":"The Skyworth RN510 is described as Wi-Fi networking equipment exposing an SSID and router-style web UI, and plain routers are transport infrastructure rather than home IoT devices."}]}

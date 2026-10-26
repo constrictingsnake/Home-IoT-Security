@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2018-0270","home_iot":"No","categories":[],"confidence":"High","reasoning":"Cisco IoT Field Network Director and Connected Grid Network Management System are enterprise or utility network-management platforms, not consumer devices for residential home automation or monitoring."}]}

@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2023-41225","home_iot":"No","categories":[],"confidence":"High","reasoning":"The affected D-Link DIR-3040 is a consumer router, which provides network transport but is explicitly excluded from the smart-home hub category."}]}

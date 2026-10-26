@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2019-7343","home_iot":"No","categories":[],"confidence":"High","reasoning":"ZoneMinder is general-purpose video-surveillance management software rather than a consumer home camera or embedded home IoT device."}]}

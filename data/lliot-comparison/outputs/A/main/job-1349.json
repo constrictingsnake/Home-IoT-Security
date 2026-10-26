@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2024-48636","home_iot":"No","categories":[],"confidence":"High","reasoning":"The affected D-Link DIR-882 and DIR-878 products are general-purpose network routers, which provide connectivity but are not home-control hubs or another qualifying home IoT device class."}]}

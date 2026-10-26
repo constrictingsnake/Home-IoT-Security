@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2016-8362","home_iot":"No","categories":[],"confidence":"High","reasoning":"The affected Moxa OnCell, AWK, WAC, and TAP products are industrial cellular and wireless networking infrastructure, not consumer home-monitoring or automation devices."}]}

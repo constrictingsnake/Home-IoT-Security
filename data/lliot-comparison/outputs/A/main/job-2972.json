@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2022-4349","home_iot":"No","categories":[],"confidence":"High","reasoning":"CTF-hacker pwn is an unspecified software application with a CSRF flaw, and nothing in the description or CPE identifies a home IoT device."}]}

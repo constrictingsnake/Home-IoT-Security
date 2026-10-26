@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2022-39271","home_iot":"No","categories":[],"confidence":"High","reasoning":"Traefik is general-purpose reverse-proxy and load-balancing software for microservice deployments, not a consumer home IoT device."}]}

@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2020-27403","home_iot":"Yes","categories":["streaming"],"confidence":"High","reasoning":"The vulnerability affects network-connected TCL Android smart TVs, which are qualifying streaming and home-control-surface devices."}]}

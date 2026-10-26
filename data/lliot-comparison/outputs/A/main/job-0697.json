@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2020-0524","home_iot":"No","categories":[],"confidence":"High","reasoning":"The affected Intel I210 products are general-purpose Ethernet network adapters, not special-purpose residential home-automation devices."}]}

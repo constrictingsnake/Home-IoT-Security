@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2014-3936","home_iot":"Yes","categories":["smartplugs"],"confidence":"High","reasoning":"The affected D-Link DSP-W215 is a consumer network-connected smart plug, although the listed DIR-505 variants are routers and not home IoT."}]}

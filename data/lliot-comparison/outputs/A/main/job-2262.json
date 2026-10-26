@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2022-32514","home_iot":"Yes","categories":["hub"],"confidence":"High","reasoning":"The affected C-Bus and Wiser network automation controllers are embedded smart-home controllers that centrally manage residential automation devices."}]}

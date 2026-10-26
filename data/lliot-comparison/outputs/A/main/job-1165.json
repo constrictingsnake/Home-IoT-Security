@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2021-22720","home_iot":"No","categories":[],"confidence":"High","reasoning":"C-Bus Toolkit is project configuration software rather than a consumer home IoT device, and the vulnerability occurs when restoring a project."}]}

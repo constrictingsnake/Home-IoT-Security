@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2018-19418","home_iot":"No","categories":[],"confidence":"High","reasoning":"The vulnerability affects Foxit PDF ActiveX software on Microsoft Windows, which is general-purpose computing software rather than a home IoT device."}]}

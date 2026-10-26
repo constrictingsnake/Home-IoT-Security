@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2021-28655","home_iot":"No","categories":[],"confidence":"High","reasoning":"Apache Zeppelin is general-purpose data analytics software, not a consumer home IoT device or its dedicated companion service."}]}

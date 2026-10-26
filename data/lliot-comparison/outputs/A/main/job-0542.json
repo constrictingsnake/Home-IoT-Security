@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2021-30279","home_iot":"No","categories":[],"confidence":"High","reasoning":"The affected Qualcomm chipsets and firmware span mobile, compute, connectivity, and industrial platforms, but the description and CPEs identify no specific residential home-automation device or function."}]}

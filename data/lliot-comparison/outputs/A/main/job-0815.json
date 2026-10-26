@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2022-31219","home_iot":"No","categories":[],"confidence":"High","reasoning":"ABB Drive Composer is industrial drive-commissioning software for automation systems, not a consumer home-monitoring or control device."}]}

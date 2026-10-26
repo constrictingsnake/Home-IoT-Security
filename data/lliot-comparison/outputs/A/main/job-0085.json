@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2021-38692","home_iot":"Maybe","categories":["cameras"],"confidence":"Low","reasoning":"QNAP QVR Elite, Pro, and Guard are NAS-based video-surveillance/NVR applications that may support home cameras but are also widely used in professional surveillance deployments."}]}

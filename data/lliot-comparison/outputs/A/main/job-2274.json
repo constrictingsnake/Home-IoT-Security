@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2018-5560","home_iot":"Yes","categories":["cameras"],"confidence":"High","reasoning":"The Guardzilla All-In-One Video Security System is a consumer connected home security camera whose cloud flaw exposes users' private video data."}]}

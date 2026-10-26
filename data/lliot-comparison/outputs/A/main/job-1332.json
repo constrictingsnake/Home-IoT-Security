@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2021-3642","home_iot":"No","categories":[],"confidence":"High","reasoning":"WildFly Elytron and the listed Red Hat/Quarkus products are enterprise application software, not special-purpose consumer home IoT devices."}]}

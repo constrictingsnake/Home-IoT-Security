@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2019-10584","home_iot":"Maybe","categories":["smartspeakers"],"confidence":"Low","reasoning":"The Qualcomm flaw spans many general-purpose and industrial chipsets, but the named Consumer IoT and Voice & Music platforms plausibly power consumer smart speakers without identifying a specific home device."}]}

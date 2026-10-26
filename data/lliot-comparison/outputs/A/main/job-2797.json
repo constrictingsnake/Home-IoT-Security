@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2021-34402","home_iot":"No","categories":[],"confidence":"High","reasoning":"The vulnerability affects the NVIDIA Shield/Android platform, but this kernel-driver issue does not establish an affected home-control IoT function and general Android devices are out of scope."}]}

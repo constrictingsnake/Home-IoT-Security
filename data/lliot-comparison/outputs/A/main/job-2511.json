@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2021-1106","home_iot":"Yes","categories":["streaming"],"confidence":"High","reasoning":"The affected products include NVIDIA Shield TV running Shield Experience, a consumer streaming box that qualifies as a home-control surface, although the Jetson platforms are not home IoT."}]}

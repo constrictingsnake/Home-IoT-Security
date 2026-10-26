@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2022-26363","home_iot":"No","categories":[],"confidence":"High","reasoning":"The vulnerability affects the Xen hypervisor and general-purpose Linux distributions on x86 systems, not a special-purpose residential home IoT device."}]}

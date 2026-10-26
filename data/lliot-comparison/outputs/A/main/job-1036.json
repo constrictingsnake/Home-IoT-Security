@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2019-13165","home_iot":"No","categories":[],"confidence":"High","reasoning":"The affected Xerox Phaser 3320 is a network printer, which is general office equipment rather than a device for monitoring, automating, or controlling the home."}]}

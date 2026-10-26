@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2015-0258","home_iot":"No","categories":[],"confidence":"High","reasoning":"Collabtive is web-based project-management software, while the other CPEs are general-purpose Linux distributions, none of which are home IoT devices."}]}

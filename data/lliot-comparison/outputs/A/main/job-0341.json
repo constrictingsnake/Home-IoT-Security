@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2021-38827","home_iot":"Yes","categories":["cameras"],"confidence":"High","reasoning":"The affected Xiongmai XM-JPR2-LX is a network-connected security camera, and an account-takeover vulnerability directly affects its camera functionality."}]}

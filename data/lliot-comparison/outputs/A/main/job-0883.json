@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2023-25645","home_iot":"Yes","categories":["streaming"],"confidence":"High","reasoning":"The affected ZTE Android TV set-top boxes are consumer streaming devices, which are explicitly included in the streaming category."}]}

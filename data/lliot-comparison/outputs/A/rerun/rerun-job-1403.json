@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2022-23995","home_iot":"No","categories":[],"confidence":"High","reasoning":"The vulnerability affects Samsung Wear OS wearable devices, which are excluded wrist wearables rather than qualifying home IoT devices."}]}

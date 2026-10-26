@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2021-1937","home_iot":"Yes","categories":["smartspeakers"],"confidence":"Low","reasoning":"The vulnerable Qualcomm WLAN firmware spans many platforms but includes Snapdragon Voice & Music and QCS405-class consumer IoT chipsets used in networked smart speakers, while the broad component scope makes the category uncertain."}]}

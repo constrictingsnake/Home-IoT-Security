@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2023-6895","home_iot":"Maybe","categories":["doorbell"],"confidence":"Low","reasoning":"The affected Hikvision video-intercom door and indoor stations can serve residential doorbell functions, but the description and broad modular product range do not establish private-home rather than commercial or multi-unit deployment."}]}

@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2020-36622","home_iot":"No","categories":[],"confidence":"High","reasoning":"Bienlein is a general software application, and the description and CPE do not identify any affected home IoT device or home-control function."}]}

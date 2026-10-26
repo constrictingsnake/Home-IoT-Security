@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2019-10999","home_iot":"Yes","categories":["cameras"],"confidence":"High","reasoning":"The affected D-Link DCS-series devices are consumer Wi-Fi security cameras with vulnerable embedded web-server firmware."}]}

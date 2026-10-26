@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2014-5432","home_iot":"No","categories":[],"confidence":"High","reasoning":"The affected Baxter infusion system and wireless battery module are specialized medical equipment, not consumer devices used to monitor, automate, or control a private home."}]}

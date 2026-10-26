@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2018-19048","home_iot":"No","categories":[],"confidence":"High","reasoning":"Simditor is a web-based text editor library, not a networked home monitoring, automation, or control device."}]}

@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2022-31604","home_iot":"No","categories":[],"confidence":"High","reasoning":"NVFLARE is a general federated-learning software framework, not a consumer home IoT device or home-control system."}]}

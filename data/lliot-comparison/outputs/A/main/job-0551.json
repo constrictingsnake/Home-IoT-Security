@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2020-12983","home_iot":"No","categories":[],"confidence":"High","reasoning":"The vulnerability affects an AMD graphics driver on Windows 10 PCs, which are general-purpose computing systems rather than home IoT devices."}]}

@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2021-45937","home_iot":"No","categories":[],"confidence":"High","reasoning":"The vulnerability affects the general-purpose wolfMQTT client library rather than a specific consumer home IoT device."}]}

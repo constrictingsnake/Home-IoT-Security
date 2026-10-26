@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2022-32227","home_iot":"No","categories":[],"confidence":"High","reasoning":"Rocket.Chat is general-purpose team communication software, not a special-purpose home monitoring, automation, or control device."}]}

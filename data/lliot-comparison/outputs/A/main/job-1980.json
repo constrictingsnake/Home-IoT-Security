@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2022-22062","home_iot":"Maybe","categories":["smartspeakers"],"confidence":"Low","reasoning":"The affected Qualcomm firmware spans many mobile, automotive, industrial, and consumer platforms, while the Snapdragon Voice & Music and Consumer IoT lines could power smart speakers but no qualifying end device is identified."}]}

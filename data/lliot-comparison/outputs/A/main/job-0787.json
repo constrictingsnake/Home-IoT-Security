@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2023-28809","home_iot":"No","categories":[],"confidence":"High","reasoning":"The affected Hikvision DS-K1T devices are commercial access-control terminals rather than residential smart locks or garage-door controllers."}]}

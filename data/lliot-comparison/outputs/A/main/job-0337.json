@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2016-5678","home_iot":"Maybe","categories":["cameras"],"confidence":"Low","reasoning":"NUUO NVRmini 2 and NVRsolo are network video recorders that could support residential surveillance, but the description and CPE do not establish whether these primarily professional products were deployed as consumer home NVRs."}]}

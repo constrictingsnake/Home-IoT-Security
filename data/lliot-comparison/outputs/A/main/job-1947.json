@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2020-6991","home_iot":"No","categories":[],"confidence":"High","reasoning":"Moxa EDS-G516E and EDS-510E are industrial managed Ethernet switches, not consumer devices that monitor, automate, or control a private home."}]}

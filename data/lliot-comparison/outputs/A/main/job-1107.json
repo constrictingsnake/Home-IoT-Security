@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2024-31415","home_iot":"No","categories":[],"confidence":"High","reasoning":"Eaton Foreseer is enterprise electrical power-monitoring software for managing external infrastructure servers, not a consumer residential home-energy device."}]}

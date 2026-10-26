@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2020-7222","home_iot":"Yes","categories":["cameras"],"confidence":"Low","reasoning":"Amcrest Web Server is associated with the web interface of Amcrest consumer surveillance cameras or recorders, though the description does not identify a specific device model."}]}

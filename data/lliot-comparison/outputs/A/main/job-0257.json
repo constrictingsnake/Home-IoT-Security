@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2024-43208","home_iot":"No","categories":[],"confidence":"High","reasoning":"The vulnerability affects a Mandrill email-sending software plugin, not a networked residential device for monitoring or controlling the home."}]}

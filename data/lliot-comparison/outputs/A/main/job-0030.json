@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2024-31340","home_iot":"Maybe","categories":["cameras","smartplugs","lighting","hub","sensors"],"confidence":"Low","reasoning":"The certificate-validation flaw affects the Tapo companion app used with several consumer smart-home product lines, but the description does not identify which device types or communications are exposed."}]}

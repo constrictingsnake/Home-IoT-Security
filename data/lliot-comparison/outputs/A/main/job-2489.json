@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2024-27287","home_iot":"Maybe","categories":["hub"],"confidence":"Low","reasoning":"ESPHome is explicitly a home-automation management system that can provision and control embedded boards, but the affected dashboard is a general software layer rather than a clearly identified consumer hub or device."}]}

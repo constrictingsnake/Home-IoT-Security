@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2019-17146","home_iot":"Yes","categories":["cameras"],"confidence":"High","reasoning":"The affected D-Link DCS-960L is a consumer Wi-Fi home security camera with a remotely exploitable flaw in its network service."}]}

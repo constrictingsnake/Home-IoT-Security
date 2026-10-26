@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2022-36086","home_iot":"No","categories":[],"confidence":"High","reasoning":"The affected component is a general-purpose Rust allocator for no_std systems, not a specific consumer home IoT device or product."}]}

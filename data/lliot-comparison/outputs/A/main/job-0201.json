@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2015-8671","home_iot":"No","categories":[],"confidence":"High","reasoning":"Huawei LogCenter is server-side log-management software, not a consumer home IoT device or its dedicated companion service."}]}

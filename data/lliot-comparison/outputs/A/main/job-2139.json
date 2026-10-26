@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2013-2595","home_iot":"No","categories":[],"confidence":"High","reasoning":"The vulnerability affects a generic Qualcomm Android MSM kernel camera driver used in mobile/general-purpose devices, not a residential IoT camera or other qualifying home-control device."}]}

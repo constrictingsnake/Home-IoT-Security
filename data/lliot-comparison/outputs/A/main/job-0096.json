@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2024-43052","home_iot":"Yes","categories":["smartspeakers","hub"],"confidence":"Low","reasoning":"The affected Qualcomm platforms include Smart Audio 200 and Home Hub 100, which plausibly power smart speakers and home-control hubs, although the vulnerable NPU layer is shared across many non-IoT products."}]}

@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2023-46667","home_iot":"No","categories":[],"confidence":"High","reasoning":"Elastic Fleet Server is enterprise IT infrastructure for managing agents and Elasticsearch policies, not a consumer home IoT device."}]}

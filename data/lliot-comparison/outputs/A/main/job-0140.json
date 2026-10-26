@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2021-32466","home_iot":"No","categories":[],"confidence":"High","reasoning":"Trend Micro HouseCall for Home Networks is Windows security-scanning software rather than a special-purpose home IoT device or its product-specific companion software."}]}

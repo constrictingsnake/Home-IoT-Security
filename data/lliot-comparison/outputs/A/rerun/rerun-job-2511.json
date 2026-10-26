@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2021-1106","home_iot":"Yes","categories":["streaming"],"confidence":"High","reasoning":"The affected CPEs include NVIDIA Shield TV and Shield Experience, a consumer streaming TV device that qualifies as a home-control surface."}]}

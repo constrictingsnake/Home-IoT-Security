@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2019-20791","home_iot":"Maybe","categories":["hub"],"confidence":"Low","reasoning":"OpenThread is an embedded Thread networking stack whose Commissioner component can run on smart-home hubs, but the generic CPE does not identify a residential device."}]}

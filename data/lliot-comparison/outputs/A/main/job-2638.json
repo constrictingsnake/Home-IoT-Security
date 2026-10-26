@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2018-7661","home_iot":"Yes","categories":["babymonitor"],"confidence":"High","reasoning":"The vulnerability affects a Wi-Fi baby monitor product that remotely provides audio monitoring in a home."}]}

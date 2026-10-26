@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2014-9265","home_iot":"No","categories":[],"confidence":"High","reasoning":"The vulnerability affects Samsung SmartViewer PC surveillance software's ActiveX control, not a consumer home IoT camera or other qualifying embedded device."}]}

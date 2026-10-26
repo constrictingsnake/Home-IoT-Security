@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2021-30072","home_iot":"No","categories":[],"confidence":"High","reasoning":"The D-Link DIR-878 is a consumer wireless router, which provides network transport but is not itself a home-control hub or other qualifying home IoT device."}]}

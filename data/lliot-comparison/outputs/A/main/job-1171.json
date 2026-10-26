@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2024-50924","home_iot":"Maybe","categories":["hub"],"confidence":"Low","reasoning":"The vulnerable Z-Wave controller SDK and chipsets plausibly underpin residential Z-Wave hubs, but the description identifies only a shared protocol platform rather than a specific consumer home device."}]}

@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2014-8125","home_iot":"No","categories":[],"confidence":"High","reasoning":"Drools and jBPM are general-purpose business rule and process-management software, not residential IoT devices or their dedicated components."}]}

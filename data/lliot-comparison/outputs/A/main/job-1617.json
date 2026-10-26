@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2023-26070","home_iot":"No","categories":[],"confidence":"High","reasoning":"The affected Lexmark devices are network printers and multifunction printers, which are general office peripherals rather than home-monitoring, automation, or control devices."}]}

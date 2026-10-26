@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2023-24080","home_iot":"Yes","categories":["doorlock"],"confidence":"High","reasoning":"The vulnerable myQ companion app controls Chamberlain consumer smart garage-door openers, and account compromise can expose control of that residential access device."}]}

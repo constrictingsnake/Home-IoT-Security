@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2020-27892","home_iot":"Maybe","categories":["hub"],"confidence":"Low","reasoning":"The vulnerable CC2538 Z-Stack is a general-purpose Zigbee platform that may power residential Zigbee hubs, but the description does not identify a specific home device or deployment."}]}

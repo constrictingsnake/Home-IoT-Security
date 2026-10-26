@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2013-3540","home_iot":"Maybe","categories":["cameras"],"confidence":"Low","reasoning":"The affected AirLive products are networked security cameras, but the description and CPEs do not establish whether these PoE models are intended for consumer homes or primarily professional surveillance."}]}

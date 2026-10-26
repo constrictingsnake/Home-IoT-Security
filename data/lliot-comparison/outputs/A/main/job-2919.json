@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2022-40939","home_iot":"Maybe","categories":["cameras"],"confidence":"Low","reasoning":"SecuStation appears to be a networked video-surveillance system, but the description and CPE do not establish whether it is a consumer home DVR/NVR or primarily professional surveillance equipment."}]}

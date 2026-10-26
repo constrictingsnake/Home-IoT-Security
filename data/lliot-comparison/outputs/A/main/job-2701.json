@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2019-9676","home_iot":"Yes","categories":["cameras"],"confidence":"Low","reasoning":"The affected Dahua IPC models are networked security cameras that can be deployed in homes, although these product lines also serve professional surveillance installations."}]}

@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2024-8130","home_iot":"Yes","categories":["cameras"],"confidence":"High","reasoning":"The affected D-Link lineup includes DNR consumer network video recorders used with home security cameras, although many listed DNS models are general-purpose NAS devices."}]}

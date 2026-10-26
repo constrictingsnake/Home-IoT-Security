@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2017-11090","home_iot":"No","categories":[],"confidence":"High","reasoning":"The vulnerability affects Android and related mobile operating-system WLAN code, not a special-purpose home IoT device."}]}

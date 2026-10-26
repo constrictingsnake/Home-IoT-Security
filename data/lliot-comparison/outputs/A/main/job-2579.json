@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2023-6324","home_iot":"Yes","categories":["babymonitor","cameras"],"confidence":"High","reasoning":"The affected products include Owlet baby-monitor cameras and Wyze/Roku consumer indoor security cameras using the vulnerable Kalay SDK."}]}

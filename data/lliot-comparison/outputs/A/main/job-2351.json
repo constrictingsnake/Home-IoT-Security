@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2023-34829","home_iot":"Maybe","categories":["cameras","smartplugs","lighting"],"confidence":"Low","reasoning":"TP-Link Tapo is a consumer smart-home platform covering cameras, smart plugs, and lighting, but the generic app CPE and description do not identify which product lines are affected."}]}

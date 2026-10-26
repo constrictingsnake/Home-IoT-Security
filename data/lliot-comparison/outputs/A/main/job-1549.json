@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2021-45878","home_iot":"Yes","categories":["ev-charging"],"confidence":"High","reasoning":"GARO GLB/GTB/GTC Wallboxes are network-managed EV charging units of the type deployed as residential home EVSE."}]}

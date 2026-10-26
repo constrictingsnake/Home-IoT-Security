@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2021-22773","home_iot":"Yes","categories":["ev-charging"],"confidence":"High","reasoning":"The affected product lines include the connected EVlink Smart Wallbox, a home EV charging station, although the City and Parking models are commercial."}]}

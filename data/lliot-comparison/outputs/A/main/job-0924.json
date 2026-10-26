@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2024-45236","home_iot":"No","categories":[],"confidence":"High","reasoning":"Fort is RPKI routing-validation software rather than a consumer home IoT device or its dedicated companion service."}]}

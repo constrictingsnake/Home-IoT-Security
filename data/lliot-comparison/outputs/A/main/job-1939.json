@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2020-9499","home_iot":"Maybe","categories":["cameras"],"confidence":"Low","reasoning":"The affected Dahua IPC, PTZ, and N-series products are network surveillance cameras or recorders, but the description and CPEs do not establish whether these models target residential rather than professional deployments."}]}

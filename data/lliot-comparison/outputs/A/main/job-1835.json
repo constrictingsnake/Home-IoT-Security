@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2015-7115","home_iot":"No","categories":[],"confidence":"High","reasoning":"The vulnerability affects Apple iOS, OS X, and tvOS, which are general computing or explicitly excluded tvOS platforms rather than an in-scope home IoT device."}]}

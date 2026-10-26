@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2022-31363","home_iot":"Maybe","categories":["hub"],"confidence":"Low","reasoning":"The flaw affects a Bluetooth Mesh SDK used during mesh provisioning, which could underlie a home IoT hub or controller but is a shared software layer not tied to a specific residential device."}]}

@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2021-30619","home_iot":"No","categories":[],"confidence":"High","reasoning":"This is a browser Autofill vulnerability affecting Chromium-based Microsoft Edge and Fedora, not a special-purpose home IoT device."}]}

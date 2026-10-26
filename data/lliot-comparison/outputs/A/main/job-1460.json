@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2021-0262","home_iot":"No","categories":[],"confidence":"High","reasoning":"The vulnerability exclusively affects the Juniper QFX10002-60C enterprise data-center switching platform, which is general network infrastructure rather than a home IoT device."}]}

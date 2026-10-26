@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2014-4503","home_iot":"No","categories":[],"confidence":"High","reasoning":"The affected sgminer and cgminer applications are cryptocurrency-mining software, not residential devices used to monitor, automate, or control a home."}]}

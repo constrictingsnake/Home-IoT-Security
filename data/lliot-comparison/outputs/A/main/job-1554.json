@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2024-1707","home_iot":"Yes","categories":["ev-charging"],"confidence":"High","reasoning":"The affected GARO Wallbox GLB+ is a network-managed EV wallbox intended for residential home charging."}]}

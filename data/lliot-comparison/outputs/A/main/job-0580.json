@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2023-38907","home_iot":"Yes","categories":["lighting","smartplugs"],"confidence":"High","reasoning":"The affected TP-Link Tapo L530/L510E/L630 smart bulbs and P100 smart plug are consumer home IoT lighting and outlet devices controlled through the Tapo app."}]}

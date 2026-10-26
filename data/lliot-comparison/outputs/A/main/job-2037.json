@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2024-29237","home_iot":"Maybe","categories":["cameras"],"confidence":"Low","reasoning":"Synology Surveillance Station provides NVR and camera-surveillance functions that can serve a home, but it also runs on general-purpose NAS systems widely used in business environments."}]}

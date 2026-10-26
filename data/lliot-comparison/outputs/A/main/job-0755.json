@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2023-34553","home_iot":"Yes","categories":["doorlock"],"confidence":"High","reasoning":"The affected WAFU Keyless Smart Lock is a consumer connected lock, and the vulnerability allows attackers to unlock it through a replay attack."}]}

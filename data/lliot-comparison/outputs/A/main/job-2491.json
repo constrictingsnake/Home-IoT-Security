@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2016-10702","home_iot":"No","categories":[],"confidence":"High","reasoning":"The affected Pebble device is a wrist-worn smartwatch, which is excluded as a wearable rather than a home-monitoring or automation device."}]}

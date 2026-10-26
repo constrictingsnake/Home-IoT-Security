@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2019-14072","home_iot":"Maybe","categories":["smartspeakers"],"confidence":"Low","reasoning":"The flaw affects Qualcomm platforms spanning mobile, automotive, industrial, and consumer IoT, with the Voice & Music line plausibly used in smart speakers but no specific home device identified."}]}

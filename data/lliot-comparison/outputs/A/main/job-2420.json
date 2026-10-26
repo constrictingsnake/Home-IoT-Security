@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2019-5271","home_iot":"Yes","categories":["smartspeakers"],"confidence":"High","reasoning":"Huawei Myna is explicitly identified as a Wi-Fi- and cloud-connected smart speaker, which is a consumer home-control device."}]}

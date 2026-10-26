@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2023-25509","home_iot":"No","categories":[],"confidence":"High","reasoning":"NVIDIA DGX-1 is an enterprise AI server, not a consumer home IoT device."}]}

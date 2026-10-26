@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2022-34376","home_iot":"No","categories":[],"confidence":"High","reasoning":"The affected Dell PowerEdge and Precision BIOS platforms are enterprise servers or general-purpose workstations, not consumer home-automation devices."}]}

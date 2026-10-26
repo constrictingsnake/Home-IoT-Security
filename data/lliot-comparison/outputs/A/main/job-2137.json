@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2022-47529","home_iot":"No","categories":[],"confidence":"High","reasoning":"RSA NetWitness Endpoint Windows Agents are enterprise security software for general-purpose Windows systems, not consumer home IoT devices."}]}

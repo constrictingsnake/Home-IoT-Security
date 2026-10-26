@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2023-32820","home_iot":"Maybe","categories":["smartspeakers","streaming"],"confidence":"Low","reasoning":"The affected MediaTek WLAN firmware spans Android and Yocto platforms, with some listed chipsets plausibly used in smart speakers or streaming devices, but no specific home IoT product is identified."}]}

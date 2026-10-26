@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2024-44262","home_iot":"No","categories":[],"confidence":"High","reasoning":"The vulnerability affects Apple visionOS on a mixed-reality headset, which is excluded as a VR/AR device rather than a home IoT device."}]}

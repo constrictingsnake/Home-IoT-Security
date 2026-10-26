@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2017-6774","home_iot":"No","categories":[],"confidence":"High","reasoning":"Cisco ASR 5000 Series devices are carrier-grade aggregated services routers, not consumer home-monitoring or automation devices."}]}

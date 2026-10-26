@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2020-27486","home_iot":"No","categories":[],"confidence":"High","reasoning":"The Garmin Forerunner 235 is a wrist-worn fitness tracker, which is explicitly excluded from the sleep-tracker category and is not a qualifying home IoT device."}]}

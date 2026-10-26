@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2018-13861","home_iot":"Maybe","categories":["hub"],"confidence":"Low","reasoning":"Trivum WebTouch is a networked embedded touch-control panel plausibly used for residential home automation, but the description and CPE do not establish its home-control role clearly."}]}

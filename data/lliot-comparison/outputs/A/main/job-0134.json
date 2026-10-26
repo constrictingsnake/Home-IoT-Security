@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2024-28237","home_iot":"No","categories":[],"confidence":"High","reasoning":"OctoPrint controls consumer 3D printers, which are fabrication devices rather than systems whose primary purpose is monitoring, automating, or controlling the home."}]}

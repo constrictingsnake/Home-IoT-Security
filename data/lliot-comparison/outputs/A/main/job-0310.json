@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2023-29114","home_iot":"Yes","categories":["ev-charging"],"confidence":"High","reasoning":"The vulnerability affects a network-connected JuiceBox EV charger, a consumer EVSE product commonly installed in private homes."}]}

@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2024-35968","home_iot":"No","categories":[],"confidence":"High","reasoning":"This vulnerability affects a generic Linux kernel PCI device driver and does not identify any consumer home IoT device or home-control function."}]}

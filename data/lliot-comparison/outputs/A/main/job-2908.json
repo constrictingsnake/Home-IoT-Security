@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2023-52837","home_iot":"No","categories":[],"confidence":"High","reasoning":"This is a generic Linux kernel network block-device vulnerability and does not identify any consumer home IoT device or home-control function."}]}

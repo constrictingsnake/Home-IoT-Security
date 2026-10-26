@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2021-30254","home_iot":"Maybe","categories":["smartspeakers"],"confidence":"Low","reasoning":"The affected Qualcomm platforms include Consumer IoT and Voice & Music chipsets plausibly used in smart speakers, but no specific residential home-control device is identified."}]}

@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2023-34724","home_iot":"Maybe","categories":["cameras"],"confidence":"Low","reasoning":"TECHView's LA5570 appears to be a consumer wireless security-camera gateway, but the description and CPE identify only a generic wireless gateway without confirming its residential camera function."}]}

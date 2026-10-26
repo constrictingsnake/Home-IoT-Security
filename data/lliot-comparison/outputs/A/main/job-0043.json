@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2023-0811","home_iot":"No","categories":[],"confidence":"High","reasoning":"The affected Omron SYSMAC CJ/CP-series units are industrial programmable logic controllers used for factory automation, not consumer home IoT devices."}]}

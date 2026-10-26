@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2021-21266","home_iot":"Yes","categories":["hub"],"confidence":"High","reasoning":"openHAB is home-automation controller software that functions as a smart-home hub for connected devices."}]}

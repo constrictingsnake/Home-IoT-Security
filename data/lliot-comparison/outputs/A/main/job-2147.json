@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2024-5096","home_iot":"Maybe","categories":["cameras"],"confidence":"Low","reasoning":"The Hipcam product name and Wi-Fi MAC endpoint suggest a networked camera, but the description does not establish that it is a consumer home security camera."}]}

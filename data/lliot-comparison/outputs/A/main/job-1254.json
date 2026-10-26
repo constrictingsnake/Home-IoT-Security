@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2020-3662","home_iot":"Maybe","categories":["smartspeakers"],"confidence":"Low","reasoning":"The flaw affects a shared Qualcomm media-processing layer that includes Consumer IoT and Voice & Music platforms plausibly used in smart speakers, but no specific home-control device is identified."}]}

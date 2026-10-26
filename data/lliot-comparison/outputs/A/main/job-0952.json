@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2016-3440","home_iot":"No","categories":[],"confidence":"High","reasoning":"The vulnerability affects Oracle MySQL server software, which is general-purpose IT infrastructure rather than a consumer home IoT device."}]}

@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2021-38783","home_iot":"No","categories":[],"confidence":"High","reasoning":"The affected Allwinner R818 Android SDK camera driver is a general SoC software component, not a specifically identified consumer home IoT device."}]}

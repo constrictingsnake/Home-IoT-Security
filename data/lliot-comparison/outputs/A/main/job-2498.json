@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2024-5631","home_iot":"Yes","categories":["cameras"],"confidence":"High","reasoning":"The affected Longse NVR is a networked video recorder that manages security-camera streams and is plausibly deployed as a consumer home surveillance system."}]}

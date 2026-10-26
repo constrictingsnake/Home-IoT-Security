@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2020-10208","home_iot":"No","categories":[],"confidence":"High","reasoning":"The affected Amino AK/Aria/Kami products are IPTV set-top boxes, and nothing in the description or CPE indicates the home-control role required for an entertainment device to qualify as home IoT."}]}

@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2020-10176","home_iot":"Yes","categories":["cameras"],"confidence":"High","reasoning":"The Yale WIPC-301W is a consumer Wi-Fi home security camera, and the vulnerability affects its firmware."}]}

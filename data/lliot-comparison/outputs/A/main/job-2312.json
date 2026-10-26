@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2020-28713","home_iot":"Yes","categories":["doorbell"],"confidence":"High","reasoning":"The vulnerability explicitly affects a network-connected Night Owl Smart Doorbell and its push-notification service."}]}

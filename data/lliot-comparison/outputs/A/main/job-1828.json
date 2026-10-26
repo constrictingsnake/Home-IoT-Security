@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2023-26235","home_iot":"No","categories":[],"confidence":"High","reasoning":"JD-GUI is a general-purpose Java decompiler desktop application, not a home IoT device or associated device component."}]}

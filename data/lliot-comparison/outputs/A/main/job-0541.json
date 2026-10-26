@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2023-31761","home_iot":"Yes","categories":["alarms"],"confidence":"High","reasoning":"The Blitzwolf BW-IS22 is explicitly a consumer smart home security alarm system, and the vulnerability affects its transmitter."}]}

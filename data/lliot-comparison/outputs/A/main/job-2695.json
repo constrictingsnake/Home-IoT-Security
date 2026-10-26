@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2021-27952","home_iot":"Yes","categories":["thermostat"],"confidence":"High","reasoning":"The ecobee3 lite is a network-connected residential smart thermostat, and the vulnerability affects its device firmware and bootloader access."}]}

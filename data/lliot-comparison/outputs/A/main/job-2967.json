@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2021-44279","home_iot":"No","categories":[],"confidence":"High","reasoning":"LibreNMS is general-purpose network-monitoring software rather than a consumer home IoT device or its dedicated control software."}]}

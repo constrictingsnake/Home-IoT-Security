@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2020-21013","home_iot":"No","categories":[],"confidence":"High","reasoning":"The affected product is blogging software with an SQL injection in its administrative interface, not a home IoT device."}]}

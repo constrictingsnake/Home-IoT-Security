@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2019-5635","home_iot":"Yes","categories":["hub"],"confidence":"High","reasoning":"The Hickory Smart Ethernet Bridge is a dedicated network-connected bridge for consumer smart-home hardware rather than a general-purpose Ethernet device."}]}

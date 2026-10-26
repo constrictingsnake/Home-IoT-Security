@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2021-45694","home_iot":"No","categories":[],"confidence":"High","reasoning":"The affected product is a general-purpose Rust software crate, not a consumer home IoT device or device-specific component."}]}

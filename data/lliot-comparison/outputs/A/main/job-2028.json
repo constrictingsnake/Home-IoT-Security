@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2021-21273","home_iot":"No","categories":[],"confidence":"High","reasoning":"Synapse is general-purpose instant-messaging and VoIP server software, not a residential home-monitoring or automation device."}]}

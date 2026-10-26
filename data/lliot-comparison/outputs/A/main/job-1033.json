@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2019-17006","home_iot":"No","categories":[],"confidence":"High","reasoning":"The flaw affects the NSS cryptographic library and listed Siemens industrial network equipment and NetApp data-center systems, not a consumer home-monitoring or automation device."}]}

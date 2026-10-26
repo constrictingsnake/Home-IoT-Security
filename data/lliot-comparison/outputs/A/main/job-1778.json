@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2018-18767","home_iot":"Yes","categories":["babymonitor"],"confidence":"High","reasoning":"The vulnerable app and firmware control a D-Link DCS-825L Wi-Fi baby-monitor camera deployed on a home network."}]}

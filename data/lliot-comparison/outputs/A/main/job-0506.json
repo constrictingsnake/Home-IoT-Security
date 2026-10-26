@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2023-35741","home_iot":"No","categories":[],"confidence":"High","reasoning":"The D-Link DAP-2622 is a wireless access point/router providing network transport, which is expressly outside the home-IoT categories and is not a home-control hub."}]}

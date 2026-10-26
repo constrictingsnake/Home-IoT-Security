@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2023-45816","home_iot":"No","categories":[],"confidence":"High","reasoning":"Discourse is general-purpose community discussion software, not a connected residential device for monitoring or controlling the home."}]}

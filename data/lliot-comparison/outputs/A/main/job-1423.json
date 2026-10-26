@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2018-6295","home_iot":"Yes","categories":["cameras"],"confidence":"High","reasoning":"The affected Hanwha Techwin SmartCam models are network-connected consumer home security cameras with insecure remote-control communications."}]}

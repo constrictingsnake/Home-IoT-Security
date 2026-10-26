@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2015-5286","home_iot":"No","categories":[],"confidence":"High","reasoning":"The vulnerability affects OpenStack Glance cloud image-service software, which is general server infrastructure rather than a consumer home IoT device."}]}

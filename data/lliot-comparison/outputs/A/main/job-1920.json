@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2019-14002","home_iot":"No","categories":[],"confidence":"High","reasoning":"The vulnerability affects a Qualcomm call-service component across generic automotive, mobile, wearable, compute, and IoT chipsets, without identifying a residential home-monitoring or automation device."}]}

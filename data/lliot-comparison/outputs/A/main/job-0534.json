@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2023-33248","home_iot":"Yes","categories":["smartspeakers"],"confidence":"High","reasoning":"The vulnerability explicitly affects Amazon Echo Dot consumer smart speakers running Alexa, which serve as voice-assistant home-control surfaces."}]}

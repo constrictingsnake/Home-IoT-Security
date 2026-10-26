@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2018-7589","home_iot":"No","categories":[],"confidence":"High","reasoning":"CImg is a general-purpose image-processing library, and this BMP parsing flaw is not tied to any home IoT device."}]}

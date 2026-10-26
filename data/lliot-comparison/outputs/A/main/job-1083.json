@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2020-36517","home_iot":"Yes","categories":["hub"],"confidence":"High","reasoning":"Home Assistant OS and Supervised are dedicated smart-home automation and control platforms that function as a residential IoT hub."}]}

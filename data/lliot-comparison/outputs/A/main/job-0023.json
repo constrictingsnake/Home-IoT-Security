@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2023-49654","home_iot":"No","categories":[],"confidence":"High","reasoning":"The vulnerability affects a Jenkins MATLAB software plugin on a Jenkins controller, which is general-purpose development infrastructure rather than a home IoT device."}]}

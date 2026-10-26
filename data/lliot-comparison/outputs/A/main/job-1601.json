@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2022-39064","home_iot":"Yes","categories":["lighting"],"confidence":"High","reasoning":"The vulnerability affects an IKEA TRÅDFRI Zigbee smart bulb used for connected residential lighting control."}]}

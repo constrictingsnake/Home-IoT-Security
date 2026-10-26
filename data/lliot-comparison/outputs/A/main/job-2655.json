@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2015-1099","home_iot":"No","categories":[],"confidence":"High","reasoning":"The vulnerability affects general-purpose Apple operating systems and Apple TV software, with tvOS CVEs explicitly excluded from the streaming category."}]}

@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2024-3765","home_iot":"Yes","categories":["cameras"],"confidence":"Low","reasoning":"The affected Xiongmai AHB/XM embedded surveillance boards are used in networked DVR/NVR and camera systems, including consumer home-security deployments, though the description does not establish a specifically residential product."}]}

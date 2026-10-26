@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2020-13886","home_iot":"No","categories":[],"confidence":"High","reasoning":"Intelbras TIP 200/300 devices are IP telephones used for communication, not special-purpose devices that monitor, automate, or control a home."}]}

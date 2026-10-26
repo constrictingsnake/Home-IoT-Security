@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2019-11229","home_iot":"No","categories":[],"confidence":"High","reasoning":"The vulnerability affects Gitea source-code repository hosting software, which is general server software rather than a home IoT device."}]}

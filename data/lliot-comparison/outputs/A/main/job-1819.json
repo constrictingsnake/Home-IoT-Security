@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2019-14048","home_iot":"No","categories":[],"confidence":"High","reasoning":"The vulnerability affects media playback on a broadly deployed Qualcomm Snapdragon SoC, with no specific residential home-monitoring or automation device identified."}]}

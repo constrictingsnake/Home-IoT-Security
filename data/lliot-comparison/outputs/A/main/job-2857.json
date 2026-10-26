@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2022-46640","home_iot":"Yes","categories":["lighting"],"confidence":"High","reasoning":"Nanoleaf Desktop is the companion control application for Nanoleaf consumer smart lighting products, so its command-injection vulnerability is in scope for smart lighting."}]}

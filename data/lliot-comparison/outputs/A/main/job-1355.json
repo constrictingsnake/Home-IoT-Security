@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2018-0024","home_iot":"No","categories":[],"confidence":"High","reasoning":"The affected Juniper SRX security appliances and EX/QFX network switches are enterprise networking infrastructure, not consumer devices that monitor or control a home."}]}

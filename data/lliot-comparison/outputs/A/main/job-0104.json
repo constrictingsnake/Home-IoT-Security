@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2022-20944","home_iot":"No","categories":[],"confidence":"High","reasoning":"Cisco Catalyst 9200 Series devices are enterprise network switches, not consumer home-automation devices or hubs."}]}

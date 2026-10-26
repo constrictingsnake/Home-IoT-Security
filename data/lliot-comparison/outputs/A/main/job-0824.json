@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2023-1935","home_iot":"No","categories":[],"confidence":"High","reasoning":"Emerson ROC800-Series RTUs are industrial process-control devices rather than consumer systems intended for residential monitoring or automation."}]}

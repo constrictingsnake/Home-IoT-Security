@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2018-10561","home_iot":"No","categories":[],"confidence":"High","reasoning":"The affected product is a GPON home router, which provides network transport but is explicitly excluded from the smart-home hub category."}]}

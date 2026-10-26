@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2021-36797","home_iot":"Yes","categories":["home-power"],"confidence":"High","reasoning":"Victron Energy Venus OS runs on consumer residential solar and battery energy-management devices, placing the affected system in the home-power category."}]}

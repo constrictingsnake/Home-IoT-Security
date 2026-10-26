@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2021-22820","home_iot":"Yes","categories":["ev-charging"],"confidence":"High","reasoning":"The affected EVlink Smart Wallbox EVB1A is a network-connected EV charger suitable for residential garage use, even though the same vulnerability also affects commercial City and Parking models."}]}

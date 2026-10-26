@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2018-1000176","home_iot":"No","categories":[],"confidence":"High","reasoning":"The vulnerability affects a Jenkins email plugin used in general-purpose software infrastructure, not a consumer home IoT device."}]}

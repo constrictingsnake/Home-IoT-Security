@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2020-9474","home_iot":"Yes","categories":["doorbell"],"confidence":"High","reasoning":"The Siedle SG 150-0 is a network gateway for residential Siedle door-communication and video-doorbell systems, making it an in-scope doorbell component."}]}

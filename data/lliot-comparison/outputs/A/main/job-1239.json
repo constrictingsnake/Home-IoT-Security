@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2019-14698","home_iot":"Maybe","categories":["cameras"],"confidence":"Low","reasoning":"The affected MicroDigital N-series devices are network cameras, but the description and CPEs do not establish whether these models are consumer home cameras or professional surveillance equipment."}]}

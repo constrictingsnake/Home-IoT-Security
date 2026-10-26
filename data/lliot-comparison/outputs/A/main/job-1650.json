@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2020-21406","home_iot":"Yes","categories":["streaming"],"confidence":"High","reasoning":"The affected RK MAX and V88 Smart TV boxes are consumer streaming boxes, which qualify as streaming home-control surfaces."}]}

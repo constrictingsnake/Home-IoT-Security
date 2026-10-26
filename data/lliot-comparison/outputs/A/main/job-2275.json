@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2019-16785","home_iot":"No","categories":[],"confidence":"High","reasoning":"The vulnerability affects the general-purpose Waitress Python web server and associated server operating systems or cloud platforms, not a consumer home IoT device."}]}

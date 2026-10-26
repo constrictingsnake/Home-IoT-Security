@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2022-23995","home_iot":"No","categories":[],"confidence":"High","reasoning":"The vulnerability affects Wear OS on wrist-worn smartwatches, which are explicitly excluded as wearables rather than home IoT devices."}]}

@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2013-4859","home_iot":"Yes","categories":["hub"],"confidence":"High","reasoning":"The affected INSTEON Hub is a consumer smart-home controller, and its unauthenticated web/API interfaces directly expose that hub."}]}

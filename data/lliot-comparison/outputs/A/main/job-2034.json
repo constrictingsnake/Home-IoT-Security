@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2013-3088","home_iot":"No","categories":[],"confidence":"High","reasoning":"The affected Belkin N900 is a plain home router, which provides network transport rather than home monitoring, automation, or control."}]}

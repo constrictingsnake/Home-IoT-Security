@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2022-32505","home_iot":"Yes","categories":["doorlock"],"confidence":"High","reasoning":"The affected Nuki Smart Lock 2.0 and 3.0 devices are BLE-connected residential smart locks."}]}

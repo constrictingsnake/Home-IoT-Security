@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2022-24400","home_iot":"No","categories":[],"confidence":"High","reasoning":"The flaw affects the TETRA professional radio authentication protocol/software, not a consumer device used to monitor, automate, or control a home."}]}

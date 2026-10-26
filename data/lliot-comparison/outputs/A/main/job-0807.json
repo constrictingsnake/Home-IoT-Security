@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2021-47251","home_iot":"No","categories":[],"confidence":"High","reasoning":"This is a generic Linux kernel mac80211 vulnerability with no indication that it targets a consumer home IoT device or product."}]}

@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2020-24383","home_iot":"Maybe","categories":["hub"],"confidence":"Low","reasoning":"FNET is a generic embedded TCP/IP stack whose vulnerable mDNS code could be used in a smart-home hub, but the description and CPE do not identify any specific residential IoT device."}]}

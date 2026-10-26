@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2021-33721","home_iot":"No","categories":[],"confidence":"High","reasoning":"Siemens SINEC NMS is industrial network-management software rather than a consumer residential IoT device or home-control system."}]}

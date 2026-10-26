@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2017-16265","home_iot":"Yes","categories":["hub"],"confidence":"High","reasoning":"The vulnerability affects the Insteon Hub, a consumer smart-home controller used to manage connected home devices."}]}

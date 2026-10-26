@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2024-41623","home_iot":"Yes","categories":["cameras"],"confidence":"High","reasoning":"The affected D3D Security D8801 is a dedicated IP security camera, which fits the consumer connected-camera category."}]}

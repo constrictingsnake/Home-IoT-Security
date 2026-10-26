@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2024-5095","home_iot":"Yes","categories":["cameras"],"confidence":"High","reasoning":"The affected product is a network-connected consumer camera with an MQTT packet handler, fitting the home security camera category."}]}

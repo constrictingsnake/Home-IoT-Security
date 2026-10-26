@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2024-11981","home_iot":"No","categories":[],"confidence":"High","reasoning":"The affected products are routers, which provide network transport rather than a qualifying home-monitoring or control function."}]}

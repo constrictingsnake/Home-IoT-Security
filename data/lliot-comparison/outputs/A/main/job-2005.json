@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2023-32412","home_iot":"No","categories":[],"confidence":"High","reasoning":"The vulnerability affects Apple general-purpose operating systems, and tvOS CVEs are explicitly excluded from the streaming category."}]}

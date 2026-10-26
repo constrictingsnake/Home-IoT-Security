@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2023-40516","home_iot":"No","categories":[],"confidence":"High","reasoning":"LG Simple Editor is desktop editing software, and an installer privilege-escalation flaw does not affect a special-purpose home IoT device."}]}

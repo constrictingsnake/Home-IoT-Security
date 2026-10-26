@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2021-25904","home_iot":"No","categories":[],"confidence":"High","reasoning":"The affected av-data Rust crate is a general-purpose software library, not a consumer home IoT device or device-specific component."}]}

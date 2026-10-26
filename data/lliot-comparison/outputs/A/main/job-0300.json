@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2021-30736","home_iot":"No","categories":[],"confidence":"High","reasoning":"The affected Apple operating systems are for general-purpose computers, phones, tablets, watches, and tvOS, which is explicitly excluded by the streaming category scope ruling."}]}

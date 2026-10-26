@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2024-53113","home_iot":"No","categories":[],"confidence":"High","reasoning":"This is a generic Linux kernel memory-management vulnerability with no description or CPE evidence tying it to a home IoT device or product."}]}

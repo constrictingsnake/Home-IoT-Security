@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2014-5396","home_iot":"No","categories":[],"confidence":"Low","reasoning":"The description and CPE identify a networked Schrack Technik microControl device but do not establish a consumer residential function matching any home IoT category."}]}

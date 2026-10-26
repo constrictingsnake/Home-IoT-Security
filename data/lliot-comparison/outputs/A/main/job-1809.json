@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2020-11617","home_iot":"No","categories":[],"confidence":"High","reasoning":"The affected products are DVB-T2 set-top boxes used for television reception, with no stated home-control hub or sensor-feed role."}]}

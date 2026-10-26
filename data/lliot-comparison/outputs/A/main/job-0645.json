@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2021-42557","home_iot":"Yes","categories":["hub"],"confidence":"High","reasoning":"Jeedom is consumer home-automation hub software, and the API bypass exposes credentials used to manage the connected home."}]}

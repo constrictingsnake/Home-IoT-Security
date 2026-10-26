@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2023-3212","home_iot":"No","categories":[],"confidence":"High","reasoning":"The flaw affects the Linux GFS2 filesystem and enterprise Linux/NetApp storage hardware, not a consumer home-monitoring or automation device."}]}

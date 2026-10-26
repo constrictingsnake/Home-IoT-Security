@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2014-9203","home_iot":"No","categories":[],"confidence":"High","reasoning":"The affected HART Device Type Manager software supports industrial field instruments such as positioners and level transmitters, not consumer devices deployed for home monitoring or control."}]}

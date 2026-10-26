@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2024-48548","home_iot":"Yes","categories":["doorlock"],"confidence":"High","reasoning":"The vulnerable companion app binds physical Cloud Smart Lock devices, making it part of a consumer connected smart-lock system."}]}

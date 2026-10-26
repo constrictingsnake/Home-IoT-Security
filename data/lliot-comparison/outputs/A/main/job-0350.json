@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2023-50125","home_iot":"Maybe","categories":["alarms"],"confidence":"Low","reasoning":"The Hozard product is an alarm system, but the description and CPE do not establish that it is network-connected or intended specifically for residential use."}]}

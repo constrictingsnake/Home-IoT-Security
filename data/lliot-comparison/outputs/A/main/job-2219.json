@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2020-3332","home_iot":"No","categories":[],"confidence":"High","reasoning":"The affected Cisco Small Business RV-series products are VPN routers/firewalls, which provide network transport and security rather than home monitoring, automation, or control."}]}

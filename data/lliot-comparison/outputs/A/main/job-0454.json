@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2023-47703","home_iot":"No","categories":[],"confidence":"High","reasoning":"IBM Security Guardium Key Lifecycle Manager is enterprise key-management software running on general-purpose operating systems, not a consumer home IoT device."}]}

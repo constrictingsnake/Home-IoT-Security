@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2022-29110","home_iot":"No","categories":[],"confidence":"High","reasoning":"The vulnerability affects Microsoft Excel and Office Web Apps Server, which are general-purpose productivity software rather than home IoT devices."}]}

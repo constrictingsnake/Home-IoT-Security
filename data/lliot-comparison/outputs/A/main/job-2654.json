@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2019-20468","home_iot":"No","categories":[],"confidence":"High","reasoning":"The affected TK-Star Q90 is a wearable GPS watch, and wrist wearables are outside the defined home IoT device classes."}]}

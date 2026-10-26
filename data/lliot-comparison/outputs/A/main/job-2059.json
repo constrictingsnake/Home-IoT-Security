@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2024-30961","home_iot":"No","categories":[],"confidence":"High","reasoning":"This vulnerability affects the general-purpose ROS 2 Navigation2 software framework, not a specifically identified consumer home IoT device."}]}

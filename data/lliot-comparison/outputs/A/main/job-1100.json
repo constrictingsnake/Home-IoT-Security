@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2024-26990","home_iot":"No","categories":[],"confidence":"High","reasoning":"This is a generic Linux kernel KVM virtualization flaw and does not identify any consumer home IoT device or function."}]}

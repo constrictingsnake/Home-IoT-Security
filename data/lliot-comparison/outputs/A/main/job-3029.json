@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2020-11195","home_iot":"Yes","categories":["smartspeakers"],"confidence":"Low","reasoning":"The affected Qualcomm QCS405 and Snapdragon Voice & Music platforms are used in connected smart speakers, although the vulnerability spans many non-home product families as well."}]}

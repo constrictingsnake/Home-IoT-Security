@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2020-29031","home_iot":"No","categories":[],"confidence":"High","reasoning":"Secomea GateManager appliances provide industrial remote-access management rather than consumer residential monitoring, automation, or control."}]}

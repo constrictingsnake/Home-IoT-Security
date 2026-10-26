@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2024-41884","home_iot":"Maybe","categories":["cameras"],"confidence":"Low","reasoning":"The flaw affects a network video recorder, but the description does not identify whether it is a consumer home-surveillance NVR or enterprise surveillance equipment."}]}

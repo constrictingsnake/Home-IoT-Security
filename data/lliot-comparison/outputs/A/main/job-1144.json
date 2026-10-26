@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2021-34861","home_iot":"No","categories":[],"confidence":"High","reasoning":"The affected D-Link DAP-2020 is a wireless access point/router providing network transport, which is explicitly excluded from the smart home hub category."}]}

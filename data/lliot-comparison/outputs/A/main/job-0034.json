@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2019-2279","home_iot":"Maybe","categories":["smartspeakers"],"confidence":"Low","reasoning":"The affected Qualcomm platforms include Snapdragon Voice & Music and Consumer IoT chipsets that may power smart speakers, but the description does not identify a specific residential home-IoT product."}]}

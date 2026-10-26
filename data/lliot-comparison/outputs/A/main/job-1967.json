@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2014-9727","home_iot":"No","categories":[],"confidence":"High","reasoning":"AVM Fritz!Box is a consumer router, which provides network transport but is not itself a qualifying home-control hub or other listed home IoT device."}]}

@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2020-13093","home_iot":"No","categories":[],"confidence":"High","reasoning":"Agent DVR is general-purpose video-surveillance software rather than firmware or a companion component for a specific consumer home IoT device."}]}

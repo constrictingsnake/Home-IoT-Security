@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2020-9525","home_iot":"Maybe","categories":["cameras"],"confidence":"Low","reasoning":"The vulnerable P2P layer is used by IoT devices carrying video/audio streams and plausibly includes consumer security cameras, but neither the description nor CPE identifies a residential device class."}]}

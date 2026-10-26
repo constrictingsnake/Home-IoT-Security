@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2017-9349","home_iot":"No","categories":[],"confidence":"High","reasoning":"The vulnerability affects Wireshark network-analysis software and Debian Linux, not a special-purpose residential home IoT device."}]}

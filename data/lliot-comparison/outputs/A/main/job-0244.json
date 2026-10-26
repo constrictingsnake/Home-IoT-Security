@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2021-1476","home_iot":"No","categories":[],"confidence":"High","reasoning":"Cisco ASA and Firepower Threat Defense are enterprise network-security platforms, not consumer devices that monitor, automate, or control a home."}]}

@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2013-3585","home_iot":"Maybe","categories":["cameras"],"confidence":"Low","reasoning":"The affected Samsung DVR could be a consumer home-surveillance recorder, but the description and CPE do not distinguish residential equipment from professional surveillance gear."}]}

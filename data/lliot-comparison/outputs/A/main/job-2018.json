@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2016-6548","home_iot":"No","categories":[],"confidence":"High","reasoning":"The Nut mobile app supports Bluetooth anti-loss item trackers, which are personal tracking accessories rather than devices that monitor, automate, or control a home."}]}

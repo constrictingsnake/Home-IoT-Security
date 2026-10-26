@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2024-33028","home_iot":"No","categories":[],"confidence":"High","reasoning":"The affected Qualcomm components are generic mobile, automotive, networking, audio, robotics, and embedded chip platforms, with no specific residential home-monitoring or automation device identified."}]}

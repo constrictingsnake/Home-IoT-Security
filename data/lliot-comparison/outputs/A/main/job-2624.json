@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2018-3136","home_iot":"No","categories":[],"confidence":"High","reasoning":"The vulnerability affects general-purpose Oracle Java runtimes and enterprise or desktop platforms, not a specific residential IoT device."}]}

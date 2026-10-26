@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2023-23304","home_iot":"No","categories":[],"confidence":"High","reasoning":"Garmin Connect IQ and its SensorHistory API target wearable devices and applications, and wrist wearables are explicitly outside the home IoT categories."}]}

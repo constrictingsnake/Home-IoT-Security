@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2023-39666","home_iot":"No","categories":[],"confidence":"High","reasoning":"The affected D-Link DIR-842 is a general-purpose home router, which provides network transport but is not itself a qualifying home-control hub or IoT device."}]}

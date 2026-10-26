@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2019-25063","home_iot":"Yes","categories":["cameras"],"confidence":"High","reasoning":"The vulnerability affects Sricam's viewer for a consumer IP CCTV camera, which is a home security camera product."}]}

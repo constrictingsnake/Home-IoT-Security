@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2024-44969","home_iot":"No","categories":[],"confidence":"High","reasoning":"This is a Linux kernel flaw in the s390 mainframe SCLP I/O subsystem, not a consumer home IoT device."}]}

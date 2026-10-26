@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2022-37953","home_iot":"No","categories":[],"confidence":"High","reasoning":"GE WorkstationST within ControlST is industrial control software deployed in controlled environments, not a consumer home IoT device."}]}

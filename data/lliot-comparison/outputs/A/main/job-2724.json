@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2020-9488","home_iot":"No","categories":[],"confidence":"High","reasoning":"The vulnerability affects the general-purpose Log4j logging library and enterprise software, not a specific residential IoT device."}]}

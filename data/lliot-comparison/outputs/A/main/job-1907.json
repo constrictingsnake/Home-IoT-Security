@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2017-7749","home_iot":"No","categories":[],"confidence":"High","reasoning":"The vulnerability affects Firefox, Thunderbird, and general-purpose Linux systems rather than a special-purpose home IoT device."}]}

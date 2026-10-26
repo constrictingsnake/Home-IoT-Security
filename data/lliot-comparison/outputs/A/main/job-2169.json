@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2024-7616","home_iot":"Yes","categories":["cameras"],"confidence":"High","reasoning":"The affected Edimax IC-6220DC and IC-5150W models are consumer IP security cameras, as also indicated by the vulnerable ipcam_cgi component."}]}

@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2018-4086","home_iot":"No","categories":[],"confidence":"High","reasoning":"The vulnerability affects Apple operating systems and Apple TV/tvOS, which is explicitly excluded by the streaming category's scope ruling."}]}

@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2019-12763","home_iot":"No","categories":[],"confidence":"High","reasoning":"The vulnerability affects an Android security-camera application running on a general-purpose mobile device, not a dedicated home IoT camera or its companion service."}]}

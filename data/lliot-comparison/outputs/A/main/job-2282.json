@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2023-48694","home_iot":"No","categories":[],"confidence":"High","reasoning":"The affected product is a generic embedded USB stack, with no description or CPE evidence tying the vulnerability to a consumer home IoT device."}]}

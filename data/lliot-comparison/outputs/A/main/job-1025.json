@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2019-10518","home_iot":"No","categories":[],"confidence":"High","reasoning":"The CVE affects generic Qualcomm chipsets and firmware across mobile, automotive, industrial, wearable, and IoT platforms without identifying any residential home-control device in a listed category."}]}

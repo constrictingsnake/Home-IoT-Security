@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2023-33869","home_iot":"Yes","categories":["home-power"],"confidence":"High","reasoning":"Enphase Envoy is a networked residential solar-energy gateway, and the CVE explicitly affects its firmware and hardware."}]}

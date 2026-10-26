@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2019-17391","home_iot":"No","categories":[],"confidence":"Low","reasoning":"The affected ESP32 is a general-purpose embedded chip used across many contexts, and the description/CPE does not identify any specific consumer home-control device."}]}

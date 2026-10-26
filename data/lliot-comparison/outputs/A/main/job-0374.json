@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2023-47857","home_iot":"No","categories":[],"confidence":"High","reasoning":"The vulnerability affects the general-purpose OpenHarmony operating system's multimedia camera component, not a specific consumer home IoT camera or other qualifying device."}]}

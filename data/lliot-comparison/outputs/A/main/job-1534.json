@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2023-6894","home_iot":"Yes","categories":["doorbell"],"confidence":"Low","reasoning":"The affected Hikvision DS-KD door stations and DS-KH indoor stations form a networked video-intercom system that can serve as a residential smart doorbell, although these models are also used in multi-unit and commercial installations."}]}

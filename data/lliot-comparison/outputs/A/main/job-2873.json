@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2018-11838","home_iot":"Maybe","categories":["smartspeakers"],"confidence":"Low","reasoning":"The flaw affects generic Qualcomm WLAN chipsets across many device classes, though the named Snapdragon Voice & Music and Consumer IoT platforms could be used in consumer smart speakers."}]}

@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2024-48786","home_iot":"Yes","categories":["lighting","shades","smartplugs","sensors","hub","cameras"],"confidence":"Low","reasoning":"The vulnerable SwitchBot companion app manages firmware for SwitchBot consumer home-automation products, although the description does not identify which supported product lines are affected."}]}

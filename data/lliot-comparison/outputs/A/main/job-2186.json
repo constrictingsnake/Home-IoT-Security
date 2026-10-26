@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2016-3677","home_iot":"No","categories":[],"confidence":"High","reasoning":"The affected Huawei Wear/HiLink Android applications are mobile software associated with wearable devices, which are excluded and are not themselves home IoT devices."}]}

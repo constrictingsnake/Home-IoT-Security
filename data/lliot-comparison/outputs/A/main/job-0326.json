@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2020-8163","home_iot":"No","categories":[],"confidence":"High","reasoning":"The vulnerability affects the general-purpose Ruby on Rails web framework and Debian Linux, not a specific home IoT device."}]}

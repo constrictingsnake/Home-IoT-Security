@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2023-26578","home_iot":"No","categories":[],"confidence":"High","reasoning":"IDAttend IDWeb is a server-side attendance application, not a consumer home IoT device or its companion service."}]}

@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2024-27295","home_iot":"No","categories":[],"confidence":"High","reasoning":"Directus is a general-purpose database content management API and dashboard, not a special-purpose home IoT device or its dedicated control service."}]}

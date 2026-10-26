@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2024-23673","home_iot":"No","categories":[],"confidence":"High","reasoning":"Apache Sling Servlets Resolver is a general-purpose server-side software component, not a consumer home IoT device or device-specific companion service."}]}

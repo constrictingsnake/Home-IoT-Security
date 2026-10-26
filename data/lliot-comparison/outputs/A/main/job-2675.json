@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2023-33877","home_iot":"No","categories":[],"confidence":"High","reasoning":"Intel RealSense ID 450 FA is a facial-authentication peripheral rather than a consumer device whose primary purpose is monitoring, automating, or controlling a home."}]}

@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2017-9863","home_iot":"Yes","categories":["home-power"],"confidence":"High","reasoning":"The vulnerability can compromise network-managed SMA Sunny Boy solar inverters, a product line used in residential solar energy systems."}]}

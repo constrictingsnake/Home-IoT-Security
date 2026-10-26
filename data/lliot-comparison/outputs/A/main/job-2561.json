@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2013-2891","home_iot":"No","categories":[],"confidence":"High","reasoning":"This vulnerability affects the generic Linux kernel driver for SteelSeries HID peripherals, not a networked device whose primary function is home monitoring, automation, or control."}]}

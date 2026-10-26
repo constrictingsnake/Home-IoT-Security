@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2018-17178","home_iot":"Yes","categories":["robotvacuum"],"confidence":"High","reasoning":"Neato Botvac Connected devices are network-connected consumer robot vacuums whose movement can be controlled through the vulnerable web server."}]}

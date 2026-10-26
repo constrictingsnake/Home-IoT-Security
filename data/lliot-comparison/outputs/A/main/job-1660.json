@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2018-0512","home_iot":"No","categories":[],"confidence":"High","reasoning":"The affected I-O DATA products are NAS/storage, router/access-point, and media-networking devices, none of which performs a qualifying home-monitoring or automation function."}]}

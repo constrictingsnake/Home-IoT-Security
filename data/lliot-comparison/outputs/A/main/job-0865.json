@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2024-22651","home_iot":"No","categories":[],"confidence":"High","reasoning":"The affected D-Link DIR-815 is a plain network router, which provides connectivity but is explicitly outside the home IoT categories."}]}

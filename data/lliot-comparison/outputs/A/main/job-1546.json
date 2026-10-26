@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2019-10624","home_iot":"No","categories":[],"confidence":"High","reasoning":"The affected Qualcomm Snapdragon chipsets and firmware target automotive, mobile, computing, consumer-electronics, and industrial platforms rather than a specific residential home-monitoring or automation device."}]}

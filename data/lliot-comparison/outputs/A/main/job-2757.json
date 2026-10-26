@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2021-27953","home_iot":"Yes","categories":["thermostat"],"confidence":"High","reasoning":"The affected ecobee3 lite is a network-connected residential smart thermostat with HomeKit integration."}]}

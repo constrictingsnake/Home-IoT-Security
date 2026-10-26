@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2019-14457","home_iot":"Maybe","categories":["cameras"],"confidence":"Low","reasoning":"The affected VIVOTEK IP cameras could be used for home security, but the generic product description does not distinguish consumer models from VIVOTEK's professional surveillance equipment."}]}

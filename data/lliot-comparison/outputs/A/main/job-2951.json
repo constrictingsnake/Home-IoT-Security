@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2021-33889","home_iot":"Maybe","categories":["hub"],"confidence":"Low","reasoning":"wpantund is an OpenThread network-interface daemon that may run on a residential Thread hub or border router, but the description does not identify a consumer home device or deployment."}]}

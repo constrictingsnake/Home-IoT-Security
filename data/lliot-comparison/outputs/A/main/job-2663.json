@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2021-45877","home_iot":"Yes","categories":["ev-charging"],"confidence":"High","reasoning":"The affected GARO GLB/GTB/GTC Wallbox devices are network-managed EV charging units, including wallboxes intended for residential charging."}]}

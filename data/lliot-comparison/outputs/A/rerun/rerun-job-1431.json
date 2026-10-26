@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2022-45794","home_iot":"No","categories":[],"confidence":"High","reasoning":"The affected Omron SYSMAC CJ/CS-series devices are industrial programmable logic controllers, which are explicitly outside the home IoT scope."}]}

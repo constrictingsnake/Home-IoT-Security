@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2019-7728","home_iot":"Yes","categories":["cameras"],"confidence":"High","reasoning":"The vulnerable Android companion app controls Bosch consumer smart security cameras, so it is part of an in-scope home camera product."}]}

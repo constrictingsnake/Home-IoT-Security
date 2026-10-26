@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2017-6260","home_iot":"No","categories":[],"confidence":"High","reasoning":"The vulnerability affects an NVIDIA GPU driver on general-purpose Windows computers, not a special-purpose home monitoring or automation device."}]}

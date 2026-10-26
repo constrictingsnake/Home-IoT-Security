@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2020-3665","home_iot":"Maybe","categories":["smartspeakers","hub"],"confidence":"Low","reasoning":"The affected Qualcomm platforms span mobile, automotive, industrial, and consumer-IoT uses, with Voice & Music and Consumer IoT plausibly including smart speakers or home hubs but no specific residential product identified."}]}

@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2020-3911","home_iot":"No","categories":[],"confidence":"High","reasoning":"This libxml2 vulnerability affects Apple operating systems and Windows applications, while tvOS CVEs and general-purpose phones, tablets, computers, and watches are explicitly out of scope."}]}

@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2018-20356","home_iot":"No","categories":[],"confidence":"High","reasoning":"The vulnerability affects a generic embedded web-server software library, with no specific consumer home IoT device or product category identified."}]}

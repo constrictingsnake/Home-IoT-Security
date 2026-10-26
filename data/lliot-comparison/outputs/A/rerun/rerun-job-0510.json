@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2015-8968","home_iot":"No","categories":[],"confidence":"High","reasoning":"The vulnerability affects the general-purpose git-fastclone software tool, not a residential IoT device or its device-specific software."}]}

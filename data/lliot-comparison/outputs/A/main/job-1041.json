@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2015-0438","home_iot":"No","categories":[],"confidence":"High","reasoning":"The vulnerability affects Oracle MySQL Server and enterprise SUSE platforms, which are general-purpose server software rather than home IoT devices."}]}

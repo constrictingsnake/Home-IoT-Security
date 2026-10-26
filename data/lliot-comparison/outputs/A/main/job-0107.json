@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2020-9550","home_iot":"Yes","categories":["sensors","hub"],"confidence":"High","reasoning":"The affected Rubetek SmartHome controllers and wireless beacons are networked consumer home-automation hub and sensor components."}]}

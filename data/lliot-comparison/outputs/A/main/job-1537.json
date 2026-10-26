@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2017-13903","home_iot":"Yes","categories":["doorlock","hub"],"confidence":"High","reasoning":"The HomeKit flaw permits remote manipulation of connected-home state, specifically unlocking a smart door lock, and affects Apple's home-control platform."}]}

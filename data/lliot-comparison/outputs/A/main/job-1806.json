@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2022-48422","home_iot":"No","categories":[],"confidence":"High","reasoning":"The vulnerability affects ONLYOFFICE document-server software on Linux, which is general-purpose IT software rather than a home IoT device."}]}

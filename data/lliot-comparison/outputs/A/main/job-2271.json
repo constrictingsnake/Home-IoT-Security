@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2023-0808","home_iot":"Yes","categories":["home-power"],"confidence":"High","reasoning":"The affected Deye/Revolt/Bosswerk network-configurable inverter is a residential solar energy device, placing it in the home-power category."}]}

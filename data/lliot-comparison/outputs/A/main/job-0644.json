@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2024-35858","home_iot":"No","categories":[],"confidence":"High","reasoning":"This is a generic Linux kernel network-driver vulnerability with no indication that it affects a residential home IoT product."}]}

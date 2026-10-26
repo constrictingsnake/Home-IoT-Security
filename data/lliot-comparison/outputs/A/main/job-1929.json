@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2022-37255","home_iot":"Yes","categories":["cameras"],"confidence":"High","reasoning":"The TP-Link Tapo C310 is a consumer home security camera, and the vulnerability exposes its RTSP video feed."}]}

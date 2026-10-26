@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2020-11152","home_iot":"Maybe","categories":["smartspeakers"],"confidence":"Low","reasoning":"The vulnerable Qualcomm HAL spans broad automotive, mobile, industrial, consumer-IoT, and Voice & Music platforms, so it may reach smart speakers but no specific residential device is identified."}]}

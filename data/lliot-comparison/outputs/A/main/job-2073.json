@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2018-20579","home_iot":"Maybe","categories":["sensors"],"confidence":"Low","reasoning":"Contiki-NG is an embedded IoT operating system that can run home sensors, but this generic software-layer vulnerability is not tied to a specific residential device."}]}

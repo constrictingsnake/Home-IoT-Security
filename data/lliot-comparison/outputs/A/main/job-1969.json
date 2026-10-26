@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2023-31679","home_iot":"Maybe","categories":["cameras"],"confidence":"Low","reasoning":"Videogo appears to be an Android video-device application exposing images from connected cameras, but the description does not establish that the devices are consumer home security cameras."}]}

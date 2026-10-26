@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2018-20394","home_iot":"No","categories":[],"confidence":"High","reasoning":"The affected Thomson devices are cable modem/router gateways, which provide network transport and are explicitly excluded from the home IoT hub category."}]}

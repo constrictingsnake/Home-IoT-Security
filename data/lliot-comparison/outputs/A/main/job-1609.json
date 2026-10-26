@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2023-33916","home_iot":"No","categories":[],"confidence":"High","reasoning":"The vulnerability affects Android 11 VoWiFi service on Unisoc mobile chipsets, which are general-purpose phone components rather than home IoT devices."}]}

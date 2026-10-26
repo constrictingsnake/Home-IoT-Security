@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2022-25651","home_iot":"No","categories":[],"confidence":"High","reasoning":"The vulnerability affects generic Qualcomm Bluetooth chipsets and firmware across automotive, mobile, consumer IoT, industrial IoT, and audio platforms, without identifying a qualifying home-control device."}]}

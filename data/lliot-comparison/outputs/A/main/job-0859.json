@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2021-22789","home_iot":"No","categories":[],"confidence":"High","reasoning":"The affected Modicon PLC controllers and engineering simulators are industrial automation equipment, not consumer devices intended for residential home monitoring or control."}]}

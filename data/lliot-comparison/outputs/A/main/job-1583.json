@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2021-44905","home_iot":"Yes","categories":["doorlock"],"confidence":"High","reasoning":"The affected Fortessa FTBTLD is a Bluetooth-connected consumer smart lock used for residential access control."}]}

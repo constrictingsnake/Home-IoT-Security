@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2022-27210","home_iot":"No","categories":[],"confidence":"High","reasoning":"The vulnerability affects a Jenkins continuous-deployment plugin, which is general server-side development infrastructure rather than a consumer home IoT device."}]}

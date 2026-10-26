@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2016-8450","home_iot":"No","categories":[],"confidence":"High","reasoning":"This vulnerability affects an Android Qualcomm sound driver in the general-purpose Linux kernel, not a specific home IoT device or home-control product."}]}

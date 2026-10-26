@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2019-2739","home_iot":"No","categories":[],"confidence":"High","reasoning":"The vulnerability affects general-purpose MySQL/MariaDB server software on standard Linux infrastructure, not a consumer home IoT device."}]}

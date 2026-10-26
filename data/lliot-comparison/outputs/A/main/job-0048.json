@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2024-22374","home_iot":"No","categories":[],"confidence":"High","reasoning":"The vulnerability affects Intel Xeon server processors, which are general-purpose enterprise computing hardware rather than consumer home IoT devices."}]}

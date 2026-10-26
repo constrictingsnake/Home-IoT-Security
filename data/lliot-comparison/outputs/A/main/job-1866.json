@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2020-28144","home_iot":"No","categories":[],"confidence":"High","reasoning":"The affected Moxa EDR-G902/G903/810 devices are industrial secure routers and firewalls, not consumer home-automation devices."}]}

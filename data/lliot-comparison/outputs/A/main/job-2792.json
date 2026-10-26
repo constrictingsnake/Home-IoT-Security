@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2022-25711","home_iot":"Maybe","categories":["cameras"],"confidence":"Low","reasoning":"The flaw affects a camera component across broad Qualcomm platforms including Consumer IoT, but neither the description nor the chipset CPEs establish that an affected product is specifically a consumer home security camera."}]}

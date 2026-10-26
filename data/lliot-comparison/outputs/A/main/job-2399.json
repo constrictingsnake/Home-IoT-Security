@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2019-19203","home_iot":"No","categories":[],"confidence":"High","reasoning":"The vulnerability affects the general-purpose Oniguruma regular-expression library and Fedora, not a home IoT device or product."}]}

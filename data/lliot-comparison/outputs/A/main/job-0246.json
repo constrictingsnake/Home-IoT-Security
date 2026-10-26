@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2021-45710","home_iot":"No","categories":[],"confidence":"High","reasoning":"The vulnerability affects the general-purpose Tokio Rust asynchronous runtime library, not a specific home IoT device or product."}]}

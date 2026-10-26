@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2020-27671","home_iot":"No","categories":[],"confidence":"High","reasoning":"The vulnerability affects the Xen hypervisor and general-purpose Linux distributions, not a special-purpose residential IoT device."}]}

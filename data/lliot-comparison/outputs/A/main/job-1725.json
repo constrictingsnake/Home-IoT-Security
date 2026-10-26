@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2013-6950","home_iot":"Yes","categories":["smartplugs"],"confidence":"High","reasoning":"Belkin WeMo home-automation firmware runs on consumer networked smart switches/plugs used to control household power."}]}

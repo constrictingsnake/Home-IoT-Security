@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2023-28551","home_iot":"Yes","categories":["smartspeakers"],"confidence":"Low","reasoning":"The affected Qualcomm platforms include Smart Audio and Smart Display components plausibly used in consumer smart speakers or displays, but the vulnerability spans a broad shared chipset layer across many non-home products."}]}

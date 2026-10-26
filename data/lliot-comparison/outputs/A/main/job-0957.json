@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2024-41624","home_iot":"Yes","categories":["smartspeakers"],"confidence":"High","reasoning":"The affected product is explicitly a consumer smart speaker, which qualifies as a home-control surface."}]}

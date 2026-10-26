@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2021-22739","home_iot":"Yes","categories":["hub"],"confidence":"High","reasoning":"Schneider Electric homeLYnk (Wiser for KNX) is a residential KNX home-automation controller that functions as a smart-home hub."}]}

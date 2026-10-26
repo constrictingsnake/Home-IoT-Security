@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2023-6181","home_iot":"Yes","categories":["streaming"],"confidence":"High","reasoning":"The CPE explicitly identifies Google Chromecast hardware and firmware, a consumer streaming device that can serve as a home-control surface."}]}

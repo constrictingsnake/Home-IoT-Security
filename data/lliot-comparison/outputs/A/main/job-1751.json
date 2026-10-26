@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2020-14993","home_iot":"No","categories":[],"confidence":"High","reasoning":"The affected DrayTek Vigor models are routers, which provide network transport rather than a qualifying home-monitoring or control function."}]}

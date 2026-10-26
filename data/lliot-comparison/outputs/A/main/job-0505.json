@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2023-0348","home_iot":"Yes","categories":["doorbell"],"confidence":"High","reasoning":"The Akuvox E11 is a network-connected residential video doorphone/doorbell, and the flaw permits unauthorized SIP calls to affected devices."}]}

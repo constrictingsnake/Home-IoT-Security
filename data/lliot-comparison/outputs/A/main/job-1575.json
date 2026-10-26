@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2021-35072","home_iot":"Maybe","categories":["smartspeakers"],"confidence":"Low","reasoning":"The flaw spans generic Qualcomm platforms, but Snapdragon Voice & Music and Consumer IoT may power qualifying smart speakers even though no specific home-control device is identified."}]}

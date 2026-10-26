@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2020-3699","home_iot":"Maybe","categories":["smartspeakers"],"confidence":"Low","reasoning":"The shared Qualcomm firmware affects broad mobile, automotive, industrial, and consumer-IoT platforms, while the Voice & Music/QCS405 scope plausibly includes smart speakers but identifies no specific residential product."}]}

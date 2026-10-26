@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2024-39947","home_iot":"Maybe","categories":["cameras"],"confidence":"Low","reasoning":"The affected Dahua NVR product families include small camera recorders plausibly used in homes but also higher-channel professional surveillance equipment, so residential scope is ambiguous."}]}

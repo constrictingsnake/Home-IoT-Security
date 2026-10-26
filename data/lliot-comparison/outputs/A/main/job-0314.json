@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2019-17632","home_iot":"No","categories":[],"confidence":"High","reasoning":"The vulnerability affects the general-purpose Eclipse Jetty web server software, with no indication of a specific home IoT device or product."}]}

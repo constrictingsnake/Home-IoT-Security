@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2019-2284","home_iot":"Maybe","categories":["cameras"],"confidence":"Low","reasoning":"The vulnerable Qualcomm camera subsystem spans consumer IoT, mobile, wearable, and industrial chipsets, so it could affect a home security camera but no qualifying end-device class is identified."}]}

@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2018-12716","home_iot":"Yes","categories":["smartspeakers","streaming"],"confidence":"High","reasoning":"The vulnerability explicitly affects Google Home smart speakers and Chromecast streaming devices, both consumer home-control surfaces covered by the listed categories."}]}

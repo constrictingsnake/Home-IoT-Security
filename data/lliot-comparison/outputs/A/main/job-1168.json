@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2018-18667","home_iot":"No","categories":[],"confidence":"High","reasoning":"PylonToken is Ethereum token smart-contract software, not a networked home sensor, appliance, or embedded home-control device."}]}

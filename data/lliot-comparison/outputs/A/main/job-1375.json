@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2019-20329","home_iot":"No","categories":[],"confidence":"High","reasoning":"OpenLambda is server-side computing software exposing a REST API, not a consumer home-monitoring or automation device."}]}

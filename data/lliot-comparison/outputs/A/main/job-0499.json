@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2019-12944","home_iot":"Yes","categories":["doorlock"],"confidence":"High","reasoning":"The affected Glue Smart Lock is a network-connected residential access-control device, directly fitting the smart-lock category."}]}

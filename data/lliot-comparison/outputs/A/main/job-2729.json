@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2023-6533","home_iot":"No","categories":[],"confidence":"High","reasoning":"Silicon Labs Z-Wave PC Controller is PC-based network-management software rather than a consumer smart-home hub or embedded home IoT device."}]}

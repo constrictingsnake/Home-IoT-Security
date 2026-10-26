@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2021-30814","home_iot":"No","categories":[],"confidence":"High","reasoning":"The issue affects Apple general-purpose and wearable operating systems, and tvOS CVEs are explicitly excluded from the streaming category."}]}

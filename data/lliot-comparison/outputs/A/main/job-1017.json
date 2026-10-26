@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2013-6023","home_iot":"Maybe","categories":["cameras"],"confidence":"Low","reasoning":"The affected TVT networked surveillance DVR could serve a home camera system, but the description and CPE do not establish whether it is intended for residential rather than professional surveillance use."}]}

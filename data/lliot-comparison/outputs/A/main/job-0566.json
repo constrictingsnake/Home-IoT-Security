@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2019-3986","home_iot":"Yes","categories":["cameras","hub"],"confidence":"High","reasoning":"The Blink XT2 Sync Module is a consumer home security-camera hub that connects and controls Blink cameras."}]}

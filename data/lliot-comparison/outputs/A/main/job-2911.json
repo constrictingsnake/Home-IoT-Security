@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2021-0889","home_iot":"Yes","categories":["streaming"],"confidence":"High","reasoning":"The vulnerability specifically affects Android TV devices, which are consumer streaming TVs or boxes and qualify as home-control surfaces."}]}

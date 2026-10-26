@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2020-27556","home_iot":"Maybe","categories":["cameras"],"confidence":"Low","reasoning":"The BASETech GE-131 appears plausibly to be a consumer network camera, but the description and CPE do not explicitly establish its device type or residential use."}]}

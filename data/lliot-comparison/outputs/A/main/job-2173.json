@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2024-3382","home_iot":"No","categories":[],"confidence":"High","reasoning":"The affected Palo Alto PA-5400 Series devices are enterprise network firewalls, not consumer home IoT devices."}]}

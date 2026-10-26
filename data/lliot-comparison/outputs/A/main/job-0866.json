@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2023-21538","home_iot":"No","categories":[],"confidence":"High","reasoning":"The vulnerability affects general-purpose .NET, PowerShell, and Fedora software rather than a special-purpose home IoT device."}]}

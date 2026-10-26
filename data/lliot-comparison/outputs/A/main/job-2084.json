@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2023-33740","home_iot":"No","categories":[],"confidence":"High","reasoning":"The vulnerability affects the Luowice Android application and generic Android OS, with no indication that it compromises a specific home IoT device or its control path."}]}

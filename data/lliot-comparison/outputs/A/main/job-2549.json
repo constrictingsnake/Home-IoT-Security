@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2022-2709","home_iot":"No","categories":[],"confidence":"High","reasoning":"This vulnerability affects a WordPress user-interface plugin, not a networked residential sensor, appliance, or home-control device."}]}

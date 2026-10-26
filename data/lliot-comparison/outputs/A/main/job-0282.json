@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2015-7104","home_iot":"No","categories":[],"confidence":"High","reasoning":"The vulnerability affects Safari and tvOS, and pure browser software and tvOS CVEs are explicitly excluded from the home IoT categories."}]}

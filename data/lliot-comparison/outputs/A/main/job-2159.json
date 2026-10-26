@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2017-6341","home_iot":"Maybe","categories":["cameras"],"confidence":"Low","reasoning":"The affected Dahua camera/NVR surveillance stack could serve a home security installation, but the 16-channel DHI-HCVR7216A-S3 recorder may instead be professional or commercial equipment."}]}

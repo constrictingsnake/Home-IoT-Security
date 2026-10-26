@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2015-3610","home_iot":"Maybe","categories":["hub"],"confidence":"Low","reasoning":"The Android application controls Siemens room-automation systems and may serve as a residential home-control interface, but the description does not establish whether the underlying deployment is consumer home automation or commercial building automation."}]}

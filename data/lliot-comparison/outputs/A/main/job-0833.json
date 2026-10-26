@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2018-6402","home_iot":"Yes","categories":["thermostat"],"confidence":"High","reasoning":"The Ecobee4 is a network-connected residential smart thermostat, and the vulnerability directly affects its Wi-Fi behavior."}]}

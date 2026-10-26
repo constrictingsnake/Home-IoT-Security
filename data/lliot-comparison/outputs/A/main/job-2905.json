@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2019-17518","home_iot":"Yes","categories":["doorlock"],"confidence":"High","reasoning":"The vulnerable Bluetooth Low Energy SDK affects the August Smart Lock, a consumer residential smart lock."}]}

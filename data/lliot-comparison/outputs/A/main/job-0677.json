@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2020-11684","home_iot":"No","categories":[],"confidence":"High","reasoning":"AT91bootstrap is generic embedded boot software, and the description does not identify any consumer home IoT device or qualifying residential function."}]}

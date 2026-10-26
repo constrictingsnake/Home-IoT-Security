@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2023-4432","home_iot":"No","categories":[],"confidence":"High","reasoning":"Cockpit is a general-purpose web content management application, not a consumer home IoT device or its device-specific software."}]}

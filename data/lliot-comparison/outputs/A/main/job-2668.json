@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2022-23731","home_iot":"Yes","categories":["streaming"],"confidence":"High","reasoning":"The vulnerability affects LG webOS smart TV models, which are consumer streaming devices and qualify as home-control surfaces."}]}

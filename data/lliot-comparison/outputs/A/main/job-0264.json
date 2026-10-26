@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2023-21636","home_iot":"No","categories":[],"confidence":"High","reasoning":"The description and CPEs identify a Linux flaw across generic Qualcomm mobile, automotive, audio, and connectivity chipsets, not a specific residential home-automation device."}]}

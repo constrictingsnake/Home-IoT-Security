@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2018-10601","home_iot":"No","categories":[],"confidence":"High","reasoning":"The affected Philips IntelliVue and Avalon products are clinical patient and fetal/maternal monitors intended for healthcare environments, not consumer home-monitoring or automation devices."}]}

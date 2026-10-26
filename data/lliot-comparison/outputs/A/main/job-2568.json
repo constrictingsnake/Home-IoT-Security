@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2020-7693","home_iot":"No","categories":[],"confidence":"High","reasoning":"The vulnerability affects the general-purpose Node.js SockJS software package, not a residential home IoT device or device-specific companion service."}]}

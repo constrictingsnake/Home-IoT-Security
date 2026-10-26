@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2014-7279","home_iot":"Yes","categories":["smartplugs"],"confidence":"High","reasoning":"The affected Konke Smart Plug K is a network-connected consumer smart plug remotely controllable over Telnet."}]}

@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2021-3427","home_iot":"No","categories":[],"confidence":"High","reasoning":"Deluge Web-UI is general-purpose BitTorrent client software, not a home-monitoring or automation IoT device."}]}

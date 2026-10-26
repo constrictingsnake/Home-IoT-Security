@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2020-9816","home_iot":"No","categories":[],"confidence":"High","reasoning":"The issue affects Apple general-purpose operating systems, and the tvOS component is explicitly excluded by the streaming-category scope ruling."}]}

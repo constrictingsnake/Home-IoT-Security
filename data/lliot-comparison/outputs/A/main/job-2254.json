@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2017-8414","home_iot":"Yes","categories":["cameras"],"confidence":"High","reasoning":"The D-Link DCS-1100 and DCS-1130 are consumer network security cameras, and the vulnerability affects their device firmware."}]}

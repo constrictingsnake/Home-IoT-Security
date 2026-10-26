@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2023-39841","home_iot":"Yes","categories":["doorlock"],"confidence":"High","reasoning":"The affected Etekcity 3-in-1 Smart Door Lock is a consumer residential smart lock, and the flaw enables cloning of its RFID access tag."}]}

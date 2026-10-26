@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2024-52548","home_iot":"Maybe","categories":["cameras"],"confidence":"Low","reasoning":"The firmware version pattern suggests embedded surveillance equipment that may include consumer security cameras, but the description and absent CPE do not identify the affected device class or deployment."}]}

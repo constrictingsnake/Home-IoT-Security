@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2017-8404","home_iot":"Yes","categories":["cameras"],"confidence":"High","reasoning":"The D-Link DCS-1130 is a consumer network surveillance camera, and the vulnerability affects its firmware's video-recording configuration interface."}]}

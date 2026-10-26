@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2020-14368","home_iot":"No","categories":[],"confidence":"High","reasoning":"Eclipse Che and Theia IDE are general-purpose cloud development workspace software, not consumer home IoT devices or their device-specific control components."}]}

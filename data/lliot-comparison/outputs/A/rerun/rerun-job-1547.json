@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2022-29859","home_iot":"Maybe","categories":["hub"],"confidence":"Low","reasoning":"The affected Ameba1 embedded SDK may be used in networked home-IoT products, but the description and CPE identify only a generic SDK and do not establish a qualifying device or function."}]}

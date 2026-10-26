@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2023-21463","home_iot":"No","categories":[],"confidence":"High","reasoning":"The vulnerability affects Samsung's MyFiles application on general-purpose Android devices, not a special-purpose home monitoring, automation, or control device."}]}

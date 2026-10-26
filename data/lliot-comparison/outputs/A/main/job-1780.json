@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2020-3874","home_iot":"No","categories":[],"confidence":"High","reasoning":"The vulnerability affects iOS and iPadOS mobile devices and the Messages app, which are general-purpose computing and communication products rather than home IoT devices."}]}

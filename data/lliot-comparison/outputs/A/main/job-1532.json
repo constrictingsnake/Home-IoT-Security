@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2024-8484","home_iot":"No","categories":[],"confidence":"High","reasoning":"This vulnerability affects a WordPress REST API plugin, not a special-purpose home IoT device or its companion service."}]}

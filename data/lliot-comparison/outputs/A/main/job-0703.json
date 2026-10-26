@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2024-48463","home_iot":"No","categories":[],"confidence":"High","reasoning":"Bruno is a general-purpose API client, and this vulnerability in its Electron Markdown viewer does not affect a home IoT device."}]}

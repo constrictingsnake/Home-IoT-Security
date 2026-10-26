@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2022-25315","home_iot":"No","categories":[],"confidence":"High","reasoning":"The vulnerability affects the general-purpose libexpat XML library and listed server, operating-system, storage, and industrial products, not a specific home IoT device."}]}

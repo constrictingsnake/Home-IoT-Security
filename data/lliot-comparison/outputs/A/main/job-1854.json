@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2022-43704","home_iot":"Yes","categories":["thermostat"],"confidence":"High","reasoning":"The affected Sinilink XY-WFT1 is a Wi-Fi remote thermostat whose network commands control an onboard temperature-regulating relay."}]}

@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2024-47295","home_iot":"No","categories":[],"confidence":"High","reasoning":"SEIKO EPSON Web Config is an administration interface for printers or similar office equipment, not a qualifying home-monitoring or automation IoT device."}]}

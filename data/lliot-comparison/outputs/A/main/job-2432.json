@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2018-11591","home_iot":"No","categories":[],"confidence":"High","reasoning":"Espruino is embedded JavaScript firmware/runtime rather than a specific consumer home-monitoring or automation device in any listed category."}]}

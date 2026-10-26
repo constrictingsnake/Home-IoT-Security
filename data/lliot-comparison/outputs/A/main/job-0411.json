@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2022-25688","home_iot":"Maybe","categories":["cameras"],"confidence":"Low","reasoning":"The flaw spans generic Qualcomm chipsets across mobile, automotive, industrial, and consumer-IoT platforms, and although video-capable home cameras are plausible affected devices, no specific residential product or device class is identified."}]}

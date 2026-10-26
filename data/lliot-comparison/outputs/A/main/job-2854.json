@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2021-31875","home_iot":"No","categories":[],"confidence":"High","reasoning":"The vulnerability affects the general-purpose MongooseOS mJS scripting engine, with no description or CPE evidence tying it to a qualifying residential IoT device."}]}

@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2021-24712","home_iot":"No","categories":[],"confidence":"High","reasoning":"This vulnerability affects a WordPress appointment-booking plugin, not a networked residential monitoring, automation, or control device."}]}

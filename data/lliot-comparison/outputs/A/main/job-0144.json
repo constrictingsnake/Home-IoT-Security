@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2017-15404","home_iot":"No","categories":[],"confidence":"High","reasoning":"The vulnerability affects Google Chrome crash reporting on Chrome OS, a general-purpose computing platform rather than a home IoT device."}]}

@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2021-25864","home_iot":"No","categories":[],"confidence":"High","reasoning":"The vulnerability affects a third-party Node-RED software module for interacting with Hue devices, not a smart-lighting device, bridge, or its own companion service."}]}

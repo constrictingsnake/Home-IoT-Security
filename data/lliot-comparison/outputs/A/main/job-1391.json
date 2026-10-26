@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2024-39350","home_iot":"Yes","categories":["cameras"],"confidence":"High","reasoning":"Synology BC500 and TC500 are network-connected IP security cameras, and the vulnerability affects their RTSP functionality."}]}

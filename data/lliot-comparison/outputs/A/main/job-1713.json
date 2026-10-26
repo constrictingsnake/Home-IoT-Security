@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2021-27427","home_iot":"Maybe","categories":["sensors"],"confidence":"Low","reasoning":"RIOT OS is an embedded IoT operating system used across both consumer and non-home devices, so the affected product alone does not establish a specific residential deployment."}]}

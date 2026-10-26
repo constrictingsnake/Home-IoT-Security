@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2024-44097","home_iot":"Yes","categories":["doorbell","cameras"],"confidence":"High","reasoning":"The CPEs identify Google Nest battery doorbells and indoor/outdoor home security cameras whose TLS certificate validation is vulnerable."}]}

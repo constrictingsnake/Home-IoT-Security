@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2022-36331","home_iot":"No","categories":[],"confidence":"High","reasoning":"The affected Western Digital and SanDisk devices are network-attached personal storage systems, not devices whose primary purpose is monitoring, automating, or controlling the home."}]}

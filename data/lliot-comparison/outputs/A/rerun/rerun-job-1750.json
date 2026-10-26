@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2018-7246","home_iot":"No","categories":[],"confidence":"High","reasoning":"The affected Schneider Electric network management card is installed in enterprise-grade MGE UPS and static transfer systems, not a consumer residential home-energy device."}]}

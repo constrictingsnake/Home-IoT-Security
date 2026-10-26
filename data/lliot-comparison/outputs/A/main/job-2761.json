@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2019-16201","home_iot":"No","categories":[],"confidence":"High","reasoning":"The vulnerability affects Ruby's general-purpose WEBrick HTTP server and Debian Linux, not a specific consumer home IoT device or product."}]}

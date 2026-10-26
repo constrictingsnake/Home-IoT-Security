@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2022-29889","home_iot":"Yes","categories":["alarms","hub"],"confidence":"High","reasoning":"The Abode iota All-In-One Security Kit is a consumer home security system with an integrated smart-home hub, and the vulnerability affects its firmware."}]}

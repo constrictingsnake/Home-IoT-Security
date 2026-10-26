@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2014-5531","home_iot":"Yes","categories":["alarms"],"confidence":"High","reasoning":"The vulnerable Abode Android companion application controls the Abode consumer home security and alarm system, so it is in scope as part of that product."}]}

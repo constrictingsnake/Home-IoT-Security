@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2021-31612","home_iot":"No","categories":[],"confidence":"High","reasoning":"The affected AC690X parts are generic Bluetooth audio chipsets, and Bluetooth connectivity alone does not establish a qualifying home-monitoring or control device."}]}

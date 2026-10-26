@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2023-27098","home_iot":"Yes","categories":["cameras"],"confidence":"High","reasoning":"The vulnerable Tapo Android companion app is tied by the CPE to TP-Link's Tapo C200 consumer home security camera."}]}

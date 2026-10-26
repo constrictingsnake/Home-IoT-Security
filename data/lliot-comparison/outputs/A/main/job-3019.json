@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2023-48418","home_iot":"No","categories":[],"confidence":"High","reasoning":"The affected Google Pixel Watch is a wrist-worn smartwatch, which is explicitly outside the home IoT device classes and sleep-tracker category."}]}

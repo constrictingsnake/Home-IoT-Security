@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2023-28964","home_iot":"No","categories":[],"confidence":"High","reasoning":"The vulnerability affects Juniper Junos routing software handling BGP flowspec updates, which is enterprise network infrastructure rather than a consumer home-automation device."}]}

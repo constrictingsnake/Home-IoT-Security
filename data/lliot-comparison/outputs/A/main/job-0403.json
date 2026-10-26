@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2021-21433","home_iot":"No","categories":[],"confidence":"High","reasoning":"Discord Recon Server is general-purpose reconnaissance bot software running on a server, not a consumer home IoT device."}]}

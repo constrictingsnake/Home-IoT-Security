@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2022-29583","home_iot":"No","categories":[],"confidence":"High","reasoning":"The vulnerability affects a generic Go package for managing Windows services and the Windows operating system, not a special-purpose home IoT device."}]}

@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2019-17098","home_iot":"Yes","categories":["hub"],"confidence":"High","reasoning":"August Connect is a consumer Wi-Fi bridge that connects August smart-home devices to the home network, making the affected app and bridge firmware part of a home IoT hub."}]}

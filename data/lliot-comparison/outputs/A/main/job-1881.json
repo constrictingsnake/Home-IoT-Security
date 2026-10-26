@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2021-1946","home_iot":"Maybe","categories":["cameras","smartspeakers"],"confidence":"Low","reasoning":"The flaw spans generic Qualcomm platforms for mobile, automotive, industrial, and consumer IoT, which could power home cameras or smart speakers but does not identify a qualifying end device."}]}

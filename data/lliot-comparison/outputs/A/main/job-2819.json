@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2020-28416","home_iot":"No","categories":[],"confidence":"High","reasoning":"The vulnerability affects OCR software installed with HP printers, which are not home-monitoring, automation, or control devices in any listed category."}]}

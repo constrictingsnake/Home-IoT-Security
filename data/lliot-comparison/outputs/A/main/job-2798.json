@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2021-43268","home_iot":"No","categories":[],"confidence":"High","reasoning":"The vulnerability affects the general-purpose VxWorks embedded operating system and IKE component, with no identified residential home IoT device or qualifying category."}]}

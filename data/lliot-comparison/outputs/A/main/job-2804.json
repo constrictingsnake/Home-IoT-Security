@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2023-50128","home_iot":"No","categories":[],"confidence":"High","reasoning":"The described flaw is limited to a replayable radio-frequency keyless system, with no evidence that the alarm system has qualifying network connectivity such as TCP/IP, Zigbee, or BLE."}]}

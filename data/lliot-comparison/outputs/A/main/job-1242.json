@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2023-27920","home_iot":"Maybe","categories":["home-power"],"confidence":"Low","reasoning":"SolarView Compact is a networked solar-power monitoring appliance, but the description and CPE do not establish whether this model is deployed in private residences rather than commercial solar installations."}]}

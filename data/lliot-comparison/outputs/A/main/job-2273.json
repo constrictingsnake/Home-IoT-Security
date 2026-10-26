@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2021-22768","home_iot":"No","categories":[],"confidence":"High","reasoning":"PowerLogic EGX100 and EGX300 are industrial power-monitoring communication gateways, not consumer residential home-energy devices."}]}

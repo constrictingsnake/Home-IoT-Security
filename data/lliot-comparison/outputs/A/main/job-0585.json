@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2023-6717","home_iot":"No","categories":[],"confidence":"High","reasoning":"The vulnerability affects Keycloak identity and access management server software, not a consumer home IoT device."}]}

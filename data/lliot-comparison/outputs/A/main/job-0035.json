@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2017-17751","home_iot":"No","categories":[],"confidence":"High","reasoning":"Bose SoundTouch is a consumer audio-control platform, but the description and CPEs do not establish a voice-assistant or smart-home-control role required for home IoT."}]}

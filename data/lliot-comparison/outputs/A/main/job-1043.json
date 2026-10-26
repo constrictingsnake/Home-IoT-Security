@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2014-1982","home_iot":"No","categories":[],"confidence":"High","reasoning":"The affected products are broadband routers and residential gateways that provide network transport, which is explicitly excluded unless they also perform a home-control hub function."}]}

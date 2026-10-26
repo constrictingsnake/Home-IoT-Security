@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2024-44459","home_iot":"No","categories":[],"confidence":"High","reasoning":"VerneMQ is general-purpose MQTT broker software rather than a consumer home IoT device or a device-specific component."}]}

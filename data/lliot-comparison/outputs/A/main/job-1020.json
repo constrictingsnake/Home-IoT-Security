@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2024-29230","home_iot":"No","categories":[],"confidence":"High","reasoning":"The vulnerability affects Synology Surveillance Station software running on general-purpose NAS infrastructure, not a consumer home security camera or home DVR/NVR device itself."}]}

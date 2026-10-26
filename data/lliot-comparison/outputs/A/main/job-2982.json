@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2023-45253","home_iot":"No","categories":[],"confidence":"High","reasoning":"HuddlyCameraService is software for Huddly videoconferencing cameras on Windows, not a consumer home security camera or other home-monitoring device."}]}

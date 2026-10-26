@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2022-40008","home_iot":"No","categories":[],"confidence":"High","reasoning":"SWFTools is general-purpose software for processing Flash files, not a special-purpose home IoT device or its companion component."}]}

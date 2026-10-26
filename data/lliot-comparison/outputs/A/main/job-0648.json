@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2021-30342","home_iot":"Maybe","categories":["smartspeakers"],"confidence":"Low","reasoning":"The flaw affects broad Qualcomm chipset platforms spanning automotive, computing, industrial IoT, wearables, and Voice & Music, which may include smart speakers but does not identify a specific home-control device."}]}

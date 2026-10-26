@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2021-1963","home_iot":"Maybe","categories":["smartspeakers"],"confidence":"Low","reasoning":"The vulnerable Qualcomm IPA driver spans mobile, automotive, industrial, and consumer-IoT platforms, and although Voice & Music chipsets may power smart speakers, no specific qualifying home device is identified."}]}

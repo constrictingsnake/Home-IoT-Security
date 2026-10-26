@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2021-38300","home_iot":"No","categories":[],"confidence":"High","reasoning":"This is a generic Linux kernel vulnerability, and the listed NetApp and Debian products are enterprise storage or general-purpose operating systems rather than home IoT devices."}]}

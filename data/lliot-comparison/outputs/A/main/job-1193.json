@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2014-1279","home_iot":"No","categories":[],"confidence":"High","reasoning":"This affects Apple TV/tvOS, which is explicitly excluded from the streaming category by the scope ruling."}]}

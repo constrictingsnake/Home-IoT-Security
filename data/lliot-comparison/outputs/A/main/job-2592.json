@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2024-23837","home_iot":"No","categories":[],"confidence":"High","reasoning":"LibHTP is a general-purpose HTTP parsing library and the listed Fedora platforms are general IT systems, not home IoT devices."}]}

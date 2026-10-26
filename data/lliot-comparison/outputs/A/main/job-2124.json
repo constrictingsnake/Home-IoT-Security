@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2021-24312","home_iot":"No","categories":[],"confidence":"High","reasoning":"The vulnerability affects a WordPress caching plugin, which is general web software rather than a home IoT device."}]}

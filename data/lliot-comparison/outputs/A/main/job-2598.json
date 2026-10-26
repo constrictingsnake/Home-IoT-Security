@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2023-43551","home_iot":"No","categories":[],"confidence":"High","reasoning":"The vulnerability affects generic Qualcomm cellular modems and system-on-chip platforms across mobile, automotive, wearable, and embedded products, not a specific residential home-monitoring or automation device."}]}

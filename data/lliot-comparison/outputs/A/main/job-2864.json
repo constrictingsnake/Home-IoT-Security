@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2021-36779","home_iot":"No","categories":[],"confidence":"High","reasoning":"SUSE Longhorn is cluster storage infrastructure for Kubernetes workloads, not a consumer home IoT device."}]}

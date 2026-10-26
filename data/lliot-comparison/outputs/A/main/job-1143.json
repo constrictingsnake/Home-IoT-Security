@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2024-50191","home_iot":"No","categories":[],"confidence":"High","reasoning":"This is a generic Linux kernel ext4 filesystem vulnerability with no indication that it specifically affects a home IoT device or product."}]}

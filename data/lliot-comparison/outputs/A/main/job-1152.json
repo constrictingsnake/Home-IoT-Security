@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2024-7139","home_iot":"Maybe","categories":["hub"],"confidence":"Low","reasoning":"The generic L2CAP flaw affects an unspecified Bluetooth-capable embedded device, which could be a home IoT hub but is not identifiable as residential home-control equipment from the provided information."}]}

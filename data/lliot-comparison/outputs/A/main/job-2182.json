@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2021-30002","home_iot":"No","categories":[],"confidence":"High","reasoning":"This is a generic Linux kernel V4L2 webcam-driver vulnerability, not a flaw tied to a consumer home IoT camera or other qualifying device."}]}

@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2018-6692","home_iot":"Yes","categories":["smartplugs"],"confidence":"High","reasoning":"The vulnerability affects the firmware of a network-connected Belkin Wemo Insight consumer smart plug."}]}

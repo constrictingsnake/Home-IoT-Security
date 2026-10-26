@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2024-30207","home_iot":"No","categories":[],"confidence":"High","reasoning":"SIMATIC RTLS Locating Manager is an industrial real-time locating system, not a consumer device for monitoring or controlling a private home."}]}

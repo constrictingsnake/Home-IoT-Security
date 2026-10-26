@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2024-51524","home_iot":"No","categories":[],"confidence":"High","reasoning":"The vulnerability affects a generic HarmonyOS Wi-Fi module, with no indication that it is tied to a qualifying home IoT device or function."}]}

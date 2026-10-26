@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2023-45574","home_iot":"No","categories":[],"confidence":"High","reasoning":"The affected D-Link DI-series products are network routers, which provide connectivity but are not home-control hubs or another qualifying home IoT device class."}]}

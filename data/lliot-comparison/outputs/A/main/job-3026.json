@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2017-8224","home_iot":"Yes","categories":["cameras"],"confidence":"High","reasoning":"The affected WIFICAM device is a network-connected wireless IP camera, which fits the consumer home security-camera category."}]}

@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2024-5754","home_iot":"No","categories":[],"confidence":"High","reasoning":"The vulnerability affects the generic Zephyr Bluetooth host stack rather than a specifically identified consumer home IoT device or product category."}]}

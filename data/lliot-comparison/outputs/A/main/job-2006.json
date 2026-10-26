@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2024-29241","home_iot":"No","categories":[],"confidence":"High","reasoning":"The vulnerability affects Synology Surveillance Station software and DSM-based NAS systems, which are general-purpose storage and surveillance infrastructure rather than consumer home IoT cameras or DVR/NVR devices."}]}

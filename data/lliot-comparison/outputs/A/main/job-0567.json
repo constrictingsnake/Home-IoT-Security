@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2022-26527","home_iot":"Maybe","categories":["lighting","sensors","hub"],"confidence":"Low","reasoning":"The flaw affects a shared Bluetooth Mesh SDK that may underpin home lighting, sensors, and hubs, but the description and CPEs do not identify any specific residential IoT product."}]}

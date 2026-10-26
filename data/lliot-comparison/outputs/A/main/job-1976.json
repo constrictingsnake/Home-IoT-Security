@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2019-5304","home_iot":"No","categories":[],"confidence":"High","reasoning":"The affected Huawei products are enterprise routers, switches, firewalls, and network-security modules, which are general network infrastructure rather than home-control IoT devices."}]}

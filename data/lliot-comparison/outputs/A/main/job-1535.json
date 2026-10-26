@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2015-0603","home_iot":"No","categories":[],"confidence":"High","reasoning":"Cisco Unified IP 9900 phones are enterprise communication endpoints, not special-purpose devices for monitoring, automating, or controlling a private home."}]}

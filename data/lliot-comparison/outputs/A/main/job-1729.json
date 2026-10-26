@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2016-2398","home_iot":"Yes","categories":["alarms","sensors"],"confidence":"High","reasoning":"The Comcast XFINITY Home Security System is a consumer home alarm platform, and the vulnerability specifically defeats its ZigBee-connected security sensors."}]}

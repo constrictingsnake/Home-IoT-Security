@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2020-11114","home_iot":"Maybe","categories":["smartspeakers"],"confidence":"Low","reasoning":"The affected Qualcomm Bluetooth platform spans consumer, industrial, mobile, and voice/music products, so it may be used in smart speakers but the description and CPE do not identify a specific home IoT device."}]}

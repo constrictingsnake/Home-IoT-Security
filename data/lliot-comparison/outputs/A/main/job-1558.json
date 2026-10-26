@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2024-32662","home_iot":"No","categories":[],"confidence":"High","reasoning":"The vulnerability affects FreeRDP client software and Fedora operating systems, which are general-purpose IT software rather than home IoT devices."}]}

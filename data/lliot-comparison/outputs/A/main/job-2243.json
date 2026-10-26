@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2019-10482","home_iot":"Maybe","categories":["smartspeakers"],"confidence":"Low","reasoning":"The vulnerability spans generic Qualcomm platforms across mobile, automotive, industrial, and consumer IoT uses, although the named Voice & Music and QCS platforms could power consumer smart speakers."}]}

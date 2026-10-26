@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2015-2884","home_iot":"Yes","categories":["babymonitor"],"confidence":"High","reasoning":"The Philips In.Sight B120/37 is a network-connected consumer video baby monitor, and the vulnerability exposes its camera-stream information."}]}

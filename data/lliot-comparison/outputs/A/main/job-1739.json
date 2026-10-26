@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2019-16732","home_iot":"Yes","categories":["pet"],"confidence":"High","reasoning":"Petalk AI and Petwant PF-103 are network-connected consumer smart pet feeders whose firmware updates can be compromised."}]}

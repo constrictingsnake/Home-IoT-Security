@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2023-42143","home_iot":"Yes","categories":["thermostat"],"confidence":"High","reasoning":"Shelly TRV is a network-connected consumer thermostatic radiator valve used to control residential heating."}]}

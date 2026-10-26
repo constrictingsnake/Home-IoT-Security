@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2014-2346","home_iot":"No","categories":[],"confidence":"High","reasoning":"The affected zenon DNP3 driver and process gateway are industrial control/SCADA software communicating over a serial line, not consumer residential IoT devices."}]}

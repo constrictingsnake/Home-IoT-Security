@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2024-53986","home_iot":"No","categories":[],"confidence":"High","reasoning":"This vulnerability affects a general-purpose Rails HTML sanitization software library, not a home IoT device or device-specific companion service."}]}

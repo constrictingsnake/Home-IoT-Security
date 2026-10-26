@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2020-3586","home_iot":"No","categories":[],"confidence":"High","reasoning":"Cisco DNA Spaces Connector is enterprise location-services infrastructure, not a consumer device for monitoring or controlling a private home."}]}

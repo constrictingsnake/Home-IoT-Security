@@ -59,6 +59,7 @@ DISABLE = ["shell_tool", "unified_exec", "shell_snapshot", "code_mode_host", "mu
            "browser_use_external", "in_app_browser", "computer_use", "tool_suggest",
            "skill_search", "goals", "hooks"]
 TIMEOUT_S = 900
+BACKOFF_S = (60, 120, 240, 480)  # waits after an HTTP 429 (rate limit), before giving up on a job
 SETS = ("pilot-single", "pilot-batch", "pilot-rerun", "main", "rerun")
 LOG_FIELDS = ["job", "set", "owner", "started", "finished", "seconds", "model", "effort",
               "delivery", "exit", "retries", "valid", "input_tokens", "cached_input_tokens",
@@ -225,9 +226,11 @@ def run_one(run_dir, owner, job, inline):
         stdin = open(os.path.join(run_dir, "AGENTS.md"), encoding="utf-8").read() + "\n\n" + stdin
     started = time.time()
     retries, code, errs, usage = 0, None, ["not run"], {}
-    for attempt in range(2):
+    attempt = waits = 0
+    while attempt < 2:
         if os.path.exists(out):
             os.remove(out)
+        throttled = False
         try:
             p = subprocess.run(codex_cmd(run_dir, out), input=stdin, text=True,
                                capture_output=True, timeout=TIMEOUT_S)
@@ -235,12 +238,19 @@ def run_one(run_dir, owner, job, inline):
             with open(logp, "w", encoding="utf-8") as f:
                 f.write(p.stdout)
             usage = usage_from_events(p.stdout)
+            throttled = code != 0 and "429 Too Many Requests" in p.stdout
         except subprocess.TimeoutExpired:
             code = "timeout"
         errs = validate_output(jpath, out)
         if code == 0 and not errs:
             break
+        # A 429 never reached the model: back off and try again without spending the one retry.
+        if throttled and waits < len(BACKOFF_S):
+            time.sleep(BACKOFF_S[waits])
+            waits += 1
+            continue
         retries = attempt + 1 if attempt == 0 else retries
+        attempt += 1
     finished = time.time()
     row = {"job": job["job"], "set": job["set"], "owner": owner,
            "started": dt.datetime.fromtimestamp(started).isoformat(timespec="seconds"),

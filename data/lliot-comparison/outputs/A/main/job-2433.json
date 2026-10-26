@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2016-6466","home_iot":"No","categories":[],"confidence":"High","reasoning":"The affected Cisco ASR 5000/5500 routers and Virtualized Packet Core are carrier-grade networking infrastructure, not consumer home-automation devices."}]}

@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2020-16146","home_iot":"No","categories":[],"confidence":"Low","reasoning":"ESP-IDF is a general-purpose embedded development framework used across many device classes, and the description does not identify a residential home-control product."}]}

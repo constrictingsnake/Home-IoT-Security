@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2020-20183","home_iot":"No","categories":[],"confidence":"High","reasoning":"The Zyxel P1302-T10 v3 is a network router/gateway, which is transport infrastructure rather than a qualifying smart-home hub or device."}]}

@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2022-36566","home_iot":"No","categories":[],"confidence":"High","reasoning":"Rengine is a general-purpose reconnaissance and vulnerability-scanning application, not a consumer home IoT device or its companion service."}]}

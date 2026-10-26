@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2017-14167","home_iot":"No","categories":[],"confidence":"High","reasoning":"The vulnerability affects the general-purpose QEMU virtualization software and Debian hosts, not a residential home IoT device."}]}

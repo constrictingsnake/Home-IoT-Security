@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2017-15287","home_iot":"No","categories":[],"confidence":"High","reasoning":"Dreambox is primarily a digital television receiver and lacks a stated smart-home control role, so its BouquetEditor plugin is outside the defined home IoT categories."}]}

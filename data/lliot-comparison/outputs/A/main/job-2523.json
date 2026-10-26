@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2022-21796","home_iot":"Yes","categories":["cameras"],"confidence":"High","reasoning":"The Reolink RLC-410W is a consumer networked security camera, and the vulnerability affects its firmware's HTTP service."}]}

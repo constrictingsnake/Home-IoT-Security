@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2023-38906","home_iot":"Yes","categories":["lighting","smartplugs","cameras"],"confidence":"High","reasoning":"The affected Tapo product lines explicitly include consumer smart bulbs, a P100 smart plug, and a C200 home security camera, along with their controlling application."}]}

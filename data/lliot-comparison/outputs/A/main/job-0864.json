@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2024-51558","home_iot":"No","categories":[],"confidence":"High","reasoning":"Wave 2.0 and the associated Aero software are API-based user-account applications, with no indication of a connected home sensor, appliance, or controller."}]}

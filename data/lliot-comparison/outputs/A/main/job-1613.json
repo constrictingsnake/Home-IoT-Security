@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2020-12024","home_iot":"No","categories":[],"confidence":"High","reasoning":"Baxter ExactaMix EM 2400 and EM1200 are specialized medical compounding systems handling PHI, not consumer devices for monitoring or controlling a private home."}]}

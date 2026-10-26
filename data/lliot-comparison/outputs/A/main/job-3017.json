@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2024-32963","home_iot":"No","categories":[],"confidence":"High","reasoning":"Navidrome is music-server software rather than a special-purpose device that monitors, automates, or controls a home."}]}

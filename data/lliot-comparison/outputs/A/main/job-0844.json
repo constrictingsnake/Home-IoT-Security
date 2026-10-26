@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2021-46328","home_iot":"No","categories":[],"confidence":"High","reasoning":"The vulnerability affects a general-purpose embedded software SDK component, with no specific home IoT device or qualifying residential function identified."}]}

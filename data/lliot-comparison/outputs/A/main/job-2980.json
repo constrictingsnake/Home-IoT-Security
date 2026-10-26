@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2015-0204","home_iot":"No","categories":[],"confidence":"High","reasoning":"The vulnerability affects generic OpenSSL client code and does not identify any home IoT device or product category."}]}

@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2022-1318","home_iot":"Yes","categories":["alarms"],"confidence":"High","reasoning":"Hills ComNav is a network-connected module for Hills residential security and alarm systems, and the vulnerability exposes the system state over the local network."}]}

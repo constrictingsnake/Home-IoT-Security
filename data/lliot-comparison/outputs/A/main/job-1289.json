@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2020-23302","home_iot":"No","categories":[],"confidence":"High","reasoning":"The vulnerability affects the general-purpose JerryScript JavaScript engine, with no description or CPE evidence tying it to a qualifying home IoT device."}]}

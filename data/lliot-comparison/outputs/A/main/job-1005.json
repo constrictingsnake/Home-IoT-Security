@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2023-25153","home_iot":"No","categories":[],"confidence":"High","reasoning":"containerd is a general-purpose container runtime rather than a special-purpose consumer home IoT device or its device-specific software."}]}

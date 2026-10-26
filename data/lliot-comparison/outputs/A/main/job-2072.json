@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2023-45956","home_iot":"Yes","categories":["lighting"],"confidence":"High","reasoning":"The vulnerability affects a network-command-controlled Govee consumer LED strip, which is a smart home lighting device."}]}

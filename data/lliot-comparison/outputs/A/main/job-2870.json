@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2018-15476","home_iot":"Yes","categories":["smartplugs","lighting"],"confidence":"High","reasoning":"The affected myStrom products explicitly include consumer Wi-Fi switches, a bulb, and an LED strip used for connected home power and lighting control."}]}

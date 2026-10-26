@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2024-44297","home_iot":"No","categories":[],"confidence":"High","reasoning":"The vulnerability affects Apple general-purpose computing, mobile, wearable, and tvOS platforms, with tvOS CVEs explicitly excluded from the streaming category."}]}

@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2024-33753","home_iot":"Maybe","categories":["cameras"],"confidence":"Low","reasoning":"The affected product is a networked camera, but the description does not establish whether Section Camera is intended for consumer home security rather than commercial surveillance."}]}

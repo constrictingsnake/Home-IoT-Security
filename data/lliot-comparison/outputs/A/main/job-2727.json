@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2019-14023","home_iot":"No","categories":[],"confidence":"High","reasoning":"The affected Qualcomm chipsets and firmware span automotive, mobile, industrial, and generic consumer-IoT platforms, but no specific residential home-monitoring or control device is identified."}]}

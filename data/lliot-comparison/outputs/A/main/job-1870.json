@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2023-35717","home_iot":"Yes","categories":["cameras"],"confidence":"High","reasoning":"The TP-Link Tapo C210 is a consumer network-connected home security camera, and the vulnerability directly affects its authentication mechanism."}]}

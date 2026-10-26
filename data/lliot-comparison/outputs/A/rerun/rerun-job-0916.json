@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2019-14021","home_iot":"Maybe","categories":["cameras","smartspeakers","streaming"],"confidence":"Low","reasoning":"The flaw spans generic Qualcomm platforms, including Consumer IoT chipsets plausibly used in home cameras, smart displays, and streaming devices, but no affected end product or residential function is identified."}]}

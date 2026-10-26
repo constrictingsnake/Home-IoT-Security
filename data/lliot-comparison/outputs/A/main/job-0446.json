@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2021-37187","home_iot":"No","categories":[],"confidence":"High","reasoning":"Digi TransPort products are industrial/cellular routers rather than consumer devices whose primary function is home monitoring, automation, or control."}]}

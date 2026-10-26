@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2018-10855","home_iot":"No","categories":[],"confidence":"High","reasoning":"The vulnerability affects Ansible automation software and enterprise/server platforms, not a consumer home IoT device."}]}

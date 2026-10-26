@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2017-17217","home_iot":"No","categories":[],"confidence":"High","reasoning":"The affected Huawei DP300, RP200, and TE-series products are enterprise videoconferencing endpoints rather than consumer devices for monitoring or controlling a private home."}]}

@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2023-6998","home_iot":"Maybe","categories":["smartplugs","lighting"],"confidence":"Low","reasoning":"eWeLink is a companion app for consumer smart-home devices such as plugs and lighting, but the description does not identify which device product lines are exposed by the lock-screen bypass."}]}

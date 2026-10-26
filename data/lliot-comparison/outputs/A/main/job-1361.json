@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2016-2360","home_iot":"Yes","categories":["cameras"],"confidence":"High","reasoning":"The vulnerability affects network-connected Milesight IP security cameras, which fit the consumer home security-camera category."}]}

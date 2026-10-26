@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2020-27185","home_iot":"No","categories":[],"confidence":"High","reasoning":"Moxa NPort IA5000A devices are industrial serial device servers intended for automation networks, not consumer home monitoring or control."}]}

@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2023-38909","home_iot":"Yes","categories":["lighting","smartplugs"],"confidence":"High","reasoning":"The vulnerability affects TP-Link Tapo consumer smart bulbs (L530/L510E/L630) and the P100 smart plug, as well as their controlling application."}]}

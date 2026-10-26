@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2013-6117","home_iot":"Maybe","categories":["cameras"],"confidence":"Low","reasoning":"The vulnerable Dahua network DVR could serve residential security cameras, but the description and generic firmware CPE do not distinguish consumer home DVRs from enterprise surveillance equipment."}]}

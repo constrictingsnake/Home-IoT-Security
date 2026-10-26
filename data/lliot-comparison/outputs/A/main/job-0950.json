@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2023-36909","home_iot":"No","categories":[],"confidence":"High","reasoning":"The vulnerability affects Microsoft Message Queuing on general-purpose Windows desktop and server operating systems, not a special-purpose home IoT device."}]}

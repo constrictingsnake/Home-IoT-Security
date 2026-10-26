@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2022-40278","home_iot":"No","categories":[],"confidence":"Low","reasoning":"The CVE affects the generic TizenRT embedded operating system without identifying any residential device or home-control product in the listed categories."}]}

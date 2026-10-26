@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2018-11932","home_iot":"Maybe","categories":["cameras"],"confidence":"Low","reasoning":"The flaw affects a Qualcomm platform layer spanning mobile, automotive, industrial, and consumer-IoT products, with QCS605 plausibly used in connected home cameras but no specific residential device identified."}]}

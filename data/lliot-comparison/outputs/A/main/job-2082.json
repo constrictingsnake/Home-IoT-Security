@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2023-34058","home_iot":"No","categories":[],"confidence":"High","reasoning":"VMware Tools and open-vm-tools are general-purpose virtual-machine guest software, not consumer home IoT devices."}]}

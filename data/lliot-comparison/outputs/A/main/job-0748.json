@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2018-16720","home_iot":"No","categories":[],"confidence":"High","reasoning":"The vulnerability affects Windows antivirus software and its local kernel driver, not a special-purpose home IoT device."}]}

@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2019-2289","home_iot":"Maybe","categories":["smartspeakers"],"confidence":"Low","reasoning":"The flaw spans generic Qualcomm modem platforms used across mobile, automotive, industrial, and consumer IoT products, with Snapdragon Voice & Music suggesting possible smart-speaker use but no specific home device identified."}]}

@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2023-1901","home_iot":"No","categories":[],"confidence":"High","reasoning":"This affects the generic Bluetooth HCI host layer in Zephyr rather than a specifically identified consumer home IoT device or product category."}]}

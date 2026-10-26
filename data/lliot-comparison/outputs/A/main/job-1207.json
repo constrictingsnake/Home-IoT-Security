@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2019-14022","home_iot":"Maybe","categories":["cameras"],"confidence":"Low","reasoning":"The flaw affects Qualcomm platforms broadly across mobile, automotive, industrial, and consumer IoT, and chips such as QCS605 may power home cameras, but no specific residential end device is identified."}]}

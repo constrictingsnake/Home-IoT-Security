@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2023-24501","home_iot":"Maybe","categories":["airconditioner"],"confidence":"Low","reasoning":"The affected product is an embedded central air-conditioning unit, but the description and CPE do not establish that it is network-connected or specifically intended for residential use."}]}

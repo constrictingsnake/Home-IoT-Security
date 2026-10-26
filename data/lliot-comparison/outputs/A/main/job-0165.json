@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2024-53080","home_iot":"No","categories":[],"confidence":"High","reasoning":"This is a generic Linux kernel GPU driver vulnerability with no indication that it affects a home IoT device or product."}]}

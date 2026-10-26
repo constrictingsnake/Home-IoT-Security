@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2019-13393","home_iot":"No","categories":[],"confidence":"High","reasoning":"The NETGEAR CG3700b is a cable modem/router providing network transport, which is explicitly outside the home-IoT hub category."}]}

@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2018-16598","home_iot":"Maybe","categories":["hub"],"confidence":"Low","reasoning":"The flaw affects generic FreeRTOS networking software used across many embedded device classes, so it could affect a home IoT hub but no specific residential product or function is identified."}]}

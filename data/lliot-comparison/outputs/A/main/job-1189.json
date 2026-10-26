@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2018-15478","home_iot":"Yes","categories":["smartplugs","lighting"],"confidence":"High","reasoning":"The affected myStrom WiFi switches are consumer smart outlets, while the WiFi bulb and LED strip are consumer smart-lighting devices controlled through a cloud-linked mobile app."}]}

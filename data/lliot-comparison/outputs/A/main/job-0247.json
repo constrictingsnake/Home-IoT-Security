@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2024-21058","home_iot":"No","categories":[],"confidence":"High","reasoning":"The vulnerability affects Oracle Database Server's Unified Audit component, which is enterprise server software rather than a consumer home IoT device."}]}

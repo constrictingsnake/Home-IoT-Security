@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2013-7113","home_iot":"No","categories":[],"confidence":"High","reasoning":"The vulnerability affects the general-purpose Wireshark network protocol analyzer, not a consumer home IoT device."}]}

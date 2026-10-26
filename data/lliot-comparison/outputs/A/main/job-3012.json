@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2019-9584","home_iot":"Yes","categories":["hub"],"confidence":"High","reasoning":"Homematic CCU2 and CCU3 are consumer smart-home central control units, and the vulnerability affects their CloudMatic add-on administration."}]}

@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2014-2712","home_iot":"No","categories":[],"confidence":"High","reasoning":"The vulnerability affects Juniper Junos network infrastructure through its J-Web interface, not a consumer home-automation device in any listed category."}]}

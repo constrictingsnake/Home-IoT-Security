@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2017-8416","home_iot":"Yes","categories":["cameras"],"confidence":"High","reasoning":"The affected D-Link DCS-1100 and DCS-1130 are network-connected consumer surveillance cameras discoverable and controlled over a local network."}]}

@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2023-52366","home_iot":"No","categories":[],"confidence":"High","reasoning":"The affected Huawei EMUI and HarmonyOS smart activity-recognition module is associated with general-purpose mobile or wearable platforms, not a qualifying home-monitoring or home-control device."}]}

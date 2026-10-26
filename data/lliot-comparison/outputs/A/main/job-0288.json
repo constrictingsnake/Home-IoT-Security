@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2024-26548","home_iot":"Maybe","categories":["cameras"],"confidence":"Low","reasoning":"The affected Vivotek FD8166A is a network surveillance camera that could be used in a home, but the description and CPE do not establish whether it is consumer-oriented rather than professional surveillance equipment."}]}

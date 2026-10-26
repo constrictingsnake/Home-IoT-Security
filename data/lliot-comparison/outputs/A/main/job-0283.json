@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2017-15037","home_iot":"No","categories":[],"confidence":"High","reasoning":"The vulnerability affects the general-purpose FreeBSD operating system's SMB subsystem, not a specified home IoT device."}]}

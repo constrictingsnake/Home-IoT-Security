@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2022-30111","home_iot":"Yes","categories":["doorlock"],"confidence":"High","reasoning":"MCK Smartlock is a connected smart-lock mechanism whose vulnerable rolling codes can be replayed to unlock it."}]}

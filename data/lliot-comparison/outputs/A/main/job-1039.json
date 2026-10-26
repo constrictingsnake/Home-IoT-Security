@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2018-11993","home_iot":"No","categories":[],"confidence":"High","reasoning":"The affected Qualcomm Snapdragon Wear modem firmware is a general-purpose wearable/cellular component, not a residential home-monitoring or automation device."}]}

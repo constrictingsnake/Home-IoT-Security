@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2022-40250","home_iot":"No","categories":[],"confidence":"High","reasoning":"The vulnerability affects AMI Aptio firmware on Intel NUC M15 laptop kits, which are general-purpose computers rather than home IoT devices."}]}

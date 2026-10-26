@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2019-15745","home_iot":"Yes","categories":["smartplugs"],"confidence":"High","reasoning":"The affected Eques Elf is a consumer network-connected smart plug that can be controlled through its mobile app."}]}

@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2024-5313","home_iot":"Yes","categories":["ev-charging"],"confidence":"High","reasoning":"The CPE explicitly identifies Schneider Electric EVlink Home, a network-connected residential EV charger."}]}

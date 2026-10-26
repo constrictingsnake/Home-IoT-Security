@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2022-38970","home_iot":"Yes","categories":["cameras"],"confidence":"High","reasoning":"The ieGeek IG20 is a consumer network-connected security camera, and the flaw permits remote connections to affected devices."}]}

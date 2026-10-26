@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2019-12670","home_iot":"No","categories":[],"confidence":"High","reasoning":"Cisco IOS XE is network infrastructure software, and this vulnerability does not affect a special-purpose residential home-control device."}]}

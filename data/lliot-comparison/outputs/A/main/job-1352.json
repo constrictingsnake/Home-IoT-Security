@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2014-1900","home_iot":"Yes","categories":["cameras"],"confidence":"High","reasoning":"The affected Y-Cam models are consumer network-connected security cameras running vulnerable embedded firmware."}]}

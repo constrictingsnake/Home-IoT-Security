@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2013-3690","home_iot":"Maybe","categories":["cameras"],"confidence":"Low","reasoning":"The affected Brickcom products are network surveillance cameras that could be deployed in homes, but the listed box, dome, bullet, and speed-dome models appear oriented primarily toward professional surveillance."}]}

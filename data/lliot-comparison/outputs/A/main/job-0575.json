@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2021-4045","home_iot":"Yes","categories":["cameras"],"confidence":"High","reasoning":"The TP-Link Tapo C200 is a consumer network-connected home security camera, and the vulnerability affects its firmware directly."}]}

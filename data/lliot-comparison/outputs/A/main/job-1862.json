@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2021-0190","home_iot":"No","categories":[],"confidence":"High","reasoning":"The vulnerability affects BIOS firmware for general-purpose Intel Core and Xeon processors, not a special-purpose residential home IoT device."}]}

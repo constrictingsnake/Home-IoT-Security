@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2022-43229","home_iot":"No","categories":[],"confidence":"High","reasoning":"This vulnerability affects web-based cold-storage management software, not a consumer home IoT device or smart refrigerator."}]}

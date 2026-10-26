@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2024-56318","home_iot":"Maybe","categories":["hub"],"confidence":"Low","reasoning":"The flaw affects the shared Matter home-automation protocol stack, which may run on smart-home hubs/controllers but is not tied to a specific residential device."}]}

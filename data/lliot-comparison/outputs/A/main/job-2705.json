@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2023-20755","home_iot":"No","categories":[],"confidence":"High","reasoning":"The vulnerability affects Android and generic MediaTek chipsets without identifying any special-purpose residential home-monitoring or automation device."}]}

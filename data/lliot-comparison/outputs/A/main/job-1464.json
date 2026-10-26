@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2019-10367","home_iot":"No","categories":[],"confidence":"High","reasoning":"The vulnerability affects a Jenkins configuration plugin, which is general-purpose server software rather than a home IoT device."}]}

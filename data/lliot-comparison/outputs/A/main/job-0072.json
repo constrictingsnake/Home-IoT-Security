@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2015-8253","home_iot":"Yes","categories":["alarms","cameras"],"confidence":"Low","reasoning":"RSI Videofied devices are connected video-verification alarm systems used in homes, though the Frontel protocol may also cover commercial deployments."}]}

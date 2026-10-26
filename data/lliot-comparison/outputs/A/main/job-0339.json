@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2021-30264","home_iot":"Maybe","categories":["smartspeakers"],"confidence":"Low","reasoning":"The affected Qualcomm platform firmware spans mobile, automotive, industrial, networking, Consumer IoT, and Voice & Music chips, so it could underlie smart speakers but no specific qualifying home device is identified."}]}

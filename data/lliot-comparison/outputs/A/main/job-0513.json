@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2021-31532","home_iot":"No","categories":[],"confidence":"High","reasoning":"The affected NXP products are general-purpose microcontrollers and silicon components, with no description or CPE tying them to a residential home-automation device."}]}

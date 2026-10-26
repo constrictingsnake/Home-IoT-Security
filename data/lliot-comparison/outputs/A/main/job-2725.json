@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2023-7232","home_iot":"No","categories":[],"confidence":"High","reasoning":"This vulnerability affects a WordPress backup plugin, which is general website software rather than a home IoT device."}]}

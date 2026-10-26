@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2015-4590","home_iot":"No","categories":[],"confidence":"High","reasoning":"Arduino JSON is a general-purpose embedded software library, and the description does not identify any affected home IoT device or product category."}]}

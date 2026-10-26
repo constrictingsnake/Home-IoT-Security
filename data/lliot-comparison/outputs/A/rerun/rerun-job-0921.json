@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2018-7186","home_iot":"No","categories":[],"confidence":"High","reasoning":"The vulnerability affects the general-purpose Leptonica image-processing library and Debian Linux, not a specific home IoT device."}]}

@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2019-6337","home_iot":"No","categories":[],"confidence":"High","reasoning":"The affected HP inkjet printers are special-purpose peripherals, but printing is not a home monitoring, automation, or control function and no listed category covers printers."}]}

@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2019-8741","home_iot":"No","categories":[],"confidence":"High","reasoning":"The affected Apple desktop, mobile, wearable, and tvOS platforms are excluded general-computing or media platforms, with tvOS explicitly out of scope."}]}

@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2017-12577","home_iot":"Yes","categories":["cameras"],"confidence":"High","reasoning":"The PLANEX CS-QR20 is a consumer network security camera, and the vulnerable Android companion application exposes root command execution on the device."}]}

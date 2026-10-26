@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2020-2139","home_iot":"No","categories":[],"confidence":"High","reasoning":"The vulnerability affects a Jenkins code-coverage plugin on a general-purpose CI server, not a consumer home IoT device."}]}

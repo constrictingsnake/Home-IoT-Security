@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2022-30521","home_iot":"No","categories":[],"confidence":"High","reasoning":"The affected D-Link DIR-890L is a general-purpose Wi-Fi router, which is explicitly excluded as network transport rather than a home-control device."}]}

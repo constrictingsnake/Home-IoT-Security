@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2021-1969","home_iot":"Maybe","categories":["smartspeakers"],"confidence":"Low","reasoning":"The broad Qualcomm flaw includes Snapdragon Voice & Music and Consumer IoT chipsets that may power smart speakers, but neither the description nor CPEs identify a specific qualifying home-control device."}]}

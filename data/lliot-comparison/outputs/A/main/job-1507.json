@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2021-22806","home_iot":"Yes","categories":["hub"],"confidence":"High","reasoning":"Wiser for KNX, spaceLYnk, and fellerLYnk are networked KNX home/building-automation controllers that function as smart-home hubs."}]}

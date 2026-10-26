@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2013-4709","home_iot":"No","categories":[],"confidence":"High","reasoning":"The affected SEIL products are network routers running a PPP access concentrator, which provide network transport rather than home monitoring, automation, or control."}]}

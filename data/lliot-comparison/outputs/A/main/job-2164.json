@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2023-34216","home_iot":"No","categories":[],"confidence":"High","reasoning":"Moxa TN-4900 and TN-5900 products are industrial Ethernet switches rather than consumer devices for monitoring or controlling a private home."}]}

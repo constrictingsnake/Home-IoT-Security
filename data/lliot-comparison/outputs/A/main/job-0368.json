@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2024-7746","home_iot":"No","categories":[],"confidence":"High","reasoning":"Traccar Server is a general-purpose GPS tracking platform, not a residential device for monitoring, automating, or controlling the home."}]}

@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2019-9682","home_iot":"Maybe","categories":["cameras"],"confidence":"Low","reasoning":"The listed Dahua IP cameras and NVRs could serve residential security-camera deployments, but the product lines appear primarily oriented toward professional surveillance."}]}

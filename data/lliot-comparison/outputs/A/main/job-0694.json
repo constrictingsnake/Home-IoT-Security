@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2023-49221","home_iot":"No","categories":[],"confidence":"High","reasoning":"Precor touchscreen consoles are embedded interfaces for commercial fitness equipment, not devices whose primary purpose is monitoring, automating, or controlling a private home."}]}

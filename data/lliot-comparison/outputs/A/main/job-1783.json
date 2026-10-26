@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2018-4224","home_iot":"No","categories":[],"confidence":"High","reasoning":"The issue affects general-purpose Apple operating systems and software, while the tvOS/Apple TV component is explicitly excluded by the streaming-category scope ruling."}]}

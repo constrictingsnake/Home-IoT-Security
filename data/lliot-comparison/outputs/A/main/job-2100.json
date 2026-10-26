@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2022-46480","home_iot":"Yes","categories":["doorlock"],"confidence":"High","reasoning":"The affected Ultraloq UL3 is a consumer Bluetooth-enabled residential smart lock whose flaw allows nearby attackers to capture its unlock code."}]}

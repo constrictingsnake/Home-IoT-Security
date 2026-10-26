@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2023-4212","home_iot":"Yes","categories":["thermostat"],"confidence":"High","reasoning":"The affected Trane XL824, XL850, XL1050, and Pivot products are residential connected thermostats, despite exploitation requiring physical USB access."}]}

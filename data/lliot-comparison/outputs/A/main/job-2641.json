@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2021-31793","home_iot":"Yes","categories":["doorbell"],"confidence":"High","reasoning":"The affected NightOwl WDB-20-V2 is a network-connected video doorbell whose snapshots and video streams are exposed without authentication."}]}

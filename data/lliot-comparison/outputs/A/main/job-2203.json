@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2017-9765","home_iot":"Maybe","categories":["cameras"],"confidence":"Low","reasoning":"The flaw is in the broadly embedded gSOAP library and is known to affect networked Axis cameras, but the description does not establish whether the affected cameras are consumer home-security models rather than professional surveillance equipment."}]}

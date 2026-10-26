@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2018-10630","home_iot":"Yes","categories":["hub"],"confidence":"Low","reasoning":"The affected Crestron MC3 is a networked automation controller used in some residential smart-home installations, although these Crestron products are also heavily deployed commercially."}]}

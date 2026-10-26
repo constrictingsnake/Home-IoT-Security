@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2021-3787","home_iot":"Yes","categories":["babymonitor","cameras"],"confidence":"High","reasoning":"The affected Hubble product lines include network-connected consumer baby monitors and home cameras whose exposed MQTT credentials could enable unauthorized backend access."}]}

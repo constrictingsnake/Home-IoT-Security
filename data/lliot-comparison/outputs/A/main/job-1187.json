@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2016-1148","home_iot":"Yes","categories":["doorlock"],"confidence":"High","reasoning":"The vulnerable iOS companion app controls the Akerun consumer smart lock, so it is in scope as part of a residential smart-lock product."}]}

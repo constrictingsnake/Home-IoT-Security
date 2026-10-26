@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2022-32140","home_iot":"No","categories":[],"confidence":"High","reasoning":"The affected CODESYS PLC runtime products are industrial automation software rather than consumer devices intended to monitor or control a private home."}]}

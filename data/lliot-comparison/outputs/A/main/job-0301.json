@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2022-40505","home_iot":"No","categories":[],"confidence":"Low","reasoning":"The affected Qualcomm modem, wearable, and connectivity chipsets are general-purpose components, and the provided description and CPEs do not identify any qualifying home IoT device or category."}]}

@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2018-12927","home_iot":"Maybe","categories":["home-power"],"confidence":"Low","reasoning":"The affected networked NEP solar inverter could be part of a residential energy system, but the description and CPE do not distinguish home installations from commercial solar deployments."}]}

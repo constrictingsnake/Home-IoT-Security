@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2013-1984","home_iot":"No","categories":[],"confidence":"High","reasoning":"The vulnerability affects the general-purpose X.org libXi input library and X servers, not a residential IoT device or home-control system."}]}

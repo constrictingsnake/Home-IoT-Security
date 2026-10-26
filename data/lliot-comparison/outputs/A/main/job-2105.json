@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2020-25747","home_iot":"Yes","categories":["cameras"],"confidence":"High","reasoning":"The affected Rubetek devices are network-connected security cameras whose live feeds, movement, and settings can be remotely controlled."}]}

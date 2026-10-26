@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2022-47618","home_iot":"Maybe","categories":["cameras"],"confidence":"Low","reasoning":"The affected 4/8-channel surveillance DVR could support home security cameras, but the description and CPE do not establish whether it is a consumer home DVR or primarily professional surveillance equipment."}]}

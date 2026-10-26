@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2017-13865","home_iot":"No","categories":[],"confidence":"High","reasoning":"The affected Apple operating systems run phones, computers, watches, and tvOS devices, all of which are excluded device classes or explicitly excluded by the tvOS scope ruling."}]}

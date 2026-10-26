@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2019-19666","home_iot":"No","categories":[],"confidence":"High","reasoning":"Rumpus FTP is general-purpose Windows FTP server software, not a special-purpose home monitoring, automation, or control device."}]}

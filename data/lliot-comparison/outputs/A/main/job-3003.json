@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2017-9829","home_iot":"Maybe","categories":["cameras"],"confidence":"Low","reasoning":"The affected VIVOTEK network cameras are IP surveillance cameras that could be used at homes, but the listed bullet and fixed-dome models may primarily target professional deployments."}]}

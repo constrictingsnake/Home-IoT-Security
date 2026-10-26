@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2018-16670","home_iot":"No","categories":[],"confidence":"High","reasoning":"CirCarLife is a Circontrol SCADA platform for commercial EV-charging infrastructure, not a consumer home EV charger."}]}

@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2023-30399","home_iot":"Yes","categories":["ev-charging"],"confidence":"High","reasoning":"GARO Wallbox GLB/GTB/GTC devices are network-connected EV charging wallboxes, including models intended for residential garage or driveway use."}]}

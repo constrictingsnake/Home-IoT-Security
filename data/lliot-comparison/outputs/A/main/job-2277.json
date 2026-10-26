@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2020-21992","home_iot":"Yes","categories":["alarms"],"confidence":"High","reasoning":"Inim SmartLiving devices are network-connected residential intrusion-alarm systems, and the vulnerable SmartLAN interface is part of those systems."}]}

@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2015-2885","home_iot":"Yes","categories":["babymonitor"],"confidence":"High","reasoning":"Lens Peek-a-View is a network-connected consumer baby monitor, and the vulnerability affects its built-in administrative accounts."}]}

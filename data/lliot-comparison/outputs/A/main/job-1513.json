@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2023-31762","home_iot":"Yes","categories":["alarms"],"confidence":"High","reasoning":"The Digoo DG-HAMB is explicitly a consumer smart home security system, and the vulnerability affects its transmitter firmware."}]}

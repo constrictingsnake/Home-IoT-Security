@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2021-40597","home_iot":"Yes","categories":["cameras"],"confidence":"High","reasoning":"The EDIMAX IC-3140W is a consumer Wi-Fi network security camera, and the vulnerability affects its firmware."}]}

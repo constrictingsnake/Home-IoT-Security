@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2024-1786","home_iot":"No","categories":[],"confidence":"High","reasoning":"The D-Link DIR-600M is a general-purpose network router, which is explicitly excluded as transport infrastructure rather than a home-control hub."}]}

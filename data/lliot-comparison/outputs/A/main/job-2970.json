@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2024-22894","home_iot":"Maybe","categories":["airconditioner"],"confidence":"Low","reasoning":"The affected networked heat pumps may be residential climate-control systems, but the description and CPE do not establish consumer-home deployment or a smart air-conditioner product class."}]}

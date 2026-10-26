@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2019-8726","home_iot":"No","categories":[],"confidence":"High","reasoning":"The issue affects tvOS and Windows media/cloud software, and tvOS CVEs are explicitly excluded from the streaming category."}]}

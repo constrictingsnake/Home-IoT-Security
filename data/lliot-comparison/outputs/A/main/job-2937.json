@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2020-23192","home_iot":"No","categories":[],"confidence":"High","reasoning":"phpList is web-based mailing-list software, not a special-purpose home monitoring, automation, or control device."}]}

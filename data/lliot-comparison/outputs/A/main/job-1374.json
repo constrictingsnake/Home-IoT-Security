@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2020-3642","home_iot":"Maybe","categories":["cameras"],"confidence":"Low","reasoning":"The flaw affects camera functionality in broad Qualcomm mobile and consumer-IoT platforms that could power home security cameras, but no specific residential camera device is identified."}]}

@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2019-5039","home_iot":"Maybe","categories":["hub"],"confidence":"Low","reasoning":"OpenWeave-core is a software protocol layer used by connected-home devices and hubs, but the description does not identify a specific residential IoT product or deployment."}]}

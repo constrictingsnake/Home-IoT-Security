@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2019-14453","home_iot":"Yes","categories":["hub"],"confidence":"Low","reasoning":"Comelit Away From Home is a remote graphical interface for a residential home-automation system, making the associated controller a smart-home hub, though the description does not identify its controlled device types."}]}

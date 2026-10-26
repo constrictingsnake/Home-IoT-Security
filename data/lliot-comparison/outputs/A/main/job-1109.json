@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2023-42189","home_iot":"Yes","categories":["lighting","hub","smartplugs","sensors"],"confidence":"High","reasoning":"The affected products explicitly include consumer smart light strips, lamps and bulbs, Matter-capable home hubs/bridges, smart plugs, and a door/window sensor."}]}

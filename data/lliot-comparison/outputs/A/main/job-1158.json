@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2013-5018","home_iot":"No","categories":[],"confidence":"High","reasoning":"The vulnerability affects the general-purpose strongSwan VPN software and openSUSE operating system, not a residential home IoT device."}]}

@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2014-9689","home_iot":"No","categories":[],"confidence":"High","reasoning":"The vulnerability affects the general-purpose Google Chrome browser and device-orientation API, not a special-purpose home IoT device."}]}

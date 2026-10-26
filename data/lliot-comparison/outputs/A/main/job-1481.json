@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2024-5267","home_iot":"Yes","categories":["smartspeakers"],"confidence":"High","reasoning":"The vulnerability explicitly affects the network-connected Sonos Era 100 consumer smart speaker, which is a home-control-capable smart-speaker device."}]}

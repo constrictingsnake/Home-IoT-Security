@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2018-16423","home_iot":"No","categories":[],"confidence":"High","reasoning":"OpenSC is general-purpose smartcard software, not a residential IoT device used to monitor, automate, or control the home."}]}

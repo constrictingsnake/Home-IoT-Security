@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2018-14809","home_iot":"No","categories":[],"confidence":"High","reasoning":"Fuji Electric V-Server is industrial monitoring/control equipment rather than a consumer device intended for home automation."}]}

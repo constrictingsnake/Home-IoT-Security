@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2018-6874","home_iot":"No","categories":[],"confidence":"High","reasoning":"Auth0.js is a general-purpose authentication software library/service, not a special-purpose home IoT device or its product-specific companion service."}]}

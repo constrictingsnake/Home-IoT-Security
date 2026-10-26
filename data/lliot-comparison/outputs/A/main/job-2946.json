@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2024-1659","home_iot":"No","categories":[],"confidence":"High","reasoning":"MegaBIP is server software with an arbitrary file-upload vulnerability, not a consumer home IoT device or its dedicated control service."}]}

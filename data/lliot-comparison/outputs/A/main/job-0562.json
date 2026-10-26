@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2018-4096","home_iot":"No","categories":[],"confidence":"High","reasoning":"This WebKit vulnerability affects general-purpose Apple platforms and tvOS, which is explicitly excluded from the streaming category."}]}

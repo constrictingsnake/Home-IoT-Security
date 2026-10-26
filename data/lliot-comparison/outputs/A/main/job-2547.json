@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2024-50929","home_iot":"Yes","categories":["hub"],"confidence":"Low","reasoning":"The flaw affects Silicon Labs Z-Wave controller technology used in smart-home hubs, although the generic SDK and radio modules can also appear in non-residential products."}]}

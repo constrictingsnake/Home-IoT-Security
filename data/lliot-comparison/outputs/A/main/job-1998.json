@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2020-15501","home_iot":"Yes","categories":["appliances"],"confidence":"High","reasoning":"The affected Smarter Coffee Maker is a network-connected consumer kitchen appliance whose firmware can be replaced without authentication."}]}

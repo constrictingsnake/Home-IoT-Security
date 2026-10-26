@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2019-11334","home_iot":"Yes","categories":["doorlock"],"confidence":"High","reasoning":"The vulnerable companion app and firmware control a consumer smart padlock, which is a residential smart-lock device."}]}

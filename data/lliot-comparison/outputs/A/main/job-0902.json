@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2024-48774","home_iot":"Maybe","categories":["doorbell"],"confidence":"Low","reasoning":"Fermax VIDA appears associated with networked video door-entry systems, but the description does not establish whether the affected product is a residential smart doorbell rather than commercial access-control equipment."}]}

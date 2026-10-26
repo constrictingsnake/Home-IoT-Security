@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2023-30897","home_iot":"No","categories":[],"confidence":"High","reasoning":"SIMATIC WinCC is industrial SCADA/HMI software, not a consumer residential home IoT device."}]}

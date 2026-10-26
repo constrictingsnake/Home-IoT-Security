@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2013-3689","home_iot":"No","categories":[],"confidence":"Low","reasoning":"The affected Brickcom models are professional IP-surveillance cameras, with no indication in the description or CPEs that they are consumer home-security products."}]}

@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2020-8254","home_iot":"No","categories":[],"confidence":"High","reasoning":"The affected product is a Windows VPN desktop client, which is general-purpose IT software rather than a home IoT device."}]}

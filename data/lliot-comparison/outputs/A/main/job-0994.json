@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2023-5397","home_iot":"No","categories":[],"confidence":"High","reasoning":"The description identifies only a server handling connection messages and does not name any residential IoT device or home-control function."}]}

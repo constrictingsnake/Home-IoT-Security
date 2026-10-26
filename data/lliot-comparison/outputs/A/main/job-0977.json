@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2022-22831","home_iot":"No","categories":[],"confidence":"High","reasoning":"Servisnet Tessa is an application with sysadmin account management, and the provided description and CPE do not identify any residential IoT device or home-control function."}]}

@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2024-29238","home_iot":"Maybe","categories":["cameras"],"confidence":"Low","reasoning":"Synology Surveillance Station can operate as a home security-camera NVR, but the description and DSM CPEs do not distinguish residential deployments from business surveillance or general-purpose NAS use."}]}

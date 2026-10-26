@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2024-50299","home_iot":"No","categories":[],"confidence":"High","reasoning":"This is a generic Linux kernel SCTP vulnerability with no description or CPE evidence tying it to a qualifying home IoT device."}]}

@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2021-38399","home_iot":"No","categories":[],"confidence":"High","reasoning":"Honeywell Experion PKS controllers are industrial process-control systems, not consumer devices intended to monitor or automate a private home."}]}

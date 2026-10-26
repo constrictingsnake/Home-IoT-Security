@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2024-8576","home_iot":"No","categories":[],"confidence":"High","reasoning":"The affected TOTOLINK T8 and T10 are wireless mesh routers, which provide network transport rather than home monitoring, automation, or control."}]}

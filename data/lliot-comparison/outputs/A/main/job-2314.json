@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2022-27239","home_iot":"No","categories":[],"confidence":"High","reasoning":"The vulnerability affects the general-purpose cifs-utils Linux SMB mounting utility and operating-system or enterprise platforms, not a residential home IoT device."}]}

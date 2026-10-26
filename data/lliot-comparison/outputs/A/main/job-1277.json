@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2022-25478","home_iot":"No","categories":[],"confidence":"High","reasoning":"The affected Realtek PCIe and USB card-reader drivers are general-purpose computer components, not home-monitoring or automation devices."}]}

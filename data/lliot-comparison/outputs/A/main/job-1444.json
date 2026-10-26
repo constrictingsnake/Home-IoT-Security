@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2019-15480","home_iot":"Yes","categories":["hub"],"confidence":"High","reasoning":"Domoticz is a consumer home-automation controller that functions as a smart-home hub, and the XSS affects its management interface."}]}

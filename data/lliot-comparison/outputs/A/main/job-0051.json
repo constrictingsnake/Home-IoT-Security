@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2018-19020","home_iot":"No","categories":[],"confidence":"High","reasoning":"Omron CX-Supervisor is industrial automation supervisory software rather than a consumer residential IoT device."}]}

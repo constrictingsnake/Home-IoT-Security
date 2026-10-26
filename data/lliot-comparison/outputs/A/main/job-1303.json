@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2019-19196","home_iot":"No","categories":[],"confidence":"High","reasoning":"The CVE affects a generic Telink BLE SDK and semiconductor chip families rather than a consumer device designed to monitor, automate, or control a home."}]}

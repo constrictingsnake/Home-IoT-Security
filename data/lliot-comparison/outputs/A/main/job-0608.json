@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2018-8470","home_iot":"No","categories":[],"confidence":"High","reasoning":"The vulnerability affects Internet Explorer 11 on general-purpose Windows computers and servers, not a special-purpose home IoT device."}]}

@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2021-22376","home_iot":"No","categories":[],"confidence":"High","reasoning":"This affects the general-purpose HarmonyOS operating system without identifying a qualifying home IoT device or home-control function."}]}

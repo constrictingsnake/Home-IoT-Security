@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2022-43501","home_iot":"Maybe","categories":["hub"],"confidence":"Low","reasoning":"KASAGO is a generic embedded TCP/IP stack that could be used in home IoT products, but the description and CPEs identify no specific residential device or function."}]}

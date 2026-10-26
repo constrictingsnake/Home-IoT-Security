@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2024-22018","home_iot":"No","categories":[],"confidence":"High","reasoning":"The vulnerability affects the general-purpose Node.js runtime's experimental permission model, not a specific home IoT device or product."}]}

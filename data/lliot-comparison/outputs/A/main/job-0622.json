@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2021-38142","home_iot":"No","categories":[],"confidence":"High","reasoning":"The vulnerability affects Barco MirrorOp Windows Sender software running on general-purpose Windows computers, not a qualifying home IoT device."}]}

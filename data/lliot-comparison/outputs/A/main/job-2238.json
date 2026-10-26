@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2020-28096","home_iot":"Yes","categories":["cameras"],"confidence":"High","reasoning":"The FOSCAM FHD X1 is a consumer network-connected indoor security camera, so its firmware vulnerability is in scope as a home camera."}]}

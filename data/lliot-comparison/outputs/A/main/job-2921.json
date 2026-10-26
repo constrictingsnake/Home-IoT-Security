@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2019-19228","home_iot":"Yes","categories":["home-power"],"confidence":"High","reasoning":"The affected network-managed Fronius solar inverter lines include residential photovoltaic systems, which are home energy devices."}]}

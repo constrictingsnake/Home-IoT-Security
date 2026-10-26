@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2024-41665","home_iot":"No","categories":[],"confidence":"High","reasoning":"Ampache is a general-purpose web streaming and file-management application, not an embedded home-control device or qualifying IoT control surface."}]}

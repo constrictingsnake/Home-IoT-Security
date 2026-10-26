@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2017-6631","home_iot":"No","categories":[],"confidence":"High","reasoning":"The affected devices are consumer set-top box receivers used for television, but the description does not establish that they act as smart-home control surfaces or hubs."}]}

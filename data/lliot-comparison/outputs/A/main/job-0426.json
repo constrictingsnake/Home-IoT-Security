@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2023-50129","home_iot":"Yes","categories":["doorlock"],"confidence":"High","reasoning":"The affected Flient Smart Door Lock is a connected residential access-control device, and cloned NFC tags can allow unauthorized perimeter entry."}]}

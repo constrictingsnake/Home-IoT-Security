@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2024-3382","home_iot":"No","categories":[],"confidence":"High","reasoning":"PAN-OS on PA-5400 Series firewalls is enterprise network-security infrastructure, not a consumer home IoT device."}]}

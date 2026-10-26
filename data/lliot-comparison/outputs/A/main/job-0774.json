@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2019-2239","home_iot":"Maybe","categories":["smartspeakers","cameras"],"confidence":"Low","reasoning":"The flaw spans generic Snapdragon platforms, including Consumer IoT and Voice & Music chipsets plausibly used in smart speakers and home cameras, but no qualifying end product is identified."}]}

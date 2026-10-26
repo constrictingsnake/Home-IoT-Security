@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2013-0689","home_iot":"No","categories":[],"confidence":"High","reasoning":"The affected Emerson ROC800, DL8000, and ROC800L RTUs are industrial process-control equipment, not consumer devices intended for home monitoring or automation."}]}

@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2020-27211","home_iot":"Maybe","categories":["sensors"],"confidence":"Low","reasoning":"The nRF52840 is a general-purpose wireless microcontroller used in both consumer home sensors and many non-home embedded devices, so the affected product context is ambiguous."}]}

@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2019-13598","home_iot":"Yes","categories":["hub"],"confidence":"High","reasoning":"The affected Vera Edge Home Controller is a consumer smart-home hub that controls residential IoT devices."}]}

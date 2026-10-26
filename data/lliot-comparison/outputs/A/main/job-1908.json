@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2023-22667","home_iot":"Yes","categories":["smartspeakers","hub"],"confidence":"Low","reasoning":"The affected Qualcomm platforms include Smart Audio, Smart Display, and Home Hub hardware used in smart speakers/displays and home-control hubs, although the vulnerable audio component is shared with many non-home products."}]}

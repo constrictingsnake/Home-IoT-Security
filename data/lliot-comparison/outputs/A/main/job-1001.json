@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2024-29038","home_iot":"No","categories":[],"confidence":"High","reasoning":"tpm2-tools is general-purpose TPM utility software and is not a residential home IoT device or device-specific component."}]}

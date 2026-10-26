@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2024-51330","home_iot":"No","categories":[],"confidence":"High","reasoning":"UltiMaker Cura is desktop 3D-printing software and 3D printers do not perform a qualifying home monitoring, automation, or control function."}]}

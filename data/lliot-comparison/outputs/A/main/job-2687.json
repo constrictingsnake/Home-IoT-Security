@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2023-6322","home_iot":"Yes","categories":["cameras"],"confidence":"High","reasoning":"The vulnerability affects Roku and Wyze consumer indoor security cameras, which are network-connected home monitoring devices."}]}

@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2015-4599","home_iot":"No","categories":[],"confidence":"High","reasoning":"The vulnerability affects the general-purpose PHP runtime and Red Hat Enterprise Linux systems, with no specific home IoT device or home-control function identified."}]}

@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2016-2286","home_iot":"No","categories":[],"confidence":"High","reasoning":"Moxa MiiNePort E1/E2/E3 products are industrial embedded serial device servers rather than consumer devices for monitoring or controlling a private home."}]}

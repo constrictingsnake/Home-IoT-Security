@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2019-19994","home_iot":"No","categories":[],"confidence":"High","reasoning":"Selesta Visual Access Manager is access-control management software rather than a consumer residential smart lock or other home IoT device."}]}

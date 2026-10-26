@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2023-36161","home_iot":"Yes","categories":["smartplugs"],"confidence":"High","reasoning":"The affected Qubo Smart Plug 10A is a network-connected consumer smart plug used for home power control."}]}

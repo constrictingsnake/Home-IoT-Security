@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2023-31245","home_iot":"Yes","categories":["hub"],"confidence":"High","reasoning":"The affected Control4 CA/EA and Snap One OvrC controller products include residential home-automation controllers that function as smart-home hubs, even though the affected list also includes plain networking hardware."}]}

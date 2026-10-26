@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2019-2331","home_iot":"Maybe","categories":["smartspeakers"],"confidence":"Low","reasoning":"The flaw spans broad Qualcomm chipsets and firmware, including Consumer IoT and Voice & Music platforms plausibly used in smart speakers, but no specific residential home-control product is identified."}]}

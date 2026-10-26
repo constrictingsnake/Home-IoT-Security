@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2018-5560","home_iot":"Yes","categories":["cameras"],"confidence":"High","reasoning":"The Guardzilla GZ521W is a consumer connected video security camera system whose cloud flaw exposes users' private camera data."}]}

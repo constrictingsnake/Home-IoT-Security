@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2024-7408","home_iot":"Yes","categories":["sensors"],"confidence":"High","reasoning":"The affected Airveda PM2.5/PM10 monitor is a Wi-Fi-connected consumer air-quality sensor with an AP-based pairing mode."}]}

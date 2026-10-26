@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2020-3136","home_iot":"No","categories":[],"confidence":"High","reasoning":"Cisco Jabber Guest is enterprise communication software, not a special-purpose device for monitoring, automating, or controlling a private home."}]}

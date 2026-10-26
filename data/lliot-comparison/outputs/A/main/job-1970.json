@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2021-23624","home_iot":"No","categories":[],"confidence":"High","reasoning":"Dotty is a general-purpose software package, and nothing in the description or CPE ties it to a home IoT device."}]}

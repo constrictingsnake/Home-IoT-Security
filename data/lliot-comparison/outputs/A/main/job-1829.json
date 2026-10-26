@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2022-25962","home_iot":"No","categories":[],"confidence":"High","reasoning":"vagrant.js is a Node.js software package for managing Vagrant environments, not a special-purpose home IoT device."}]}

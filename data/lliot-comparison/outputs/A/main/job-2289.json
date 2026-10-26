@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2021-30267","home_iot":"No","categories":[],"confidence":"Low","reasoning":"The vulnerability affects broadly deployed Qualcomm chipset firmware across automotive, mobile, computing, connectivity, and IoT platforms, without identifying a qualifying residential home-control device or category."}]}

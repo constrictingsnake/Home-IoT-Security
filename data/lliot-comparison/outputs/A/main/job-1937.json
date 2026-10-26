@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2021-22955","home_iot":"No","categories":[],"confidence":"High","reasoning":"Citrix ADC and Gateway are enterprise application-delivery, VPN, and access-control infrastructure rather than consumer home IoT devices."}]}

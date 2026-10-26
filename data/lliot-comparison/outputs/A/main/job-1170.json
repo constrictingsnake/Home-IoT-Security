@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2022-23928","home_iot":"No","categories":[],"confidence":"High","reasoning":"The vulnerability affects BIOS firmware in general-purpose HP PCs, which are excluded from the home IoT device class."}]}

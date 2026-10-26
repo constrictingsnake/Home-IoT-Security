@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2018-7230","home_iot":"No","categories":[],"confidence":"High","reasoning":"Pelco Sarix Professional is a professional surveillance camera line rather than a consumer home security camera, which the cameras category explicitly excludes."}]}

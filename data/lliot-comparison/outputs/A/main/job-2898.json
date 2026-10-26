@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2020-7943","home_iot":"No","categories":[],"confidence":"High","reasoning":"Puppet Enterprise, Puppet Server, and PuppetDB are general IT infrastructure-management software, not consumer home IoT devices."}]}

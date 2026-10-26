@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2014-3144","home_iot":"No","categories":[],"confidence":"High","reasoning":"This is a generic Linux kernel vulnerability affecting general-purpose operating systems, with no indication of a specific home IoT device or function."}]}

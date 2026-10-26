@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2021-45960","home_iot":"No","categories":[],"confidence":"High","reasoning":"The vulnerability affects the general-purpose libexpat XML parser and listed enterprise/server platforms, not a specific consumer home IoT device."}]}

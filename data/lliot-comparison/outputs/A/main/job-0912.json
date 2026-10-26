@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2022-47071","home_iot":"Maybe","categories":["cameras"],"confidence":"Low","reasoning":"The NVS365 V01 appears to be network-video surveillance hardware, but the description and CPE do not establish whether it is a consumer home camera/NVR rather than professional surveillance equipment."}]}

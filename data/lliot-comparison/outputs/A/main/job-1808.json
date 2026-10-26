@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2020-15254","home_iot":"No","categories":[],"confidence":"High","reasoning":"Crossbeam is a general-purpose concurrent programming library, and the description does not identify any affected home IoT device or product."}]}

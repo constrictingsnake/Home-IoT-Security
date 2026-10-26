@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2023-44413","home_iot":"No","categories":[],"confidence":"High","reasoning":"D-Link D-View is network-management software rather than a consumer embedded device used to monitor, automate, or control a home."}]}

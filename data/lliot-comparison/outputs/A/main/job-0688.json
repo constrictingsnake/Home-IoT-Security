@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2023-22086","home_iot":"No","categories":[],"confidence":"High","reasoning":"Oracle WebLogic Server is enterprise middleware rather than a consumer home monitoring, automation, or control device."}]}

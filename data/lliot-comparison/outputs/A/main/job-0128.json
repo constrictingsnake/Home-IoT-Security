@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2021-38289","home_iot":"No","categories":[],"confidence":"High","reasoning":"Novaicare is corporate-facing service software for managing NovaStar display systems, not a consumer home monitoring, automation, or control device."}]}

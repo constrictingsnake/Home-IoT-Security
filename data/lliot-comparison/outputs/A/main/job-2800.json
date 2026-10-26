@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2024-20458","home_iot":"No","categories":[],"confidence":"High","reasoning":"Cisco ATA 191/192 devices are analog telephone adapters for voice communications, not devices whose primary purpose is monitoring, automating, or controlling a home."}]}

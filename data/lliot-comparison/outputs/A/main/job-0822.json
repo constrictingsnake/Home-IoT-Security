@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2020-3617","home_iot":"No","categories":[],"confidence":"Low","reasoning":"The vulnerability affects a shared Qualcomm chipset diagnostic framework across compute, mobile, consumer-IoT, and industrial platforms, without identifying any qualifying home-IoT device category."}]}

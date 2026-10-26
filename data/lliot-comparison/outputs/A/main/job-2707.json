@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2020-3635","home_iot":"No","categories":[],"confidence":"Low","reasoning":"The vulnerability affects generic Qualcomm chipset platforms spanning automotive, mobile, wearable, industrial, and consumer IoT uses, but the supplied data identifies no specific home-control device or qualifying category."}]}

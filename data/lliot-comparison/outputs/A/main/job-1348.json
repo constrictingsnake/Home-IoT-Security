@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2020-27402","home_iot":"Yes","categories":["streaming"],"confidence":"High","reasoning":"The affected HK1 Box S905X3 is a consumer Android TV streaming box, which falls within the streaming-device category."}]}

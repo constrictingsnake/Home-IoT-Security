@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2024-3130","home_iot":"Maybe","categories":["smartplugs","lighting"],"confidence":"Low","reasoning":"The vulnerable eWeLink companion app commonly controls consumer smart plugs and lighting, but the description does not identify which connected product lines or device data are affected."}]}

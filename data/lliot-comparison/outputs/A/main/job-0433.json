@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2021-40170","home_iot":"Yes","categories":["alarms"],"confidence":"High","reasoning":"The vulnerability affects a networked SecuritasHome consumer home alarm system and permits replayed signals to disarm it."}]}

@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2023-52445","home_iot":"No","categories":[],"confidence":"High","reasoning":"This is a generic Linux kernel vulnerability in the pvrusb2 media driver, with no indication that it affects a qualifying home IoT device."}]}

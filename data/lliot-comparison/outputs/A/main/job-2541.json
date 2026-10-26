@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2023-24503","home_iot":"Yes","categories":["airconditioner"],"confidence":"High","reasoning":"The affected Electra smart kit is networked control equipment for a consumer split air-conditioning unit, and the flaw permits adjacent unauthorized firmware loading."}]}

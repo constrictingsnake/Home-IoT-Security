@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2015-2866","home_iot":"Maybe","categories":["cameras"],"confidence":"Low","reasoning":"The GXV3611_HD is a networked IP surveillance camera that could be used in a home, but the description and CPE do not establish whether it is a consumer home camera or primarily commercial equipment."}]}

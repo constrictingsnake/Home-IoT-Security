@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2020-25755","home_iot":"Yes","categories":["home-power"],"confidence":"High","reasoning":"Enphase Envoy is a networked residential solar energy monitoring and control gateway, placing the affected device in the home-power category."}]}
