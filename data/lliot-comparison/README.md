@@ -55,3 +55,17 @@ its retry is logged with `valid=no`; rerunning picks it up.
 | `manifest.csv`, `strata.csv`, `jobs.csv` | sample, stratum weights, job list (sampler output) |
 | `run-kit/` | generated: `AGENTS.md`, `schema.json`, `job_preamble.txt` (hash-pinned), `jobs/` |
 | `outputs/A/`, `run_log_A.csv` | validated outputs and run log |
+
+## Adjudication (P5)
+`python3 scripts/lliot_compare.py` built the sheets (once; it refuses to redraw). Then:
+- **`adjudication/sheet_A.csv`**: do **R001–R103** (the core, ~2 h). Rows after R103 are optional;
+  keep going in order for as long as you have time and stop whenever. Never skip around or pick
+  rows by content.
+- Judge with **`run-kit/AGENTS.md`**, the same rules the model got. For each row fill:
+  `home_iot` (Yes/No/Maybe) · `categories` (slugs, most specific first, `|`-separated, empty for
+  No) · `exclusion_reason` (for No: criterion 1–5 / not a device / insufficient info) · `notes`
+  (tag `precedent:<ruling>` when a call rests on a ruling not in AGENTS.md).
+- **`adjudication/retest_A.csv`**: 15 rows. Do it **on or after 2026-11-02**, without looking at
+  your sheet_A answers.
+- **Never open `adjudication/_key.csv`.** It maps rows to CVEs and says which way the methods
+  disagreed.

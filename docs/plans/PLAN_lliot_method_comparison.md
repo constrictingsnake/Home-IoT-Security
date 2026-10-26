@@ -1,6 +1,6 @@
 # Plan — Does LLIoT's method work on our research question? (one researcher, ChatGPT-based)
 
-> **STATUS (2026-10-26): P3 + P4 DONE — 3,035/3,035 main + 152/152 reruns valid; stability 97.4%. Next: P5 adjudication sheet (`lliot_compare.py`, not yet written).** Kit, scripts, sample
+> **STATUS (2026-10-26): P3 + P4 DONE — 3,035/3,035 main + 152/152 reruns valid; stability 97.4%. Next: P5 — adjudication sheet built (amended to ~2 h, § The adjudication sheet).** Kit, scripts, sample
 > (3,035 CVEs) and pilot jobs are built. A ran the smoke test and the 42 pilot jobs (§ Pilot
 > log). **Changed 2026-10-25, before the Phase 0 commit: the study is one researcher (Aarav)
 > on one ChatGPT Plus plan**, run from a Claude Code session (§ One-researcher workflow). B's
@@ -254,6 +254,23 @@ critical path: P0 → P2 → P3 → P5.
 | **6. Analyse** | Run the analysis; recompute the headline numbers independently from raw files |
 
 ### The adjudication sheet (P5)
+
+> **AMENDMENT 2026-10-26 — sheet cut to the adjudicator's ~2 hours.** Reason: one adjudicator
+> with ~2 h available, against the ~730 rows (~12 h) the design below implies. Decided from
+> counts only (model vs pipeline disagreement per stratum, `lliot_compare.py`), before any label
+> was seen. Measured: 398 of 3,035 sampled CVEs disagree — 330 on home IoT (N 97, U1 168, Y 40,
+> R 11, U2 13, U3 1) and 68 on category only (Y 38, M 18, R 12).
+> - **Core, 103 rows, shuffled together:** all 68 category disagreements; 15 agreement controls
+>   (both home IoT, same categories, from Y/M/R); 20 of the 168 U1 CVEs the model calls home IoT.
+> - **Extension, 310 rows, shuffled:** every other home-IoT disagreement, done in sheet order as
+>   far as time allows. Stopping is by time only, never by content, so any completed prefix is a
+>   random subsample of the extension and is weighted as such.
+> - **Test–retest: 15 core rows** (was 100), ≥ 1 week after the core.
+> - **Consequences, stated as limits:** the category question (Hb1, Hb3, Hb4) is answered from
+>   every disagreement; Hb2 per-family accuracy mostly falls under n = 10 and is reported pooled;
+>   Ha2 recall rests on 20 U1 rows (wide CI); **Ha1 precision is measured only if the extension
+>   gets far enough into the N and Y rows**, otherwise reported as not measured. The remainder of
+>   this section is the original design, kept for the record.
 - **Rows:**
   - every sampled CVE where the model and the pipeline disagree on home IoT **or** on the
     category set (any difference counts), capped at a stratified 600 if there are more
