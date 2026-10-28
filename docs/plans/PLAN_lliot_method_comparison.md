@@ -418,6 +418,25 @@ confirmed counts above. Pilot: 40 CVEs (Y 10, U3 8, U1 6, N 6, U2 4, M 2, R 2, X
 - Agreement figures are now reproducible counts-only: `lliot_validate.py --agree
   outputs/A/pilot-single outputs/A/pilot-batch` gives the 36/40 and 14/14 above.
 
+**B (Suhani), 2026-10-27 — supplementary, cross-account replication.** Run on B's own Plus
+account and machine under the original two-person pilot (pushed as `3e7e97d` after the
+one-researcher change, which had not yet been pushed). 42/42 valid, Codex 0.151.0,
+`gpt-5.6-sol` @ medium. **These outputs never enter the analysis** (pilot rule); they bear only
+on the method.
+- **Cross-account stability (A single vs B single):** home IoT **39/40 (97.5%)**, primary
+  category **15/16 (93.8%)** — identical to A's same-account rerun, so the 97.4% main-run
+  stability is not an artefact of one account or machine.
+- **Batching, second replicate (B single vs B batched-20):** home IoT 37/40 (92.5%), primary
+  14/15. Pooled with A: **73/80 (91%)**, below stability in both replicates. Under the original
+  rule (batch only if batched agreement ≥ cross-account stability) the gate decision is the
+  same: single.
+- **Smoke/canary on a second machine:** AGENTS.md loaded, web search off, outside-file read
+  failed closed, no `~/.codex/AGENTS.md`. **Discrepancy, recorded:** B's session listed
+  `functions.exec` and collaboration tools, which A's did not. The canary still failed closed.
+  No main-run job ran on B's machine; resolve this before any further run there.
+- No usage-meter reading (the usage screen was unavailable); token totals are in
+  `run_log_B.csv`.
+
 **A, pilot rerun (2026-10-25):** the 40 single jobs again, fresh sessions (`pilot-rerun`),
 replacing B's pilot. 40/40 valid, 0 retries, ~4.4 s/job, ~10,440 input tokens/job.
 - **Rerun stability (single vs single):** home IoT **39/40 (97.5%)**; primary category **15/16
@@ -453,7 +472,7 @@ remaining ~3,087 jobs need roughly 15–45% of a week).
   (96.0%)** where both gave one. H5 thresholds (90% / 85%) met; consistent with the pilot's 97.5%.
 
 ## Pre-registration
-- Commit hash: `559bcf1` (2026-10-25)
+- Commit hash: `db8757f` (committed 2026-10-25 as `559bcf1`; rebased unchanged onto `3e7e97d` before its first push, 2026-10-28)
 - Prompt (`run-kit/AGENTS.md`) SHA-256: `8d5c8319d48bf99c41590a042f0482af5167641a4ed86edc6de228d32cf5713b`
 - Schema (`run-kit/schema.json`) SHA-256: `d69a99b032842c42bf4879f3d9643252d34db8d8ebbd2139d768fce28fd37692`
   - Both as generated 2026-10-16. Rerun `lliot_build_prompt.py --check` at Phase 0. A changed

@@ -55,6 +55,7 @@ its retry is logged with `valid=no`; rerunning picks it up.
 | `manifest.csv`, `strata.csv`, `jobs.csv` | sample, stratum weights, job list (sampler output) |
 | `run-kit/` | generated: `AGENTS.md`, `schema.json`, `job_preamble.txt` (hash-pinned), `jobs/` |
 | `outputs/A/`, `run_log_A.csv` | validated outputs and run log |
+| `outputs/B/`, `run_log_B.csv` | Suhani's pilot (2026-10-27): supplementary cross-account replication, never analysed |
 
 ## Adjudication (P5)
 `python3 scripts/lliot_compare.py` built the sheets (once; it refuses to redraw). Then:
