@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2019-9725","home_iot":"No","categories":[],"confidence":"High","reasoning":"Korenix JetPort 5601/5601f devices are industrial serial device servers rather than consumer home-monitoring or automation devices."}]}

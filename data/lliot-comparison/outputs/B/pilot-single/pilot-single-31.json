@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2020-28999","home_iot":"Yes","categories":["doorbell"],"confidence":"High","reasoning":"The affected Geeni GNC-CW013 is explicitly a networked consumer video doorbell with a vulnerable streaming camera service."}]}

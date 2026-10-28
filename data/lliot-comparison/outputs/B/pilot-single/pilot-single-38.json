@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2023-5881","home_iot":"Yes","categories":["doorlock"],"confidence":"High","reasoning":"The affected Genie Aladdin Connect is a network-connected residential garage-door opener/control module, which is explicitly included in the smart-lock category."}]}

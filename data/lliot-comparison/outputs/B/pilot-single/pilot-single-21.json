@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2024-52548","home_iot":"Maybe","categories":["cameras"],"confidence":"Low","reasoning":"The description identifies only an unspecified embedded firmware, whose version pattern may correspond to a network camera, but provides too little product or deployment information to confirm home-IoT scope."}]}

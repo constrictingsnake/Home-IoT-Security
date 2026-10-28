@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2021-28838","home_iot":"No","categories":[],"confidence":"High","reasoning":"The affected D-Link DAP products are wireless access points, which provide network transport rather than monitoring, automation, or control of the home."}]}

@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2017-11189","home_iot":"No","categories":[],"confidence":"High","reasoning":"The vulnerability affects the general-purpose unrar-free archive library, with no indication of a home IoT device or qualifying home-control function."}]}

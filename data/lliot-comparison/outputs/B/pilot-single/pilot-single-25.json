@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2021-22726","home_iot":"Yes","categories":["ev-charging"],"confidence":"High","reasoning":"The affected EVlink Smart Wallbox is a network-managed wallbox suitable for residential EV charging, although the City and Parking models are commercial chargers."}]}

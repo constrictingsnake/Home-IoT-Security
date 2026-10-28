@@ -1,0 +1,1 @@
+{"results":[{"cve_id":"CVE-2023-33383","home_iot":"Yes","categories":["lighting"],"confidence":"High","reasoning":"Shelly Pro 4PM is a BLE-connected consumer four-channel smart switch used to control residential lighting circuits."}]}
